@@ -23,6 +23,10 @@ exports.createPages = ({graphql, boundActionCreators}) => {
                 childPages {
                   id
                   slug
+                  childPages {
+                    id
+                    slug
+                  }
                 }
               }
             }
@@ -41,7 +45,6 @@ exports.createPages = ({graphql, boundActionCreators}) => {
         // Gatsby uses Redux to manage its internal state.
         // Plugins and sites can use functions like "createPage"
         // to interact with Gatsby.
-        console.log('---', id, slugs, `/${slugs.join('/')}/`);
 
         createPage({
           // Each page is required to have a `path` as well
@@ -56,16 +59,22 @@ exports.createPages = ({graphql, boundActionCreators}) => {
         });
       };
 
+      const buildPageAndChildPages = (
+        {slug, id, childPages},
+        prevSlugs = []
+      ) => {
+        const slugs = [...prevSlugs, slug];
+        buildPage(id, slugs);
+        childPages &&
+          childPages.forEach(node => {
+            buildPageAndChildPages(node, slugs);
+          });
+      };
+
       // We want to create a detailed page for each
       // product node. We'll just use the Contentful id for the slug.
       result.data.allContentfulArticlePage.edges.forEach(({node}) => {
-        const {slug, id, childPages = []} = node;
-        buildPage(id, [slug]);
-
-        childPages.forEach(({id: childId, slug: childSlug}) => {
-          buildPage(childId, [slug, childSlug]);
-        });
-
+        buildPageAndChildPages(node);
         resolve();
       });
     });
