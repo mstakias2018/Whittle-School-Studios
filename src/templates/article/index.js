@@ -1,7 +1,7 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 
-// import ContentModules from 'content-modules';
+import ContentModules from '../../content-modules';
 
 const propTypes = {
   data: PropTypes.object.isRequired
@@ -10,12 +10,11 @@ const propTypes = {
 class ArticleTemplate extends React.Component {
   render() {
     const article = this.props.data.contentfulArticlePage;
-    console.log(article);
-    const {headline} = article;
-    // <ContentModules modules={article.modules} />
+    const {headline, modules} = article;
     return (
       <div>
         <h1>{headline}</h1>
+        {modules && <ContentModules modules={modules} />}
       </div>
     );
   }
@@ -30,9 +29,25 @@ export const pageQuery = graphql`
     contentfulArticlePage(id: {eq: $id}) {
       headline
       modules {
-        id
-        internal {
-          type
+        __typename
+        ... on ContentfulInlineVideo {
+          description
+          video {
+            id
+            file {
+              url
+              fileName
+              contentType
+            }
+          }
+        }
+        ... on ContentfulBodyText {
+          content {
+            childMarkdownRemark {
+              html
+            }
+          }
+          hasDropCap
         }
       }
     }
