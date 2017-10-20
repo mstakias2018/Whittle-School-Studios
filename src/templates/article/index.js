@@ -1,5 +1,6 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 
 import ContentModules from '../../content-modules';
 
@@ -13,6 +14,7 @@ class ArticleTemplate extends React.Component {
     const {headline, modules} = article;
     return (
       <div>
+        <Helmet title={headline} />
         <h1>{headline}</h1>
         {modules && <ContentModules modules={modules} />}
       </div>

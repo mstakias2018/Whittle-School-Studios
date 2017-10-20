@@ -7,7 +7,7 @@ import './reset.css';
 
 const TemplateWrapper = ({children}) => (
   <div>
-    <Helmet title="Gatsby POC" />
+    <Helmet title="Home" titleTemplate="The Whittle School - %s" />
     {children()}
   </div>
 );
