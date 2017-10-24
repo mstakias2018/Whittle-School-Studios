@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 
-import BodyText from './body-text';
-import InlineVideo from './inline-video';
+import BodyText from './global/body-text';
+import InlineVideo from './global/inline-video';
 
 const MODULE_MAP = {
   ContentfulBodyText: BodyText,

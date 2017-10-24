@@ -1,0 +1,13 @@
+@import '../../assets/styles/main.css';
+
+.wrapper {
+  background-color: var(--color-footer-background);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.content {
+  max-width: 1200px;
+  padding: 75px 0;
+}

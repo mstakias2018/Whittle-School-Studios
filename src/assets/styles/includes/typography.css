@@ -1,0 +1,8 @@
+@import './variables.css';
+
+@define-mixin type-display {
+  font-size: var(--font-size-display);
+  font-weight: normal;
+  line-height: 180px;
+  line-spacing: -0.5rem;
+}
