@@ -1,9 +1,10 @@
 module.exports = {
-      plugins: [
-          require('postcss-import'),
-          require('postcss-mixins'),
-          require('postcss-custom-media'),
-          require('postcss-nested'),
-          require('postcss-extend'),
-      ]
+  plugins: [
+    require('postcss-import'),
+    require('postcss-mixins'),
+    require('postcss-custom-media'),
+    require('postcss-nested'),
+    require('postcss-extend'),
+    require('postcss-pxtorem'),
+  ]
 };
