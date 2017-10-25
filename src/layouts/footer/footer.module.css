@@ -1,5 +1,3 @@
-@import '../../assets/styles/main.css';
-
 .wrapper {
   background-color: var(--color-background-green-gray);
   display: flex;
