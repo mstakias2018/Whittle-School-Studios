@@ -1,0 +1,30 @@
+/* Fonts */
+:root {
+
+}
+
+/* Colors */
+:root {
+  --color-text-dark: #222222;
+  --color-text-light: #8d8d8a;
+  --color-text-tomato: #d9542b;
+
+  --color-background-white: #fff;
+  --color-background-light-gray: #faf9f7;
+  --color-background-light-green-gray: #f4f4f1;
+  --color-background-green-gray: #e7e7dd;
+
+  --color-secondary-light: #f9eecd;
+  --color-secondary-medium: #ebdcc0;
+}
+
+/* Font sizes */
+:root {
+  --font-size-display: 200px;
+  --font-size-heading-1: 48px;
+  --font-size-heading-2: 36px;
+  --font-size-heading-3: 20px;
+  --font-size-paragraph: 16px;
+  --font-size-navigation: 16px;
+  --font-size-labels: 11px;
+}

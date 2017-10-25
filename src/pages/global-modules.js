@@ -2,9 +2,9 @@ import React from 'react';
 
 import BodyText from '../content-modules/global/body-text';
 
-const ArticleModules = () => (
+const GlobalModules = () => (
   <div>
-    <h1>Article Modules</h1>
+    <h1>Global modules</h1>
 
     <BodyText
       content={{
@@ -22,4 +22,4 @@ const ArticleModules = () => (
   </div>
 );
 
-export default ArticleModules;
+export default GlobalModules;

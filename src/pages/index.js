@@ -9,6 +9,9 @@ const IndexPage = () => (
         <Link to="/style-guide">Style guide</Link>
       </li>
       <li>
+        <Link to="/global-modules">Global modules</Link>
+      </li>
+      <li>
         <Link to="/article-modules">Article modules</Link>
       </li>
       <li>

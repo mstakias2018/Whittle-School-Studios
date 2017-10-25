@@ -1,0 +1,68 @@
+@import '../assets/styles/includes/typography.css';
+
+.guide {
+  padding: 20px;
+}
+
+.block {
+  border-bottom: solid 1px #DCDCDC;
+  margin-bottom: 20px;
+  padding: 20px 0;
+}
+
+.display {
+  font-size: 200px;
+  font-weight: 200;
+  letter-spacing: 0.1rem;
+  line-height: 180px;
+  line-spacing: -0.5rem;
+}
+
+.heading1 {
+  font-size: 48px;
+  font-weight: 200;
+  line-height: 56px;
+  line-spacing: 1rem;
+}
+
+.heading2 {
+  font-size: 36px;
+  font-weight: 200;
+  line-height: 48px;
+}
+
+.heading3 {
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 48px;
+}
+
+.paragraph {
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 24px;
+}
+
+.navigationText {
+  font-size: 16px;
+  letter-spacing: 0.05rem;
+  line-height: 20px;
+}
+
+.link {
+  color: #d9542b;
+  font-size: 16px;
+  letter-spacing: 0.05rem;
+  line-height: 20px;
+  text-decoration: none;
+}
+
+.link:hover { 
+  text-decoration: underline;
+}
+
+.label {
+  font-size: 11px;
+  line-height: 40px;
+  line-spacing: 0.1rem;
+}
