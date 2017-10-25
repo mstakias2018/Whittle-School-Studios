@@ -1,6 +1,219 @@
+@import 'breakpoints.css';
+
 @define-mixin type-display {
-  font-size: var(--font-size-display);
-  font-weight: normal;
-  line-height: 180px;
-  line-spacing: -0.5rem;
+  font-family: var(--font-freight-light-italic);
+  font-size: 180px;
+  line-height: 100%;
+
+  @media (--bp-md) {
+    font-size: 400px;
+  }
+}
+
+@define-mixin type-h1 {
+  font-family: var(--font-freight-light);
+  font-size: 60px;
+  line-height: 50px;
+
+  @media (--bp-md) {
+    font-size: 110px;
+    line-height: 92px;
+  }
+
+  @media (--bp-lg) {
+    font-size: 120px;
+    line-height: 100%;
+  }
+}
+
+@define-mixin type-h2 {
+  font-family: var(--font-freight-light);
+  font-size: 48px;
+  line-height: 100%;
+
+  @media (--bp-md) {
+    font-size: 96px;
+  }
+
+  @media (--bp-lg) {
+    font-size: 120px;
+  }
+}
+
+@define-mixin type-h3 {
+  font-family: var(--font-freight-light);
+  font-size: 30px;
+  line-height: 36px;
+
+  @media (--bp-md) {
+    font-size: 72px;
+    line-height: 70px;
+  }
+}
+
+/*
+ * Label or headline sentence
+ */
+@define-mixin type-label {
+  font-family: var(--font-freight-light);
+  font-size: 30px;
+  line-height: 100%;
+}
+
+@define-mixin type-headline {
+  @mixin type-label;
+}
+
+@define-mixin type-dropcap {
+  font-family: var(--font-freight-light-italic);
+  font-size: 86px;
+
+  @media (--bp-md) {
+    font-size: 100px;
+  }
+}
+
+@define-mixin type-sub-headline {
+  font-family: var(--font-freight-light-italic);
+  font-size: 36px;
+  line-height: 48px;
+}
+
+@define-mixin type-video-headline {
+  font-family: var(--font-freight-light);
+  font-size: 24px;
+  line-height: 100%;
+
+  @media (--bp-md) {
+    line-height: 30px;
+  }
+}
+
+@define-mixin type-carasouel-name {
+  font-family: var(--font-freight-light);
+  font-size: 20px;
+  line-height: 100%;
+}
+
+@define-mixin type-section-title {
+  font-family: var(--font-freight-light-italic);
+  font-size: 18px;
+  line-height: 30px;
+
+  @media (--bp-md) {
+    font-size: 30px;
+  }
+
+  @media (--bp-lg) {
+    font-size: 18px;
+  }
+}
+
+@define-mixin type-quote-small {
+  @mixin type-section-title;
+}
+
+@define-mixin type-quote {
+  @mixin h3;
+
+  @media (--bp-md) {
+    line-height: 36px;
+  }
+
+  @media (--bp-lg) {
+    font-size: 30px;
+    line-height: 100%;
+  }
+}
+
+@define-mixin type-section-title {
+  @mixin type-quote;
+  font-family: var(--font-freight-light-italic);
+
+  @media (--bp-md) {
+    line-height: 36px;
+  }
+}
+
+@define-mixin type-quote-italic {
+  @mixin type-section-title;
+}
+
+@define-mixin type-label-small {
+  font-family: var(--font-walsheim-regular);
+  font-size: 16px;
+  line-height: 18px;
+}
+
+@define-mixin type-eyebrows {
+  @mixin type-label-small;
+}
+
+@define-mixin type-article-copy {
+  font-family: var(--font-walsheim-regular);
+  font-size: 14px;
+  line-height: 24px;
+
+  @media (--bp-md) {
+    line-height: 30px;
+  }
+}
+
+@define-mixin type-link {
+  color: var(--color-text-tomato);
+  font-family: var(--font-walsheim-regular);
+  font-size: 14px;
+}
+
+@define-mixin type-navigation {
+  @mixin type-link;
+}
+
+@define-mixin type-cta {
+  @mixin type-link;
+}
+
+// Descriptor copy
+@define-mixin type-description {
+  font-family: var(--font-walsheim-regular);
+  font-size: 12px;
+  line-height: 18px;
+
+  @media (--bp-md) {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
+
+@define-mixin type-legal {
+  font-family: var(--font-walsheim-light);
+  font-size: 10px;
+  line-height: 14px;
+  
+  @media (--bp-md) {
+    font-size: 12px;
+    line-height: auto;
+  }
+}
+
+@define-mixin type-recirculation {
+  @mixin type-legal;
+}
+
+@define-mixin type-captions {
+  @mixin type-legal;
+}
+
+@define-mixin type-footer {
+  @mixin type-legal;
+}
+
+@define-mixin type-eyebrow-small {
+  font-family: var(--font-walsheim-regular);
+  font-size: 10px;
+}
+
+@define-mixin type-menu {
+  font-family: var(--font-freight-light-italic);
+  font-size: 14px;
 }
