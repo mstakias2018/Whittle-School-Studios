@@ -10,8 +10,4 @@
 .content {
   max-width: 1200px;
   padding: 75px 0;
-
-  @media (--bp-md) {
-    color: red;
-  }
 }

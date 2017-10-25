@@ -1,6 +1,11 @@
 /* Fonts */
 :root {
-
+  --font-walsheim-light: 'gt_walsheim_prolight', 'Helvetica', sans-serif;
+  --font-walsheim-regular: 'gt_walsheim_proregular', 'Helvetica', sans-serif;
+  --font-freight-light: 'freightbiglightregular', 'Helvetica', sans-serif;
+  --font-freight-light-italic: 'freightbiglightitalicregular', 'Helvetica', sans-serif;
+  --font-freight-book: 'freightbigbookregular', 'Helvetica', sans-serif;
+  --font-freight-book-italic: 'freightbigbookitalicregular', 'Helvetica', sans-serif;
 }
 
 /* Colors */

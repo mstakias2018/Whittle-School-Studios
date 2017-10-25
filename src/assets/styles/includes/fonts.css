@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'gt_walsheim_prolight';
+  src: url('./../fonts/gtwalsheimprolightgt-walsheim-light-webfont.eot');
+  src: url('./../fonts/gtwalsheimprolightgt-walsheim-light-webfont.eot?#iefix') format('embedded-opentype'),
+       url('./../fonts/gtwalsheimprolightgt-walsheim-light-webfont.woff') format('woff'),
+       url('./../fonts/gtwalsheimprolightgt-walsheim-light-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'gt_walsheim_proregular';
+    src: url('./../fonts/gtwalsheimproregulargt-walsheim-regular-webfont.eot');
+    src: url('./../fonts/gtwalsheimproregulargt-walsheim-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./../fonts/gtwalsheimproregulargt-walsheim-regular-webfont.woff') format('woff'),
+         url('./../fonts/gtwalsheimproregulargt-walsheim-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'freightbiglightregular';
+    src: url('./../fonts/freightbiglight-webfont.eot');
+    src: url('./../fonts/freightbiglight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./../fonts/freightbiglight-webfont.woff') format('woff'),
+         url('./../fonts/freightbiglight-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'freightbiglightitalicregular';
+    src: url('./../fonts/freightbiglightitalic-webfont.eot');
+    src: url('./../fonts/freightbiglightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./../fonts/freightbiglightitalic-webfont.woff') format('woff'),
+         url('./../fonts/freightbiglightitalic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'freightbigbookregular';
+    src: url('./../fonts/freightbigbook-webfont.eot');
+    src: url('./../fonts/freightbigbook-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./../fonts/freightbigbook-webfont.woff') format('woff'),
+         url('./../fonts/freightbigbook-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'freightbigbookitalicregular';
+    src: url('./../fonts/freightbigbookitalic-webfont.eot');
+    src: url('./../fonts/freightbigbookitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./../fonts/freightbigbookitalic-webfont.woff') format('woff'),
+         url('./../fonts/freightbigbookitalic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
