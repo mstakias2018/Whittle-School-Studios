@@ -1,11 +1,10 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
 const propTypes = {
   content: PropTypes.object.isRequired,
-  hasDropCap: PropTypes.bool
 };
 
-export default function BodyText({content, hasDropCap}) {
+export default function BodyText({ content, }) {
   return (
     <div>
       <h2>Body text module</h2>
