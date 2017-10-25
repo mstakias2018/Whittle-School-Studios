@@ -5,19 +5,17 @@
 
 /* Colors */
 :root {
-  --color-text-dark: #000;
-  --color-text-light: #fff;
+  --color-text-dark: #222222;
+  --color-text-light: #8d8d8a;
   --color-text-tomato: #d9542b;
 
   --color-background-white: #fff;
   --color-background-light-gray: #faf9f7;
-  --color-background-light-green-gray: #d9542b;
-  --color-background-green-gray: #d9542b;
+  --color-background-light-green-gray: #f4f4f1;
+  --color-background-green-gray: #e7e7dd;
 
   --color-secondary-light: #f9eecd;
   --color-secondary-medium: #ebdcc0;
-
-  --color-footer-background: #e7e7dd;
 }
 
 /* Font sizes */
