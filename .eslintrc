@@ -6,7 +6,7 @@
   "extends": "airbnb",
   "rules": {
     "comma-dangle": ["error", "always"],
-    "quotes": ["error", "double"],
+    "quotes": ["error", "single"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "semi": ["error", "always"],
     "strict": ["error"],

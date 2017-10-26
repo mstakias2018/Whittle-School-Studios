@@ -1,5 +1,9 @@
+@import '../assets/styles/includes/variables.css';
+@import '../assets/styles/includes/typography.css';
+@import '../assets/styles/includes/grid.css';
+
 .guide {
-  padding: 20px; 
+  padding: 20px;
 }
 
 .block {
