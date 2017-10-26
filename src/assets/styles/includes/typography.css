@@ -1,20 +1,28 @@
 @import 'breakpoints.css';
 @import 'variables.css';
 
+/* For Statistics and Big Numbers */
 @define-mixin type-display {
+  color: var(--color-text-dark);
   font-family: var(--font-freight-light-italic);
   font-size: 180px;
   line-height: 100%;
 
   @media (--bp-md) {
+    font-size: 220px;
+  }
+
+  @media (--bp-lg) {
     font-size: 400px;
   }
 }
 
-@define-mixin type-h1 {
+/* headings */
+@define-mixin type-h1-home {
+  color: var(--color-text-dark);
   font-family: var(--font-freight-light);
-  font-size: 60px;
-  line-height: 50px;
+  font-size: 48px;
+  line-height: 38px;
 
   @media (--bp-md) {
     font-size: 110px;
@@ -22,50 +30,91 @@
   }
 
   @media (--bp-lg) {
-    font-size: 120px;
-    line-height: 100%;
+    font-size: 140px;
+    line-height: 140px;;
   }
 }
 
-@define-mixin type-h2 {
+@define-mixin type-h1-category {
+  color: var(--color-text-dark);
   font-family: var(--font-freight-light);
   font-size: 48px;
-  line-height: 100%;
+  line-height: 48px;
 
   @media (--bp-md) {
     font-size: 96px;
+    line-height: 96px;
   }
 
   @media (--bp-lg) {
     font-size: 120px;
+    line-height: 120px;
   }
 }
 
-@define-mixin type-h3 {
+@define-mixin type-h1-sub-category {
+  color: var(--color-text-dark);
+  font-family: var(--font-freight-light);
+  font-size: 48px;
+  line-height: 48px;
+
+  @media (--bp-md) {
+    font-size: 70px;
+    line-height: 72px;
+  }
+}
+
+@define-mixin type-h2 {
+  color: var(--color-text-dark);
   font-family: var(--font-freight-light);
   font-size: 30px;
   line-height: 36px;
 
   @media (--bp-md) {
-    font-size: 72px;
-    line-height: 70px;
+    font-size: 36px;
+    line-height: 48px;
   }
 }
 
-/*
- * Label or headline sentence
- */
-@define-mixin type-label {
+@define-mixin type-h2-italic {
+  @mixin type-h2;
+  font-family: var(--font-freight-light-italic);
+}
+
+@define-mixin type-h3 {
+  color: var(--color-text-dark);
   font-family: var(--font-freight-light);
   font-size: 30px;
-  line-height: 100%;
+  line-height: 30px;
 }
 
-@define-mixin type-headline {
-  @mixin type-label;
+@define-mixin type-h3-italic {
+  @mixin type-h3;
+  font-family: var(--font-freight-light-italic);
 }
 
+@define-mixin type-h4 {
+  color: var(--color-text-dark);
+  font-family: var(--font-freight-light);
+  font-size: 24px;
+  line-height: 30px;
+}
+
+@define-mixin type-h4-italic {
+  @mixin type-h4;
+  font-family: var(--font-freight-light-italic);
+}
+
+@define-mixin type-h5-italic {
+  color: var(--color-text-dark);
+  font-family: var(--font-freight-light-italic);
+  font-size:18px;
+  line-height: 18px;
+}
+
+/* article copy */
 @define-mixin type-dropcap {
+  color: var(--color-text-dark);
   font-family: var(--font-freight-light-italic);
   font-size: 86px;
 
@@ -74,109 +123,24 @@
   }
 }
 
-@define-mixin type-sub-headline {
-  font-family: var(--font-freight-light-italic);
-  font-size: 36px;
-  line-height: 48px;
-}
-
-@define-mixin type-video-headline {
-  font-family: var(--font-freight-light);
-  font-size: 24px;
-  line-height: 100%;
-
-  @media (--bp-md) {
-    line-height: 30px;
-  }
-}
-
-@define-mixin type-carasouel-name {
-  font-family: var(--font-freight-light);
-  font-size: 20px;
-  line-height: 100%;
-}
-
-@define-mixin type-section-title {
-  font-family: var(--font-freight-light-italic);
-  font-size: 18px;
-  line-height: 30px;
-
-  @media (--bp-md) {
-    font-size: 30px;
-  }
-
-  @media (--bp-lg) {
-    font-size: 18px;
-  }
-}
-
-@define-mixin type-quote-small {
-  @mixin type-section-title;
-}
-
-@define-mixin type-quote {
-  @mixin h3;
-
-  @media (--bp-md) {
-    line-height: 36px;
-  }
-
-  @media (--bp-lg) {
-    font-size: 30px;
-    line-height: 100%;
-  }
-}
-
-@define-mixin type-section-title {
-  @mixin type-quote;
-  font-family: var(--font-freight-light-italic);
-
-  @media (--bp-md) {
-    line-height: 36px;
-  }
-}
-
-@define-mixin type-quote-italic {
-  @mixin type-section-title;
-}
-
-@define-mixin type-label-small {
-  font-family: var(--font-walsheim-regular);
-  font-size: 16px;
-  line-height: 18px;
-}
-
-@define-mixin type-eyebrows {
-  @mixin type-label-small;
-}
-
-@define-mixin type-article-copy {
-  font-family: var(--font-walsheim-regular);
+@define-mixin type-paragraph {
+  color: var(--color-text-dark);
+  font-family: var(--font-walsheim-light);
   font-size: 14px;
   line-height: 24px;
 
   @media (--bp-md) {
     line-height: 30px;
   }
+
+  :global(.hasDropcap)&::first-letter {
+    @mixin type-dropcap;
+  }
 }
 
-@define-mixin type-link {
-  color: var(--color-text-tomato);
-  font-family: var(--font-walsheim-regular);
-  font-size: 14px;
-}
-
-@define-mixin type-navigation {
-  @mixin type-link;
-}
-
-@define-mixin type-cta {
-  @mixin type-link;
-}
-
-// Descriptor copy
-@define-mixin type-description {
-  font-family: var(--font-walsheim-regular);
+@define-mixin type-descriptor {
+  color: var(--color-text-dark);
+  font-family: var(--font-walsheim-light);
   font-size: 12px;
   line-height: 18px;
 
@@ -186,38 +150,75 @@
   }
 }
 
-@define-mixin type-legal {
-  font-family: var(--font-walsheim-light);
-  font-size: 10px;
-  line-height: 14px;
-  
-  @media (--bp-md) {
-    font-size: 12px;
-    line-height: auto;
+/* CTA */
+@define-mixin type-link {
+  border-bottom: 1px solid transparent;
+  color: var(--color-text-tomato);
+  font-family: var(--font-walsheim-regular);
+  font-size: 14px;
+  padding-bottom: 5px;
+  text-decoration: none;
+  transition: border-bottom-color var(--timing-fast) var(--easing-default);
+
+  &:hover {
+    border-bottom-color: var(--color-link-hover-underline);
   }
 }
 
-@define-mixin type-recirculation {
-  @mixin type-legal;
-}
-
-@define-mixin type-captions {
-  @mixin type-legal;
-}
-
-@define-mixin type-footer {
-  @mixin type-legal;
-}
-
-@define-mixin type-eyebrow-small {
-  font-family: var(--font-walsheim-regular);
-  font-size: 10px;
-}
-
-@define-mixin type-menu {
+@define-mixin type-nav {
   color: var(--color-text-dark);
   font-family: var(--font-walsheim-regular);
   font-size: 14px;
   line-height: 18px;
   text-decoration: none;
+  transition: color var(--timing-fast) var(--easing-default);
+
+  &:hover {
+    color: var(--color-text-light);
+  }
+}
+
+/* Other*/
+@define-mixin type-caption {
+  color: var(--color-text-dark);
+  font-family: var(--font-walsheim-light);
+  font-size: 10px;
+  line-height: 14px;
+
+  @media (--bp-md) {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@define-mixin type-footer {
+  @mixin type-caption;
+}
+
+@define-mixin type-eyebrow {
+  color: var(--color-text-light);
+  font-family: var(--font-walsheim-light);
+  font-size: 10px;
+  line-height: 14px;
+}
+
+@define-mixin type-video {
+  color: var(--color-text-dark);
+  font-family: var(--font-freight-light);
+  font-size: 24px;
+  line-height: 24px;
+}
+
+@define-mixin type-carousel {
+  color: var(--color-text-dark);
+  font-family: var(--font-freight-light);
+  font-size: 18px;
+  line-height: 20px;
+}
+
+@define-mixin type-menu {
+  color: var(--color-text-dark);
+  font-family: var(--font-freight-light-italic);
+  font-size: 14px;
+  line-height: 30px;
 }

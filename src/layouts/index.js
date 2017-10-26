@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
-import Helmet from 'react-helmet';
+import React from "react";
+import PropTypes from "prop-types";
+import Link from "gatsby-link";
+import Helmet from "react-helmet";
 
-import Header from './header/header';
-import Footer from './footer/footer';
+import Header from "./header/header";
+import Footer from "./footer/footer";
 
-import '../assets/styles/main.css';
+import "../assets/styles/main.css";
 
-const TemplateWrapper = ({children}) => (
+const TemplateWrapper = ({ children, }) => (
   <div>
     <Helmet title="Home" titleTemplate="The Whittle School - %s" />
     <Header />
@@ -18,7 +18,7 @@ const TemplateWrapper = ({children}) => (
 );
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default TemplateWrapper;
