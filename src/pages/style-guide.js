@@ -17,7 +17,7 @@ const StyleGuide = () => (
       <p className={styles.paragraph}>Paragraph text</p>
       <p>
         <span className={styles.navigationText}>Navigation / </span> 
-        <a 
+        <a
           className={styles.link}
           href="#"
         >

@@ -1,0 +1,50 @@
+@import './breakpoints.css';
+@import './variables.css';
+
+@define-mixin grid-generate-columns $grid-col-count: 6, $postfix: 'sm' {
+  @for $i from 0 to $(grid-col-count) {
+    :global .col-$(postfix)--$(i) {
+      flex-basis: calc($(i) * calc(100% / $(grid-col-count)));
+      max-width: calc($(i) * calc(100% / $(grid-col-count)));
+      width: calc($(i) * calc(100% / $(grid-col-count)));
+    }
+
+    :global .offset-$(postfix)--$(i) {
+      margin-left: calc($(i) * calc(100% / $(grid-col-count)));
+    }
+  }
+}
+
+@define-mixin custom-column $grid-col-size: 6, $breakpoint: lg, $property: width {
+  $grid-col-count: var(--grid-columns-$(breakpoint));
+  $container-margin: calc(var(--grid-margin-$(breakpoint)) * 2);
+  $outside-gutters: ($(grid-col-count) - 1) * var(--grid-gutter-$(breakpoint));
+  $inside-gutters: ($grid-col-size - 1) * var(--grid-gutter-$(breakpoint));
+  $(property): calc(((((100vw - $container-margin) - $outside-gutters) / $grid-col-count) * $grid-col-size) + $inside-gutters);
+}
+
+@define-mixin span $grid-col-size: 6, $breakpoint: lg {
+  @mixin custom-column $grid-col-size, $breakpoint, width;
+  margin-right: var(--grid-gutter-$(breakpoint));
+}
+
+@define-mixin offset $grid-col-size: 6, $breakpoint: lg, $side: left {
+  @mixin custom-column $grid-col-size, $breakpoint, margin-$(side);
+  padding-$(side): var(--grid-gutter-$(breakpoint));
+}
+
+@define-mixin responsive-grid $cols-sm: var(--grid-columns-sm), $cols-md: var(--grid-columns-md), $cols-xm: var(--grid-columns-xm), $cols-lg: var(--grid-columns-lg) {
+  @mixin span $cols-sm, sm;
+
+  @media (--bp-md) {
+    @mixin span $cols-md, md;
+  }
+
+  @media (--bp-xm) {
+    @mixin span $cols-xm, xm;
+  }
+
+  @media (--bp-lg) {
+    @mixin span $cols-lg, lg;
+  }
+}

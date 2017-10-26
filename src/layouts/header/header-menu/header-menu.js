@@ -29,13 +29,12 @@ const MainMenu = () => (
   <div className={styles.menu}>
     <nav>
       <ul>
-        { Links.map((item, index) => {
-          return (
-            <li key={index.toString()}>
+        { Links.map((item, index) => (
+          <li key={index.toString()}>
             <a href={item.link}>{item.title}</a>
-            </li>
-            )
-          }) }
+          </li>
+          ))
+        }
       </ul>
     </nav>
     <button className="toggle-menu">Menu</button>

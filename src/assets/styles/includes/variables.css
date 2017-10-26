@@ -22,3 +22,22 @@
   --color-secondary-light: #f9eecd;
   --color-secondary-medium: #ebdcc0;
 }
+
+:root {
+  --grid-columns-sm: 6;
+  --grid-columns-md: 12;
+  --grid-columns-xm: 24;
+  --grid-columns-lg: 24;
+
+  --grid-margin-sm: 20px;
+  --grid-margin-md: 20px;
+  --grid-margin-xm: 20px;
+  --grid-margin-lg: 24px;
+
+  --grid-gutter-sm: 22px;
+  --grid-gutter-md: 28px;
+  --grid-gutter-xm: 16px;
+  --grid-gutter-lg: 24px;
+
+  --grid-container-lg: 1440px;
+}
