@@ -12,7 +12,7 @@ const Links = [
     link: '#',
   },
   {
-    title: 'Leadership &amp; Faculty',
+    title: 'Leadership & Faculty',
     link: '#',
   },
   {
@@ -20,7 +20,7 @@ const Links = [
     link: '#',
   },
   {
-    title: 'Admissions &amp; Information',
+    title: 'Admissions & Information',
     link: '#',
   },
 ];
@@ -28,10 +28,18 @@ const Links = [
 const MainMenu = () => (
   <div className={styles.menu}>
     <nav>
-      <ul>
+      <ul className={styles.menuItems}>
         { Links.map((item, index) => (
-          <li key={index.toString()}>
-            <a href={item.link}>{item.title}</a>
+          <li
+            className={styles.menuItem}
+            key={index.toString()}
+          >
+            <a
+              className={styles.menuItem__link}
+              href={item.link}
+            >
+              {item.title}
+            </a>
           </li>
           ))
         }

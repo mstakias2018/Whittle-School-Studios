@@ -1,5 +1,7 @@
-@custom-media --bp-sm-only (width <= 650px);
-@custom-media --bp-md (min-width: 650px);
-@custom-media --bp-md-only (width > 650px) and (width <= 1100px);
-@custom-media --bp-sm-and-md-only (width <= 1100px);
-@custom-media --bp-lg (width > 1100px);
+:root {
+  @custom-media --bp-sm-only (width <= 650px);
+  @custom-media --bp-md (min-width: 650px);
+  @custom-media --bp-md-only (width > 650px) and (width <= 1100px);
+  @custom-media --bp-sm-and-md-only (width <= 1100px);
+  @custom-media --bp-lg (width > 1100px);
+}

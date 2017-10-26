@@ -1,0 +1,10 @@
+@import '../../assets/styles/includes/variables.css';
+@import '../../assets/styles/includes/breakpoints.css';
+
+.header {
+  margin: 0 auto;
+
+  @media (--bp-lg) {
+    width: var(--grid-container-lg);
+  }
+}
