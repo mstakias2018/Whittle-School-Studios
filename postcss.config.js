@@ -1,12 +1,23 @@
+const postCssImport = require("postcss-import");
+const postCssMixins = require("postcss-mixins");
+const postCssCustomMedia = require("postcss-custom-media");
+const postCssNested = require("postcss-nested");
+const postCssExtend = require("postcss-extend");
+const postCssPxToRem = require("postcss-pxtorem");
+const postCssNext = require("postcss-cssnext");
+const postCssDiscardDuplicates = require("postcss-discard-duplicates");
+const postCssReporter = require("postcss-reporter");
+
 module.exports = {
   plugins: [
-    require('postcss-reporter'),
-    require('postcss-import'),
-    require('postcss-mixins'),
-    require('postcss-discard-duplicates'),
-    require('postcss-custom-media'),
-    require('postcss-nested'),
-    require('postcss-extend'),
-    require('postcss-pxtorem'),
+    postCssReporter(),
+    postCssImport(),
+    postCssMixins(),
+    postCssNext(),
+    postCssDiscardDuplicates(),
+    postCssCustomMedia(),
+    postCssNested(),
+    postCssExtend(),
+    postCssPxToRem(),
   ],
 };
