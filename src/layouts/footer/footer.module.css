@@ -1,4 +1,5 @@
 @import '../../assets/styles/includes/breakpoints.css';
+@import '../../assets/styles/includes/typography.css';
 
 .wrapper {
   background-color: var(--color-background-green-gray);
@@ -8,6 +9,7 @@
 }
 
 .content {
+  @mixin type-display;
   max-width: 1200px;
   padding: 75px 0;
   font-size: 30px;
