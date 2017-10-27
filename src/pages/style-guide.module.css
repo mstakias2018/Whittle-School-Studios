@@ -1,6 +1,8 @@
+@import '../assets/styles/includes/breakpoints.css';
 @import '../assets/styles/includes/variables.css';
 @import '../assets/styles/includes/typography.css';
 @import '../assets/styles/includes/grid.css';
+@import '../assets/styles/includes/typography.css';
 
 .guide {
   padding: 20px;
@@ -13,57 +15,86 @@
 }
 
 .display {
-  font-size: 200px;
-  font-weight: 200;
-  letter-spacing: 0.1rem;
-  line-height: 180px;
-  line-spacing: -0.5rem;
+  @mixin type-display;
 }
 
-.heading1 {
-  font-size: 48px;
-  font-weight: 200;
-  line-height: 56px;
-  line-spacing: 1rem;
+.heading1Home {
+  @mixin type-h1-home;
+}
+
+.heading1Category {
+  @mixin type-h1-category;
+}
+
+.heading1SubCategory {
+  @mixin type-h1-sub-category;
 }
 
 .heading2 {
-  font-size: 36px;
-  font-weight: 200;
-  line-height: 48px;
+  @mixin type-h2;
+}
+
+.heading2Italic {
+  @mixin type-h2-italic;
 }
 
 .heading3 {
-  font-size: 20px;
-  font-weight: 200;
-  line-height: 48px;
+  @mixin type-h3;
+}
+
+.heading3Italic {
+  @mixin type-h3-italic;
+}
+
+.heading4 {
+  @mixin type-h4;
+}
+
+.heading4Italic {
+  @mixin type-h4-italic;
+}
+
+.heading5Italic {
+  @mixin type-h5-italic;
 }
 
 .paragraph {
-  font-size: 16px;
-  font-weight: 200;
-  line-height: 24px;
-}
-
-.navigationText {
-  font-size: 16px;
-  letter-spacing: 0.05rem;
-  line-height: 20px;
+  @mixin type-paragraph;
 }
 
 .link {
-  color: #d9542b;
-  font-size: 16px;
-  letter-spacing: 0.05rem;
-  line-height: 20px;
-  text-decoration: none;
+  @mixin type-link;
 }
 
-.link:hover { 
-  text-decoration: underline;
+.nav {
+  @mixin type-nav;
 }
 
-.label {
+.descriptor {
+  @mixin type-descriptor;
+}
+
+.caption {
+  @mixin type-caption;
+}
+
+.footer {
+  @mixin type-footer;
+}
+
+.eyebrow {
+  @mixin type-eyebrow;
+}
+
+.video {
+  @mixin type-video;
+}
+
+.carousel {
+  @mixin type-carousel;
+}
+
+.menu {
   font-size: 11px;
   line-height: 40px;
   line-spacing: 0.1rem;

@@ -1,0 +1,7 @@
+@define-mixin component-wrapper {
+  width: 100vw;
+}
+
+@define-mixin component-content {
+  max-width: var(--max-content-width);
+}

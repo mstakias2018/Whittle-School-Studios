@@ -9,6 +9,7 @@
     "start": "gatsby serve"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "eslint": "^4.9.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",

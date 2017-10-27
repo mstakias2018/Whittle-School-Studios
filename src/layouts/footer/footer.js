@@ -1,6 +1,6 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from "react";
 
-import styles from './footer.module.css';
+import styles from "./footer.module.css";
 
 const Footer = () => {
   return (
@@ -10,6 +10,6 @@ const Footer = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Footer;

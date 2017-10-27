@@ -1,16 +1,16 @@
+@import '../../assets/styles/includes/variables.css';
 @import '../../assets/styles/includes/breakpoints.css';
-@import '../../assets/styles/includes/typography.css';
+@import '../../assets/styles/includes/mixins.css';
 
 .wrapper {
+  @mixin component-wrapper;
   background-color: var(--color-background-green-gray);
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 .content {
-  @mixin type-display;
-  max-width: 1200px;
+  @mixin component-content;
   padding: 75px 0;
   font-size: 30px;
 }

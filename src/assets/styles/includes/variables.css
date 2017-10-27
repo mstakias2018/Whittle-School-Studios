@@ -11,7 +11,7 @@
 /* Colors */
 :root {
   --color-text-dark: #222222;
-  --color-text-light: #8d8d8a;
+  --color-text-light: #8d8c8a;
   --color-text-tomato: #d9542b;
 
   --color-background-white: #fff;
@@ -23,8 +23,10 @@
   --color-secondary-medium: #ebdcc0;
 
   --color-light-border: rgba(141, 140, 138, 0.25);
+  --color-link-hover-underline: rgba(151, 151, 151, 0.35);
 }
 
+/* Grid */
 :root {
   --grid-columns-sm: 6;
   --grid-columns-md: 12;
@@ -42,4 +44,21 @@
   --grid-gutter-lg: 24px;
 
   --grid-container-lg: 940px;
+}
+
+/* Dimensions */
+:root {
+  --max-content-width: 1600px;
+}
+
+/* Timings */
+:root {
+  --timing-fast: 0.2s;
+  --timing-medium: 0.4s;
+  --timing-slow: 0.6s;
+}
+
+/* Easings */
+:root {
+  --easing-default: cubic-bezier(.25, .1, .25, 1);
 }
