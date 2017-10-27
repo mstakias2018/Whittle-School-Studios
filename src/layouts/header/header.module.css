@@ -5,6 +5,12 @@
   margin: 0 auto;
 
   @media (--bp-lg) {
-    width: var(--grid-container-lg);
+    max-width: var(--grid-container-lg);
   }
+}
+
+.container {
+  @mixin grid-container;
+  margin-top: 74px;
+  position: relative;
 }

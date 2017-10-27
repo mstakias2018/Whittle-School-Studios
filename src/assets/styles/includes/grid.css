@@ -16,15 +16,16 @@
 }
 
 @define-mixin custom-column $grid-col-size: 6, $breakpoint: lg, $property: width {
-  $grid-col-count: var(--grid-columns-$(breakpoint));
-  $container-margin: calc(var(--grid-margin-$(breakpoint)) * 2);
-  $outside-gutters: ($(grid-col-count) - 1) * var(--grid-gutter-$(breakpoint));
-  $inside-gutters: ($grid-col-size - 1) * var(--grid-gutter-$(breakpoint));
-  $(property): calc(((((100vw - $container-margin) - $outside-gutters) / $grid-col-count) * $grid-col-size) + $inside-gutters);
+  $removedGutters: calc(var(--grid-gutter-$(breakpoint)) * (var(--grid-columns-$(breakpoint)) - 1));
+  $spanSize: calc((var(--grid-container-$(breakpoint)) - $removedGutters) / (var(--grid-columns-$(breakpoint))));
+
+  $(property): calc(($spanSize * $grid-col-size) + (($grid-col-size - 1) * var(--grid-gutter-$(breakpoint))));
 }
 
 @define-mixin span $grid-col-size: 6, $breakpoint: lg {
   @mixin custom-column $grid-col-size, $breakpoint, width;
+  @mixin custom-column $grid-col-size, $breakpoint, flex-basis;
+  box-sizing: border-box;
   margin-right: var(--grid-gutter-$(breakpoint));
 }
 
@@ -46,5 +47,17 @@
 
   @media (--bp-lg) {
     @mixin span $cols-lg, lg;
+  }
+}
+
+@define-mixin grid-container {
+  display: flex;
+  
+  @media (--bp-md) {
+    margin-right: -var(--grid-margin-md);
+  }
+
+  @media (--bp-lg) {
+    margin-right: -var(--grid-margin-lg);
   }
 }
