@@ -6,14 +6,14 @@ module.exports = {
     },
     'postcss-mixins': {},
     'postcss-simple-vars': {},
-    'postcss-nested': {},
     'postcss-for': {},
     'postcss-cssnext': {
       browsers: ['last 2 versions', '> 5%'],
     },
+    'postcss-nested': {},
     'postcss-pxtorem': {
       rootValue: 10,
-      propList: ['*'],
+      propList: ['*']
     },
     'postcss-extend': {},
     'postcss-discard-duplicates': {},

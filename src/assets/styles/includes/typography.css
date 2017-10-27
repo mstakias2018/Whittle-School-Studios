@@ -1,5 +1,5 @@
-@import './breakpoints.css';
-@import './variables.css';
+@import 'breakpoints.css';
+@import 'variables.css';
 
 @define-mixin type-display {
   font-family: var(--font-freight-light-italic);
@@ -215,6 +215,9 @@
 }
 
 @define-mixin type-menu {
-  font-family: var(--font-freight-light-italic);
+  color: var(--color-text-dark);
+  font-family: var(--font-walsheim-regular);
   font-size: 14px;
+  line-height: 18px;
+  text-decoration: none;
 }
