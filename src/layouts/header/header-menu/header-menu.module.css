@@ -1,8 +1,16 @@
+@import '../../../assets/styles/includes/variables.css';
+@import '../../../assets/styles/includes/breakpoints.css';
 @import '../../../assets/styles/includes/typography.css';
 @import '../../../assets/styles/includes/grid.css';
 
+.menu {
+  @mixin grid-container;
+}
+
 .menuItems {
-  display: flex;
+  @mixin grid-container;
+  margin: 0 -2rem 0 0;
+  padding: 0;
 }
 
 .menuItem {
@@ -11,18 +19,29 @@
   border-right: solid 1px var(--color-light-border);
   box-sizing: border-box;
   list-style: none;
-  padding: 0 70px 0 19px;
+
+  &:first-of-type {
+    padding-left: 0;
+  }
 
   &:last-of-type {
-    padding-left: 0;
     border: none;
   }
 
   &__link {
-    @mixin type-menu;
+    @mixin type-nav;
 
     &.-active {
       color: var(--color-light-border);
     }
   }
 }
+
+.toggleMenu {
+  @mixin type-menu;
+
+  @media (--bp-md) {
+    display: none;
+  }
+}
+

@@ -45,7 +45,7 @@ const MainMenu = () => (
         }
       </ul>
     </nav>
-    <button className="toggle-menu">Menu</button>
+    <button className={styles.toggleMenu}>Menu</button>
   </div>
 );
 

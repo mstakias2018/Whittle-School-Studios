@@ -5,7 +5,9 @@
 @import '../assets/styles/includes/typography.css';
 
 .guide {
+  margin: 0 auto;
   padding: 20px;
+  width: var(--grid-container-lg);
 }
 
 .block {
