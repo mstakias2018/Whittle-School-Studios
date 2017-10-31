@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "REGION=\"US\" gatsby build",
+    "build-china": "REGION=\"CHINA\" gatsby build",
+    "develop": "REGION=\"US\" gatsby develop",
+    "develop-china": "REGION=\"CHINA\" gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
     "start": "gatsby serve"
   },

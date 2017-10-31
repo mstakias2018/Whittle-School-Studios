@@ -4,12 +4,15 @@
     "es6": true
   },
   "extends": "airbnb",
+  "globals": {
+    "graphql": true
+  },
   "rules": {
-    "comma-dangle": ["error", "always"],
     "quotes": ["error", "single"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "semi": ["error", "always"],
     "strict": ["error"],
-    "max-len": ["error", 120]
+    "max-len": ["error", 120],
+    "import/no-extraneous-dependencies": [0]
   },
 }
