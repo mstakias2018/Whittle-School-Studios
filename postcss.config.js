@@ -7,6 +7,7 @@ module.exports = {
     'postcss-mixins': {},
     'postcss-for': {},
     'postcss-simple-vars': {},
+    'postcss-calc': {},
     'postcss-cssnext': {
       browsers: ['last 2 versions', '> 5%'],
     },

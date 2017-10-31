@@ -19,7 +19,16 @@
   $removedGutters: calc(var(--grid-gutter-$(breakpoint)) * (var(--grid-columns-$(breakpoint)) - 1));
   $spanSize: calc((var(--grid-container-$(breakpoint)) - $removedGutters) / (var(--grid-columns-$(breakpoint))));
 
-  $(property): calc(($spanSize * $grid-col-size) + (($grid-col-size - 1) * var(--grid-gutter-$(breakpoint))));
+  $(property):
+  calc(
+    (
+      (
+        (var(--grid-container-$(breakpoint)) - (var(--grid-gutter-$(breakpoint)) *
+        (var(--grid-columns-$(breakpoint)) - 1))) /
+        (var(--grid-columns-$(breakpoint))))
+      * $grid-col-size
+    ) + (($grid-col-size - 1) * var(--grid-gutter-$(breakpoint)))
+  );
 }
 
 @define-mixin span $grid-col-size: 6, $breakpoint: lg {
@@ -52,12 +61,13 @@
 
 @define-mixin grid-container {
   display: flex;
+  margin-right: -var(--grid-gutter-sm);
   
   @media (--bp-md) {
-    margin-right: -var(--grid-margin-md);
+    margin-right: -var(--grid-gutter-md);
   }
 
   @media (--bp-lg) {
-    margin-right: -var(--grid-margin-lg);
+    margin-right: -var(--grid-gutter-lg);
   }
 }
