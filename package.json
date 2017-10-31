@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "detect-touch-events": "^2.0.1",
     "eslint": "^4.9.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",

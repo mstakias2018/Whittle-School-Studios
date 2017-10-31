@@ -37,7 +37,7 @@
   --grid-margin-lg: 20px;
 
   --grid-gutter-sm: 10px;
-  --grid-gutter-md: 21px;
+  --grid-gutter-md: 20px;
   --grid-gutter-lg: 20px;
 
   --grid-container-sm: 100%;
@@ -48,6 +48,9 @@
 /* Dimensions */
 :root {
   --max-content-width: 1600px;
+  --component-wrapper-margin-sm: 10px;
+  --component-wrapper-margin-md: 24px;
+  --component-wrapper-margin-lg: 40px;
 }
 
 /* Timings */

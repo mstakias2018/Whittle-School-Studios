@@ -39,19 +39,16 @@
 }
 
 @define-mixin offset $grid-col-size: 6, $breakpoint: lg, $side: left {
-  @mixin custom-column $grid-col-size, $breakpoint, margin-$(side);
-  padding-$(side): var(--grid-gutter-$(breakpoint));
+  $removedGutters: calc(var(--grid-gutter-$(breakpoint)) * (var(--grid-columns-$(breakpoint)) - 2));
+  $spanSize: calc((var(--grid-container-$(breakpoint)) - $removedGutters) / (var(--grid-columns-$(breakpoint))));
+  margin-$(side): calc(($spanSize * $grid-col-size) + ($grid-col-size * var(--grid-gutter-$(breakpoint))));
 }
 
-@define-mixin responsive-grid $cols-sm: var(--grid-columns-sm), $cols-md: var(--grid-columns-md), $cols-xm: var(--grid-columns-xm), $cols-lg: var(--grid-columns-lg) {
+@define-mixin responsive-grid $cols-sm: var(--grid-columns-sm), $cols-md: var(--grid-columns-md), $cols-lg: var(--grid-columns-lg) {
   @mixin span $cols-sm, sm;
 
   @media (--bp-md) {
     @mixin span $cols-md, md;
-  }
-
-  @media (--bp-xm) {
-    @mixin span $cols-xm, xm;
   }
 
   @media (--bp-lg) {
@@ -61,13 +58,16 @@
 
 @define-mixin grid-container {
   display: flex;
-  margin-right: -var(--grid-gutter-sm);
-  
-  @media (--bp-md) {
-    margin-right: -var(--grid-gutter-md);
+  flex-direction: row;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-flow: wrap;
+
+  /*@media (--bp-md) {
+    margin-right: -var(--grid-margin-md);
   }
 
   @media (--bp-lg) {
-    margin-right: -var(--grid-gutter-lg);
-  }
+    margin-right: -var(--grid-margin-lg);
+  }*/
 }

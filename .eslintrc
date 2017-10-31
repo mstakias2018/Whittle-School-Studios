@@ -13,6 +13,7 @@
     "semi": ["error", "always"],
     "strict": ["error"],
     "max-len": ["error", 120],
+    "react/no-array-index-key": 0,
     "import/no-extraneous-dependencies": [0]
   },
 }

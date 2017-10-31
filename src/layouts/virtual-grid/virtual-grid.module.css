@@ -14,38 +14,47 @@
   z-index: -1;
 }
 
+.virtualGridEnabled {
+  @extend .virtualGrid;
+  z-index: 100;
+}
+
 .grid {
   @mixin grid-container;
-
-  display: flex;
+  display: none;
   height: 100%;
 
-  @media (--bp-sm-only) {
-    width: 100%;
-    span {
-      @mixin span 1, sm;
-      background-color: gray;
-      
-      &:nth-child(n+5){
-        display: none;
-      }
-    }
-  }
+  span {
+    @mixin span 1, sm;
+    background-color: gray;
 
-  @media (--bp-md-only) {  
-    span {
+    @media (--bp-md) {
       @mixin span 1, md;
-      background-color: gray;
-      &:nth-child(n+9){
-        display: none;
-      }
+    }
+
+    @media (--bp-lg) {
+      @mixin span 1, lg;
     }
   }
-  
+}
+
+.gridSm {
+  @extend .grid;
+  @media (--bp-sm-only) {
+    display: flex;
+  }
+}
+
+.gridMd {
+  @extend .grid;
+  @media (--bp-md-only) {
+    display: flex;
+  }
+}
+
+.gridLg {
+  @extend .grid;
   @media (--bp-lg) {
-    span {
-      @mixin span 1, lg;
-      background-color: gray;
-    }
+    display: flex;
   }
 }

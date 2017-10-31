@@ -3,11 +3,18 @@
 @import '../assets/styles/includes/typography.css';
 @import '../assets/styles/includes/grid.css';
 @import '../assets/styles/includes/typography.css';
+@import '../assets/styles/includes/mixins.css';
+
+.wrapper {
+  @mixin component-wrapper;
+  background-color: var(--color-background-light-green-gray);
+}
 
 .guide {
   margin: 0 auto;
   padding: 20px;
   width: var(--grid-container-lg);
+  max-width: 100%;
 }
 
 .block {
@@ -97,7 +104,5 @@
 }
 
 .menu {
-  font-size: 11px;
-  line-height: 40px;
-  line-spacing: 0.1rem;
+  @mixin type-menu;
 }

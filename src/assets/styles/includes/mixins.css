@@ -1,7 +1,27 @@
 @define-mixin component-wrapper {
-  width: 100vw;
+  margin: 0 var(--component-wrapper-margin-sm);
+  width: calc(100% - 2 * var(--component-wrapper-margin-sm));
+
+  @media (--bp-md) {
+    margin: 0 var(--component-wrapper-margin-md);
+    width: calc(100% - 2 * var(--component-wrapper-margin-md));
+  }
+
+  @media (--bp-lg) {
+    margin: 0 var(--component-wrapper-margin-lg);
+    width: calc(100% - 2 * var(--component-wrapper-margin-lg));
+  }
 }
 
-@define-mixin component-content {
-  max-width: var(--max-content-width);
+@define-mixin component-wrapper-footer {
+  @mixin component-wrapper;
+  margin-bottom: var(--component-wrapper-margin-sm);
+
+  @media (--bp-md) {
+    margin-bottom: var(--component-wrapper-margin-md);
+  }
+
+  @media (--bp-lg) {
+    margin-bottom: var(--component-wrapper-margin-lg);
+  }
 }

@@ -178,6 +178,11 @@
   }
 }
 
+@define-mixin type-sub-nav {
+  @mixin type-nav;
+  font-family: var(--font-walsheim-light);
+}
+
 /* Other*/
 @define-mixin type-caption {
   color: var(--color-text-dark);
@@ -218,7 +223,8 @@
 
 @define-mixin type-menu {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light-italic);
+  font-family: var(--font-freight-book-italic);
   font-size: 14px;
+  letter-spacing: 0.2px;
   line-height: 30px;
 }
