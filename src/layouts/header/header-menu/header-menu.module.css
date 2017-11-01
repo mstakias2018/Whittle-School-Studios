@@ -5,6 +5,19 @@
 
 .menu {
   @mixin grid-container;
+  display: none;
+  flex-basis: 100%;
+  width: 100%;
+
+  @media (--bp-lg) {
+    display: block;
+    flex-basis: auto;
+    width: auto;
+  }
+
+  &.menu_isVisible { 
+    display: block;
+  }
 }
 
 .menuItems {

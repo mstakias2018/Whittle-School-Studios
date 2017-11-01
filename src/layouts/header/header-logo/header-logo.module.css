@@ -1,7 +1,16 @@
 @import '../../../assets/styles/includes/grid.css';
 
 .logo {
-  @mixin span 2, lg;
+  @mixin span 2, sm;
+  align-self: stretch;
   background-color: gray;
-  height: 100%;
+
+  @media (--bp-md-only) {
+    @mixin span 2, md;
+    height: 40px;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 2, lg;
+  }
 }

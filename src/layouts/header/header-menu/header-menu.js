@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import cx from 'classnames';
 
 import styles from './header-menu.module.css';
 
@@ -25,8 +26,14 @@ const Links = [
   },
 ];
 
-const MainMenu = () => (
-  <div className={styles.menu}>
+const propTypes = { isActive: PropTypes.bool.isRequired };
+
+const MainMenu = ({ isActive }) => (
+  <div className={cx(
+    styles.menu,
+    { [styles.menu_isVisible]: isActive },
+    )}
+  >
     <nav>
       <ul className={styles.menuItems}>
         { Links.map((item, index) => (
@@ -47,5 +54,7 @@ const MainMenu = () => (
     </nav>
   </div>
 );
+
+MainMenu.propTypes = propTypes;
 
 export default MainMenu;

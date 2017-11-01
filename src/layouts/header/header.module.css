@@ -1,5 +1,6 @@
 @import '../../assets/styles/includes/breakpoints.css';
 @import '../../assets/styles/includes/grid.css';
+@import '../../assets/styles/includes/typography.css';
 @import '../../assets/styles/includes/variables.css';
 
 .header {
@@ -23,16 +24,24 @@
 
 .container {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-top: 74px;
   position: relative;
   width: 100%;
+
+  @media (--bp-lg) {
+    flex-wrap: no-wrap;
+    justify-content: flex-start;
+  }
 }
 
 .toggleMenu {
   @mixin type-menu;
+  background-color: transparent;
+  border: none;
 
-  @media (--bp-md) {
+  @media (--bp-lg) {
     display: none;
   }
 }
