@@ -4,23 +4,23 @@ import styles from './header-menu.module.css';
 
 const Links = [
   {
-    title: 'The Whittle Vision',
+    title: 'The Whittle\n Vision',
     link: '#',
   },
   {
-    title: 'Educational Experience',
+    title: 'Educational\r\n Experience',
     link: '#',
   },
   {
-    title: 'Leadership & Faculty',
+    title: 'Leadership &\n Faculty',
     link: '#',
   },
   {
-    title: 'Global Campuses',
+    title: 'Global\n Campuses',
     link: '#',
   },
   {
-    title: 'Admissions & Information',
+    title: 'Admissions\n & Information',
     link: '#',
   },
 ];
@@ -45,7 +45,6 @@ const MainMenu = () => (
         }
       </ul>
     </nav>
-    <button className={styles.toggleMenu}>Menu</button>
   </div>
 );
 

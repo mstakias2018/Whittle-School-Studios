@@ -12,20 +12,17 @@
 }
 
 .content {
-  @mixin span 4, sm;
   @mixin grid-container;
   padding-bottom: 25px;
   padding-top: 0;
 
 
   @media (--bp-md) {
-    @mixin span 8, md;
     padding-bottom: 50px;
     padding-top: 65px;
   }
 
   @media (--bp-lg) {
-    @mixin span 12, lg;
     padding-bottom: 75px;
   }
 }
@@ -39,18 +36,10 @@
 
   @media (--bp-md) {
     @mixin span 1, md;
-
-    &:not(:first-child):not(:nth-child(5)) {
-      @mixin offset 1, md;
-    }
   }
 
   @media (--bp-lg) {
-    @mixin span 1, lg;
-
-    &:not(:first-child) {
-      @mixin offset 1, lg;
-    }
+    @mixin span 2, lg;
   }
 }
 

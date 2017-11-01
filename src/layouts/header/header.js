@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 
 import Logo from './header-logo/header-logo';
 import MainMenu from './header-menu/header-menu';
@@ -11,6 +12,7 @@ const Header = () => (
     <Languages />
     <div className={styles.container}>
       <MainMenu />
+      { /* <button className={styles.toggleMenu}>Menu</button> */ }
     </div>
   </header>
 );

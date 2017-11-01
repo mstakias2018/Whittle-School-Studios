@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   left: 0;
+  margin: 0 calc(var(--grid-margin-sm) * 2);
   opacity: .3;
   position: fixed;
   right: 0;
@@ -14,47 +15,46 @@
   z-index: -1;
 }
 
-.virtualGridEnabled {
-  @extend .virtualGrid;
-  z-index: 100;
+.onTop {
+  z-index: 1000;
 }
 
 .grid {
   @mixin grid-container;
-  display: none;
+
+  display: flex;
   height: 100%;
 
-  span {
-    @mixin span 1, sm;
-    background-color: gray;
-
-    @media (--bp-md) {
-      @mixin span 1, md;
-    }
-
-    @media (--bp-lg) {
-      @mixin span 1, lg;
-    }
-  }
-}
-
-.gridSm {
-  @extend .grid;
   @media (--bp-sm-only) {
-    display: flex;
-  }
-}
+    width: 100%;
+    span {
+      @mixin span 1, sm;
+      background-color: gray;
 
-.gridMd {
-  @extend .grid;
-  @media (--bp-md-only) {
-    display: flex;
+      &:nth-child(n+4){
+        margin-right: -2rem;
+      }
+      
+      &:nth-child(n+5){
+        display: none;
+      }
+    }
   }
-}
 
-.gridLg {
-  @extend .grid;
+  @media (--bp-md-only) {  
+    span {
+      @mixin span 1, md;
+      background-color: gray;
+      &:nth-child(n+9){
+        display: none;
+      }
+    }
+  }
+  
   @media (--bp-lg) {
-    display: flex;
+    span {
+      @mixin span 1, lg;
+      background-color: gray;
+    }
   }
 }

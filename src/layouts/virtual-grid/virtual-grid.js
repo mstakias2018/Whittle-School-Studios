@@ -7,6 +7,7 @@ class VirtualGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      onTop: false,
       visible: false,
     };
   }
@@ -18,20 +19,25 @@ class VirtualGrid extends React.Component {
           visible: !this.state.visible,
         });
       }
+      if (e.keyCode === 84) {
+        this.setState({
+          onTop: !this.state.onTop,
+        });
+      }
     });
   }
 
   render() {
     return (
-      <div className={cx(this.state.visible ? styles.virtualGridEnabled : styles.virtualGrid)}>
-        <div className={cx(this.state.visible ? styles.gridSm : styles.grid)}>
-          { Array.from({ length: 4, }, (v, i) => <span key={i} />) }
-        </div>
-        <div className={(this.state.visible ? styles.gridMd : styles.grid)}>
-          { Array.from({ length: 8, }, (v, i) => <span key={i} />) }
-        </div>
-        <div className={(this.state.visible ? styles.gridLg : styles.grid)}>
-          { Array.from({ length: 12, }, (v, i) => <span key={i} />) }
+      <div className={cx(styles.virtualGrid, {
+        [styles.onTop]: this.state.onTop,
+      })}
+      >
+        <div className={cx({
+            [styles.grid]: this.state.visible,
+        })}
+        >
+          {Array.from({ length: 12, }, (v, i) => <span key={i.toString()} />)}
         </div>
       </div>
     );

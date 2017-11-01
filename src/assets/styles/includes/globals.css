@@ -22,4 +22,16 @@
   }
 }
 
+:global .wrapper{
+  margin: 0 calc(var(--grid-margin-sm) * 2);
+
+  @media (--bp-md) {
+    margin: 0 calc(var(--grid-margin-md) * 2);
+  }
+
+  @media (--bp-lg) {
+    margin: 0 calc(var(--grid-margin-lg) * 2);
+  }
+}
+
 @mixin grid-generate-columns 12, 12;

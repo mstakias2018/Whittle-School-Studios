@@ -59,15 +59,12 @@
 @define-mixin grid-container {
   display: flex;
   flex-direction: row;
-  flex-grow: 0;
-  flex-shrink: 0;
-  flex-flow: wrap;
 
-  /*@media (--bp-md) {
+  @media (--bp-md) {
     margin-right: -var(--grid-margin-md);
   }
 
   @media (--bp-lg) {
     margin-right: -var(--grid-margin-lg);
-  }*/
+  }
 }
