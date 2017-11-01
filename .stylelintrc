@@ -1,0 +1,33 @@
+{
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "max-empty-lines": [
+      1,
+      {"severity": "warning", "message": "Please use 1 empty line."}
+    ],
+    "indentation": [
+      2,
+      {"severity": "warning", "message": "Please use 2 spaces for indentation."}
+    ],
+    "color-hex-case": [
+      "lower",
+      {"severity": "warning", "message": "Lowercase characters are easier to distinguish from numbers"}
+    ],
+    "color-no-invalid-hex": true,
+    "block-no-empty": [
+      true,
+      {"severity": "warning", "message": "No empty blocks."}
+    ],
+    "block-opening-brace-space-before": [
+      "always",
+      {"severity": "warning", "message": "Please add space before."}
+    ],
+
+    "order/properties-alphabetical-order": [
+      true,
+      {"severity": "warning", "message": "Please order properties alphabeticaly."}
+    ],
+  }
+}
