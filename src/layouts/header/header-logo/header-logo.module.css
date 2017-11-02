@@ -3,7 +3,6 @@
 .logo {
   @mixin span 2, sm;
   align-self: stretch;
-  background-color: gray;
 
   @media (--bp-md-only) {
     @mixin span 2, md;
