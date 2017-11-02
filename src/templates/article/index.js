@@ -5,13 +5,13 @@ import Helmet from 'react-helmet';
 import ContentModules from '../../content-modules';
 
 const propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 class ArticleTemplate extends React.Component {
   render() {
     const article = this.props.data.contentfulArticlePage;
-    const { headline, modules, } = article;
+    const { headline, modules } = article;
     return (
       <div>
         <Helmet title={headline} />

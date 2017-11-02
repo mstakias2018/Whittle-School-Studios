@@ -1,4 +1,4 @@
-import React, { PropTypes, } from 'react';
+import React, { PropTypes } from 'react';
 
 import BodyText from './global/body-text';
 
@@ -10,12 +10,12 @@ const propTypes = {
   modules: PropTypes.any,
 };
 
-export default function ContentModules({ modules, }) {
+export default function ContentModules({ modules }) {
   return (
     <div>
       {modules.map(({ __typename: type, ...props }, i) => {
         const Component = MODULE_MAP[type];
-        return <Component key={i} {...props} />;
+        return Component && <Component key={i} {...props} />;
       })}
     </div>
   );
