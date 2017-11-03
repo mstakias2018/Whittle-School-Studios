@@ -117,51 +117,51 @@ const Links = [
   },
 ];
 
-const copyright = 'All Rights Reserved. © 2017\nG30 Project Ltd, the global parent entity.'
+const copyright = 'All Rights Reserved. © 2017\nG30 Project Ltd, the global parent entity.';
 
 const Footer = () => (
-  <div className={styles.wrapper}>
+  <footer className={styles.wrapper}>
     <div className={styles.content}>
-      { Links.map((item, i) => (
-        item.isDoubleBlock ?
-          <div
-            className={styles.menuBlock}
-            key={i}
-          >
-            { item.subLinks.map((subItem, j) => (
-              <a
-                className={styles.menuBlockItemNoSub}
-                href={item.link}
-                key={j}
-              >
-                {subItem.title}
-              </a>
-              ))}
-          </div>
-        :
-          <div
-            className={styles.menuBlock}
-            key={i}
-          >
-            <a
-              className={styles.menuBlockItem}
-              href={item.link}
+      {Links.map((item, i) =>
+          (item.isDoubleBlock ? (
+            <div
+              className={styles.menuBlock}
+              key={i}
             >
-              {item.title}
-            </a>
-            { item.subLinks.map((subItem, j) => (
-              <a
-                className={styles.menuBlockSubItem}
-                href={item.link}
-                key={j}
-              >
-                {subItem.title}
-              </a>
+              {item.subLinks.map((subItem, j) => (
+                <a
+                  className={styles.menuBlockItemNoSub}
+                  href={item.link}
+                  key={j}
+                >
+                  {subItem.title}
+                </a>
               ))}
-          </div>
-        ))}
+            </div>
+          ) : (
+            <div
+              className={styles.menuBlock}
+              key={i}
+            >
+              <a
+                className={styles.menuBlockItem}
+                href={item.link}
+              >
+                {item.title}
+              </a>
+              {item.subLinks.map((subItem, j) => (
+                <a
+                  className={styles.menuBlockSubItem}
+                  href={item.link}
+                  key={j}
+                >
+                  {subItem.title}
+                </a>
+              ))}
+            </div>
+          )))}
     </div>
-  </div>
+  </footer>
 );
 
 export default Footer;

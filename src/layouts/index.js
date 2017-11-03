@@ -13,10 +13,14 @@ import VirtualGrid from './virtual-grid/virtual-grid';
 import '../assets/styles/main.css';
 
 const TemplateWrapper = ({ children }) => (
-  <div className={cx({ '-touchDevice': detectTouchEvents.hasSupport, })}>
-    <Helmet title="Home" titleTemplate="The Whittle School - %s" />
+  <div className={cx({ '-touchDevice': detectTouchEvents.hasSupport })}>
+    <Helmet
+      htmlAttributes={{ lang: 'en-US' }}
+      title="Home"
+      titleTemplate="The Whittle School - %s"
+    />
     <Header />
-    {children()}
+    <main>{children()}</main>
     <Footer />
     <VirtualGrid />
   </div>
