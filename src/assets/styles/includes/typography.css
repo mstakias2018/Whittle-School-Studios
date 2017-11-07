@@ -18,11 +18,20 @@
 }
 
 /* headings */
-@define-mixin type-h1-home {
+@define-mixin type-h1 {
   color: var(--color-text-dark);
   font-family: var(--font-freight-light);
   font-size: 48px;
+  font-weight: 400;
   line-height: 38px;
+
+  em {
+    font-family: var(--font-freight-light-italic);
+  }
+}
+
+@define-mixin type-h1-home {
+  @mixin type-h1;
 
   @media (--bp-md) {
     font-size: 110px;
@@ -36,9 +45,7 @@
 }
 
 @define-mixin type-h1-category {
-  color: var(--color-text-dark);
-  font-family: var(--font-freight-light);
-  font-size: 48px;
+  @mixin type-h1;
   line-height: 48px;
 
   @media (--bp-md) {
@@ -53,9 +60,7 @@
 }
 
 @define-mixin type-h1-sub-category {
-  color: var(--color-text-dark);
-  font-family: var(--font-freight-light);
-  font-size: 48px;
+  @mixin type-h1;
   line-height: 48px;
 
   @media (--bp-md) {

@@ -1,0 +1,19 @@
+@import '../assets/styles/includes/breakpoints.css';
+@import '../assets/styles/includes/variables.css';
+
+.globalModule {
+  padding: 40px 0;
+
+  @media (--bp-sm-only) {
+    margin: 0 calc(var(--grid-margin-sm) * 2);
+  }
+
+  @media (--bp-md) {
+    margin: 0 auto;
+    max-width: var(--grid-container-md);
+  }
+
+  @media (--bp-lg) {
+    max-width: var(--grid-container-lg);
+  }
+}

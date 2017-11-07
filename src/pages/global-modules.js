@@ -1,10 +1,21 @@
 import React from 'react';
 
 import BodyText from '../content-modules/global/body-text';
+import Title from '../components/global/title';
+
+import { alignment as TitleAlign, types as TitleTypes } from '../components/global/title/types';
+
+import styles from './global-modules.module.css';
 
 const GlobalModules = () => (
-  <div>
+  <div className={styles.globalModule}>
     <h1>Global modules</h1>
+
+    <Title
+      align={TitleAlign.alignLeft}
+      text="Title text *Some text*"
+      type={TitleTypes.typeCategory}
+    />
 
     <BodyText
       content={{
