@@ -1,4 +1,5 @@
 @import '../../assets/styles/includes/variables.css';
+@import '../../assets/styles/includes/mixins.css';
 @import '../../assets/styles/includes/breakpoints.css';
 @import '../../assets/styles/includes/grid.css';
 
@@ -7,7 +8,6 @@
   display: flex;
   justify-content: center;
   left: 0;
-  margin: 0 calc(var(--grid-margin-sm) * 2);
   opacity: .3;
   position: fixed;
   right: 0;
@@ -20,22 +20,28 @@
 }
 
 .grid {
-  @mixin grid-container;
+  @mixin component-container;
+  height: 100%;
+}
 
-  display: flex;
+.gridContainer{
+  @mixin grid-container;
   height: 100%;
 
-  @media (--bp-sm-only) {
-    width: 100%;
-    span {
-      @mixin span 1, sm;
-      background-color: gray;
-
-      &:nth-child(n+4){
-        margin-right: -2rem;
+  span {
+    &:after {
+        background-color: gray;
+        content: '';
+        display: block;
+        height: 100%;
+        width: 100%;
       }
-      
-      &:nth-child(n+5){
+  }
+
+  @media (--bp-sm-only) {
+    span {
+      @mixin span 1, var(--grid-columns-sm), sm;
+      &:nth-child(n + 5) {
         display: none;
       }
     }
@@ -43,9 +49,8 @@
 
   @media (--bp-md-only) {  
     span {
-      @mixin span 1, md;
-      background-color: gray;
-      &:nth-child(n+9){
+      @mixin span 1, var(--grid-columns-md), md;
+      &:nth-child(n + 9) {
         display: none;
       }
     }
@@ -53,8 +58,8 @@
   
   @media (--bp-lg) {
     span {
-      @mixin span 1, lg;
-      background-color: gray;
+      @mixin span 1, var(--grid-columns-lg), lg;
+      position: relative;
     }
   }
 }

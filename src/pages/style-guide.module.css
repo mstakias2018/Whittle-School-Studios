@@ -11,10 +11,8 @@
 }
 
 .guide {
-  margin: 0 auto;
+  @mixin component-container;
   padding: 20px;
-  width: var(--grid-container-lg);
-  max-width: 100%;
 }
 
 .block {

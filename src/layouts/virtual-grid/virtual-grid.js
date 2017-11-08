@@ -37,7 +37,9 @@ class VirtualGrid extends React.Component {
             [styles.grid]: this.state.visible,
         })}
         >
-          {Array.from({ length: 12, }, (v, i) => <span key={i.toString()} />)}
+          <div className={styles.gridContainer}>
+            {Array.from({ length: 12 }, (v, i) => <span key={i.toString()} />)}
+          </div>
         </div>
       </div>
     );

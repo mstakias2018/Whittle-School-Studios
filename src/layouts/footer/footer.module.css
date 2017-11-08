@@ -12,56 +12,106 @@
 }
 
 .content {
-  @mixin grid-container;
+  @mixin component-container-ww;
   padding-bottom: 25px;
   padding-top: 0;
 
+  @media (--bp-sm-only) {
+    flex-wrap: wrap;
+  }
+
+  @media (--bp-sm-upper-only) {
+    flex-wrap: wrap;
+  }
 
   @media (--bp-md) {
+    @mixin grid-container;
     padding-bottom: 50px;
     padding-top: 65px;
   }
 
   @media (--bp-lg) {
+    @mixin grid-container;
     padding-bottom: 75px;
   }
 }
 
 .menuBlock {
-  @mixin span 4, sm;
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  white-space: pre;
+  
+  @media (--bp-sm-only) {
+    @mixin span 4, var(--grid-columns-sm), sm;
+    @mixin grid-container;
+  }
+
+  @media (--bp-sm-upper-only) {
+    @mixin span 4, var(--grid-columns-sm), sm;
+    @mixin grid-container;
+  }
 
   @media (--bp-md) {
-    @mixin span 1, md;
+    @mixin span 1, var(--grid-columns-md), md;
   }
 
   @media (--bp-lg) {
-    @mixin span 2, lg;
+    @mixin span 2, var(--grid-columns-lg), lg;
   }
+  display: none;
 }
 
 .menuBlockItem {
   @mixin type-nav;
   margin-bottom: 35px;
   min-height: 36px;
+
+  @media (--bp-sm-only) {
+    @mixin span 2, var(--grid-columns-sm), sm;
+  }
+
+  @media (--bp-sm-upper-only) {
+    @mixin span 2, var(--grid-columns-sm), sm;
+  }
+
+  @media (--bp-md) {
+    @mixin span 1, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 2, var(--grid-columns-lg), lg;
+  }
+  display: none;
 }
 
 .menuBlockItemNoSub {
   @mixin type-nav;
   min-height: 36px;
 
+  @media (--bp-sm-only) {
+    @mixin span 2, var(--grid-columns-sm), sm;
+  }
+
+  @media (--bp-sm-upper-only) {
+    @mixin span 2, var(--grid-columns-sm), sm;
+  }
+
+  @media (--bp-md) {
+    @mixin span 1, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 2, var(--grid-columns-lg), lg;
+  }
+
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-text-dark);
     margin-bottom: 30px;
     padding-bottom: 32.5px;
   }
+  display: none;
 }
 
 .menuBlockSubItem {
   @mixin type-sub-nav;
   margin-bottom: 35px;
   width: auto;
+  display: none;
 }

@@ -14,7 +14,7 @@ module.exports = {
     'postcss-nested': {},
     'postcss-pxtorem': {
       rootValue: 10,
-      propList: ['*']
+      propList: ['*'],
     },
     'postcss-extend': {},
     'postcss-discard-duplicates': {},

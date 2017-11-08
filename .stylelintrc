@@ -13,21 +13,24 @@
     ],
     "color-hex-case": [
       "lower",
-      {"severity": "warning", "message": "Lowercase characters are easier to distinguish from numbers"}
+      {"severity": "warning", "message": "Lowercase characters are easier to distinguish from numbers"},
     ],
     "color-no-invalid-hex": true,
     "block-no-empty": [
       true,
-      {"severity": "warning", "message": "No empty blocks."}
+      {"severity": "warning", "message": "No empty blocks."},
     ],
     "block-opening-brace-space-before": [
       "always",
-      {"severity": "warning", "message": "Please add space before."}
+      {"severity": "warning", "message": "Please add space before."},
     ],
-
+    "declaration-colon-space-after": [
+      "always",
+      {"severity": "warning", "message": "Please add space after."},
+    ],
     "order/properties-alphabetical-order": [
       true,
-      {"severity": "warning", "message": "Please order properties alphabeticaly."}
+      {"severity": "warning", "message": "Please order properties alphabeticaly."},
     ],
   }
 }

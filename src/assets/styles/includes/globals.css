@@ -1,3 +1,5 @@
+@import './mixins.css';
+
 :global .-no-overflow {
   overflow: hidden;
 }
@@ -22,16 +24,10 @@
   }
 }
 
-:global .wrapper{
-  margin: 0 calc(var(--grid-margin-sm) * 2);
-
-  @media (--bp-md) {
-    margin: 0 calc(var(--grid-margin-md) * 2);
-  }
-
-  @media (--bp-lg) {
-    margin: 0 calc(var(--grid-margin-lg) * 2);
-  }
+:global .grid {
+  @mixin grid-container;
 }
 
-@mixin grid-generate-columns 12, 12;
+:global .container {
+  @mixin component-container;
+}

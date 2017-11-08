@@ -29,20 +29,21 @@
 /* Grid */
 :root {
   --grid-columns-sm: 4;
+  --grid-columns-sm-upper-only: 4;
   --grid-columns-md: 8;
   --grid-columns-lg: 12;
 
-  --grid-margin-sm: 10px;
-  --grid-margin-md: 20px;
-  --grid-margin-lg: 20px;
+  --grid-gutter-sm: 5px;
+  --grid-gutter-sm-upper-only: 5px;
+  --grid-gutter-md: 10px;
+  --grid-gutter-lg: 10px;
+}
 
-  --grid-gutter-sm: 10px;
-  --grid-gutter-md: 20px;
-  --grid-gutter-lg: 20px;
-
-  --grid-container-sm: 100%;
-  --grid-container-md: 640px;
-  --grid-container-lg: 940px;
+:root {
+  --container-margin-sm: 7.8%;
+  --container-margin-sm-upper-only: 12%;
+  --container-margin-md: 12.5%;
+  --container-margin-lg: 12.5%;
 }
 
 /* Dimensions */
@@ -51,6 +52,14 @@
   --component-wrapper-margin-sm: 10px;
   --component-wrapper-margin-md: 24px;
   --component-wrapper-margin-lg: 40px;
+}
+
+:root {
+  --container-sm: calc(100vw - var(--container-margin-sm) * 2);
+  --container-sm-upper-only: calc(100vw - var(--container-margin-sm-upper-only) * 2);
+  --container-md: calc(100vw - var(--container-margin-md) * 2);
+  --container-lg: calc(100vw - var(--container-margin-lg) * 2);
+  --container-xl: 1300px;
 }
 
 /* Timings */

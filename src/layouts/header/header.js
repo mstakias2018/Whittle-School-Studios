@@ -22,15 +22,17 @@ class Header extends React.Component {
     return (
       <header className={styles.header}>
         <Languages />
-        <div className={styles.container}>
-          <Logo />
-          <button
-            className={styles.toggleMenu}
-            onClick={this.toggleMenu}
-          >
-            Menu
-          </button>
-          <MainMenu isActive={this.state.menuActive} />
+        <div className="container">
+          <div className={styles.container}>
+              <Logo />
+              <button
+                className={styles.toggleMenu}
+                onClick={this.toggleMenu}
+              >
+                Menu
+              </button>
+              <MainMenu isActive={this.state.menuActive} />
+          </div>
         </div>
       </header>
     );

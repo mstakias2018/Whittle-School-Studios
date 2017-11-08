@@ -1,15 +1,16 @@
 @import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/variables.css';
 
 .logo {
-  @mixin span 2, sm;
+  @mixin span 2, var(--grid-columns-sm), sm;
   align-self: stretch;
 
   @media (--bp-md-only) {
-    @mixin span 2, md;
+    @mixin span 2, var(--grid-columns-md), md;
     height: 40px;
   }
 
   @media (--bp-lg) {
-    @mixin span 2, lg;
+    @mixin span 2, var(--grid-columns-lg), lg;
   }
 }

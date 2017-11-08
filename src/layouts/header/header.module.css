@@ -1,5 +1,6 @@
 @import '../../assets/styles/includes/breakpoints.css';
 @import '../../assets/styles/includes/grid.css';
+@import '../../assets/styles/includes/mixins.css';
 @import '../../assets/styles/includes/typography.css';
 @import '../../assets/styles/includes/variables.css';
 
@@ -7,28 +8,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  @media (--bp-sm-only) {
-    margin: 0 calc(var(--grid-margin-sm) * 2);
-  }
-
-  @media (--bp-md) {
-    margin: 0 auto;
-    max-width: var(--grid-container-md);
-  }
-
-  @media (--bp-lg) {
-    max-width: var(--grid-container-lg);
-  }
 }
 
 .container {
+  @mixin grid-container;
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 74px;
   position: relative;
-  width: 100%;
 
   @media (--bp-lg) {
     flex-wrap: no-wrap;

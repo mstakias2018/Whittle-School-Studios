@@ -21,6 +21,9 @@ const IndexPage = () => (
         <Link to="/home">Home</Link>
       </li>
       <li>
+        <Link to="/grid-guide">Grid guide</Link>
+      </li>
+      <li>
         <Link to="/home-cn">Home (China)</Link>
       </li>
       <li>

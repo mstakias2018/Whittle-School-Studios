@@ -1,70 +1,56 @@
 @import './breakpoints.css';
 @import './variables.css';
 
-@define-mixin grid-generate-columns $grid-col-count: 6, $postfix: 'sm' {
-  @for $i from 0 to $(grid-col-count) {
-    :global .col-$(postfix)--$(i) {
-      flex-basis: calc($(i) * calc(100% / $(grid-col-count)));
-      max-width: calc($(i) * calc(100% / $(grid-col-count)));
-      width: calc($(i) * calc(100% / $(grid-col-count)));
-    }
-
-    :global .offset-$(postfix)--$(i) {
-      margin-left: calc($(i) * calc(100% / $(grid-col-count)));
-    }
-  }
+@define-mixin custom-column $grid-col-size: 6, $number-of-grids: 12, $property: width {
+  $(property): calc(($grid-col-size / $number-of-grids) * 100)%;
 }
 
-@define-mixin custom-column $grid-col-size: 6, $breakpoint: lg, $property: width {
-  $removedGutters: calc(var(--grid-gutter-$(breakpoint)) * (var(--grid-columns-$(breakpoint)) - 1));
-  $spanSize: calc((var(--grid-container-$(breakpoint)) - $removedGutters) / (var(--grid-columns-$(breakpoint))));
-
-  $(property):
-  calc(
-    (
-      (
-        (var(--grid-container-$(breakpoint)) - (var(--grid-gutter-$(breakpoint)) *
-        (var(--grid-columns-$(breakpoint)) - 1))) /
-        (var(--grid-columns-$(breakpoint))))
-      * $grid-col-size
-    ) + (($grid-col-size - 1) * var(--grid-gutter-$(breakpoint)))
-  );
-}
-
-@define-mixin span $grid-col-size: 6, $breakpoint: lg {
-  @mixin custom-column $grid-col-size, $breakpoint, width;
-  @mixin custom-column $grid-col-size, $breakpoint, flex-basis;
+@define-mixin span $grid-col-size: 6, $number-of-grids: 12, $breakpoint: lg {
+  @mixin custom-column $grid-col-size, $number-of-grids, width;
+  @mixin custom-column $grid-col-size, $number-of-grids, flex-basis;
   box-sizing: border-box;
-  margin-right: var(--grid-gutter-$(breakpoint));
-}
-
-@define-mixin offset $grid-col-size: 6, $breakpoint: lg, $side: left {
-  $removedGutters: calc(var(--grid-gutter-$(breakpoint)) * (var(--grid-columns-$(breakpoint)) - 2));
-  $spanSize: calc((var(--grid-container-$(breakpoint)) - $removedGutters) / (var(--grid-columns-$(breakpoint))));
-  margin-$(side): calc(($spanSize * $grid-col-size) + ($grid-col-size * var(--grid-gutter-$(breakpoint))));
-}
-
-@define-mixin responsive-grid $cols-sm: var(--grid-columns-sm), $cols-md: var(--grid-columns-md), $cols-lg: var(--grid-columns-lg) {
-  @mixin span $cols-sm, sm;
-
-  @media (--bp-md) {
-    @mixin span $cols-md, md;
-  }
-
-  @media (--bp-lg) {
-    @mixin span $cols-lg, lg;
-  }
+  padding: 0 var(--grid-gutter-$(breakpoint));
 }
 
 @define-mixin grid-container {
   display: flex;
   flex-direction: row;
+  width: auto;
+
+  @media (--bp-sm-only) {
+    margin: 0 -var(--grid-gutter-sm);
+  }
+
+  @media (--bp-sm-upper-only) {
+    margin: 0 -var(--grid-gutter-sm);
+  }
 
   @media (--bp-md) {
-    margin-right: -var(--grid-margin-md);
+    margin: 0 -var(--grid-gutter-md);
   }
 
   @media (--bp-lg) {
-    margin-right: -var(--grid-margin-lg);
+    margin: 0 -var(--grid-gutter-lg);
+  }
+}
+
+@define-mixin nested-grid-container {
+  @mixin grid-container;
+  padding: 0;
+
+  @media (--bp-sm-only) {
+    margin: 0;
+  }
+  
+  @media (--bp-sm-upper-only) {
+    margin: 0;
+  }
+
+  @media (--bp-md) {
+    margin: 0;
+  }
+
+  @media (--bp-lg) {
+    margin: 0;
   }
 }
