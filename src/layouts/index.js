@@ -11,6 +11,9 @@ import Footer from './footer/footer';
 import VirtualGrid from './virtual-grid/virtual-grid';
 
 import '../assets/styles/main.css';
+/* Gatsby was having issues loading fonts from files into the styles folder,
+   so fonts will live in layouts/ */
+import './fonts.module.css';
 
 const TemplateWrapper = ({ children }) => (
   <div className={cx({ '-touchDevice': detectTouchEvents.hasSupport })}>
