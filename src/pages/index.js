@@ -6,16 +6,25 @@ const IndexPage = () => (
     <h1>The Whittle School</h1>
     <ul>
       <li>
+        <Link to="/category">Category</Link>
+      </li>
+      <li>
+        <Link to="/category-cn">Category (China)</Link>
+      </li>
+      <li>
+        <Link to="/subcategory">Subcategory</Link>
+      </li>
+      <li>
+        <Link to="/subcategory-cn">Subcategory (China)</Link>
+      </li>
+      <li>
+        <Link to="/home">Home</Link>
+      </li>
+      <li>
+        <Link to="/home-cn">Home (China)</Link>
+      </li>
+      <li>
         <Link to="/style-guide">Style guide</Link>
-      </li>
-      <li>
-        <Link to="/global-modules">Global modules</Link>
-      </li>
-      <li>
-        <Link to="/article-modules">Article modules</Link>
-      </li>
-      <li>
-        <Link to="/home-modules">Home modules</Link>
       </li>
     </ul>
   </div>

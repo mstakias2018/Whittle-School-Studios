@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Markdown from 'react-markdown';
 
-import { alignment, types } from './types';
+import { alignment, types } from './constants';
 import styles from './title.module.css';
 
 const propTypes = {
