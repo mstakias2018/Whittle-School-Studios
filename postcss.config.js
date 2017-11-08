@@ -10,6 +10,12 @@ module.exports = {
     'postcss-calc': {},
     'postcss-cssnext': {
       browsers: ['last 2 versions', '> 5%'],
+      features: {
+        customProperties: {
+          preserve: true,
+          warnings: false
+        }
+      }
     },
     'postcss-nested': {},
     'postcss-pxtorem': {

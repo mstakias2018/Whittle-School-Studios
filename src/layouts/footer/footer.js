@@ -131,7 +131,7 @@ const Footer = () => (
               {item.subLinks.map((subItem, j) => (
                 <a
                   className={styles.menuBlockItemNoSub}
-                  href={item.link}
+                  href={subItem.link}
                   key={j}
                 >
                   {subItem.title}
@@ -152,7 +152,7 @@ const Footer = () => (
               {item.subLinks.map((subItem, j) => (
                 <a
                   className={styles.menuBlockSubItem}
-                  href={item.link}
+                  href={subItem.link}
                   key={j}
                 >
                   {subItem.title}

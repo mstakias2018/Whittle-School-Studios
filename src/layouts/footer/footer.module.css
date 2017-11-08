@@ -23,7 +23,7 @@
   @media (--bp-sm-upper-only) {
     flex-wrap: wrap;
   }
-
+  
   @media (--bp-md) {
     @mixin grid-container;
     padding-bottom: 50px;

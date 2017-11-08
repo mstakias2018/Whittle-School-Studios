@@ -1,11 +1,20 @@
 /* Fonts */
 :root {
-  --font-walsheim-light: 'gt_walsheim_prolight', 'Helvetica', sans-serif;
-  --font-walsheim-regular: 'gt_walsheim_proregular', 'Helvetica', sans-serif;
-  --font-freight-light: 'freightbiglightregular', 'Helvetica', sans-serif;
-  --font-freight-light-italic: 'freightbiglightitalicregular', 'Helvetica', sans-serif;
-  --font-freight-book: 'freightbigbookregular', 'Helvetica', sans-serif;
-  --font-freight-book-italic: 'freightbigbookitalicregular', 'Helvetica', sans-serif;
+  --font-sans-serif-light: 'gt_walsheim_prolight', 'Helvetica', sans-serif;
+  --font-sans-serif-regular: 'gt_walsheim_proregular', 'Helvetica', sans-serif;
+  --font-serif-light: 'freightbiglightregular', 'Arial', serif;
+  --font-serif-light-italic: 'freightbiglightitalicregular', 'Arial', serif;
+  --font-serif-book: 'freightbigbookregular', 'Arial', serif;
+  --font-serif-book-italic: 'freightbigbookitalicregular', 'Arial', serif;
+}
+
+:global(.language--chinese) {
+  --font-sans-serif-light: 'pingfang_sclight', sans-serif;
+  --font-sans-serif-regular: 'pingfang_scregular', sans-serif;
+  --font-serif-light: 'SimSun', serif;
+  --font-serif-light-italic: 'SimSun', serif;
+  --font-serif-book: 'SimSun', serif;
+  --font-serif-book-italic: 'SimSun', serif;
 }
 
 /* Colors */
@@ -23,7 +32,7 @@
   --color-secondary-medium: #ebdcc0;
 
   --color-light-border: rgba(141, 140, 138, 0.25);
-  --color-link-hover-underline: rgba(151, 151, 151, 0.35);
+  --color-link-hover-underline: #8d8c8a;
 }
 
 /* Grid */

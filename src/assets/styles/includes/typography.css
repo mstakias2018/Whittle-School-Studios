@@ -4,8 +4,9 @@
 /* For Statistics and Big Numbers */
 @define-mixin type-display {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light-italic);
+  font-family: var(--font-serif-light-italic);
   font-size: 180px;
+  font-weight: normal;
   line-height: 100%;
 
   @media (--bp-md) {
@@ -20,13 +21,13 @@
 /* headings */
 @define-mixin type-h1 {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light);
+  font-family: var(--font-serif-light);
   font-size: 48px;
   font-weight: 400;
   line-height: 38px;
 
   em {
-    font-family: var(--font-freight-light-italic);
+    font-family: var(--font-serif-light-italic);
   }
 }
 
@@ -71,8 +72,9 @@
 
 @define-mixin type-h2 {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light);
+  font-family: var(--font-serif-light);
   font-size: 30px;
+  font-weight: normal;
   line-height: 36px;
 
   @media (--bp-md) {
@@ -83,44 +85,47 @@
 
 @define-mixin type-h2-italic {
   @mixin type-h2;
-  font-family: var(--font-freight-light-italic);
+  font-family: var(--font-serif-light-italic);
 }
 
 @define-mixin type-h3 {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light);
+  font-family: var(--font-serif-light);
   font-size: 30px;
+  font-weight: normal;
   line-height: 30px;
 }
 
 @define-mixin type-h3-italic {
   @mixin type-h3;
-  font-family: var(--font-freight-light-italic);
+  font-family: var(--font-serif-light-italic);
 }
 
 @define-mixin type-h4 {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light);
+  font-family: var(--font-serif-light);
   font-size: 24px;
+  font-weight: normal;
   line-height: 30px;
 }
 
 @define-mixin type-h4-italic {
   @mixin type-h4;
-  font-family: var(--font-freight-light-italic);
+  font-family: var(--font-serif-light-italic);
 }
 
 @define-mixin type-h5-italic {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light-italic);
+  font-family: var(--font-serif-light-italic);
   font-size:18px;
+  font-weight: normal;
   line-height: 18px;
 }
 
 /* article copy */
 @define-mixin type-dropcap {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light-italic);
+  font-family: var(--font-serif-light-italic);
   font-size: 86px;
 
   @media (--bp-md) {
@@ -130,7 +135,7 @@
 
 @define-mixin type-paragraph {
   color: var(--color-text-dark);
-  font-family: var(--font-walsheim-light);
+  font-family: var(--font-sans-serif-light);
   font-size: 14px;
   line-height: 24px;
 
@@ -145,7 +150,7 @@
 
 @define-mixin type-descriptor {
   color: var(--color-text-dark);
-  font-family: var(--font-walsheim-light);
+  font-family: var(--font-sans-serif-light);
   font-size: 12px;
   line-height: 18px;
 
@@ -159,7 +164,7 @@
 @define-mixin type-link {
   border-bottom: 1px solid transparent;
   color: var(--color-text-tomato);
-  font-family: var(--font-walsheim-regular);
+  font-family: var(--font-sans-serif-regular);
   font-size: 14px;
   padding-bottom: 5px;
   text-decoration: none;
@@ -172,26 +177,31 @@
 
 @define-mixin type-nav {
   color: var(--color-text-dark);
-  font-family: var(--font-walsheim-regular);
+  font-family: var(--font-sans-serif-regular);
   font-size: 14px;
-  line-height: 18px;
+  line-height: 20px;
   text-decoration: none;
-  transition: color var(--timing-fast) var(--easing-default);
+  text-decoration-color: transparent;
+  text-underline-position: under;
+  transition: color var(--timing-fast) var(--easing-default),
+    text-decoration var(--timing-fast) var(--easing-default);
 
   &:hover {
-    color: var(--color-text-light);
+    color: var(--color-text-tomato);
+    text-decoration: underline;
+    text-decoration-color: var(--color-link-hover-underline);
   }
 }
 
 @define-mixin type-sub-nav {
   @mixin type-nav;
-  font-family: var(--font-walsheim-light);
+  font-family: var(--font-sans-serif-light);
 }
 
 /* Other*/
 @define-mixin type-caption {
   color: var(--color-text-dark);
-  font-family: var(--font-walsheim-light);
+  font-family: var(--font-sans-serif-light);
   font-size: 10px;
   line-height: 14px;
 
@@ -207,28 +217,28 @@
 
 @define-mixin type-eyebrow {
   color: var(--color-text-light);
-  font-family: var(--font-walsheim-light);
+  font-family: var(--font-sans-serif-light);
   font-size: 10px;
   line-height: 14px;
 }
 
 @define-mixin type-video {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light);
+  font-family: var(--font-serif-light);
   font-size: 24px;
   line-height: 24px;
 }
 
 @define-mixin type-carousel {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-light);
+  font-family: var(--font-serif-light);
   font-size: 18px;
   line-height: 20px;
 }
 
 @define-mixin type-menu {
   color: var(--color-text-dark);
-  font-family: var(--font-freight-book-italic);
+  font-family: var(--font-serif-book-italic);
   font-size: 14px;
   letter-spacing: 0.2px;
   line-height: 30px;

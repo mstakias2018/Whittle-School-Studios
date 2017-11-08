@@ -57,3 +57,23 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+    font-family: 'pingfang_sclight';
+    src: url('../assets/fonts/pingfangsc-light-webfont.eot');
+    src: url('../assets/fonts/pingfangsc-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/pingfangsc-light-webfont.woff') format('woff'),
+         url('../assets/fonts/pingfangsc-light-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pingfang_scregular';
+    src: url('../assets/fonts/pingfangsc-regular-webfont.eot');
+    src: url('../assets/fonts/pingfangsc-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/pingfangsc-regular-webfont.woff') format('woff'),
+         url('../assets/fonts/pingfangsc-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
