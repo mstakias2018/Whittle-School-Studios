@@ -1,17 +1,5 @@
 @import '../../../assets/styles/includes/typography.css';
 
-.alignLeft {
-  text-align: left;
-}
-
-.alignRight {
-  text-align: right;
-}
-
-.alignCenter {
-  text-align: center;
-}
-
 .typeHome {
   @mixin type-h1-home;
 }
@@ -20,6 +8,7 @@
   @mixin type-h1-category;
 }
 
-.typeSubCategory {
-  @mixin type-h1-sub-category;
+.typeArticle {
+  @mixin type-h1-article;
+  text-align: center;
 }

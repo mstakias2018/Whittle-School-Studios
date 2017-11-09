@@ -60,7 +60,7 @@
   }
 }
 
-@define-mixin type-h1-sub-category {
+@define-mixin type-h1-article {
   @mixin type-h1;
   line-height: 48px;
 

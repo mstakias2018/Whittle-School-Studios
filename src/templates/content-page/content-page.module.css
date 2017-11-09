@@ -1,0 +1,6 @@
+@import '../../assets/styles/includes/mixins.css';
+
+.wrapper {
+  padding: 40px 0;
+  @mixin component-container;
+}

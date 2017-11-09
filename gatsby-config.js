@@ -9,11 +9,11 @@ module.exports = {
       resolve: 'gatsby-source-contentful',
       options: {
         // TODO[@sarahatwork] env variables
-        spaceId: process.env.REGION === 'US' ? 'zne00v7thima' : 'mtz9jogvuzoh',
+        spaceId: process.env.REGION === 'US' ? 'w6h2a8mys1um' : '5wvb725fovi7',
         accessToken:
           process.env.REGION === 'US'
-            ? '706046b3c4047c7d84e52c8254245c8739e91927c49d1742e7f75aed6cfb4c51'
-            : '21f6ad852687a8e1a08979509aa8fb9ca0a72e3ade3dae5f9fff5c18f15efdd3',
+            ? 'f963757dd3a912fbd0fc5af56eeaa3aa834ccb3dfbc2becbbe9657035a1c4079'
+            : '738257cffeae0feab06ea584e4daafc8eade85903ad4ff775b98729d6b3e5242',
       },
     },
     'gatsby-transformer-remark',

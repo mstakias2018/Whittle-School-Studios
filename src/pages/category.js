@@ -3,17 +3,16 @@ import React from 'react';
 import Title from '../components/global/title';
 import BodyText from '../content-modules/global/body-text';
 
-import { alignment as TitleAlign, types as TitleTypes } from '../components/global/title/constants';
+import { PAGE_TYPE } from '../constants/settings';
 
 import styles from './modules.module.css';
 
 const Category = () => (
   <div className={styles.moduleWrapper}>
     <Title
-      align={TitleAlign.alignLeft}
       text="Commitment
 to Excellence in Education"
-      type={TitleTypes.typeCategory}
+      type={PAGE_TYPE.CATEGORY}
     />
     <BodyText
       content={{

@@ -4,16 +4,15 @@ import cx from 'classnames';
 import Title from '../components/global/title';
 import BodyText from '../content-modules/global/body-text';
 
-import { alignment as TitleAlign, types as TitleTypes } from '../components/global/title/constants';
+import { PAGE_TYPE } from '../constants/settings';
 
 import styles from './modules.module.css';
 
 const CategoryCn = () => (
   <div className={cx('language--chinese', styles.moduleWrapper)}>
     <Title
-      align={TitleAlign.alignLeft}
       text="促进我们校园的经济文化多样性宋体华文仿宋"
-      type={TitleTypes.typeCategory}
+      type={PAGE_TYPE.CATEGORY}
     />
     <BodyText
       content={{

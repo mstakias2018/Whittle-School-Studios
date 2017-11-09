@@ -4,16 +4,15 @@ import cx from 'classnames';
 import Title from '../components/global/title';
 import BodyText from '../content-modules/global/body-text';
 
-import { alignment as TitleAlign, types as TitleTypes } from '../components/global/title/constants';
+import { PAGE_TYPE } from '../constants/settings';
 
 import styles from './modules.module.css';
 
-const SubcategoryCn = () => (
+const ArticleCn = () => (
   <div className={cx('language--chinese', styles.moduleWrapper)}>
     <Title
-      align={TitleAlign.alignCenter}
       text="促进我们校园的经济文化多样性宋体华文仿宋"
-      type={TitleTypes.typeSubCategory}
+      type={PAGE_TYPE.ARTICLE}
     />
     <BodyText
       content={{
@@ -29,4 +28,4 @@ const SubcategoryCn = () => (
   </div>
 );
 
-export default SubcategoryCn;
+export default ArticleCn;

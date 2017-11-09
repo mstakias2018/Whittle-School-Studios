@@ -1,6 +1,6 @@
 /* === CATEGORY/SUBCATEGORY PAGES == */
 
-// Note: How UI displays sometimes depends on the "page type" - whether a page is a category or subcategory.
+// Note: How UI displays sometimes depends on the "page type" - whether a page is a category or article.
 
 // schema
 {

@@ -1,7 +1,7 @@
 const path = require('path');
 
 const {
-  REGION_PATH, REGION_LANGUAGES, LANGUAGE_PATH, LANGUAGE_LOCALE,
+  LANGUAGE_PATH, LANGUAGE_CONTENTFUL_LOCALE, REGION_LANGUAGES, REGION_PATH,
 } = require('./src/constants/regions');
 
 // Implement the Gatsby API “createPages”. This is
@@ -19,23 +19,21 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       // from the fetched data that you can run queries against.
       graphql(`
           {
-            allContentfulArticlePage(
+            allContentfulContentPage(
               filter: {
-                isTopLevel: { eq: true },
-                node_locale: { eq: "${LANGUAGE_LOCALE[language]}" }
+                node_locale: { eq: "${LANGUAGE_CONTENTFUL_LOCALE[language]}" }
               }
             ) {
               edges {
                 node {
                   id
+                  parentCategory: contentpage {
+                    id
+                  }
                   slug
-                  childPages {
+                  subcategories {
                     id
                     slug
-                    childPages {
-                      id
-                      slug
-                    }
                   }
                 }
               }
@@ -46,42 +44,35 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors);
         }
 
-        // Create Article pages
-        const articleTemplate = path.resolve('./src/templates/article/index.js');
+        const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
+        const isoCode = `${LANGUAGE_PATH[language]}-${REGION_PATH[process.env.REGION]}`;
 
         const buildPage = (id, slugs) => {
-          // Gatsby uses Redux to manage its internal state.
-          // Plugins and sites can use functions like "createPage"
-          // to interact with Gatsby.
-
           createPage({
-            // Each page is required to have a `path` as well
-            // as a template component. The `context` is
-            // optional but is often necessary so the template
-            // can query data specific to each page.
-            path: `${REGION_PATH[process.env.REGION]}/${LANGUAGE_PATH[language]}/${slugs.join('/')}/`,
-            component: articleTemplate,
+            path: `${isoCode}/${slugs.join('/')}/`,
+            component: contentPageTemplate,
             context: {
               id,
             },
           });
         };
 
-        const buildPageAndChildPages = ({ slug, id, childPages }, prevSlugs = []) => {
+        const buildPageAndSubcategories = ({ slug, id, subcategories }, prevSlugs = []) => {
           const slugs = [...prevSlugs, slug];
           buildPage(id, slugs);
-          if (childPages) {
-            childPages.forEach((node) => {
-              buildPageAndChildPages(node, slugs);
+          if (subcategories) {
+            subcategories.forEach((node) => {
+              buildPageAndSubcategories(node, slugs);
             });
           }
         };
 
-          // We want to create a detailed page for each
-          // product node. We'll just use the Contentful id for the slug.
-        result.data.allContentfulArticlePage.edges.forEach(({ node }) => {
-          buildPageAndChildPages(node);
-          resolve();
+        result.data.allContentfulContentPage.edges.forEach(({ node }) => {
+          // Skip subcategories
+          if (!node.parentCategory) {
+            buildPageAndSubcategories(node);
+            resolve();
+          }
         });
       });
     }));

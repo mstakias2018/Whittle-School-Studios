@@ -12,10 +12,10 @@ const IndexPage = () => (
         <Link to="/category-cn">Category (China)</Link>
       </li>
       <li>
-        <Link to="/subcategory">Subcategory</Link>
+        <Link to="/article">Article</Link>
       </li>
       <li>
-        <Link to="/subcategory-cn">Subcategory (China)</Link>
+        <Link to="/article-cn">Article (China)</Link>
       </li>
       <li>
         <Link to="/home">Home</Link>

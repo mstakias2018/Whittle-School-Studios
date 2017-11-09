@@ -3,16 +3,15 @@ import React from 'react';
 import Title from '../components/global/title';
 import BodyText from '../content-modules/global/body-text';
 
-import { alignment as TitleAlign, types as TitleTypes } from '../components/global/title/constants';
+import { PAGE_TYPE } from '../constants/settings';
 
 import styles from './modules.module.css';
 
-const Subcategory = () => (
+const Article = () => (
   <div className={styles.moduleWrapper}>
     <Title
-      align={TitleAlign.alignCenter}
       text="Promoting Economic & Cultural Diversity Across Our Campuses"
-      type={TitleTypes.typeSubCategory}
+      type={PAGE_TYPE.ARTICLE}
     />
     <BodyText
       content={{
@@ -29,4 +28,4 @@ const Subcategory = () => (
   </div>
 );
 
-export default Subcategory;
+export default Article;

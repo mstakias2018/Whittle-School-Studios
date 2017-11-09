@@ -4,8 +4,8 @@ exports.REGION = {
 };
 
 exports.REGION_PATH = {
-  [exports.REGION.US]: 'us',
-  [exports.REGION.CHINA]: 'cn',
+  [exports.REGION.US]: 'US',
+  [exports.REGION.CHINA]: 'CN',
 };
 
 exports.LANGUAGE = {
@@ -23,7 +23,7 @@ exports.LANGUAGE_PATH = {
   [exports.LANGUAGE.CHINESE]: 'zh',
 };
 
-exports.LANGUAGE_LOCALE = {
+exports.LANGUAGE_CONTENTFUL_LOCALE = {
   [exports.LANGUAGE.ENGLISH]: 'en-US',
   [exports.LANGUAGE.CHINESE]: 'zh-CN',
 };
