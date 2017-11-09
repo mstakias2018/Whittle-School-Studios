@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
+import cx from 'classnames';
 import styles from './footer.module.css';
 
 const Links = [
@@ -119,8 +118,12 @@ const Links = [
 
 const copyright = 'All Rights Reserved. © 2017\nG30 Project Ltd, the global parent entity.';
 
+const {
+  CLASSES,
+} = require('./../../constants/classes');
+
 const Footer = () => (
-  <footer className={styles.wrapper}>
+  <footer className={cx(styles.wrapper, CLASSES.FOOTER)}>
     <div className={styles.content}>
       {Links.map((item, i) =>
           (item.isDoubleBlock ? (

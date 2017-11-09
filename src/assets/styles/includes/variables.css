@@ -1,3 +1,4 @@
+
 /* Fonts */
 :root {
   --font-sans-serif-light: 'gt_walsheim_prolight', 'Helvetica', sans-serif;
@@ -33,6 +34,8 @@
 
   --color-light-border: rgba(141, 140, 138, 0.25);
   --color-link-hover-underline: #8d8c8a;
+
+  --color-fab-shadow: rgba(0,0,0,0.3);
 }
 
 /* Grid */

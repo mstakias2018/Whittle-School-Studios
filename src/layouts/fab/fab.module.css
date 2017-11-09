@@ -1,0 +1,68 @@
+@import '../../assets/styles/includes/breakpoints.css';
+@import '../../assets/styles/includes/variables.css';
+
+.wrapper {
+  border-radius: 50%;
+  bottom: 20px;
+  height: 100px;
+  padding: 0;
+  position: fixed;
+  right: 40px;
+  /*transform: translateY(240px);*/
+  width: 100px;
+
+  @media (--bp-sm-only) {
+    background-color: var(--color-background-white);
+    box-shadow: 0px 5px 10px 0px var(--color-fab-shadow);
+    padding: 10px;
+  }
+
+  @media (--bp-md) {
+    bottom: 40px;
+    height: 80px;
+    right: 150px;
+    width: 80px;
+  }
+
+  @media (--bp-lg) {
+    bottom: 130px;
+    height: 130px;
+    transform: translateY(390px);
+    width: 130px;
+  }
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+}
+
+.fabArrow {
+  height: 9px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 31px;
+
+  @media (--bp-lg) {
+    height: 13px;
+    width: 50px;
+  }
+}
+
+.circleEn {
+  display: block;
+
+  :global(.language--chinese) & {
+    display: none;
+  }
+}
+
+.circleCn {
+  display: none;
+
+  :global(.language--chinese) & {
+    display: block;
+  }
+}

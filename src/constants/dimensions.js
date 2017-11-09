@@ -1,0 +1,10 @@
+exports.PAGE_PADDING = {
+  PAGE_PADDING_SM: 10,
+  PAGE_PADDING_MD: 24,
+  PAGE_PADDING_LG: 40,
+};
+
+exports.FAB_SIZE = {
+  SMALL: 100,
+  LARGE: 130,
+};

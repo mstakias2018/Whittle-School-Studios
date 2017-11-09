@@ -8,12 +8,17 @@ import cx from 'classnames';
 
 import Header from './header/header';
 import Footer from './footer/footer';
+import Fab from './fab/fab';
 import VirtualGrid from './virtual-grid/virtual-grid';
 
 import '../assets/styles/main.css';
 /* Gatsby was having issues loading fonts from files into the styles folder,
    so fonts will live in layouts/ */
 import './fonts.module.css';
+
+const {
+  CLASSES,
+} = require('./../constants/classes');
 
 const TemplateWrapper = ({ children }) => (
   <div className={cx({ '-touchDevice': detectTouchEvents.hasSupport })}>
@@ -23,8 +28,9 @@ const TemplateWrapper = ({ children }) => (
       titleTemplate="The Whittle School - %s"
     />
     <Header />
-    <main>{children()}</main>
+    <main className={CLASSES.PAGE_CONTENT}>{children()}</main>
     <Footer />
+    <Fab />
     <VirtualGrid />
   </div>
 );
