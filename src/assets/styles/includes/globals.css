@@ -12,18 +12,6 @@
   display: block;
 }
 
-:global .hasDropcap::first-letter {
-  float: left;
-  line-height: 52px;
-  margin-right: 9px;
-  padding-top: 14px;
-
-  @media (--bp-md) {
-    line-height: 72px;
-    padding-top: 14px;
-  }
-}
-
 :global .grid {
   @mixin grid-container;
 }

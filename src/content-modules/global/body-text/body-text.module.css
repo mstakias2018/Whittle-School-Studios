@@ -1,0 +1,16 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.componentWrapper {
+  transform: translateX(50%);
+  width: 50%;
+}
+
+.componentContent {
+
+  p {
+    @mixin type-paragraph;
+  }
+}

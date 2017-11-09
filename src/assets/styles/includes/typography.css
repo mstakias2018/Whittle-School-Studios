@@ -125,11 +125,17 @@
 /* article copy */
 @define-mixin type-dropcap {
   color: var(--color-text-dark);
+  float: left;
   font-family: var(--font-serif-light-italic);
   font-size: 86px;
+  line-height: 52px;
+  margin-right: 9px;
+  padding-right: 15px;
+  padding-top: 14px;
 
   @media (--bp-md) {
     font-size: 100px;
+    line-height: 72px;
   }
 }
 
@@ -138,12 +144,13 @@
   font-family: var(--font-sans-serif-light);
   font-size: 14px;
   line-height: 24px;
+  padding-top: 20px;
 
   @media (--bp-md) {
     line-height: 30px;
   }
 
-  :global(.hasDropcap)&::first-letter {
+  :not(:global(.language--chinese)) :global(.hasDropCap) &:first-child::first-letter {
     @mixin type-dropcap;
   }
 }

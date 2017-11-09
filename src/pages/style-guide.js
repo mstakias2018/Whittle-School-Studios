@@ -22,7 +22,7 @@ const StyleGuide = () => (
         <h5 className={styles.heading5Italic}>H5 -  Sub Nav Page Title / Sub Head for Category Page</h5>
       </div>
       <div className={styles.block}>
-        <p className={cx('hasDropcap', styles.paragraph)}>
+        <p className={cx('hasDropCap', styles.paragraph)}>
           This is paragraph with dropcap.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit,
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
