@@ -6,21 +6,21 @@ import Plx from 'react-plx';
 
 import styles from './fab.module.css';
 
-import FabTextImage from '../../assets/images/fab-text-en.svg';
-import FabTextImageCn from '../../assets/images/fab-text-cn.svg';
-import FabArrowImage from '../../assets/images/fab-arrow.svg';
+import FabTextImage from '../../../assets/images/fab-text-en.svg';
+import FabTextImageCn from '../../../assets/images/fab-text-cn.svg';
+import FabArrowImage from '../../../assets/images/fab-arrow.svg';
 
 const {
   BREAKPOINTS,
-} = require('./../../constants/breakpoints');
+} = require('./../../../constants/breakpoints');
 
 const {
   PAGE_PADDING, FAB_SIZE
-} = require('./../../constants/dimensions');
+} = require('./../../../constants/dimensions');
 
 const {
   CLASSES,
-} = require('./../../constants/classes');
+} = require('./../../../constants/classes');
 
 class Fab extends React.Component {
   state = {

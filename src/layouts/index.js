@@ -8,7 +8,7 @@ import cx from 'classnames';
 
 import Header from './header/header';
 import Footer from './footer/footer';
-import Fab from './fab/fab';
+import Fab from '../components/global/fab';
 import VirtualGrid from './virtual-grid/virtual-grid';
 
 import '../assets/styles/main.css';
