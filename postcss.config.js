@@ -12,7 +12,7 @@ module.exports = {
       browsers: ['last 2 versions', '> 5%'],
       features: {
         customProperties: {
-          preserve: true,
+          preserve: false,
           warnings: false
         }
       }

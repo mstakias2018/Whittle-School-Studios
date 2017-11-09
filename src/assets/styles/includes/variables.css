@@ -7,15 +7,13 @@
   --font-serif-light-italic: 'freightbiglightitalicregular', 'Arial', serif;
   --font-serif-book: 'freightbigbookregular', 'Arial', serif;
   --font-serif-book-italic: 'freightbigbookitalicregular', 'Arial', serif;
-}
 
-:global(.language--chinese) {
-  --font-sans-serif-light: 'pingfang_sclight', sans-serif;
-  --font-sans-serif-regular: 'pingfang_scregular', sans-serif;
-  --font-serif-light: 'SimSun', serif;
-  --font-serif-light-italic: 'SimSun', serif;
-  --font-serif-book: 'SimSun', serif;
-  --font-serif-book-italic: 'SimSun', serif;
+  --font-sans-serif-light-cn: 'pingfang_sclight', sans-serif;
+  --font-sans-serif-regular-cn: 'pingfang_scregular', sans-serif;
+  --font-serif-light-cn: 'SimSun', serif;
+  --font-serif-light-italic-cn: 'SimSun', serif;
+  --font-serif-book-cn: 'SimSun', serif;
+  --font-serif-book-italic-cn: 'SimSun', serif;
 }
 
 /* Colors */

@@ -16,6 +16,10 @@
   @media (--bp-lg) {
     font-size: 400px;
   }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-italic-cn);
+  }
 }
 
 /* headings */
@@ -28,6 +32,14 @@
 
   em {
     font-family: var(--font-serif-light-italic);
+  }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-cn);
+
+    em {
+      font-family: var(--font-serif-light-italic-cn);
+    }
   }
 }
 
@@ -81,11 +93,19 @@
     font-size: 36px;
     line-height: 48px;
   }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-cn);
+  }
 }
 
 @define-mixin type-h2-italic {
   @mixin type-h2;
   font-family: var(--font-serif-light-italic);
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-italic-cn);
+  }
 }
 
 @define-mixin type-h3 {
@@ -94,11 +114,19 @@
   font-size: 30px;
   font-weight: normal;
   line-height: 30px;
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-cn);
+  }
 }
 
 @define-mixin type-h3-italic {
   @mixin type-h3;
   font-family: var(--font-serif-light-italic);
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-italic-cn);
+  }
 }
 
 @define-mixin type-h4 {
@@ -107,11 +135,19 @@
   font-size: 24px;
   font-weight: normal;
   line-height: 30px;
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-cn);
+  }
 }
 
 @define-mixin type-h4-italic {
   @mixin type-h4;
   font-family: var(--font-serif-light-italic);
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-italic-cn);
+  }
 }
 
 @define-mixin type-h5-italic {
@@ -120,6 +156,10 @@
   font-size:18px;
   font-weight: normal;
   line-height: 18px;
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-italic-cn);
+  }
 }
 
 /* article copy */
@@ -137,6 +177,10 @@
     font-size: 100px;
     line-height: 72px;
   }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-italic-cn);
+  }
 }
 
 @define-mixin type-paragraph {
@@ -153,6 +197,10 @@
   :not(:global(.language--chinese)) :global(.hasDropCap) &:first-child::first-letter {
     @mixin type-dropcap;
   }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-sans-serif-light-cn);
+  }
 }
 
 @define-mixin type-descriptor {
@@ -164,6 +212,10 @@
   @media (--bp-md) {
     font-size: 14px;
     line-height: 24px;
+  }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-sans-serif-light-cn);
   }
 }
 
@@ -179,6 +231,10 @@
 
   &:hover {
     border-bottom-color: var(--color-link-hover-underline);
+  }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-sans-serif-regular-cn);
   }
 }
 
@@ -198,11 +254,19 @@
     text-decoration: underline;
     text-decoration-color: var(--color-link-hover-underline);
   }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-sans-serif-regular-cn);
+  }
 }
 
 @define-mixin type-sub-nav {
   @mixin type-nav;
   font-family: var(--font-sans-serif-light);
+
+  :global(.language--chinese) & {
+    font-family: var(--font-sans-serif-light-cn);
+  }
 }
 
 /* Other*/
@@ -216,6 +280,10 @@
     font-size: 12px;
     line-height: 18px;
   }
+
+  :global(.language--chinese) & {
+    font-family: var(--font-sans-serif-light-cn);
+  }
 }
 
 @define-mixin type-footer {
@@ -227,6 +295,10 @@
   font-family: var(--font-sans-serif-light);
   font-size: 10px;
   line-height: 14px;
+
+  :global(.language--chinese) & {
+    font-family: var(--font-sans-serif-light-cn);
+  }
 }
 
 @define-mixin type-video {
@@ -234,6 +306,10 @@
   font-family: var(--font-serif-light);
   font-size: 24px;
   line-height: 24px;
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-cn);
+  }
 }
 
 @define-mixin type-carousel {
@@ -241,6 +317,10 @@
   font-family: var(--font-serif-light);
   font-size: 18px;
   line-height: 20px;
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-light-cn);
+  }
 }
 
 @define-mixin type-menu {
@@ -249,4 +329,8 @@
   font-size: 14px;
   letter-spacing: 0.2px;
   line-height: 30px;
+
+  :global(.language--chinese) & {
+    font-family: var(--font-serif-book-italic-cn);
+  }
 }
