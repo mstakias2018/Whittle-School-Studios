@@ -1,9 +1,0 @@
-FROM node:6.7.0
-
-MAINTAINER Sarah Mogin <mogin@work.co>
-
-WORKDIR /dist
-
-COPY . /dist
-
-CMD npm run server-start
