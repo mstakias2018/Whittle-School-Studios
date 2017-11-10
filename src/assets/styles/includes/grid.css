@@ -41,7 +41,7 @@
   @media (--bp-sm-only) {
     margin: 0;
   }
-  
+
   @media (--bp-sm-upper-only) {
     margin: 0;
   }
