@@ -216,16 +216,17 @@
 
 /* CTA */
 @define-mixin type-link {
-  border-bottom: 1px solid transparent;
   color: var(--color-text-tomato);
   font-family: var(--font-sans-serif-regular);
   font-size: 14px;
-  padding-bottom: 5px;
   text-decoration: none;
-  transition: border-bottom-color var(--timing-fast) var(--easing-default);
+  text-decoration-color: transparent;
+  text-underline-position: under;
+  transition: text-decoration var(--timing-fast) var(--easing-default);
 
   &:hover {
-    border-bottom-color: var(--color-link-hover-underline);
+    text-decoration: underline;
+    text-decoration-color: var(--color-link-hover-underline);
   }
 
   :global(.wrapper-CHINESE) & {

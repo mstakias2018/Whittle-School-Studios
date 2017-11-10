@@ -4,17 +4,31 @@
 @import '../../../assets/styles/includes/typography.css';
 
 .componentWrapper {
-  transform: translateX(50%);
-  width: 50%;
+  @mixin grid-container;
 }
 
 .componentContent {
+  @mixin span 4, var(--grid-columns-sm), sm;
+
+  @media (--bp-md) {
+    @mixin span 6, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 6, var(--grid-columns-lg), lg;
+    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
+  }
+
   p {
     @mixin type-paragraph;
   }
 
   strong {
     font-family: var(--font-sans-serif-regular);
+
+    :global(.wrapper-CHINESE) & {
+      font-family: var(--font-sans-serif-regular-cn);
+    }
   }
 
   a {

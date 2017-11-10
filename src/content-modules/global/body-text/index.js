@@ -9,7 +9,7 @@ const propTypes = {
   content: PropTypes.shape({
     markdown: PropTypes.string.isRequired,
   }).isRequired,
-  isFirstModule: PropTypes.bool.isRequired,
+  isFirstModule: PropTypes.bool,
 };
 
 const BodyText = ({ content, isFirstModule: hasDropCap }) => (
@@ -22,5 +22,9 @@ const BodyText = ({ content, isFirstModule: hasDropCap }) => (
 );
 
 BodyText.propTypes = propTypes;
+
+BodyText.defaultProps = {
+  isFirstModule: false
+};
 
 export default BodyText;
