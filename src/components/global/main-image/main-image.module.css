@@ -1,0 +1,162 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.mainImage {
+  @mixin grid-container;
+  
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.subhead {
+  @mixin type-h2-italic;
+}
+
+.subhead__subCategory {
+  @mixin type-h2-italic;
+}
+
+.mainImage__category {
+  flex-wrap: wrap;
+
+  h1 {
+    order: 1;
+    @mixin span 4, 4, sm;
+
+    @media (--bp-md) {
+      @mixin span 8, 8, md;
+      margin-bottom: 17px;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 9, 12, lg;
+    }
+  }
+
+  picture {
+    @mixin span 4, 4, sm;
+    order: 3;
+
+    @media (--bp-md) {
+      @mixin span 8, 8, md;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 12, 12, lg;
+    }
+  }
+
+  .subhead {
+    @mixin span 4, 4, sm;
+    order: 2;
+
+    @media (--bp-md) {
+      @mixin span 8, 8, md;
+      margin-bottom: 56px;
+      margin-top: 0;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 3, 12, lg;
+    }
+  }
+}
+
+.mainImage__home {
+  flex-direction: column;
+
+  @media (--bp-lg) {
+    align-items: center;
+  }
+
+  h1 {
+    order: 1;
+    @mixin span 4, 4, sm;
+
+    @media (--bp-md) {
+      @mixin span 8, 8, md;
+      margin-bottom: 17px;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 8, 12, lg;
+    }
+  }
+
+  picture {
+    @mixin span 4, 4, sm;
+    margin-bottom: 30px;
+    order: 2;
+
+    @media (--bp-md) {
+      @mixin span 8, 8, md;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 10, 12, lg;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.mainImage__article {
+  flex-direction: column;
+
+  @media (--bp-lg) {
+    align-items: center;
+  }
+
+  h1 {
+    order: 1;
+    @mixin span 4, 4, sm;
+
+    @media (--bp-md) {
+      @mixin span 8, 8, md;
+      margin-bottom: 17px;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 8, 12, lg;
+    }
+  }
+
+  picture {
+    @mixin span 4, 4, sm;
+    margin-bottom: 30px;
+    order: 2;
+
+    @media (--bp-md) {
+      @mixin span 8, 8, md;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 10, 12, lg;
+      margin-bottom: 40px;
+    }
+  }
+
+  .subhead {
+    @mixin span 4, 4, sm;
+    font-size: 30px;
+    line-height: 36px;
+    order: 3;
+
+    @media (--bp-md) {
+      @mixin span 6, 8, md;
+      margin-bottom: 56px;
+      margin-top: 0;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 6, 12, lg;
+      text-align: center;
+    }
+  }
+}
+
+.mainImage__subCategory {
+  @mixin type-h2-italic;
+}

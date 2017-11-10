@@ -7,11 +7,10 @@
   bottom: 0;
   display: flex;
   justify-content: center;
-  left: 0;
   opacity: .3;
   position: fixed;
-  right: 0;
   top: 0;
+  width: 100vw;
   z-index: -1;
 }
 
@@ -24,18 +23,18 @@
   height: 100%;
 }
 
-.gridContainer{
+.gridContainer {
   @mixin grid-container;
   height: 100%;
 
   span {
     &:after {
-        background-color: gray;
-        content: '';
-        display: block;
-        height: 100%;
-        width: 100%;
-      }
+      background-color: gray;
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   @media (--bp-sm-only) {

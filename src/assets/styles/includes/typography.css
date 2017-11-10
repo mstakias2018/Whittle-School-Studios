@@ -50,11 +50,6 @@
     font-size: 110px;
     line-height: 92px;
   }
-
-  @media (--bp-lg) {
-    font-size: 140px;
-    line-height: 140px;
-  }
 }
 
 @define-mixin type-h1-category {
@@ -85,13 +80,13 @@
 @define-mixin type-h2 {
   color: var(--color-text-dark);
   font-family: var(--font-serif-light);
-  font-size: 30px;
+  font-size: 24px;
   font-weight: normal;
-  line-height: 36px;
+  line-height: 30px;
 
   @media (--bp-md) {
-    font-size: 36px;
-    line-height: 48px;
+    font-size: 30px;
+    line-height: 36px;
   }
 
   :global(.wrapper-CHINESE) & {

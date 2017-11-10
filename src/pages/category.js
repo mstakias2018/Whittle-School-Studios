@@ -4,27 +4,69 @@ import Title from '../components/global/title';
 import BodyText from '../content-modules/global/body-text';
 
 import { PAGE_TYPE } from '../constants/settings';
+import Picture from '../components/global/picture';
+import MainImage from '../components/global/main-image';
+
+import largeImage from '../test-content/images/category-large.jpg';
+import mediumImage from '../test-content/images/category-medium.jpg';
+import smallImage from '../test-content/images/category-small.jpg';
 
 import styles from './modules.module.css';
 
 const Category = () => (
   <div className={styles.moduleWrapper}>
-    <Title
-      text="Commitment
-to Excellence in Education"
-      type={PAGE_TYPE.CATEGORY}
-    />
-    <BodyText
-      content={{
-        markdown: `Favoring our work is the emergence of a new educational canon thanks, in large part, to the di cult, pioneering e orts of so many change agents who have gone before us. We stand on their shoulders. They taught us that a modern school is one that thinks as much about learning as teaching; knows that how one learns will outlast what one learns; hopes to bring about the end of lock-step, one-size- ts-all education; understands that the emotional development of its students must also be given time; intuits that the physical design of a facility is a lesson unto itself; believes that a well- designed system of schools will surpass a single one; harnesses the horses of our new digital age; appreciates that education can no longer be bound by local or national jurisdictions; and works to make social responsibility much more than its scholarship program.
+    <div className={styles.component}>
+      <Title
+        text="Commitment
+  to Excellence in Education"
+        type={PAGE_TYPE.CATEGORY}
+      />
+      <BodyText
+        content={{
+          markdown: `Favoring our work is the emergence of a new educational canon thanks, in large part, to the di cult, pioneering e orts of so many change agents who have gone before us. We stand on their shoulders. They taught us that a modern school is one that thinks as much about learning as teaching; knows that how one learns will outlast what one learns; hopes to bring about the end of lock-step, one-size- ts-all education; understands that the emotional development of its students must also be given time; intuits that the physical design of a facility is a lesson unto itself; believes that a well- designed system of schools will surpass a single one; harnesses the horses of our new digital age; appreciates that education can no longer be bound by local or national jurisdictions; and works to make social responsibility much more than its scholarship program.
 
 Favoring our work is the emergence of a new educational canon thanks, in large part, to the di cult, pioneering e orts of so many change agents who have gone before us. We stand on their shoulders. They taught us that a modern school is one that thinks as much about learning as teaching; knows that how one learns will outlast what one learns; hopes to bring about the end of lock-step, one-size- ts-all education; understands that the emotional development of its students must also be given time; intuits that the physical design of a facility is a lesson unto itself; believes that a well- designed system of schools will surpass a single one; harnesses the horses of our new digital age; appreciates that education can no longer be bound by local or national jurisdictions; and works to make social responsibility much more than its scholarship program.
 
 Favoring our work is the emergence of a new educational canon thanks, in large part, to the di cult, pioneering e orts of so many change agents who have gone before us. We stand on their shoulders. They taught us that a modern school is one that thinks as much about learning as teaching; knows that how one learns will outlast what one learns; hopes to bring about the end of lock-step, one-size- ts-all education; understands that the emotional development of its students must also be given time; intuits that the physical design of a facility is a lesson unto itself; believes that a well- designed system of schools will surpass a single one; harnesses the horses of our new digital age; appreciates that education can no longer be bound by local or national jurisdictions; and works to make social responsibility much more than its scholarship program.
           `,
-      }}
-      isFirstModule
-    />
+        }}
+        isFirstModule
+      />
+    </div>
+    <div className={styles.component}>
+      <h3>Title</h3>
+      <Title
+        text="Commitment
+  to Excellence in Education"
+        type={PAGE_TYPE.CATEGORY}
+      />
+    </div>
+    <div className={styles.component}>
+      <h3>Picture</h3>
+      <Picture
+        alt="Picture preview"
+        image={{
+          small: smallImage,
+          medium: mediumImage,
+          large: largeImage,
+        }}
+      />
+    </div>
+    <div className={styles.component}>
+      <h3>Image with headline and subhead</h3>
+      <MainImage
+        alt="Picture preview"
+        image={{
+          small: smallImage,
+          medium: mediumImage,
+          large: largeImage,
+        }}
+        headline="Commitment
+  to Excellence in Education"
+        subhead="Imagine the first global school, created by an international consortium of educators, architects, artists, technologists and experts in law, real estate, recruitment and more."
+        type={PAGE_TYPE.CATEGORY}
+      />
+    </div>
   </div>
 );
 

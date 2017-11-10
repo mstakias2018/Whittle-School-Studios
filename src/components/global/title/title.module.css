@@ -1,3 +1,4 @@
+@import '../../../assets/styles/includes/breakpoints.css';
 @import '../../../assets/styles/includes/typography.css';
 
 .typeHome {
@@ -10,5 +11,8 @@
 
 .typeArticle {
   @mixin type-h1-article;
-  text-align: center;
+  
+  @media (--bp-md) {
+    text-align: center;
+  }
 }

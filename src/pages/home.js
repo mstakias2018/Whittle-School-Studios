@@ -8,12 +8,14 @@ import styles from './modules.module.css';
 
 const Home = () => (
   <div className={styles.moduleWrapper}>
-    <Title
-      text="The First
- Global School
-in *Shenzhen*."
-      type={PAGE_TYPE.HOME}
-    />
+    <div className={styles.component}>
+      <Title
+        text="The First
+  Global School
+  in *Shenzhen*."
+        type={PAGE_TYPE.HOME}
+      />
+    </div>
   </div>
 );
 
