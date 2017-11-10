@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'react-markdown';
 
+import Markdown from '../../../components/global/markdown';
 import { PAGE_TYPES } from '../../../constants/settings';
 import styles from './title.module.css';
 
@@ -11,9 +11,12 @@ const propTypes = {
 };
 
 const Title = ({ text, type }) => (
-  <h1 className={styles[`type${type}`]}>
-    <Markdown source={text} />
-  </h1>
+  <Markdown
+    className={styles[`type${type}`]}
+    containerTagName="h1"
+    isTitle
+    source={text}
+  />
 );
 
 Title.propTypes = propTypes;

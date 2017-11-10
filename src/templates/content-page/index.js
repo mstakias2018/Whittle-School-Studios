@@ -34,6 +34,14 @@ export const pageQuery = graphql`
     contentfulContentPage(id: { eq: $id }) {
       headline
       pageType
+      modules {
+        __typename
+        ... on ContentfulBodyText {
+          content {
+            markdown: content
+          }
+        }
+      }
     }
   }
 `;

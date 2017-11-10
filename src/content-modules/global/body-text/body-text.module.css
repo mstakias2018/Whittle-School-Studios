@@ -9,8 +9,15 @@
 }
 
 .componentContent {
-
   p {
     @mixin type-paragraph;
+  }
+
+  strong {
+    font-family: var(--font-sans-serif-regular);
+  }
+
+  a {
+    @mixin type-link;
   }
 }

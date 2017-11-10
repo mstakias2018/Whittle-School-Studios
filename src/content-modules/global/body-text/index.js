@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import Markdown from '../../../components/global/markdown';
 import styles from './body-text.module.css';
 
 const propTypes = {
-  content: PropTypes.object.isRequired,
+  content: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
+  }).isRequired,
+  isFirstModule: PropTypes.bool.isRequired,
 };
 
-const BodyText = ({ content }) => (
-  <div className={cx(styles.componentWrapper, { 'hasDropCap': content.hasDropCap })}>
-    <div
+const BodyText = ({ content, isFirstModule: hasDropCap }) => (
+  <div className={cx(styles.componentWrapper, { hasDropCap })}>
+    <Markdown
       className={styles.componentContent}
-      dangerouslySetInnerHTML={{__html: content.childMarkdownRemark.html}} // eslint-disable-line
+      source={content.markdown}
     />
   </div>
 );

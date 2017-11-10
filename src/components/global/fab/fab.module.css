@@ -53,7 +53,7 @@
 .circleEn {
   display: block;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     display: none;
   }
 }
@@ -61,7 +61,7 @@
 .circleCn {
   display: none;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     display: block;
   }
 }

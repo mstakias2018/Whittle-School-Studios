@@ -17,7 +17,7 @@
     font-size: 400px;
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -34,7 +34,7 @@
     font-family: var(--font-serif-light-italic);
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-cn);
 
     em {
@@ -53,7 +53,7 @@
 
   @media (--bp-lg) {
     font-size: 140px;
-    line-height: 140px;;
+    line-height: 140px;
   }
 }
 
@@ -94,7 +94,7 @@
     line-height: 48px;
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -103,7 +103,7 @@
   @mixin type-h2;
   font-family: var(--font-serif-light-italic);
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -115,7 +115,7 @@
   font-weight: normal;
   line-height: 30px;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -124,7 +124,7 @@
   @mixin type-h3;
   font-family: var(--font-serif-light-italic);
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -136,7 +136,7 @@
   font-weight: normal;
   line-height: 30px;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -145,7 +145,7 @@
   @mixin type-h4;
   font-family: var(--font-serif-light-italic);
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -153,11 +153,11 @@
 @define-mixin type-h5-italic {
   color: var(--color-text-dark);
   font-family: var(--font-serif-light-italic);
-  font-size:18px;
+  font-size: 18px;
   font-weight: normal;
   line-height: 18px;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -178,7 +178,7 @@
     line-height: 72px;
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -194,11 +194,11 @@
     line-height: 30px;
   }
 
-  :not(:global(.language--chinese)) :global(.hasDropCap) &:first-child::first-letter {
+  :global(.wrapper):not(:global(.wrapper-CHINESE)) :global(.hasDropCap) &:first-child::first-letter {
     @mixin type-dropcap;
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -214,7 +214,7 @@
     line-height: 24px;
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -233,7 +233,7 @@
     border-bottom-color: var(--color-link-hover-underline);
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-sans-serif-regular-cn);
   }
 }
@@ -246,8 +246,7 @@
   text-decoration: none;
   text-decoration-color: transparent;
   text-underline-position: under;
-  transition: color var(--timing-fast) var(--easing-default),
-    text-decoration var(--timing-fast) var(--easing-default);
+  transition: color var(--timing-fast) var(--easing-default), text-decoration var(--timing-fast) var(--easing-default);
 
   &:hover {
     color: var(--color-text-tomato);
@@ -255,7 +254,7 @@
     text-decoration-color: var(--color-link-hover-underline);
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-sans-serif-regular-cn);
   }
 }
@@ -264,7 +263,7 @@
   @mixin type-nav;
   font-family: var(--font-sans-serif-light);
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -281,7 +280,7 @@
     line-height: 18px;
   }
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -296,7 +295,7 @@
   font-size: 10px;
   line-height: 14px;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -307,7 +306,7 @@
   font-size: 24px;
   line-height: 24px;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -318,7 +317,7 @@
   font-size: 18px;
   line-height: 20px;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -330,7 +329,7 @@
   letter-spacing: 0.2px;
   line-height: 30px;
 
-  :global(.language--chinese) & {
+  :global(.wrapper-CHINESE) & {
     font-family: var(--font-serif-book-italic-cn);
   }
 }

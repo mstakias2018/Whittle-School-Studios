@@ -16,7 +16,11 @@ export default function ContentModules({ modules }) {
     <div>
       {modules.map(({ __typename: type, ...props }, i) => {
         const Component = MODULE_MAP[type];
-        return Component && <Component key={i} {...props} />;
+        return Component && <Component
+          isFirstModule={i === 0}
+          key={i}
+          {...props}
+        />;
       })}
     </div>
   );

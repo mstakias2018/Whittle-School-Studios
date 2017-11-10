@@ -1,8 +1,7 @@
 const path = require('path');
 
-const {
-  LANGUAGE_PATH, LANGUAGE_CONTENTFUL_LOCALE, REGION_LANGUAGES, REGION_PATH,
-} = require('./src/constants/regions');
+const { LANGUAGE_CONTENTFUL_LOCALE, REGION_LANGUAGES } = require('./src/constants/regions');
+const { getIsoCode } = require('./src/utils/regions');
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
@@ -11,7 +10,7 @@ const {
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
-  const promises = REGION_LANGUAGES[process.env.REGION].map(language =>
+  const promises = REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
     new Promise((resolve, reject) => {
       // The “graphql” function allows us to run arbitrary
       // queries against the local Contentful graphql schema. Think of
@@ -45,7 +44,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
 
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
-        const isoCode = `${LANGUAGE_PATH[language]}-${REGION_PATH[process.env.REGION]}`;
+        const isoCode = getIsoCode(language);
 
         const buildPage = (id, slugs) => {
           createPage({

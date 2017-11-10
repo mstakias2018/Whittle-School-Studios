@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 
 import detectTouchEvents from 'detect-touch-events';
@@ -16,27 +15,55 @@ import '../assets/styles/main.css';
    so fonts will live in layouts/ */
 import './fonts.module.css';
 
-const {
-  CLASSES,
-} = require('./../constants/classes');
+const { CLASSES } = require('./../constants/classes');
+const { LANGUAGE_CONTENTFUL_LOCALE } = require('./../constants/regions');
+const { getLanguageFromPathname } = require('./../utils/regions');
 
-const TemplateWrapper = ({ children }) => (
-  <div className={cx({ '-touchDevice': detectTouchEvents.hasSupport })}>
-    <Helmet
-      htmlAttributes={{ lang: 'en-US' }}
-      title="Home"
-      titleTemplate="The Whittle School - %s"
-    />
-    <Header />
-    <main className={CLASSES.PAGE_CONTENT}>{children()}</main>
-    <Footer />
-    <Fab />
-    <VirtualGrid />
-  </div>
-);
+class TemplateWrapper extends Component {
+  getChildContext() {
+    return { language: getLanguageFromPathname(this.props.location.pathname) };
+  }
+
+  render() {
+    return <WrapperInner>{this.props.children}</WrapperInner>;
+  }
+}
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 };
+
+TemplateWrapper.childContextTypes = {
+  language: PropTypes.string.isRequired,
+};
+
+function WrapperInner({ children }, { language }) {
+  return (
+    <div
+      className={cx({
+        '-touchDevice': detectTouchEvents.hasSupport,
+        wrapper: true,
+        [`wrapper-${language}`]: true,
+      })}
+    >
+      <Helmet
+        htmlAttributes={{ lang: LANGUAGE_CONTENTFUL_LOCALE[language] }}
+        title="Home"
+        titleTemplate="The Whittle School - %s"
+      />
+      <Header />
+      <main className={CLASSES.PAGE_CONTENT}>{children()}</main>
+      <Footer />
+      <Fab />
+      <VirtualGrid />
+    </div>
+  );
+}
+
+WrapperInner.propTypes = { children: PropTypes.node.isRequired };
+WrapperInner.contextTypes = { language: PropTypes.string };
 
 export default TemplateWrapper;
