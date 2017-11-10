@@ -5,7 +5,7 @@ import BodyText from '../content-modules/global/body-text';
 
 import { PAGE_TYPE } from '../constants/settings';
 import Picture from '../components/global/picture';
-import MainImage from '../components/global/main-image';
+import PageHead from '../components/global/page-head';
 
 import largeImage from '../test-content/images/category-large.jpg';
 import mediumImage from '../test-content/images/category-medium.jpg';
@@ -54,7 +54,7 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
     </div>
     <div className={styles.component}>
       <h3>Image with headline and subhead</h3>
-      <MainImage
+      <PageHead
         alt="Picture preview"
         image={{
           small: smallImage,

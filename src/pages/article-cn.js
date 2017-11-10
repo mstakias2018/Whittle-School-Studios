@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 import Title from '../components/global/title';
-import MainImage from '../components/global/main-image';
+import PageHead from '../components/global/page-head';
 import BodyText from '../content-modules/global/body-text';
 
 import { PAGE_TYPE } from '../constants/settings';
@@ -30,7 +30,7 @@ const ArticleCn = () => (
       />
       </div>
       <div className={styles.component}>
-        <MainImage
+        <PageHead
           alt="Picture preview"
           image={{
             small: smallImage,

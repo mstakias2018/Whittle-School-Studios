@@ -2,7 +2,7 @@
 @import '../../../assets/styles/includes/grid.css';
 @import '../../../assets/styles/includes/typography.css';
 
-.mainImage {
+.pageHead {
   @mixin grid-container;
   
   img {
@@ -19,7 +19,7 @@
   @mixin type-h2-italic;
 }
 
-.mainImage__category {
+.pageHead__category {
   flex-wrap: wrap;
 
   h1 {
@@ -65,7 +65,7 @@
   }
 }
 
-.mainImage__home {
+.pageHead__home {
   flex-direction: column;
 
   @media (--bp-lg) {
@@ -102,7 +102,7 @@
   }
 }
 
-.mainImage__article {
+.pageHead__article {
   flex-direction: column;
 
   @media (--bp-lg) {
@@ -157,6 +157,6 @@
   }
 }
 
-.mainImage__subCategory {
+.pageHead__subCategory {
   @mixin type-h2-italic;
 }

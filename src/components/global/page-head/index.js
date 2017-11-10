@@ -8,7 +8,7 @@ import Picture from '../picture';
 import { PROP_TYPES } from '../../../constants/customPropertyTypes';
 import { PAGE_TYPE } from '../../../constants/settings';
 
-import styles from './main-image.module.css';
+import styles from './page-head.module.css';
 
 const propTypes = {
   alt: PropTypes.string.isRequired,
@@ -22,17 +22,17 @@ const defaultProps = {
   subhead: null,
 };
 
-const MainImage = ({
+const PageHead = ({
   alt,
   headline,
   image,
   subhead,
   type,
 }) => (
-  <div className={cx(styles.mainImage, {
-      [styles.mainImage__home]: type === PAGE_TYPE.HOME,
-      [styles.mainImage__article]: type === PAGE_TYPE.ARTICLE,
-      [styles.mainImage__category]: type === PAGE_TYPE.CATEGORY,
+  <div className={cx(styles.pageHead, {
+      [styles.pageHead__home]: type === PAGE_TYPE.HOME,
+      [styles.pageHead__article]: type === PAGE_TYPE.ARTICLE,
+      [styles.pageHead__category]: type === PAGE_TYPE.CATEGORY,
     })}
   >
     <Title
@@ -50,7 +50,7 @@ const MainImage = ({
   </div>
 );
 
-MainImage.propTypes = propTypes;
-MainImage.defaultProps = defaultProps;
+PageHead.propTypes = propTypes;
+PageHead.defaultProps = defaultProps;
 
-export default MainImage;
+export default PageHead;
