@@ -23,7 +23,6 @@
   flex-wrap: wrap;
 
   h1 {
-    order: 1;
     @mixin span 4, 4, sm;
 
     @media (--bp-md) {
@@ -38,7 +37,6 @@
 
   picture {
     @mixin span 4, 4, sm;
-    order: 3;
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
@@ -51,7 +49,6 @@
 
   .subhead {
     @mixin span 4, 4, sm;
-    order: 2;
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
@@ -73,7 +70,6 @@
   }
 
   h1 {
-    order: 1;
     @mixin span 4, 4, sm;
 
     @media (--bp-md) {
@@ -89,7 +85,6 @@
   picture {
     @mixin span 4, 4, sm;
     margin-bottom: 30px;
-    order: 2;
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
@@ -110,7 +105,6 @@
   }
 
   h1 {
-    order: 1;
     @mixin span 4, 4, sm;
 
     @media (--bp-md) {
@@ -126,7 +120,6 @@
   picture {
     @mixin span 4, 4, sm;
     margin-bottom: 30px;
-    order: 2;
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
@@ -142,7 +135,6 @@
     @mixin span 4, 4, sm;
     font-size: 30px;
     line-height: 36px;
-    order: 3;
 
     @media (--bp-md) {
       @mixin span 6, 8, md;

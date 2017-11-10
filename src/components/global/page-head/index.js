@@ -40,11 +40,16 @@ const PageHead = ({
       text={headline}
       type={type}
     />
+    { type === PAGE_TYPE.CATEGORY &&
+      subhead &&
+      <h2 className={styles.subhead}>{subhead}</h2>
+    }
     <Picture
       alt={alt}
       image={image}
     />
-    { subhead &&
+    { type === PAGE_TYPE.ARTICLE &&
+      subhead &&
       <h2 className={styles.subhead}>{subhead}</h2>
     }
   </div>
