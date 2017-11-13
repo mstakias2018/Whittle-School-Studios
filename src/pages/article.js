@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 import Title from '../components/global/title';
@@ -6,6 +7,7 @@ import PageHead from '../components/global/page-head';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 
+import { BREAKPOINT } from '../constants/breakpoints';
 import { PAGE_TYPE } from '../constants/settings';
 
 import largeImage from '../test-content/images/article-large.jpg';
@@ -33,18 +35,26 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
         isFirstModule
       />
       <InlineImage
-        alt="Demo alt"
-        image={{
-          large: smallImage
-        }}
         caption="Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur "
+        imageProps={{
+          alt: 'Demo alt',
+          sourcesBySize: {
+            [BREAKPOINT.SMALL]: {
+              src: smallImage,
+            },
+          },
+        }}
       />
       <InlineImage
-        alt="Demo alt"
-        image={{
-          large: largeImage
-        }}
         caption="Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur "
+        imageProps={{
+          alt: 'Demo alt',
+          sourcesBySize: {
+            [BREAKPOINT.LARGE]: {
+              src: largeImage,
+            },
+          },
+        }}
       />
       <BodyText
         content={{
@@ -59,12 +69,6 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
     </div>
     <div className={styles.component}>
       <PageHead
-        alt="Picture preview"
-        image={{
-          small: smallImage,
-          medium: mediumImage,
-          large: largeImage,
-        }}
         headline="Someone with his head in the clouds & feet on the ground."
         subhead="If it is essential for a school to understand well what it wants to help its students achieve, it is equally important for a school to know how it can deliver those results."
         type={PAGE_TYPE.ARTICLE}
@@ -72,13 +76,42 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
     </div>
     <div className={styles.component}>
       <PageHead
-        alt="Picture preview"
-        image={{
-          small: smallImage,
-          medium: mediumImage,
-          large: largeImage,
+        headline="Someone with his head in the clouds & feet on the ground."
+        imageProps={{
+          alt: 'Picture preview',
+          sourcesBySize: {
+            [BREAKPOINT.SMALL]: {
+              src: smallImage,
+            },
+            [BREAKPOINT.MEDIUM]: {
+              src: mediumImage,
+            },
+            [BREAKPOINT.LARGE]: {
+              src: largeImage,
+            },
+          },
         }}
+        subhead="If it is essential for a school to understand well what it wants to help its students achieve, it is equally important for a school to know how it can deliver those results."
+        type={PAGE_TYPE.ARTICLE}
+      />
+    </div>
+    <div className={styles.component}>
+      <PageHead
         headline="Promoting Economic & Cultural Diversity Across Our Campuses"
+        imageProps={{
+          alt: 'Picture preview',
+          sourcesBySize: {
+            [BREAKPOINT.SMALL]: {
+              src: smallImage,
+            },
+            [BREAKPOINT.MEDIUM]: {
+              src: mediumImage,
+            },
+            [BREAKPOINT.LARGE]: {
+              src: largeImage,
+            },
+          },
+        }}
         type={PAGE_TYPE.ARTICLE}
       />
     </div>

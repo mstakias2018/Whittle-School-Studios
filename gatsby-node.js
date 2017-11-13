@@ -1,21 +1,15 @@
 const path = require('path');
 
 const { LANGUAGE_CONTENTFUL_LOCALE, REGION_LANGUAGES } = require('./src/constants/regions');
+const { IMAGE_TYPE, MAIN_IMAGE_TYPE } = require('./src/constants/images');
 const { getIsoCode } = require('./src/utils/regions');
+const { createQuery, resetImageDir, saveImage } = require('./src/utils/save-images');
 
-// Implement the Gatsby API “createPages”. This is
-// called after the Gatsby bootstrap is finished so you have
-// access to any information necessary to programmatically
-// create pages.
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
   const promises = REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
     new Promise((resolve, reject) => {
-      // The “graphql” function allows us to run arbitrary
-      // queries against the local Contentful graphql schema. Think of
-      // it like the site has a built-in database constructed
-      // from the fetched data that you can run queries against.
       graphql(`
           {
             allContentfulContentPage(
@@ -26,13 +20,17 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges {
                 node {
                   id
+                  pageType
                   parentCategory: contentpage {
                     id
                   }
                   slug
+                  ${createQuery(IMAGE_TYPE.CATEGORY_MAIN)}
                   subcategories {
                     id
+                    pageType
                     slug
+                    ${createQuery(IMAGE_TYPE.ARTICLE_MAIN)}
                   }
                 }
               }
@@ -43,25 +41,41 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors);
         }
 
+        resetImageDir();
+
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
         const isoCode = getIsoCode(language);
 
-        const buildPage = (id, slugs) => {
+        const buildPage = (id, slugs, imageDataByType) => {
           createPage({
             path: `${isoCode}/${slugs.join('/')}/`,
             component: contentPageTemplate,
             context: {
               id,
+              imageDataByType,
             },
           });
         };
 
-        const buildPageAndSubcategories = ({ slug, id, subcategories }, prevSlugs = []) => {
+        const buildPageAndSubcategories = (node, prevSlugs = []) => {
+          const {
+            slug, id, pageType, subcategories,
+          } = node;
           const slugs = [...prevSlugs, slug];
-          buildPage(id, slugs);
+
+          const imageDataByType = {};
+          const mainImageType = MAIN_IMAGE_TYPE[pageType];
+
+          const mainImageSourcesBySize = saveImage(node, mainImageType);
+          if (mainImageSourcesBySize) {
+            imageDataByType[mainImageType] = mainImageSourcesBySize;
+          }
+
+          buildPage(id, slugs, imageDataByType);
+
           if (subcategories) {
-            subcategories.forEach((node) => {
-              buildPageAndSubcategories(node, slugs);
+            subcategories.forEach((subcategory) => {
+              buildPageAndSubcategories(subcategory, slugs);
             });
           }
         };

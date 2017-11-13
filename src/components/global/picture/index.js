@@ -1,38 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { PROP_TYPES } from '../../../constants/customPropertyTypes';
-import { MEDIA_QUERY } from '../../../constants/breakpoints';
-
-const propTypes = {
-  alt: PropTypes.string.isRequired,
-  image: PROP_TYPES.IMAGE_SET.isRequired,
-};
+import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { MEDIA_QUERIES } from '../../../constants/breakpoints';
 
 const Picture = ({
   alt,
-  image,
-}) => (
-  <picture>
-    { image.small &&
-      <source
-        media={MEDIA_QUERY.SMALL}
-        srcSet={image.small}
-      />
-    }
-    { image.medium &&
-      <source
-        media={MEDIA_QUERY.MEDIUM}
-        srcSet={image.medium}
-      />
-    }
-    <img
-      alt={alt}
-      src={image.large}
-    />
-  </picture>
-);
+  sourcesBySize,
+}) => {
+  const breakpoints = Object.keys(sourcesBySize);
+  const largestBreakpoint = breakpoints[breakpoints.length - 1];
 
-Picture.propTypes = propTypes;
+  return (
+    <picture>
+      {breakpoints.map(breakpoint =>
+          sourcesBySize[breakpoint].srcSet && (
+            <source
+              key={breakpoint}
+              media={MEDIA_QUERIES[breakpoint]}
+              srcSet={sourcesBySize[breakpoint].srcSet}
+            />
+          ))}
+      <img
+        alt={alt}
+        src={sourcesBySize[largestBreakpoint].src}
+      />
+    </picture>
+  );
+};
+
+Picture.propTypes = PROP_TYPES.IMAGE_PROP_TYPES;
 
 export default Picture;

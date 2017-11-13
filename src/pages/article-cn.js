@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import cx from 'classnames';
 
@@ -6,6 +7,7 @@ import PageHead from '../components/global/page-head';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 
+import { BREAKPOINT } from '../constants/breakpoints';
 import { PAGE_TYPE } from '../constants/settings';
 
 import largeImage from '../test-content/images/article-large.jpg';
@@ -30,18 +32,26 @@ const ArticleCn = () => (
         }}
       />
       <InlineImage
-        alt="Demo alt"
-        image={{
-          large: largeImage,
-        }}
         caption="点是学校知道如何提供这些成果"
+        imageProps={{
+          alt: 'Demo alt',
+          sourcesBySize: {
+            [BREAKPOINT.LARGE]: {
+              src: largeImage,
+            },
+          },
+        }}
       />
       <InlineImage
-        alt="Demo alt"
-        image={{
-          large: smallImage,
-        }}
         caption="点是学校知道如何提供这些成果"
+        imageProps={{
+          alt: 'Demo alt',
+          sourcesBySize: {
+            [BREAKPOINT.SMALL]: {
+              src: smallImage,
+            },
+          },
+        }}
       />
       <BodyText
         content={{
@@ -54,13 +64,21 @@ const ArticleCn = () => (
     </div>
     <div className={styles.component}>
       <PageHead
-        alt="Picture preview"
-        image={{
-          small: smallImage,
-          medium: mediumImage,
-          large: largeImage,
-        }}
         headline="促进我们校园的经济文化多样性宋体华文仿宋"
+        imageProps={{
+          alt: 'Picture preview',
+          sourcesBySize: {
+            [BREAKPOINT.SMALL]: {
+              src: smallImage,
+            },
+            [BREAKPOINT.MEDIUM]: {
+              src: mediumImage,
+            },
+            [BREAKPOINT.LARGE]: {
+              src: largeImage,
+            },
+          },
+        }}
         type={PAGE_TYPE.ARTICLE}
       />
     </div>

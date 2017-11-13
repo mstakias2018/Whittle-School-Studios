@@ -3,6 +3,7 @@
 node_modules
 .idea/
 .cache/
+static/images/
 # Build directory
 public/
 .DS_Store

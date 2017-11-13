@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Markdown from '../../../components/global/markdown';
-import { PROP_TYPES } from '../../../constants/customPropertyTypes';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './title.module.css';
 

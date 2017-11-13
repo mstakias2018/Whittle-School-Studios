@@ -1,10 +1,11 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 import Title from '../components/global/title';
 import BodyText from '../content-modules/global/body-text';
 
+import { BREAKPOINT } from '../constants/breakpoints';
 import { PAGE_TYPE } from '../constants/settings';
-import Picture from '../components/global/picture';
 import PageHead from '../components/global/page-head';
 
 import largeImage from '../test-content/images/category-large.jpg';
@@ -34,33 +35,29 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
       />
     </div>
     <div className={styles.component}>
-      <h3>Title</h3>
-      <Title
-        text="Commitment
+      <PageHead
+        headline="Commitment
   to Excellence in Education"
+        imageProps={{
+          alt: 'Picture preview',
+          sourcesBySize: {
+            [BREAKPOINT.SMALL]: {
+              src: smallImage,
+            },
+            [BREAKPOINT.MEDIUM]: {
+              src: mediumImage,
+            },
+            [BREAKPOINT.LARGE]: {
+              src: largeImage,
+            },
+          },
+        }}
+        subhead="Imagine the first global school, created by an international consortium of educators, architects, artists, technologists and experts in law, real estate, recruitment and more."
         type={PAGE_TYPE.CATEGORY}
       />
     </div>
     <div className={styles.component}>
-      <h3>Picture</h3>
-      <Picture
-        alt="Picture preview"
-        image={{
-          small: smallImage,
-          medium: mediumImage,
-          large: largeImage,
-        }}
-      />
-    </div>
-    <div className={styles.component}>
-      <h3>Image with headline and subhead</h3>
       <PageHead
-        alt="Picture preview"
-        image={{
-          small: smallImage,
-          medium: mediumImage,
-          large: largeImage,
-        }}
         headline="Commitment
   to Excellence in Education"
         subhead="Imagine the first global school, created by an international consortium of educators, architects, artists, technologists and experts in law, real estate, recruitment and more."

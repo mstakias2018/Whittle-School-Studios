@@ -16,12 +16,12 @@ import '../assets/styles/main.css';
 import './fonts.module.css';
 
 const { CLASSES } = require('./../constants/classes');
-const { LANGUAGE_CONTENTFUL_LOCALE } = require('./../constants/regions');
+const { LANGUAGE, LANGUAGE_CONTENTFUL_LOCALE } = require('./../constants/regions');
 const { getLanguageFromPathname } = require('./../utils/regions');
 
 class TemplateWrapper extends Component {
   getChildContext() {
-    return { language: getLanguageFromPathname(this.props.location.pathname) };
+    return { language: getLanguageFromPathname(this.props.location.pathname) || LANGUAGE.ENGLISH };
   }
 
   render() {
@@ -63,7 +63,7 @@ function WrapperInner({ children }, { language }) {
   );
 }
 
-WrapperInner.propTypes = { children: PropTypes.node.isRequired };
+WrapperInner.propTypes = { children: PropTypes.func };
 WrapperInner.contextTypes = { language: PropTypes.string };
 
 export default TemplateWrapper;
