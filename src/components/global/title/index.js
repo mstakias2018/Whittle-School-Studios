@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'react-markdown';
 
+import Markdown from '../../../components/global/markdown';
 import { PROP_TYPES } from '../../../constants/customPropertyTypes';
 
 import styles from './title.module.css';

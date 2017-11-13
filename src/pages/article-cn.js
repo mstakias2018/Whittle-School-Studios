@@ -15,7 +15,7 @@ import smallImage from '../test-content/images/article-small.jpg';
 import styles from './modules.module.css';
 
 const ArticleCn = () => (
-  <div className={cx('language--chinese', styles.moduleWrapper)}>
+  <div className={cx('wrapper-CHINESE', styles.moduleWrapper)}>
     <div className={styles.component}>
       <Title
         text="促进我们校园的经济文化多样性宋体华文仿宋"
@@ -32,14 +32,14 @@ const ArticleCn = () => (
       <InlineImage
         alt="Demo alt"
         image={{
-          large: largeImage
+          large: largeImage,
         }}
         caption="点是学校知道如何提供这些成果"
       />
       <InlineImage
         alt="Demo alt"
         image={{
-          large: smallImage
+          large: smallImage,
         }}
         caption="点是学校知道如何提供这些成果"
       />
@@ -51,19 +51,19 @@ const ArticleCn = () => (
           `,
         }}
       />
-      </div>
-      <div className={styles.component}>
-        <PageHead
-          alt="Picture preview"
-          image={{
-            small: smallImage,
-            medium: mediumImage,
-            large: largeImage,
-          }}
-          headline="促进我们校园的经济文化多样性宋体华文仿宋"
-          type={PAGE_TYPE.ARTICLE}
-        />
-      </div>
+    </div>
+    <div className={styles.component}>
+      <PageHead
+        alt="Picture preview"
+        image={{
+          small: smallImage,
+          medium: mediumImage,
+          large: largeImage,
+        }}
+        headline="促进我们校园的经济文化多样性宋体华文仿宋"
+        type={PAGE_TYPE.ARTICLE}
+      />
+    </div>
   </div>
 );
 
