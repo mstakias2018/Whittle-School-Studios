@@ -13,6 +13,18 @@ class VirtualGrid extends React.Component {
   }
 
   componentDidMount() {
+    let orientationChanges = 0;
+    window.addEventListener('orientationchange', () => {
+      orientationChanges += 1;
+
+      if (orientationChanges % 2 === 0) {
+        this.setState({
+          visible: !this.state.visible,
+          onTop: !this.state.onTop,
+        });
+      }
+    });
+
     window.addEventListener('keyup', (e) => {
       if (e.keyCode === 71) {
         this.setState({
@@ -29,13 +41,15 @@ class VirtualGrid extends React.Component {
 
   render() {
     return (
-      <div className={cx(styles.virtualGrid, {
-        [styles.onTop]: this.state.onTop,
-      })}
-      >
-        <div className={cx({
-            [styles.grid]: this.state.visible,
+      <div
+        className={cx(styles.virtualGrid, {
+          [styles.onTop]: this.state.onTop,
         })}
+      >
+        <div
+          className={cx({
+            [styles.grid]: this.state.visible,
+          })}
         >
           <div className={styles.gridContainer}>
             {Array.from({ length: 12 }, (v, i) => <span key={i.toString()} />)}

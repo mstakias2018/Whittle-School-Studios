@@ -28,6 +28,18 @@ $ yarn start
 $ yarn build
 ```
 
+### China
+
+There are also China-specific `yarn develop-china` and `yarn build-china` commands.
+
+### Mobile
+
+To develop on a mobile device on your local network:
+
+```
+yarn develop -- --host <YOUR IP ADDRESS>
+```
+
 ## Deployment
 
 Each region has its own Netlify site:
