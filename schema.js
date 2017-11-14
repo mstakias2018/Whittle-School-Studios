@@ -7,16 +7,14 @@
   // allows markdown
   headline: { type: String },
 
-  // determines page type
+  // determines page type TODO FIX THIS
   isCategory: { type: boolean },
 
   mainImage: {
-    type: {
-      title: { type: String },
-      /* + more src/srcSet properties from the Contentful image API */
-    },
+    /* src/srcSet properties from the Contentful image API */
     isRequired: false,
   },
+  mainImageAlt: { type: String, isRequired: false },
 
   // allows markdown
   subhead: { type: String, isRequired: false },
@@ -33,9 +31,9 @@
   isCategory: true,
 
   mainImage: {
-    title: 'Our new Shenzhen campus',
-    /* + more src/srcSet properties from the Contentful image API */
+    /* src/srcSet properties from the Contentful image API */
   },
+  mainImageAlt: 'Our new DC campus',
 
   modules: [ /* ... */ ],
 
@@ -71,16 +69,22 @@
 
 // schema
 {
-  title: { type: String },
-  description: { type: String, isRequired: false }, // allows markdown
-  /* + more src/srcSet properties from the Contentful image API */
+  alt: { type: String },
+  asset {
+    /* src/srcSet properties from the Contentful image API */
+  },
+  caption: { type: String, isRequired: false }, // allows markdown
+  shape: { type: String }, // either "Square" or "Rectangle"
 };
 
 // example
 {
-  title: 'Our new Shenzhen campus',
-  description: 'Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur.'
-  /* + more src/srcSet properties from the Contentful image API */
+  alt: 'Our new Shenzhen campus',
+  asset {
+    /* src/srcSet properties from the Contentful image API */
+  },
+  caption: 'Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur.'
+  shape: 'Rectangle',
 };
 
 /* Carousel */
@@ -89,16 +93,14 @@
 {
   slides: [
     {
-      image: {
-        type: {
-          {
-            title: { type: String },
-            description: { type: String, isRequired: false }, // allows markdown
-            /* + more src/srcSet properties from the Contentful image API */
-          };
-        }
+      type: {
+        alt: { type: String },
+        asset {
+          /* src/srcSet properties from the Contentful image API */
+        },
+        caption: { type: String, isRequired: false }, // allows markdown
+        shape: { type: String }, // "Square", "Rectangle", "Circle"
       },
-      isCircle: { type: Boolean }
     }
   ]
 }
@@ -107,20 +109,19 @@
 {
   slides: [
     {
-      image: {
-        title: 'Our new Shenzhen campus',
-        description: 'Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur.'
-        /* + more src/srcSet properties from the Contentful image API */
+      alt: 'Our new Shenzhen campus',
+      asset {
+        /* src/srcSet properties from the Contentful image API */
       },
-      isCircle: true,
+      caption: 'Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur.'
+      shape: 'Rectangle',
     },
     {
-      image: {
-        title: 'Our new Shenzhen campus',
-        description: 'Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur.'
-        /* + more src/srcSet properties from the Contentful image API */
+      alt: 'Some great alt tag',
+      asset {
+        /* src/srcSet properties from the Contentful image API */
       },
-      isCircle: false,
+      shape: 'Circle',
     }
   ]
 }

@@ -7,7 +7,7 @@ import PageHead from '../components/global/page-head';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 
-import { BREAKPOINT } from '../constants/breakpoints';
+import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
 import { PAGE_TYPE } from '../constants/settings';
 
 import largeImage from '../test-content/images/article-large.jpg';
@@ -35,26 +35,24 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
         isFirstModule
       />
       <InlineImage
+        alt="Demo alt"
         caption="Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur "
-        imageProps={{
-          alt: 'Demo alt',
-          sourcesBySize: {
-            [BREAKPOINT.SMALL]: {
-              src: smallImage,
-            },
+        imageSources={{
+          [IMAGE_BP.SMALL]: {
+            src: smallImage,
           },
         }}
+        shape={IMAGE_SHAPE.SQUARE}
       />
       <InlineImage
+        alt="Demo alt"
         caption="Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur "
-        imageProps={{
-          alt: 'Demo alt',
-          sourcesBySize: {
-            [BREAKPOINT.LARGE]: {
-              src: largeImage,
-            },
+        imageSources={{
+          [IMAGE_BP.LARGE]: {
+            src: largeImage,
           },
         }}
+        shape={IMAGE_SHAPE.RECTANGLE}
       />
       <BodyText
         content={{
@@ -77,18 +75,16 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
     <div className={styles.component}>
       <PageHead
         headline="Someone with his head in the clouds & feet on the ground."
-        imageProps={{
-          alt: 'Picture preview',
-          sourcesBySize: {
-            [BREAKPOINT.SMALL]: {
-              src: smallImage,
-            },
-            [BREAKPOINT.MEDIUM]: {
-              src: mediumImage,
-            },
-            [BREAKPOINT.LARGE]: {
-              src: largeImage,
-            },
+        imageAlt="Picture preview"
+        imageSources={{
+          [IMAGE_BP.SMALL]: {
+            src: smallImage,
+          },
+          [IMAGE_BP.MEDIUM]: {
+            src: mediumImage,
+          },
+          [IMAGE_BP.LARGE]: {
+            src: largeImage,
           },
         }}
         subhead="If it is essential for a school to understand well what it wants to help its students achieve, it is equally important for a school to know how it can deliver those results."
@@ -98,18 +94,16 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
     <div className={styles.component}>
       <PageHead
         headline="Promoting Economic & Cultural Diversity Across Our Campuses"
-        imageProps={{
-          alt: 'Picture preview',
-          sourcesBySize: {
-            [BREAKPOINT.SMALL]: {
-              src: smallImage,
-            },
-            [BREAKPOINT.MEDIUM]: {
-              src: mediumImage,
-            },
-            [BREAKPOINT.LARGE]: {
-              src: largeImage,
-            },
+        imageAlt="Picture preview"
+        imageSources={{
+          [IMAGE_BP.SMALL]: {
+            src: smallImage,
+          },
+          [IMAGE_BP.MEDIUM]: {
+            src: mediumImage,
+          },
+          [IMAGE_BP.LARGE]: {
+            src: largeImage,
           },
         }}
         type={PAGE_TYPE.ARTICLE}

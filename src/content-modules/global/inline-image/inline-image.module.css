@@ -31,6 +31,13 @@
   }
 }
 
+.image_isSquare {
+  @media (--bp-lg) {
+    @mixin span 6, var(--grid-columns-lg), lg;
+    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
+  }
+}
+
 .caption {
   @mixin span 4, var(--grid-columns-sm), sm;
   @mixin type-caption;

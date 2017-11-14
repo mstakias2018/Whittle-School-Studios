@@ -12,14 +12,16 @@ import styles from './page-head.module.css';
 
 const propTypes = {
   headline: PropTypes.string.isRequired,
-  imageProps: PROP_TYPES.IMAGE_PROPS,
+  imageAlt: PropTypes.string,
+  imageSources: PROP_TYPES.IMAGE_SOURCES,
   subhead: PropTypes.string,
   type: PROP_TYPES.PAGE_TYPES.isRequired,
 };
 
 const PageHead = ({
   headline,
-  imageProps,
+  imageAlt,
+  imageSources,
   subhead,
   type,
 }) => (
@@ -39,7 +41,12 @@ const PageHead = ({
       subhead &&
       <h2 className={styles.subhead}>{subhead}</h2>
     }
-    { imageProps && <Picture {...imageProps} /> }
+    { imageSources &&
+      <Picture
+        alt={imageAlt}
+        sourcesBySize={imageSources}
+      />
+    }
     { type === PAGE_TYPE.ARTICLE &&
       subhead &&
       <h2 className={styles.subhead}>{subhead}</h2>

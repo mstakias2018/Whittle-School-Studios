@@ -1,7 +1,8 @@
 const fs = require('file-system');
 const request = require('request');
 
-const { NODE_NAME, IMAGE_CONFIG } = require('../constants/images');
+const { IMAGE_CONFIG, IMAGE_SHAPE, IMAGE_SUBTYPE, IMAGE_TYPE } = require('../constants/images');
+const { PAGE_TYPE } = require('../constants/settings');
 
 const STATIC_IMAGE_PATH = './static/images/';
 
@@ -41,18 +42,23 @@ exports.createQuery = (imageType) => {
   }, '');
 
   return `
-    ${NODE_NAME[imageType]} {
-      id
-      file {
-        fileName
-      }
-      ${queries}
+    id
+    file {
+      fileName
     }
+    ${queries}
   `;
 };
 
+const downloadPromise = (url, dest) =>
+  new Promise((resolve) => {
+    const writeStream = fs.createWriteStream(dest);
+    request(url).pipe(writeStream);
+    writeStream.on('finish', resolve);
+  });
+
 /* Create an images directory in this format
-   cm <image type>
+   main <image type>
      id__filename.jpg
        |-sm <image size>
          |-src__filename.jpg
@@ -69,13 +75,17 @@ exports.createQuery = (imageType) => {
      ...
    }
 */
-exports.saveImage = (node, type) => {
-  const imageNode = node[NODE_NAME[type]];
-  if (!imageNode) return null;
-
-  const imageTypeDir = `${STATIC_IMAGE_PATH}${type}/`;
+const saveImage = (imageNode, type, subtype, index) => {
+  let imageTypeDir = `${STATIC_IMAGE_PATH}${type}/`;
   if (!fs.existsSync(imageTypeDir)) {
     fs.mkdirSync(imageTypeDir);
+  }
+
+  if (typeof index !== 'undefined') {
+    imageTypeDir = `${imageTypeDir}${index}/`;
+    if (!fs.existsSync(imageTypeDir)) {
+      fs.mkdirSync(imageTypeDir);
+    }
   }
 
   const { id, file: { fileName } } = imageNode;
@@ -84,7 +94,8 @@ exports.saveImage = (node, type) => {
   const nodeDir = `${imageTypeDir}${id}__${fileName}/`;
   fs.mkdirSync(nodeDir);
 
-  Object.keys(IMAGE_CONFIG[type]).forEach((imageSize) => {
+  const promises = Object.keys(IMAGE_CONFIG[subtype]).map((imageSize) => {
+    const imageSizePromises = [];
     const imageData = { srcSet: [] };
     const { src, srcSet } = imageNode[imageSize];
 
@@ -93,8 +104,9 @@ exports.saveImage = (node, type) => {
 
     // download and save src
     const srcName = `${sizeDir}src__${fileName}`;
-    request(`http:${src}`).pipe(fs.createWriteStream(srcName));
-    imageData.src = formatPathForBrowser(srcName);
+    imageSizePromises.push(downloadPromise(`http:${src}`, srcName).then(() => {
+      imageData.src = formatPathForBrowser(srcName);
+    }));
 
     if (srcSet) {
       srcSet.split(',\n').forEach((srcSetItem) => {
@@ -104,13 +116,37 @@ exports.saveImage = (node, type) => {
 
         // download and save srcSet item
         const srcSetName = `${sizeDir}${resolution}__${fileName}`;
-        request(`http:${itemFileName}`).pipe(fs.createWriteStream(srcSetName));
-        imageData.srcSet.push(formatPathForBrowser(`${srcSetName} ${resolution}`));
+        imageSizePromises.push(downloadPromise(`http:${itemFileName}`, srcSetName).then(() => {
+          imageData.srcSet.push(formatPathForBrowser(`${srcSetName} ${resolution}`));
+        }));
       });
     }
 
-    sourcesBySize[imageSize] = imageData;
+    return Promise.all(imageSizePromises).then(() => {
+      sourcesBySize[imageSize] = imageData;
+    });
   });
 
-  return sourcesBySize;
+  return Promise.all(promises).then(() => sourcesBySize);
+};
+
+exports.saveMainImage = ({ articleMainImage, categoryMainImage, pageType }) => {
+  if (!(articleMainImage || categoryMainImage)) return undefined;
+
+  const [mainImage, mainImageSubtype] = pageType === PAGE_TYPE.CATEGORY ?
+    [categoryMainImage, IMAGE_SUBTYPE.MAIN_CATEGORY] :
+    [articleMainImage, IMAGE_SUBTYPE.MAIN_ARTICLE];
+
+  return saveImage(mainImage, IMAGE_TYPE.MAIN, mainImageSubtype);
+};
+
+exports.saveInlineImage = ({
+  shape,
+  rectInlineImage,
+  squareInlineImage,
+}, i) => {
+  const [inlineImage, inlineImageSubtype] = shape === IMAGE_SHAPE.SQUARE ?
+    [squareInlineImage, IMAGE_SUBTYPE.INLINE_SQ] :
+    [rectInlineImage, IMAGE_SUBTYPE.INLINE_RT];
+  return saveImage(inlineImage, IMAGE_TYPE.INLINE, inlineImageSubtype, i);
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';
-import { MEDIA_QUERIES } from '../../../constants/breakpoints';
+import { IMAGE_MQ } from '../../../constants/images';
 
 const Picture = ({
   alt,
@@ -16,7 +16,7 @@ const Picture = ({
           sourcesBySize[breakpoint].srcSet && (
             <source
               key={breakpoint}
-              media={MEDIA_QUERIES[breakpoint]}
+              media={IMAGE_MQ[breakpoint]}
               srcSet={sourcesBySize[breakpoint].srcSet}
             />
           ))}

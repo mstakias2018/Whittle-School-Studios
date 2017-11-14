@@ -4,7 +4,7 @@ import React from 'react';
 import Title from '../components/global/title';
 import BodyText from '../content-modules/global/body-text';
 
-import { BREAKPOINT } from '../constants/breakpoints';
+import { IMAGE_BP } from '../constants/images';
 import { PAGE_TYPE } from '../constants/settings';
 import PageHead from '../components/global/page-head';
 
@@ -38,18 +38,16 @@ Favoring our work is the emergence of a new educational canon thanks, in large p
       <PageHead
         headline="Commitment
   to Excellence in Education"
-        imageProps={{
-          alt: 'Picture preview',
-          sourcesBySize: {
-            [BREAKPOINT.SMALL]: {
-              src: smallImage,
-            },
-            [BREAKPOINT.MEDIUM]: {
-              src: mediumImage,
-            },
-            [BREAKPOINT.LARGE]: {
-              src: largeImage,
-            },
+        imageAlt="Picture preview"
+        imageSources={{
+          [IMAGE_BP.SMALL]: {
+            src: smallImage,
+          },
+          [IMAGE_BP.MEDIUM]: {
+            src: mediumImage,
+          },
+          [IMAGE_BP.LARGE]: {
+            src: largeImage,
           },
         }}
         subhead="Imagine the first global school, created by an international consortium of educators, architects, artists, technologists and experts in law, real estate, recruitment and more."

@@ -1,76 +1,144 @@
-const { BREAKPOINT } = require('./breakpoints');
-const { PAGE_TYPE } = require('./settings');
+/* IMAGE BREAKPOINTS
+   Images have their own special breakpoints so we can have more granularity
+   about asset sizes per viewport width. */
 
-const IMAGE_TYPE = {
-  CATEGORY_MAIN: 'cm',
-  ARTICLE_MAIN: 'am',
+const IMAGE_BP = {
+  SMALL: 'sm',
+  SMALL_MID: 'smMid',
+  MEDIUM: 'md',
+  MEDIUM_MID: 'mdMid',
+  LARGE: 'lg',
+  LARGE_MID: 'lgMid',
 };
 
-exports.MAIN_IMAGE_TYPE = {
-  [PAGE_TYPE.ARTICLE]: IMAGE_TYPE.ARTICLE_MAIN,
-  [PAGE_TYPE.CATEGORY]: IMAGE_TYPE.CATEGORY_MAIN,
+exports.IMAGE_BP = IMAGE_BP;
+
+exports.IMAGE_MQ = {
+  /* 375px */
+  [IMAGE_BP.SMALL]: '(max-width: 23.4375rem)',
+  /* 650px */
+  [IMAGE_BP.SMALL_MID]: '(max-width: 40.625em)',
+  /* 872px */
+  [IMAGE_BP.MEDIUM]: '(max-width: 54.5em)',
+  /* 1100px */
+  [IMAGE_BP.MEDIUM_MID]: '(max-width: 68.75em)',
+  /* 1280px */
+  [IMAGE_BP.LARGE]: '(max-width: 80em)',
+  /* 1280px */
+  [IMAGE_BP.LARGE_MID]: '(min-width: 80em)',
+};
+
+/* IMAGE CONFIG */
+
+const IMAGE_TYPE = {
+  MAIN: 'main',
+  INLINE: 'inline',
 };
 
 exports.IMAGE_TYPE = IMAGE_TYPE;
 
-exports.NODE_NAME = {
-  [IMAGE_TYPE.CATEGORY_MAIN]: 'mainImage',
-  [IMAGE_TYPE.ARTICLE_MAIN]: 'mainImage',
+const IMAGE_SUBTYPE = {
+  MAIN_CATEGORY: 'mainCategory',
+  MAIN_ARTICLE: 'mainSquare',
+  INLINE_SQ: 'inlineSquare',
+  INLINE_RT: 'inlineRectangular',
 };
 
-// TODO Finalize sizes
-// All _MAX values are tests for now
+exports.IMAGE_SUBTYPE = IMAGE_SUBTYPE;
+
+exports.MODULE_IMAGE_TYPE_MAP = {
+  ContentfulInlineImage: IMAGE_TYPE.INLINE,
+};
+
+// must match Contentful values
+exports.IMAGE_SHAPE = {
+  SQUARE: 'Square',
+  RECTANGLE: 'Rectangle',
+};
+
 exports.IMAGE_CONFIG = {
-  [IMAGE_TYPE.CATEGORY_MAIN]: {
-    [BREAKPOINT.SMALL]: {
-      width: 270,
-      height: 270,
+  [IMAGE_SUBTYPE.MAIN_CATEGORY]: {
+    [IMAGE_BP.SMALL]: {
+      width: 317,
+      height: 317,
     },
-    [BREAKPOINT.SMALL_MID]: {
-      width: 494, // 76% of 650
+    [IMAGE_BP.SMALL_MID]: {
+      width: 494,
       height: 494,
     },
-    [BREAKPOINT.MEDIUM]: {
-      width: 620,
-      height: 350,
+    [IMAGE_BP.MEDIUM]: {
+      width: 654,
+      height: 369,
     },
-    [BREAKPOINT.MEDIUM_MID]: {
-      width: 825, // 75% of 1100
+    [IMAGE_BP.MEDIUM_MID]: {
+      width: 825,
       height: 466,
     },
-    [BREAKPOINT.LARGE]: {
-      width: 940,
-      height: 400,
+    [IMAGE_BP.LARGE]: {
+      width: 960,
+      height: 409,
     },
-    [BREAKPOINT.LARGE_MID]: {
+    [IMAGE_BP.LARGE_MID]: {
       width: 1300,
       height: 550,
     },
   },
-  [IMAGE_TYPE.ARTICLE_MAIN]: {
-    [BREAKPOINT.SMALL]: {
-      width: 270,
-      height: 270,
+  [IMAGE_SUBTYPE.MAIN_ARTICLE]: {
+    [IMAGE_BP.SMALL]: {
+      width: 317,
+      height: 317,
     },
-    [BREAKPOINT.SMALL_MID]: {
-      width: 494, // 76% of 650
+    [IMAGE_BP.SMALL_MID]: {
+      width: 494,
       height: 494,
     },
-    [BREAKPOINT.MEDIUM]: {
-      width: 620,
-      height: 380,
+    [IMAGE_BP.MEDIUM]: {
+      width: 654,
+      height: 369,
     },
-    [BREAKPOINT.MEDIUM_MID]: {
-      width: 825, // 75% of 1100
-      height: 506,
+    [IMAGE_BP.MEDIUM_MID]: {
+      width: 825,
+      height: 466,
     },
-    [BREAKPOINT.LARGE]: {
-      width: 780,
-      height: 440,
+    [IMAGE_BP.LARGE]: {
+      width: 797,
+      height: 450,
     },
-    [BREAKPOINT.LARGE_MID]: {
+    [IMAGE_BP.LARGE_MID]: {
       width: 1080,
       height: 608,
+    },
+  },
+  [IMAGE_SUBTYPE.INLINE_SQ]: {
+    [IMAGE_BP.SMALL]: {
+      width: 317,
+      height: 317,
+    },
+    [IMAGE_BP.MEDIUM]: {
+      width: 494,
+      height: 494,
+    },
+    [IMAGE_BP.LARGE_MID]: {
+      width: 614,
+      height: 614,
+    },
+  },
+  [IMAGE_SUBTYPE.INLINE_RT]: {
+    [IMAGE_BP.SMALL]: {
+      width: 317,
+      height: 178,
+    },
+    [IMAGE_BP.MEDIUM]: {
+      width: 494,
+      height: 278,
+    },
+    [IMAGE_BP.LARGE]: {
+      width: 634,
+      height: 357,
+    },
+    [IMAGE_BP.LARGE_MID]: {
+      width: 794,
+      height: 447,
     },
   },
 };

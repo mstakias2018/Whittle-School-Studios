@@ -1,29 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import BodyText from './global/body-text';
+import InlineImage from './global/inline-image';
+
+import { PROP_TYPES } from '../constants/custom-property-types';
+import { MODULE_IMAGE_TYPE_MAP } from '../constants/images';
 
 const MODULE_MAP = {
   ContentfulBodyText: BodyText,
+  ContentfulInlineImage: InlineImage,
 };
 
 const propTypes = {
-  modules: PropTypes.any,
+  imageDataByType: PROP_TYPES.IMAGE_DATA_BY_TYPE,
+  modules: PROP_TYPES.MODULES,
 };
 
-export default function ContentModules({ modules }) {
-  return (
-    <div>
-      {modules.map(({ __typename: type, ...props }, i) => {
-        const Component = MODULE_MAP[type];
-        return Component && <Component
-          isFirstModule={i === 0}
-          key={i}
-          {...props}
-        />;
-      })}
-    </div>
-  );
-}
+const ContentModules = ({ imageDataByType, modules }) =>
+  modules.map(({ __typename: type, ...props }, i) => {
+    const Component = MODULE_MAP[type];
+    const imageType = MODULE_IMAGE_TYPE_MAP[type];
+    const imageSources = imageType && imageDataByType[imageType][i];
+    return Component && (
+      <Component
+        imageSources={imageSources}
+        isFirstModule={i === 0}
+        key={i}
+        {...props}
+      />
+    );
+  });
 
 ContentModules.propTypes = propTypes;
+
+export default ContentModules;

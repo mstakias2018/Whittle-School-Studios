@@ -7,7 +7,7 @@ import PageHead from '../components/global/page-head';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 
-import { BREAKPOINT } from '../constants/breakpoints';
+import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
 import { PAGE_TYPE } from '../constants/settings';
 
 import largeImage from '../test-content/images/article-large.jpg';
@@ -32,26 +32,24 @@ const ArticleCn = () => (
         }}
       />
       <InlineImage
+        alt="Demo alt"
         caption="点是学校知道如何提供这些成果"
-        imageProps={{
-          alt: 'Demo alt',
-          sourcesBySize: {
-            [BREAKPOINT.LARGE]: {
-              src: largeImage,
-            },
+        imageSources={{
+          [IMAGE_BP.LARGE]: {
+            src: largeImage,
           },
         }}
+        shape={IMAGE_SHAPE.RECTANGLE}
       />
       <InlineImage
+        alt="Demo alt"
         caption="点是学校知道如何提供这些成果"
-        imageProps={{
-          alt: 'Demo alt',
-          sourcesBySize: {
-            [BREAKPOINT.SMALL]: {
-              src: smallImage,
-            },
+        imageSources={{
+          [IMAGE_BP.SMALL]: {
+            src: smallImage,
           },
         }}
+        shape={IMAGE_SHAPE.SQUARE}
       />
       <BodyText
         content={{
@@ -65,18 +63,16 @@ const ArticleCn = () => (
     <div className={styles.component}>
       <PageHead
         headline="促进我们校园的经济文化多样性宋体华文仿宋"
-        imageProps={{
-          alt: 'Picture preview',
-          sourcesBySize: {
-            [BREAKPOINT.SMALL]: {
-              src: smallImage,
-            },
-            [BREAKPOINT.MEDIUM]: {
-              src: mediumImage,
-            },
-            [BREAKPOINT.LARGE]: {
-              src: largeImage,
-            },
+        imageAlt="Picture preview"
+        imageSources={{
+          [IMAGE_BP.SMALL]: {
+            src: smallImage,
+          },
+          [IMAGE_BP.MEDIUM]: {
+            src: mediumImage,
+          },
+          [IMAGE_BP.LARGE]: {
+            src: largeImage,
           },
         }}
         type={PAGE_TYPE.ARTICLE}

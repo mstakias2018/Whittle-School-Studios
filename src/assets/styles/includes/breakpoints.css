@@ -1,9 +1,16 @@
 :root {
-  @custom-media --bp-sm-only (width <= 650px);
-  @custom-media --bp-sm-upper-only (width > 500px) and (width <= 650px);
-  @custom-media --bp-md (min-width: 650px);
-  @custom-media --bp-md-only (width > 650px) and (width <= 1100px);
-  @custom-media --bp-sm-and-md-only (width <= 1100px);
-  @custom-media --bp-lg (width > 1100px);
-  @custom-media --bp-xl (width > 1600px);
+  /* 650px */
+  @custom-media --bp-sm-only (width <= 40.625em);
+  /* 500px-650px */
+  @custom-media --bp-sm-upper-only (width > 31.25rem) and (width <= 40.625em);
+  /* 650px */
+  @custom-media --bp-md (width > 40.625em);
+  /* 650px-1100px */
+  @custom-media --bp-md-only (width > 40.625em) and (width <= 68.75em);
+  /* 1100px */
+  @custom-media --bp-sm-and-md-only (width <= 68.75em);
+  /* 1100px */
+  @custom-media --bp-lg (width > 68.75em);
+  /* 1600px */
+  @custom-media --bp-xl (width > 100em);
 }

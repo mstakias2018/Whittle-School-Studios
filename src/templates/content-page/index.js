@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
@@ -6,42 +6,44 @@ import ContentModules from '../../content-modules';
 import PageHead from '../../components/global/page-head';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
+import { IMAGE_TYPE } from '../../constants/images';
 
-import adapter from './adapter';
 import styles from './content-page.module.css';
 
-/* eslint-disable react/no-unused-prop-types */
 const propTypes = {
+  // TODO FIX data prop type
   data: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
   pathContext: PropTypes.shape({
     imageDataByType: PROP_TYPES.IMAGE_DATA_BY_TYPE.isRequired,
   }).isRequired,
 };
-/* eslint-enable react/no-unused-prop-types */
 
-class ContentPageTemplate extends Component {
-  componentWillMount() {
-    this.adaptedProps = adapter(this.props);
-  }
+const ContentPageTemplate = ({ data: { contentfulContentPage }, pathContext: { imageDataByType } }) => {
+  const {
+    headline,
+    mainImageAlt,
+    modules,
+    pageType,
+  } = contentfulContentPage;
 
-  render() {
-    const {
-      headline, imageProps, modules, pageType,
-    } = this.adaptedProps;
-
-    return (
-      <div className={styles.wrapper}>
-        <Helmet title={headline} />
-        <PageHead
-          headline={headline}
-          imageProps={imageProps}
-          type={pageType}
+  return (
+    <div className={styles.wrapper}>
+      <Helmet title={headline} />
+      <PageHead
+        headline={headline}
+        imageAlt={mainImageAlt}
+        imageSources={imageDataByType[IMAGE_TYPE.MAIN]}
+        type={pageType}
+      />
+      { modules &&
+        <ContentModules
+          imageDataByType={imageDataByType}
+          modules={modules}
         />
-        {modules && <ContentModules modules={modules} />}
-      </div>
-    );
-  }
-}
+      }
+    </div>
+  );
+};
 
 ContentPageTemplate.propTypes = propTypes;
 
@@ -51,9 +53,7 @@ export const pageQuery = graphql`
   query contentPageQuery($id: String!) {
     contentfulContentPage(id: { eq: $id }) {
       headline
-      mainImage {
-        title
-      }
+      mainImageAlt
       pageType
       modules {
         __typename
@@ -61,6 +61,11 @@ export const pageQuery = graphql`
           content {
             markdown: content
           }
+        }
+        ... on ContentfulInlineImage {
+          shape
+          alt
+          caption
         }
       }
     }

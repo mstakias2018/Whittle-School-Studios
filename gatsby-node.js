@@ -1,15 +1,47 @@
 const path = require('path');
 
 const { LANGUAGE_CONTENTFUL_LOCALE, REGION_LANGUAGES } = require('./src/constants/regions');
-const { IMAGE_TYPE, MAIN_IMAGE_TYPE } = require('./src/constants/images');
+const { IMAGE_TYPE, IMAGE_SUBTYPE } = require('./src/constants/images');
 const { getIsoCode } = require('./src/utils/regions');
-const { createQuery, resetImageDir, saveImage } = require('./src/utils/save-images');
+const {
+  createQuery,
+  resetImageDir,
+  saveInlineImage,
+  saveMainImage,
+} = require('./src/utils/save-images');
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
+  resetImageDir();
+
   const promises = REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
     new Promise((resolve, reject) => {
+      // query run on all content pages,
+      // whether category or article, top-level or nested
+      const sharedQuery = `
+        id
+        pageType
+        slug
+
+        articleMainImage: mainImage {
+          ${createQuery(IMAGE_SUBTYPE.MAIN_ARTICLE)}
+        }
+
+        modules {
+          __typename
+          ... on ContentfulInlineImage {
+            shape
+            squareInlineImage: asset {
+              ${createQuery(IMAGE_SUBTYPE.INLINE_SQ)}
+            }
+            rectInlineImage: asset {
+              ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
+            }
+          }
+        }
+      `;
+
       graphql(`
           {
             allContentfulContentPage(
@@ -19,18 +51,17 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             ) {
               edges {
                 node {
-                  id
-                  pageType
+                  ${sharedQuery}
+
+                  categoryMainImage: mainImage {
+                    ${createQuery(IMAGE_SUBTYPE.MAIN_CATEGORY)}
+                  }
+
                   parentCategory: contentpage {
                     id
                   }
-                  slug
-                  ${createQuery(IMAGE_TYPE.CATEGORY_MAIN)}
                   subcategories {
-                    id
-                    pageType
-                    slug
-                    ${createQuery(IMAGE_TYPE.ARTICLE_MAIN)}
+                    ${sharedQuery}
                   }
                 }
               }
@@ -40,8 +71,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         if (result.errors) {
           reject(result.errors);
         }
-
-        resetImageDir();
 
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
         const isoCode = getIsoCode(language);
@@ -58,35 +87,52 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         };
 
         const buildPageAndSubcategories = (node, prevSlugs = []) => {
+          const setupPromises = [];
           const {
-            slug, id, pageType, subcategories,
+            id, modules, slug, subcategories,
           } = node;
           const slugs = [...prevSlugs, slug];
 
           const imageDataByType = {};
-          const mainImageType = MAIN_IMAGE_TYPE[pageType];
 
-          const mainImageSourcesBySize = saveImage(node, mainImageType);
-          if (mainImageSourcesBySize) {
-            imageDataByType[mainImageType] = mainImageSourcesBySize;
+          const mainImagePromise = saveMainImage(node);
+          if (mainImagePromise) {
+            setupPromises.push(mainImagePromise.then((imageData) => {
+              imageDataByType[IMAGE_TYPE.MAIN] = imageData;
+            }));
           }
 
-          buildPage(id, slugs, imageDataByType);
+          if (modules) {
+            const modulePromises = modules.map((n, i) => {
+              const { __typename } = n;
+              if (__typename === 'ContentfulInlineImage') {
+                return saveInlineImage(n, i);
+              }
+
+              return undefined;
+            });
+
+            setupPromises.push(Promise.all(modulePromises).then((imageData) => {
+              imageDataByType[IMAGE_TYPE.INLINE] = imageData;
+            }));
+          }
+
 
           if (subcategories) {
-            subcategories.forEach((subcategory) => {
-              buildPageAndSubcategories(subcategory, slugs);
-            });
+            const subcategoryPromises = subcategories.map(subcat => buildPageAndSubcategories(subcat, slugs));
+            setupPromises.push(Promise.all(subcategoryPromises));
           }
+
+          return Promise.all(setupPromises).then(() => buildPage(id, slugs, imageDataByType));
         };
 
-        result.data.allContentfulContentPage.edges.forEach(({ node }) => {
+        const createPagePromises = result.data.allContentfulContentPage.edges.map(({ node }) => {
           // Skip subcategories
-          if (!node.parentCategory) {
-            buildPageAndSubcategories(node);
-            resolve();
-          }
+          if (node.parentCategory) return undefined;
+          return buildPageAndSubcategories(node);
         });
+
+        return Promise.all(createPagePromises).then(resolve);
       });
     }));
 

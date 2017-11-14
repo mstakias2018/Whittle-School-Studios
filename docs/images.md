@@ -52,12 +52,12 @@ Certain image types with less diverse sizes can use fewer breakpoints. These set
 
 ```
 exports.IMAGE_CONFIG = {
-  [IMAGE_TYPE.CATEGORY_MAIN]: {
-    [BREAKPOINT.SMALL]: {
+  [IMAGE_SUBTYPE.MAIN_CATEGORY]: {
+    [IMAGE_BP.SMALL]: {
       width: 270,
       height: 270,
     },
-    [BREAKPOINT.SMALL_MID]: {
+    [IMAGE_BP.SMALL_MID]: {
       width: 494,
       height: 494,
     },
@@ -66,6 +66,12 @@ exports.IMAGE_CONFIG = {
 };
 ```
 
+### Image types and subtypes
+
+Most images have both types and subtypes. For example, the `INLINE` type has `INLINE_SQ` and `INLINE_RT` subtypes. Each `INLINE` image has a `shape` property, which tells us whether the editor has set a particular image to be a `Square` or `Rectangle`.
+
+When we make our query, we don't know the value of `shape`, so we request asset info for both `INLINE_SQ` and `INLINE_RT`. We use the value of `shape` to only download the needed assets. (We follow a similar pattern for `MAIN` images.)
+
 ### Saving locally
 
 We save the images to our `static/` folder, whose contents will be copied into `public/` during the build process.
@@ -73,7 +79,7 @@ We save the images to our `static/` folder, whose contents will be copied into `
 They are organized like this:
 
 ```
-cm <image type>
+main <image type>
   id__filename.jpg
     |-sm <image size>
       |-src__filename.jpg
@@ -82,13 +88,26 @@ cm <image type>
       |-2x__filename.jpg
 ```
 
+For images that are part of modules, we add an extra folder level for the index of the module containing the image:
+
+```
+inline <image type>
+  2 <index>
+    id__filename.jpg
+      |-sm <image size>
+        |-src__filename.jpg
+        |-1x__filename.jpg
+        |-1.5x__filename.jpg
+        |-2x__filename.jpg
+```
+
 ## Passing image data to the template
 
 For each ContentPage, we create an `imageDataByType` map that will look like this:
 
 ```
   {
-    cm: {
+    main: {
       sm: {
         srcSet: [ '<imagepath>.jpg 1x', '<imagepath>.jpg 1.5x' ],
         src: '<imagepath>.jpg'
