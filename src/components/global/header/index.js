@@ -2,7 +2,9 @@ import React from 'react';
 
 import Logo from './header-logo/header-logo';
 import MainMenu from './header-menu/header-menu';
-import Languages from './header-languages/header-languages';
+import Locales from './header-languages/header-locales';
+
+import { REGION, LANGUAGE } from '../../../constants/regions';
 
 import styles from './header.module.css';
 
@@ -21,7 +23,10 @@ class Header extends React.Component {
   render() {
     return (
       <header className={styles.header}>
-        <Languages />
+        <Locales
+          languageSelected={LANGUAGE.ENGLISH}
+          regionSelected={REGION.US}
+        />
         <div className="container">
           <div className={styles.container}>
               <Logo />

@@ -234,19 +234,35 @@
   }
 }
 
+@define-mixin type-language {
+  color: var(--color-text-dark);
+  font-family: var(--font-sans-serif-regular);
+  font-size: 11px;
+  line-height: 16px;
+  text-decoration: none;
+  text-decoration-color: transparent;
+  text-underline-position: under;
+}
+
+@define-mixin type-language-select {
+  color: var(--color-text-dark);
+  font-family: var(--font-sans-serif-regular);
+  font-size: 14px;
+  line-height: 36px;
+  text-decoration: none;
+}
+
 @define-mixin type-nav {
   color: var(--color-text-dark);
   font-family: var(--font-sans-serif-regular);
   font-size: 14px;
   line-height: 20px;
-  text-decoration: none;
   text-decoration-color: transparent;
   text-underline-position: under;
   transition: color var(--timing-fast) var(--easing-default), text-decoration var(--timing-fast) var(--easing-default);
 
   &:hover {
     color: var(--color-text-tomato);
-    text-decoration: underline;
     text-decoration-color: var(--color-link-hover-underline);
   }
 

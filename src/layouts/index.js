@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import detectTouchEvents from 'detect-touch-events';
 import cx from 'classnames';
 
-import Header from './header/header';
+import Header from '../components/global/header';
 import Footer from './footer/footer';
 import Fab from '../components/global/fab';
 import VirtualGrid from './virtual-grid/virtual-grid';

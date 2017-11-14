@@ -1,5 +1,5 @@
-@import '../../../assets/styles/includes/grid.css';
-@import '../../../assets/styles/includes/variables.css';
+@import '../../../../assets/styles/includes/grid.css';
+@import '../../../../assets/styles/includes/variables.css';
 
 .logo {
   @mixin span 2, var(--grid-columns-sm), sm;
