@@ -27,7 +27,6 @@
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
-      margin-bottom: 17px;
     }
 
     @media (--bp-lg) {
@@ -74,7 +73,6 @@
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
-      margin-bottom: 17px;
     }
 
     @media (--bp-lg) {
@@ -109,7 +107,6 @@
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
-      margin-bottom: 17px;
     }
 
     @media (--bp-lg) {

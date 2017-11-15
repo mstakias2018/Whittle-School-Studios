@@ -1,11 +1,9 @@
 @import '../assets/styles/includes/mixins.css';
 
 .moduleWrapper {
-  padding: 40px 0;
   @mixin component-container;
 }
 
 .component {
   border-bottom: dashed 1px var(--color-light-border);
-  padding: 40px 0;
 }

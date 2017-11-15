@@ -21,6 +21,8 @@
 
   p {
     @mixin type-paragraph;
+    @mixin component-vertical-spacing;
+    margin-bottom: 0;
   }
 
   strong {
