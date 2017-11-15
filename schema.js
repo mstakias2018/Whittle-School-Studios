@@ -4,20 +4,19 @@
 
 // schema
 {
+  pageType: { type: String }, // "Category" or "Article"
+  slug: { type: String },
+
   // allows markdown
   headline: { type: String },
-
-  // determines page type TODO FIX THIS
-  isCategory: { type: boolean },
+  // allows markdown
+  subhead: { type: String, isRequired: false },
 
   mainImage: {
     /* src/srcSet properties from the Contentful image API */
     isRequired: false,
   },
   mainImageAlt: { type: String, isRequired: false },
-
-  // allows markdown
-  subhead: { type: String, isRequired: false },
 
   modules: []
 
@@ -26,9 +25,11 @@
 
 // example
 {
-  headline: 'Title with *markdown*',
+  pageType: 'Category',
+  slug: 'title-with-markdown',
 
-  isCategory: true,
+  headline: 'Title with *markdown*',
+  subhead: 'If it is essential for a school to understand well what it wants to help its students achieve, it is equally important for a school to know how it can deliver those results.',
 
   mainImage: {
     /* src/srcSet properties from the Contentful image API */
@@ -36,8 +37,6 @@
   mainImageAlt: 'Our new DC campus',
 
   modules: [ /* ... */ ],
-
-  subhead: 'If it is essential for a school to understand well what it wants to help its students achieve, it is equally important for a school to know how it can deliver those results.',
 
   hasShareButtons: true,
 }
@@ -53,12 +52,14 @@
 
 // schema
 {
-  content: { type: String }, // allows markdown
+  content: { type: { content: { type: String } } }, // allows markdown
 };
 
 // example
 {
-  content: 'Content involving a lot of *markdown*\n\nAnd line breaks.',
+  content: {
+    content: 'Content involving a lot of *markdown*\n\nAnd line breaks.',
+  },
 };
 
 // notes
@@ -124,4 +125,58 @@
       shape: 'Circle',
     }
   ]
+}
+
+/* InlineVideo */
+
+// schema
+{
+  // TBD whether we will also include alt & asset fields for a cover photo,
+  // or just use the Vimeo asset
+  caption: { type: String, isRequired: false }, // allows markdown
+  url: { type: String },
+};
+
+// example
+{
+  caption: 'Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur.'
+  url: 'https://vimeo.com/76979871',
+}
+
+/* Quote */
+
+// schema
+{
+  content: { type: String }, // allows markdown
+  source: { type: String, isRequired: false },
+  style: { type: String }, // "PullQuote" or "BlockQuote"
+}
+
+// example
+{
+  content: 'Ask not what your country can do for you—ask what you can do for your country.',
+  source: 'John F. Kennedy',
+  style: 'PullQuote',
+}
+
+/* ThreeUpBreaker */
+
+// schema
+{
+  title1: { type: String },
+  content1: { type: { content: { type: String } } }, // allows markdown
+  title2: { type: String },
+  content2: { type: { content: { type: String } } }, // allows markdown
+  title3: { type: String },
+  content3: { type: { content: { type: String } } }, // allows markdown
+}
+
+// example
+{
+  title1: 'A School of One',
+  content1: { content: 'Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time' },
+  title2: 'Exceptional Facutly',
+  content2: { content: 'Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time' },
+  title3: 'Progressive Pedagogy',
+  content3: { content: 'Though we will likely build the entire core and shell of the campus all at once (no parent wants a constant construction site as an environment), we will phase some portions of the interior. We are designing with that in mind so that we can keep disruption to a minimum.', },
 }

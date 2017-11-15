@@ -31,11 +31,6 @@ const validateImageDataByType = (props, propName) => {
   return isValid ? undefined : new Error('invalid image data by type');
 };
 
-const IMAGE_PROP_TYPES = {
-  alt: PropTypes.string.isRequired,
-  sourcesBySize: validateSourcesBySize,
-};
-
 const BODY_TEXT = PropTypes.shape({
   __typename: PropTypes.string.isRequired,
   content: PropTypes.shape({
