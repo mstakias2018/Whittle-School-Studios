@@ -5,9 +5,12 @@
   "scripts": {
     "build": "GATSBY_REGION=\"US\" gatsby build",
     "build-china": "GATSBY_REGION=\"CHINA\" gatsby build",
+    "build-ci": "yarn lint-js && yarn lint-css && yarn build",
+    "build-ci-china": "yarn lint-js && yarn lint-css && yarn build-china",
     "develop": "GATSBY_REGION=\"US\" gatsby develop",
     "develop-china": "GATSBY_REGION=\"CHINA\" gatsby develop",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
+    "lint-js": "eslint '**/*.js' --ignore-path .eslintignore --max-warnings 0",
+    "lint-css": "stylelint '**/*.css'",
     "start": "gatsby serve"
   },
   "dependencies": {
@@ -37,6 +40,7 @@
     "request": "^2.83.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.2",
     "eslint-config-airbnb": "^16.1.0",
     "postcss": "6.0.13",
     "postcss-browser-reporter": "0.5.0",
@@ -54,7 +58,6 @@
     "postcss-pxtorem": "^4.0.1",
     "postcss-reporter": "5.0.0",
     "postcss-simple-vars": "4.1.0",
-    "prettier": "^1.7.4",
     "stylelint": "~8.2.0",
     "stylelint-order": "^0.7.0"
   }

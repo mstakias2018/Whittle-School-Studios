@@ -54,7 +54,7 @@
     border-right: solid 1px var(--color-light-border);
     display: block;
 
-    &.-active {
+    &._isActive {
       color: var(--color-light-border);
     }
   }

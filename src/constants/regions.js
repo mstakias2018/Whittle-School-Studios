@@ -1,26 +1,35 @@
-exports.REGION = {
+const REGION = {
   US: 'US',
   CHINA: 'CHINA',
 };
 
+exports.REGION = REGION;
+
 exports.REGION_PATH = {
-  [exports.REGION.US]: 'US',
-  [exports.REGION.CHINA]: 'CN',
+  [REGION.US]: 'US',
+  [REGION.CHINA]: 'CN',
 };
 
-exports.LANGUAGE = {
+const LANGUAGE = {
   ENGLISH: 'ENGLISH',
   CHINESE: 'CHINESE',
 };
 
+exports.LANGUAGE = LANGUAGE;
+
+exports.LANGUAGE_CLASS = {
+  ENGLISH: 'English',
+  CHINESE: 'Chinese',
+};
+
 exports.REGION_LANGUAGES = {
-  [exports.REGION.US]: [exports.LANGUAGE.ENGLISH],
-  [exports.REGION.CHINA]: [exports.LANGUAGE.ENGLISH, exports.LANGUAGE.CHINESE],
+  [REGION.US]: [LANGUAGE.ENGLISH],
+  [REGION.CHINA]: [LANGUAGE.ENGLISH, LANGUAGE.CHINESE],
 };
 
 exports.LANGUAGE_PATH = {
-  [exports.LANGUAGE.ENGLISH]: 'en',
-  [exports.LANGUAGE.CHINESE]: 'zh',
+  [LANGUAGE.ENGLISH]: 'en',
+  [LANGUAGE.CHINESE]: 'zh',
 };
 
 exports.LANGUAGE_CONTENTFUL_LOCALE = {

@@ -10,7 +10,7 @@ import { PAGE_TYPE } from '../constants/settings';
 import styles from './modules.module.css';
 
 const CategoryCn = () => (
-  <div className={cx('wrapper-CHINESE', styles.moduleWrapper)}>
+  <div className={cx('wrapper_isChinese', styles.moduleWrapper)}>
     <Title
       text="促进我们校园的经济文化多样性宋体华文仿宋"
       type={PAGE_TYPE.CATEGORY}

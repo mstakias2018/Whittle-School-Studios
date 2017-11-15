@@ -15,7 +15,7 @@ const {
 } = require('./../../../constants/breakpoints');
 
 const {
-  PAGE_PADDING, FAB_SIZE
+  PAGE_PADDING, FAB_SIZE,
 } = require('./../../../constants/dimensions');
 
 const {
@@ -56,7 +56,7 @@ class Fab extends React.Component {
         appearDuration: 3 * elementHeight,
         startRotationAt: pageContentTop + (3 * elementHeight),
         footerPadding,
-        clientWidth
+        clientWidth,
       });
     }, 0);
   }
@@ -134,17 +134,20 @@ class Fab extends React.Component {
             ]}
           >
             <img
-              src={FabTextImage}
+              alt=""
               className={cx(styles.content, styles.circleEn)}
+              src={FabTextImage}
             />
             <img
-              src={FabTextImageCn}
+              alt=""
               className={cx(styles.content, styles.circleCn)}
+              src={FabTextImageCn}
             />
           </Plx>
           <img
-            src={FabArrowImage}
+            alt=""
             className={styles.fabArrow}
+            src={FabArrowImage}
           />
         </Plx>
       </Link>

@@ -1,7 +1,9 @@
 const fs = require('file-system');
 const request = require('request');
 
-const { IMAGE_CONFIG, IMAGE_SHAPE, IMAGE_SUBTYPE, IMAGE_TYPE } = require('../constants/images');
+const {
+  IMAGE_CONFIG, IMAGE_SHAPE, IMAGE_SUBTYPE, IMAGE_TYPE,
+} = require('../constants/images');
 const { PAGE_TYPE } = require('../constants/settings');
 
 const STATIC_IMAGE_PATH = './static/images/';

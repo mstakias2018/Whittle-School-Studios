@@ -71,7 +71,7 @@
   }
 }
 
-.regionSelect__Active,
-.languageSelect__Active {
+.regionSelect_isActive,
+.languageSelect_isActive {
   display: block;
 }

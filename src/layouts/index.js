@@ -16,7 +16,9 @@ import '../assets/styles/main.css';
 import './fonts.module.css';
 
 const { CLASSES } = require('./../constants/classes');
-const { LANGUAGE, LANGUAGE_CONTENTFUL_LOCALE } = require('./../constants/regions');
+const {
+  LANGUAGE, LANGUAGE_CLASS, LANGUAGE_CONTENTFUL_LOCALE,
+} = require('./../constants/regions');
 const { getLanguageFromPathname } = require('./../utils/regions');
 
 class TemplateWrapper extends Component {
@@ -31,14 +33,10 @@ class TemplateWrapper extends Component {
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
+  location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
 };
 
-TemplateWrapper.childContextTypes = {
-  language: PropTypes.string.isRequired,
-};
+TemplateWrapper.childContextTypes = { language: PropTypes.string.isRequired };
 
 function WrapperInner({ children }, { language }) {
   return (
@@ -46,7 +44,7 @@ function WrapperInner({ children }, { language }) {
       className={cx({
         '-touchDevice': detectTouchEvents.hasSupport,
         wrapper: true,
-        [`wrapper-${language}`]: true,
+        [`wrapper_is${LANGUAGE_CLASS[language]}`]: true,
       })}
     >
       <Helmet

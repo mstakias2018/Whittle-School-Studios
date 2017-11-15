@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "es6": true
@@ -9,13 +10,15 @@
   },
   "rules": {
     "quotes": ["error", "single"],
+    "max-len": ["error", 120],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-max-props-per-line": ["error", { "maximum":1 }],
+    "react/jsx-sort-props": ["error", {"reservedFirst": false}],
     "semi": ["error", "always"],
     "strict": ["error"],
-    "max-len": ["error", 120],
-    "react/jsx-max-props-per-line": ["error", { "maximum":1 }],
+
     "import/no-extraneous-dependencies": 0,
-    "react/no-array-index-key": 0,
-    "react/require-default-props": 0
+    "react/require-default-props": 0,
+    "jsx-a11y/anchor-is-valid": [ "error", {"components": [] }]
   }
 }

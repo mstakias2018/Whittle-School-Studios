@@ -29,14 +29,14 @@ class Header extends React.Component {
         />
         <div className="container">
           <div className={styles.container}>
-              <Logo />
-              <button
-                className={styles.toggleMenu}
-                onClick={this.toggleMenu}
-              >
+            <Logo />
+            <button
+              className={styles.toggleMenu}
+              onClick={this.toggleMenu}
+            >
                 Menu
-              </button>
-              <MainMenu isActive={this.state.menuActive} />
+            </button>
+            <MainMenu isActive={this.state.menuActive} />
           </div>
         </div>
       </header>

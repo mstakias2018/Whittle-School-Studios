@@ -26,7 +26,7 @@
   strong {
     font-family: var(--font-sans-serif-regular);
 
-    :global(.wrapper-CHINESE) & {
+    :global(.wrapper_isChinese) & {
       font-family: var(--font-sans-serif-regular-cn);
     }
   }

@@ -24,7 +24,7 @@ const BodyText = ({ content, isFirstModule: hasDropCap }) => (
 BodyText.propTypes = propTypes;
 
 BodyText.defaultProps = {
-  isFirstModule: false
+  isFirstModule: false,
 };
 
 export default BodyText;

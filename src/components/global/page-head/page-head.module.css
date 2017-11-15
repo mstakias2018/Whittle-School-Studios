@@ -4,7 +4,7 @@
 
 .pageHead {
   @mixin grid-container;
-  
+
   img {
     display: block;
     width: 100%;
@@ -15,11 +15,11 @@
   @mixin type-h2-italic;
 }
 
-.subhead__subCategory {
+.subhead_subCategory {
   @mixin type-h2-italic;
 }
 
-.pageHead__category {
+.pageHead_category {
   flex-wrap: wrap;
 
   h1 {
@@ -62,7 +62,7 @@
   }
 }
 
-.pageHead__home {
+.pageHead_home {
   flex-direction: column;
 
   @media (--bp-lg) {
@@ -97,7 +97,7 @@
   }
 }
 
-.pageHead__article {
+.pageHead_article {
   flex-direction: column;
 
   @media (--bp-lg) {
@@ -149,6 +149,6 @@
   }
 }
 
-.pageHead__subCategory {
+.pageHead_subCategory {
   @mixin type-h2-italic;
 }

@@ -28,9 +28,11 @@
       "always",
       {"severity": "warning", "message": "Please add space after."},
     ],
+    "declaration-block-trailing-semicolon": "always",
     "order/properties-alphabetical-order": [
       true,
       {"severity": "warning", "message": "Please order properties alphabeticaly."},
     ],
+    "selector-class-pattern": "^([a-z\\d]*([A-Z][a-z\\d]*)*)?(_[a-z\\d]*([A-Z][a-z\\d]*)*)?$"
   }
 }

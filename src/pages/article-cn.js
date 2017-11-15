@@ -17,7 +17,7 @@ import smallImage from '../test-content/images/article-small.jpg';
 import styles from './modules.module.css';
 
 const ArticleCn = () => (
-  <div className={cx('wrapper-CHINESE', styles.moduleWrapper)}>
+  <div className={cx('wrapper_isChinese', styles.moduleWrapper)}>
     <div className={styles.component}>
       <Title
         text="促进我们校园的经济文化多样性宋体华文仿宋"

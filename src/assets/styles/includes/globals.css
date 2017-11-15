@@ -1,6 +1,6 @@
 @import './mixins.css';
 
-:global .-no-overflow {
+:global ._noOverflow {
   overflow: hidden;
 }
 

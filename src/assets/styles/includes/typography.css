@@ -17,7 +17,7 @@
     font-size: 400px;
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -34,7 +34,7 @@
     font-family: var(--font-serif-light-italic);
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-cn);
 
     em {
@@ -89,7 +89,7 @@
     line-height: 36px;
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -98,7 +98,7 @@
   @mixin type-h2;
   font-family: var(--font-serif-light-italic);
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -110,7 +110,7 @@
   font-weight: normal;
   line-height: 30px;
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -119,7 +119,7 @@
   @mixin type-h3;
   font-family: var(--font-serif-light-italic);
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -131,7 +131,7 @@
   font-weight: normal;
   line-height: 30px;
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -140,7 +140,7 @@
   @mixin type-h4;
   font-family: var(--font-serif-light-italic);
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -152,7 +152,7 @@
   font-weight: normal;
   line-height: 18px;
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -173,7 +173,7 @@
     line-height: 72px;
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);
   }
 }
@@ -189,11 +189,11 @@
     line-height: 30px;
   }
 
-  :global(.wrapper):not(:global(.wrapper-CHINESE)) :global(.hasDropCap) &:first-child::first-letter {
+  :global(.wrapper):not(:global(.wrapper_isChinese)) :global(.hasDropCap) &:first-child::first-letter {
     @mixin type-dropcap;
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -209,7 +209,7 @@
     line-height: 24px;
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -229,7 +229,7 @@
     text-decoration-color: var(--color-link-hover-underline);
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-regular-cn);
   }
 }
@@ -266,7 +266,7 @@
     text-decoration-color: var(--color-link-hover-underline);
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-regular-cn);
   }
 }
@@ -275,7 +275,7 @@
   @mixin type-nav;
   font-family: var(--font-sans-serif-light);
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -292,7 +292,7 @@
     line-height: 18px;
   }
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -307,7 +307,7 @@
   font-size: 10px;
   line-height: 14px;
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
   }
 }
@@ -318,7 +318,7 @@
   font-size: 24px;
   line-height: 24px;
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -329,7 +329,7 @@
   font-size: 18px;
   line-height: 20px;
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-cn);
   }
 }
@@ -341,7 +341,7 @@
   letter-spacing: 0.2px;
   line-height: 30px;
 
-  :global(.wrapper-CHINESE) & {
+  :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-book-italic-cn);
   }
 }

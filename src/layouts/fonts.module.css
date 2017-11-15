@@ -1,79 +1,79 @@
 @font-face {
   font-family: 'gt_walsheim_prolight';
+  font-style: normal;
+  font-weight: normal;
   src: url('../assets/fonts/gtwalsheimprolightgt-walsheim-light-webfont.eot');
   src: url('../assets/fonts/gtwalsheimprolightgt-walsheim-light-webfont.eot?#iefix') format('embedded-opentype'),
     url('../assets/fonts/gtwalsheimprolightgt-walsheim-light-webfont.woff') format('woff'),
     url('../assets/fonts/gtwalsheimprolightgt-walsheim-light-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'gt_walsheim_proregular';
+  font-style: normal;
+  font-weight: normal;
   src: url('../assets/fonts/gtwalsheimproregulargt-walsheim-regular-webfont.eot');
   src: url('../assets/fonts/gtwalsheimproregulargt-walsheim-regular-webfont.eot?#iefix') format('embedded-opentype'),
     url('../assets/fonts/gtwalsheimproregulargt-walsheim-regular-webfont.woff') format('woff'),
     url('../assets/fonts/gtwalsheimproregulargt-walsheim-regular-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'freightbiglightregular';
+  font-style: normal;
+  font-weight: normal;
   src: url('../assets/fonts/freightbiglight-webfont.eot');
   src: url('../assets/fonts/freightbiglight-webfont.eot?#iefix') format('embedded-opentype'),
     url('../assets/fonts/freightbiglight-webfont.woff') format('woff'),
     url('../assets/fonts/freightbiglight-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'freightbiglightitalicregular';
+  font-style: normal;
+  font-weight: normal;
   src: url('../assets/fonts/freightbiglightitalic-webfont.eot');
   src: url('../assets/fonts/freightbiglightitalic-webfont.eot?#iefix') format('embedded-opentype'),
     url('../assets/fonts/freightbiglightitalic-webfont.woff') format('woff'),
     url('../assets/fonts/freightbiglightitalic-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'freightbigbookregular';
+  font-style: normal;
+  font-weight: normal;
   src: url('../assets/fonts/freightbigbook-webfont.eot');
   src: url('../assets/fonts/freightbigbook-webfont.eot?#iefix') format('embedded-opentype'),
     url('../assets/fonts/freightbigbook-webfont.woff') format('woff'),
     url('../assets/fonts/freightbigbook-webfont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 @font-face {
   font-family: 'freightbigbookitalicregular';
+  font-style: normal;
+  font-weight: normal;
   src: url('../assets/fonts/freightbigbookitalic-webfont.eot');
   src: url('../assets/fonts/freightbigbookitalic-webfont.eot?#iefix') format('embedded-opentype'),
     url('../assets/fonts/freightbigbookitalic-webfont.woff') format('woff'),
     url('../assets/fonts/freightbigbookitalic-webfont.ttf') format('truetype');
-  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'pingfang_sclight';
   font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/pingfangsc-light-webfont.eot');
+  src: url('../assets/fonts/pingfangsc-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/pingfangsc-light-webfont.woff') format('woff'),
+    url('../assets/fonts/pingfangsc-light-webfont.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'pingfang_sclight';
-    src: url('../assets/fonts/pingfangsc-light-webfont.eot');
-    src: url('../assets/fonts/pingfangsc-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../assets/fonts/pingfangsc-light-webfont.woff') format('woff'),
-         url('../assets/fonts/pingfangsc-light-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'pingfang_scregular';
-    src: url('../assets/fonts/pingfangsc-regular-webfont.eot');
-    src: url('../assets/fonts/pingfangsc-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../assets/fonts/pingfangsc-regular-webfont.woff') format('woff'),
-         url('../assets/fonts/pingfangsc-regular-webfont.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'pingfang_scregular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/pingfangsc-regular-webfont.eot');
+  src: url('../assets/fonts/pingfangsc-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/pingfangsc-regular-webfont.woff') format('woff'),
+    url('../assets/fonts/pingfangsc-regular-webfont.ttf') format('truetype');
 }

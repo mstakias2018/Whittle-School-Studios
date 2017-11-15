@@ -21,7 +21,7 @@ const MarkdownLink = ({ children, href }, { language }) => {
       </a>
     );
   }
-  return <Link to={`/${getIsoCode(language)}${href}`}>{children}</Link>; // eslint-disable-line jsx-a11y/anchor-is-valid
+  return <Link to={`/${getIsoCode(language)}${href}`}>{children}</Link>;
 };
 
 MarkdownLink.propTypes = propTypes;

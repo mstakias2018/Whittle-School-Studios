@@ -23,7 +23,7 @@
   @media (--bp-sm-upper-only) {
     flex-wrap: wrap;
   }
-  
+
   @media (--bp-md) {
     @mixin grid-container;
     padding-bottom: 50px;
@@ -37,7 +37,7 @@
 }
 
 .menuBlock {
-  
+
   @media (--bp-sm-only) {
     @mixin span 4, var(--grid-columns-sm), sm;
     @mixin grid-container;
@@ -60,6 +60,7 @@
 
 .menuBlockItem {
   @mixin type-nav;
+  display: none;
   margin-bottom: 35px;
   min-height: 36px;
 
@@ -78,11 +79,11 @@
   @media (--bp-lg) {
     @mixin span 2, var(--grid-columns-lg), lg;
   }
-  display: none;
 }
 
 .menuBlockItemNoSub {
   @mixin type-nav;
+  display: none;
   min-height: 36px;
 
   @media (--bp-sm-only) {
@@ -106,12 +107,11 @@
     margin-bottom: 30px;
     padding-bottom: 32.5px;
   }
-  display: none;
 }
 
 .menuBlockSubItem {
   @mixin type-sub-nav;
+  display: none;
   margin-bottom: 35px;
   width: auto;
-  display: none;
 }

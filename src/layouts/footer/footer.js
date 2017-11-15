@@ -116,8 +116,6 @@ const Links = [
   },
 ];
 
-const copyright = 'All Rights Reserved. © 2017\nG30 Project Ltd, the global parent entity.';
-
 const {
   CLASSES,
 } = require('./../../constants/classes');
@@ -129,13 +127,13 @@ const Footer = () => (
           (item.isDoubleBlock ? (
             <div
               className={styles.menuBlock}
-              key={i}
+              key={i.toString()}
             >
               {item.subLinks.map((subItem, j) => (
                 <a
                   className={styles.menuBlockItemNoSub}
                   href={subItem.link}
-                  key={j}
+                  key={j.toString()}
                 >
                   {subItem.title}
                 </a>
@@ -144,7 +142,7 @@ const Footer = () => (
           ) : (
             <div
               className={styles.menuBlock}
-              key={i}
+              key={i.toString()}
             >
               <a
                 className={styles.menuBlockItem}
@@ -156,7 +154,7 @@ const Footer = () => (
                 <a
                   className={styles.menuBlockSubItem}
                   href={subItem.link}
-                  key={j}
+                  key={j.toString()}
                 >
                   {subItem.title}
                 </a>

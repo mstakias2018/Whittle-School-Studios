@@ -27,9 +27,9 @@ const PageHead = ({
 }) => (
   <div
     className={cx(styles.pageHead, {
-      [styles.pageHead__home]: type === PAGE_TYPE.HOME,
-      [styles.pageHead__article]: type === PAGE_TYPE.ARTICLE,
-      [styles.pageHead__category]: type === PAGE_TYPE.CATEGORY,
+      [styles.pageHead_home]: type === PAGE_TYPE.HOME,
+      [styles.pageHead_article]: type === PAGE_TYPE.ARTICLE,
+      [styles.pageHead_category]: type === PAGE_TYPE.CATEGORY,
     })}
   >
     <Title
