@@ -1,0 +1,3 @@
+exports.TIMINGS = {
+  CAROUSEL_CAPTION_CHANGE_TIME: 300,
+};

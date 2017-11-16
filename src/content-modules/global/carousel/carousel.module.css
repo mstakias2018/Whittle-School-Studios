@@ -1,0 +1,230 @@
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/variables.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.componentWrapper {
+  @mixin grid-container;
+  margin-bottom: 60px !important;
+}
+
+.componentContent {
+  @mixin span 3, var(--grid-columns-sm), sm;
+
+  @media (--bp-md) {
+    @mixin span 6, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 8, var(--grid-columns-lg), lg;
+    @mixin custom-column 2, var(--grid-columns-lg), margin-left;
+  }
+}
+
+:global(.pageContent) {
+  overflow: hidden;
+}
+
+:global(.image-gallery-slides) { /* stylelint-disable-line */
+  overflow: visible;
+}
+
+:global(.image-gallery-slide) { /* stylelint-disable-line */
+  transition: padding var(--timing-fast) var(--easing-default);
+}
+
+:global(.image-gallery-slide.left) { /* stylelint-disable-line */
+  @mixin custom-column 4, 8, padding-right;
+
+  @media (--bp-lg) {
+    @mixin custom-column 1, 8, padding-right;
+  }
+}
+
+:global(.image-gallery-slide.right) { /* stylelint-disable-line */
+  @mixin custom-column 2, 8, padding-left;
+
+  @media (--bp-lg) {
+    @mixin custom-column 1, 8, padding-left;
+  }
+}
+
+:global(.image-gallery-image) { /* stylelint-disable-line */
+  display: flex;
+  height: 200px;
+  justify-content: flex-start;
+
+  img {
+    cursor: pointer;
+    height: 100%;
+    width: auto;
+  }
+
+  :global(.fullscreen-modal) & { /* stylelint-disable-line */
+    justify-content: center;
+  }
+
+  @media (--bp-lg) {
+    height: 260px;
+  }
+
+  @media (--bp-lg) {
+    height: 360px;
+    justify-content: center;
+  }
+}
+
+/* This block disables coursor pointer on central image as
+full screen mode is temporarily disabled.
+Comment this block when full screen is reanabled*/
+:global(.image-gallery-slide.center) { /* stylelint-disable-line */
+  img {
+    cursor: default;
+  }
+}
+
+:global(.fullscreen-modal .image-gallery-image) { /* stylelint-disable-line */
+  img {
+    cursor: default;
+  }
+}
+
+.carouselInfo {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  min-height: 50px;
+  padding-right: calc(2 * var(--grid-gutter-lg));
+
+  @media (--bp-lg) {
+    @mixin custom-column 1, 8, margin-left;
+  }
+}
+
+:global(.fullscreen-modal) ~ .carouselInfo { /* stylelint-disable-line */
+  align-items: center;
+  bottom: 80px;
+  justify-content: space-between;
+  left: 0;
+  padding: 0 10%;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+
+  .caption {
+    color: #fff;
+    font-size: 14px;
+    order: 2;
+
+    @media (--bp-lg) {
+      font-size: 18px;
+    }
+  }
+
+  .arrow {
+    background-color: transparent;
+    height: 30px;
+    margin-left: 0;
+    width: 20px;
+  }
+
+  .arrowLeft {
+    background-image: url(../../../assets/images/arrow-left-white.svg);
+    order: 1;
+  }
+
+  .arrowRight {
+    background-image: url(../../../assets/images/arrow-right-white.svg);
+    order: 3;
+  }
+}
+
+.arrow {
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  border: none;
+  cursor: pointer;
+  height: 15px;
+  opacity: 0.8;
+  padding: 0;
+  width: 10px;
+
+  &:disabled {
+    opacity: 0.3;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  :global(.-touchDevice) & { /* stylelint-disable-line */
+    display: none;
+  }
+}
+
+.arrowLeft {
+  background-image: url(../../../assets/images/arrow-left.svg);
+}
+
+.arrowRight {
+  background-image: url(../../../assets/images/arrow-right.svg);
+}
+
+.caption {
+  @mixin type-caption;
+  flex-basis: 85%;
+  opacity: 1;
+  transition: opacity var(--timing-fast) var(--easing-default);
+}
+
+.caption_isFading {
+  opacity: 0;
+}
+
+.closeButton {
+  @mixin type-menu;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  display: none;
+  position: fixed;
+  right: 25px;
+  top: 15px;
+  z-index: 10;
+
+  @media (--bp-md) {
+    right: 60px;
+    top: 30px;
+  }
+}
+
+:global(.fullscreen-modal) ~ .closeButton { /* stylelint-disable-line */
+  display: block;
+}
+
+.fullScreenButton {
+  background-color: transparent;
+  background-image: url(../../../assets/images/full-screen-button.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  border: none;
+  cursor: pointer;
+  height: 18px;
+  margin-left: 30px;
+  opacity: 0.8;
+  padding: 0;
+  width: 18px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+:global(.fullscreen-modal) ~ .carouselInfo .fullScreenButton { /* stylelint-disable-line */
+  display: none;
+}

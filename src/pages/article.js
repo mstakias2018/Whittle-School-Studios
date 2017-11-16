@@ -6,6 +6,7 @@ import PageHead from '../components/global/page-head';
 
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
+import Carousel from '../content-modules/global/carousel';
 
 import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
 import { PAGE_TYPE } from '../constants/settings';
@@ -22,6 +23,27 @@ const Article = () => (
       <Title
         text="Promoting Economic & Cultural Diversity Across Our Campuses"
         type={PAGE_TYPE.ARTICLE}
+      />
+      <Carousel
+        images={
+          [
+            {
+              original: largeImage,
+              originalAlt: 'Alt 1',
+              caption: 'Caption one',
+            },
+            {
+              original: smallImage,
+              originalAlt: 'Alt 2',
+              caption: 'Caption Loreum Ipsum: Lorem ipsum cum sociis natoque penatibus et magnis dis parturient montes, nascetur',
+            },
+            {
+              original: largeImage,
+              originalAlt: 'Alt 3',
+              caption: 'Caption three',
+            },
+          ]
+        }
       />
       <BodyText
         content={{
