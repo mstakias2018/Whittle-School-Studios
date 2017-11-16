@@ -65,25 +65,22 @@ class Carousel extends Component {
   }
 
   onSlide = (e) => {
-    if (e > this.gallery.getCurrentIndex()) {
-      this.changeSlide(CAROUSEL_DIRECTION.RIGHT);
-    } else {
-      this.changeSlide(CAROUSEL_DIRECTION.LEFT);
-    }
+    this.setState({
+      fading: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        currentCaption: this.props.images[e].caption,
+        fading: false,
+      });
+    }, TIMINGS.CAROUSEL_CAPTION_CHANGE_TIME);
   }
 
   changeSlide = (direction) => {
     this.setState({
       currentSlide: this.gallery.getCurrentIndex() + direction,
-      fading: true,
     });
     this.gallery.slideToIndex(this.gallery.getCurrentIndex() + direction);
-    setTimeout(() => {
-      this.setState({
-        currentCaption: this.props.images[this.gallery.getCurrentIndex()].caption,
-        fading: false,
-      });
-    }, TIMINGS.CAROUSEL_CAPTION_CHANGE_TIME);
   }
 
   handleARIA = () => {
