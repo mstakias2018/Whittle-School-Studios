@@ -5,14 +5,13 @@
 @import '../../assets/styles/includes/typography.css';
 
 .wrapper {
-  @mixin component-wrapper-footer;
   background-color: var(--color-background-green-gray);
   display: flex;
   justify-content: center;
 }
 
 .content {
-  @mixin component-container-ww;
+  @mixin component-container;
   padding-bottom: 25px;
   padding-top: 0;
 

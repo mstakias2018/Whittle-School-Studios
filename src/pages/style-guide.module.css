@@ -6,7 +6,6 @@
 @import '../assets/styles/includes/mixins.css';
 
 .wrapper {
-  @mixin component-wrapper;
   background-color: var(--color-background-light-green-gray);
 }
 

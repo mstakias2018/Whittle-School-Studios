@@ -7,11 +7,24 @@
   bottom: 0;
   display: flex;
   justify-content: center;
+  left: 0;
   opacity: .3;
   position: fixed;
+  right: 0;
   top: 0;
-  width: 100vw;
   z-index: -1;
+
+  @media (--bp-sm-only) {
+    padding: var(--component-wrapper-margin-sm);
+  }
+
+  @media (--bp-md-only) {
+    padding: var(--component-wrapper-margin-md);
+  }
+
+  @media (--bp-lg) {
+    padding: var(--component-wrapper-margin-lg);
+  }
 }
 
 .onTop {
@@ -21,6 +34,7 @@
 .grid {
   @mixin component-container;
   height: 100%;
+  width: 100%;
 }
 
 .gridContainer {

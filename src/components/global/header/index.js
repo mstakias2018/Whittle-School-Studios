@@ -2,23 +2,30 @@ import React from 'react';
 
 import Logo from './header-logo/header-logo';
 import MainMenu from './header-menu/header-menu';
-import Locales from './header-languages/header-locales';
+import Locales from './header-locales/';
+import Submenu from './header-submenu/';
 
 import { REGION, LANGUAGE } from '../../../constants/regions';
 
 import styles from './header.module.css';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { menuActive: false };
-  }
+  state = {
+    menuActive: false,
+    subnavItem: null,
+  };
+
+  changeSubNav = (newItem) => {
+    this.setState({
+      subnavItem: newItem,
+    });
+  };
 
   toggleMenu = () => {
     this.setState(prevState => ({
       menuActive: !prevState.menuActive,
     }));
-  }
+  };
 
   render() {
     return (
@@ -34,11 +41,17 @@ class Header extends React.Component {
               className={styles.toggleMenu}
               onClick={this.toggleMenu}
             >
-                Menu
+              { !this.state.menuActive ? 'menu' : 'close' }
             </button>
-            <MainMenu isActive={this.state.menuActive} />
+            <MainMenu
+              changeSubNavHandler={this.changeSubNav}
+              isActive={this.state.menuActive}
+            />
           </div>
         </div>
+        { this.state.subnavItem &&
+          <Submenu navItem={this.state.subnavItem} />
+        }
       </header>
     );
   }

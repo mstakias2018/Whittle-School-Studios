@@ -1,86 +1,27 @@
 @import './breakpoints.css';
 @import './variables.css';
 
-@define-mixin component-wrapper {
-  margin: 0 var(--component-wrapper-margin-sm);
-  width: calc(100% - 2 * var(--component-wrapper-margin-sm));
-
-  @media (--bp-md) {
-    margin: 0 var(--component-wrapper-margin-md);
-    width: calc(100% - 2 * var(--component-wrapper-margin-md));
-  }
-
-  @media (--bp-lg) {
-    margin: 0 var(--component-wrapper-margin-lg);
-    width: calc(100% - 2 * var(--component-wrapper-margin-lg));
-  }
-}
-
-@define-mixin component-wrapper-footer {
-  @mixin component-wrapper;
-  margin-bottom: var(--component-wrapper-margin-sm);
-
-  @media (--bp-md) {
-    margin-bottom: var(--component-wrapper-margin-md);
-  }
-
-  @media (--bp-lg) {
-    margin-bottom: var(--component-wrapper-margin-lg);
-  }
-}
-
 @define-mixin component-container {
   box-sizing: border-box;
 
   @media (--bp-sm-only) {
     margin: 0 var(--container-margin-sm);
-    width: var(--container-sm);
   }
 
   @media (--bp-sm-upper-only) {
     margin: 0 var(--container-margin-sm-upper-only);
-    width: var(--container-sm-upper-only);
   }
 
   @media (--bp-md) {
     margin: 0 var(--container-margin-md);
-    width: var(--container-md);
   }
 
   @media (--bp-lg) {
     margin: 0 var(--container-margin-lg);
-    width: var(--container-lg);
   }
 
   @media (--bp-xl) {
-    width: var(--container-xl);
-  }
-}
-
-@define-mixin component-container-ww {
-  box-sizing: border-box;
-
-  @media (--bp-sm-only) {
-    margin: 0 calc(var(--container-margin-sm) - var(--component-wrapper-margin-sm));
-    width: var(--container-sm);
-  }
-
-  @media (--bp-sm-upper-only) {
-    margin: 0 calc(var(--container-margin-sm) - var(--component-wrapper-margin-sm));
-    width: var(--container-sm-upper-only);
-  }
-
-  @media (--bp-md) {
-    margin: 0 calc(var(--container-margin-md) - var(--component-wrapper-margin-md));
-    width: var(--container-md);
-  }
-
-  @media (--bp-lg) {
-    margin: 0 calc(var(--container-margin-lg) - var(--component-wrapper-margin-lg));
-    width: var(--container-lg);
-  }
-
-  @media (--bp-xl) {
+    margin: 0 auto;
     width: var(--container-xl);
   }
 }

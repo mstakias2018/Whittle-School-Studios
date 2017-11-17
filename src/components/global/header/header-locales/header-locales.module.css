@@ -1,4 +1,5 @@
 @import '../../../../assets/styles/includes/mixins.css';
+@import '../../../../assets/styles/includes/grid.css';
 @import '../../../../assets/styles/includes/typography.css';
 @import '../../../../assets/styles/includes/variables.css';
 
@@ -6,31 +7,74 @@
   margin-left: 9px;
 }
 
-.languages {
-  @mixin component-container;
+.locales {
+  @media (--bp-sm-only) {
+    display: none;
+
+    &.locales_isSmall {
+      display: block;
+    }
+  }
+
+  @media (--bp-md) {
+    @mixin component-container;
+
+    &.locales_isSmall {
+      display: none;
+    }
+  }
+
   padding-bottom: 73px;
   padding-top: 11px;
   position: relative;
   text-align: right;
 }
 
-.languageItems {
-  margin: 0;
-  padding: 0;
+.localesItems {
+  @media (--bp-sm-only) {
+    @mixin span 4, 4, md;
+    @mixin nested-grid-container;
+  }
 }
 
-.languageItem {
+.localesItem {
+  @media (--bp-sm-only) {
+    @mixin span 2, 4, sm;
+  }
+
   display: inline-block;
   list-style: none;
-  margin-left: 20px;
+
+  @media (--bp-md) {
+    margin-left: 20px;
+  }
+
+  @media (--bp-lg) {
+    margin-left: 15px;
+  }
 
   button {
     @mixin type-language;
     align-items: center;
     background: none;
     border: none;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
+    padding: 0;
+
+    @media (--bp-sm-only) {
+      border-top: solid 1px var(--color-light-border);
+      padding: 16px 0 0 0;
+      width: 100%;
+
+      img {
+        height: 7px;
+        #arrow {
+          fill: red;
+        }
+      }
+    }
   }
 }
 

@@ -1,3 +1,6 @@
+@import './breakpoints.css';
+@import './variables.css';
+
 html {
   font-size: 10PX!important;
   -ms-text-size-adjust: 100%;
@@ -5,6 +8,17 @@ html {
 }
 body {
   margin: 0;
+  @media (--bp-sm-only) {
+    padding: var(--component-wrapper-margin-sm);
+  }
+
+  @media (--bp-md-only) {
+    padding: var(--component-wrapper-margin-md);
+  }
+
+  @media (--bp-lg) {
+    padding: var(--component-wrapper-margin-lg);
+  }
 }
 article,
 aside,

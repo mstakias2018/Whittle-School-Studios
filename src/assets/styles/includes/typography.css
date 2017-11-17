@@ -149,9 +149,14 @@
 @define-mixin type-h5-italic {
   color: var(--color-text-dark);
   font-family: var(--font-serif-light-italic);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: normal;
-  line-height: 18px;
+  line-height: 20px;
+
+  @media (--bp-md) {
+    font-size: 18px;
+    line-height: 18px;
+  }
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);
@@ -238,11 +243,16 @@
 @define-mixin type-language {
   color: var(--color-text-dark);
   font-family: var(--font-sans-serif-regular);
-  font-size: 11px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 18px;
   text-decoration: none;
   text-decoration-color: transparent;
   text-underline-position: under;
+
+  @media (--bp-md) {
+    font-size: 11px;
+    line-height: 16px;
+  }
 }
 
 @define-mixin type-language-select {

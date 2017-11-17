@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import { IMAGE_BP, IMAGE_SHAPE, IMAGE_TYPE } from './images';
 import { PAGE_TYPES } from './settings';
+import { BREAKPOINT } from './breakpoints';
 import { LANGUAGE, REGION } from './regions';
 
 const isValidSourcesBySize = sourcesBySize =>
@@ -46,6 +47,7 @@ const INLINE_IMAGE = PropTypes.shape({
 });
 
 exports.PROP_TYPES = {
+  BREAKPOINT: PropTypes.oneOf(BREAKPOINT),
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES: PropTypes.shape(validateSourcesBySize),
   LANGUAGE: PropTypes.oneOf([LANGUAGE.ENGLISH, LANGUAGE.CHINESE]),

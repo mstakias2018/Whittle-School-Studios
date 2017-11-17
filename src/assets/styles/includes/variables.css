@@ -50,10 +50,10 @@
 }
 
 :root {
-  --container-margin-sm: 7.8%;
-  --container-margin-sm-upper-only: 12%;
-  --container-margin-md: 12.5%;
-  --container-margin-lg: 12.5%;
+  --container-margin-sm: calc(7.8% - var(--component-wrapper-margin-sm));
+  --container-margin-sm-upper-only: calc(12% - var(--component-wrapper-margin-sm));
+  --container-margin-md: calc(12.5% - var(--component-wrapper-margin-md));
+  --container-margin-lg: calc(12.5% - var(--component-wrapper-margin-lg));
 }
 
 /* Dimensions */
