@@ -24,6 +24,7 @@ const ContentPageTemplate = ({ data: { contentfulContentPage }, pathContext: { i
     mainImageAlt,
     modules,
     pageType,
+    subhead,
   } = contentfulContentPage;
 
   return (
@@ -33,6 +34,7 @@ const ContentPageTemplate = ({ data: { contentfulContentPage }, pathContext: { i
         headline={headline}
         imageAlt={mainImageAlt}
         imageSources={imageDataByType[IMAGE_TYPE.MAIN]}
+        subhead={subhead}
         type={pageType}
       />
       { modules &&
@@ -53,6 +55,7 @@ export const pageQuery = graphql`
   query contentPageQuery($id: String!) {
     contentfulContentPage(id: { eq: $id }) {
       headline
+      subhead
       mainImageAlt
       pageType
       modules {
