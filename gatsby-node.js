@@ -10,9 +10,15 @@ const {
   saveMainImage,
 } = require('./src/utils/save-images');
 
+const copyNetlifyVariables = () =>
+  ['BRANCH', 'COMMIT_REF'].forEach((variableName) => {
+    process.env[`GATSBY_${variableName}`] = process.env[variableName];
+  });
+
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
+  copyNetlifyVariables();
   resetImageDir();
 
   const promises = REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
