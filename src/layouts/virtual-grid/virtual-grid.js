@@ -3,6 +3,15 @@ import cx from 'classnames';
 
 import styles from './virtual-grid.module.css';
 
+const maxGridSize = () => {
+  const array = [];
+  for (let i = 0; i < 12; i += 1) {
+    array.push(i);
+  }
+
+  return array;
+};
+
 class VirtualGrid extends React.Component {
   constructor(props) {
     super(props);
@@ -52,7 +61,7 @@ class VirtualGrid extends React.Component {
           })}
         >
           <div className={styles.gridContainer}>
-            {Array.from({ length: 12 }, (v, i) => <span key={i.toString()} />)}
+            { maxGridSize().map((v, i) => <span key={i.toString()} />) }
           </div>
         </div>
       </div>
