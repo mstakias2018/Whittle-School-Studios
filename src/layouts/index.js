@@ -53,9 +53,11 @@ function WrapperInner({ children }, { language }) {
         titleTemplate="The Whittle School - %s"
       />
       <Header />
-      <main className={CLASSES.PAGE_CONTENT}>{children()}</main>
-      <Footer />
+      <main className={CLASSES.PAGE_CONTENT}>
+        {children()}
+      </main>
       <Fab />
+      <Footer />
       <VirtualGrid />
     </div>
   );

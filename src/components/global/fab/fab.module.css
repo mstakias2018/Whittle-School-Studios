@@ -1,14 +1,15 @@
 @import '../../../assets/styles/includes/breakpoints.css';
 @import '../../../assets/styles/includes/variables.css';
+@import '../../../assets/styles/includes/grid.css';
 
 .wrapper {
   border-radius: 50%;
   bottom: 20px;
-  height: 100px;
+  height: var(--fab-size-sm);
   padding: 0;
   position: fixed;
-  right: 40px;
-  width: 100px;
+  right: var(--container-margin-sm);
+  width: var(--fab-size-sm);
 
   @media (--bp-sm-only) {
     background-color: var(--color-background-white);
@@ -16,18 +17,28 @@
     padding: 10px;
   }
 
+  @media (--bp-sm-upper-only) {
+    right: var(--container-margin-sm-upper-only);
+  }
+
   @media (--bp-md) {
     bottom: 40px;
-    height: 80px;
-    right: 150px;
-    width: 80px;
+    height: var(--fab-size-md);
+    right:
+      calc(var(--container-margin-md)
+      + ((100vw - (2 * var(--container-margin-md)))/var(--grid-columns-md))
+      - ((var(--fab-size-md) + var(--grid-gutter-md))/2));
+    width: var(--fab-size-md);
   }
 
   @media (--bp-lg) {
-    bottom: 130px;
-    height: 130px;
+    height: var(--fab-size-lg);
+    right:
+      calc(var(--container-margin-lg)
+      + ((100vw - (2 * var(--container-margin-lg)))/var(--grid-columns-lg))
+      - ((var(--fab-size-lg) + var(--grid-gutter-lg))/2));
     transform: translateY(390px);
-    width: 130px;
+    width: var(--fab-size-lg);
   }
 }
 

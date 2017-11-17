@@ -72,6 +72,12 @@
   --container-xl: 1300px;
 }
 
+:root {
+  --fab-size-sm: 100px;
+  --fab-size-md: 80px;
+  --fab-size-lg: 130px;
+}
+
 /* Timings */
 :root {
   --timing-fast: 0.2s;

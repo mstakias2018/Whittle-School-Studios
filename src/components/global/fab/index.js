@@ -63,7 +63,10 @@ class Fab extends React.Component {
 
   render() {
     return (
-      <Link to="/#">
+      <Link
+        aria-label="Learn more about admissions and enrollment"
+        to="/#"
+      >
         <Plx
           animateWhenNotInViewport
           className={styles.wrapper}
