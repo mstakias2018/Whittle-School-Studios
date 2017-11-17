@@ -19,16 +19,19 @@ const Category = () => (
               original: largeImage,
               originalAlt: 'Alt 1',
               caption: 'Caption one',
+              originalClass: 'rectangle',
             },
             {
               original: smallImage,
               originalAlt: 'Alt 2',
               caption: 'Imagine the first global school, created by an international',
+              originalClass: 'circle',
             },
             {
               original: largeImage,
               originalAlt: 'Alt 3',
               caption: 'Lorem ipsum dolor amet iPhone biodiesel photo booth, seitan',
+              originalClass: 'rectangle',
             },
           ]
         }
