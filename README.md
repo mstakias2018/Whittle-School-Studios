@@ -43,3 +43,8 @@ yarn develop -- --host <YOUR IP ADDRESS>
 ## Environments/Deployment
 
 Read about these in the [annotations](https://paper.dropbox.com/doc/04-Global-Contentful-Notes-KFbCCPZhz9DWRbldpRJEe).
+
+## Adding Translations
+
+- Add translations to the JSON object on the [Dev China](https://app.contentful.com/spaces/udx5f2jyw09i/entries/qUHfYUmG8o4MCaEWoukuu) Contentful space (you can use fake Chinese values).
+- After development, run `yarn copy-cn-to-us` to copy the English values you've provided to the Dev US Contentful space.

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
@@ -15,8 +16,6 @@ const propTypes = {
   visibleBreakpoint: PROP_TYPES.BREAKPOINT,
   languageSelected: PROP_TYPES.LANGUAGE.isRequired,
 };
-
-const defaultProps = { visibleBreakpoint: false };
 
 class Locales extends React.Component {
   state = {
@@ -47,6 +46,8 @@ class Locales extends React.Component {
   };
 
   render() {
+    const { translations } = this.context;
+
     return (
       <div className={cx(styles.locales, {
         [styles.locales_isSmall]: this.props.visibleBreakpoint === BREAKPOINTS.BREAKPOINT_SM,
@@ -56,9 +57,9 @@ class Locales extends React.Component {
           <li className={styles.localesItem}>
             <button
               onClick={() => { this.toggleRegionSelect(); }}
-              title="China"
+              title={translations.header.regions.china}
             >
-              <span>China</span>
+              <span>{translations.header.regions.china}</span>
               <img
                 alt=""
                 className={styles.arrow}
@@ -72,23 +73,23 @@ class Locales extends React.Component {
             >
               <ul>
                 <li className={cx({
+                  [styles.selected]: this.props.regionSelected === REGION.CHINA,
+                })}
+                >
+                  <button
+                    onClick={this.selectRegion('China')}
+                    title={translations.header.regions.china}
+                  >{translations.header.regions.china}
+                  </button>
+                </li>
+                <li className={cx({
                   [styles.selected]: this.props.regionSelected === REGION.US,
                 })}
                 >
                   <button
                     onClick={this.selectRegion('US')}
-                    title="US"
-                  >US
-                  </button>
-                </li>
-                <li className={cx({
-                  [styles.selected]: this.props.regionSelected === REGION.CHINA,
-                })}
-                >
-                  <button
-                    onClick={this.selectRegion('Chinese')}
-                    title="中文"
-                  >中文
+                    title={translations.header.regions.us}
+                  >{translations.header.regions.us}
                   </button>
                 </li>
               </ul>
@@ -97,7 +98,7 @@ class Locales extends React.Component {
           <li className={styles.localesItem}>
             <button
               onClick={() => { this.toggleLanguageSelect(); }}
-              title="English"
+              title={translations.header.languages.english}
             >
               <span>English</span>
               <img
@@ -113,23 +114,23 @@ class Locales extends React.Component {
             >
               <ul>
                 <li className={cx({
+                  [styles.selected]: this.props.languageSelected === LANGUAGE.CHINESE,
+                })}
+                >
+                  <button
+                    onClick={this.selectLanguage('CHINESE')}
+                    title={translations.header.languages.chinese}
+                  >{translations.header.languages.chinese}
+                  </button>
+                </li>
+                <li className={cx({
                   [styles.selected]: this.props.languageSelected === LANGUAGE.ENGLISH,
                 })}
                 >
                   <button
                     onClick={this.selectLanguage('ENGLISH')}
-                    title="English"
-                  >English
-                  </button>
-                </li>
-                <li className={cx({
-                  [styles.selected]: this.props.languageSelected === LANGUAGE.CHINESE,
-                })}
-                >
-                  <button
-                    onClick={this.selectLanguage('Chinese')}
-                    title="中文"
-                  >中文
+                    title={translations.header.languages.english}
+                  >{translations.header.languages.english}
                   </button>
                 </li>
               </ul>
@@ -141,7 +142,7 @@ class Locales extends React.Component {
   }
 }
 
+Locales.contextTypes = { translations: PropTypes.object };
 Locales.propTypes = propTypes;
-Locales.defaultProps = defaultProps;
 
 export default Locales;

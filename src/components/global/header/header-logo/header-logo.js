@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import LogoImg from '../../../../assets/images/logo.svg';
 import styles from './header-logo.module.css';
 
-const Logo = () => (
+const Logo = (props, { translations }) => (
   <div className={styles.logo}>
     <img
-      alt="Whittle school"
+      alt={translations.header.logoAlt}
       src={LogoImg}
     />
   </div>
 );
+
+Logo.contextTypes = { translations: PropTypes.object };
 
 export default Logo;

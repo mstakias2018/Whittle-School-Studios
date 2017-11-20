@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Link from 'gatsby-link';
 
@@ -62,9 +63,11 @@ class Fab extends React.Component {
   }
 
   render() {
+    const { translations } = this.context;
+
     return (
       <Link
-        aria-label="Learn more about admissions and enrollment"
+        aria-label={translations.fab.ariaLabel}
         to="/#"
       >
         <Plx
@@ -157,5 +160,7 @@ class Fab extends React.Component {
     );
   }
 }
+
+Fab.contextTypes = { translations: PropTypes.object };
 
 export default Fab;

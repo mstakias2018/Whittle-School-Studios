@@ -15,55 +15,78 @@ import '../assets/styles/main.css';
    so fonts will live in layouts/ */
 import './fonts.module.css';
 
+const { PROP_TYPES } = require('./../constants/custom-property-types');
 const { CLASSES } = require('./../constants/classes');
 const {
   LANGUAGE, LANGUAGE_CLASS, LANGUAGE_CONTENTFUL_LOCALE,
 } = require('./../constants/regions');
-const { getLanguageFromPathname } = require('./../utils/regions');
+const { getLanguageFromPathname, formatTranslations } = require('./../utils/regions');
 
 class TemplateWrapper extends Component {
   getChildContext() {
-    return { language: getLanguageFromPathname(this.props.location.pathname) || LANGUAGE.ENGLISH };
+    const { data: globalSettings, location: { pathname } } = this.props;
+    const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
+    return {
+      language,
+      translations: formatTranslations(globalSettings[language]),
+    };
   }
 
   render() {
-    return <WrapperInner>{this.props.children}</WrapperInner>;
+    const { language } = this.getChildContext();
+
+    return (
+      <div
+        className={cx({
+          '-touchDevice': detectTouchEvents.hasSupport,
+          wrapper: true,
+          [`wrapper_is${LANGUAGE_CLASS[language]}`]: true,
+        })}
+      >
+        <Helmet
+          htmlAttributes={{ lang: LANGUAGE_CONTENTFUL_LOCALE[language] }}
+          title="Home"
+          titleTemplate="The Whittle School - %s"
+        />
+        <Header />
+        <main className={CLASSES.PAGE_CONTENT}>{this.props.children()}</main>
+        <Footer />
+        <Fab />
+        <VirtualGrid />
+      </div>
+    );
   }
 }
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
+  data: PROP_TYPES.GLOBAL_SETTINGS.isRequired,
   location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
 };
 
-TemplateWrapper.childContextTypes = { language: PropTypes.string.isRequired };
-
-function WrapperInner({ children }, { language }) {
-  return (
-    <div
-      className={cx({
-        '-touchDevice': detectTouchEvents.hasSupport,
-        wrapper: true,
-        [`wrapper_is${LANGUAGE_CLASS[language]}`]: true,
-      })}
-    >
-      <Helmet
-        htmlAttributes={{ lang: LANGUAGE_CONTENTFUL_LOCALE[language] }}
-        title="Home"
-        titleTemplate="The Whittle School - %s"
-      />
-      <Header />
-      <main className={CLASSES.PAGE_CONTENT}>
-        {children()}
-      </main>
-      <Fab />
-      <Footer />
-      <VirtualGrid />
-    </div>
-  );
-}
-
-WrapperInner.propTypes = { children: PropTypes.func };
-WrapperInner.contextTypes = { language: PropTypes.string };
+TemplateWrapper.childContextTypes = {
+  language: PropTypes.string.isRequired,
+  translations: PropTypes.object.isRequired,
+};
 
 export default TemplateWrapper;
+
+// These language keys (eg ENGLISH) must match our language constants
+export const pageQuery = graphql`
+  query globalSettingsQuery {
+    ENGLISH: allContentfulGlobalSettings(filter: { node_locale: { eq: "en-US" } } ) {
+      edges {
+        node {
+          translations
+        }
+      }
+    }
+    CHINESE: allContentfulGlobalSettings(filter: { node_locale: { eq: "zh-CN" } } ) {
+      edges {
+        node {
+          translations
+        }
+      }
+    }
+  }
+`;

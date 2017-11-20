@@ -95,31 +95,42 @@ class Carousel extends Component {
     }
   }
 
-  renderLeftNav = () => (
-    <button
-      aria-label="Previous image"
-      className={cx('image-gallery-custom-left-nav', styles.arrow, styles.arrowLeft)}
-      disabled={this.state.currentSlide === 0}
-      onClick={this.onClickLeft}
-    />
-  )
+  renderLeftNav = () => {
+    const { translations } = this.context;
+    return (
+      <button
+        aria-label={translations.carousel.prevAriaLabel}
+        className={cx('image-gallery-custom-left-nav', styles.arrow, styles.arrowLeft)}
+        disabled={this.state.currentSlide === 0}
+        onClick={this.onClickLeft}
+      />
+    );
+  }
 
-  renderRightNav = () => (
-    <button
-      aria-label="Next image"
-      className={cx('image-gallery-custom-right-nav', styles.arrow, styles.arrowRight)}
-      disabled={this.state.currentSlide === this.props.images.length - 1}
-      onClick={this.onClickRight}
-    />
-  );
+  renderRightNav = () => {
+    const { translations } = this.context;
 
-  renderFullscreenButton = () => (
-    <button
-      aria-label="Open gallery in full screen mode"
-      className={styles.fullScreenButton}
-      onClick={this.onFullScreenClick}
-    />
-  );
+    return (
+      <button
+        aria-label={translations.carousel.nextAriaLabel}
+        className={cx('image-gallery-custom-right-nav', styles.arrow, styles.arrowRight)}
+        disabled={this.state.currentSlide === this.props.images.length - 1}
+        onClick={this.onClickRight}
+      />
+    );
+  }
+
+  renderFullscreenButton = () => {
+    const { translations } = this.context;
+
+    return (
+      <button
+        aria-label={translations.carousel.fullScreenAriaLabel}
+        className={styles.fullScreenButton}
+        onClick={this.onFullScreenClick}
+      />
+    );
+  }
 
   render() {
     return (
@@ -162,6 +173,7 @@ class Carousel extends Component {
   }
 }
 
+Carousel.contextTypes = { translations: PropTypes.object };
 Carousel.propTypes = propTypes;
 
 export default Carousel;

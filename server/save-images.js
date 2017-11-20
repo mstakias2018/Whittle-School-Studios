@@ -3,8 +3,8 @@ const request = require('request');
 
 const {
   IMAGE_CONFIG, IMAGE_SHAPE, IMAGE_SUBTYPE, IMAGE_TYPE,
-} = require('../constants/images');
-const { PAGE_TYPE } = require('../constants/settings');
+} = require('../src/constants/images');
+const { PAGE_TYPE } = require('../src/constants/settings');
 
 const STATIC_IMAGE_PATH = './static/images/';
 

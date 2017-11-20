@@ -18,6 +18,7 @@
     "strict": ["error"],
 
     "import/no-extraneous-dependencies": 0,
+    "react/no-typos": 0,
     "react/require-default-props": 0,
     "jsx-a11y/anchor-is-valid": [ "error", {"components": [] }]
   }

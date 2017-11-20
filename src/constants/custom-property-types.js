@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { IMAGE_BP, IMAGE_SHAPE, IMAGE_TYPE } from './images';
 import { PAGE_TYPES } from './settings';
 import { BREAKPOINT } from './breakpoints';
-import { LANGUAGE, REGION } from './regions';
+import { LANGUAGE, REGION, REGION_LANGUAGES } from './regions';
 
 const isValidSourcesBySize = sourcesBySize =>
   Object.keys(sourcesBySize).every((breakpoint) => {
@@ -46,8 +46,16 @@ const INLINE_IMAGE = PropTypes.shape({
   shape: PropTypes.oneOf([IMAGE_SHAPE.SQUARE, IMAGE_SHAPE.RECTANGLE]).isRequired,
 });
 
+const validateGlobalSettings = (props, propName) => {
+  const globalSettings = props[propName];
+  const isValid = Object.keys(globalSettings).every(language =>
+    REGION_LANGUAGES[process.env.GATSBY_REGION].includes(language) && typeof globalSettings[language] === 'object');
+  return isValid ? undefined : new Error('invalid global settings');
+};
+
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(BREAKPOINT),
+  GLOBAL_SETTINGS: PropTypes.shape(validateGlobalSettings),
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES: PropTypes.shape(validateSourcesBySize),
   LANGUAGE: PropTypes.oneOf([LANGUAGE.ENGLISH, LANGUAGE.CHINESE]),

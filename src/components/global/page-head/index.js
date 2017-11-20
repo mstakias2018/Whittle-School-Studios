@@ -33,7 +33,6 @@ const PageHead = ({
     })}
   >
     <Title
-      className="h1-test"
       text={headline}
       type={type}
     />

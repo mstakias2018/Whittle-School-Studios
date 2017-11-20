@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Logo from './header-logo/header-logo';
 import MainMenu from './header-menu/header-menu';
@@ -9,7 +10,7 @@ import { REGION, LANGUAGE } from '../../../constants/regions';
 
 import styles from './header.module.css';
 
-class Header extends React.Component {
+class Header extends Component {
   state = {
     menuActive: false,
     subnavItem: null,
@@ -28,6 +29,8 @@ class Header extends React.Component {
   };
 
   render() {
+    const { translations } = this.context;
+
     return (
       <header className={styles.header}>
         <Locales
@@ -41,7 +44,7 @@ class Header extends React.Component {
               className={styles.toggleMenu}
               onClick={this.toggleMenu}
             >
-              { !this.state.menuActive ? 'menu' : 'close' }
+              { !this.state.menuActive ? translations.general.menu : translations.general.close }
             </button>
             <MainMenu
               changeSubNavHandler={this.changeSubNav}
@@ -56,5 +59,7 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.contextTypes = { translations: PropTypes.object };
 
 export default Header;
