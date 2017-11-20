@@ -6,7 +6,7 @@ import detectTouchEvents from 'detect-touch-events';
 import cx from 'classnames';
 
 import Header from '../components/global/header';
-import Footer from './footer/footer';
+import Footer from '../components/global/footer';
 import Fab from '../components/global/fab';
 import VirtualGrid from './virtual-grid/virtual-grid';
 
@@ -38,7 +38,7 @@ class TemplateWrapper extends Component {
     return (
       <div
         className={cx({
-          '-touchDevice': detectTouchEvents.hasSupport,
+          _touchDevice: detectTouchEvents.hasSupport,
           wrapper: true,
           [`wrapper_is${LANGUAGE_CLASS[language]}`]: true,
         })}

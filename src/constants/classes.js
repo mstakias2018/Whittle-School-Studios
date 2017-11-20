@@ -8,4 +8,5 @@ exports.CLASSES = {
   GALLERY_IMAGE_CENTER: 'center',
   GALLERY_IMAGE_RIGHT: 'right',
   GALLERY_IMAGE_LEFT: 'left',
+  CONTAINER: 'container',
 };

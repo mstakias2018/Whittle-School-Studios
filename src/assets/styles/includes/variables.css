@@ -30,7 +30,8 @@
   --color-secondary-light: #f9eecd;
   --color-secondary-medium: #ebdcc0;
 
-  --color-light-border: rgba(141, 140, 138, 0.25);
+  --color-dark-border: rgba(34, 34, 34, 0.25);
+  --color-light-border: rgba(141, 140, 138, 0.35);
   --color-link-hover-underline: #8d8c8a;
 
   --color-fab-shadow: rgba(0,0,0,0.3);

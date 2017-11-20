@@ -160,7 +160,7 @@ Comment this block when full screen is reanabled*/
     opacity: 1;
   }
 
-  :global(.-touchDevice) & { /* stylelint-disable-line */
+  :global(._touchDevice) & {
     display: none;
   }
 }

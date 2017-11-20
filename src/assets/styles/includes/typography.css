@@ -235,6 +235,10 @@
     text-decoration-color: var(--color-link-hover-underline);
   }
 
+  :global(._touchDevice) &:hover {
+    text-decoration: none;
+  }
+
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-regular-cn);
   }
@@ -277,6 +281,16 @@
     text-decoration-color: var(--color-link-hover-underline);
   }
 
+  &:focus {
+    color: var(--color-text-light);
+    outline: none;
+  }
+
+  :global(._touchDevice) &:hover {
+    color: var(--color-text-dark);
+    text-decoration-color: transparent;
+  }
+
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-regular-cn);
   }
@@ -310,6 +324,9 @@
 
 @define-mixin type-footer {
   @mixin type-caption;
+  font-size: 12px;
+  line-height: 18px;
+  opacity: 0.9;
 }
 
 @define-mixin type-eyebrow {
@@ -351,6 +368,19 @@
   font-size: 14px;
   letter-spacing: 0.2px;
   line-height: 30px;
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-serif-book-italic-cn);
+  }
+}
+
+@define-mixin footershare-text {
+  color: var(--color-text-dark);
+  font-family: var(--font-serif-light-italic);
+  font-size: 24px;
+  letter-spacing: 0.25px;
+  line-height: 30px;
+  opacity: 0.9;
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-book-italic-cn);
