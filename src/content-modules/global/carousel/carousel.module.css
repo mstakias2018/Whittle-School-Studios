@@ -29,6 +29,7 @@
 }
 
 :global(.image-gallery-slide) { /* stylelint-disable-line */
+  background-color: var(--color-background-light-gray);
   transition: padding var(--timing-fast) var(--easing-default);
 }
 
