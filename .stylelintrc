@@ -3,36 +3,15 @@
     "stylelint-order"
   ],
   "rules": {
-    "max-empty-lines": [
-      1,
-      {"severity": "warning", "message": "Please use 1 empty line."}
-    ],
-    "indentation": [
-      2,
-      {"severity": "warning", "message": "Please use 2 spaces for indentation."}
-    ],
-    "color-hex-case": [
-      "lower",
-      {"severity": "warning", "message": "Lowercase characters are easier to distinguish from numbers"},
-    ],
+    "max-empty-lines": 1,
+    "indentation": 2,
+    "color-hex-case": "lower",
     "color-no-invalid-hex": true,
-    "block-no-empty": [
-      true,
-      {"severity": "warning", "message": "No empty blocks."},
-    ],
-    "block-opening-brace-space-before": [
-      "always",
-      {"severity": "warning", "message": "Please add space before."},
-    ],
-    "declaration-colon-space-after": [
-      "always",
-      {"severity": "warning", "message": "Please add space after."},
-    ],
+    "block-no-empty": true,
+    "block-opening-brace-space-before": "always",
+    "declaration-colon-space-after": "always-single-line",
     "declaration-block-trailing-semicolon": "always",
-    "order/properties-alphabetical-order": [
-      true,
-      {"severity": "warning", "message": "Please order properties alphabeticaly."},
-    ],
+    "order/properties-alphabetical-order": true,
     "selector-class-pattern": "^([a-z\\d]*([A-Z][a-z\\d]*)*)?(_[a-z\\d]*([A-Z][a-z\\d]*)*)?$"
   }
 }

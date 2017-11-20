@@ -106,10 +106,15 @@ const saveImage = (imageNode, type, subtype, index) => {
 
     // download and save src
     const srcName = `${sizeDir}src__${fileName}`;
-    imageSizePromises.push(downloadPromise(`http:${src}`, srcName).then(() => {
-      imageData.src = formatPathForBrowser(srcName);
-    }));
+    if (process.env.NODE_ENV !== 'production') {
+      imageData.src = srcName;
+    } else {
+      imageSizePromises.push(downloadPromise(`http:${src}`, srcName).then(() => {
+        imageData.src = formatPathForBrowser(srcName);
+      }));
+    }
 
+    // We only download srcSets in production to save time
     if (srcSet) {
       srcSet.split(',\n').forEach((srcSetItem) => {
         // split up 'filename.jpg 1.5x'
@@ -118,9 +123,13 @@ const saveImage = (imageNode, type, subtype, index) => {
 
         // download and save srcSet item
         const srcSetName = `${sizeDir}${resolution}__${fileName}`;
-        imageSizePromises.push(downloadPromise(`http:${itemFileName}`, srcSetName).then(() => {
-          imageData.srcSet.push(formatPathForBrowser(`${srcSetName} ${resolution}`));
-        }));
+        if (process.env.NODE_ENV !== 'production') {
+          imageData.srcSet.push(`${itemFileName} ${resolution}`);
+        } else {
+          imageSizePromises.push(downloadPromise(`http:${itemFileName}`, srcSetName).then(() => {
+            imageData.srcSet.push(formatPathForBrowser(`${srcSetName} ${resolution}`));
+          }));
+        }
       });
     }
 
