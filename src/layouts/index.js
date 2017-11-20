@@ -49,9 +49,9 @@ class TemplateWrapper extends Component {
           titleTemplate="The Whittle School - %s"
         />
         <Header />
+        <Fab />
         <main className={CLASSES.PAGE_CONTENT}>{this.props.children()}</main>
         <Footer />
-        <Fab />
         <VirtualGrid />
       </div>
     );

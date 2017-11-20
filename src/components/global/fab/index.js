@@ -35,7 +35,7 @@ class Fab extends React.Component {
     clientWidth: 0,
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     setTimeout(() => {
       const clientHeight = window.innerHeight;
       const clientWidth = window.innerWidth;
@@ -62,17 +62,21 @@ class Fab extends React.Component {
     }, 0);
   }
 
+  onFocus = () => {
+    if (this.fabButton.scrollManager.scrollPosition < this.state.startAppearAt + (3 * this.state.elementHeight)) {
+      window.scrollTo(0, this.state.startAppearAt + (3 * this.state.elementHeight));
+    }
+  }
+
   render() {
     const { translations } = this.context;
 
     return (
-      <Link
-        aria-label={translations.fab.ariaLabel}
-        to="/#"
-      >
+      <div role="complementary">
         <Plx
           animateWhenNotInViewport
           className={styles.wrapper}
+          onFocus={this.onFocus}
           parallaxData={
             this.state.clientWidth > BREAKPOINTS.BREAKPOINT_LG ?
             [
@@ -120,6 +124,7 @@ class Fab extends React.Component {
             ]
 
           }
+          ref={(el) => { this.fabButton = el; }}
         >
           <Plx
             animateWhenNotInViewport
@@ -139,16 +144,21 @@ class Fab extends React.Component {
               },
             ]}
           >
-            <img
-              alt=""
-              className={cx(styles.content, styles.circleEn)}
-              src={FabTextImage}
-            />
-            <img
-              alt=""
-              className={cx(styles.content, styles.circleCn)}
-              src={FabTextImageCn}
-            />
+            <Link
+              aria-label={translations.fab.ariaLabel}
+              to="/#"
+            >
+              <img
+                alt=""
+                className={cx(styles.content, styles.circleEn)}
+                src={FabTextImage}
+              />
+              <img
+                alt=""
+                className={cx(styles.content, styles.circleCn)}
+                src={FabTextImageCn}
+              />
+            </Link>
           </Plx>
           <img
             alt=""
@@ -156,7 +166,7 @@ class Fab extends React.Component {
             src={FabArrowImage}
           />
         </Plx>
-      </Link>
+      </div>
     );
   }
 }
