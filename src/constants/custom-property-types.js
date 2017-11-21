@@ -32,18 +32,34 @@ const validateImageDataByType = (props, propName) => {
   return isValid ? undefined : new Error('invalid image data by type');
 };
 
+const getInlineImagePropTypes = (withCircle = false) => ({
+  alt: PropTypes.string.isRequired,
+  caption: PropTypes.string,
+  shape: PropTypes.oneOf(withCircle ?
+    [IMAGE_SHAPE.CIRCLE, IMAGE_SHAPE.SQUARE, IMAGE_SHAPE.RECTANGLE] :
+    [IMAGE_SHAPE.SQUARE, IMAGE_SHAPE.RECTANGLE]).isRequired,
+});
+
+exports.getInlineImagePropTypes = getInlineImagePropTypes;
+
+const createTypenameChecker = desiredValue => (props, propName) =>
+  (props[propName] === desiredValue ? undefined : new Error('invalid typename'));
+
 const BODY_TEXT = PropTypes.shape({
-  __typename: PropTypes.string.isRequired,
+  __typename: createTypenameChecker('ContentfulBodyText'),
   content: PropTypes.shape({
     markdown: PropTypes.string.isRequired,
   }).isRequired,
 });
 
 const INLINE_IMAGE = PropTypes.shape({
-  __typename: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  caption: PropTypes.string,
-  shape: PropTypes.oneOf([IMAGE_SHAPE.SQUARE, IMAGE_SHAPE.RECTANGLE]).isRequired,
+  __typename: createTypenameChecker('ContentfulInlineImage'),
+  ...getInlineImagePropTypes(),
+});
+
+const SLIDESHOW_CAROUSEL = PropTypes.shape({
+  __typename: createTypenameChecker('ContentfulSlideshowCarousel'),
+  slides: PropTypes.arrayOf(PropTypes.shape(getInlineImagePropTypes(true))),
 });
 
 const validateGlobalSettings = (props, propName) => {
@@ -59,7 +75,7 @@ exports.PROP_TYPES = {
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES: PropTypes.shape(validateSourcesBySize),
   LANGUAGE: PropTypes.oneOf([LANGUAGE.ENGLISH, LANGUAGE.CHINESE]),
-  MODULES: PropTypes.arrayOf(PropTypes.oneOfType([BODY_TEXT, INLINE_IMAGE])),
+  MODULES: PropTypes.arrayOf(PropTypes.oneOfType([BODY_TEXT, INLINE_IMAGE, SLIDESHOW_CAROUSEL])),
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
   REGION: PropTypes.oneOf([REGION.US, REGION.CHINA]),
 };

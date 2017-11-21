@@ -74,31 +74,38 @@ When we make our query, we don't know the value of `shape`, so we request asset 
 
 ### Saving locally
 
-We save the images to our `static/` folder, whose contents will be copied into `public/` during the build process.
+We save the images to our `static/` folder, whose contents will be copied into `public/` during the build process. This functionality is disabled in development mode to save time.
 
 They are organized like this:
 
 ```
 main <image type>
-  id__filename.jpg
+  |- 123344555 <page ID>
     |-sm <image size>
-      |-src__filename.jpg
-      |-1x__filename.jpg
-      |-1.5x__filename.jpg
-      |-2x__filename.jpg
+      |- filename.jpg
+      |-1x
+        |- filename.jpg
+      |-1.5x
+        |- filename.jpg
+      |-2x
+        |- filename.jpg
 ```
 
-For images that are part of modules, we add an extra folder level for the index of the module containing the image:
+When necessary, add one or more extra folder levels to disambiguate between images:
 
 ```
-inline <image type>
-  2 <index>
-    id__filename.jpg
-      |-sm <image size>
-        |-src__filename.jpg
-        |-1x__filename.jpg
-        |-1.5x__filename.jpg
-        |-2x__filename.jpg
+main <image type>
+  |- 123344555 <page ID>
+    |- 1 <module index>
+      |- 1 <slide index>
+        |-sm <image size>
+          |- filename.jpg
+          |-1x
+            |- filename.jpg
+          |-1.5x
+            |- filename.jpg
+          |-2x
+            |- filename.jpg
 ```
 
 ## Passing image data to the template

@@ -48,10 +48,12 @@ exports.IMAGE_SUBTYPE = IMAGE_SUBTYPE;
 
 exports.MODULE_IMAGE_TYPE_MAP = {
   ContentfulInlineImage: IMAGE_TYPE.INLINE,
+  ContentfulSlideshowCarousel: IMAGE_TYPE.INLINE,
 };
 
 // must match Contentful values
 exports.IMAGE_SHAPE = {
+  CIRCLE: 'Circle',
   SQUARE: 'Square',
   RECTANGLE: 'Rectangle',
 };

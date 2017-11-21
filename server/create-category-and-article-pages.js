@@ -34,6 +34,17 @@ const createCategoryAndArticlePages = (graphql, createPage) => {
               ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
             }
           }
+          ... on ContentfulSlideshowCarousel {
+            slides {
+              shape
+              squareInlineImage: asset {
+                ${createQuery(IMAGE_SUBTYPE.INLINE_SQ)}
+              }
+              rectInlineImage: asset {
+                ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
+              }
+            }
+          }
         }
       `;
 
@@ -90,7 +101,7 @@ const createCategoryAndArticlePages = (graphql, createPage) => {
 
           const imageDataByType = {};
 
-          const mainImagePromise = saveMainImage(node);
+          const mainImagePromise = saveMainImage(node, [id]);
           if (mainImagePromise) {
             setupPromises.push(mainImagePromise.then((imageData) => {
               imageDataByType[IMAGE_TYPE.MAIN] = imageData;
@@ -99,9 +110,11 @@ const createCategoryAndArticlePages = (graphql, createPage) => {
 
           if (modules) {
             const modulePromises = modules.map((n, i) => {
-              const { __typename } = n;
+              const { __typename, slides } = n;
               if (__typename === 'ContentfulInlineImage') {
-                return saveInlineImage(n, i);
+                return saveInlineImage(n, [id, i]);
+              } else if (__typename === 'ContentfulSlideshowCarousel') {
+                return Promise.all(slides.map((s, j) => saveInlineImage(s, [id, i, j])));
               }
 
               return undefined;

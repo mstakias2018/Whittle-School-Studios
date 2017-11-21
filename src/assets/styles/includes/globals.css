@@ -24,3 +24,7 @@
 :global .pageContent {
   background-color: var(--color-background-light-gray);
 }
+
+:global(._isCircle) img {
+  border-radius: 50%;
+}

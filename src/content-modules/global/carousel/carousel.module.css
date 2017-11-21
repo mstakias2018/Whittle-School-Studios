@@ -229,7 +229,3 @@ Comment this block when full screen is reanabled*/
 :global(.fullscreen-modal) ~ .carouselInfo .fullScreenButton { /* stylelint-disable-line */
   display: none;
 }
-
-:global(.circle) img {
-  border-radius: 50%;
-}

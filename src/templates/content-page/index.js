@@ -70,6 +70,13 @@ export const pageQuery = graphql`
           alt
           caption
         }
+        ... on ContentfulSlideshowCarousel {
+          slides {
+            shape
+            alt
+            caption
+          }
+        }
       }
     }
   }

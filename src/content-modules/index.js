@@ -2,6 +2,7 @@ import React from 'react';
 
 import BodyText from './global/body-text';
 import InlineImage from './global/inline-image';
+import Carousel from './global/carousel';
 
 import { PROP_TYPES } from '../constants/custom-property-types';
 import { MODULE_IMAGE_TYPE_MAP } from '../constants/images';
@@ -9,6 +10,7 @@ import { MODULE_IMAGE_TYPE_MAP } from '../constants/images';
 const MODULE_MAP = {
   ContentfulBodyText: BodyText,
   ContentfulInlineImage: InlineImage,
+  ContentfulSlideshowCarousel: Carousel,
 };
 
 const propTypes = {

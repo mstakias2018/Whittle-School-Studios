@@ -7,7 +7,12 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 
 import styles from './carousel.module.css';
 
-const propTypes = { images: PropTypes.array.isRequired }; // eslint-disable-line
+import { getInlineImagePropTypes, PROP_TYPES } from '../../../constants/custom-property-types';
+
+const propTypes = {
+  imageSources: PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES.isRequired).isRequired,
+  slides: PropTypes.arrayOf(PropTypes.shape(getInlineImagePropTypes(true))).isRequired,
+};
 
 const {
   CLASSES,
@@ -25,13 +30,35 @@ const CAROUSEL_DIRECTION = {
 class Carousel extends Component {
   state = {
     currentSlide: 0,
-    currentCaption: this.props.images[0].caption,
+    currentCaption: this.props.slides[0].caption,
     fading: false,
   };
+
+  componentWillMount() {
+    const { imageSources, slides } = this.props;
+
+    this.formattedItems = imageSources.map((itemImageSources, i) => {
+      const { alt, shape } = slides[i];
+      const breakpoints = Object.keys(itemImageSources);
+
+      // TODO Find a way to add a `media` property to Carousel images
+      // so we can include srcSets for all breakpoints
+      const largestBreakpoint = breakpoints[breakpoints.length - 1];
+      const data = itemImageSources[largestBreakpoint];
+
+      return {
+        original: data.src,
+        originalAlt: alt,
+        originalClass: `_is${shape}`,
+        srcSet: data.srcSet,
+      };
+    });
+  }
 
   componentDidMount = () => {
     this.handleARIA();
   }
+
   componentDidUpdate = () => {
     this.handleARIA();
   }
@@ -70,7 +97,7 @@ class Carousel extends Component {
     });
     setTimeout(() => {
       this.setState({
-        currentCaption: this.props.images[e].caption,
+        currentCaption: this.props.slides[e].caption,
         fading: false,
       });
     }, TIMINGS.CAROUSEL_CAPTION_CHANGE_TIME);
@@ -114,7 +141,7 @@ class Carousel extends Component {
       <button
         aria-label={translations.carousel.nextAriaLabel}
         className={cx('image-gallery-custom-right-nav', styles.arrow, styles.arrowRight)}
-        disabled={this.state.currentSlide === this.props.images.length - 1}
+        disabled={this.state.currentSlide === this.props.slides.length - 1}
         onClick={this.onClickRight}
       />
     );
@@ -138,7 +165,7 @@ class Carousel extends Component {
         <div className={styles.componentContent}>
           <ImageGallery
             infinite={false}
-            items={this.props.images}
+            items={this.formattedItems}
             onClick={this.onClickImage}
             onSlide={this.onSlide}
             ref={(el) => { this.gallery = el; }}
