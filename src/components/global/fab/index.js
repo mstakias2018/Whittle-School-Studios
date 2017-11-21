@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import Link from 'gatsby-link';
 
 import Plx from 'react-plx';
 
 import styles from './fab.module.css';
 
-import FabTextImage from '../../../assets/images/fab-text-en.svg';
-import FabTextImageCn from '../../../assets/images/fab-text-cn.svg';
 import FabArrowImage from '../../../assets/images/fab-arrow.svg';
 
 const {
@@ -69,7 +66,7 @@ class Fab extends React.Component {
   }
 
   render() {
-    const { translations } = this.context;
+    const { fabTextImage, translations } = this.context;
 
     return (
       <div role="complementary">
@@ -150,13 +147,8 @@ class Fab extends React.Component {
             >
               <img
                 alt=""
-                className={cx(styles.content, styles.circleEn)}
-                src={FabTextImage}
-              />
-              <img
-                alt=""
-                className={cx(styles.content, styles.circleCn)}
-                src={FabTextImageCn}
+                className={styles.content}
+                src={fabTextImage}
               />
             </Link>
           </Plx>
@@ -171,6 +163,9 @@ class Fab extends React.Component {
   }
 }
 
-Fab.contextTypes = { translations: PropTypes.object };
+Fab.contextTypes = {
+  fabTextImage: PropTypes.string,
+  translations: PropTypes.object,
+};
 
 export default Fab;

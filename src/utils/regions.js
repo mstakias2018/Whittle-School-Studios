@@ -10,8 +10,3 @@ exports.getLanguageFromPathname = (pathname) => {
   const [languagePath] = isoCode.split('-');
   return Object.keys(LANGUAGE_PATH).find(language => LANGUAGE_PATH[language] === languagePath);
 };
-
-exports.formatTranslations = (globalSettings) => {
-  const { edges: [{ node: { translations } }] } = globalSettings;
-  return JSON.parse(translations);
-};
