@@ -3,6 +3,7 @@ import React from 'react';
 
 import styles from './modules.module.css';
 
+
 const Article = () => (
   <div className={styles.moduleWrapper}>
     <div className={styles.component}>

@@ -109,6 +109,7 @@
   font-family: var(--font-serif-light);
   font-size: 30px;
   font-weight: normal;
+  letter-spacing: 0.3px;
   line-height: 30px;
 
   :global(.wrapper_isChinese) & {
@@ -413,5 +414,16 @@
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);
+  }
+}
+
+@define-mixin breaker-text {
+  color: var(--color-text-dark);
+  font-family: var(--font-sans-serif-light);
+  font-size: 16px;
+  line-height: 24px;
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-sans-serif-light-cn);
   }
 }
