@@ -1,0 +1,67 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.wrapper {
+  @mixin component-container;
+  @mixin component-vertical-spacing;
+}
+
+.content {
+  @mixin grid-container;
+}
+
+.quoteBlock {
+  @mixin span 4, var(--grid-columns-sm), sm;
+
+  @media (--bp-md) {
+    @mixin span 6, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 10, var(--grid-columns-lg), lg;
+    @mixin custom-column 1, var(--grid-columns-lg), margin-left;
+  }
+}
+
+.quote {
+  @mixin pull-quote;
+  margin: 0;
+}
+
+.lastLineSeparator {
+  margin-right: 20px;
+}
+
+.author {
+  @mixin pull-author;
+  bottom: 4px;
+  position: relative;
+  white-space: pre;
+
+  @media (--bp-sm-only) {
+    display: block;
+    padding-top: 20px;
+    position: static;
+  }
+
+  @media (--bp-md) {
+    bottom: 6px;
+  }
+
+  &:before {
+    background-color: var(--color-text-light);
+    content: "";
+    display: inline-block;
+    height: 1px;
+    margin-right: 20px;
+    position: relative;
+    vertical-align: middle;
+    width: 60px;
+
+    @media (--bp-sm-only) {
+      margin-left: 0;
+    }
+  }
+}
