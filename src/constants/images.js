@@ -42,6 +42,7 @@ const IMAGE_SUBTYPE = {
   MAIN_ARTICLE: 'mainSquare',
   INLINE_SQ: 'inlineSquare',
   INLINE_RT: 'inlineRectangular',
+  INLINE_RT_VIDEO: 'inlineRectangularVideo',
 };
 
 exports.IMAGE_SUBTYPE = IMAGE_SUBTYPE;
@@ -58,16 +59,40 @@ exports.IMAGE_SHAPE = {
   RECTANGLE: 'Rectangle',
 };
 
+const commonFullWidthSquareSizes = {
+  [IMAGE_BP.SMALL]: {
+    width: 317,
+    height: 317,
+  },
+  [IMAGE_BP.SMALL_MID]: {
+    width: 499,
+    height: 499,
+  },
+};
+
+const inlineRectangularVideo = {
+  [IMAGE_BP.SMALL]: {
+    width: 317,
+    height: 178,
+  },
+  [IMAGE_BP.MEDIUM]: {
+    width: 494,
+    height: 278,
+  },
+  [IMAGE_BP.LARGE]: {
+    width: 634,
+    height: 357,
+  },
+  [IMAGE_BP.LARGE_MID]: {
+    width: 794,
+    height: 447,
+  },
+};
+
 exports.IMAGE_CONFIG = {
   [IMAGE_SUBTYPE.MAIN_CATEGORY]: {
-    [IMAGE_BP.SMALL]: {
-      width: 317,
-      height: 317,
-    },
-    [IMAGE_BP.SMALL_MID]: {
-      width: 494,
-      height: 494,
-    },
+    [IMAGE_BP.SMALL]: commonFullWidthSquareSizes[IMAGE_BP.SMALL],
+    [IMAGE_BP.SMALL_MID]: commonFullWidthSquareSizes[IMAGE_BP.SMALL_MID],
     [IMAGE_BP.MEDIUM]: {
       width: 654,
       height: 369,
@@ -86,14 +111,8 @@ exports.IMAGE_CONFIG = {
     },
   },
   [IMAGE_SUBTYPE.MAIN_ARTICLE]: {
-    [IMAGE_BP.SMALL]: {
-      width: 317,
-      height: 317,
-    },
-    [IMAGE_BP.SMALL_MID]: {
-      width: 494,
-      height: 494,
-    },
+    [IMAGE_BP.SMALL]: commonFullWidthSquareSizes[IMAGE_BP.SMALL],
+    [IMAGE_BP.SMALL_MID]: commonFullWidthSquareSizes[IMAGE_BP.SMALL_MID],
     [IMAGE_BP.MEDIUM]: {
       width: 654,
       height: 369,
@@ -112,35 +131,22 @@ exports.IMAGE_CONFIG = {
     },
   },
   [IMAGE_SUBTYPE.INLINE_SQ]: {
-    [IMAGE_BP.SMALL]: {
-      width: 317,
-      height: 317,
-    },
+    [IMAGE_BP.SMALL]: commonFullWidthSquareSizes[IMAGE_BP.SMALL],
     [IMAGE_BP.MEDIUM]: {
-      width: 494,
-      height: 494,
+      width: 495,
+      height: 495,
     },
     [IMAGE_BP.LARGE_MID]: {
-      width: 614,
-      height: 614,
+      width: 623,
+      height: 623,
     },
   },
+  [IMAGE_SUBTYPE.INLINE_RT_VIDEO]: inlineRectangularVideo,
   [IMAGE_SUBTYPE.INLINE_RT]: {
-    [IMAGE_BP.SMALL]: {
-      width: 317,
-      height: 178,
-    },
-    [IMAGE_BP.MEDIUM]: {
-      width: 494,
-      height: 278,
-    },
-    [IMAGE_BP.LARGE]: {
-      width: 634,
-      height: 357,
-    },
-    [IMAGE_BP.LARGE_MID]: {
-      width: 794,
-      height: 447,
-    },
+    [IMAGE_BP.SMALL]: commonFullWidthSquareSizes[IMAGE_BP.SMALL],
+    [IMAGE_BP.SMALL_MID]: commonFullWidthSquareSizes[IMAGE_BP.SMALL_MID],
+    [IMAGE_BP.MEDIUM]: inlineRectangularVideo[IMAGE_BP.MEDIUM],
+    [IMAGE_BP.LARGE]: inlineRectangularVideo[IMAGE_BP.LARGE],
+    [IMAGE_BP.LARGE_MID]: inlineRectangularVideo[IMAGE_BP.LARGE_MID],
   },
 };
