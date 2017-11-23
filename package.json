@@ -16,6 +16,7 @@
     "deploy": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/deploy.js"
   },
   "dependencies": {
+    "@vimeo/player": "git://github.com/vimeo/player.js#v2.2.1",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",

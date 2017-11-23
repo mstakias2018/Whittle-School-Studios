@@ -68,3 +68,9 @@
     }
   }
 }
+
+@define-mixin reset-button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}

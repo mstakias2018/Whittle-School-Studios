@@ -1,0 +1,49 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/variables.css';
+
+.videoWrapper {
+  height: 100%;
+  position: absolute;
+  top: -1px;
+  width: 100%;
+}
+
+.videoWrapperInner {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.iframe {
+  height: 100.5%;
+  margin-left: -.25%;
+  margin-top: -.25%;
+  width: 100.5%;
+}
+
+.iframe:not(.iframe_hasPlayed) {
+  display: none;
+}
+
+.button {
+  @mixin reset-button;
+  background-image: url(../../../assets/images/play-button.svg);
+  background-size: contain;
+  bottom: -30px;
+  height: var(--play-button-width);
+  left: 7px;
+  position: absolute;
+  transition: background-image var(--timing-fast) var(--easing-default);
+  width: var(--play-button-width);
+  z-index: 20;
+
+  @media (--bp-md) {
+    height: var(--play-button-width-md);
+    width: var(--play-button-width-md);
+  }
+
+  &:hover {
+    background-image: url(../../../assets/images/play-button-hover.svg);
+  }
+}

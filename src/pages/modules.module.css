@@ -1,13 +1,3 @@
-@import '../assets/styles/includes/mixins.css';
-
-.moduleWrapper {
-  /*@mixin component-container;*/
-}
-
-.component {
-  border-bottom: dashed 1px var(--color-light-border);
-}
-
 .componentInfo {
   font-size: 14px;
   padding: 20px;

@@ -1,10 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { IMAGE_MQ } from '../../../constants/images';
 
+const propTypes = {
+  ...PROP_TYPES.IMAGE_PROP_TYPES,
+  isAriaHidden: PropTypes.bool,
+};
+
 const Picture = ({
   alt,
+  isAriaHidden,
   sourcesBySize,
 }) => {
   const breakpoints = Object.keys(sourcesBySize);
@@ -22,12 +29,13 @@ const Picture = ({
           ))}
       <img
         alt={alt}
+        aria-hidden={isAriaHidden}
         src={sourcesBySize[largestBreakpoint].src}
       />
     </picture>
   );
 };
 
-Picture.propTypes = PROP_TYPES.IMAGE_PROP_TYPES;
+Picture.propTypes = propTypes;
 
 export default Picture;

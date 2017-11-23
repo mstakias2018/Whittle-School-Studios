@@ -8,17 +8,9 @@ import styles from './fab.module.css';
 
 import FabArrowImage from '../../../assets/images/fab-arrow.svg';
 
-const {
-  BREAKPOINTS,
-} = require('./../../../constants/breakpoints');
-
-const {
-  PAGE_PADDING, FAB_SIZE,
-} = require('./../../../constants/dimensions');
-
-const {
-  CLASSES,
-} = require('./../../../constants/classes');
+import { BREAKPOINTS } from '../../../constants/breakpoints';
+import { PAGE_PADDING, FAB_SIZE } from '../../../constants/dimensions';
+import { CLASSES } from '../../../constants/classes';
 
 class Fab extends React.Component {
   state = {

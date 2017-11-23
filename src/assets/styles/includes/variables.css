@@ -63,6 +63,8 @@
   --component-wrapper-margin-sm: 10px;
   --component-wrapper-margin-md: 24px;
   --component-wrapper-margin-lg: 40px;
+  --play-button-width: 54px;
+  --play-button-width-md: 68px;
 }
 
 :root {

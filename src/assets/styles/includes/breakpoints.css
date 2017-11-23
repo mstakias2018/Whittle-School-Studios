@@ -14,3 +14,9 @@
   /* 1600px */
   @custom-media --bp-xl (width > 100em);
 }
+
+/* custom media queries - emergency use only */
+:root {
+  /* 1100px-1280px */
+  @custom-media --bp-lg-lower-only (width > 68.75em) and (width <= 80em);
+}
