@@ -1,16 +1,9 @@
+@import './breakpoints.css';
 @import './mixins.css';
 @import './variables.css';
 
 :global ._noOverflow {
   overflow: hidden;
-}
-
-:global .hidden {
-  display: none;
-}
-
-:global .visible {
-  display: block;
 }
 
 :global .grid {
@@ -27,4 +20,50 @@
 
 :global(._isCircle) img {
   border-radius: 50%;
+}
+
+/* Visibility */
+
+:global .hide {
+  display: none !important;
+}
+
+:global .hideSm {
+  @media (--bp-sm-only) {
+    display: none !important;
+  }
+}
+
+:global .hideMd {
+  @media (--bp-md-only) {
+    display: none !important;
+  }
+}
+
+:global .hideLg {
+  @media (--bp-lg) {
+    display: none !important;
+  }
+}
+
+:global .showSm {
+  @media (--bp-md) {
+    display: none !important;
+  }
+}
+
+:global .showMd {
+  @media (--bp-sm-only) {
+    display: none !important;
+  }
+
+  @media (--bp-lg) {
+    display: none !important;
+  }
+}
+
+:global .showLg {
+  @media (--bp-sm-and-md-only) {
+    display: none !important;
+  }
 }

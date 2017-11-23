@@ -1,0 +1,62 @@
+@import '../../../../assets/styles/includes/variables.css';
+@import '../../../../assets/styles/includes/breakpoints.css';
+@import '../../../../assets/styles/includes/grid.css';
+@import '../../../../assets/styles/includes/typography.css';
+
+.wrapper {
+  @mixin span 4, var(--grid-columns-sm), sm;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  @media (--bp-sm-and-md-only) {
+    margin-bottom: 70px;
+  }
+
+  @media (--bp-md) {
+    @mixin span 4, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 6, var(--grid-columns-lg), lg;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.text {
+  @mixin footershare-text;
+  height: 70px;
+  width: 100%;
+
+  @media (--bp-lg) {
+    flex-basis: 50%;
+  }
+}
+
+.icons {
+  @mixin footershare-text;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 0;
+
+  @media (--bp-lg) {
+    flex-basis: calc(50% - 10px);
+    justify-content: space-between;
+    margin-left: 10px;
+  }
+}
+
+.icon {
+  opacity: 0.8;
+  @mixin span 1, var(--grid-columns-sm), sm;
+
+  @media (--bp-md) {
+    @mixin span 1, var(--grid-columns-sm), sm;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}

@@ -21,6 +21,7 @@ const {
   LANGUAGE, LANGUAGE_CLASS, LANGUAGE_CONTENTFUL_LOCALE,
 } = require('./../constants/regions');
 const { getLanguageFromPathname } = require('./../utils/regions');
+const { formatFooterLinks } = require('./../utils/links');
 
 class TemplateWrapper extends Component {
   getChildContext() {
@@ -29,6 +30,7 @@ class TemplateWrapper extends Component {
     const { fabText: { file: { url } }, translations } = data[`SETTINGS_${language}`];
     return {
       fabTextImage: url,
+      footerData: formatFooterLinks(data[`FOOTER_${language}`]),
       language,
       translations: JSON.parse(translations),
     };
@@ -68,15 +70,301 @@ TemplateWrapper.propTypes = {
 
 TemplateWrapper.childContextTypes = {
   fabTextImage: PropTypes.string.isRequired,
+  footerData: PropTypes.object.isRequired,
   language: PropTypes.string.isRequired,
   translations: PropTypes.object.isRequired,
 };
 
 export default TemplateWrapper;
 
-// These language keys (eg ENGLISH) must match our language constants
 export const pageQuery = graphql`
   query globalQuery {
+    FOOTER_ENGLISH: contentfulFooter(node_locale: { eq: "en-US" }) {
+      primaryLink1 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      utilityLink1 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      utilityLink2 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+     utilityLink2Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink2 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink2Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink3 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink3Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink4 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink4Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink5 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink5Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink6 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink6Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+    }
+
+    FOOTER_CHINESE: contentfulFooter(node_locale: { eq: "zh-CN" }) {
+      primaryLink1 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      utilityLink1 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      utilityLink2 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+     utilityLink2Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink2 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink2Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink3 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink3Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink4 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink4Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink5 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink5Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink6 {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+      primaryLink6Children {
+        linkTitle
+        linkDestinationExternal
+        linkDestinationInternal {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+    }
+
     SETTINGS_ENGLISH: contentfulGlobalSettings(node_locale: {eq: "en-US"}) {
       translations
       fabText {
