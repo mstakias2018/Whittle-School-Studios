@@ -6,7 +6,9 @@
   },
   "extends": "airbnb",
   "globals": {
-    "graphql": true
+    "env": true,
+    "graphql": true,
+    "SERVER_RENDER": true
   },
   "rules": {
     "quotes": ["error", "single"],

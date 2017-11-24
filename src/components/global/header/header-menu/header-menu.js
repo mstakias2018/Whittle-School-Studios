@@ -4,9 +4,6 @@ import cx from 'classnames';
 
 import Locales from '../header-locales/';
 
-import { REGION, LANGUAGE } from '../../../../constants/regions';
-import { BREAKPOINTS } from '../../../../constants/breakpoints';
-
 import styles from './header-menu.module.css';
 
 const Links = [
@@ -141,10 +138,13 @@ const MainMenu = ({
     { [styles.menu_isVisible]: isActive },
     )}
   >
-    <nav>
-      <ul className={styles.menuItems}>
+    <nav aria-label="Main navigation">
+      <ul
+        className={styles.menuItems}
+      >
         { Links.map((item, index) => (
           <li
+            aria-label={item.title}
             className={styles.menuItem}
             key={index.toString()}
           >
@@ -162,9 +162,9 @@ const MainMenu = ({
       </ul>
     </nav>
     <Locales
-      languageSelected={LANGUAGE.ENGLISH}
-      regionSelected={REGION.US}
-      visibleBreakpoint={BREAKPOINTS.BREAKPOINT_SM}
+      isSmall
+      languageSelected="English"
+      regionSelected="US"
     />
   </div>
 );

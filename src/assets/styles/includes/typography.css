@@ -258,6 +258,11 @@
     font-size: 11px;
     line-height: 16px;
   }
+
+  &:focus {
+    color: var(--color-text-light);
+    outline: none;
+  }
 }
 
 @define-mixin type-language-select {
@@ -266,6 +271,11 @@
   font-size: 14px;
   line-height: 36px;
   text-decoration: none;
+
+  &:focus {
+    color: var(--color-text-light);
+    outline: none;
+  }
 }
 
 @define-mixin type-nav {

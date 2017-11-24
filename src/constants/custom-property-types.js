@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 import { IMAGE_BP, IMAGE_SHAPE, IMAGE_TYPE } from './images';
 import { PAGE_TYPES } from './settings';
-import { BREAKPOINT } from './breakpoints';
-import { LANGUAGE, REGION, REGION_LANGUAGES } from './regions';
+import { BREAKPOINTS_NAME } from './breakpoints';
+import { LANGUAGE, REGION_LANGUAGES } from './regions';
 
 const isValidSourcesBySize = sourcesBySize =>
   Object.keys(sourcesBySize).every((breakpoint) => {
@@ -70,12 +70,20 @@ const validateGlobalSettings = (props, propName) => {
 };
 
 exports.PROP_TYPES = {
-  BREAKPOINT: PropTypes.oneOf(BREAKPOINT),
+  BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
+  DROP: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    buttonAriaLabel: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    })),
+  }),
   GLOBAL_SETTINGS: PropTypes.shape(validateGlobalSettings),
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES: PropTypes.shape(validateSourcesBySize),
   LANGUAGE: PropTypes.oneOf([LANGUAGE.ENGLISH, LANGUAGE.CHINESE]),
   MODULES: PropTypes.arrayOf(PropTypes.oneOfType([BODY_TEXT, INLINE_IMAGE, SLIDESHOW_CAROUSEL])),
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
-  REGION: PropTypes.oneOf([REGION.US, REGION.CHINA]),
 };

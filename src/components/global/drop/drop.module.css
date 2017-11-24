@@ -1,0 +1,72 @@
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/typography.css';
+@import '../../../assets/styles/includes/variables.css';
+
+.arrow {
+  margin-left: 9px;
+}
+
+.drop {
+  margin-left: 16px;
+  padding-bottom: 73px;
+  padding-top: 11px;
+  position: relative;
+  text-align: right;
+}
+
+.dropButton {
+  @mixin type-language;
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+
+  @media (--bp-sm-only) {
+    border-top: solid 1px var(--color-light-border);
+    padding: 16px 0 0 0;
+    width: 100%;
+  }
+}
+
+.select {
+  background-color: var(--color-background-white);
+  box-shadow: var(--color-light-border) 3px 3px 10px;
+  display: block;
+  margin: 0;
+  padding: 12px 10px;
+  position: absolute;
+  z-index: 10;
+
+  li {
+    list-style: none;
+  }
+}
+
+.selectButton {
+  @mixin type-language-select;
+  @mixin reset-button;
+  color: var(--color-text-light);
+  display: block;
+  padding: 0 10px;
+  text-align: left;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-secondary-light);
+    color: var(--color-text-dark);
+    text-decoration: none;
+  }
+}
+
+.selectButton_isSelected {
+  color: var(--color-text-dark);
+}
+
+.select:not(.select_isActive) {
+  display: none;
+}

@@ -4,3 +4,20 @@ exports.BREAKPOINTS = {
   BREAKPOINT_LG: 1100,
   BREAKPOINT_XLG: 1600,
 };
+
+exports.BREAKPOINTS_NAME = {
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+  extraLarge: 'extraLarge',
+};
+
+exports.ORIENTATION = {
+  landscape: 'landscape',
+  portrait: 'portrait',
+};
+
+exports.VIEWPORT = {
+  '--portrait': '(orientation: portrait)',
+  '--landscape': '(orientation: landscape)',
+};

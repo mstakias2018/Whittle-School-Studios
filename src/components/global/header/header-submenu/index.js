@@ -49,7 +49,10 @@ class Submenu extends React.Component {
   render() {
     return (
       <div className={styles.submenu}>
-        <div className={styles.submenuContainer}>
+        <nav
+          aria-label="sub navigation content"
+          className={styles.submenuContainer}
+        >
           {
           this.props.navItem.items &&
           <ul
@@ -57,12 +60,17 @@ class Submenu extends React.Component {
               [styles.items_large]: this.isLarge(),
             })}
           >
-            <li className={cx(
+            <li
+              aria-label="Subnav item"
+              className={cx(
               styles.item,
               styles.title,
               )}
             >
-              <h4 className={styles.title}>
+              <h4
+                aria-label="Content title"
+                className={styles.title}
+              >
                 {this.props.navItem.title}
               </h4>
             </li>
@@ -76,10 +84,11 @@ class Submenu extends React.Component {
                   key={index.toString()}
                 >
                   <a
+                    aria-label="Sub navigation item"
                     className={styles.itemLink}
                     href={item.link}
                     onClick={() => { this.setActive(index); }}
-                    title={item.title}
+                    title={`${index + 1}. ${item.title}. ${item.description}`}
                   >
                     <span className={styles.itemTitleContainer}>
                       { index === 0 &&
@@ -95,7 +104,12 @@ class Submenu extends React.Component {
                       }
                       <span className={styles.itemTitle}>{item.title}</span>
                     </span>
-                    <span className={styles.itemDescription}>{item.description}
+                    <span
+                      aria-label="Description"
+                      className={styles.itemDescription}
+                      title={item.description}
+                    >
+                      {item.description}
                       <img
                         alt=""
                         className={styles.arrow}
@@ -108,7 +122,7 @@ class Submenu extends React.Component {
             }
           </ul>
         }
-        </div>
+        </nav>
       </div>
     );
   }

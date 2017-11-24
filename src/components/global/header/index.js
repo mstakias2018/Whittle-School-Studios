@@ -6,8 +6,6 @@ import MainMenu from './header-menu/header-menu';
 import Locales from './header-locales/';
 import Submenu from './header-submenu/';
 
-import { REGION, LANGUAGE } from '../../../constants/regions';
-
 import styles from './header.module.css';
 
 class Header extends Component {
@@ -33,9 +31,12 @@ class Header extends Component {
 
     return (
       <header className={styles.header}>
+        {
+          // Todo add real params
+        }
         <Locales
-          languageSelected={LANGUAGE.ENGLISH}
-          regionSelected={REGION.US}
+          languageSelected="English"
+          regionSelected="US"
         />
         <div className="container">
           <div className={styles.container}>
