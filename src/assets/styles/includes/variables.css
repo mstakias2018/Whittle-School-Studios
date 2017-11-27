@@ -35,6 +35,8 @@
   --color-link-hover-underline: #8d8c8a;
 
   --color-fab-shadow: rgba(0,0,0,0.3);
+
+  --opacity-share-icon-hover: 0.6;
 }
 
 /* Grid */

@@ -410,6 +410,19 @@
     letter-spacing: 0;
     line-height: 48px;
   }
+}
+
+@define-mixin type-share {
+  color: var(--color-text-light);
+  font-family: var(--font-serif-light-italic);
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  line-height: 20px;
+
+  @media (--bp-lg) {
+    line-height: 36px;
+  }
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);

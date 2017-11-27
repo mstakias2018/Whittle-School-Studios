@@ -4,9 +4,11 @@ import Helmet from 'react-helmet';
 
 import ContentModules from '../../content-modules';
 import PageHead from '../../components/global/page-head';
+import Share from '../../components/global/share';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
+import { SOCIAL_NETWORK } from '../../constants/social-networks';
 
 import styles from './content-page.module.css';
 
@@ -43,6 +45,7 @@ const ContentPageTemplate = ({ data: { contentfulContentPage }, pathContext: { i
           modules={modules}
         />
       }
+      <Share networksToShow={[SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER]} />
     </div>
   );
 };

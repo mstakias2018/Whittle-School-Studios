@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Player from '@vimeo/player';
 import cx from 'classnames';
 
 import styles from './inline-video.module.css';
@@ -25,6 +24,7 @@ class InlineVideo extends Component {
   };
 
   componentDidMount() {
+    const Player = require('@vimeo/player'); // eslint-disable-line global-require
     this.player = new Player(this.iframe);
     this.player.on('play', this.toggleVideoState);
   }

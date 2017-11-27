@@ -1,0 +1,103 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.wrapper {
+  @mixin component-container;
+  @mixin component-vertical-spacing;
+}
+
+.content {
+  @mixin grid-container;
+  flex-wrap: wrap;
+}
+
+.share {
+  @mixin span 4, var(--grid-columns-sm), sm;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  @media (--bp-md) {
+    @mixin span 6, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 6, var(--grid-columns-lg), lg;
+    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
+  }
+}
+
+.shareText {
+  @mixin type-share;
+}
+
+.shareIcon {
+  height: 20px;
+  margin-left: 50px;
+  opacity: 1;
+  outline: none;
+
+  img {
+    height: 100%;
+    margin-bottom: 0;
+    width: auto;
+  }
+
+  a:focus,
+  a:hover {
+    opacity: var(--opacity-share-icon-hover);
+    outline: none;
+  }
+}
+
+.copyButton {
+  @extend .shareIcon;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  &:focus,
+  &:hover {
+    opacity: var(--opacity-share-icon-hover);
+    outline: none;
+  }
+
+  img {
+    pointer-events: none;
+  }
+}
+
+.copyConformation {
+  @mixin span 4, var(--grid-columns-sm), sm;
+  align-items: center;
+  background-color: var(--color-secondary-light);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity var(--timing-fast) var(--easing-default);
+
+  @media (--bp-md) {
+    @mixin span 6, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 6, var(--grid-columns-lg), lg;
+    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
+  }
+
+  span {
+    color: var(--color-text-dark);
+    font-family: var(--font-sans-serif-regular);
+    font-size: 14px;
+    line-height: 20px;
+    padding: 20px 0;
+  }
+}
+
+.copyConformation_isVisible {
+  opacity: 1;
+}

@@ -7,11 +7,13 @@
 }
 
 .typeCategory {
+  @mixin component-container;
   @mixin type-h1-category;
   @mixin component-vertical-spacing;
 }
 
 .typeArticle {
+  @mixin component-container;
   @mixin type-h1-article;
   @mixin component-vertical-spacing;
 
