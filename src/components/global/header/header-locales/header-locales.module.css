@@ -3,10 +3,6 @@
 @import '../../../../assets/styles/includes/typography.css';
 @import '../../../../assets/styles/includes/variables.css';
 
-.arrow {
-  margin-left: 9px;
-}
-
 .locales {
   @media (--bp-sm-only) {
     display: none;
@@ -18,6 +14,7 @@
 
   @media (--bp-md) {
     @mixin component-container;
+    height: 46px;
 
     &.locales_isSmall {
       display: none;
@@ -40,6 +37,10 @@
 .localesItem {
   @media (--bp-sm-only) {
     @mixin span 2, 4, sm;
+  }
+
+  @media (--bp-md) {
+    margin-left: 16px;
   }
 
   display: inline-block;

@@ -14,14 +14,6 @@
   }
 }
 
-.locales {
-  display: none;
-
-  @media (--bp-md) {
-    display: block;
-  }
-}
-
 .container {
   @mixin grid-container;
   

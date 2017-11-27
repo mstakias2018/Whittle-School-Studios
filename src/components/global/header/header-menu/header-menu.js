@@ -29,7 +29,7 @@ const Links = [
     ],
   },
   {
-    title: 'Educational\r\n Experience',
+    title: 'Leadership &\n Faculty',
     link: '#',
     items: [
       {
@@ -60,7 +60,7 @@ const Links = [
     ],
   },
   {
-    title: 'Leadership &\n Faculty',
+    title: 'Education Program',
     link: '#',
     items: [
       {
@@ -81,7 +81,7 @@ const Links = [
     ],
   },
   {
-    title: 'Global\n Campuses',
+    title: 'Campus & Architecture',
     link: '#',
     items: [
       {
@@ -102,7 +102,28 @@ const Links = [
     ],
   },
   {
-    title: 'Admissions\n & Information',
+    title: 'Social Responsibility',
+    link: '#',
+    items: [
+      {
+        title: 'Overview',
+        description: 'At the heart of our work is the belief that.',
+        link: '#',
+      },
+      {
+        title: 'Shenzhen',
+        description: 'At the heart of our work is the belief that.',
+        link: '#',
+      },
+      {
+        title: 'Washington D.C.',
+        description: 'At the heart of our work is the belief that.',
+        link: '#',
+      },
+    ],
+  },
+  {
+    title: 'Admissions \n& Information',
     link: '#',
     items: [
       {
@@ -149,7 +170,7 @@ const MainMenu = ({
             key={index.toString()}
           >
             <a
-              className={styles.menuItem__link}
+              className={styles.menuItem_link}
               href={item.link}
               onClick={() => { changeSubNavHandler(item); }}
               title={item.title}
