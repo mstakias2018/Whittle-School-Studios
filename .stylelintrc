@@ -12,6 +12,7 @@
     "declaration-colon-space-after": "always-single-line",
     "declaration-block-trailing-semicolon": "always",
     "order/properties-alphabetical-order": true,
+    "function-calc-no-unspaced-operator": true,
     "selector-class-pattern": "^([a-z\\d]*([A-Z][a-z\\d]*)*)?(_[a-z\\d]*([A-Z][a-z\\d]*)*)?$"
   }
 }

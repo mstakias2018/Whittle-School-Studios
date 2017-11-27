@@ -4,6 +4,11 @@
 @import '../../../assets/styles/includes/typography.css';
 
 .componentWrapper {
+  @mixin component-container;
+  @mixin component-vertical-spacing;
+}
+
+.content {
   @mixin grid-container;
 }
 
@@ -21,7 +26,6 @@
 
   p {
     @mixin type-paragraph;
-    @mixin component-vertical-spacing;
     margin-bottom: 0;
   }
 

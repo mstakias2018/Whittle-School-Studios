@@ -2,5 +2,4 @@
 
 .wrapper {
   padding: 40px 0;
-  @mixin component-container;
 }

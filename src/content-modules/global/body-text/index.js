@@ -14,10 +14,12 @@ const propTypes = {
 
 const BodyText = ({ content, isFirstModule: hasDropCap }) => (
   <div className={cx(styles.componentWrapper, { hasDropCap })}>
-    <Markdown
-      className={styles.componentContent}
-      source={content.markdown}
-    />
+    <div className={styles.content}>
+      <Markdown
+        className={styles.componentContent}
+        source={content.markdown}
+      />
+    </div>
   </div>
 );
 
