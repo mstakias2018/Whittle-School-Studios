@@ -243,6 +243,11 @@
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-regular-cn);
   }
+
+  &:focus {
+    color: var(--color-text-light);
+    outline: none;
+  }
 }
 
 @define-mixin type-language {

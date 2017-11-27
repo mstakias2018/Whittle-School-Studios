@@ -26,6 +26,7 @@
 
 :global(.image-gallery-slides) { /* stylelint-disable-line */
   overflow: visible;
+  z-index: 1;
 }
 
 :global(.image-gallery-slide) { /* stylelint-disable-line */
@@ -148,16 +149,20 @@ Comment this block when full screen is reanabled*/
   border: none;
   cursor: pointer;
   height: 15px;
-  opacity: 0.8;
+  opacity: 1;
   padding: 0;
+  transition: opacity var(--timing-fast) var(--easing-default);
   width: 10px;
 
   &:disabled {
-    opacity: 0.3;
+    opacity: 0.2;
+    pointer-events: none;
   }
 
-  &:hover {
-    opacity: 1;
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+    outline: none;
   }
 
   :global(._touchDevice) & {

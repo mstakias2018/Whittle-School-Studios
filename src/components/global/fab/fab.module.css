@@ -10,6 +10,7 @@
   position: fixed;
   right: var(--container-margin-sm);
   width: var(--fab-size-sm);
+  z-index: 10;
 
   @media (--bp-sm-only) {
     background-color: var(--color-background-white);
