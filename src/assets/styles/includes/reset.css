@@ -17,7 +17,7 @@ body {
   }
 
   @media (--bp-lg) {
-    padding: var(--component-wrapper-margin-lg);
+    border: solid white var(--component-wrapper-margin-lg);
   }
 }
 article,

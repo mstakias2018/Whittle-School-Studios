@@ -51,10 +51,10 @@
 }
 
 :root {
-  --container-margin-sm: calc(7.8% - var(--component-wrapper-margin-sm));
-  --container-margin-sm-upper-only: calc(12% - var(--component-wrapper-margin-sm));
-  --container-margin-md: calc(12.5% - var(--component-wrapper-margin-md));
-  --container-margin-lg: calc(12.5% - var(--component-wrapper-margin-lg));
+  --container-margin-sm: 5%;
+  --container-margin-sm-upper-only: 10.79%;
+  --container-margin-md: 10%;
+  --container-margin-lg: 10%;
 }
 
 /* Dimensions */
@@ -68,10 +68,6 @@
 }
 
 :root {
-  --container-sm: calc(100vw - var(--container-margin-sm) * 2);
-  --container-sm-upper-only: calc(100vw - var(--container-margin-sm-upper-only) * 2);
-  --container-md: calc(100vw - var(--container-margin-md) * 2);
-  --container-lg: calc(100vw - var(--container-margin-lg) * 2);
   --container-xl: 1300px;
 }
 
