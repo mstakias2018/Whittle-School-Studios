@@ -22,6 +22,7 @@ const propTypes = {
 
 const ContentPageTemplate = ({ data: { contentfulContentPage }, pathContext: { imageDataByType } }) => {
   const {
+    hasShareButtons,
     headline,
     mainImageAlt,
     modules,
@@ -45,7 +46,9 @@ const ContentPageTemplate = ({ data: { contentfulContentPage }, pathContext: { i
           modules={modules}
         />
       }
-      <Share networksToShow={[SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER]} />
+      {hasShareButtons &&
+        <Share networksToShow={[SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER]} />
+      }
     </div>
   );
 };
@@ -57,6 +60,7 @@ export default ContentPageTemplate;
 export const pageQuery = graphql`
   query contentPageQuery($id: String!) {
     contentfulContentPage(id: { eq: $id }) {
+      hasShareButtons
       headline
       subhead
       mainImageAlt

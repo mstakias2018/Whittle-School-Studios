@@ -1,71 +1,41 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+import Link from '../../../../components/global/link';
 import styles from './share-icons.module.css';
 
-import iconFacebook from '../../../../assets/images/icon-facebook.svg';
-import iconTwitter from '../../../../assets/images/icon-twitter.svg';
-import iconWeibo from '../../../../assets/images/icon-weibo.svg';
-import iconWeChat from '../../../../assets/images/icon-we-chat.svg';
-
-// todo + icons
-const shareText = 'Stay connected with us:';
-
-const FooterShareIcons = () => (
-  <div className={styles.wrapper}>
-    <div className={styles.text}>
-      {shareText}
-    </div>
-    <div className={styles.icons}>
-      <div
-        className={styles.icon}
-      >
-        <a
-          href="https://www.facebook.com/"
-        >
-          <img
-            alt="Facebook"
-            src={iconFacebook}
-          />
-        </a>
+const FooterShareIcons = (props, context) => {
+  const {
+    socialIcons: { footer: footerSocialIcons },
+    translations,
+  } = context;
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.text}>
+        {translations.footer.shareText}
       </div>
-      <div
-        className={styles.icon}
-      >
-        <a
-          href="https://twitter.com/"
-        >
-          <img
-            alt="Twitter"
-            src={iconTwitter}
-          />
-        </a>
-      </div>
-      <div
-        className={styles.icon}
-      >
-        <a
-          href="https://weibo.com/"
-        >
-          <img
-            alt="Weibo"
-            src={iconWeibo}
-          />
-        </a>
-      </div>
-      <div
-        className={styles.icon}
-      >
-        <a
-          href="https://www.wechat.com"
-        >
-          <img
-            alt="We Chat"
-            src={iconWeChat}
-          />
-        </a>
+      <div className={styles.icons}>
+        {footerSocialIcons.map(({ label, url, icon }, index) => (
+          <div
+            className={styles.icon}
+            key={index.toString()}
+          >
+            <Link to={url}>
+              <img
+                alt={label}
+                src={icon}
+              />
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
-  </div>
-);
+  );
+};
+
+FooterShareIcons.contextTypes = {
+  socialIcons: PropTypes.object.isRequired,
+  translations: PropTypes.object,
+};
 
 export default FooterShareIcons;

@@ -4,34 +4,11 @@ import cx from 'classnames';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import styles from './share.module.css';
-
-import iconFacebook from '../../../assets/images/icon-facebook.svg';
-import iconTwitter from '../../../assets/images/icon-twitter.svg';
-import iconWeChat from '../../../assets/images/icon-we-chat.svg';
 import iconCopy from '../../../assets/images/icon-copy.svg';
 
+import Link from '../../../components/global/link';
 import { SOCIAL_NETWORK } from './../../../constants/social-networks';
 import { TIMINGS } from './../../../constants/timings';
-
-const propTypes = {
-  networksToShow: PropTypes.arrayOf(PropTypes.string),
-};
-
-const Links = {
-  Facebook: {
-    link: 'https://www.facebook.com/sharer/sharer.php?u=',
-    icon: iconFacebook,
-  },
-  Twitter: {
-    link: 'https://twitter.com/home?status=',
-    icon: iconTwitter,
-  },
-  WeChat: {
-    link: 'https://web.wechat.com/',
-    icon: iconWeChat,
-  },
-};
-
 
 class Share extends Component {
   state = {
@@ -54,48 +31,50 @@ class Share extends Component {
     }, TIMINGS.COPY_LINK_CONFORMATION);
   }
 
-  renderIcon = (network, index, translations) => {
-    const ariaLabel = translations ? translations.socialIconAriaLabel : '';
-    const selected = Links[network];
-    const link = network !== 'WeChat' ? `${selected.link}${this.state.currentUrl}` : `${selected.link}`;
+  renderIcon = ({
+    shareLink,
+    icon,
+    label,
+    network,
+  }, index) => {
+    const { translations } = this.context;
+    const linkDestination = network !== SOCIAL_NETWORK.WECHAT ?
+      `${shareLink}${this.state.currentUrl}` : shareLink;
+
     return (
       <div
         className={styles.shareIcon}
         key={index.toString()}
       >
-        <a
-          aria-label={`${ariaLabel} ${network}`}
-          href={link}
-          target="_blank"
-        >
+        <Link to={linkDestination}>
           <img
-            alt={network}
-            aria-hidden
-            src={selected.icon}
+            alt={`${translations.share.socialIconAriaLabel} ${label}`}
+            src={icon}
           />
-        </a>
+        </Link>
       </div>
     );
   }
 
   render() {
-    const { translations } = this.context;
+    const {
+      socialIcons: { contentPage: contentPageSocialIcons },
+      translations,
+    } = this.context;
+
     return (
       <div className={styles.wrapper}>
-        <div
-          area-label="Share content"
-          className={styles.content}
-        >
+        <div className={styles.content}>
           <div className={styles.share}>
-            <div className={styles.shareText}>{translations.share && translations.share.shareLabel}:</div>
+            <div className={styles.shareText}>{translations.share.shareLabel}:</div>
             <CopyToClipboard
               onCopy={this.copyLink}
               text={this.state.currentUrl}
             >
               <button
                 aria-label={this.state.copying ?
-                  translations.share && translations.share.linkCopied :
-                  translations.share && translations.share.copyLinkLabel}
+                  translations.share.linkCopied :
+                  translations.share.copyLinkLabel}
                 className={styles.copyButton}
                 disabled={this.state.copying}
               >
@@ -105,14 +84,7 @@ class Share extends Component {
                 />
               </button>
             </CopyToClipboard>
-            { this.props.networksToShow ?
-                this.props.networksToShow.map((network, index) => (
-                  this.renderIcon(network, index, translations.share)
-                )) :
-                [SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER].map((network, index) => (
-                  this.renderIcon(network, index, translations.share)
-                ))
-            }
+            {contentPageSocialIcons.map(this.renderIcon)}
           </div>
           <div
             aria-hidden
@@ -121,7 +93,7 @@ class Share extends Component {
                 { [styles.copyConformation_isVisible]: this.state.copying },
               )}
           >
-            <span>{translations.share ? translations.share.linkCopied : 'Link copied to clipboard'}</span>
+            <span>{translations.share.linkCopied}</span>
           </div>
         </div>
       </div>
@@ -129,8 +101,9 @@ class Share extends Component {
   }
 }
 
-Share.propTypes = propTypes;
-
-Share.contextTypes = { translations: PropTypes.object };
+Share.contextTypes = {
+  socialIcons: PropTypes.object.isRequired,
+  translations: PropTypes.object,
+};
 
 export default Share;

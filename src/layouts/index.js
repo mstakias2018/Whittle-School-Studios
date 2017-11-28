@@ -17,24 +17,45 @@ import '../assets/styles/main.css';
    so fonts will live in layouts/ */
 import './fonts.module.css';
 
-const { PROP_TYPES } = require('./../constants/custom-property-types');
-const { CLASSES } = require('./../constants/classes');
+const { PROP_TYPES } = require('../constants/custom-property-types');
+const { CLASSES } = require('../constants/classes');
 const {
   LANGUAGE, LANGUAGE_CLASS, LANGUAGE_CONTENTFUL_LOCALE,
-} = require('./../constants/regions');
-const { getLanguageFromPathname } = require('./../utils/regions');
-const { formatFooterLinks } = require('./../utils/links');
+} = require('../constants/regions');
+const { getLanguageFromPathname } = require('../utils/regions');
+const { formatFooterLinks } = require('../utils/links');
+const { transformSocialNetworks } = require('../utils/social-networks');
 
 class TemplateWrapper extends Component {
   getChildContext() {
     const { data, location: { pathname } } = this.props;
     const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
-    const { fabText: { file: { url } }, translations } = data[`SETTINGS_${language}`];
+    const {
+      contentPageShareIcons,
+      fabText: { file: { url } },
+      footerShareIcons,
+      translations: stringifiedTranslations,
+      ...socialNetworkUrls
+    } = data[`SETTINGS_${language}`];
+    const translations = JSON.parse(stringifiedTranslations);
+
     return {
       fabTextImage: url,
       footerData: formatFooterLinks(data[`FOOTER_${language}`]),
       language,
-      translations: JSON.parse(translations),
+      socialIcons: {
+        contentPage: transformSocialNetworks(
+          contentPageShareIcons,
+          socialNetworkUrls,
+          translations,
+        ),
+        footer: transformSocialNetworks(
+          footerShareIcons,
+          socialNetworkUrls,
+          translations,
+        ),
+      },
+      translations,
     };
   }
 
@@ -74,6 +95,7 @@ TemplateWrapper.childContextTypes = {
   fabTextImage: PropTypes.string.isRequired,
   footerData: PropTypes.object.isRequired,
   language: PropTypes.string.isRequired,
+  socialIcons: PropTypes.object.isRequired,
   translations: PropTypes.object.isRequired,
 };
 
@@ -374,7 +396,16 @@ export const pageQuery = graphql`
           url
         }
       }
+      contentPageShareIcons
+      footerShareIcons
+
+      # These should match our SOCIAL_NETWORK constant
+      Facebook: facebookUrl
+      Twitter: twitterUrl
+      WeChat: weChatUrl
+      Weibo: weiboUrl
     }
+
     SETTINGS_CHINESE: contentfulGlobalSettings(node_locale: {eq: "zh-CN"}) {
       translations
       fabText {
@@ -382,6 +413,14 @@ export const pageQuery = graphql`
           url
         }
       }
+      contentPageShareIcons
+      footerShareIcons
+
+      # These should match our SOCIAL_NETWORK constant
+      Facebook: facebookUrl
+      Twitter: twitterUrl
+      WeChat: weChatUrl
+      Weibo: weiboUrl
     }
   }
 `;

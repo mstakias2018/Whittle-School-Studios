@@ -9,9 +9,6 @@ import FooterShareIcons from './share-icons';
 
 import { CLASSES } from './../../../constants/classes';
 
-// todo
-const copyright = 'All Rights Reserved. © 2017\nG30 Project Ltd, the global parent entity.';
-
 const renderBlock = (item, index, className) => (
   <div
     className={cx(
@@ -68,7 +65,8 @@ const renderUtilityLink = (item, index, className) => (
     renderBlock(item, index, className))
 );
 
-const Footer = (props, { footerData }) => {
+const Footer = (props, context) => {
+  const { footerData, translations } = context;
   const {
     primaryLinks: [firstPrimaryLink, ...otherPrimaryLinks],
     utilityLinks,
@@ -99,7 +97,8 @@ const Footer = (props, { footerData }) => {
           ))}
 
           <div className={styles.copyright}>
-            {copyright}
+            <div>{translations.footer.copyrightLine1}</div>
+            <div>{translations.footer.copyrightLine2}</div>
           </div>
           <FooterShareIcons />
         </div>
@@ -110,6 +109,7 @@ const Footer = (props, { footerData }) => {
 
 Footer.contextTypes = {
   footerData: PropTypes.object.isRequired,
+  translations: PropTypes.object,
 };
 
 export default Footer;
