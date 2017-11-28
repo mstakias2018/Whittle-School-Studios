@@ -140,7 +140,7 @@ class Drop extends React.Component {
           onKeyDown={this.handleKey}
           role="menu"
         >
-          { this.props.data.items.map((item, index) => (
+          {this.props.data.items.map((item, index) => (
             <li
               key={`item-${item.title}`}
               role="menuitem"

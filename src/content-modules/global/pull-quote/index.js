@@ -14,8 +14,8 @@ const PullQuote = ({ quote, author }) => (
       <div className={styles.quoteBlock}>
         <blockquote className={styles.quote}>
           {quote}
-          { author && <span className={styles.lastLineSeparator} />}
-          { author &&
+          {author && <span className={styles.lastLineSeparator} />}
+          {author &&
             <span className={styles.author}>
               {author}
             </span>

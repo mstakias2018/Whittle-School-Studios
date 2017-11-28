@@ -40,7 +40,7 @@ const ContentPageTemplate = ({ data: { contentfulContentPage }, pathContext: { i
         subhead={subhead}
         type={pageType}
       />
-      { modules &&
+      {modules &&
         <ContentModules
           imageDataByType={imageDataByType}
           modules={modules}

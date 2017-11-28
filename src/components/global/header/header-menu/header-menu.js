@@ -163,7 +163,7 @@ const MainMenu = ({
       <ul
         className={styles.menuItems}
       >
-        { Links.map((item, index) => (
+        {Links.map((item, index) => (
           <li
             aria-label={item.title}
             className={styles.menuItem}

@@ -45,7 +45,7 @@ class Header extends Component {
               className={styles.toggleMenu}
               onClick={this.toggleMenu}
             >
-              { !this.state.menuActive ? translations.general.menu : translations.general.close }
+              {!this.state.menuActive ? translations.general.menu : translations.general.close}
             </button>
             <MainMenu
               changeSubNavHandler={this.changeSubNav}
@@ -53,7 +53,7 @@ class Header extends Component {
             />
           </div>
         </div>
-        { this.state.subnavItem &&
+        {this.state.subnavItem &&
           <Submenu navItem={this.state.subnavItem} />
         }
       </header>

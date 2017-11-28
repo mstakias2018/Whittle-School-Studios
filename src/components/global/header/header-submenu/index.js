@@ -91,7 +91,7 @@ class Submenu extends React.Component {
                     title={`${index + 1}. ${item.title}. ${item.description}`}
                   >
                     <span className={styles.itemTitleContainer}>
-                      { index === 0 &&
+                      {index === 0 &&
                         <span className={styles.itemChecked}>
                           <img
                             alt=""
@@ -99,7 +99,7 @@ class Submenu extends React.Component {
                           />
                         </span>
                       }
-                      { index !== 0 &&
+                      {index !== 0 &&
                         <span className={styles.itemNumber}>{`0${index + 1}`}</span>
                       }
                       <span className={styles.itemTitle}>{item.title}</span>

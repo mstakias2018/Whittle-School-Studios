@@ -36,17 +36,17 @@ const PageHead = ({
       text={headline}
       type={type}
     />
-    { type === PAGE_TYPE.CATEGORY &&
+    {type === PAGE_TYPE.CATEGORY &&
       subhead &&
       <h2 className={styles.subhead}>{subhead}</h2>
     }
-    { imageSources &&
+    {imageSources &&
       <Picture
         alt={imageAlt}
         sourcesBySize={imageSources}
       />
     }
-    { type === PAGE_TYPE.ARTICLE &&
+    {type === PAGE_TYPE.ARTICLE &&
       subhead &&
       <h2 className={styles.subhead}>{subhead}</h2>
     }
