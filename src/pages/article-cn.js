@@ -1,15 +1,18 @@
 /* eslint-disable max-len */
 import React from 'react';
-import cx from 'classnames';
+
+import PageWrapper from '../components/global/page-wrapper';
 
 import styles from './modules.module.css';
 
 const ArticleCn = () => (
-  <div className={cx('wrapper_isChinese', styles.moduleWrapper)}>
-    <div className={styles.component}>
-      <div>Nothing here right now!</div>
+  <PageWrapper>
+    <div className="wrapper_isChinese">
+      <div className={styles.componentInfo}>
+        <div>Nothing here right now!</div>
+      </div>
     </div>
-  </div>
+  </PageWrapper>
 );
 
 export default ArticleCn;

@@ -8,7 +8,7 @@ import styles from './modules.module.css';
 
 const Home = () => (
   <div className={styles.moduleWrapper}>
-    <div className={styles.component}>
+    <div className={styles.componentInfo}>
       <Title
         text="Version Info"
         type={PAGE_TYPE.HOME}

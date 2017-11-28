@@ -6,6 +6,7 @@ import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 import InlineVideo from '../content-modules/global/inline-video';
 import Share from '../components/global/share';
+import PageWrapper from '../components/global/page-wrapper';
 
 import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
 import { SOCIAL_NETWORK } from '../constants/social-networks';
@@ -19,7 +20,7 @@ import PullQuote from '../content-modules/global/pull-quote';
 import ThreeUpBreaker from '../content-modules/global/three-up-breaker';
 
 const Category = () => (
-  <div className={styles.moduleWrapper}>
+  <PageWrapper>
     <div className={styles.componentInfo}>3 up breaker component</div>
     <ThreeUpBreaker
       bodyText1="Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time"
@@ -101,7 +102,7 @@ const Category = () => (
       shape={IMAGE_SHAPE.RECTANGLE}
     />
     <Share networksToShow={[SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER]} />
-  </div>
+  </PageWrapper>
 );
 
 export default Category;

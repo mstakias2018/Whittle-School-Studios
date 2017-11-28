@@ -1,15 +1,16 @@
 /* eslint-disable max-len */
 import React from 'react';
 
+import PageWrapper from '../components/global/page-wrapper';
+
 import styles from './modules.module.css';
 
-
 const Article = () => (
-  <div className={styles.moduleWrapper}>
-    <div className={styles.component}>
+  <PageWrapper>
+    <div className={styles.componentInfo}>
       <div>Nothing here right now!</div>
     </div>
-  </div>
+  </PageWrapper>
 );
 
 export default Article;

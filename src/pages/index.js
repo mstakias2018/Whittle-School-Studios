@@ -1,8 +1,10 @@
 import React from 'react';
 import Link from 'gatsby-link';
 
+import PageWrapper from '../components/global/page-wrapper';
+
 const IndexPage = () => (
-  <div>
+  <PageWrapper>
     <h1>The Whittle School</h1>
     <ul>
       <li>
@@ -30,7 +32,7 @@ const IndexPage = () => (
         <Link to="/style-guide">Style guide</Link>
       </li>
     </ul>
-  </div>
+  </PageWrapper>
 );
 
 export default IndexPage;
