@@ -2,181 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import { PROP_TYPES } from '../../../../constants/custom-property-types';
 import Locales from '../header-locales/';
+import Link from '../../link';
 
 import styles from './header-menu.module.css';
 
-const Links = [
-  {
-    title: 'The Whittle\n Vision',
-    link: '#',
-    items: [
-      {
-        title: 'Overview',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Shenzhen',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Washington D.C.',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-    ],
-  },
-  {
-    title: 'Leadership &\n Faculty',
-    link: '#',
-    items: [
-      {
-        title: 'Overview',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Shenzhen',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Washington D.C.',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Shenzhen - large',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Washington D.C.',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-    ],
-  },
-  {
-    title: 'Education Program',
-    link: '#',
-    items: [
-      {
-        title: 'Overview',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Shenzhen',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Washington D.C.',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-    ],
-  },
-  {
-    title: 'Campus & Architecture',
-    link: '#',
-    items: [
-      {
-        title: 'Overview',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Shenzhen',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Washington D.C.',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-    ],
-  },
-  {
-    title: 'Social Responsibility',
-    link: '#',
-    items: [
-      {
-        title: 'Overview',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Shenzhen',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Washington D.C.',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-    ],
-  },
-  {
-    title: 'Admissions \n& Information',
-    link: '#',
-    items: [
-      {
-        title: 'Overview',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Shenzhen',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-      {
-        title: 'Washington D.C.',
-        description: 'At the heart of our work is the belief that.',
-        link: '#',
-      },
-    ],
-  },
-];
-
 const propTypes = {
-  changeSubNavHandler: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
 };
 
 const MainMenu = ({
-  changeSubNavHandler,
   isActive,
+}, {
+  headerData,
+  translations,
 }) => (
   <div className={cx(
     styles.menu,
     { [styles.menu_isVisible]: isActive },
     )}
   >
-    <nav aria-label="Main navigation">
-      <ul
-        className={styles.menuItems}
-      >
-        {Links.map((item, index) => (
+    <nav aria-label={translations.header.primaryAriaLabel}>
+      <ul className={styles.menuItems}>
+        {headerData.map(({ link, title }, index) => (
           <li
-            aria-label={item.title}
             className={styles.menuItem}
             key={index.toString()}
           >
-            <a
+            <Link
               className={styles.menuItem_link}
-              href={item.link}
-              onClick={() => { changeSubNavHandler(item); }}
-              title={item.title}
+              to={`/${link}`}
             >
-              {item.title}
-            </a>
+              {title}
+            </Link>
           </li>
           ))
         }
@@ -191,5 +50,9 @@ const MainMenu = ({
 );
 
 MainMenu.propTypes = propTypes;
+MainMenu.contextTypes = {
+  headerData: PROP_TYPES.HEADER_DATA.isRequired,
+  translations: PropTypes.object,
+};
 
 export default MainMenu;

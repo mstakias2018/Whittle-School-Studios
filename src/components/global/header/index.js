@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Logo from './header-logo/header-logo';
+import Logo from './header-logo';
 import MainMenu from './header-menu/header-menu';
-import Locales from './header-locales/';
-import Submenu from './header-submenu/';
+import SubMenu from './header-submenu';
+import Locales from './header-locales';
 import WithWindowListener from '../../../hocs/withWindow';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './header.module.css';
 
-const propTypes = { breakpoint: PROP_TYPES.BREAKPOINT };
+const propTypes = {
+  breakpoint: PROP_TYPES.BREAKPOINT,
+  subNavProps: PROP_TYPES.SUB_NAV_PROPS,
+};
 
 class Header extends Component {
   state = {
     menuActive: false,
-    subnavItem: null,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -31,10 +33,6 @@ class Header extends Component {
     }
   };
 
-  changeSubNav = (newItem) => {
-    this.setState({ subnavItem: newItem });
-  };
-
   toggleMenu = () => {
     this.setState(prevState => ({
       menuActive: !prevState.menuActive,
@@ -43,6 +41,7 @@ class Header extends Component {
 
   render() {
     const { translations } = this.context;
+    const { subNavProps } = this.props;
 
     return (
       <header className={styles.header}>
@@ -62,20 +61,17 @@ class Header extends Component {
             >
               {!this.state.menuActive ? translations.general.menu : translations.general.close}
             </button>
-            <MainMenu
-              changeSubNavHandler={this.changeSubNav}
-              isActive={this.state.menuActive}
-            />
+            <MainMenu isActive={this.state.menuActive} />
           </div>
         </div>
-        {this.state.subnavItem &&
-          <Submenu navItem={this.state.subnavItem} />
-        }
+        {subNavProps &&
+          <SubMenu {...this.props.subNavProps} />}
       </header>
     );
   }
 }
 
+Header.propTypes = propTypes;
 Header.contextTypes = { translations: PropTypes.object };
 Header.propTypes = propTypes;
 

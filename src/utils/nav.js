@@ -1,3 +1,34 @@
+import { PAGE_TYPE } from '../constants/settings';
+
+exports.transformSubnavProps = ({
+  categoryTitle,
+  categoryDescription,
+  currentPageId,
+  currentPageType,
+  overviewNavTitle,
+  categorySlug,
+  subcategories,
+}) => {
+  const formatSubCategory = sub => ({
+    ...sub,
+    isActive: sub.id === currentPageId,
+    link: `${categorySlug}/${sub.slug}`,
+  });
+
+  return {
+    categoryTitle,
+    navItems: [
+      {
+        description: categoryDescription,
+        isActive: currentPageType === PAGE_TYPE.CATEGORY,
+        link: categorySlug,
+        title: overviewNavTitle,
+      },
+      ...subcategories.map(formatSubCategory),
+    ],
+  };
+};
+
 const formatFooterLink = ({
   linkTitle,
   linkDestinationInternal,

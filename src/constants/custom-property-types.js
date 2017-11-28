@@ -69,6 +69,12 @@ const validateGlobalSettings = (props, propName) => {
   return isValid ? undefined : new Error('invalid global settings');
 };
 
+const footerLinkArray = PropTypes.arrayOf(PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  subLinks: PropTypes.footerLinkArray,
+}));
+
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
   DROP: PropTypes.shape({
@@ -79,6 +85,22 @@ exports.PROP_TYPES = {
       title: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
     })),
+  }),
+  HEADER_DATA: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
+  })),
+  FOOTER_DATA: PropTypes.shape({
+    primaryLinks: footerLinkArray,
+    utilityLinks: footerLinkArray,
+  }),
+  SUB_NAV_PROPS: PropTypes.shape({
+    categoryTitle: PropTypes.string.isRequired,
+    navItems: PropTypes.arrayOf(PropTypes.shape({
+      description: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired).isRequired,
   }),
   GLOBAL_SETTINGS: PropTypes.shape(validateGlobalSettings),
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),

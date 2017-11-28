@@ -5,10 +5,11 @@ import Helmet from 'react-helmet';
 import ContentModules from '../../content-modules';
 import PageHead from '../../components/global/page-head';
 import Share from '../../components/global/share';
+import PageWrapper from '../../components/global/page-wrapper';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
-import { SOCIAL_NETWORK } from '../../constants/social-networks';
+import { transformSubnavProps } from '../../utils/nav';
 
 import styles from './content-page.module.css';
 
@@ -16,40 +17,70 @@ const propTypes = {
   // TODO FIX data prop type
   data: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
   pathContext: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     imageDataByType: PROP_TYPES.IMAGE_DATA_BY_TYPE.isRequired,
   }).isRequired,
 };
 
-const ContentPageTemplate = ({ data: { contentfulContentPage }, pathContext: { imageDataByType } }) => {
+const ContentPageTemplate = ({
+  data: { contentfulContentPage },
+  pathContext: { id, imageDataByType },
+}) => {
   const {
     hasShareButtons,
     headline,
     mainImageAlt,
     modules,
+    categoryTitle,
+    categoryDescription,
+    overviewNavTitle,
     pageType,
+    parentCategory,
+    categorySlug,
+    subcategories,
     subhead,
   } = contentfulContentPage;
 
+  let subNavProps;
+
+  if (parentCategory) {
+    subNavProps = transformSubnavProps({
+      ...parentCategory[0],
+      currentPageType: pageType,
+      currentPageId: id,
+    });
+  } else if (subcategories) {
+    subNavProps = transformSubnavProps({
+      categoryTitle,
+      categoryDescription,
+      categorySlug,
+      currentPageType: pageType,
+      currentPageId: id,
+      overviewNavTitle,
+      subcategories,
+    });
+  }
+
   return (
-    <div className={styles.wrapper}>
-      <Helmet title={headline} />
-      <PageHead
-        headline={headline}
-        imageAlt={mainImageAlt}
-        imageSources={imageDataByType[IMAGE_TYPE.MAIN]}
-        subhead={subhead}
-        type={pageType}
-      />
-      {modules &&
-        <ContentModules
-          imageDataByType={imageDataByType}
-          modules={modules}
+    <PageWrapper subNavProps={subNavProps}>
+      <div className={styles.wrapper}>
+        <Helmet title={headline} />
+        <PageHead
+          headline={headline}
+          imageAlt={mainImageAlt}
+          imageSources={imageDataByType[IMAGE_TYPE.MAIN]}
+          subhead={subhead}
+          type={pageType}
         />
-      }
-      {hasShareButtons &&
-        <Share networksToShow={[SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER]} />
-      }
-    </div>
+        {modules &&
+          <ContentModules
+            imageDataByType={imageDataByType}
+            modules={modules}
+          />
+        }
+        {hasShareButtons && <Share />}
+      </div>
+    </PageWrapper>
   );
 };
 
@@ -65,6 +96,33 @@ export const pageQuery = graphql`
       subhead
       mainImageAlt
       pageType
+
+      # SUBNAV PROPERTIES - CATEGORY
+      categoryTitle: navTitle
+      categoryDescription: navDescription
+      overviewNavTitle
+      categorySlug: slug
+      subcategories {
+        description: navDescription
+        id
+        slug
+        title: navTitle
+      }
+
+      # SUBNAV PROPERTIES - NESTED ARTICLE
+      parentCategory: contentpage {
+        categoryTitle: navTitle
+        categoryDescription: navDescription
+        overviewNavTitle
+        categorySlug: slug
+        subcategories {
+          description: navDescription
+          id
+          slug
+          title: navTitle
+        }
+      }
+
       modules {
         __typename
         ... on ContentfulBodyText {

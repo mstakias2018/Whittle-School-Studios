@@ -7,7 +7,8 @@ import styles from './footer.module.css';
 import Link from '../link';
 import FooterShareIcons from './share-icons';
 
-import { CLASSES } from './../../../constants/classes';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { CLASSES } from '../../../constants/classes';
 
 const renderBlock = (item, index, className) => (
   <div
@@ -108,7 +109,7 @@ const Footer = (props, context) => {
 };
 
 Footer.contextTypes = {
-  footerData: PropTypes.object.isRequired,
+  footerData: PROP_TYPES.FOOTER_DATA.isRequired,
   translations: PropTypes.object,
 };
 

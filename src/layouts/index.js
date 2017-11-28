@@ -7,9 +7,6 @@ import Helmet from 'react-helmet';
 import detectTouchEvents from 'detect-touch-events';
 import cx from 'classnames';
 
-import Header from '../components/global/header';
-import Footer from '../components/global/footer';
-import Fab from '../components/global/fab';
 import VirtualGrid from './virtual-grid/virtual-grid';
 
 import '../assets/styles/main.css';
@@ -18,13 +15,12 @@ import '../assets/styles/main.css';
 import './fonts.module.css';
 
 const { PROP_TYPES } = require('../constants/custom-property-types');
-const { CLASSES } = require('../constants/classes');
 const {
   LANGUAGE, LANGUAGE_CLASS, LANGUAGE_CONTENTFUL_LOCALE,
 } = require('../constants/regions');
 const { getLanguageFromPathname } = require('../utils/regions');
-const { formatFooterLinks } = require('../utils/links');
 const { transformSocialNetworks } = require('../utils/social-networks');
+const { formatFooterLinks } = require('../utils/nav');
 
 class TemplateWrapper extends Component {
   getChildContext() {
@@ -41,6 +37,7 @@ class TemplateWrapper extends Component {
 
     return {
       fabTextImage: url,
+      headerData: data[`HEADER_${language}`].contentPages,
       footerData: formatFooterLinks(data[`FOOTER_${language}`]),
       language,
       socialIcons: {
@@ -75,10 +72,7 @@ class TemplateWrapper extends Component {
           title="Home"
           titleTemplate="The Whittle School - %s"
         />
-        <Header />
-        <Fab />
-        <main className={CLASSES.PAGE_CONTENT}>{this.props.children()}</main>
-        <Footer />
+        {this.props.children()}
         <VirtualGrid />
       </div>
     );
@@ -93,7 +87,8 @@ TemplateWrapper.propTypes = {
 
 TemplateWrapper.childContextTypes = {
   fabTextImage: PropTypes.string.isRequired,
-  footerData: PropTypes.object.isRequired,
+  footerData: PROP_TYPES.FOOTER_DATA.isRequired,
+  headerData: PROP_TYPES.HEADER_DATA.isRequired,
   language: PropTypes.string.isRequired,
   socialIcons: PropTypes.object.isRequired,
   translations: PropTypes.object.isRequired,
@@ -103,6 +98,20 @@ export default TemplateWrapper;
 
 export const pageQuery = graphql`
   query globalQuery {
+    HEADER_ENGLISH: contentfulHeader(node_locale: {eq: "en-US"}) {
+      contentPages {
+        title: navTitle
+        link: slug
+      }
+    }
+
+    HEADER_CHINESE: contentfulHeader(node_locale: {eq: "zh-CN"}) {
+      contentPages {
+        title: navTitle
+        link: slug
+      }
+    }
+
     FOOTER_ENGLISH: contentfulFooter(node_locale: { eq: "en-US" }) {
       primaryLink1 {
         linkTitle
