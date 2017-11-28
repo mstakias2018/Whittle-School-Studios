@@ -2,9 +2,12 @@
 @import '../../../assets/styles/includes/grid.css';
 @import '../../../assets/styles/includes/typography.css';
 
+.wrapper {
+  @mixin component-container;
+}
+
 .pageHead {
   @mixin grid-container;
-
   img {
     display: block;
     width: 100%;
@@ -26,7 +29,7 @@
     @mixin span 4, 4, sm;
 
     @media (--bp-md) {
-      @mixin span 8, 8, md;
+      @mixin span 7, 8, md;
     }
 
     @media (--bp-lg) {
@@ -49,7 +52,7 @@
   .subhead {
     @mixin span 4, 4, sm;
 
-    @media (--bp-md) {
+    @media (--bp-md-only) {
       @mixin span 8, 8, md;
       margin-bottom: 56px;
       margin-top: 0;
@@ -57,6 +60,7 @@
 
     @media (--bp-lg) {
       @mixin span 3, 12, lg;
+      padding-top: 60px;
     }
   }
 }

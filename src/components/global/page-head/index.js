@@ -25,31 +25,33 @@ const PageHead = ({
   subhead,
   type,
 }) => (
-  <div
-    className={cx(styles.pageHead, {
-      [styles.pageHead_home]: type === PAGE_TYPE.HOME,
-      [styles.pageHead_article]: type === PAGE_TYPE.ARTICLE,
-      [styles.pageHead_category]: type === PAGE_TYPE.CATEGORY,
-    })}
-  >
-    <Title
-      text={headline}
-      type={type}
-    />
-    {type === PAGE_TYPE.CATEGORY &&
-      subhead &&
-      <h2 className={styles.subhead}>{subhead}</h2>
-    }
-    {imageSources &&
-      <Picture
-        alt={imageAlt}
-        sourcesBySize={imageSources}
+  <div className={styles.wrapper}>
+    <div
+      className={cx(styles.pageHead, {
+        [styles.pageHead_home]: type === PAGE_TYPE.HOME,
+        [styles.pageHead_article]: type === PAGE_TYPE.ARTICLE,
+        [styles.pageHead_category]: type === PAGE_TYPE.CATEGORY,
+      })}
+    >
+      <Title
+        text={headline}
+        type={type}
       />
-    }
-    {type === PAGE_TYPE.ARTICLE &&
-      subhead &&
-      <h2 className={styles.subhead}>{subhead}</h2>
-    }
+      {type === PAGE_TYPE.CATEGORY &&
+        subhead &&
+        <h2 className={styles.subhead}>{subhead}</h2>
+      }
+      {imageSources &&
+        <Picture
+          alt={imageAlt}
+          sourcesBySize={imageSources}
+        />
+      }
+      {type === PAGE_TYPE.ARTICLE &&
+        subhead &&
+        <h2 className={styles.subhead}>{subhead}</h2>
+      }
+    </div>
   </div>
 );
 
