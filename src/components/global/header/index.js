@@ -5,8 +5,14 @@ import Logo from './header-logo/header-logo';
 import MainMenu from './header-menu/header-menu';
 import Locales from './header-locales/';
 import Submenu from './header-submenu/';
+import WithWindowListener from '../../../hocs/withWindow';
+
+import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
 
 import styles from './header.module.css';
+
+const propTypes = { breakpoint: PROP_TYPES.BREAKPOINT };
 
 class Header extends Component {
   state = {
@@ -14,10 +20,19 @@ class Header extends Component {
     subnavItem: null,
   };
 
+  componentWillReceiveProps(nextProps) {
+    this.onBreakpointChange(nextProps);
+  }
+
+  onBreakpointChange = (nextProps) => {
+    if ((nextProps.breakpoint !== this.props.breakpoint) &&
+      nextProps.breakpoint === BREAKPOINTS_NAME.large) {
+      this.setState({ menuActive: false });
+    }
+  };
+
   changeSubNav = (newItem) => {
-    this.setState({
-      subnavItem: newItem,
-    });
+    this.setState({ subnavItem: newItem });
   };
 
   toggleMenu = () => {
@@ -62,5 +77,6 @@ class Header extends Component {
 }
 
 Header.contextTypes = { translations: PropTypes.object };
+Header.propTypes = propTypes;
 
-export default Header;
+export default WithWindowListener(Header);
