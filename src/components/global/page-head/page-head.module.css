@@ -4,6 +4,7 @@
 
 .wrapper {
   @mixin component-container;
+  @mixin component-vertical-spacing;
 }
 
 .pageHead {

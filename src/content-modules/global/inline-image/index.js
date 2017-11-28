@@ -29,22 +29,24 @@ const InlineImage = ({
   });
 
   return (
-    <div className={styles.componentWrapper}>
-      <div className={cx(styles.image, styles[`image_is${shape}`])}>
-        <div className={styles.imageInner}>
-          <Picture
-            alt={alt}
-            isAriaHidden={isInBackground}
-            sourcesBySize={imageSources}
-          />
-          {children}
+    <div className={styles.wrapper}>
+      <div className={styles.componentWrapper}>
+        <div className={cx(styles.image, styles[`image_is${shape}`])}>
+          <div className={styles.imageInner}>
+            <Picture
+              alt={alt}
+              isAriaHidden={isInBackground}
+              sourcesBySize={imageSources}
+            />
+            {children}
+          </div>
         </div>
+        {caption && (
+          <div className={captionClasses}>
+            {caption}
+          </div>
+        )}
       </div>
-      {caption && (
-        <div className={captionClasses}>
-          {caption}
-        </div>
-      )}
     </div>
   );
 };

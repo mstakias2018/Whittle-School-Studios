@@ -2,8 +2,12 @@
 @import '../../../assets/styles/includes/variables.css';
 @import '../../../assets/styles/includes/typography.css';
 
-.componentWrapper {
+.wrapper {
+  @mixin component-container;
   @mixin component-vertical-spacing;
+}
+
+.componentWrapper {
   @mixin grid-container;
   flex-wrap: wrap;
 }
