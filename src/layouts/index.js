@@ -7,6 +7,7 @@ import Helmet from 'react-helmet';
 import detectTouchEvents from 'detect-touch-events';
 import cx from 'classnames';
 
+import SiteInfo from '../components/site-info';
 import VirtualGrid from './virtual-grid/virtual-grid';
 
 import '../assets/styles/main.css';
@@ -14,13 +15,16 @@ import '../assets/styles/main.css';
    so fonts will live in layouts/ */
 import './fonts.module.css';
 
-const { PROP_TYPES } = require('../constants/custom-property-types');
-const {
-  LANGUAGE, LANGUAGE_CLASS, LANGUAGE_CONTENTFUL_LOCALE,
-} = require('../constants/regions');
-const { getLanguageFromPathname } = require('../utils/regions');
-const { transformSocialNetworks } = require('../utils/social-networks');
-const { formatFooterLinks } = require('../utils/nav');
+import { BRANCHES } from '../constants/env';
+import { PROP_TYPES } from '../constants/custom-property-types';
+import {
+  LANGUAGE,
+  LANGUAGE_CLASS,
+  LANGUAGE_CONTENTFUL_LOCALE,
+} from '../constants/regions';
+import { getLanguageFromPathname } from '../utils/regions';
+import { transformSocialNetworks } from '../utils/social-networks';
+import { formatFooterLinks } from '../utils/nav';
 
 class TemplateWrapper extends Component {
   getChildContext() {
@@ -72,6 +76,7 @@ class TemplateWrapper extends Component {
           title="Home"
           titleTemplate="The Whittle School - %s"
         />
+        {process.env.GATSBY_BRANCH === BRANCHES.STAGING && <SiteInfo />}
         {this.props.children()}
         <VirtualGrid />
       </div>

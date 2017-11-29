@@ -17,7 +17,10 @@ transferSpaces(CHINA_DEV, US_DEV, true).then(() => {
     console.log('=== COPYING CHINA DEV TO CHINA QA');
     transferSpaces(CHINA_DEV, CHINA_QA).then(() => {
       console.log('=== PUSHING TO QA BRANCH');
-      simpleGit().fetch().push('origin', 'refs/remotes/origin/master:refs/heads/qa');
+      simpleGit()
+        .fetch()
+        .push('origin', 'refs/remotes/origin/master:refs/heads/qa')
+        .push('origin', 'refs/remotes/origin/master:refs/heads/staging');
     });
   });
 });

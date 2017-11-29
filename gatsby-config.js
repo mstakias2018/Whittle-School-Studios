@@ -1,10 +1,12 @@
 // TODO env variables
+const { BRANCHES } = require('./src/constants/env');
 
-const NETLIFY_BRANCH_MAP = {
-  qa: 'QA',
+const BRANCH_MAP = {
+  [BRANCHES.QA]: 'QA',
+  [BRANCHES.STAGING]: 'STAGING',
 };
 
-const env = NETLIFY_BRANCH_MAP[process.env.BRANCH] || 'DEV';
+const env = BRANCH_MAP[process.env.BRANCH] || 'DEV';
 
 const CONTENTFUL = {
   DEV: {
@@ -25,6 +27,19 @@ const CONTENTFUL = {
     CHINA: {
       spaceId: '5wvb725fovi7',
       accessToken: '738257cffeae0feab06ea584e4daafc8eade85903ad4ff775b98729d6b3e5242',
+    },
+  },
+  // this is using the QA spaces for now - later we'll get our own prod spaces
+  STAGING: {
+    US: {
+      spaceId: 'w6h2a8mys1um',
+      accessToken: '43a7a9f18d40ca052d931020c3957bb2307941d4df50d7fe0eded9200fcafab7',
+      host: 'preview.contentful.com',
+    },
+    CHINA: {
+      spaceId: '5wvb725fovi7',
+      accessToken: 'dabe2f152b3124dddf8c8e5cf7ceb0aa6895a85083896b55ce9d439b3ab0f433',
+      host: 'preview.contentful.com',
     },
   },
 };

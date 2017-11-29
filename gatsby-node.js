@@ -1,4 +1,5 @@
 const { GraphQLString } = require('graphql');
+const moment = require('moment-timezone');
 
 const createCategoryAndArticlePages = require('./server/create-category-and-article-pages');
 const { resetImageDir } = require('./server/save-images');
@@ -27,6 +28,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
   copyNetlifyVariables();
   resetImageDir();
+  process.env.GATSBY_BUILD_TIME = moment().tz('America/New_York').format('MMM Do, h:mm a z');
 
   return createCategoryAndArticlePages(graphql, createPage);
 };

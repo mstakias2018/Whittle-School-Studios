@@ -1,0 +1,80 @@
+@import '../../assets/styles/includes/breakpoints.css';
+@import '../../assets/styles/includes/grid.css';
+@import '../../assets/styles/includes/mixins.css';
+@import '../../assets/styles/includes/typography.css';
+@import '../../assets/styles/includes/variables.css';
+
+.wrapper {
+  @mixin type-descriptor;
+  background-color: var(--color-secondary-light);
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+}
+
+.wrapper:not(.wrapper_isHidden) {
+  padding-bottom: 15px;
+  padding-top: 15px;
+  width: 100%;
+
+  @media (--bp-sm-only) {
+    padding-left: var(--component-wrapper-margin-sm);
+    padding-right: var(--component-wrapper-margin-sm);
+  }
+
+  @media (--bp-md-only) {
+    padding-left: var(--component-wrapper-margin-md);
+    padding-right: var(--component-wrapper-margin-md);
+  }
+
+  @media (--bp-lg) {
+    padding-left: var(--component-wrapper-margin-lg);
+    padding-right: var(--component-wrapper-margin-lg);
+  }
+}
+
+.wrapper_isHidden {
+  padding: 5px;
+}
+
+.grid {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.lastBuildWrapper {
+  @media (--bp-sm-only) {
+    padding-bottom: 15px;
+    width: 100%;
+  }
+}
+
+.lastBuild {
+  @mixin type-h3;
+}
+
+.pollingWrapper {
+  @media (--bp-md) {
+    width: 100%;
+  }
+}
+
+.button {
+  /* todo use mixin */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.wrapper:not(.wrapper_isHidden) {
+  & .button_visibility {
+    margin-left: 20px;
+  }
+}
