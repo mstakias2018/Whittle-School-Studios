@@ -42,6 +42,25 @@
       - ((var(--fab-size-lg) + var(--grid-gutter-lg)) / 2));
     transform: translateY(390px);
     width: var(--fab-size-lg);
+
+    &:hover {
+      .contentText {
+        animation: fabHover 1.5s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes fabHover {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(360deg);}
+}
+
+.fabLink:focus {
+  outline: none;
+  
+  .contentText {
+    filter: invert(42%) sepia(86%) saturate(597%) hue-rotate(331deg) brightness(85%) contrast(100%);
   }
 }
 
@@ -53,6 +72,7 @@
 .fabArrow {
   height: 9px;
   left: 50%;
+  pointer-events: none;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);

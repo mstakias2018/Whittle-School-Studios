@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
+import cx from 'classnames';
 
 import Plx from 'react-plx';
 
@@ -8,9 +9,16 @@ import styles from './fab.module.css';
 
 import FabArrowImage from '../../../assets/images/fab-arrow.svg';
 
+import WithWindowListener from '../../../hocs/withWindow';
+
 import { BREAKPOINTS } from '../../../constants/breakpoints';
 import { PAGE_PADDING, FAB_SIZE } from '../../../constants/dimensions';
 import { CLASSES } from '../../../constants/classes';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
+
+const propTypes = {
+  breakpoint: PROP_TYPES.BREAKPOINT,
+};
 
 class Fab extends React.Component {
   state = {
@@ -25,6 +33,22 @@ class Fab extends React.Component {
   }
 
   componentDidMount = () => {
+    this.setInitialStates();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.breakpoint !== this.props.breakpoint) {
+      this.setInitialStates();
+    }
+  }
+
+  onFocus = () => {
+    if (this.fabButton.scrollManager.scrollPosition < this.state.startAppearAt + (3 * this.state.elementHeight)) {
+      window.scrollTo(0, this.state.startAppearAt + (3 * this.state.elementHeight));
+    }
+  }
+
+  setInitialStates = () => {
     setTimeout(() => {
       const clientHeight = window.innerHeight;
       const clientWidth = window.innerWidth;
@@ -49,12 +73,6 @@ class Fab extends React.Component {
         clientWidth,
       });
     }, 0);
-  }
-
-  onFocus = () => {
-    if (this.fabButton.scrollManager.scrollPosition < this.state.startAppearAt + (3 * this.state.elementHeight)) {
-      window.scrollTo(0, this.state.startAppearAt + (3 * this.state.elementHeight));
-    }
   }
 
   render() {
@@ -135,11 +153,12 @@ class Fab extends React.Component {
           >
             <Link
               aria-label={translations.fab.ariaLabel}
+              className={styles.fabLink}
               to="/#"
             >
               <img
                 alt=""
-                className={styles.content}
+                className={cx(styles.content, styles.contentText)}
                 src={fabTextImage}
               />
             </Link>
@@ -155,9 +174,10 @@ class Fab extends React.Component {
   }
 }
 
+Fab.propTypes = propTypes;
 Fab.contextTypes = {
   fabTextImage: PropTypes.string,
   translations: PropTypes.object,
 };
 
-export default Fab;
+export default WithWindowListener(Fab);
