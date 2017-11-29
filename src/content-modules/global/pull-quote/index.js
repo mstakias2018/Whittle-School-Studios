@@ -4,20 +4,22 @@ import PropTypes from 'prop-types';
 import styles from './pull-quote.module.css';
 
 const propTypes = {
-  quote: PropTypes.string.isRequired,
-  author: PropTypes.string,
+  content: PropTypes.shape({
+    content: PropTypes.string,
+  }).isRequired,
+  source: PropTypes.string,
 };
 
-const PullQuote = ({ quote, author }) => (
+const PullQuote = ({ content, source }) => (
   <div className={styles.wrapper}>
     <div className={styles.content}>
       <div className={styles.quoteBlock}>
         <blockquote className={styles.quote}>
-          {quote}
-          {author && <span className={styles.lastLineSeparator} />}
-          {author &&
+          {content.content}
+          {source && <span className={styles.lastLineSeparator} />}
+          {source &&
             <span className={styles.author}>
-              {author}
+              {source}
             </span>
           }
         </blockquote>

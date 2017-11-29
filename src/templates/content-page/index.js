@@ -142,6 +142,12 @@ export const pageQuery = graphql`
             caption
           }
         }
+        ... on ContentfulQuote {
+          content {
+            content
+          }
+          source
+        }
       }
     }
   }

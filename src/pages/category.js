@@ -16,7 +16,6 @@ import smallImage from '../test-content/images/article-small.jpg';
 
 import styles from './modules.module.css';
 
-import PullQuote from '../content-modules/global/pull-quote';
 import ThreeUpBreaker from '../content-modules/global/three-up-breaker';
 
 const Category = () => (
@@ -39,17 +38,6 @@ const Category = () => (
       title1="A School of One"
       title2="Exceptional Faculty"
       title3="Progressive Pedagogy"
-    />
-
-    <div className={styles.componentInfo}>Pull quote with author</div>
-    <PullQuote
-      author="Chris Whittle"
-      quote="If a school doesn’t measure the progress of every child on multiple dimensions, then its mission statement is nothing more than pretty words."
-    />
-
-    <div className={styles.componentInfo}>Pull quote without author</div>
-    <PullQuote
-      quote="If a school doesn’t measure the progress of every child on multiple dimensions, then its mission statement is nothing more than pretty words."
     />
 
     <div className={styles.componentInfo}>Video</div>

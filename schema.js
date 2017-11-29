@@ -147,14 +147,18 @@
 
 // schema
 {
-  content: { type: String }, // allows markdown
+  content: { type: {
+    content: { type: String },
+  },
   source: { type: String, isRequired: false },
   style: { type: String }, // "PullQuote" or "BlockQuote"
 }
 
 // example
 {
-  content: 'Ask not what your country can do for you—ask what you can do for your country.',
+  content: {
+    content: 'Ask not what your country can do for you—ask what you can do for your country.',
+  },
   source: 'John F. Kennedy',
   style: 'PullQuote',
 }
