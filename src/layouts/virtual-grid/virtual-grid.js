@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
+
+import WithWindowListener from '../../hocs/withWindow';
 
 import styles from './virtual-grid.module.css';
 
@@ -12,6 +15,12 @@ const maxGridSize = () => {
   return array;
 };
 
+let orientationChanges = 0;
+
+const propTypes = {
+  orientation: PropTypes.string,
+};
+
 class VirtualGrid extends React.Component {
   constructor(props) {
     super(props);
@@ -22,18 +31,6 @@ class VirtualGrid extends React.Component {
   }
 
   componentDidMount() {
-    let orientationChanges = 0;
-    window.addEventListener('orientationchange', () => {
-      orientationChanges += 1;
-
-      if (orientationChanges % 2 === 0) {
-        this.setState({
-          visible: !this.state.visible,
-          onTop: !this.state.onTop,
-        });
-      }
-    });
-
     window.addEventListener('keyup', (e) => {
       if (e.keyCode === 71) {
         this.setState({
@@ -46,6 +43,19 @@ class VirtualGrid extends React.Component {
         });
       }
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.orientation !== this.props.orientation) {
+      orientationChanges += 1;
+
+      if (orientationChanges % 2 === 0) {
+        this.setState({
+          visible: !this.state.visible,
+          onTop: !this.state.onTop,
+        });
+      }
+    }
   }
 
   render() {
@@ -69,4 +79,6 @@ class VirtualGrid extends React.Component {
   }
 }
 
-export default VirtualGrid;
+VirtualGrid.propTypes = propTypes;
+
+export default WithWindowListener(VirtualGrid);
