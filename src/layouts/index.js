@@ -34,7 +34,7 @@ class TemplateWrapper extends Component {
       contentPageShareIcons,
       fabText: { file: { url } },
       footerShareIcons,
-      translations: stringifiedTranslations,
+      translations: { internal: { content: stringifiedTranslations } },
       ...socialNetworkUrls
     } = data[`SETTINGS_${language}`];
     const translations = JSON.parse(stringifiedTranslations);
@@ -404,7 +404,11 @@ export const pageQuery = graphql`
     }
 
     SETTINGS_ENGLISH: contentfulGlobalSettings(node_locale: {eq: "en-US"}) {
-      translations
+      translations {
+        internal {
+          content
+        }
+      }
       fabText {
         file {
           url
@@ -421,7 +425,11 @@ export const pageQuery = graphql`
     }
 
     SETTINGS_CHINESE: contentfulGlobalSettings(node_locale: {eq: "zh-CN"}) {
-      translations
+      translations {
+        internal {
+          content
+        }
+      }
       fabText {
         file {
           url
