@@ -19,7 +19,7 @@
     "@vimeo/player": "git://github.com/vimeo/player.js#v2.2.1",
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^6.24.1",
+    "babel-preset-env": "1.6.1",
     "babel-preset-stage-0": "^6.24.1",
     "classnames": "^2.2.5",
     "detect-touch-events": "^2.0.1",
