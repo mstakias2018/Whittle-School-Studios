@@ -176,8 +176,8 @@ class Fab extends React.Component {
 
 Fab.propTypes = propTypes;
 Fab.contextTypes = {
-  fabTextImage: PropTypes.string,
-  translations: PropTypes.object,
+  fabTextImage: PropTypes.string.isRequired,
+  translations: PropTypes.object.isRequired,
 };
 
 export default WithWindowListener(Fab);

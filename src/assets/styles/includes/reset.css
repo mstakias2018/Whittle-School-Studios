@@ -8,6 +8,11 @@ html {
 }
 body {
   margin: 0;
+
+  /* prevent Chinese text from breaking
+     https://developer.mozilla.org/en-US/docs/Web/CSS/word-break */
+  word-break: keep-all;
+
   @media (--bp-sm-only) {
     padding: var(--component-wrapper-margin-sm);
   }

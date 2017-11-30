@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Link from '../../../../components/global/link';
+import Link from '../../link';
 import styles from './share-icons.module.css';
+import { PROP_TYPES } from '../../../../constants/custom-property-types';
 
 const FooterShareIcons = (props, context) => {
   const {
@@ -34,8 +35,8 @@ const FooterShareIcons = (props, context) => {
 };
 
 FooterShareIcons.contextTypes = {
-  socialIcons: PropTypes.object.isRequired,
-  translations: PropTypes.object,
+  socialIcons: PROP_TYPES.SOCIAL_ICONS.isRequired,
+  translations: PropTypes.object.isRequired,
 };
 
 export default FooterShareIcons;

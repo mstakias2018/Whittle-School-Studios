@@ -14,6 +14,7 @@ import styles from './header.module.css';
 
 const propTypes = {
   breakpoint: PROP_TYPES.BREAKPOINT,
+  localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
   subNavProps: PROP_TYPES.SUB_NAV_PROPS,
 };
 
@@ -41,17 +42,11 @@ class Header extends Component {
 
   render() {
     const { translations } = this.context;
-    const { subNavProps } = this.props;
+    const { localizedSlugList, subNavProps } = this.props;
 
     return (
       <header className={styles.header}>
-        {
-          // Todo add real params
-        }
-        <Locales
-          languageSelected="English"
-          regionSelected="US"
-        />
+        <Locales localizedSlugList={localizedSlugList} />
         <div className="container">
           <div className={styles.container}>
             <Logo />
@@ -61,7 +56,10 @@ class Header extends Component {
             >
               {!this.state.menuActive ? translations.general.menu : translations.general.close}
             </button>
-            <MainMenu isActive={this.state.menuActive} />
+            <MainMenu
+              isActive={this.state.menuActive}
+              localizedSlugList={localizedSlugList}
+            />
           </div>
         </div>
         {subNavProps &&
@@ -72,7 +70,9 @@ class Header extends Component {
 }
 
 Header.propTypes = propTypes;
-Header.contextTypes = { translations: PropTypes.object };
-Header.propTypes = propTypes;
+Header.contextTypes = {
+  language: PROP_TYPES.LANGUAGE.isRequired,
+  translations: PropTypes.object.isRequired,
+};
 
 export default WithWindowListener(Header);

@@ -1,15 +1,10 @@
 // TODO env variables
-const { BRANCHES } = require('./src/constants/env');
+const { BRANCH_ENV_MAP, ENV } = require('./src/constants/env');
 
-const BRANCH_MAP = {
-  [BRANCHES.QA]: 'QA',
-  [BRANCHES.STAGING]: 'STAGING',
-};
-
-const env = BRANCH_MAP[process.env.BRANCH] || 'DEV';
+process.env.GATSBY_ENV = BRANCH_ENV_MAP[process.env.BRANCH] || ENV.DEV;
 
 const CONTENTFUL = {
-  DEV: {
+  [ENV.DEV]: {
     US: {
       spaceId: 'oddfnk02van2',
       accessToken: '1fcf43999b75ddd00146569b70089a03d6e7c686739596ede714f02c41aeb3ab',
@@ -19,7 +14,7 @@ const CONTENTFUL = {
       accessToken: '930860097f4c7dae286d0eb05692bc4c0355c835686cf5d4fb6cbafb547ed87c',
     },
   },
-  QA: {
+  [ENV.QA]: {
     US: {
       spaceId: 'w6h2a8mys1um',
       accessToken: 'f963757dd3a912fbd0fc5af56eeaa3aa834ccb3dfbc2becbbe9657035a1c4079',
@@ -30,7 +25,7 @@ const CONTENTFUL = {
     },
   },
   // this is using the QA spaces for now - later we'll get our own prod spaces
-  STAGING: {
+  [ENV.STAGING]: {
     US: {
       spaceId: 'w6h2a8mys1um',
       accessToken: '43a7a9f18d40ca052d931020c3957bb2307941d4df50d7fe0eded9200fcafab7',
@@ -53,7 +48,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-contentful',
-      options: CONTENTFUL[env][process.env.GATSBY_REGION],
+      options: CONTENTFUL[process.env.GATSBY_ENV][process.env.GATSBY_REGION],
     },
     'gatsby-transformer-remark',
   ],

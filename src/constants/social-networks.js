@@ -4,10 +4,10 @@ import iconWeChat from '../assets/images/icon-we-chat.svg';
 import iconWeibo from '../assets/images/icon-weibo.svg';
 
 const SOCIAL_NETWORK = {
-  FACEBOOK: 'Facebook',
-  TWITTER: 'Twitter',
-  WECHAT: 'WeChat',
-  WEIBO: 'Weibo',
+  FACEBOOK: 'FACEBOOK',
+  TWITTER: 'TWITTER',
+  WECHAT: 'WECHAT',
+  WEIBO: 'WEIBO',
 };
 
 exports.SOCIAL_NETWORK = SOCIAL_NETWORK;

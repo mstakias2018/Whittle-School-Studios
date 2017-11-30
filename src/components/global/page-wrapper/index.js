@@ -8,9 +8,10 @@ import Fab from '../fab';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 
-const PageWrapper = ({ children, subNavProps }) => ([
+const PageWrapper = ({ children, localizedSlugList, subNavProps }) => ([
   <Header
     key="header"
+    localizedSlugList={localizedSlugList}
     subNavProps={subNavProps}
   />,
   <Fab key="fab" />,
@@ -25,6 +26,7 @@ const PageWrapper = ({ children, subNavProps }) => ([
 
 PageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
   subNavProps: PROP_TYPES.SUB_NAV_PROPS,
 };
 

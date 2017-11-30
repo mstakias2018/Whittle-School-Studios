@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { IMAGE_BP, IMAGE_SHAPE, IMAGE_TYPE } from './images';
 import { PAGE_TYPES } from './settings';
 import { BREAKPOINTS_NAME } from './breakpoints';
-import { LANGUAGE, REGION_LANGUAGES } from './regions';
+import { SOCIAL_NETWORK } from './social-networks';
+import {
+  LANGUAGE,
+  LANGUAGE_CONTENTFUL_LOCALE,
+  REGION_LANGUAGES,
+} from './regions';
 
 const isValidSourcesBySize = sourcesBySize =>
   Object.keys(sourcesBySize).every((breakpoint) => {
@@ -75,17 +80,16 @@ const footerLinkArray = PropTypes.arrayOf(PropTypes.shape({
   subLinks: PropTypes.footerLinkArray,
 }));
 
+const socialNetworkList = PropTypes.arrayOf(PropTypes.shape({
+  icon: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  network: PropTypes.oneOf(Object.keys(SOCIAL_NETWORK)),
+  shareLink: PropTypes.string,
+  url: PropTypes.string,
+}));
+
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
-  DROP: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    buttonAriaLabel: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    items: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    })),
-  }),
   HEADER_DATA: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
@@ -103,9 +107,23 @@ exports.PROP_TYPES = {
     }).isRequired).isRequired,
   }),
   GLOBAL_SETTINGS: PropTypes.shape(validateGlobalSettings),
+  HISTORY: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }),
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES: PropTypes.shape(validateSourcesBySize),
-  LANGUAGE: PropTypes.oneOf([LANGUAGE.ENGLISH, LANGUAGE.CHINESE]),
+  LANGUAGE: PropTypes.oneOf(REGION_LANGUAGES[process.env.GATSBY_REGION]),
+  LOCALIZED_SLUG_LIST: PropTypes.arrayOf(PropTypes.shape({
+    link: PropTypes.string.isRequired,
+    locale: PropTypes.oneOf([
+      LANGUAGE_CONTENTFUL_LOCALE[LANGUAGE.ENGLISH],
+      LANGUAGE_CONTENTFUL_LOCALE[LANGUAGE.CHINESE],
+    ]).isRequired,
+  })),
   MODULES: PropTypes.arrayOf(PropTypes.oneOfType([BODY_TEXT, INLINE_IMAGE, SLIDESHOW_CAROUSEL])),
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
+  SOCIAL_ICONS: PropTypes.shape({
+    contentPage: socialNetworkList.isRequired,
+    footer: socialNetworkList.isRequired,
+  }),
 };

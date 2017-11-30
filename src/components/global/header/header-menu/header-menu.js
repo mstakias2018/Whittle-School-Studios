@@ -10,10 +10,12 @@ import styles from './header-menu.module.css';
 
 const propTypes = {
   isActive: PropTypes.bool.isRequired,
+  localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
 };
 
 const MainMenu = ({
   isActive,
+  localizedSlugList,
 }, {
   headerData,
   translations,
@@ -43,8 +45,7 @@ const MainMenu = ({
     </nav>
     <Locales
       isSmall
-      languageSelected="English"
-      regionSelected="US"
+      localizedSlugList={localizedSlugList}
     />
   </div>
 );
@@ -52,7 +53,7 @@ const MainMenu = ({
 MainMenu.propTypes = propTypes;
 MainMenu.contextTypes = {
   headerData: PROP_TYPES.HEADER_DATA.isRequired,
-  translations: PropTypes.object,
+  translations: PropTypes.object.isRequired,
 };
 
 export default MainMenu;

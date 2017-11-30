@@ -203,7 +203,7 @@ class Carousel extends Component {
   }
 }
 
-Carousel.contextTypes = { translations: PropTypes.object };
+Carousel.contextTypes = { translations: PropTypes.object.isRequired };
 Carousel.propTypes = propTypes;
 
 export default Carousel;

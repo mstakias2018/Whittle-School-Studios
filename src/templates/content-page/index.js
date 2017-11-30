@@ -9,7 +9,10 @@ import PageWrapper from '../../components/global/page-wrapper';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
-import { transformSubnavProps } from '../../utils/nav';
+import {
+  transformLocalizedSlugData,
+  transformSubnavProps,
+} from '../../utils/nav';
 
 import styles from './content-page.module.css';
 
@@ -23,7 +26,7 @@ const propTypes = {
 };
 
 const ContentPageTemplate = ({
-  data: { contentfulContentPage },
+  data: { localizedSlugData, currentPageData },
   pathContext: { id, imageDataByType },
 }) => {
   const {
@@ -39,7 +42,7 @@ const ContentPageTemplate = ({
     categorySlug,
     subcategories,
     subhead,
-  } = contentfulContentPage;
+  } = currentPageData;
 
   let subNavProps;
 
@@ -62,7 +65,10 @@ const ContentPageTemplate = ({
   }
 
   return (
-    <PageWrapper subNavProps={subNavProps}>
+    <PageWrapper
+      localizedSlugList={transformLocalizedSlugData(localizedSlugData)}
+      subNavProps={subNavProps}
+    >
       <div className={styles.wrapper}>
         <Helmet title={headline} />
         <PageHead
@@ -89,8 +95,22 @@ ContentPageTemplate.propTypes = propTypes;
 export default ContentPageTemplate;
 
 export const pageQuery = graphql`
-  query contentPageQuery($id: String!) {
-    contentfulContentPage(id: { eq: $id }) {
+  query contentPageQuery($id: String!, $idRegex: String!) {
+    localizedSlugData: allContentfulContentPage(
+      filter: { id: { regex: $idRegex } }
+    ) {
+      edges {
+        node {
+          locale: node_locale
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+      }
+    }
+
+    currentPageData: contentfulContentPage(id: { eq: $id }) {
       hasShareButtons
       headline
       subhead

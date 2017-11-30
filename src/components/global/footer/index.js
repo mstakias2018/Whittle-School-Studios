@@ -110,7 +110,7 @@ const Footer = (props, context) => {
 
 Footer.contextTypes = {
   footerData: PROP_TYPES.FOOTER_DATA.isRequired,
-  translations: PropTypes.object,
+  translations: PropTypes.object.isRequired,
 };
 
 export default Footer;

@@ -13,6 +13,6 @@ const Logo = (props, { translations }) => (
   </div>
 );
 
-Logo.contextTypes = { translations: PropTypes.object };
+Logo.contextTypes = { translations: PropTypes.object.isRequired };
 
 export default Logo;

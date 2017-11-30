@@ -1,3 +1,5 @@
+const { ENV } = require('./env');
+
 const REGION = {
   US: 'US',
   CHINA: 'CHINA',
@@ -35,4 +37,19 @@ exports.LANGUAGE_PATH = {
 exports.LANGUAGE_CONTENTFUL_LOCALE = {
   [exports.LANGUAGE.ENGLISH]: 'en-US',
   [exports.LANGUAGE.CHINESE]: 'zh-CN',
+};
+
+exports.REGION_URLS = {
+  [ENV.DEV]: {
+    [REGION.US]: 'http://0.0.0.0:8000#test-us',
+    [REGION.CHINA]: 'http://0.0.0.0:8000#test-china',
+  },
+  [ENV.QA]: {
+    [REGION.US]: 'https://whit-us.netlify.com/',
+    [REGION.CHINA]: 'https://whit-cn.netlify.com/',
+  },
+  [ENV.STAGING]: {
+    [REGION.US]: 'https://staging--whit-us.netlify.com/',
+    [REGION.CHINA]: 'https://staging--whit-cn.netlify.com/',
+  },
 };

@@ -29,21 +29,23 @@ exports.transformSubnavProps = ({
   };
 };
 
+const createContentPageLink = ({ slug, parentCategory }) => {
+  let link = '';
+
+  if (parentCategory) {
+    link += `/${parentCategory[0].slug}`;
+  }
+
+  return `${link}/${slug}`;
+};
+
 const formatFooterLink = ({
   linkTitle,
   linkDestinationInternal,
   linkDestinationExternal,
 }) => {
-  let link = linkDestinationExternal || '';
-  if (!link) {
-    const { slug, parentCategory } = linkDestinationInternal;
-
-    if (parentCategory) {
-      link += `/${parentCategory[0].slug}`;
-    }
-
-    link += `/${slug}`;
-  }
+  const link = linkDestinationExternal ||
+    createContentPageLink(linkDestinationInternal);
 
   return {
     title: linkTitle,
@@ -69,3 +71,8 @@ exports.formatFooterLinks = footerData =>
     primaryLinks: [],
     utilityLinks: [],
   });
+
+exports.transformLocalizedSlugData = ({ edges }) => edges.map(({ node }) => ({
+  locale: node.locale,
+  link: createContentPageLink(node),
+}));

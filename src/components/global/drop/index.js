@@ -1,24 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import uuid from 'uuid/v4';
 
 import { KEYS } from '../../../constants/keys';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import arrow from '../../../assets/images/language-arrow.svg';
 import arrowRed from '../../../assets/images/language-arrow-red.svg';
+import Link from '../link';
 
 import styles from './drop.module.css';
 
 const propTypes = {
-  selected: PropTypes.string,
   isSmall: PropTypes.bool,
-  data: PROP_TYPES.DROP.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    link: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+  })).isRequired,
+  selectedLabel: PropTypes.node.isRequired,
+  selectedValue: PropTypes.string.isRequired,
 };
 
 class Drop extends React.Component {
   state = { selectActive: false };
+
+  componentWillMount() {
+    this.id = uuid();
+  }
+
   activeListElement = -1;
   refElements = { listElements: [] };
 
@@ -44,10 +54,6 @@ class Drop extends React.Component {
       case KEYS.enter:
         if (!this.state.selectActive) {
           this.moveToNextListItem();
-        } else {
-          // TODO
-          // add real value
-          this.select(this.refElements.listElements[this.activeListElement].title);
         }
         break;
       case KEYS.up:
@@ -99,64 +105,70 @@ class Drop extends React.Component {
     this.setState(prevState => ({ selectActive: !prevState.selectActive }));
   };
 
-  select = (value) => {
-    // TODO
-    // Implement real region select/change
+  select = () => {
     this.setState({ selectActive: false });
     this.refElements.btn.focus();
-    this.props.onSelect(value);
   };
 
   render() {
+    const {
+      isSmall,
+      items,
+      selectedValue,
+      selectedLabel,
+    } = this.props;
+
     return (
       <div
         className={styles.drop}
         onBlur={this.handleOnBlur}
       >
         <button
-          aria-controls={`${this.props.data.id}Selection`}
+          aria-controls={`${this.id}Selection`}
           aria-haspopup="true"
-          aria-label={this.props.data.buttonAriaLabel}
           className={styles.dropButton}
-          id={this.props.data.id}
+          id={this.id}
           onClick={this.toggleSelect}
           onKeyDown={this.handleKey}
           ref={(el) => { this.refElements.btn = el; }}
-          title={this.props.data.title}
         >
-          <span>{this.props.data.title}</span>
+          <span>{selectedLabel}</span>
           <img
             alt=""
             className={styles.arrow}
-            src={this.props.isSmall ? arrowRed : arrow}
+            src={isSmall ? arrowRed : arrow}
           />
         </button>
         <ul
-          aria-label={this.props.data.listAriaLabel}
+          aria-labelledby={this.id}
           className={cx(styles.select, {
             [styles.select_isActive]: this.state.selectActive,
           })}
-          id={`${this.props.data.id}Selection`}
+          id={`${this.id}Selection`}
           onKeyDown={this.handleKey}
           role="menu"
         >
-          {this.props.data.items.map((item, index) => (
+          {items.map((item, index) => (
             <li
               key={`item-${item.title}`}
               role="menuitem"
             >
-              <button
+              <Link
                 className={cx(styles.selectButton, {
-                  [styles.selectButton_isSelected]: this.props.selected === item.title,
+                  [styles.selectButton_isSelected]: selectedValue === item.value,
                 })}
-                onClick={() => this.select(item.value)}
-                ref={(el) => {
+                onClick={this.select}
+                refFn={(el) => {
                   this.refElements.listElements[index] = el;
                 }}
-                tabIndex="-1"
+                shouldOpenExternalInSameTab
+                shouldSkipIsoCode
+                shouldVisitLinkOnEnter
                 title={item.title}
-              >{item.title}
-              </button>
+                to={item.link}
+              >
+                {item.title}
+              </Link>
             </li>
           ))
           }

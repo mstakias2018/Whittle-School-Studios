@@ -56,7 +56,7 @@ class Submenu extends Component {
                 link,
                 title,
               }, index) => {
-                // To be integrated in future sprint
+                // TODO Integrate in future sprint
                 const isChecked = index === 0;
 
                 return (
@@ -119,6 +119,6 @@ class Submenu extends Component {
 }
 
 Submenu.propTypes = PROP_TYPES.SUB_NAV_PROPS;
-Submenu.contextTypes = { translations: PropTypes.object };
+Submenu.contextTypes = { translations: PropTypes.object.isRequired };
 
 export default Submenu;

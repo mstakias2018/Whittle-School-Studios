@@ -83,12 +83,21 @@ const createCategoryAndArticlePages = (graphql, createPage) => {
         const isoCode = getIsoCode(language);
 
         const buildPage = (id, slugs, imageDataByType) => {
+          // Content page IDs are in the form
+          // - '[baseId]' (for default locale)
+          // - '[baseId]___[locale]' (for other locales)
+          const baseId = id.split('___')[0];
+
           createPage({
             path: `${isoCode}/${slugs.join('/')}/`,
             component: contentPageTemplate,
             context: {
               id,
               imageDataByType,
+
+              // Create a regular expression that will fetch a content pages
+              // for a given baseId in all locales
+              idRegex: `/^${baseId}(___[A-z\\-]+)?$/`,
             },
           });
 

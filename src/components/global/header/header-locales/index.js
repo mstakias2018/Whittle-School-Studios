@@ -2,105 +2,131 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import Drop from '../../../../components/global/drop';
+import Drop from '../../drop';
+import {
+  LANGUAGE_CONTENTFUL_LOCALE,
+  REGION,
+  REGION_LANGUAGES,
+  REGION_URLS,
+} from '../../../../constants/regions';
+import { PROP_TYPES } from '../../../../constants/custom-property-types';
+import { getIsoCode } from '../../../../utils/regions';
 
 import styles from './header-locales.module.css';
 
 const propTypes = {
-  regionSelected: PropTypes.string.isRequired,
   isSmall: PropTypes.bool,
-  languageSelected: PropTypes.string.isRequired,
+  localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
 };
 
 class Locales extends Component {
-  getLanguageData = () => {
+  // Each language links to a version of the current page in that language
+  getLanguageItems = () => {
+    const regionLangagues = REGION_LANGUAGES[process.env.GATSBY_REGION];
+    if (regionLangagues.length === 1) return [];
+
+    const { localizedSlugList = [] } = this.props;
     const { translations } = this.context;
-    return {
-      id: 'language',
-      buttonAriaLabel: translations.header.languages.chinese, // Todo add real aria-label
-      title: translations.header.languages.chinese, // Todo add real selected item
-      items: [
-        {
-          title: translations.header.languages.chinese,
-          value: 'cn',
-        },
-        {
-          title: translations.header.languages.english,
-          value: 'us',
-        },
-      ],
-    };
+
+    return REGION_LANGUAGES[process.env.GATSBY_REGION].map((language) => {
+      let currentPageWithLocalizedSlugs = '';
+      localizedSlugList.some(({ locale, link }) => {
+        if (LANGUAGE_CONTENTFUL_LOCALE[language] === locale) {
+          currentPageWithLocalizedSlugs = link;
+          return true;
+        }
+        return false;
+      });
+
+      return {
+        link: `${getIsoCode(language)}${currentPageWithLocalizedSlugs}`,
+        title: translations.header.languages[language],
+        value: language,
+      };
+    });
   };
 
-  getRegionData = () => {
-    const { translations } = this.context;
-    return {
-      id: 'region',
-      buttonAriaLabel: translations.header.regions.china, // Todo add real aria-label
-      title: translations.header.regions.china, // Todo add real selected item
-      items: [
-        {
-          title: translations.header.regions.china,
-          value: 'China',
-        },
-        {
-          title: translations.header.regions.us,
-          value: 'US',
-        },
-      ],
-    };
-  };
+  getRegionItems = () =>
+    Object.keys(REGION).map(region => ({
+      link: REGION_URLS[process.env.GATSBY_ENV][region],
+      title: this.context.translations.header.regions[region],
+      value: region,
+    }));
 
-  selectRegion = (item) => { // eslint-disable-line
-    // Todo
-    // Do real region select
-  };
-
-  selectLanguage = (item) => { // eslint-disable-line
-    // Todo
-    // Do real language select
-  };
+  getSelectedLabel = (menuAriaLabel, selectedValueLabel) => ([
+    <span
+      className="screenReaderText"
+      key="srText"
+    >
+      {`${menuAriaLabel}.`}
+      {this.context.translations.header.selectors.currentSelectionAriaLabel} -
+    </span>,
+    <span key="visibleText">
+      {selectedValueLabel}
+    </span>,
+  ]);
 
   render() {
+    const { language, translations } = this.context;
+    const hasLanguageSelector = REGION_LANGUAGES[process.env.GATSBY_REGION].length > 1;
+    const LocaleWrapperTag = hasLanguageSelector ? 'ul' : 'div';
+    const RegionSelectorTag = hasLanguageSelector ? 'li' : 'span';
+
+    const regionSelector = (
+      <RegionSelectorTag
+        className={styles.localesItem}
+        key="region"
+      >
+        <Drop
+          isSmall={this.props.isSmall}
+          items={this.getRegionItems()}
+          selectedLabel={
+            this.getSelectedLabel(
+              translations.header.selectors.regionAriaLabel,
+              translations.header.regions[process.env.GATSBY_REGION],
+            )
+          }
+          selectedValue={process.env.GATSBY_REGION}
+        />
+      </RegionSelectorTag>
+    );
+
     return (
       <div
         className={cx(styles.locales, {
           [styles.locales_isSmall]: this.props.isSmall,
         })}
       >
-        <ul
-          aria-label="Region & language selection"
-          className={styles.localesItems}
-        >
-          <li
-            aria-label="Region selection"
-            className={styles.localesItem}
-          >
-            <Drop
-              data={this.getRegionData()}
-              isSmall={this.props.isSmall}
-              onSelect={this.selectRegion}
-              selected={this.props.regionSelected}
-            />
-          </li>
-          <li
-            aria-label="Language selection"
-            className={styles.localesItem}
-          >
-            <Drop
-              data={this.getLanguageData()}
-              isSmall={this.props.isSmall}
-              onSelect={this.selectLanguage}
-              selected={this.props.languageSelected}
-            />
-          </li>
-        </ul>
+        <LocaleWrapperTag className={styles.localesItems}>
+          {hasLanguageSelector ? [
+            regionSelector,
+            <li
+              className={styles.localesItem}
+              key="language"
+            >
+              <Drop
+                isSmall={this.props.isSmall}
+                items={this.getLanguageItems()}
+                selectedLabel={
+                  this.getSelectedLabel(
+                    translations.header.selectors.languageAriaLabel,
+                    translations.header.languages[language],
+                  )
+                }
+                selectedValue={language}
+              />
+            </li>,
+        ] : regionSelector}
+        </LocaleWrapperTag>
       </div>
     );
   }
 }
 
-Locales.contextTypes = { translations: PropTypes.object };
+Locales.contextTypes = {
+  language: PROP_TYPES.LANGUAGE.isRequired,
+  translations: PropTypes.object.isRequired,
+};
 Locales.propTypes = propTypes;
 
 export default Locales;

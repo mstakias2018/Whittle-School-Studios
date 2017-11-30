@@ -28,7 +28,7 @@ import { formatFooterLinks } from '../utils/nav';
 
 class TemplateWrapper extends Component {
   getChildContext() {
-    const { data, location: { pathname } } = this.props;
+    const { data, history, location: { pathname } } = this.props;
     const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
     const {
       contentPageShareIcons,
@@ -43,6 +43,7 @@ class TemplateWrapper extends Component {
       fabTextImage: url,
       headerData: data[`HEADER_${language}`].contentPages,
       footerData: formatFooterLinks(data[`FOOTER_${language}`]),
+      history,
       language,
       socialIcons: {
         contentPage: transformSocialNetworks(
@@ -87,6 +88,7 @@ class TemplateWrapper extends Component {
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
   data: PROP_TYPES.GLOBAL_SETTINGS.isRequired,
+  history: PROP_TYPES.HISTORY.isRequired,
   location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
 };
 
@@ -94,7 +96,8 @@ TemplateWrapper.childContextTypes = {
   fabTextImage: PropTypes.string.isRequired,
   footerData: PROP_TYPES.FOOTER_DATA.isRequired,
   headerData: PROP_TYPES.HEADER_DATA.isRequired,
-  language: PropTypes.string.isRequired,
+  history: PROP_TYPES.HISTORY.isRequired,
+  language: PROP_TYPES.LANGUAGE.isRequired,
   socialIcons: PropTypes.object.isRequired,
   translations: PropTypes.object.isRequired,
 };
@@ -418,10 +421,10 @@ export const pageQuery = graphql`
       footerShareIcons
 
       # These should match our SOCIAL_NETWORK constant
-      Facebook: facebookUrl
-      Twitter: twitterUrl
-      WeChat: weChatUrl
-      Weibo: weiboUrl
+      FACEBOOK: facebookUrl
+      TWITTER: twitterUrl
+      WECHAT: weChatUrl
+      WEIBO: weiboUrl
     }
 
     SETTINGS_CHINESE: contentfulGlobalSettings(node_locale: {eq: "zh-CN"}) {
@@ -439,10 +442,10 @@ export const pageQuery = graphql`
       footerShareIcons
 
       # These should match our SOCIAL_NETWORK constant
-      Facebook: facebookUrl
-      Twitter: twitterUrl
-      WeChat: weChatUrl
-      Weibo: weiboUrl
+      FACEBOOK: facebookUrl
+      TWITTER: twitterUrl
+      WECHAT: weChatUrl
+      WEIBO: weiboUrl
     }
   }
 `;
