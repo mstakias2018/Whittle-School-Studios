@@ -55,28 +55,30 @@
 
 @define-mixin type-h1-category {
   @mixin type-h1;
+  letter-spacing: 0.25px;
   line-height: 48px;
 
   @media (--bp-md) {
     font-size: 96px;
-    letter-spacing: 0.14rem;
+    letter-spacing: 0.24px;
     line-height: 96px;
   }
 
   @media (--bp-lg) {
     font-size: 120px;
-    letter-spacing: 0.2rem;
+    letter-spacing: 0.3px;
     line-height: 120px;
   }
 }
 
 @define-mixin type-h1-article {
   @mixin type-h1;
+  letter-spacing: 0.12px;
   line-height: 48px;
 
   @media (--bp-md) {
     font-size: 72px;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.5px;
     line-height: 70px;
   }
 }
