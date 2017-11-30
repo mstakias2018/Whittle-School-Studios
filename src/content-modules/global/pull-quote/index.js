@@ -1,14 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './pull-quote.module.css';
 
-const propTypes = {
-  content: PropTypes.shape({
-    content: PropTypes.string,
-  }).isRequired,
-  source: PropTypes.string,
-};
+const propTypes = PROP_TYPES.QUOTE;
 
 const PullQuote = ({ content, source }) => (
   <div className={styles.wrapper}>

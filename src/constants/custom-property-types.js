@@ -62,6 +62,18 @@ const INLINE_IMAGE = PropTypes.shape({
   ...getInlineImagePropTypes(),
 });
 
+const quotePropTypes = {
+  content: PropTypes.shape({
+    content: PropTypes.string,
+  }).isRequired,
+  source: PropTypes.string,
+};
+
+const QUOTE = PropTypes.shape({
+  __typename: createTypenameChecker('ContentfulQuote'),
+  ...quotePropTypes,
+});
+
 const SLIDESHOW_CAROUSEL = PropTypes.shape({
   __typename: createTypenameChecker('ContentfulSlideshowCarousel'),
   slides: PropTypes.arrayOf(PropTypes.shape(getInlineImagePropTypes(true))),
@@ -120,10 +132,16 @@ exports.PROP_TYPES = {
       LANGUAGE_CONTENTFUL_LOCALE[LANGUAGE.CHINESE],
     ]).isRequired,
   })),
-  MODULES: PropTypes.arrayOf(PropTypes.oneOfType([BODY_TEXT, INLINE_IMAGE, SLIDESHOW_CAROUSEL])),
+  MODULES: PropTypes.arrayOf(PropTypes.oneOfType([
+    BODY_TEXT,
+    INLINE_IMAGE,
+    QUOTE,
+    SLIDESHOW_CAROUSEL,
+  ])),
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
   SOCIAL_ICONS: PropTypes.shape({
     contentPage: socialNetworkList.isRequired,
     footer: socialNetworkList.isRequired,
   }),
+  QUOTE: quotePropTypes,
 };
