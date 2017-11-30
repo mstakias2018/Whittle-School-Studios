@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
 import MarkdownLink from './link';
-import { NON_UTF8_REGEX } from '../../../constants/regex';
 
 const ALLOWED_TYPES = {
   DEFAULT: ['Link', 'Text', 'Paragraph', 'Softbreak', 'Hardbreak', 'Emph', 'Strong'],
@@ -34,7 +33,7 @@ const Markdown = ({
         Link: MarkdownLink,
       }}
       skipHtml
-      source={source.replace(NON_UTF8_REGEX, '')}
+      source={source}
       unwrapDisallowed={isTitle}
       {...props}
     />
