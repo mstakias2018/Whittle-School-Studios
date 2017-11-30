@@ -161,38 +161,41 @@ class Carousel extends Component {
 
   render() {
     return (
-      <div className={styles.componentWrapper}>
-        <div className={styles.componentContent}>
-          <ImageGallery
-            infinite={false}
-            items={this.formattedItems}
-            onClick={this.onClickImage}
-            onSlide={this.onSlide}
-            ref={(el) => { this.gallery = el; }}
-            showFullscreenButton={false}
-            showNav={false}
-            showPlayButton={false}
-            showThumbnails={false}
-            useBrowserFullscreen={false}
-          />
-          <button
-            className={styles.closeButton}
-            onClick={this.onClickModalClose}
-          >
-            Close
-          </button>
-          <div className={styles.carouselInfo}>
-            <div className={cx(
-                styles.caption,
-                { [styles.caption_isFading]: this.state.fading },
-              )}
-            >
-              {this.state.currentCaption}
-            </div>
-            {this.renderLeftNav()}
-            {this.renderRightNav()}
+      <div className={styles.wrapper}>
+        <div className={styles.componentWrapper}>
+          <div className={styles.componentContent}>
+            <ImageGallery
+              infinite={false}
+              items={this.formattedItems}
+              onClick={this.onClickImage}
+              onSlide={this.onSlide}
+              ref={(el) => { this.gallery = el; }}
+              showFullscreenButton={false}
+              showNav={false}
+              showPlayButton={false}
+              showThumbnails={false}
+              useBrowserFullscreen={false}
+            />
             {/* Full screen mode is temporarily disabled. */}
-            {/* {this.renderFullscreenButton()} */}
+            {/* <button
+              className={styles.closeButton}
+              onClick={this.onClickModalClose}
+            >
+              Close
+            </button> */}
+            <div className={styles.carouselInfo}>
+              <div className={cx(
+                  styles.caption,
+                  { [styles.caption_isFading]: this.state.fading },
+                )}
+              >
+                {this.state.currentCaption}
+              </div>
+              {this.renderLeftNav()}
+              {this.renderRightNav()}
+              {/* Full screen mode is temporarily disabled. */}
+              {/* {this.renderFullscreenButton()} */}
+            </div>
           </div>
         </div>
       </div>

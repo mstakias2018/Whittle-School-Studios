@@ -2,9 +2,13 @@
 @import '../../../assets/styles/includes/variables.css';
 @import '../../../assets/styles/includes/typography.css';
 
+.wrapper {
+  @mixin component-container;
+  @mixin component-vertical-spacing;
+}
+
 .componentWrapper {
   @mixin grid-container;
-  margin-bottom: 60px !important;
 }
 
 .componentContent {
@@ -30,23 +34,20 @@
 }
 
 :global(.image-gallery-slide) { /* stylelint-disable-line */
+  @mixin custom-column 1, 4, padding-right;
   background-color: var(--color-background-light-gray);
-  transition: padding var(--timing-fast) var(--easing-default);
-}
+  box-sizing: content-box;
 
-:global(.image-gallery-slide.left) { /* stylelint-disable-line */
-  @mixin custom-column 4, 8, padding-right;
+  @media (--bp-md-only) {
+    padding-right: var(--container-margin-md);
 
-  @media (--bp-lg) {
-    @mixin custom-column 1, 8, padding-right;
+    :global(.left)& {
+      padding-right: 15%;
+    }
   }
-}
-
-:global(.image-gallery-slide.right) { /* stylelint-disable-line */
-  @mixin custom-column 2, 8, padding-left;
 
   @media (--bp-lg) {
-    @mixin custom-column 1, 8, padding-left;
+    padding-right: var(--container-margin-md);
   }
 }
 
@@ -61,17 +62,13 @@
     width: auto;
   }
 
-  :global(.fullscreen-modal) & { /* stylelint-disable-line */
-    justify-content: center;
-  }
-
-  @media (--bp-lg) {
+  @media (--bp-md) {
     height: 260px;
+    justify-content: center;
   }
 
   @media (--bp-lg) {
     height: 360px;
-    justify-content: center;
   }
 }
 
@@ -165,6 +162,10 @@ Comment this block when full screen is reanabled*/
     outline: none;
   }
 
+  @media (--bp-sm-only) {
+    display: none;
+  }
+
   :global(._touchDevice) & {
     display: none;
   }
@@ -195,7 +196,6 @@ Comment this block when full screen is reanabled*/
   border: none;
   color: #fff;
   cursor: pointer;
-  display: block;
   display: none;
   position: fixed;
   right: 25px;
