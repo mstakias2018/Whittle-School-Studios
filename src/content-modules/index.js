@@ -29,7 +29,7 @@ const ContentModules = ({ imageDataByType, modules }) =>
       <Component
         imageSources={imageSources}
         isFirstModule={i === 0}
-        key={i.toString()}
+        key={i}
         {...props}
       />
     );

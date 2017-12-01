@@ -45,7 +45,7 @@ class Share extends Component {
     return (
       <div
         className={styles.shareIcon}
-        key={index.toString()}
+        key={index}
       >
         <Link to={linkDestination}>
           <img

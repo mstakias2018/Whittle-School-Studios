@@ -19,7 +19,7 @@ const FooterShareIcons = (props, context) => {
         {footerSocialIcons.map(({ label, url, icon }, index) => (
           <div
             className={styles.icon}
-            key={index.toString()}
+            key={index}
           >
             <Link to={url}>
               <img

@@ -30,7 +30,7 @@ const MainMenu = ({
         {headerData.map(({ link, title }, index) => (
           <li
             className={styles.menuItem}
-            key={index.toString()}
+            key={index}
           >
             <Link
               className={styles.menuItem_link}

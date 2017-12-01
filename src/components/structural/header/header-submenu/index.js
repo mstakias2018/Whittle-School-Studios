@@ -21,7 +21,7 @@ class Submenu extends Component {
     const items = getChunks(keys, size);
 
     return items[items.length - 1]
-      .filter(v => v === index.toString())
+      .filter(v => v === index)
       .length > 0;
   };
 
@@ -65,7 +65,7 @@ class Submenu extends Component {
                       [styles.item_active]: isActive,
                       [styles.item_smallLastItem]: this.isLastRow(index, SUBMENU_BREAK.SMALL),
                     })}
-                    key={index.toString()}
+                    key={index}
                   >
                     <Link
                       className={styles.itemLink}

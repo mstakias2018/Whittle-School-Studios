@@ -71,7 +71,7 @@ class VirtualGrid extends React.Component {
           })}
         >
           <div className={styles.gridContainer}>
-            {maxGridSize().map((v, i) => <span key={i.toString()} />)}
+            {maxGridSize().map((v, i) => <span key={i} />)}
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ const renderBlock = (item, index, className) => (
       styles.menuBlockItemWrapper_noSub,
       className,
     )}
-    key={index && index.toString()}
+    key={index}
   >
     <Link
       className={cx(styles.menuBlockItem, styles.menuBlockItem_noSub)}
@@ -34,7 +34,7 @@ const renderBlockWithSubItems = (item, index, isInMultiple = false, className) =
       className,
       isInMultiple ? styles.menuBlockInMultiple : styles.menuBlock,
     )}
-    key={index && index.toString()}
+    key={index}
   >
     <div className={styles.menuBlockItemWrapper}>
       <Link
@@ -47,7 +47,7 @@ const renderBlockWithSubItems = (item, index, isInMultiple = false, className) =
     {item.subLinks && item.subLinks.map((subItem, j) => (
       <div
         className={styles.menuBlockSubItemWrapper}
-        key={j.toString()}
+        key={j}
       >
         <Link
           className={styles.menuBlockSubItem}
@@ -91,7 +91,7 @@ const Footer = (props, context) => {
           {utilityLinks.map((item, i) => (
             <div
               className={cx(styles.menuBlock, 'showSm')}
-              key={i.toString()}
+              key={i}
             >
               {renderUtilityLink(item)}
             </div>
