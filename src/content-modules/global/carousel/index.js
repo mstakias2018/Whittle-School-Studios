@@ -117,8 +117,14 @@ class Carousel extends Component {
       allGalleryItems = document.querySelectorAll(`.${CLASSES.GALLERY_IMAGE} img`);
       // We use querySelectorAll here in case we have more than one carousel on page
       currentItem = document.querySelectorAll(`.${CLASSES.GALLERY_IMAGE_CENTER} .${CLASSES.GALLERY_IMAGE} img`);
-      allGalleryItems.forEach((e) => { e.setAttribute('aria-hidden', 'true'); });
-      currentItem.forEach((e) => { e.setAttribute('aria-hidden', 'false'); });
+
+      // IE fix
+      for (let i = 0, len = allGalleryItems.length; i < len; i += 1) {
+        allGalleryItems[i].setAttribute('aria-hidden', 'true');
+      }
+      for (let i = 0, len = currentItem.length; i < len; i += 1) {
+        currentItem[i].setAttribute('aria-hidden', 'false');
+      }
     }
   }
 

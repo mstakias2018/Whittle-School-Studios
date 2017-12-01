@@ -8,6 +8,8 @@ import Fab from '../fab';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 
+const mainStyleIEFix = { display: 'block' };
+
 const PageWrapper = ({ children, localizedSlugList, subNavProps }) => ([
   <Header
     key="header"
@@ -18,6 +20,7 @@ const PageWrapper = ({ children, localizedSlugList, subNavProps }) => ([
   <main
     className={CLASSES.PAGE_CONTENT}
     key="main"
+    style={mainStyleIEFix}
   >
     {children}
   </main>,
