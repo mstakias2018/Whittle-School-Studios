@@ -324,12 +324,14 @@
   font-family: var(--font-sans-serif-regular);
   font-size: 14px;
   line-height: 20px;
+  text-decoration: none;
   text-decoration-color: transparent;
   text-underline-position: under;
   transition: color var(--timing-fast) var(--easing-default), text-decoration var(--timing-fast) var(--easing-default);
 
   &:hover {
     color: var(--color-text-tomato);
+    text-decoration: underline;
     text-decoration-color: var(--color-link-hover-underline);
   }
 
@@ -340,6 +342,7 @@
 
   :global(._touchDevice) &:hover {
     color: var(--color-text-dark);
+    text-decoration: none;
     text-decoration-color: transparent;
   }
 
