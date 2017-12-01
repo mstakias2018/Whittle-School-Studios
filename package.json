@@ -5,8 +5,8 @@
   "scripts": {
     "build": "GATSBY_REGION=\"US\" gatsby build",
     "build-china": "GATSBY_REGION=\"CHINA\" gatsby build",
-    "build-ci": "yarn lint-js && yarn lint-css && yarn build",
-    "build-ci-china": "yarn lint-js && yarn lint-css && yarn build-china",
+    "build-ci": "if test \"$CONTEXT\" = \"deploy-preview\"; then yarn lint-js && yarn lint-css; fi && yarn build",
+    "build-ci-china": "if test \"$CONTEXT\" = \"deploy-preview\"; then yarn lint-js && yarn lint-css; fi && yarn build-china",
     "develop": "GATSBY_REGION=\"US\" gatsby develop",
     "develop-china": "GATSBY_REGION=\"CHINA\" gatsby develop",
     "lint-js": "eslint '**/*.js' --ignore-path .eslintignore --max-warnings 0",
