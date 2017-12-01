@@ -45,11 +45,15 @@ exports.REGION_URLS = {
     [REGION.CHINA]: 'http://0.0.0.0:8000#test-china',
   },
   [ENV.QA]: {
-    [REGION.US]: 'https://whit-us.netlify.com/',
-    [REGION.CHINA]: 'https://whit-cn.netlify.com/',
+    [REGION.US]: 'https://qa--whit-us.netlify.com/',
+    [REGION.CHINA]: 'https://qa--whit-cn.netlify.com/',
   },
   [ENV.STAGING]: {
     [REGION.US]: 'https://staging--whit-us.netlify.com/',
     [REGION.CHINA]: 'https://staging--whit-cn.netlify.com/',
+  },
+  [ENV.PRODUCTION]: {
+    [REGION.US]: 'https://whit-us.netlify.com/',
+    [REGION.CHINA]: 'https://whit-cn.netlify.com/',
   },
 };

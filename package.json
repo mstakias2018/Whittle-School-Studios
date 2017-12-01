@@ -13,7 +13,8 @@
     "lint-css": "stylelint '**/*.css'",
     "start": "gatsby serve",
     "copy-cn-to-us": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/cn-dev-to-us-dev.js",
-    "deploy": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/deploy.js"
+    "deploy-qa": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/deploy-qa.js",
+    "deploy-prod": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/deploy-prod.js"
   },
   "dependencies": {
     "@vimeo/player": "git://github.com/vimeo/player.js#v2.2.1",

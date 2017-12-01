@@ -3,6 +3,8 @@
 import spaceExport from 'contentful-export';
 import spaceImport from 'contentful-import';
 
+import { CONTENTFUL } from '../src/constants/contentful';
+
 // TODO ENV VARS
 const MANAGEMENT_TOKEN = 'CFPAT-d3337097476df5ed2ab54c9764486916b6c9e851ccffc075eb7f70282e9ea6f3';
 
@@ -18,13 +20,18 @@ const filterFields = entries =>
     };
   });
 
-export default (source, target, shouldFilterNonEnglish = false) =>
-  new Promise(resolve =>
+export default (sourceInfo, targetInfo, shouldFilterNonEnglish = false) => {
+  const [sourceEnv, sourceRegion] = sourceInfo;
+  const [targetEnv, targetRegion] = targetInfo;
+
+  console.log(`=== COPYING FROM ${sourceEnv}-${sourceRegion} TO ${targetEnv}-${targetRegion}`);
+
+  return new Promise(resolve =>
     spaceExport({
       managementToken: MANAGEMENT_TOKEN,
       saveFile: false,
       skipWebhooks: true,
-      spaceId: source,
+      spaceId: CONTENTFUL[sourceEnv][sourceRegion].spaceId,
     }).then((output) => {
       const { assets, entries, locales } = output;
       const content = shouldFilterNonEnglish ? {
@@ -36,7 +43,7 @@ export default (source, target, shouldFilterNonEnglish = false) =>
       spaceImport({
         content,
         managementToken: MANAGEMENT_TOKEN,
-        spaceId: target,
+        spaceId: CONTENTFUL[targetEnv][targetRegion].spaceId,
       }).then(() => {
         console.log('Data imported successfully');
         resolve();
@@ -48,3 +55,4 @@ export default (source, target, shouldFilterNonEnglish = false) =>
       .catch((err) => {
         console.log('Export error', err);
       }));
+};

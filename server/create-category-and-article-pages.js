@@ -82,33 +82,33 @@ const createCategoryAndArticlePages = (graphql, createPage) => {
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
         const isoCode = getIsoCode(language);
 
+
         const buildPage = (id, slugs, imageDataByType) => {
           // Content page IDs are in the form
           // - '[baseId]' (for default locale)
           // - '[baseId]___[locale]' (for other locales)
           const baseId = id.split('___')[0];
 
+          const context = {
+            id,
+            imageDataByType,
+
+            // Create a regular expression that will fetch a content pages
+            // for a given baseId in all locales
+            idRegex: `/^${baseId}(___[A-z\\-]+)?$/`,
+          };
+
           createPage({
             path: `${isoCode}/${slugs.join('/')}/`,
             component: contentPageTemplate,
-            context: {
-              id,
-              imageDataByType,
-
-              // Create a regular expression that will fetch a content pages
-              // for a given baseId in all locales
-              idRegex: `/^${baseId}(___[A-z\\-]+)?$/`,
-            },
+            context,
           });
 
           if (process.env.BRANCH === BRANCHES.STAGING) {
             createPage({
               path: `${isoCode}/${id}/`,
               component: contentPageTemplate,
-              context: {
-                id,
-                imageDataByType,
-              },
+              context,
             });
           }
         };
