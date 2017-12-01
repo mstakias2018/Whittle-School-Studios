@@ -38,6 +38,6 @@
   }
 
   a {
-    @mixin type-link;
+    @mixin inline-type-link;
   }
 }

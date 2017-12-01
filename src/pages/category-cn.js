@@ -4,9 +4,12 @@ import React from 'react';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 import InlineVideo from '../content-modules/global/inline-video';
+import Share from '../components/global/share';
 import PageWrapper from '../components/global/page-wrapper';
+import List from '../content-modules/global/list';
 
 import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
+import { SOCIAL_NETWORK } from '../constants/social-networks';
 
 import largeImage from '../test-content/images/article-large.jpg';
 import smallImage from '../test-content/images/article-small.jpg';
@@ -85,6 +88,27 @@ const CategoryCn = () => (
           },
         }}
         shape={IMAGE_SHAPE.RECTANGLE}
+      />
+      <Share networksToShow={[SOCIAL_NETWORK.WECHAT]} />
+      <List data={[{
+        title: '金政所间风族争验口这部如',
+        description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
+      }, {
+        title: '金政所间风族争验口这部如',
+        description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
+      }, {
+        title: '金政所间风族争验口这部如',
+        description: '金政所间风族争验口这部如 金政所间风 所间风.',
+      }, {
+        title: '金政所间风族争验口这部如',
+        description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
+      }, {
+        title: '金政所间风族争验口这部如',
+        description: '[金政所间风族争验口这部如](/#), 金政如.',
+      }, {
+        title: '金政所间风族争验口这部如',
+        description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
+      }]}
       />
     </div>
   </PageWrapper>

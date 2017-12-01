@@ -1,0 +1,36 @@
+@import "../../../assets/styles/includes/breakpoints.css";
+@import "../../../assets/styles/includes/grid.css";
+@import "../../../assets/styles/includes/variables.css";
+
+.wrapper {
+  @mixin component-container;
+  @mixin component-vertical-spacing;
+}
+
+.list {
+  @mixin grid-container;
+}
+
+.listItems {
+  @mixin span 4, var(--grid-columns-sm), sm;
+
+  @media (--bp-md) {
+    @mixin span 6, var(--grid-columns-md), md;
+    position: relative;
+
+    &:after {
+      background-color: var(--color-light-border);
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+  }
+
+  @media (--bp-lg) {
+    @mixin span 6, var(--grid-columns-lg), lg;
+    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
+  }
+}

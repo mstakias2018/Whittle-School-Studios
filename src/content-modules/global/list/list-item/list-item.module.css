@@ -1,0 +1,30 @@
+@import "../../../../assets/styles/includes/breakpoints.css";
+@import "../../../../assets/styles/includes/typography.css";
+
+.listItem {
+  list-style: none;
+  margin-bottom: 0;
+  padding-bottom: 26px;
+
+  @media (--bp-md) {
+    padding-bottom: 29px;
+    padding-left: 19px;
+  }
+
+  &:last-of-type {
+    padding-bottom: 0;
+  }
+}
+
+.title {
+  @mixin type-list-title;
+  display: block;
+}
+
+.description {
+  @mixin type-descriptor;
+
+  a {
+    @mixin inline-type-link;
+  }
+}

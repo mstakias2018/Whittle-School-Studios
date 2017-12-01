@@ -213,16 +213,24 @@
 @define-mixin type-descriptor {
   color: var(--color-text-dark);
   font-family: var(--font-sans-serif-light);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 18px;
 
   @media (--bp-md) {
-    font-size: 14px;
     line-height: 24px;
   }
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
+  }
+}
+
+@define-mixin type-list-title {
+  @mixin type-descriptor;
+  font-family: var(--font-sans-serif-regular);
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-sans-serif-regular-cn);
   }
 }
 
@@ -252,6 +260,29 @@
   &:focus {
     color: var(--color-text-light);
     outline: none;
+  }
+}
+
+@define-mixin inline-type-link {
+  &:hover {
+    text-decoration: none;
+    text-decoration-color: transparent;
+  }
+
+  @mixin type-link;
+  text-decoration: underline;
+  text-decoration-color: var(--color-link-hover-underline);
+  text-underline-position: under;
+
+  :global(._touchDevice) &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--color-link-hover-underline);
+  }
+
+  &:focus {
+    color: var(--color-text-light);
+    outline: none;
+    text-decoration: none;
   }
 }
 

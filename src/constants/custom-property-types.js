@@ -100,6 +100,11 @@ const socialNetworkList = PropTypes.arrayOf(PropTypes.shape({
   url: PropTypes.string,
 }));
 
+const LIST_ITEM = {
+  description: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
   HEADER_DATA: PropTypes.arrayOf(PropTypes.shape({
@@ -110,6 +115,8 @@ exports.PROP_TYPES = {
     primaryLinks: footerLinkArray,
     utilityLinks: footerLinkArray,
   }),
+  LIST: PropTypes.arrayOf(PropTypes.shape(LIST_ITEM)),
+  LIST_ITEM,
   SUB_NAV_PROPS: PropTypes.shape({
     categoryTitle: PropTypes.string.isRequired,
     navItems: PropTypes.arrayOf(PropTypes.shape({
