@@ -6,6 +6,7 @@ import InlineImage from '../content-modules/global/inline-image';
 import InlineVideo from '../content-modules/global/inline-video';
 import Share from '../components/structural/share';
 import PageWrapper from '../components/structural/page-wrapper';
+import SectionTitle from '../components/global/section-title';
 import List from '../content-modules/global/list';
 
 import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
@@ -110,6 +111,11 @@ const CategoryCn = () => (
       }]}
       />
       <Share networksToShow={[SOCIAL_NETWORK.WECHAT]} />
+
+      <SectionTitle
+        number={5}
+        title="度応格改応記則用更現村開道図特"
+      />
     </div>
   </PageWrapper>
 );

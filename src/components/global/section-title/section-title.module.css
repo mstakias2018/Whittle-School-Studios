@@ -1,0 +1,63 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.wrapper {
+  @mixin component-container;
+  @mixin component-vertical-spacing;
+}
+
+.container {
+  @mixin grid-container;
+
+  &:before {
+    content: '';
+    display: block;
+    @media (--bp-lg) {
+      @mixin span 3, 12, lg;
+    }
+  }
+}
+
+.sectionTitle {
+  @mixin type-h3-italic;
+  display: flex;
+
+  @media (--bp-sm-only) {
+    @mixin span 4, 4, sm;
+  }
+
+  @media (--bp-md) {
+    @mixin span 6, 8, md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 6, 12, lg;
+  }
+}
+
+.number {
+  @mixin type-h3;
+  border-right: solid 1px var(--color-light-border);
+  padding-right: 33px;
+
+  @media (--bp-md) {
+    padding-right: 27px;
+  }
+
+  @media (--bp-lg) {
+    padding-right: 29px;
+  }
+}
+
+.title {
+  padding-left: 10px;
+
+  @media (--bp-md) {
+    padding-left: 27px;
+  }
+
+  @media (--bp-lg) {
+    padding-left: 26px;
+  }
+}
