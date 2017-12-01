@@ -3,9 +3,9 @@ import * as PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import ContentModules from '../../content-modules';
-import PageHead from '../../components/global/page-head';
-import Share from '../../components/global/share';
-import PageWrapper from '../../components/global/page-wrapper';
+import PageHead from '../../components/structural/page-head';
+import Share from '../../components/structural/share';
+import PageWrapper from '../../components/structural/page-wrapper';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';

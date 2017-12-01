@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import styles from './footer.module.css';
 
-import Link from '../link';
+import Link from '../../global/link';
 import FooterShareIcons from './share-icons';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';

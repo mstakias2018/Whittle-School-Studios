@@ -5,8 +5,8 @@ import React from 'react';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 import InlineVideo from '../content-modules/global/inline-video';
-import Share from '../components/global/share';
-import PageWrapper from '../components/global/page-wrapper';
+import Share from '../components/structural/share';
+import PageWrapper from '../components/structural/page-wrapper';
 import List from '../content-modules/global/list';
 
 import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
@@ -90,7 +90,6 @@ const Category = () => (
       }}
       shape={IMAGE_SHAPE.RECTANGLE}
     />
-    <Share networksToShow={[SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER]} />
     <List data={[{
         title: 'Shenzhen',
         description: 'Cursus magna, vel scelerisque nisl consectetur et.',
@@ -112,6 +111,7 @@ const Category = () => (
         description: 'Praesent commodo cursus magna, vel scelerisque.',
       }]}
     />
+    <Share networksToShow={[SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER]} />
   </PageWrapper>
 );
 

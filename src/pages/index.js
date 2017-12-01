@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 
-import PageWrapper from '../components/global/page-wrapper';
+import PageWrapper from '../components/structural/page-wrapper';
 
 const IndexPage = () => (
   <PageWrapper>

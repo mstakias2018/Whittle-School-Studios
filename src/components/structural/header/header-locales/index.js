@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import Drop from '../../drop';
+import Drop from '../../../global/drop';
 import {
   LANGUAGE_CONTENTFUL_LOCALE,
   REGION,

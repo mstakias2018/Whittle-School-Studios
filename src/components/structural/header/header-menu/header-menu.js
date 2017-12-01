@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
 import Locales from '../header-locales/';
-import Link from '../../link';
+import Link from '../../../global/link';
 
 import styles from './header-menu.module.css';
 

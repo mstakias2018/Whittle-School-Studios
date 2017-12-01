@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-import PageWrapper from '../components/global/page-wrapper';
+import PageWrapper from '../components/structural/page-wrapper';
 
 import styles from './modules.module.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Link from '../../link';
+import Link from '../../../global/link';
 import styles from './share-icons.module.css';
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
 

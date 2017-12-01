@@ -9,7 +9,7 @@ import { SUBMENU_BREAK } from '../../../../constants/settings';
 
 import Arrow from '../../../../assets/images/arrow.svg';
 import Checked from '../../../../assets/images/checked.svg';
-import Link from '../../link';
+import Link from '../../../global/link';
 
 import styles from './header-submenu.module.css';
 

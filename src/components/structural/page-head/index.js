@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import Title from '../title';
-import Picture from '../picture';
+import Title from '../../global/title';
+import Picture from '../../global/picture';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { PAGE_TYPE } from '../../../constants/settings';

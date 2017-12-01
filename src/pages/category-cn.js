@@ -4,8 +4,8 @@ import React from 'react';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 import InlineVideo from '../content-modules/global/inline-video';
-import Share from '../components/global/share';
-import PageWrapper from '../components/global/page-wrapper';
+import Share from '../components/structural/share';
+import PageWrapper from '../components/structural/page-wrapper';
 import List from '../content-modules/global/list';
 
 import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
@@ -89,7 +89,6 @@ const CategoryCn = () => (
         }}
         shape={IMAGE_SHAPE.RECTANGLE}
       />
-      <Share networksToShow={[SOCIAL_NETWORK.WECHAT]} />
       <List data={[{
         title: '金政所间风族争验口这部如',
         description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
@@ -110,6 +109,7 @@ const CategoryCn = () => (
         description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
       }]}
       />
+      <Share networksToShow={[SOCIAL_NETWORK.WECHAT]} />
     </div>
   </PageWrapper>
 );
