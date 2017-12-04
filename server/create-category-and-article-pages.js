@@ -10,8 +10,8 @@ const {
   saveMainImage,
 } = require('./save-images');
 
-const createCategoryAndArticlePages = (graphql, createPage) => {
-  const promises = REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
+const createCategoryAndArticlePages = (graphql, createPage) =>
+  REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
     new Promise((resolve, reject) => {
       // query run on all content pages,
       // whether category or article, top-level or nested
@@ -164,8 +164,5 @@ const createCategoryAndArticlePages = (graphql, createPage) => {
         return Promise.all(createPagePromises).then(resolve);
       });
     }));
-
-  return Promise.all(promises);
-};
 
 module.exports = createCategoryAndArticlePages;
