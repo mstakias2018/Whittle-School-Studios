@@ -1,16 +1,16 @@
 const BRANCHES = {
+  PRODUCTION: 'production',
   QA: 'qa',
   STAGING: 'staging',
-  PRODUCTION: 'production',
 };
 
 exports.BRANCHES = BRANCHES;
 
 const ENV = {
   DEV: 'DEV',
+  PRODUCTION: 'PRODUCTION',
   QA: 'QA',
   STAGING: 'STAGING',
-  PRODUCTION: 'PRODUCTION',
 };
 
 exports.ENV = ENV;

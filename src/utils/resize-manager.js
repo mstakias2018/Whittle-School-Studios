@@ -102,14 +102,14 @@ export default function () {
   };
 
   return {
-    onResize,
-    requestTick,
     addBreakpointListeners,
     getCurrentBreakpoint,
     getCurrentDimensions,
     getCurrentOrientation,
+    onResize,
     publish,
     removeBreakpointListeners,
+    requestTick,
     setBreakpoint,
     setDimensions,
     setOrientation,

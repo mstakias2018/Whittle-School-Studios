@@ -94,9 +94,9 @@ const validateGlobalSettings = (props, propName) => {
 };
 
 const footerLinkArray = PropTypes.arrayOf(PropTypes.shape({
-  title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   subLinks: PropTypes.footerLinkArray,
+  title: PropTypes.string.isRequired,
 }));
 
 const socialNetworkList = PropTypes.arrayOf(PropTypes.shape({
@@ -114,32 +114,23 @@ const LIST_ITEM = {
 
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
-  HEADER_DATA: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired,
-  })),
   FOOTER_DATA: PropTypes.shape({
     primaryLinks: footerLinkArray,
     utilityLinks: footerLinkArray,
   }),
-  LIST: PropTypes.arrayOf(PropTypes.shape(LIST_ITEM)),
-  LIST_ITEM,
-  MARKDOWN,
-  SUB_NAV_PROPS: PropTypes.shape({
-    categoryTitle: PropTypes.string.isRequired,
-    navItems: PropTypes.arrayOf(PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    }).isRequired).isRequired,
-  }),
   GLOBAL_SETTINGS: PropTypes.shape(validateGlobalSettings),
+  HEADER_DATA: PropTypes.arrayOf(PropTypes.shape({
+    link: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  })),
   HISTORY: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES: PropTypes.shape(validateSourcesBySize),
   LANGUAGE: PropTypes.oneOf(REGION_LANGUAGES[process.env.GATSBY_REGION]),
+  LIST: PropTypes.arrayOf(PropTypes.shape(LIST_ITEM)),
+  LIST_ITEM,
   LOCALIZED_SLUG_LIST: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
     locale: PropTypes.oneOf([
@@ -147,6 +138,7 @@ exports.PROP_TYPES = {
       LANGUAGE_CONTENTFUL_LOCALE[LANGUAGE.CHINESE],
     ]).isRequired,
   })),
+  MARKDOWN,
   MODULES: PropTypes.arrayOf(PropTypes.oneOfType([
     BODY_TEXT,
     INLINE_IMAGE,
@@ -155,9 +147,17 @@ exports.PROP_TYPES = {
     SLIDESHOW_CAROUSEL,
   ])),
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
+  QUOTE: quotePropTypes,
   SOCIAL_ICONS: PropTypes.shape({
     contentPage: socialNetworkList.isRequired,
     footer: socialNetworkList.isRequired,
   }),
-  QUOTE: quotePropTypes,
+  SUB_NAV_PROPS: PropTypes.shape({
+    categoryTitle: PropTypes.string.isRequired,
+    navItems: PropTypes.arrayOf(PropTypes.shape({
+      description: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired).isRequired,
+  }),
 };

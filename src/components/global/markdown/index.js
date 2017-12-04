@@ -11,8 +11,8 @@ const ALLOWED_TYPES = {
 };
 
 const propTypes = {
-  isTitle: PropTypes.bool,
   isShort: PropTypes.bool,
+  isTitle: PropTypes.bool,
   source: PropTypes.string.isRequired,
 };
 

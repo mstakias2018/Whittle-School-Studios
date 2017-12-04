@@ -22,14 +22,14 @@ const propTypes = {
 
 class Fab extends React.Component {
   state = {
-    elementHeight: 0,
-    clientHeight: 0,
-    footerHeight: 0,
-    startAppearAt: 0,
     appearDuration: 0,
-    startRotationAt: 0,
-    footerPadding: 0,
+    clientHeight: 0,
     clientWidth: 0,
+    elementHeight: 0,
+    footerHeight: 0,
+    footerPadding: 0,
+    startAppearAt: 0,
+    startRotationAt: 0,
   }
 
   componentDidMount = () => {
@@ -63,14 +63,14 @@ class Fab extends React.Component {
       const pageContentTop = document.querySelector(`.${CLASSES.PAGE_CONTENT}`).offsetTop;
 
       this.setState({
-        elementHeight,
-        clientHeight,
-        footerHeight,
-        startAppearAt: pageContentTop,
         appearDuration: 3 * elementHeight,
-        startRotationAt: pageContentTop + (3 * elementHeight),
-        footerPadding,
+        clientHeight,
         clientWidth,
+        elementHeight,
+        footerHeight,
+        footerPadding,
+        startAppearAt: pageContentTop,
+        startRotationAt: pageContentTop + (3 * elementHeight),
       });
     }, 0);
   }
@@ -88,45 +88,44 @@ class Fab extends React.Component {
             this.state.clientWidth > BREAKPOINTS.BREAKPOINT_LG ?
             [
               {
-                start: this.state.startAppearAt,
                 duration: this.state.appearDuration,
                 name: 'first',
                 properties: [
                   {
-                    startValue: 2 * this.state.elementHeight,
                     endValue: 0,
                     property: 'translateY',
+                    startValue: 2 * this.state.elementHeight,
                   },
-
                 ],
+                start: this.state.startAppearAt,
               },
               {
-                start: `.${CLASSES.FOOTER}`,
                 duration: (this.state.footerHeight + this.state.footerPadding),
-                offset: -this.state.clientHeight,
                 name: 'third',
+                offset: -this.state.clientHeight,
                 properties: [
                   {
-                    startValue: 0,
                     endValue: -this.state.footerHeight - this.state.footerPadding,
                     property: 'translateY',
+                    startValue: 0,
                   },
                 ],
+                start: `.${CLASSES.FOOTER}`,
               },
             ] :
             [
               {
-                start: `.${CLASSES.FOOTER}`,
                 duration: 150,
-                offset: -this.state.clientHeight - 150,
                 name: 'third',
+                offset: -this.state.clientHeight - 150,
                 properties: [
                   {
-                    startValue: 1,
                     endValue: 0,
                     property: 'opacity',
+                    startValue: 1,
                   },
                 ],
+                start: `.${CLASSES.FOOTER}`,
               },
             ]
 
@@ -138,16 +137,16 @@ class Fab extends React.Component {
             className={styles.content}
             parallaxData={[
               {
-                start: this.state.startRotationAt,
                 duration: `.${CLASSES.FOOTER}`,
                 name: 'second',
                 properties: [
                   {
-                    startValue: 0,
                     endValue: this.state.clientWidth < BREAKPOINTS.BREAKPOINT_LG ? 0 : 360,
                     property: 'rotate',
+                    startValue: 0,
                   },
                 ],
+                start: this.state.startRotationAt,
               },
             ]}
           >

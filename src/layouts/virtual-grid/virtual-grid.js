@@ -51,8 +51,8 @@ class VirtualGrid extends React.Component {
 
       if (orientationChanges % 2 === 0) {
         this.setState({
-          visible: !this.state.visible,
           onTop: !this.state.onTop,
+          visible: !this.state.visible,
         });
       }
     }

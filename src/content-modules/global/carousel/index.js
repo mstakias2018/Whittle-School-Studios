@@ -23,14 +23,14 @@ const {
 } = require('./../../../constants/timings');
 
 const CAROUSEL_DIRECTION = {
-  RIGHT: 1,
   LEFT: -1,
+  RIGHT: 1,
 };
 
 class Carousel extends Component {
   state = {
-    currentSlide: 0,
     currentCaption: this.props.slides[0].caption,
+    currentSlide: 0,
     fading: false,
   };
 

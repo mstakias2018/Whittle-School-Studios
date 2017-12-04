@@ -49,16 +49,16 @@ const ContentPageTemplate = ({
   if (parentCategory) {
     subNavProps = transformSubnavProps({
       ...parentCategory[0],
-      currentPageType: pageType,
       currentPageId: id,
+      currentPageType: pageType,
     });
   } else if (subcategories) {
     subNavProps = transformSubnavProps({
-      categoryTitle,
       categoryDescription,
       categorySlug,
-      currentPageType: pageType,
+      categoryTitle,
       currentPageId: id,
+      currentPageType: pageType,
       overviewNavTitle,
       subcategories,
     });

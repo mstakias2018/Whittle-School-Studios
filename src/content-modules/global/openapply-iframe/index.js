@@ -15,8 +15,8 @@ const OpenApplyIFrame = ({ description, scriptUrl }) => (
   <div className={styles.componentWrapper}>
     <Helmet
       script={[{
-        type: 'text/javascript',
         src: scriptUrl,
+        type: 'text/javascript',
       }]}
     />
     <div className={styles.componentContent}>

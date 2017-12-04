@@ -4,13 +4,11 @@ import React from 'react';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 import InlineVideo from '../content-modules/global/inline-video';
-import Share from '../components/structural/share';
 import PageWrapper from '../components/structural/page-wrapper';
 import SectionTitle from '../components/global/section-title';
 import List from '../content-modules/global/list';
 
 import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
-import { SOCIAL_NETWORK } from '../constants/social-networks';
 
 import largeImage from '../test-content/images/article-large.jpg';
 import smallImage from '../test-content/images/article-small.jpg';
@@ -76,7 +74,6 @@ const Category = () => (
     />
 
     <div className={styles.componentInfo}>Inline image (new caption alignment)</div>
-
     <InlineImage
       alt="Testtt"
       caption="The quick brown box jumped over the lazy dog."
@@ -90,29 +87,30 @@ const Category = () => (
       }}
       shape={IMAGE_SHAPE.RECTANGLE}
     />
+
+    <div className={styles.componentInfo}>List</div>
     <List data={[{
-        title: 'Shenzhen',
         description: 'Cursus magna, vel scelerisque nisl consectetur et.',
+        title: 'Shenzhen',
       }, {
-        title: 'New York',
         description: 'Praesent commodo cursus magna, vel scelerisque nisl.',
-        link: '#',
+        title: 'New York',
       }, {
-        title: 'Washington D.C.',
         description: '[Cursus magna](/#), vel scelerisque nisl consectetur et.',
+        title: 'Washington D.C.',
       }, {
+        description: 'Praesent commodo cursus magna, vel scelerisque.',
         title: 'Dubai',
-        description: 'Praesent commodo cursus magna, vel scelerisque.',
       }, {
+        description: 'Praesent commodo cursus magna, vel scelerisque.',
         title: 'Mumbai',
-        description: 'Praesent commodo cursus magna, vel scelerisque.',
       }, {
-        title: 'Shanghai',
         description: 'Praesent commodo cursus magna, vel scelerisque.',
+        title: 'Shanghai',
       }]}
     />
-    <Share networksToShow={[SOCIAL_NETWORK.FACEBOOK, SOCIAL_NETWORK.TWITTER]} />
 
+    <div className={styles.componentInfo}>Section title</div>
     <SectionTitle
       number={5}
       title="Our Upcoming Locations"

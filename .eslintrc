@@ -11,6 +11,7 @@
     "SERVER_RENDER": true
   },
   "rules": {
+    "sort-keys": "error",
     "quotes": ["error", "single"],
     "jsx-a11y/anchor-is-valid": [ "error", {"components": [] }],
     "max-len": ["error", 120],

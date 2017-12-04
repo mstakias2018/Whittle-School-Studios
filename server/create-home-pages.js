@@ -24,9 +24,9 @@ const createHomePages = (graphql, createPage) =>
 
         const buildPage = ({ id }) =>
           createPage({
-            path: `${isoCode}`,
             component: homePageTemplate,
             context: { id },
+            path: `${isoCode}`,
           });
 
         buildPage(result.data.contentfulHomePage);

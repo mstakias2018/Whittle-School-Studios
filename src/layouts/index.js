@@ -41,8 +41,8 @@ class TemplateWrapper extends Component {
 
     return {
       fabTextImage: url,
-      headerData: data[`HEADER_${language}`].contentPages,
       footerData: formatFooterLinks(data[`FOOTER_${language}`]),
+      headerData: data[`HEADER_${language}`].contentPages,
       history,
       language,
       socialIcons: {

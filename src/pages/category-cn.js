@@ -4,13 +4,11 @@ import React from 'react';
 import BodyText from '../content-modules/global/body-text';
 import InlineImage from '../content-modules/global/inline-image';
 import InlineVideo from '../content-modules/global/inline-video';
-import Share from '../components/structural/share';
 import PageWrapper from '../components/structural/page-wrapper';
 import SectionTitle from '../components/global/section-title';
 import List from '../content-modules/global/list';
 
 import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
-import { SOCIAL_NETWORK } from '../constants/social-networks';
 
 import largeImage from '../test-content/images/article-large.jpg';
 import smallImage from '../test-content/images/article-small.jpg';
@@ -90,28 +88,30 @@ const CategoryCn = () => (
         }}
         shape={IMAGE_SHAPE.RECTANGLE}
       />
+
+      <div className={styles.componentInfo}>List</div>
       <List data={[{
-        title: '金政所间风族争验口这部如',
         description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
-      }, {
         title: '金政所间风族争验口这部如',
+      }, {
         description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
-      }, {
         title: '金政所间风族争验口这部如',
+      }, {
         description: '金政所间风族争验口这部如 金政所间风 所间风.',
-      }, {
         title: '金政所间风族争验口这部如',
+      }, {
         description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
-      }, {
         title: '金政所间风族争验口这部如',
+      }, {
         description: '[金政所间风族争验口这部如](/#), 金政如.',
-      }, {
         title: '金政所间风族争验口这部如',
+      }, {
         description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
+        title: '金政所间风族争验口这部如',
       }]}
       />
-      <Share networksToShow={[SOCIAL_NETWORK.WECHAT]} />
 
+      <div className={styles.componentInfo}>Section title</div>
       <SectionTitle
         number={5}
         title="度応格改応記則用更現村開道図特"

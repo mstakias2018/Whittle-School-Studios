@@ -8,10 +8,10 @@ import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  refFn: PropTypes.func,
   shouldOpenExternalInSameTab: PropTypes.bool,
   shouldSkipIsoCode: PropTypes.bool,
   shouldVisitLinkOnEnter: PropTypes.bool,
-  refFn: PropTypes.func,
   to: PropTypes.string.isRequired,
 };
 

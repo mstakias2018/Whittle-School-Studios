@@ -13,8 +13,8 @@ import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 class Share extends Component {
   state = {
-    currentUrl: '',
     copying: false,
+    currentUrl: '',
   }
 
   componentDidMount = () => {

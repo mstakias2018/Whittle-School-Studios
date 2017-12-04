@@ -7,8 +7,8 @@ const POLLING_INTERVAL = 30;
 
 class SiteInfo extends Component {
   state = {
-    isVisible: true,
     isPolling: true,
+    isVisible: true,
     timeToRefresh: POLLING_INTERVAL,
   };
 
@@ -43,8 +43,8 @@ class SiteInfo extends Component {
     const { isVisible } = this.state;
     if (isVisible) {
       this.setState({
-        isVisible: false,
         isPolling: false,
+        isVisible: false,
       });
     } else {
       this.setState({ isVisible: true });

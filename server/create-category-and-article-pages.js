@@ -91,24 +91,23 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
 
           const context = {
             id,
-            imageDataByType,
-
             // Create a regular expression that will fetch a content pages
             // for a given baseId in all locales
             idRegex: `/^${baseId}(___[A-z\\-]+)?$/`,
+            imageDataByType,
           };
 
           createPage({
-            path: `${isoCode}/${slugs.join('/')}/`,
             component: contentPageTemplate,
             context,
+            path: `${isoCode}/${slugs.join('/')}/`,
           });
 
           if (process.env.BRANCH === BRANCHES.STAGING) {
             createPage({
-              path: `${isoCode}/${id}/`,
               component: contentPageTemplate,
               context,
+              path: `${isoCode}/${id}/`,
             });
           }
         };

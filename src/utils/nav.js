@@ -48,8 +48,8 @@ const formatFooterLink = ({
     createContentPageLink(linkDestinationInternal);
 
   return {
-    title: linkTitle,
     link,
+    title: linkTitle,
   };
 };
 
@@ -73,6 +73,6 @@ exports.formatFooterLinks = footerData =>
   });
 
 exports.transformLocalizedSlugData = ({ edges }) => edges.map(({ node }) => ({
-  locale: node.locale,
   link: createContentPageLink(node),
+  locale: node.locale,
 }));

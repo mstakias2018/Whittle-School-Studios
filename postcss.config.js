@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 module.exports = {
   plugins: {
     'postcss-conditionals': {},

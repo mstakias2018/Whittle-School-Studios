@@ -1,8 +1,8 @@
 const { ENV } = require('./env');
 
 const REGION = {
-  US: 'US',
   CHINA: 'CHINA',
+  US: 'US',
 };
 
 exports.REGION = REGION;
@@ -13,15 +13,15 @@ exports.REGION_PATH = {
 };
 
 const LANGUAGE = {
-  ENGLISH: 'ENGLISH',
   CHINESE: 'CHINESE',
+  ENGLISH: 'ENGLISH',
 };
 
 exports.LANGUAGE = LANGUAGE;
 
 exports.LANGUAGE_CLASS = {
-  ENGLISH: 'English',
   CHINESE: 'Chinese',
+  ENGLISH: 'English',
 };
 
 exports.REGION_LANGUAGES = {
