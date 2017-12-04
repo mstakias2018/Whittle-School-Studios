@@ -10,7 +10,11 @@ import { CLASSES } from '../../../constants/classes';
 
 const mainStyleIEFix = { display: 'block' };
 
-const PageWrapper = ({ children, localizedSlugList, subNavProps }) => ([
+const PageWrapper = ({
+  children,
+  localizedSlugList,
+  subNavProps,
+}, { translations }) => ([
   <Header
     key="header"
     localizedSlugList={localizedSlugList}
@@ -18,6 +22,7 @@ const PageWrapper = ({ children, localizedSlugList, subNavProps }) => ([
   />,
   <Fab key="fab" />,
   <main
+    aria-label={translations.general.mainAriaLabel}
     className={CLASSES.PAGE_CONTENT}
     key="main"
     style={mainStyleIEFix}
@@ -32,5 +37,6 @@ PageWrapper.propTypes = {
   localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
   subNavProps: PROP_TYPES.SUB_NAV_PROPS,
 };
+PageWrapper.contextTypes = { translations: PropTypes.object.isRequired };
 
 export default PageWrapper;

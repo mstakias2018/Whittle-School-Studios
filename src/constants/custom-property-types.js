@@ -47,19 +47,26 @@ const getInlineImagePropTypes = (withCircle = false) => ({
 
 exports.getInlineImagePropTypes = getInlineImagePropTypes;
 
+const MARKDOWN = PropTypes.shape({
+  markdown: PropTypes.string.isRequired,
+}).isRequired;
+
 const createTypenameChecker = desiredValue => (props, propName) =>
   (props[propName] === desiredValue ? undefined : new Error('invalid typename'));
 
 const BODY_TEXT = PropTypes.shape({
   __typename: createTypenameChecker('ContentfulBodyText'),
-  content: PropTypes.shape({
-    markdown: PropTypes.string.isRequired,
-  }).isRequired,
+  content: MARKDOWN,
 });
 
 const INLINE_IMAGE = PropTypes.shape({
   __typename: createTypenameChecker('ContentfulInlineImage'),
   ...getInlineImagePropTypes(),
+});
+
+const OPENAPPLY_IFRAME = PropTypes.shape({
+  __typename: createTypenameChecker('ContentfulOpenApplyIFrame'),
+  description: MARKDOWN,
 });
 
 const quotePropTypes = {
@@ -117,6 +124,7 @@ exports.PROP_TYPES = {
   }),
   LIST: PropTypes.arrayOf(PropTypes.shape(LIST_ITEM)),
   LIST_ITEM,
+  MARKDOWN,
   SUB_NAV_PROPS: PropTypes.shape({
     categoryTitle: PropTypes.string.isRequired,
     navItems: PropTypes.arrayOf(PropTypes.shape({
@@ -142,6 +150,7 @@ exports.PROP_TYPES = {
   MODULES: PropTypes.arrayOf(PropTypes.oneOfType([
     BODY_TEXT,
     INLINE_IMAGE,
+    OPENAPPLY_IFRAME,
     QUOTE,
     SLIDESHOW_CAROUSEL,
   ])),

@@ -32,11 +32,11 @@
 }
 
 .block {
-  @mixin span 4, var(--grid-columns-sm), sm;
+  @mixin full-width-column-sm;
   @mixin nested-grid-container;
 
   @media (--bp-md) {
-    @mixin span 6, var(--grid-columns-md), md;
+    @mixin three-quart-width-column-md;
     @mixin nested-grid-container;
   }
 

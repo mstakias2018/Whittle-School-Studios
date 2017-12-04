@@ -40,15 +40,11 @@
   height: auto;
 
   @media (--bp-sm-only) {
-    @mixin span 4, var(--grid-columns-sm), sm;
+    @mixin full-width-column-sm;
     border-bottom: 1px solid var(--color-light-border);
     flex-direction: row;
     flex-wrap: wrap;
     margin-bottom: 30px;
-  }
-
-  @media (--bp-sm-upper-only) {
-    @mixin span 4, var(--grid-columns-sm), sm;
   }
 
   @media (--bp-md) {
@@ -127,7 +123,7 @@
 }
 
 .copyright {
-  @mixin span 4, var(--grid-columns-sm), sm;
+  @mixin full-width-column-sm;
   @mixin type-footer;
 
   @media (--bp-sm-and-md-only) {

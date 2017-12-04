@@ -4,11 +4,10 @@ import cx from 'classnames';
 
 import Markdown from '../../../components/global/markdown';
 import styles from './body-text.module.css';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 const propTypes = {
-  content: PropTypes.shape({
-    markdown: PropTypes.string.isRequired,
-  }).isRequired,
+  content: PROP_TYPES.MARKDOWN,
   isFirstModule: PropTypes.bool,
 };
 

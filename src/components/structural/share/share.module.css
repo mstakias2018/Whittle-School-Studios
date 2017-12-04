@@ -14,19 +14,10 @@
 }
 
 .share {
-  @mixin span 4, var(--grid-columns-sm), sm;
+  @mixin text-column-width;
   align-items: center;
   display: flex;
   flex-direction: row;
-
-  @media (--bp-md) {
-    @mixin span 6, var(--grid-columns-md), md;
-  }
-
-  @media (--bp-lg) {
-    @mixin span 6, var(--grid-columns-lg), lg;
-    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
-  }
 }
 
 .shareText {
@@ -70,7 +61,7 @@
 }
 
 .copyConformation {
-  @mixin span 4, var(--grid-columns-sm), sm;
+  @mixin text-column-width;
   align-items: center;
   background-color: var(--color-secondary-light);
   display: flex;
@@ -79,15 +70,6 @@
   margin-top: 20px;
   opacity: 0;
   transition: opacity var(--timing-fast) var(--easing-default);
-
-  @media (--bp-md) {
-    @mixin span 6, var(--grid-columns-md), md;
-  }
-
-  @media (--bp-lg) {
-    @mixin span 6, var(--grid-columns-lg), lg;
-    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
-  }
 
   span {
     color: var(--color-text-dark);

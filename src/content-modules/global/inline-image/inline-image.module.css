@@ -14,15 +14,7 @@
 
 .image {
   margin-bottom: 10px;
-  @mixin span 4, var(--grid-columns-sm), sm;
-
-  @media (--bp-md) {
-    @mixin span 6, var(--grid-columns-md), md;
-  }
-  @media (--bp-lg) {
-    @mixin span 8, var(--grid-columns-lg), lg;
-    @mixin custom-column 2, var(--grid-columns-lg), margin-left;
-  }
+  @mixin image-column-width;
 
   img {
     height: auto;
@@ -37,8 +29,7 @@
 
 .image_isSquare {
   @media (--bp-lg) {
-    @mixin span 6, var(--grid-columns-lg), lg;
-    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
+    @mixin half-width-column-lg;
   }
 }
 
@@ -49,16 +40,11 @@
 }
 
 .caption {
-  @mixin span 4, var(--grid-columns-sm), sm;
+  @mixin text-column-width;
   @mixin type-caption;
 
   @media (--bp-md) {
     @mixin span 5, var(--grid-columns-md), md;
-  }
-
-  @media (--bp-lg) {
-    @mixin span 6, var(--grid-columns-lg), lg;
-    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
   }
 }
 

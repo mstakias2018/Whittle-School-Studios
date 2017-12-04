@@ -4,7 +4,7 @@
 @import '../../../../assets/styles/includes/typography.css';
 
 .wrapper {
-  @mixin span 4, var(--grid-columns-sm), sm;
+  @mixin full-width-column-sm;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

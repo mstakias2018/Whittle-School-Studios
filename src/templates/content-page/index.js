@@ -155,18 +155,24 @@ export const pageQuery = graphql`
           alt
           caption
         }
-        ... on ContentfulSlideshowCarousel {
-          slides {
-            shape
-            alt
-            caption
+        ... on ContentfulOpenApplyIFrame {
+          description {
+            markdown: description
           }
+          scriptUrl
         }
         ... on ContentfulQuote {
           content {
             content
           }
           source
+        }
+        ... on ContentfulSlideshowCarousel {
+          slides {
+            shape
+            alt
+            caption
+          }
         }
       }
     }

@@ -13,10 +13,10 @@
 }
 
 .quoteBlock {
-  @mixin span 4, var(--grid-columns-sm), sm;
+  @mixin full-width-column-sm;
 
   @media (--bp-md) {
-    @mixin span 6, var(--grid-columns-md), md;
+    @mixin three-quart-width-column-md;
   }
 
   @media (--bp-lg) {

@@ -1,0 +1,27 @@
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/variables.css';
+
+.componentWrapper {
+  @mixin component-container;
+  @mixin component-vertical-spacing;
+}
+
+.componentContent {
+  @mixin image-column-width;
+  @mixin type-paragraph;
+}
+
+.description {
+  border-bottom: 1px solid var(--color-light-border);
+  margin-bottom: 36px;
+  padding-bottom: 40px;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (--bp-lg) {
+    margin-bottom: 56px;
+    padding-bottom: 60px;
+  }
+}

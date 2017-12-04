@@ -207,6 +207,18 @@
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
   }
+
+  strong {
+    font-family: var(--font-sans-serif-regular);
+
+    :global(.wrapper_isChinese) & {
+      font-family: var(--font-sans-serif-regular-cn);
+    }
+  }
+
+  a {
+    @mixin inline-type-link;
+  }
 }
 
 @define-mixin type-descriptor {

@@ -15,12 +15,11 @@
   @mixin span 3, var(--grid-columns-sm), sm;
 
   @media (--bp-md) {
-    @mixin span 6, var(--grid-columns-md), md;
+    @mixin three-quart-width-column-md;
   }
 
   @media (--bp-lg) {
-    @mixin span 8, var(--grid-columns-lg), lg;
-    @mixin custom-column 2, var(--grid-columns-lg), margin-left;
+    @mixin three-quart-width-column-lg;
   }
 }
 
