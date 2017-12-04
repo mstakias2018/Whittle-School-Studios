@@ -27,6 +27,10 @@
   p {
     @mixin type-paragraph;
     margin-bottom: 0;
+
+    &:not(:first-child) {
+      padding-top: 20px;
+    }
   }
 
   strong {

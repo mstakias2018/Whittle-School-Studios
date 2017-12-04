@@ -32,6 +32,13 @@
   @media (--bp-lg) {
     flex-basis: 50%;
   }
+
+  :global(.wrapper_isChinese) & {
+    @media (--bp-lg) {
+      padding-right: var(--grid-gutter-lg);
+      text-align: right;
+    }
+  }
 }
 
 .icons {
@@ -49,11 +56,26 @@
 }
 
 .icon {
+  flex-basis: auto;
+  margin-right: 0;
   opacity: 0.8;
-  @mixin span 1, var(--grid-columns-sm), sm;
+  padding: 0;
+  width: auto;
 
-  @media (--bp-md) {
-    @mixin span 1, var(--grid-columns-sm), sm;
+  @media (--bp-sm-only) {
+    flex-basis: calc((100% - (6 * var(--grid-gutter-sm))) / 4);
+    width: calc((100% - (6 * var(--grid-gutter-sm))) / 4);
+    &:not(:last-child) {
+      margin-right: calc(2 * var(--grid-gutter-sm));
+    }
+  }
+
+  @media (--bp-md-only) {
+    flex-basis: calc((100% - (6 * var(--grid-gutter-md))) / 4);
+    width: calc((100% - (6 * var(--grid-gutter-md))) / 4);
+    &:not(:last-child) {
+      margin-right: calc(2 * var(--grid-gutter-md));
+    }
   }
 
   &:hover {

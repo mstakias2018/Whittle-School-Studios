@@ -195,7 +195,6 @@
   font-family: var(--font-sans-serif-light);
   font-size: 14px;
   line-height: 24px;
-  padding-top: 20px;
 
   @media (--bp-md) {
     line-height: 30px;
@@ -335,7 +334,8 @@
     text-decoration-color: var(--color-link-hover-underline);
   }
 
-  &:focus {
+  &:focus,
+  &:active {
     color: var(--color-text-light);
     outline: none;
   }
@@ -364,11 +364,10 @@
 @define-mixin type-caption {
   color: var(--color-text-dark);
   font-family: var(--font-sans-serif-light);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 14px;
 
   @media (--bp-md) {
-    font-size: 12px;
     line-height: 18px;
   }
 
