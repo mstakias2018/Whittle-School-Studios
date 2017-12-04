@@ -19,6 +19,15 @@
   @mixin type-h2-italic;
 }
 
+.wrapper .pageHead .subhead {
+  margin-bottom: 0;
+  padding-bottom: 30px;
+
+  @media (--bp-md) {
+    padding-bottom: 60px;
+  }
+}
+
 .subhead_subCategory {
   @mixin type-h2-italic;
 }
