@@ -13,11 +13,11 @@ transferSpaces(
 ).then(() => {
   transferSpaces(
     [ENV.QA, REGION.US],
-    [ENV.PROD, REGION.US],
+    [ENV.PRODUCTION, REGION.US],
   ).then(() => {
     transferSpaces(
       [ENV.QA, REGION.CHINA],
-      [ENV.PROD, REGION.CHINA],
+      [ENV.PRODUCTION, REGION.CHINA],
     ).then(() => {
       console.log('=== PUSHING TO STAGING/PROD BRANCHES');
       simpleGit()
