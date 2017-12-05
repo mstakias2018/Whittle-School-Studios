@@ -1,0 +1,76 @@
+@import '../../assets/styles/includes/breakpoints.css';
+@import '../../assets/styles/includes/grid.css';
+@import '../../assets/styles/includes/mixins.css';
+@import '../../assets/styles/includes/typography.css';
+@import '../../assets/styles/includes/variables.css';
+
+.title {
+  @mixin type-h1;
+  margin-bottom: 20px;
+}
+
+.header,
+.pageList {
+  @mixin type-paragraph;
+}
+
+.headerData,
+.pageList,
+.ruleGroupList,
+.ruleList {
+  @mixin reset-list;
+}
+
+.headerData {
+  @mixin grid-container;
+  flex-wrap: wrap;
+}
+
+.headerDataItem {
+  @mixin span 4, var(--grid-columns-sm), sm;
+
+  @media (--bp-md) {
+    @mixin span 4, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 3, var(--grid-columns-lg), lg;
+  }
+}
+
+.headerButton {
+  @mixin reset-button;
+  @mixin inline-type-link;
+}
+
+.page {
+  margin-top: 40px;
+}
+
+.pageHeader {
+  border-bottom: 2px solid var(--color-background-green-gray);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+}
+
+.ruleGroupTitle {
+  font-family: var(--font-sans-serif-regular);
+  margin-bottom: 5px;
+  margin-top: 12px;
+}
+
+.ruleList {
+  margin-left: 10px;
+}
+
+.ruleStatus {
+  color: green;
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.ruleStatus:not(.ruleStatus_isValid) {
+  color: var(--color-text-tomato);
+}

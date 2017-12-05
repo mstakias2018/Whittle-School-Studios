@@ -33,6 +33,7 @@
 }
 
 .menuItems {
+  @mixin reset-list;
   flex-wrap: wrap;
 
   @media (--bp-sm-only) {
@@ -50,13 +51,9 @@
     display: flex;
     flex-wrap: nowrap;
   }
-
-  padding: 0;
 }
 
 .menuItem {
-  list-style: none;
-
   @media (--bp-sm-only) {
     @mixin span 2, 4, sm;
     &:nth-of-type (even) {

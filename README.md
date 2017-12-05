@@ -45,6 +45,11 @@ yarn develop -- --host <YOUR IP ADDRESS>
 
 Read about these in the [annotations](https://paper.dropbox.com/doc/04-Global-Contentful-Notes-KFbCCPZhz9DWRbldpRJEe).
 
+### Staging
+
+We have a `SiteInfo` component that provides information on the most recent
+build when on the staging branch. Read more on [Paper](https://paper.dropbox.com/doc/04-Staging-Environment-uvK4leT1LDsMWjFVy2xZM).
+
 ## Adding Translations
 
 - Add translations to the JSON object on the [Dev China](https://app.contentful.com/spaces/udx5f2jyw09i/entries/qUHfYUmG8o4MCaEWoukuu)
@@ -74,3 +79,13 @@ the builds will live at:
 
 These preview builds will run our `lint-js` and `lint-css` tasks and fail if
 either hits an error. This will enforce PR quality.
+
+## `/dev` Pages
+
+We have some pages under the `/dev` route that support testing and validation.
+These are removed on the `production` branch in the `deleteDevPages` util.
+
+### Validator
+
+One dev page is the validator, which runs a report on all Contentful content to
+report on rule violations that are too complex for Contentful.

@@ -24,12 +24,9 @@
 }
 
 .dropButton {
+  @mixin reset-button;
   @mixin type-language;
   align-items: center;
-  background: none;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
   display: flex;
   height: 14px;
   overflow: hidden;
@@ -37,17 +34,12 @@
 }
 
 .select {
+  @mixin reset-list;
   background-color: var(--color-background-white);
   box-shadow: var(--color-light-border) 3px 3px 10px;
-  display: block;
-  margin: 0;
   padding: 12px 10px;
   position: absolute;
   z-index: 10;
-
-  li {
-    list-style: none;
-  }
 }
 
 .selectButton {

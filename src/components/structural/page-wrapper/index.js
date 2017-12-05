@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import Header from '../header';
 import Footer from '../footer';
 import Fab from '../fab';
+import SiteInfo from '../../site-info';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
+import { ENV } from '../../../constants/env';
 
 const mainStyleIEFix = { display: 'block' };
 
@@ -29,6 +31,7 @@ const PageWrapper = ({
   >
     {children}
   </main>,
+  ...(process.env.GATSBY_ENV === ENV.STAGING ? [<SiteInfo key="siteInfo" />] : []),
   <Footer key="footer" />,
 ]);
 

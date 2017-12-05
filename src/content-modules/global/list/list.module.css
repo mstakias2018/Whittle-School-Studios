@@ -12,6 +12,7 @@
 }
 
 .listItems {
+  @mixin reset-list;
   @mixin text-column-width;
 
   @media (--bp-md) {

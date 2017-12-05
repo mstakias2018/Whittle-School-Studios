@@ -33,15 +33,12 @@
 }
 
 .items {
+  @mixin reset-list;
   @mixin grid-container;
   justify-content: space-between;
 
   @media (--bp-sm-and-md-only) {
     flex-wrap: wrap;
-  }
-
-  li {
-    list-style: none;
   }
 }
 

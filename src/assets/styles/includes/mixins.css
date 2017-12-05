@@ -76,3 +76,13 @@
   cursor: pointer;
   padding: 0;
 }
+
+@define-mixin reset-list {
+  margin: 0;
+  padding: 0;
+
+  > li {
+    list-style-type: none;
+    margin-bottom: 0;
+  }
+}

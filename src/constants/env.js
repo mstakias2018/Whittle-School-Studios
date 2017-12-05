@@ -4,8 +4,6 @@ const BRANCHES = {
   STAGING: 'staging',
 };
 
-exports.BRANCHES = BRANCHES;
-
 const ENV = {
   DEV: 'DEV',
   PRODUCTION: 'PRODUCTION',

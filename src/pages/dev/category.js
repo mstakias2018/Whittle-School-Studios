@@ -1,21 +1,21 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-import BodyText from '../content-modules/global/body-text';
-import InlineImage from '../content-modules/global/inline-image';
-import InlineVideo from '../content-modules/global/inline-video';
-import PageWrapper from '../components/structural/page-wrapper';
-import SectionTitle from '../components/global/section-title';
-import List from '../content-modules/global/list';
+import BodyText from '../../content-modules/global/body-text';
+import InlineImage from '../../content-modules/global/inline-image';
+import InlineVideo from '../../content-modules/global/inline-video';
+import PageWrapper from '../../components/structural/page-wrapper';
+import SectionTitle from '../../components/global/section-title';
+import List from '../../content-modules/global/list';
 
-import { IMAGE_BP, IMAGE_SHAPE } from '../constants/images';
+import { IMAGE_BP, IMAGE_SHAPE } from '../../constants/images';
 
-import largeImage from '../test-content/images/article-large.jpg';
-import smallImage from '../test-content/images/article-small.jpg';
+import largeImage from '../../test-content/images/article-large.jpg';
+import smallImage from '../../test-content/images/article-small.jpg';
 
 import styles from './modules.module.css';
 
-import ThreeUpBreaker from '../content-modules/global/three-up-breaker';
+import ThreeUpBreaker from '../../content-modules/global/three-up-breaker';
 
 const Category = () => (
   <PageWrapper>

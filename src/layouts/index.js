@@ -7,7 +7,6 @@ import Helmet from 'react-helmet';
 import detectTouchEvents from 'detect-touch-events';
 import cx from 'classnames';
 
-import SiteInfo from '../components/site-info';
 import VirtualGrid from './virtual-grid/virtual-grid';
 
 import '../assets/styles/main.css';
@@ -15,7 +14,6 @@ import '../assets/styles/main.css';
    so fonts will live in layouts/ */
 import './fonts.module.css';
 
-import { BRANCHES } from '../constants/env';
 import { PROP_TYPES } from '../constants/custom-property-types';
 import {
   LANGUAGE,
@@ -76,7 +74,6 @@ class TemplateWrapper extends Component {
           htmlAttributes={{ lang: LANGUAGE_CONTENTFUL_LOCALE[language] }}
           titleTemplate={`%s | ${translations.general.schoolName}`}
         />
-        {process.env.GATSBY_BRANCH === BRANCHES.STAGING && <SiteInfo />}
         {this.props.children()}
         <VirtualGrid />
       </div>

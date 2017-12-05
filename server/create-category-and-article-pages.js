@@ -1,6 +1,6 @@
 const path = require('path');
 
-const { BRANCHES } = require('../src/constants/env');
+const { ENV } = require('../src/constants/env');
 const { LANGUAGE_CONTENTFUL_LOCALE, REGION_LANGUAGES } = require('../src/constants/regions');
 const { IMAGE_TYPE, IMAGE_SUBTYPE } = require('../src/constants/images');
 const { getIsoCode } = require('../src/utils/regions');
@@ -103,7 +103,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
             path: `${isoCode}/${slugs.join('/')}/`,
           });
 
-          if (process.env.BRANCH === BRANCHES.STAGING) {
+          if (process.env.GATSBY_ENV === ENV.STAGING) {
             createPage({
               component: contentPageTemplate,
               context,

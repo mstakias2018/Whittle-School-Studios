@@ -5,11 +5,17 @@ const createCategoryAndArticlePages = require('./server/create-category-and-arti
 const { resetImageDir } = require('./server/save-images');
 const { getIsoCode } = require('./src/utils/regions');
 const { REGION_DEFAULT_LANGUAGE } = require('./src/constants/regions');
+const deleteDevPages = require('./server/delete-dev-pages');
+const { ENV } = require('./src/constants/env');
 
 const copyNetlifyVariables = () =>
-  ['BRANCH', 'COMMIT_REF'].forEach((variableName) => {
+  ['COMMIT_REF'].forEach((variableName) => {
+    // only variables beginning with GATSBY_ are available client-side
     process.env[`GATSBY_${variableName}`] = process.env[variableName];
   });
+
+exports.onCreatePage = process.env.GATSBY_ENV === ENV.PRODUCTION ?
+  deleteDevPages : undefined;
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createRedirect, createPage } = boundActionCreators;

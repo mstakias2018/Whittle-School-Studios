@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
+import Link from 'gatsby-link';
 
 import styles from './site-info.module.css';
 
@@ -55,7 +56,7 @@ class SiteInfo extends Component {
     const { isPolling, isVisible, timeToRefresh } = this.state;
     const visibilityButton = (
       <button
-        className={cx(styles.button, styles.button_visibility)}
+        className={styles.button}
         onClick={this.toggleVisibility}
       >
         {isVisible ? 'Hide' : 'Show build info'}
@@ -72,14 +73,28 @@ class SiteInfo extends Component {
                 {' '}{process.env.GATSBY_BUILD_TIME}
               </span>
             </div>
-            <div>
-              <button
-                className={styles.button}
-                onClick={this.togglePolling}
-              >
-                {isPolling ? 'Stop' : 'Start'} polling
-              </button>
-              {visibilityButton}
+            <div className={styles.buttonWrapper}>
+              <ul className={styles.buttonList}>
+                <li>
+                  <button
+                    className={styles.button}
+                    onClick={this.togglePolling}
+                  >
+                    {isPolling ? 'Stop' : 'Start'} polling
+                  </button>
+                </li>
+                <li>
+                  <Link
+                    className={styles.link}
+                    to="/dev/validator"
+                  >
+                    Validate content
+                  </Link>
+                </li>
+                <li>
+                  {visibilityButton}
+                </li>
+              </ul>
             </div>
             {isPolling &&
               <div className={styles.pollingWrapper}>
