@@ -12,19 +12,21 @@ const propTypes = {
 };
 
 const OpenApplyIFrame = ({ description, scriptUrl }) => (
-  <div className={styles.componentWrapper}>
+  <div className={styles.wrapper}>
     <Helmet
       script={[{
         src: scriptUrl,
         type: 'text/javascript',
       }]}
     />
-    <div className={styles.componentContent}>
-      <Markdown
-        className={styles.description}
-        source={description.markdown}
-      />
-      <span id="openapplyScript" />
+    <div className={styles.componentWrapper}>
+      <div className={styles.componentContent}>
+        <Markdown
+          className={styles.description}
+          source={description.markdown}
+        />
+        <span id="openapplyScript" />
+      </div>
     </div>
   </div>
 );

@@ -1,14 +1,24 @@
+@import '../../../assets/styles/includes/grid.css';
 @import '../../../assets/styles/includes/mixins.css';
 @import '../../../assets/styles/includes/variables.css';
 
-.componentWrapper {
+.wrapper {
   @mixin component-container;
   @mixin component-vertical-spacing;
+}
+
+.componentWrapper {
+  @mixin grid-container;
+  flex-wrap: wrap;
 }
 
 .componentContent {
   @mixin image-column-width;
   @mixin type-paragraph;
+
+  @media (--bp-md-only) {
+    @mixin custom-column 1, var(--grid-columns-md), margin-left;
+  }
 }
 
 .description {
@@ -18,6 +28,10 @@
 
   p:last-child {
     margin-bottom: 0;
+  }
+
+  @media (--bp-md) {
+    text-align: center;
   }
 
   @media (--bp-lg) {
