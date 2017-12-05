@@ -39,7 +39,7 @@
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^15.6.0",
     "react-hot-loader": "^3.0.0-beta.6",
-    "react-image-gallery": "^0.8.6",
+    "react-image-gallery": "git://github.com/sarahatwork/react-image-gallery",
     "react-markdown": "^2.5.0",
     "react-plx": "^0.2.0",
     "react-router": "^4.1.1",

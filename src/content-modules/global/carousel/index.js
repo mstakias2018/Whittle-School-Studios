@@ -7,7 +7,11 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 
 import styles from './carousel.module.css';
 
-import { getInlineImagePropTypes, PROP_TYPES } from '../../../constants/custom-property-types';
+import { adaptSourcesBySize } from '../../../utils/images';
+import {
+  getInlineImagePropTypes,
+  PROP_TYPES,
+} from '../../../constants/custom-property-types';
 
 const propTypes = {
   imageSources: PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES.isRequired).isRequired,
@@ -27,6 +31,8 @@ const CAROUSEL_DIRECTION = {
   RIGHT: 1,
 };
 
+const pictureTagName = 'PICTURE';
+
 class Carousel extends Component {
   state = {
     currentCaption: this.props.slides[0].caption,
@@ -39,18 +45,13 @@ class Carousel extends Component {
 
     this.formattedItems = imageSources.map((itemImageSources, i) => {
       const { alt, shape } = slides[i];
-      const breakpoints = Object.keys(itemImageSources);
-
-      // TODO Find a way to add a `media` property to Carousel images
-      // so we can include srcSets for all breakpoints
-      const largestBreakpoint = breakpoints[breakpoints.length - 1];
-      const data = itemImageSources[largestBreakpoint];
+      const { sourceList, largestSrc } = adaptSourcesBySize(itemImageSources);
 
       return {
-        original: data.src,
+        imgSet: sourceList,
+        original: largestSrc,
         originalAlt: alt,
         originalClass: `_is${shape}`,
-        srcSet: data.srcSet,
       };
     });
   }
@@ -76,7 +77,12 @@ class Carousel extends Component {
   }
 
   onClickImage = (e) => {
-    const imageClassList = e.target.parentNode.parentNode.classList;
+    let imageClassList = null;
+    if (e.target.parentNode.nodeName.toLowerCase() === pictureTagName.toLowerCase()) {
+      imageClassList = e.target.parentNode.parentNode.parentNode.classList;
+    } else {
+      imageClassList = e.target.parentNode.parentNode.classList;
+    }
     if (imageClassList.contains(CLASSES.GALLERY_IMAGE_CENTER)) {
       // Full screen mode is temporarily disabled.
       // this.gallery.fullScreen();

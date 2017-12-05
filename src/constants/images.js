@@ -3,6 +3,7 @@
    about asset sizes per viewport width. */
 
 /* eslint-disable sort-keys */
+// Keep these in order
 const IMAGE_BP = {
   SMALL: 'sm',
   SMALL_MID: 'smMid',

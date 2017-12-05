@@ -7592,9 +7592,9 @@ react-hot-loader@^3.0.0-beta.6:
     redbox-react "^1.3.6"
     source-map "^0.6.1"
 
-react-image-gallery@^0.8.6:
-  version "0.8.6"
-  resolved "https://registry.yarnpkg.com/react-image-gallery/-/react-image-gallery-0.8.6.tgz#f9268978a0e777110bc735498faf14a0dfb4048f"
+"react-image-gallery@git://github.com/sarahatwork/react-image-gallery":
+  version "0.9.5"
+  resolved "git://github.com/sarahatwork/react-image-gallery#1c5fe90fb006d8fbfd8ad33634e27fee79ddfd5e"
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"

@@ -52,22 +52,37 @@
 
 :global(.image-gallery-image) { /* stylelint-disable-line */
   display: flex;
-  height: 200px;
+  height: calc((3 / 4) * (100vw - 10vw - (2 * var(--component-wrapper-margin-sm))));
   justify-content: flex-start;
 
-  img {
+  img, picture {
     cursor: pointer;
     height: 100%;
     width: auto;
   }
 
+  @media (--bp-sm-upper-only) {
+    height: calc((3 / 4) * (100vw - 21.58vw - (2 * var(--component-wrapper-margin-sm))));
+  }
+
   @media (--bp-md) {
-    height: 260px;
+    height: calc((9 / 16) * (6 / 8) * (100vw - 14vw - (2 * var(--component-wrapper-margin-md))));
     justify-content: center;
   }
 
   @media (--bp-lg) {
-    height: 360px;
+    height: calc((9 / 16) * (8 / 12) * (100vw - 21.66vw - (2 * var(--component-wrapper-margin-lg))));
+  }
+
+  @media (--bp-xl ) {
+    height: calc((9 / 16) * (8 / 12) * var(--container-xl));
+  }
+
+  :global(._isRectangle) & {
+    img,
+    picture {
+      width: 100%;
+    }
   }
 }
 
