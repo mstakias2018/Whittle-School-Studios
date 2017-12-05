@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
-import Locales from '../header-locales/';
+import Locales from '../header-locales';
 import Link from '../../../global/link';
 
 import styles from './header-menu.module.css';
@@ -33,7 +33,8 @@ const MainMenu = ({
             key={index}
           >
             <Link
-              className={styles.menuItem_link}
+              activeClassName={styles.menuItemLink_active}
+              className={styles.menuItemLink}
               to={`/${link}`}
             >
               {title}

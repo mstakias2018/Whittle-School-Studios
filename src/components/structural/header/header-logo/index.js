@@ -7,8 +7,11 @@ import LogoImg from '../../../../assets/images/logo.svg';
 import styles from './header-logo.module.css';
 
 const Logo = (props, { translations }) => (
-  <div className={styles.logo}>
-    <Link to="">
+  <div className={styles.logoContainer}>
+    <Link
+      className={styles.logo}
+      to="/"
+    >
       <img
         alt={translations.header.logoAlt}
         src={LogoImg}

@@ -1,9 +1,11 @@
 @import '../../../../assets/styles/includes/grid.css';
 @import '../../../../assets/styles/includes/variables.css';
 
-.logo {
+.logoContainer {
   @mixin span 2, var(--grid-columns-sm), sm;
+  align-items: flex-end;
   align-self: stretch;
+  display: flex;
 
   @media (--bp-md-only) {
     @mixin span 2, var(--grid-columns-md), md;
@@ -12,5 +14,13 @@
 
   @media (--bp-lg) {
     @mixin span 2, var(--grid-columns-lg), lg;
+  }
+}
+
+.logo {
+  display: block;
+
+  img {
+    margin: 0;
   }
 }

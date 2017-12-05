@@ -4,6 +4,9 @@
 @import '../../../../assets/styles/includes/variables.css';
 
 .locales {
+  position: relative;
+  text-align: right;
+
   @media (--bp-sm-only) {
     display: none;
 
@@ -14,17 +17,16 @@
 
   @media (--bp-md) {
     @mixin component-container;
-    height: 46px;
+    padding: 11px 0 42px;
 
     &.locales_isSmall {
       display: none;
     }
   }
 
-  padding-bottom: 73px;
-  padding-top: 11px;
-  position: relative;
-  text-align: right;
+  @media (--bp-lg) {
+    padding-bottom: 71px;
+  }
 }
 
 .localesItems {

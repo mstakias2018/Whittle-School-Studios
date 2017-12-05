@@ -69,8 +69,13 @@
     padding-bottom: 0;
   }
 
-  &_link {
+  .menuItemLink {
+    &_active {
+      color: var(--color-text-light);
+    }
+
     @mixin type-nav;
+
     display: block;
 
     @media (--bp-sm-and-md-only) {
@@ -83,10 +88,6 @@
       padding-bottom: 62px;
     }
 
-    &._active {
-      color: var(--color-light-border);
-    }
-
     @media (--bp-lg) {
       border-right: solid 1px var(--color-light-border);
       height: 100%;
@@ -96,7 +97,7 @@
 
   @media (--bp-lg) {
     &:first-of-type {
-      .menuItem_link {
+      .menuItemLink {
         padding-left: 0;
       }
     }

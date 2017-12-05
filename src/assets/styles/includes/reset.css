@@ -14,15 +14,15 @@ body {
   word-break: keep-all;
 
   @media (--bp-sm-only) {
-    padding: var(--component-wrapper-margin-sm);
+    padding: 0 var(--component-wrapper-margin-sm) var(--component-wrapper-margin-sm);
   }
 
   @media (--bp-md-only) {
-    padding: var(--component-wrapper-margin-md);
+    padding: 0 var(--component-wrapper-margin-md) var(--component-wrapper-margin-md);
   }
 
   @media (--bp-lg) {
-    border: solid white var(--component-wrapper-margin-lg);
+    padding: 0 var(--component-wrapper-margin-lg) var(--component-wrapper-margin-lg);
   }
 }
 article,

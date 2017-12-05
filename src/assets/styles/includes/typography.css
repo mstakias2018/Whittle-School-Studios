@@ -435,6 +435,11 @@
   letter-spacing: 0.2px;
   line-height: 30px;
 
+  &:focus {
+    color: var(--color-text-light);
+    outline: none;
+  }
+
   :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-book-italic-cn);
   }

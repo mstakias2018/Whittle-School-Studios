@@ -21,7 +21,7 @@ class Submenu extends Component {
     const items = getChunks(keys, size);
 
     return items[items.length - 1]
-      .filter(v => v === index)
+      .filter(v => parseInt(v, 10) === index)
       .length > 0;
   };
 
@@ -44,7 +44,7 @@ class Submenu extends Component {
               [styles.items_large]: this.isLarge(),
             })}
           >
-            <li className={styles.item}>
+            <li className={styles.titleContainer}>
               <h4 className={styles.title}>
                 {categoryTitle}
               </h4>

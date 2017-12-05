@@ -21,11 +21,21 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 74px;
+  padding-bottom: 12px;
   position: relative;
+
+  @media (--bp-md) {
+    padding-bottom: 29px;
+
+    &_isMenuOpen {
+      padding-bottom: 7px;
+    }
+  }
 
   @media (--bp-lg) {
     flex-wrap: nowrap;
     justify-content: flex-start;
+    padding-bottom: 24px;
   }
 }
 

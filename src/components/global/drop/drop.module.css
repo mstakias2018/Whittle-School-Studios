@@ -4,14 +4,23 @@
 @import '../../../assets/styles/includes/variables.css';
 
 .arrow {
-  margin-left: 9px;
+  margin: 0 0 0 7px;
+
+  @media (--bp-sm-only) {
+    height: 7px;
+    margin: 0 0 0 17px;
+  }
 }
 
 .drop {
-  padding-bottom: 73px;
-  padding-top: 11px;
   position: relative;
   text-align: right;
+
+  @media (--bp-sm-only) {
+    border-top: solid 1px var(--color-light-border);
+    padding: 16px 0 30px;
+    width: 100%;
+  }
 }
 
 .dropButton {
@@ -22,13 +31,9 @@
   border-radius: 0;
   cursor: pointer;
   display: flex;
+  height: 14px;
+  overflow: hidden;
   padding: 0;
-
-  @media (--bp-sm-only) {
-    border-top: solid 1px var(--color-light-border);
-    padding: 16px 0 0 0;
-    width: 100%;
-  }
 }
 
 .select {

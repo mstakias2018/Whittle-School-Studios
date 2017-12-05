@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import Logo from './header-logo';
 import MainMenu from './header-menu/header-menu';
@@ -48,7 +49,10 @@ class Header extends Component {
       <header className={styles.header}>
         <Locales localizedSlugList={localizedSlugList} />
         <div className="container">
-          <div className={styles.container}>
+          <div className={cx(styles.container, {
+            [styles.container_isMenuOpen]: this.state.menuActive,
+          })}
+          >
             <Logo />
             <button
               className={styles.toggleMenu}
