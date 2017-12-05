@@ -62,7 +62,7 @@ class TemplateWrapper extends Component {
   }
 
   render() {
-    const { language } = this.getChildContext();
+    const { language, translations } = this.getChildContext();
 
     return (
       <div
@@ -74,8 +74,7 @@ class TemplateWrapper extends Component {
       >
         <Helmet
           htmlAttributes={{ lang: LANGUAGE_CONTENTFUL_LOCALE[language] }}
-          title="Home"
-          titleTemplate="The Whittle School - %s"
+          titleTemplate={`%s | ${translations.general.schoolName}`}
         />
         {process.env.GATSBY_BRANCH === BRANCHES.STAGING && <SiteInfo />}
         {this.props.children()}

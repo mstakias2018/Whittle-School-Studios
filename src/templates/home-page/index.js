@@ -14,11 +14,25 @@ const propTypes = {
 const ContentPageTemplate = ({
   data: { homePageData },
 }) => {
-  const { headline } = homePageData;
+  const {
+    headline,
+    schoolIntroTitle,
+    seoMetaDescription,
+    seoMetaTitle,
+  } = homePageData;
+
+  const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
+    (schoolIntroTitle && schoolIntroTitle.content);
 
   return (
     <PageWrapper>
-      <Helmet title={headline} />
+      <Helmet>
+        <title>{seoMetaTitle || headline}</title>
+        <meta
+          content={metaDescription}
+          name="description"
+        />
+      </Helmet>
       <PageHead
         headline={headline}
         type={PAGE_TYPE.HOME}
@@ -35,6 +49,13 @@ export const pageQuery = graphql`
   query homePageQuery($id: String!) {
     homePageData: contentfulHomePage(id: { eq: $id }) {
       headline
+      schoolIntroTitle {
+        content: schoolIntroTitle
+      }
+      seoMetaDescription {
+        content: seoMetaDescription
+      }
+      seoMetaTitle
     }
   }
 `;

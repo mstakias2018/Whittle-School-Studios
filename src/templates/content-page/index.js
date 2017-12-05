@@ -34,12 +34,14 @@ const ContentPageTemplate = ({
     headline,
     mainImageAlt,
     modules,
-    categoryTitle,
-    categoryDescription,
     overviewNavTitle,
+    navDescription,
+    navTitle,
     pageType,
     parentCategory,
     categorySlug,
+    seoMetaDescription,
+    seoMetaTitle,
     subcategories,
     subhead,
   } = currentPageData;
@@ -54,9 +56,9 @@ const ContentPageTemplate = ({
     });
   } else if (subcategories) {
     subNavProps = transformSubnavProps({
-      categoryDescription,
+      categoryDescription: navDescription,
       categorySlug,
-      categoryTitle,
+      categoryTitle: navTitle,
       currentPageId: id,
       currentPageType: pageType,
       overviewNavTitle,
@@ -64,13 +66,23 @@ const ContentPageTemplate = ({
     });
   }
 
+  const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
+    navDescription ||
+    subhead;
+
   return (
     <PageWrapper
       localizedSlugList={transformLocalizedSlugData(localizedSlugData)}
       subNavProps={subNavProps}
     >
       <div className={styles.wrapper}>
-        <Helmet title={headline} />
+        <Helmet>
+          <title>{seoMetaTitle || navTitle || headline}</title>
+          <meta
+            content={metaDescription}
+            name="description"
+          />
+        </Helmet>
         <PageHead
           headline={headline}
           imageAlt={mainImageAlt}
@@ -113,13 +125,17 @@ export const pageQuery = graphql`
     currentPageData: contentfulContentPage(id: { eq: $id }) {
       hasShareButtons
       headline
-      subhead
       mainImageAlt
+      navTitle
+      navDescription
       pageType
+      seoMetaDescription {
+        content: seoMetaDescription
+      }
+      seoMetaTitle
+      subhead
 
       # SUBNAV PROPERTIES - CATEGORY
-      categoryTitle: navTitle
-      categoryDescription: navDescription
       overviewNavTitle
       categorySlug: slug
       subcategories {
