@@ -491,12 +491,12 @@
 
 @define-mixin pull-author {
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light-italic);
+  font-family: var(--font-sans-serif-regular);
   font-size: 14px;
   line-height: 14px;
 
   :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
+    font-family: var(--font-sans-serif-regular-cn);
   }
 }
 
@@ -505,6 +505,10 @@
   font-family: var(--font-sans-serif-light);
   font-size: 16px;
   line-height: 24px;
+
+  strong {
+    font-family: var(--font-sans-serif-regular);
+  }
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);

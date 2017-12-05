@@ -106,4 +106,5 @@
 
 .blockText {
   @mixin breaker-text;
+  word-break: break-all;
 }

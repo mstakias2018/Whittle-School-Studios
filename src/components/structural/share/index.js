@@ -10,6 +10,7 @@ import Link from '../../../components/global/link';
 import { SOCIAL_NETWORK } from '../../../constants/social-networks';
 import { TIMINGS } from '../../../constants/timings';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { CLASSES } from '../../../constants/classes';
 
 class Share extends Component {
   state = {
@@ -64,7 +65,7 @@ class Share extends Component {
     } = this.context;
 
     return (
-      <div className={styles.wrapper}>
+      <div className={cx(styles.wrapper, CLASSES.SHARE_COMPONENT)}>
         <div className={styles.content}>
           <div className={styles.share}>
             <div className={styles.shareText}>{translations.share.shareLabel}:</div>

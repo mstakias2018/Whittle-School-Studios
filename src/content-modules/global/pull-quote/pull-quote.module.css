@@ -63,5 +63,9 @@
     @media (--bp-sm-only) {
       margin-left: 0;
     }
+
+    @media (--bp-lg) {
+      width: 103px;
+    }
   }
 }
