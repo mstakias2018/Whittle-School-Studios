@@ -13,6 +13,7 @@
     "declaration-block-trailing-semicolon": "always",
     "order/properties-alphabetical-order": true,
     "function-calc-no-unspaced-operator": true,
+    "shorthand-property-no-redundant-values": true,
     "selector-class-pattern": "^([a-z\\d]*([A-Z][a-z\\d]*)*)?(_[a-z\\d]*([A-Z][a-z\\d]*)*)?$"
   }
 }
