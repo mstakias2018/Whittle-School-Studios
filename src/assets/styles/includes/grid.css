@@ -9,6 +9,7 @@
   @mixin custom-column $grid-col-size, $number-of-grids, width;
   @mixin custom-column $grid-col-size, $number-of-grids, max-width;
   @mixin custom-column $grid-col-size, $number-of-grids, flex-basis;
+  flex: 0 0 auto;
   padding: 0 var(--grid-gutter-$(breakpoint));
 }
 
