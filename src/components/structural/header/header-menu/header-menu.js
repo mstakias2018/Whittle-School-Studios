@@ -25,7 +25,10 @@ const MainMenu = ({
     { [styles.menu_isVisible]: isActive },
     )}
   >
-    <nav aria-label={translations.header.primaryAriaLabel}>
+    <nav
+      aria-label={translations.header.primaryAriaLabel}
+      className={styles.menuItemsContainer}
+    >
       <ul className={styles.menuItems}>
         {headerData.map(({ link, title }, index) => (
           <li

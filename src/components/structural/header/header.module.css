@@ -43,6 +43,7 @@
   @mixin type-menu;
   background-color: transparent;
   border: none;
+  height: 40px;
 
   @media (--bp-lg) {
     display: none;

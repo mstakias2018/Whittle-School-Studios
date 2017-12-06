@@ -12,6 +12,7 @@
 
     &.locales_isSmall {
       display: block;
+      margin: 0;
     }
   }
 

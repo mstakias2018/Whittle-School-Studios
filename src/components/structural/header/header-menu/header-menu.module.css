@@ -5,20 +5,33 @@
 @import '../../../../assets/styles/includes/grid.css';
 
 .menu {
-  display: none;
-
   @media (--bp-sm-only) {
-    margin-top: 37px;
+    @mixin span 4, 4, md;
+    @mixin nested-grid-container;
+  }
+
+  @media (--bp-md) {
+    @mixin span 8, 8, md;
+    @mixin nested-grid-container;
   }
 
   @media (--bp-lg) {
     @mixin span 10, 12, lg;
     @mixin nested-grid-container;
-    display: block;
+  }
+
+  &:not(.menu_isVisible) {
+    @media (--bp-sm-and-md-only) {
+      display: none;
+    }
   }
 
   &.menu_isVisible {
     display: block;
+
+    @media (--bp-sm-only) {
+      margin-top: 37px;
+    }
 
     @media (--bp-md) {
       margin-top: 54px;
@@ -32,18 +45,22 @@
   }
 }
 
+.menuItemsContainer {
+  width: 100%;
+}
+
 .menuItems {
   @mixin reset-list;
   flex-wrap: wrap;
 
   @media (--bp-sm-only) {
     @mixin span 4, 4, sm;
-    @mixin grid-container;
+    @mixin nested-grid-container;
   }
 
   @media (--bp-md-only) {
     @mixin span 8, 8, md;
-    @mixin grid-container;
+    @mixin nested-grid-container;
   }
 
   @media (--bp-lg) {
@@ -54,6 +71,9 @@
 }
 
 .menuItem {
+  margin: 0;
+  padding: 0;
+
   @media (--bp-sm-only) {
     @mixin span 2, 4, sm;
     &:nth-of-type (even) {

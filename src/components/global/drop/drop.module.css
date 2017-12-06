@@ -28,7 +28,6 @@
   @mixin type-language;
   align-items: center;
   display: flex;
-  height: 14px;
   overflow: hidden;
   padding: 0;
 }
