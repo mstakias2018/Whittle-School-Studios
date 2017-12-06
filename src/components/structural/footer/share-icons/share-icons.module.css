@@ -26,8 +26,11 @@
 
 .text {
   @mixin footershare-text;
-  height: 70px;
   width: 100%;
+
+  @media (--bp-sm-and-md-only) {
+    margin-bottom: 40px;
+  }
 
   @media (--bp-lg) {
     flex-basis: 50%;

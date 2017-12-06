@@ -13,7 +13,7 @@
 .content {
   @mixin grid-container;
   flex-wrap: wrap;
-  padding-bottom: 35px;
+  padding-bottom: 24px;
   padding-top: 32.5px;
 
   @media (--bp-sm-only) {
@@ -25,12 +25,12 @@
   }
 
   @media (--bp-md) {
-    padding-bottom: 50px;
-    padding-top: 65px;
+    padding-bottom: 40px;
+    padding-top: 64px;
   }
 
   @media (--bp-lg) {
-    padding-bottom: 75px;
+    padding-bottom: 57px;
   }
 }
 
@@ -44,12 +44,12 @@
     border-bottom: 1px solid var(--color-light-border);
     flex-direction: row;
     flex-wrap: wrap;
-    margin-bottom: 30px;
+    margin-bottom: 27px;
   }
 
   @media (--bp-md) {
     @mixin span 2, var(--grid-columns-md), md;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 
   @media (--bp-lg) {
@@ -80,7 +80,7 @@
 
 .menuBlockItemWrapper_noSub {
   @media (--bp-md) {
-    padding-bottom: 32.5px;
+    padding-bottom: 30px;
 
     &:not(:last-child) {
       border-bottom: 1px solid var(--color-dark-border);
@@ -90,14 +90,11 @@
 
 .menuBlockItem {
   @mixin type-nav;
-}
-
-.menuBlockItemWrapper:not(.menuBlockItemWrapper_noSub) {
-  min-height: 36px;
+  line-height: 1.29;
 }
 
 .menuBlockSubItemWrapper {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   width: 70%;
 
   @media (--bp-sm-only) {
@@ -110,6 +107,7 @@
 
 .menuBlockSubItem {
   @mixin type-sub-nav;
+  line-height: 1.29;
 }
 
 .menuBlockItem,
@@ -128,6 +126,18 @@
 
   @media (--bp-sm-and-md-only) {
     order: 1000;
+  }
+
+  @media (--bp-md-only) {
+    margin-top: 40px;
+
+    div {
+      display: inline-block;
+
+      &:last-child {
+        padding-left: 4px;
+      }
+    }
   }
 
   @media (--bp-lg) {
