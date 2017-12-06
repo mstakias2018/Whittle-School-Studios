@@ -34,6 +34,7 @@ const PageHead = ({
       })}
     >
       <Title
+        isSingle={!subhead && !imageSources}
         text={headline}
         type={type}
       />

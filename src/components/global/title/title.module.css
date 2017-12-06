@@ -9,11 +9,19 @@
 .typeCategory {
   @mixin type-h1-category;
   @mixin component-vertical-spacing;
+
+  &.typeCategory_isSingle {
+    padding-bottom: 0;
+  }
 }
 
 .typeArticle {
   @mixin type-h1-article;
   @mixin component-vertical-spacing;
+
+  &.typeArticle_isSingle {
+    padding-bottom: 0;
+  }
 
   @media (--bp-md) {
     text-align: center;

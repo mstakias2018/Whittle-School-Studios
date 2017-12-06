@@ -21,11 +21,6 @@
 
 .wrapper .pageHead .subhead {
   margin-bottom: 0;
-  padding-bottom: 30px;
-
-  @media (--bp-md) {
-    padding-bottom: 60px;
-  }
 }
 
 .subhead_subCategory {
@@ -61,11 +56,12 @@
 
   .subhead {
     @mixin span 4, 4, sm;
+    padding-bottom: 30px;
 
     @media (--bp-md-only) {
       @mixin span 8, 8, md;
-      margin-bottom: 56px;
       margin-top: 0;
+      padding-bottom: 60px;
     }
 
     @media (--bp-lg) {
