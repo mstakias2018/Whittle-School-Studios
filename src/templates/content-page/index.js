@@ -178,6 +178,7 @@ export const pageQuery = graphql`
           scriptUrl
         }
         ... on ContentfulQuote {
+          quoteType
           content {
             content
           }

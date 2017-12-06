@@ -73,6 +73,7 @@ const quotePropTypes = {
   content: PropTypes.shape({
     content: PropTypes.string,
   }).isRequired,
+  quoteType: PropTypes.string,
   source: PropTypes.string,
 };
 

@@ -6,6 +6,11 @@ const PAGE_TYPE = {
 
 exports.PAGE_TYPE = PAGE_TYPE;
 
+exports.QUOTE_TYPE = {
+  BLOCK: 'block-quote', // must match Contentful value
+  PULL: 'pull-quote', // must match Contentful value
+};
+
 exports.PAGE_TYPES = [PAGE_TYPE.ARTICLE, PAGE_TYPE.CATEGORY, PAGE_TYPE.HOME];
 
 exports.SUBMENU_BREAK = { SMALL: 2 };
