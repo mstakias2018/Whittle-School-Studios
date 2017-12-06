@@ -8,7 +8,7 @@ import PageWrapper from '../../components/structural/page-wrapper';
 import SectionTitle from '../../components/global/section-title';
 import List from '../../content-modules/global/list';
 
-import { IMAGE_BP, IMAGE_SHAPE } from '../../constants/images';
+import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
 import largeImage from '../../test-content/images/article-large.jpg';
 import smallImage from '../../test-content/images/article-small.jpg';
@@ -43,10 +43,10 @@ const Category = () => (
     <InlineVideo
       alt="Tiger video"
       coverImageSources={{
-        [IMAGE_BP.SMALL]: {
+        [IMAGE_SIZE.SMALL]: {
           src: smallImage,
         },
-        [IMAGE_BP.LARGE]: {
+        [IMAGE_SIZE.LARGE]: {
           src: largeImage,
         },
       }}
@@ -58,10 +58,10 @@ const Category = () => (
       alt="Tiger video"
       caption="The quick brown box jumped over the lazy dog."
       coverImageSources={{
-        [IMAGE_BP.SMALL]: {
+        [IMAGE_SIZE.SMALL]: {
           src: smallImage,
         },
-        [IMAGE_BP.LARGE]: {
+        [IMAGE_SIZE.LARGE]: {
           src: largeImage,
         },
       }}
@@ -78,10 +78,10 @@ const Category = () => (
       alt="Testtt"
       caption="The quick brown box jumped over the lazy dog."
       imageSources={{
-        [IMAGE_BP.SMALL]: {
+        [IMAGE_SIZE.SMALL]: {
           src: smallImage,
         },
-        [IMAGE_BP.LARGE]: {
+        [IMAGE_SIZE.LARGE]: {
           src: largeImage,
         },
       }}

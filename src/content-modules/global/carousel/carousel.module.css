@@ -2,6 +2,10 @@
 @import '../../../assets/styles/includes/variables.css';
 @import '../../../assets/styles/includes/typography.css';
 
+:root {
+  --image-square-length-md: calc(9 / 16 * 100%);
+}
+
 .wrapper {
   @mixin component-container;
   @mixin component-vertical-spacing;
@@ -30,6 +34,11 @@
 :global(.image-gallery-slides) { /* stylelint-disable-line */
   overflow: visible;
   z-index: 1;
+
+  @media (--bp-md) {
+    height: 0;
+    padding-bottom: var(--image-square-length-md);
+  }
 }
 
 :global(.image-gallery-slide) { /* stylelint-disable-line */
@@ -52,36 +61,24 @@
 
 :global(.image-gallery-image) { /* stylelint-disable-line */
   display: flex;
-  height: calc((3 / 4) * (100vw - 10vw - (2 * var(--component-wrapper-margin-sm))));
   justify-content: flex-start;
 
   img, picture {
     cursor: pointer;
-    height: 100%;
-    width: auto;
-  }
-
-  @media (--bp-sm-upper-only) {
-    height: calc((3 / 4) * (100vw - 21.58vw - (2 * var(--component-wrapper-margin-sm))));
+    height: auto;
+    width: 100%;
   }
 
   @media (--bp-md) {
-    height: calc((9 / 16) * (6 / 8) * (100vw - 14vw - (2 * var(--component-wrapper-margin-md))));
     justify-content: center;
   }
 
-  @media (--bp-lg) {
-    height: calc((9 / 16) * (8 / 12) * (100vw - 21.66vw - (2 * var(--component-wrapper-margin-lg))));
-  }
-
-  @media (--bp-xl ) {
-    height: calc((9 / 16) * (8 / 12) * var(--container-xl));
-  }
-
-  :global(._isRectangle) & {
-    img,
-    picture {
-      width: 100%;
+  :global(._isCircle) &,
+  :global(._isSquare) & {
+    @media (--bp-md) {
+      picture {
+        width: var(--image-square-length-md);
+      }
     }
   }
 }

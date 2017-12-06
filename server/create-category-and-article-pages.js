@@ -6,6 +6,7 @@ const { IMAGE_TYPE, IMAGE_SUBTYPE } = require('../src/constants/images');
 const { getIsoCode } = require('../src/utils/regions');
 const {
   createQuery,
+  saveCarouselImage,
   saveInlineImage,
   saveMainImage,
 } = require('./save-images');
@@ -39,7 +40,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
             slides {
               shape
               squareInlineImage: asset {
-                ${createQuery(IMAGE_SUBTYPE.INLINE_SQ)}
+                ${createQuery(IMAGE_SUBTYPE.CAROUSEL_SQ)}
               }
               rectInlineImage: asset {
                 ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
@@ -134,7 +135,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
               if (__typename === 'ContentfulInlineImage') {
                 return saveInlineImage(n, [id, i]);
               } else if (__typename === 'ContentfulSlideshowCarousel') {
-                return Promise.all(slides.map((s, j) => saveInlineImage(s, [id, i, j])));
+                return Promise.all(slides.map((s, j) => saveCarouselImage(s, [id, i, j])));
               }
 
               return undefined;

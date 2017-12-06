@@ -8,7 +8,7 @@ import PageWrapper from '../../components/structural/page-wrapper';
 import SectionTitle from '../../components/global/section-title';
 import List from '../../content-modules/global/list';
 
-import { IMAGE_BP, IMAGE_SHAPE } from '../../constants/images';
+import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
 import largeImage from '../../test-content/images/article-large.jpg';
 import smallImage from '../../test-content/images/article-small.jpg';
@@ -44,10 +44,10 @@ const CategoryCn = () => (
       <InlineVideo
         alt="适区没接后"
         coverImageSources={{
-          [IMAGE_BP.SMALL]: {
+          [IMAGE_SIZE.SMALL]: {
             src: smallImage,
           },
-          [IMAGE_BP.LARGE]: {
+          [IMAGE_SIZE.LARGE]: {
             src: largeImage,
           },
         }}
@@ -59,10 +59,10 @@ const CategoryCn = () => (
         alt="适区没接后"
         caption="队组响至件集构广流资打院，速定各点肃9分因展"
         coverImageSources={{
-          [IMAGE_BP.SMALL]: {
+          [IMAGE_SIZE.SMALL]: {
             src: smallImage,
           },
-          [IMAGE_BP.LARGE]: {
+          [IMAGE_SIZE.LARGE]: {
             src: largeImage,
           },
         }}
@@ -79,10 +79,10 @@ const CategoryCn = () => (
         alt="适区没接后"
         caption="队组响至件集构广流资打院，速定各点肃9分因展"
         imageSources={{
-          [IMAGE_BP.SMALL]: {
+          [IMAGE_SIZE.SMALL]: {
             src: smallImage,
           },
-          [IMAGE_BP.LARGE]: {
+          [IMAGE_SIZE.LARGE]: {
             src: largeImage,
           },
         }}

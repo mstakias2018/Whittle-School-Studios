@@ -1,9 +1,9 @@
-import { IMAGE_BP, IMAGE_MQ } from '../constants/images';
+import { IMAGE_SIZE, IMAGE_MQ } from '../constants/images';
 
 exports.adaptSourcesBySize = (sourcesBySize) => {
-  // We use the IMAGE_BP keys to ensure breakpoints
+  // We use the IMAGE_SIZE keys to ensure breakpoints
   // are in the correct order
-  const sourceList = Object.values(IMAGE_BP).reduce((acc, breakpoint) => {
+  const sourceList = Object.values(IMAGE_SIZE).reduce((acc, breakpoint) => {
     const sourceInfo = sourcesBySize[breakpoint];
     if (sourceInfo) {
       acc.push({

@@ -2,8 +2,9 @@ const fs = require('file-system');
 const request = require('request');
 
 const {
-  IMAGE_CONFIG, IMAGE_SHAPE, IMAGE_SUBTYPE, IMAGE_TYPE,
+  IMAGE_SHAPE, IMAGE_SUBTYPE, IMAGE_TYPE,
 } = require('../src/constants/images');
+const IMAGE_CONFIG = require('../src/constants/image-config');
 const { PAGE_TYPE } = require('../src/constants/settings');
 
 const STATIC_IMAGE_PATH = './static/images/';
@@ -160,6 +161,17 @@ exports.saveMainImage = ({ articleMainImage, categoryMainImage, pageType }, nest
     [articleMainImage, IMAGE_SUBTYPE.MAIN_ARTICLE];
 
   return saveImage(mainImage, IMAGE_TYPE.MAIN, mainImageSubtype, nestedFolders);
+};
+
+exports.saveCarouselImage = ({
+  shape,
+  rectInlineImage,
+  squareInlineImage,
+}, nestedFolders) => {
+  const [inlineImage, inlineImageSubtype] = shape === IMAGE_SHAPE.RECTANGLE ?
+    [rectInlineImage, IMAGE_SUBTYPE.INLINE_RT] :
+    [squareInlineImage, IMAGE_SUBTYPE.CAROUSEL_SQ];
+  return saveImage(inlineImage, IMAGE_TYPE.INLINE, inlineImageSubtype, nestedFolders);
 };
 
 exports.saveInlineImage = ({

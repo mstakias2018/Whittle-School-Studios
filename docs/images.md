@@ -48,21 +48,34 @@ Most people reference images directly on the Contentful CDN, but we need to down
 
 As we build each page, we execute a more advanced version of the above query. Our query includes the expected dimensions for our three main breakpoints (`SMALL`, `MEDIUM`, and `LARGE`), plus three interim breakpoints (`SMALL_MID`, `MEDIUM_MID`, and `LARGE_MID`). This is to account for changing image sizes within a breakpoint. For example, an image may need to be 270px at a 320px viewport, but at the upper end of the small breakpoint, it would need to be significantly larger - about 500px.
 
-Certain image types with less diverse sizes can use fewer breakpoints. These settings are defined for each image type in our `constants/images.js` file.
+Certain image types with less diverse sizes can use fewer breakpoints. These settings are defined for each image type in our `constants/image-config.js` file.
 
-```
-exports.IMAGE_CONFIG = {
+We define image sizes in terms of ratios and columns, then use our grid measurements to calculate dimensions.
+
+```javascript
+// CONFIG IN
+{
   [IMAGE_SUBTYPE.MAIN_CATEGORY]: {
-    [IMAGE_BP.SMALL]: {
+    [BREAKPOINTS_NAME.small]: { colRatio: 1, heightRatio: RATIO.SQUARE },
+    [BREAKPOINTS_NAME.medium]: { colRatio: 1, heightRatio: RATIO.RECT },
+    [BREAKPOINTS_NAME.large]: { colRatio: 1, heightRatio: 400 / 940 },
+  },
+  ...
+};
+
+// CONFIG OUT
+{
+  [IMAGE_SUBTYPE.MAIN_CATEGORY]: {
+    [IMAGE_SIZE.SMALL]: {
       width: 270,
       height: 270,
     },
-    [IMAGE_BP.SMALL_MID]: {
+    [IMAGE_SIZE.SMALL_MID]: {
       width: 494,
       height: 494,
     },
-    /* ... */
-  }
+    ...
+  },
 };
 ```
 

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { IMAGE_BP, IMAGE_SHAPE, IMAGE_TYPE } from './images';
+import { IMAGE_SIZE, IMAGE_SHAPE, IMAGE_TYPE } from './images';
 import { PAGE_TYPES } from './settings';
 import { BREAKPOINTS_NAME } from './breakpoints';
 import { SOCIAL_NETWORK } from './social-networks';
@@ -14,7 +14,7 @@ const isValidSourcesBySize = sourcesBySize =>
   Object.keys(sourcesBySize).every((breakpoint) => {
     const { src, srcSet } = sourcesBySize[breakpoint];
     return (
-      Object.values(IMAGE_BP).includes(breakpoint) &&
+      Object.values(IMAGE_SIZE).includes(breakpoint) &&
       typeof src === 'string' &&
       srcSet.every(item => /.* \d\.?\d?x/.test(item))
     );
