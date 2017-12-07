@@ -35,13 +35,15 @@ const MainMenu = ({
             className={styles.menuItem}
             key={index}
           >
-            <Link
-              activeClassName={styles.menuItemLink_active}
-              className={styles.menuItemLink}
-              to={`/${link}`}
-            >
-              {title}
-            </Link>
+            <span className={styles.menuItemLinkWrapper}>
+              <Link
+                activeClassName={styles.menuItemLink_active}
+                className={styles.menuItemLink}
+                to={`/${link}`}
+              >
+                {title}
+              </Link>
+            </span>
           </li>
           ))
         }

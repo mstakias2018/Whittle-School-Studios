@@ -2,6 +2,12 @@
 @import './mixins.css';
 @import './variables.css';
 
+:focus {
+  outline: 1px dotted;
+  outline-color: var(--color-text-dark);
+  outline-offset: 2px;
+}
+
 :global ._noOverflow {
   overflow: hidden;
 }

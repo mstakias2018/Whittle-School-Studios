@@ -267,11 +267,6 @@
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-regular-cn);
   }
-
-  &:focus {
-    color: var(--color-text-light);
-    outline: none;
-  }
 }
 
 @define-mixin inline-type-link {
@@ -289,12 +284,6 @@
     text-decoration: underline;
     text-decoration-color: var(--color-link-hover-underline);
   }
-
-  &:focus {
-    color: var(--color-text-light);
-    outline: none;
-    text-decoration: none;
-  }
 }
 
 @define-mixin type-language {
@@ -311,9 +300,7 @@
     line-height: 16px;
   }
 
-  &:focus,
   &:hover {
-    outline: none;
     text-decoration: underline;
     text-decoration-color: var(--color-link-hover-underline);
   }
@@ -325,11 +312,6 @@
   font-size: 14px;
   line-height: 36px;
   text-decoration: none;
-
-  &:focus {
-    color: var(--color-text-light);
-    outline: none;
-  }
 }
 
 @define-mixin type-nav {
@@ -348,10 +330,8 @@
     text-decoration-color: var(--color-link-hover-underline);
   }
 
-  &:focus,
   &:active {
     color: var(--color-text-light);
-    outline: none;
   }
 
   :global(._touchDevice) &:hover {
@@ -436,11 +416,6 @@
   font-size: 14px;
   letter-spacing: 0.2px;
   line-height: 30px;
-
-  &:focus {
-    color: var(--color-text-light);
-    outline: none;
-  }
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-book-italic-cn);

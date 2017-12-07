@@ -67,45 +67,47 @@ class Submenu extends Component {
                     })}
                     key={index}
                   >
-                    <Link
-                      className={styles.itemLink}
-                      to={`/${link}`}
-                    >
-                      <span className="screenReaderText">
-                        {`${index + 1}. ${title}.`}
-                        {isChecked && `${translations.header.checkedItemAriaLabel}.`}
-                        {`${description}.`}
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className={styles.itemTitleContainer}
+                    <span className={styles.itemLinkWrapper}>
+                      <Link
+                        className={styles.itemLink}
+                        to={`/${link}`}
                       >
-                        {isChecked ? (
-                          <span className={styles.itemChecked}>
-                            <img
-                              alt=""
-                              src={Checked}
-                            />
-                          </span>
-                        ) : (
-                          <span className={styles.itemNumber}>
-                            {`0${index + 1}`}
-                          </span>
-                        )}
-                        <span className={styles.itemTitle}>{title}</span>
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className={styles.itemDescription}
-                      >
-                        {description}
-                        <img
-                          alt=""
-                          className={styles.arrow}
-                          src={Arrow}
-                        />
-                      </span>
-                    </Link>
+                        <span className="screenReaderText">
+                          {`${index + 1}. ${title}.`}
+                          {isChecked && `${translations.header.checkedItemAriaLabel}.`}
+                          {`${description}.`}
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className={styles.itemTitleContainer}
+                        >
+                          {isChecked ? (
+                            <span className={styles.itemChecked}>
+                              <img
+                                alt=""
+                                src={Checked}
+                              />
+                            </span>
+                          ) : (
+                            <span className={styles.itemNumber}>
+                              {`0${index + 1}`}
+                            </span>
+                          )}
+                          <span className={styles.itemTitle}>{title}</span>
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className={styles.itemDescription}
+                        >
+                          {description}
+                          <img
+                            alt=""
+                            className={styles.arrow}
+                            src={Arrow}
+                          />
+                        </span>
+                      </Link>
+                    </span>
                   </li>
                 );
               })

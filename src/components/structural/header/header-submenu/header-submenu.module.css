@@ -88,6 +88,10 @@
     @mixin span 2, 4, sm;
     margin-bottom: 0;
     padding-top: 20px;
+
+    .itemLinkWrapper {
+      padding-bottom: 25px;
+    }
   }
 
   @media (--bp-md-only) {
@@ -95,7 +99,7 @@
     margin-bottom: 41px;
 
     &:nth-of-type(odd) {
-      .itemLink {
+      .itemLinkWrapper {
         border-left: solid 1px var(--color-light-border);
         padding: 0 24px 0 20px;
       }
@@ -109,26 +113,22 @@
   @media (--bp-lg) {
     width: 100%;
 
-    .itemLink {
+    .itemLinkWrapper {
       padding: 0 60px 0 20px;
     }
 
     &:nth-of-type(2) {
       padding-left: var(--grid-gutter-lg);
 
-      .itemLink {
+      .itemLinkWrapper {
         padding-left: 0;
       }
     }
   }
 
-  .itemLink {
+  .itemLinkWrapper {
     align-content: flex-start;
-    cursor: pointer;
-    display: flex;
-    flex-wrap: wrap;
     height: 100%;
-    text-decoration: none;
 
     @media (--bp-md-only) {
       padding-right: 44px;
@@ -139,6 +139,13 @@
     }
   }
 
+  .itemLink {
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none;
+  }
+
   &.item_smallLastItem {
     &:after {
       display: none;
@@ -146,14 +153,14 @@
   }
 
   &:last-of-type {
-    .itemLink {
+    .itemLinkWrapper {
       border-right: none;
     }
   }
 
   &:nth-of-type(3n) {
     @media (--bp-sm-only) {
-      .itemLink {
+      .itemLinkWrapper {
         border-right: none;
       }
     };
@@ -175,9 +182,6 @@
 
   &Title {
     @mixin type-link;
-    @media (--bp-sm-only) {
-      padding-bottom: 25px;
-    }
 
     @media (--bp-md) {
       height: 32px;
@@ -241,7 +245,7 @@
     @media (--bp-md-only) {
       @mixin span 2, 8, md;
 
-      .itemLink {
+      .itemLinkWrapper {
         border-left: none;
         border-right: solid 1px var(--color-light-border);
         padding: 0 20px 0 0;
@@ -257,7 +261,7 @@
 
       &:nth-of-type(4n),
       &:last-of-type {
-        .itemLink {
+        .itemLinkWrapper {
           border: none;
         }
       }
@@ -267,13 +271,14 @@
       @mixin span 2, 12, lg;
     }
   }
+}
 
-  .itemLink {
-    padding-right: 44px;
+.items_large .itemLinkWrapper {
+  display: block;
+  padding-right: 44px;
 
-    @media (--bp-lg) {
-      padding: 0 20px 0 0;
-    }
+  @media (--bp-lg) {
+    padding: 0 20px 0 0;
   }
 }
 
