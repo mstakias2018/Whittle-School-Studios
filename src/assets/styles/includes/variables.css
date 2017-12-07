@@ -46,6 +46,7 @@
   --grid-columns-md: 8;
   --grid-columns-lg: 12;
 
+  /* keep in sync with image-config GRID_GUTTER_PX variables */
   --grid-gutter-sm: 5px;
   --grid-gutter-sm-upper-only: 5px;
   --grid-gutter-md: 10px;
@@ -63,14 +64,18 @@
 /* Dimensions */
 :root {
   --max-content-width: 1600px;
+
+  /* keep in sync with image-config PAGE_MARGIN_PX variables */
   --component-wrapper-margin-sm: 10px;
   --component-wrapper-margin-md: 24px;
   --component-wrapper-margin-lg: 40px;
+
   --play-button-width: 54px;
   --play-button-width-md: 68px;
 }
 
 :root {
+  /* keep in sync with image-config XL_VIEWPORT_PX variable */
   --container-xl: 1300px;
 }
 
