@@ -53,9 +53,10 @@
 }
 
 :root {
+  /* keep in sync with image-config CONTAINER_MARGIN_PERCENT variables */
   --container-margin-sm: 5%;
   --container-margin-sm-upper-only: 10.79%;
-  --container-margin-md: 7%;
+  --container-margin-md: 6.946%;
   --container-margin-lg: 10.83%;
 }
 

@@ -34,7 +34,7 @@
     @mixin span 4, 4, sm;
 
     @media (--bp-md) {
-      @mixin span 7, 8, md;
+      @mixin span 8, 8, md;
     }
 
     @media (--bp-lg) {
