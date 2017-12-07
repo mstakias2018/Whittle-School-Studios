@@ -3,17 +3,18 @@
     "stylelint-order"
   ],
   "rules": {
-    "max-empty-lines": 1,
-    "indentation": 2,
-    "color-hex-case": "lower",
-    "color-no-invalid-hex": true,
     "block-no-empty": true,
     "block-opening-brace-space-before": "always",
-    "declaration-colon-space-after": "always-single-line",
+    "color-hex-case": "lower",
+    "color-no-invalid-hex": true,
     "declaration-block-trailing-semicolon": "always",
-    "order/properties-alphabetical-order": true,
+    "declaration-colon-space-after": "always-single-line",
     "function-calc-no-unspaced-operator": true,
-    "shorthand-property-no-redundant-values": true,
-    "selector-class-pattern": "^([a-z\\d]*([A-Z][a-z\\d]*)*)?(_[a-z\\d]*([A-Z][a-z\\d]*)*)?$"
+    "indentation": 2,
+    "max-empty-lines": 1,
+    "order/properties-alphabetical-order": true,
+    "selector-class-pattern": "^([a-z\\d]*([A-Z][a-z\\d]*)*)?(_[a-z\\d]*([A-Z][a-z\\d]*)*)?$",
+    "selector-pseudo-element-colon-notation": "single",
+    "shorthand-property-no-redundant-values": true
   }
 }

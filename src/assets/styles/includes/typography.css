@@ -200,7 +200,7 @@
     line-height: 30px;
   }
 
-  :global(.wrapper):not(:global(.wrapper_isChinese)) :global(.hasDropCap) &:first-child::first-letter {
+  :global(.wrapper):not(:global(.wrapper_isChinese)) :global(.hasDropCap) &:first-child:first-letter {
     @mixin type-dropcap;
   }
 
