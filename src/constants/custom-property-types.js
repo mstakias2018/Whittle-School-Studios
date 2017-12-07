@@ -87,6 +87,20 @@ const SLIDESHOW_CAROUSEL = PropTypes.shape({
   slides: PropTypes.arrayOf(PropTypes.shape(getInlineImagePropTypes(true))),
 });
 
+const threeUpBreakerPropTypes = {
+  content1: MARKDOWN,
+  content2: MARKDOWN,
+  content3: MARKDOWN,
+  title1: PropTypes.string.isRequired,
+  title2: PropTypes.string.isRequired,
+  title3: PropTypes.string.isRequired,
+};
+
+const THREE_UP_BREAKER = PropTypes.shape({
+  __typename: createTypenameChecker('ContentfulThreeUpBreaker'),
+  ...threeUpBreakerPropTypes,
+});
+
 const validateGlobalSettings = (props, propName) => {
   const globalSettings = props[propName];
   const isValid = Object.keys(globalSettings).every(language =>
@@ -146,9 +160,9 @@ exports.PROP_TYPES = {
     OPENAPPLY_IFRAME,
     QUOTE,
     SLIDESHOW_CAROUSEL,
+    THREE_UP_BREAKER,
   ])),
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
-  QUOTE: quotePropTypes,
   SOCIAL_ICONS: PropTypes.shape({
     contentPage: socialNetworkList.isRequired,
     footer: socialNetworkList.isRequired,

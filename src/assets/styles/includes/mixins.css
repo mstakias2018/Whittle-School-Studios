@@ -85,3 +85,27 @@
     list-style-type: none;
   }
 }
+
+@define-mixin three-up-section-title-padding-right {
+  padding-right: 33px;
+
+  @media (--bp-md) {
+    padding-right: 27px;
+  }
+
+  @media (--bp-lg) {
+    padding-right: 29px;
+  }
+}
+
+@define-mixin three-up-section-title-padding-left {
+  padding-left: 20px;
+
+  @media (--bp-md) {
+    padding-left: 27px;
+  }
+
+  @media (--bp-lg) {
+    padding-left: 29px;
+  }
+}

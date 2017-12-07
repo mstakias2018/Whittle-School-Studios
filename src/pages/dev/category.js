@@ -7,6 +7,7 @@ import InlineVideo from '../../content-modules/global/inline-video';
 import PageWrapper from '../../components/structural/page-wrapper';
 import SectionTitle from '../../components/global/section-title';
 import List from '../../content-modules/global/list';
+import ThreeUpBreaker from '../../content-modules/global/three-up-breaker';
 
 import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
@@ -15,30 +16,8 @@ import smallImage from '../../test-content/images/article-small.jpg';
 
 import styles from './modules.module.css';
 
-import ThreeUpBreaker from '../../content-modules/global/three-up-breaker';
-
 const Category = () => (
   <PageWrapper>
-    <div className={styles.componentInfo}>3 up breaker component</div>
-    <ThreeUpBreaker
-      bodyText1="Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time"
-      bodyText2="Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time"
-      bodyText3="Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time"
-      title1="A School of One"
-      title2="Exceptional Faculty"
-      title3="Progressive Pedagogy"
-    />
-
-    <div className={styles.componentInfo}>3 up breaker component with markdown</div>
-    <ThreeUpBreaker
-      bodyText1="Any parent knows what a child or two can do to a home in short order. _This is italic!_ We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time"
-      bodyText2="Any parent knows what a child or two can do to a home in short order. **This is bold** We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time"
-      bodyText3="Any parent knows what a child or two can do to a home in short order. **This is bold and _italic_, wow!** We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time"
-      title1="A School of One"
-      title2="Exceptional Faculty"
-      title3="Progressive Pedagogy"
-    />
-
     <div className={styles.componentInfo}>Video</div>
     <InlineVideo
       alt="Tiger video"
@@ -114,6 +93,15 @@ const Category = () => (
     <SectionTitle
       number={5}
       title="Our Upcoming Locations"
+    />
+    <div className={styles.componentInfo}>3 up breaker component</div>
+    <ThreeUpBreaker
+      content1={{ markdown: 'Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time' }}
+      content2={{ markdown: 'Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time' }}
+      content3={{ markdown: 'Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time' }}
+      title1="A School of One"
+      title2="Exceptional Faculty"
+      title3="Progressive Pedagogy"
     />
   </PageWrapper>
 );

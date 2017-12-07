@@ -1,21 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import styles from './three-up-breaker.module.css';
 
 import Markdown from '../../../components/global/markdown';
 
-const propTypes = {
-  bodyText1: PropTypes.string.isRequired,
-  bodyText2: PropTypes.string.isRequired,
-  bodyText3: PropTypes.string.isRequired,
-  title1: PropTypes.string.isRequired,
-  title2: PropTypes.string.isRequired,
-  title3: PropTypes.string.isRequired,
-};
+import { PROP_TYPES } from '../../../constants/custom-property-types';
+
+const propTypes = PROP_TYPES.THREE_UP_BREAKER;
 
 const ThreeUpBreaker = ({
-  title1, bodyText1, title2, bodyText2, title3, bodyText3,
+  title1, content1, title2, content2, title3, content3,
 }) => (
   <div className={styles.wideWrapper}>
     <div className={styles.wrapper}>
@@ -31,7 +25,7 @@ const ThreeUpBreaker = ({
             <Markdown
               className={styles.blockText}
               isShort
-              source={bodyText1}
+              source={content1.markdown}
             />
           </div>
         </div>
@@ -46,7 +40,7 @@ const ThreeUpBreaker = ({
             <Markdown
               className={styles.blockText}
               isShort
-              source={bodyText2}
+              source={content2.markdown}
             />
           </div>
         </div>
@@ -61,7 +55,7 @@ const ThreeUpBreaker = ({
             <Markdown
               className={styles.blockText}
               isShort
-              source={bodyText3}
+              source={content3.markdown}
             />
           </div>
         </div>

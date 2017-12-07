@@ -38,26 +38,15 @@
 
 .number {
   @mixin type-h3;
+  @mixin three-up-section-title-padding-right;
   border-right: solid 1px var(--color-light-border);
-  padding-right: 33px;
-
-  @media (--bp-md) {
-    padding-right: 27px;
-  }
+  width: 65px;
 
   @media (--bp-lg) {
-    padding-right: 29px;
+    width: 70px;
   }
 }
 
 .title {
-  padding-left: 10px;
-
-  @media (--bp-md) {
-    padding-left: 27px;
-  }
-
-  @media (--bp-lg) {
-    padding-left: 26px;
-  }
+  @mixin three-up-section-title-padding-left;
 }

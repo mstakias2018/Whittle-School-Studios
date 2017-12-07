@@ -191,6 +191,20 @@ export const pageQuery = graphql`
             caption
           }
         }
+        ... on ContentfulThreeUpBreaker {
+          content1 {
+            markdown: content1
+          }
+          content2 {
+            markdown: content2
+          }
+          content3 {
+            markdown: content3
+          }
+          title1
+          title2
+          title3
+        }
       }
     }
   }

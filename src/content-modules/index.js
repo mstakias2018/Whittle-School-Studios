@@ -5,6 +5,7 @@ import Carousel from './global/carousel';
 import InlineImage from './global/inline-image';
 import OpenApplyIFrame from './global/openapply-iframe';
 import PullQuote from './global/pull-quote';
+import ThreeUpBreaker from './global/three-up-breaker';
 
 import { PROP_TYPES } from '../constants/custom-property-types';
 import { MODULE_IMAGE_TYPE_MAP } from '../constants/images';
@@ -15,6 +16,7 @@ const MODULE_MAP = {
   ContentfulOpenApplyIFrame: OpenApplyIFrame,
   ContentfulQuote: PullQuote,
   ContentfulSlideshowCarousel: Carousel,
+  ContentfulThreeUpBreaker: ThreeUpBreaker,
 };
 
 const propTypes = {
