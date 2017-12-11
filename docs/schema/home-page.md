@@ -20,28 +20,16 @@
     isRequired: false,
   },
 
-  videoSectionTitle: { type: String, isRequired: false },
-  videoSectionList: {
-    type: [
-      {
-        url: { type: string } // TODO finalize all video props,
-        title: { type: string },
-        description: { type: LongTextField },
-        linkInternal: { type: String, isRequired: false },
-        linkExternal: { type: Reference<ContentPage>, isRequired: false }
-      }
-    ],
-    isRequired: false,
-  },
+  videoModule: { type: Reference<VideoGroup>, isRequired: false }
 
-  module1Title: { type: string },
-  module1: { type: Reference<HomePageModule> },
+  eventListTitle: { type: string },
+  eventListModule: { type: Reference<EventList> },
 
-  module2Title: { type: string },
-  module2: { type: Reference<HomePageModule> },
+  campusesTitle: { type: string },
+  campusesModule: { type: Reference<Campuses> },
 
-  module3Title: { type: string },
-  module3: { type: Reference<HomePageModule> },
+  teamsTitle: { type: string, isRequired: false },
+  teamsModule: { type: Reference<Teams>, isRequired: false },
 }
 ```
 ### Fields supporting markdown
@@ -77,15 +65,7 @@
     linkDestinationInternal: Reference<ContentPage>
   }],
 
-  videoSectionTitle: 'Educational Program',
-  videoSectionList: [{
-    title: 'Global experiences',
-    description: {
-      description: 'Cursus magna, vel scelerisque nisl consectetur et.',
-    },
-    link: { type: Reference<ContentPage> },
-    url: 'vimeo.com/123',
-  }],
+  videoModule: Reference<VideoGroup>,
 
   module1Title: 'Workshops',
   module1: Reference<EventList>,

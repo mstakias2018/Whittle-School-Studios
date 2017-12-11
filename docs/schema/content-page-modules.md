@@ -81,7 +81,7 @@ Video - left aligned
       alt: { type: String },
       asset: { type: ContentfulAsset },
       caption: { type: String, isRequired: false },
-      shape: { type: ImageShapeStraight },
+      shape: { type: ImageShape },
     ],
   },
 }
@@ -304,15 +304,30 @@ type QuoteStyle = ["PullQuote", "BlockQuote"];
 ```javascript
 {
   title: { type: String },
-  items: {
-    type: [
-      {
-        asset: { type: ContentfulAsset },
-        description: { type: LongTextField },
-        title: { type: String },
-      }
-    ],
-  },
+
+  item1Asset: { type: ContentfulAsset },
+  item1Description: { type: LongTextField },
+  item1Title: { type: String },
+
+  item2Asset: { type: ContentfulAsset },
+  item2Description: { type: LongTextField },
+  item2Title: { type: String },
+
+  item3Asset: { type: ContentfulAsset },
+  item3Description: { type: LongTextField },
+  item3Title: { type: String },
+
+  item4Asset: { type: ContentfulAsset, isRequired: false },
+  item4Description: { type: LongTextField, isRequired: false },
+  item4Title: { type: String, isRequired: false },
+
+  item5Asset: { type: ContentfulAsset, isRequired: false },
+  item5Description: { type: LongTextField, isRequired: false },
+  item5Title: { type: String, isRequired: false },
+
+  item6Asset: { type: ContentfulAsset, isRequired: false },
+  item6Description: { type: LongTextField, isRequired: false },
+  item6Title: { type: String, isRequired: false },
 }
 ```
 #### Fields supporting markdown
@@ -323,31 +338,222 @@ type QuoteStyle = ["PullQuote", "BlockQuote"];
 ```javascript
 {
   title: 'Our heads',
-  items: [
-    {
-      asset: CONTENTFUL_ASSET_PROPS,
-      description: {
-        description: `[Cursus magna](http://www.google.com), vel scelerisque nisl
-          consectetur et.`,
-      },
-      title: 'Chris Whittle',
-    },
-    {
-      asset: CONTENTFUL_ASSET_PROPS,
-      description: {
-        description: `[Cursus magna](http://www.google.com), vel scelerisque nisl
-          consectetur et.`,
-      },
-      title: 'Work & Co',
-    },
-    {
-      asset: CONTENTFUL_ASSET_PROPS,
-      description: {
-        description: `[Cursus magna](http://www.google.com), vel scelerisque nisl
-          consectetur et.`,
-      },
-      title: 'John Smith',
-    }
-  ]
+
+  item1Asset: CONTENTFUL_ASSET_PROPS,
+  item1Description: {
+    item1Description: `[Cursus magna](http://www.google.com), vel scelerisque nisl
+      consectetur et.`,
+  },
+  item1Title: 'Chris Whittle',
+
+  item2Asset: CONTENTFUL_ASSET_PROPS,
+  item2Description: {
+    item2Description: `[Cursus magna](http://www.google.com), vel scelerisque nisl
+      consectetur et.`,
+  },
+  item2Title: 'Work & Co',
+
+  item3Asset: CONTENTFUL_ASSET_PROPS,
+  item3Description: {
+    item3Description: `[Cursus magna](http://www.google.com), vel scelerisque nisl
+      consectetur et.`,
+  },
+  item3Title: 'John Smith',
+}
+```
+
+## VideoGroup
+
+A collection of videos that will be featured on the homepage, but which can also
+be added to content pages.
+
+### Schema
+
+```javascript
+{
+  title: { type: String },
+
+  video1Url: { type: string }, // TODO finalize all video props
+  video1Title: { type: string },
+  video1Description: { type: LongTextField },
+  video1Link: { type: Reference<ContentPage>, isRequired: false }
+
+  video2Url: { type: string }, // TODO finalize all video props
+  video2Title: { type: string },
+  video2Description: { type: LongTextField },
+  video2Link: { type: Reference<ContentPage>, isRequired: false }
+
+  video3Url: { type: string }, // TODO finalize all video props
+  video3Title: { type: string },
+  video3Description: { type: LongTextField },
+  video3Link: { type: Reference<ContentPage>, isRequired: false }
+}
+```
+
+#### Fields supporting markdown
+- `description`
+
+### Example
+
+```javascript
+{
+  title: 'Educational Program',
+
+  video1Title: 'Global experiences',
+  video1Description: {
+    description: 'Cursus _magna_, vel scelerisque nisl consectetur et.',
+  },
+  video1Link: { type: Reference<ContentPage> },
+  video1Url: 'vimeo.com/123',
+}
+```
+
+## Team
+
+List of team members and statistics that will be featured on the homepage, but
+which can also be added to content pages.
+
+### Schema
+
+```javascript
+{
+  heroBio: { type: Reference<Bio> },
+  heroLearnMoreLink: { type: Reference<ContentPage> },
+
+  // TODO What's the min number of sections? Assuming 1
+  section1Title: { type: String },
+  section1SeeAllLink: { type: Reference<ContentPage> },
+  section1Bios: {
+    type: [
+      { type: Reference<Bio> }
+    ],
+  }
+
+  section2Title: { type: String },
+  section2SeeAllLink: { type: Reference<ContentPage> },
+  section2Bios: {
+    type: [
+      { type: Reference<Bio> }
+    ],
+  }
+
+  section3Title: { type: String },
+  section3SeeAllLink: { type: Reference<ContentPage> },
+  section3Bios: {
+    type: [
+      { type: Reference<Bio> }
+    ],
+  }
+
+  section4Title: { type: String },
+  section4SeeAllLink: { type: Reference<ContentPage> },
+  section4Bios: {
+    type: [
+      { type: Reference<Bio> }
+    ],
+  }
+
+  section5Title: { type: String },
+  section5SeeAllLink: { type: Reference<ContentPage> },
+  section5Bios: {
+    type: [
+      { type: Reference<Bio> }
+    ],
+  }
+
+  statistics: {
+    type: [
+      { type: Reference<StatisticPercentage|StatisticRatio> }
+    ]
+  }
+}
+```
+
+### Example
+
+```javascript
+{
+  heroBio: Reference<Bio>,
+  heroLearnMoreLink: Reference<ContentPage>,
+
+  section1Title: 'Board of Directors',
+  section1SeeAllLink: Reference<ContentPage>,
+  section1Bios: [
+    Reference<Bio>,
+    Reference<Bio>,
+  ],
+
+  statistics: [
+    Reference<StatisticPercentage>,
+    Reference<StatisticRatio>,
+  ],
+}
+```
+
+### Bio
+
+#### Schema
+
+```javascript
+{
+  image: { type: ContentfulAsset },
+  name: { type: String },
+  title: { type: String },
+  description: { type: LongTextField },
+}
+```
+
+#### Example
+
+```javascript
+{
+  image: CONTENTFUL_ASSET_PROPS,
+  name:  'Chris Whittle',
+  title: 'Founder',
+  description: {
+    description: 'Cursus magna, vel scelerisque nisl consectetur et.',
+  },
+}
+```
+
+### StatisticPercentage
+
+#### Schema
+
+```javascript
+{
+  value: { type: Integer },
+  description: { type: LongTextField },
+}
+```
+
+#### Example
+
+```javascript
+{
+  value: 80,
+  description: "Of our team holds a master's agree from an Ivy League institution",
+}
+```
+
+### StatisticRatio
+
+#### Schema
+
+```javascript
+{
+  value1: { type: Integer },
+  value2: { type: Integer },
+  description: { type: LongTextField },
+}
+```
+
+#### Example
+
+```javascript
+{
+  value1: 1,
+  value1: 2,
+  description: 'Members of our team speaks at least two languages'
 }
 ```

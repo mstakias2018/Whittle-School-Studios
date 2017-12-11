@@ -8,16 +8,41 @@
 {
   cityName: { type: String },
   description: { type: LongTextField },
-  list: {
-    type: [{
-      date: { type: String }, // format YYYY-MM-DD
-      titleLine1: { type: String },
-      titleLine2: { type: String, isRequired: false },
-      location: { type: String },
-      description: { type: LongTextField },
-      registrationLink: { type: String },
-    }]
-  }
+
+  event1Date: { type: String }, // format YYYY-MM-DD
+  event1TitleLine1: { type: String },
+  event1TitleLine2: { type: String, isRequired: false },
+  event1Location: { type: String },
+  event1Description: { type: LongTextField },
+  event1RegistrationLink: { type: String },
+
+  event2Date: { type: String, isRequired: false }, // format YYYY-MM-DD
+  event2TitleLine1: { type: String, isRequired: false },
+  event2TitleLine2: { type: String, isRequired: false },
+  event2Location: { type: String, isRequired: false },
+  event2Description: { type: LongTextField, isRequired: false },
+  event2RegistrationLink: { type: String, isRequired: false },
+
+  event3Date: { type: String, isRequired: false }, // format YYYY-MM-DD
+  event3TitleLine1: { type: String, isRequired: false },
+  event3TitleLine2: { type: String, isRequired: false },
+  event3Location: { type: String, isRequired: false },
+  event3Description: { type: LongTextField, isRequired: false },
+  event3RegistrationLink: { type: String, isRequired: false },
+
+  event4Date: { type: String, isRequired: false }, // format YYYY-MM-DD
+  event4TitleLine1: { type: String, isRequired: false },
+  event4TitleLine2: { type: String, isRequired: false },
+  event4Location: { type: String, isRequired: false },
+  event4Description: { type: LongTextField, isRequired: false },
+  event4RegistrationLink: { type: String, isRequired: false },
+
+  event5Date: { type: String, isRequired: false }, // format YYYY-MM-DD
+  event5TitleLine1: { type: String, isRequired: false },
+  event5TitleLine2: { type: String, isRequired: false },
+  event5Location: { type: String, isRequired: false },
+  event5Description: { type: LongTextField, isRequired: false },
+  event5RegistrationLink: { type: String, isRequired: false },
 }
 ```
 
@@ -29,15 +54,59 @@
   description: {
     description: 'Cursus magna, vel scelerisque nisl consectetur et.',
   },
-  list: [{
-    date: '2018-03-20',
-    titleLine1: 'PYP Workshop',
-    titleLine2: '(Ages 3-5)',
-    location: 'Verizon Center',
-    description: {
-      description: 'Cursus magna, vel scelerisque nisl consectetur et.',
-    },
-    registrationLink: 'http://www.openapply.com/register/123',
-  }],
+
+  event1Date: '2018-03-20',
+  event1TitleLine1: 'PYP Workshop',
+  event1TitleLine2: '(Ages 3-5)',
+  event1Location: 'Verizon Center',
+  event1Description: {
+    event1Description: 'Cursus magna, vel scelerisque nisl consectetur et.',
+  },
+  event1RegistrationLink: 'http://www.openapply.com/register/123',
+}
+```
+
+## Campuses
+
+### Schema
+
+```javascript
+{
+  image: { type: ContentfulAsset, isRequired: false },
+  imageAlt: { type: String, isRequired: false },
+  videoUrl: { type: String, isRequired: false }, // TODO finalize all video props
+
+  architectImage: { type: ContentfulAsset },
+  architectName: { type: String },
+  architectQuote: { type: LongTextField },
+
+  description: { type: LongTextField },
+  linkTitle: { type: String, isRequired: false },
+  linkDestination: { type: Reference<ContentPage>, isRequired: false },
+}
+```
+
+#### Fields supporting markdown
+- `architectQuote`
+- `description`
+
+### Example
+
+```javascript
+{
+  image: CONTENTFUL_ASSET_PROPS,
+  imageAlt: 'Shenzhen campus',
+
+  architectImage: CONTENTFUL_ASSET_PROPS,
+  architectName: 'Renzo Piano',
+  architectQuote: {
+    architectQuote: 'Cursus magna, vel scelerisque nisl consectetur et.',
+  },
+
+  description: {
+    description: 'Cursus magna, vel scelerisque nisl consectetur et.',
+  },
+  linkTitle: 'Explore the campuses',
+  linkDestination: Reference<ContentPage>,
 }
 ```
