@@ -131,10 +131,14 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           });
 
           if (process.env.GATSBY_ENV === ENV.STAGING) {
+            // Fix for inconsistent padding on Gatsby IDs
+            // https://github.com/gatsbyjs/gatsby/pull/3158
+            const stagingId = `${baseId.length < 23 ? 'c' : ''}${id}`;
+
             createPage({
               component: contentPageTemplate,
               context,
-              path: `${LANGUAGE_PATH[language]}/${id}/`,
+              path: `${LANGUAGE_PATH[language]}/${stagingId}/`,
             });
           }
         };
