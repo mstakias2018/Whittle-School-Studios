@@ -22,6 +22,7 @@
 .sectionTitle {
   @mixin type-h3-italic;
   display: flex;
+  margin-bottom: 0;
 
   @media (--bp-sm-only) {
     @mixin span 4, 4, sm;

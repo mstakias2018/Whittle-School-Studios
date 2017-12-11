@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+
+import { CLASSES } from '../../../constants/classes';
 
 import styles from './section-title.module.css';
 
@@ -9,7 +12,7 @@ const propTypes = {
 };
 
 const SectionTitle = ({ number, title }) => (
-  <div className={styles.wrapper}>
+  <div className={cx(styles.wrapper, CLASSES.SECTION_TITLE)}>
     <div className={styles.container}>
       <h2
         aria-label={`${number} ${title}`}
