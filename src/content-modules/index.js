@@ -5,7 +5,7 @@ import BodyText from './global/body-text';
 import Carousel from './global/carousel';
 import InlineImage from './global/inline-image';
 import OpenApplyIFrame from './global/openapply-iframe';
-import PullQuote from './global/pull-quote';
+import Quote from './global/quote';
 import ThreeUpBreaker from './global/three-up-breaker';
 
 import { PROP_TYPES } from '../constants/custom-property-types';
@@ -14,7 +14,7 @@ const MODULE_MAP = {
   ContentfulBodyText: BodyText,
   ContentfulInlineImage: InlineImage,
   ContentfulOpenApplyIFrame: OpenApplyIFrame,
-  ContentfulQuote: PullQuote,
+  ContentfulQuote: Quote,
   ContentfulSlideshowCarousel: Carousel,
   ContentfulThreeUpBreaker: ThreeUpBreaker,
 };

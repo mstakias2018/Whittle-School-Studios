@@ -10,8 +10,6 @@ import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 import { ENV } from '../../../constants/env';
 
-const mainStyleIEFix = { display: 'block' };
-
 const PageWrapper = ({
   children,
   localizedSlugList,
@@ -27,7 +25,6 @@ const PageWrapper = ({
     aria-label={translations.general.mainAriaLabel}
     className={CLASSES.PAGE_CONTENT}
     key="main"
-    style={mainStyleIEFix}
   >
     {children}
   </main>,

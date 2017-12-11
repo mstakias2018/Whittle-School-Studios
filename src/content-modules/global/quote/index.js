@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { QUOTE_TYPE } from '../../../constants/settings';
 
-import styles from './pull-quote.module.css';
+import styles from './quote.module.css';
 
 const propTypes = PROP_TYPES.QUOTE;
 
