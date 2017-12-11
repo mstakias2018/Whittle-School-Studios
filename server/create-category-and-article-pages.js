@@ -1,9 +1,12 @@
 const path = require('path');
 
 const { ENV } = require('../src/constants/env');
-const { LANGUAGE_CONTENTFUL_LOCALE, REGION_LANGUAGES } = require('../src/constants/regions');
+const {
+  LANGUAGE_CONTENTFUL_LOCALE,
+  LANGUAGE_PATH,
+  REGION_LANGUAGES,
+} = require('../src/constants/regions');
 const { IMAGE_TYPE, IMAGE_SUBTYPE } = require('../src/constants/images');
-const { getIsoCode } = require('../src/utils/regions');
 const {
   createQuery,
   saveCarouselImage,
@@ -81,8 +84,6 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
         }
 
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
-        const isoCode = getIsoCode(language);
-
 
         const buildPage = (id, slugs, imageDataByType) => {
           // Content page IDs are in the form
@@ -101,14 +102,14 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           createPage({
             component: contentPageTemplate,
             context,
-            path: `${isoCode}/${slugs.join('/')}/`,
+            path: `${LANGUAGE_PATH[language]}/${slugs.join('/')}/`,
           });
 
           if (process.env.GATSBY_ENV === ENV.STAGING) {
             createPage({
               component: contentPageTemplate,
               context,
-              path: `${isoCode}/${id}/`,
+              path: `${LANGUAGE_PATH[language]}/${id}/`,
             });
           }
         };

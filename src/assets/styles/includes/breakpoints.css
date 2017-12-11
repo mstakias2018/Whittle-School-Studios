@@ -12,7 +12,7 @@
   /* 1100px */
   @custom-media --bp-lg (width > 68.75em);
   /* 1600px */
-  @custom-media --bp-xl (width > 100em);
+  @custom-media --bp-xl (width >= 100em);
 }
 
 /* custom media queries - emergency use only */

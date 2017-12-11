@@ -1,7 +1,10 @@
 const path = require('path');
 
-const { LANGUAGE_CONTENTFUL_LOCALE, REGION_LANGUAGES } = require('../src/constants/regions');
-const { getIsoCode } = require('../src/utils/regions');
+const {
+  LANGUAGE_CONTENTFUL_LOCALE,
+  LANGUAGE_PATH,
+  REGION_LANGUAGES,
+} = require('../src/constants/regions');
 
 const createHomePages = (graphql, createPage) =>
   REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
@@ -20,13 +23,12 @@ const createHomePages = (graphql, createPage) =>
         }
 
         const homePageTemplate = path.resolve('./src/templates/home-page/index.js');
-        const isoCode = getIsoCode(language);
 
         const buildPage = ({ id }) =>
           createPage({
             component: homePageTemplate,
             context: { id },
-            path: `${isoCode}`,
+            path: LANGUAGE_PATH[language],
           });
 
         buildPage(result.data.contentfulHomePage);

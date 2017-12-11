@@ -5,12 +5,13 @@ import cx from 'classnames';
 import Drop from '../../../global/drop';
 import {
   LANGUAGE_CONTENTFUL_LOCALE,
+  LANGUAGE_PATH,
   REGION,
   REGION_LANGUAGES,
   REGION_URLS,
 } from '../../../../constants/regions';
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
-import { getIsoCode } from '../../../../utils/regions';
+import { getDefaultLangPath } from '../../../../utils/regions';
 
 import styles from './header-locales.module.css';
 
@@ -39,7 +40,7 @@ class Locales extends Component {
       });
 
       return {
-        link: `${getIsoCode(language)}${currentPageWithLocalizedSlugs}`,
+        link: `${LANGUAGE_PATH[language]}${currentPageWithLocalizedSlugs}`,
         title: translations.header.languages[language],
         value: language,
       };
@@ -48,7 +49,7 @@ class Locales extends Component {
 
   getRegionItems = () =>
     Object.keys(REGION).map(region => ({
-      link: REGION_URLS[process.env.GATSBY_ENV][region],
+      link: `${REGION_URLS[process.env.GATSBY_ENV][region]}${getDefaultLangPath(region)}`,
       title: this.context.translations.header.regions[region],
       value: region,
     }));

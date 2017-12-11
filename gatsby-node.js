@@ -3,8 +3,7 @@ const moment = require('moment-timezone');
 const createHomePages = require('./server/create-home-pages');
 const createCategoryAndArticlePages = require('./server/create-category-and-article-pages');
 const { resetImageDir } = require('./server/save-images');
-const { getIsoCode } = require('./src/utils/regions');
-const { REGION_DEFAULT_LANGUAGE } = require('./src/constants/regions');
+const { getDefaultLangPath } = require('./src/utils/regions');
 const deleteDevPages = require('./server/delete-dev-pages');
 const { ENV } = require('./src/constants/env');
 
@@ -24,7 +23,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     fromPath: '/',
     isPermanent: true,
     redirectInBrowser: true,
-    toPath: `/${getIsoCode(REGION_DEFAULT_LANGUAGE[process.env.GATSBY_REGION])}`,
+    toPath: `/${getDefaultLangPath()}`,
   });
 
   copyNetlifyVariables();

@@ -7,11 +7,6 @@ const REGION = {
 
 exports.REGION = REGION;
 
-exports.REGION_PATH = {
-  [REGION.US]: 'US',
-  [REGION.CHINA]: 'CN',
-};
-
 const LANGUAGE = {
   CHINESE: 'CHINESE',
   ENGLISH: 'ENGLISH',
@@ -46,8 +41,8 @@ exports.LANGUAGE_CONTENTFUL_LOCALE = {
 
 exports.REGION_URLS = {
   [ENV.DEV]: {
-    [REGION.US]: 'http://0.0.0.0:8000#test-us',
-    [REGION.CHINA]: 'http://0.0.0.0:8000#test-china',
+    [REGION.US]: 'https://master--whit-us.netlify.com/',
+    [REGION.CHINA]: 'https://master--whit-cn.netlify.com/',
   },
   [ENV.QA]: {
     [REGION.US]: 'https://qa--whit-us.netlify.com/',

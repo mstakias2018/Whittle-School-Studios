@@ -43,6 +43,7 @@ class TemplateWrapper extends Component {
       headerData: data[`HEADER_${language}`].contentPages,
       history,
       language,
+      pathname,
       socialIcons: {
         contentPage: transformSocialNetworks(
           contentPageShareIcons,
@@ -94,6 +95,7 @@ TemplateWrapper.childContextTypes = {
   headerData: PROP_TYPES.HEADER_DATA.isRequired,
   history: PROP_TYPES.HISTORY.isRequired,
   language: PROP_TYPES.LANGUAGE.isRequired,
+  pathname: PropTypes.string.isRequired,
   socialIcons: PropTypes.object.isRequired,
   translations: PropTypes.object.isRequired,
 };

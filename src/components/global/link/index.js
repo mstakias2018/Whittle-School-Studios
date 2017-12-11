@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GatsbyLink from 'gatsby-link';
 
-import { getIsoCode } from '../../../utils/regions';
+import { LANGUAGE_PATH } from '../../../constants/regions';
 import { KEYS } from '../../../constants/keys';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 
@@ -60,7 +60,7 @@ class Link extends Component {
       <GatsbyLink
         innerRef={(el) => { if (refFn) refFn(el); }}
         onKeyDown={shouldVisitLinkOnEnter && this.handleInternalKeyDown}
-        to={shouldSkipIsoCode ? to : `/${getIsoCode(language)}${to}`}
+        to={shouldSkipIsoCode ? to : `/${LANGUAGE_PATH[language]}${to}`}
         {...props}
       >
         {children}

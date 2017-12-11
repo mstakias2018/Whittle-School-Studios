@@ -13,9 +13,10 @@
   "rules": {
     "sort-keys": "error",
     "quotes": ["error", "single"],
-    "jsx-a11y/anchor-is-valid": [ "error", {"components": [] }],
+    "jsx-a11y/anchor-is-valid": [ "error", "aspects": [ "noHref", "invalidHref" ]],
     "max-len": ["error", 120],
     "no-confusing-arrow": ["error", {"allowParens": true}],
+    "no-unused-expressions": ["error", {"allowTernary": true}],
     "react/jsx-curly-spacing": [1, {"when": "never", "children": true}],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-max-props-per-line": ["error", { "maximum":1 }],

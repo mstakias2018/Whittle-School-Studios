@@ -52,9 +52,7 @@ class Drop extends React.Component {
         this.moveToNextListItem();
         break;
       case KEYS.enter:
-        if (!this.state.selectActive) {
-          this.moveToNextListItem();
-        }
+        this.state.selectActive ? this.close() : this.moveToNextListItem();
         break;
       case KEYS.up:
         this.moveToPreviousListItem();
@@ -105,7 +103,7 @@ class Drop extends React.Component {
     this.setState(prevState => ({ selectActive: !prevState.selectActive }));
   };
 
-  select = () => {
+  close = () => {
     this.setState({ selectActive: false });
     this.refElements.btn.focus();
   };
@@ -148,29 +146,33 @@ class Drop extends React.Component {
           onKeyDown={this.handleKey}
           role="menu"
         >
-          {items.map((item, index) => (
-            <li
-              key={`item-${item.title}`}
-              role="menuitem"
-            >
-              <Link
-                className={cx(styles.selectButton, {
-                  [styles.selectButton_isSelected]: selectedValue === item.value,
-                })}
-                onClick={this.select}
-                refFn={(el) => {
-                  this.refElements.listElements[index] = el;
-                }}
-                shouldOpenExternalInSameTab
-                shouldSkipIsoCode
-                shouldVisitLinkOnEnter
-                title={item.title}
-                to={item.link}
+          {items.map((item, index) => {
+            const isSelected = selectedValue === item.value;
+            return (
+              <li
+                key={`item-${item.title}`}
+                role="menuitem"
               >
-                {item.title}
-              </Link>
-            </li>
-          ))
+                <Link
+                  className={cx(styles.selectButton, {
+                    [styles.selectButton_isSelected]: isSelected,
+                  })}
+                  onClick={this.close}
+                  refFn={(el) => {
+                    this.refElements.listElements[index] = el;
+                  }}
+                  shouldOpenExternalInSameTab
+                  shouldSkipIsoCode
+                  shouldVisitLinkOnEnter
+                  tabIndex="-1"
+                  title={item.title}
+                  to={isSelected ? this.context.pathname : item.link}
+                >
+                  {item.title}
+                </Link>
+              </li>
+            );
+          })
           }
         </ul>
       </div>
@@ -179,5 +181,6 @@ class Drop extends React.Component {
 }
 
 Drop.propTypes = propTypes;
+Drop.contextTypes = { pathname: PropTypes.string.isRequired };
 
 export default Drop;
