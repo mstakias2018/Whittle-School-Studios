@@ -33,6 +33,10 @@ $ yarn build
 There are also China-specific `yarn develop-china` and `yarn build-china`
 commands.
 
+### Clearing Cache
+
+To clear the cache while running `build` or `develop` and force fresh Contentful content, run `rm -rf .cache public` first.
+
 ### Mobile
 
 To develop on a mobile device on your local network:
