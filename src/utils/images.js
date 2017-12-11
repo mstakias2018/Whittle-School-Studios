@@ -1,4 +1,4 @@
-import { IMAGE_SIZE, IMAGE_MQ } from '../constants/images';
+const { IMAGE_SIZE, IMAGE_MQ } = require('../constants/images');
 
 exports.adaptSourcesBySize = (sourcesBySize) => {
   // We use the IMAGE_SIZE keys to ensure breakpoints
@@ -21,4 +21,9 @@ exports.adaptSourcesBySize = (sourcesBySize) => {
     largestSrc,
     sourceList,
   };
+};
+
+exports.getIdFromImgUrl = (url) => {
+  const matches = url.match(/\/\/images\.contentful\.com\/\w+\/(\w+)/);
+  return matches && matches[1];
 };

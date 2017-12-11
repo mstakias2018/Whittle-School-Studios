@@ -92,7 +92,7 @@ const ContentPageTemplate = ({
         />
         {modules &&
           <ContentModules
-            imageDataByType={imageDataByType}
+            moduleImageData={imageDataByType[IMAGE_TYPE.MODULE]}
             modules={modules}
           />
         }

@@ -33,27 +33,19 @@ exports.IMAGE_MQ = {
 
 /* IMAGE CONFIG */
 
-const IMAGE_TYPE = {
-  INLINE: 'inline',
+exports.IMAGE_TYPE = {
   MAIN: 'main',
+  MODULE: 'module',
 };
 
-exports.IMAGE_TYPE = IMAGE_TYPE;
-
-const IMAGE_SUBTYPE = {
+exports.IMAGE_SUBTYPE = {
   CAROUSEL_SQ: 'carouselSquare',
   INLINE_RT: 'inlineRectangular',
   INLINE_RT_VIDEO: 'inlineRectangularVideo',
   INLINE_SQ: 'inlineSquare',
+  INSET: 'inset',
   MAIN_ARTICLE: 'mainSquare',
   MAIN_CATEGORY: 'mainCategory',
-};
-
-exports.IMAGE_SUBTYPE = IMAGE_SUBTYPE;
-
-exports.MODULE_IMAGE_TYPE_MAP = {
-  ContentfulInlineImage: IMAGE_TYPE.INLINE,
-  ContentfulSlideshowCarousel: IMAGE_TYPE.INLINE,
 };
 
 // must match Contentful values

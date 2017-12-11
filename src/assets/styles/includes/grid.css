@@ -6,7 +6,7 @@
 }
 
 @define-mixin span $grid-col-size: 6, $number-of-grids: 12, $breakpoint: lg {
-  @mixin custom-column $grid-col-size, $number-of-grids, width;
+  @mixin custom-column $grid-col-size, $number-of-grids;
   @mixin custom-column $grid-col-size, $number-of-grids, max-width;
   @mixin custom-column $grid-col-size, $number-of-grids, flex-basis;
   flex: 0 0 auto;
@@ -19,10 +19,6 @@
   width: auto;
 
   @media (--bp-sm-only) {
-    margin: 0 -var(--grid-gutter-sm);
-  }
-
-  @media (--bp-sm-upper-only) {
     margin: 0 -var(--grid-gutter-sm);
   }
 

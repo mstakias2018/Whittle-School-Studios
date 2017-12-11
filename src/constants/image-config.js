@@ -38,6 +38,11 @@ const IMAGE_CONFIG = {
     [BREAKPOINTS_NAME.medium]: { colRatio: 6 / 8, heightRatio: RATIO.RECT, widthRatio: RATIO.RECT },
     [BREAKPOINTS_NAME.large]: { colRatio: 8 / 12, heightRatio: RATIO.RECT, widthRatio: RATIO.RECT },
   },
+  [IMAGE_SUBTYPE.INSET]: {
+    [BREAKPOINTS_NAME.small]: { colRatio: 2 / 4, heightRatio: RATIO.SQUARE },
+    [BREAKPOINTS_NAME.medium]: { colRatio: 2 / 8, heightRatio: RATIO.SQUARE },
+    [BREAKPOINTS_NAME.large]: { colRatio: 3 / 12, heightRatio: RATIO.SQUARE },
+  },
 };
 
 module.exports = calcDimensions(IMAGE_CONFIG);

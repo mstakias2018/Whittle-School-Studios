@@ -6,18 +6,20 @@ import { adaptSourcesBySize } from '../../../utils/images';
 
 const propTypes = {
   ...PROP_TYPES.IMAGE_PROP_TYPES,
+  className: PropTypes.string,
   isAriaHidden: PropTypes.bool,
 };
 
 const Picture = ({
   alt,
+  className,
   isAriaHidden,
   sourcesBySize,
 }) => {
   const { sourceList, largestSrc } = adaptSourcesBySize(sourcesBySize);
 
   return (
-    <picture>
+    <picture className={className}>
       {sourceList.map(({ media, srcSet }) => (
         <source
           key={media}

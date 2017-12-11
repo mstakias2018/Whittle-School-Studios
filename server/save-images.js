@@ -6,6 +6,7 @@ const {
 } = require('../src/constants/images');
 const IMAGE_CONFIG = require('../src/constants/image-config');
 const { PAGE_TYPE } = require('../src/constants/settings');
+const { getIdFromImgUrl } = require('../src/utils/images');
 
 const STATIC_IMAGE_PATH = './static/images/';
 
@@ -29,8 +30,8 @@ exports.resetImageDir = () => {
      ...
    }
 */
-exports.createQuery = (imageType) => {
-  const imageConfig = IMAGE_CONFIG[imageType];
+exports.createQuery = (imageSubtype) => {
+  const imageConfig = IMAGE_CONFIG[imageSubtype];
   const queries = Object.keys(imageConfig).reduce((query, imageSize) => {
     const sizeConfig = imageConfig[imageSize];
     return `${query}
@@ -50,6 +51,7 @@ exports.createQuery = (imageType) => {
     id
     file {
       fileName
+      url
     }
     ${queries}
   `;
@@ -101,8 +103,8 @@ const saveImage = (imageNode, type, subtype, nestedFolders) => {
     }
   }
 
-  const { file: { fileName } } = imageNode;
-  const sourcesBySize = {};
+  const { file: { fileName, url } } = imageNode;
+  const sourcesBySize = { id: getIdFromImgUrl(url) };
 
   const promises = Object.keys(IMAGE_CONFIG[subtype]).map((imageSize) => {
     const imageSizePromises = [];
@@ -153,6 +155,8 @@ const saveImage = (imageNode, type, subtype, nestedFolders) => {
   return Promise.all(promises).then(() => sourcesBySize);
 };
 
+exports.saveImage = saveImage;
+
 exports.saveMainImage = ({ articleMainImage, categoryMainImage, pageType }, nestedFolders) => {
   if (!(articleMainImage || categoryMainImage)) return undefined;
 
@@ -171,7 +175,7 @@ exports.saveCarouselImage = ({
   const [inlineImage, inlineImageSubtype] = shape === IMAGE_SHAPE.RECTANGLE ?
     [rectInlineImage, IMAGE_SUBTYPE.INLINE_RT] :
     [squareInlineImage, IMAGE_SUBTYPE.CAROUSEL_SQ];
-  return saveImage(inlineImage, IMAGE_TYPE.INLINE, inlineImageSubtype, nestedFolders);
+  return saveImage(inlineImage, IMAGE_TYPE.MODULE, inlineImageSubtype, nestedFolders);
 };
 
 exports.saveInlineImage = ({
@@ -182,5 +186,5 @@ exports.saveInlineImage = ({
   const [inlineImage, inlineImageSubtype] = shape === IMAGE_SHAPE.RECTANGLE ?
     [rectInlineImage, IMAGE_SUBTYPE.INLINE_RT] :
     [squareInlineImage, IMAGE_SUBTYPE.INLINE_SQ];
-  return saveImage(inlineImage, IMAGE_TYPE.INLINE, inlineImageSubtype, nestedFolders);
+  return saveImage(inlineImage, IMAGE_TYPE.MODULE, inlineImageSubtype, nestedFolders);
 };

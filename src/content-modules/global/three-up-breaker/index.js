@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './three-up-breaker.module.css';
 
-import Markdown from '../../../components/global/markdown';
+import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 
@@ -23,8 +23,8 @@ const ThreeUpBreaker = ({
               {title1}
             </div>
             <Markdown
+              allowedTypes={ALLOWED_TYPES.SHORT_TEXT}
               className={styles.blockText}
-              isShort
               source={content1.markdown}
             />
           </div>
@@ -38,8 +38,8 @@ const ThreeUpBreaker = ({
               {title2}
             </div>
             <Markdown
+              allowedTypes={ALLOWED_TYPES.SHORT_TEXT}
               className={styles.blockText}
-              isShort
               source={content2.markdown}
             />
           </div>
@@ -54,7 +54,6 @@ const ThreeUpBreaker = ({
             </div>
             <Markdown
               className={styles.blockText}
-              isShort
               source={content3.markdown}
             />
           </div>

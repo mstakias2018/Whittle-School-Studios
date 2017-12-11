@@ -1,0 +1,82 @@
+@import '../../../../assets/styles/includes/breakpoints.css';
+@import '../../../../assets/styles/includes/grid.css';
+@import '../../../../assets/styles/includes/variables.css';
+
+/* We need to use some special calculations for inset images because they are
+   nested inside paragraphs - after trial & error this was the best solution.
+
+   $factor is used when we want to take a fraction of the result,
+   like offseting by half a grid column.  */
+@define-mixin inset-image-size $ratio, $grid-gutter, $property: width, $factor: 1 {
+  $(property): calc(($ratio * 100% - ((1 - $ratio) * 2 * $grid-gutter)) * $factor);
+}
+
+.wrapper {
+  @mixin inset-image-size 1 / 2, var(--grid-gutter-sm);
+  margin-bottom: 12px;
+  margin-top: 12px;
+
+  @media (--bp-md) {
+    @mixin inset-image-size 1 / 3, var(--grid-gutter-md);
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  @media (--bp-lg) {
+    @mixin inset-image-size 1 / 2, var(--grid-gutter-lg);
+    margin-bottom: 22.5px;
+    margin-top: 22.5px;
+    position: relative;
+  }
+
+  &:first-child {
+    margin-top: 10px;
+  }
+}
+
+.wrapper_isAlignLeft {
+  float: left;
+  margin-right: calc(2 * var(--grid-gutter-sm));
+
+  @media (--bp-md) {
+    margin-right: calc(2 * var(--grid-gutter-md));
+  }
+
+  @media (--bp-lg) {
+    margin-right: calc(2 * var(--grid-gutter-lg));
+    @mixin inset-image-size 1 / 6, var(--grid-gutter-lg), right, 1 / 2;
+  }
+}
+
+.wrapper:not(.wrapper_isAlignLeft) {
+  float: right;
+  margin-left: calc(2 * var(--grid-gutter-sm));
+
+  @media (--bp-md) {
+    margin-left: calc(2 * var(--grid-gutter-md));
+  }
+
+  @media (--bp-lg) {
+    margin-left: calc(2 * var(--grid-gutter-lg));
+    @mixin inset-image-size 1 / 6, var(--grid-gutter-lg), left, 1 / 2;
+  }
+}
+
+.asset img {
+  display: block;
+}
+
+.asset_iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.caption {
+  @mixin type-caption;
+  display: inline-block;
+  margin-top: 10px;
+
+  @media (--bp-md) {
+    margin-top: 20px;
+  }
+}

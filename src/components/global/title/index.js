@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import Markdown from '../../../components/global/markdown';
+import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './title.module.css';
@@ -19,11 +19,11 @@ const {
 
 const Title = ({ isSingle, text, type }) => (
   <Markdown
+    allowedTypes={ALLOWED_TYPES.TITLE}
     className={cx(styles[`type${type}`], CLASSES.HEADLINE, {
       [styles[`type${type}_isSingle`]]: isSingle,
     })}
     containerTagName="h1"
-    isTitle
     source={text}
   />
 );

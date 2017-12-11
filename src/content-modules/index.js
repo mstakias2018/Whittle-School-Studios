@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import BodyText from './global/body-text';
 import Carousel from './global/carousel';
@@ -8,7 +9,6 @@ import PullQuote from './global/pull-quote';
 import ThreeUpBreaker from './global/three-up-breaker';
 
 import { PROP_TYPES } from '../constants/custom-property-types';
-import { MODULE_IMAGE_TYPE_MAP } from '../constants/images';
 
 const MODULE_MAP = {
   ContentfulBodyText: BodyText,
@@ -20,18 +20,19 @@ const MODULE_MAP = {
 };
 
 const propTypes = {
-  imageDataByType: PROP_TYPES.IMAGE_DATA_BY_TYPE,
+  moduleImageData: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES),
+    PROP_TYPES.IMAGE_SOURCES,
+  ])),
   modules: PROP_TYPES.MODULES,
 };
 
-const ContentModules = ({ imageDataByType, modules }) =>
+const ContentModules = ({ moduleImageData, modules }) =>
   modules.map(({ __typename: type, ...props }, i) => {
     const Component = MODULE_MAP[type];
-    const imageType = MODULE_IMAGE_TYPE_MAP[type];
-    const imageSources = imageType && imageDataByType[imageType][i];
     return Component && (
       <Component
-        imageSources={imageSources}
+        imageSources={moduleImageData && moduleImageData[i]}
         isFirstModule={i === 0}
         key={i}
         {...props}

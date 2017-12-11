@@ -7,8 +7,10 @@ const {
   REGION_LANGUAGES,
 } = require('../src/constants/regions');
 const { IMAGE_TYPE, IMAGE_SUBTYPE } = require('../src/constants/images');
+const { getIdFromImgUrl } = require('../src/utils/images');
 const {
   createQuery,
+  saveImage,
   saveCarouselImage,
   saveInlineImage,
   saveMainImage,
@@ -30,6 +32,11 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
 
         modules {
           __typename
+          ... on ContentfulBodyText {
+            content {
+              content
+            }
+          }
           ... on ContentfulInlineImage {
             shape
             squareInlineImage: asset {
@@ -53,13 +60,23 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
         }
       `;
 
+      const localeFilter = `filter: {
+        node_locale: { eq: "${LANGUAGE_CONTENTFUL_LOCALE[language]}" }
+      }`;
+
       graphql(`
           {
-            allContentfulContentPage(
-              filter: {
-                node_locale: { eq: "${LANGUAGE_CONTENTFUL_LOCALE[language]}" }
+            # We can't query directly for inset images, since they're buried
+            # inside markdown, so let's get inset dimensions for all assets
+            allContentfulAsset(${localeFilter}) {
+              edges {
+                node {
+                  ${createQuery(IMAGE_SUBTYPE.INSET)}
+                }
               }
-            ) {
+            }
+
+            allContentfulContentPage(${localeFilter}) {
               edges {
                 node {
                   ${sharedQuery}
@@ -82,6 +99,14 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
         if (result.errors) {
           reject(result.errors);
         }
+        const { allContentfulContentPage, allContentfulAsset } = result.data;
+
+        const contentfulAssetsById = allContentfulAsset.edges.reduce((acc, { node }) =>
+          Object.assign({}, acc, {
+            // Get ID from URL instead of using unreliable Gatsby ID
+            // https://github.com/gatsbyjs/gatsby/pull/3158
+            [getIdFromImgUrl(node.file.url)]: node,
+          }), {});
 
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
 
@@ -132,21 +157,29 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
 
           if (modules) {
             const modulePromises = modules.map((n, i) => {
-              const { __typename, slides } = n;
+              const { __typename, content, slides } = n;
               if (__typename === 'ContentfulInlineImage') {
                 return saveInlineImage(n, [id, i]);
               } else if (__typename === 'ContentfulSlideshowCarousel') {
                 return Promise.all(slides.map((s, j) => saveCarouselImage(s, [id, i, j])));
+              } else if (__typename === 'ContentfulBodyText') {
+                const CONTENTFUL_REGEX = /\/\/images\.contentful\.com\/(\w*\/)+[\w-]*\.\w{3,4}/gi;
+                const matches = content.content.match(CONTENTFUL_REGEX);
+                if (matches) {
+                  return Promise.all(matches.map((match, j) => {
+                    const asset = contentfulAssetsById[getIdFromImgUrl(match)];
+                    return saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INSET, [id, i, j]);
+                  }));
+                }
               }
 
               return undefined;
             });
 
             setupPromises.push(Promise.all(modulePromises).then((imageData) => {
-              imageDataByType[IMAGE_TYPE.INLINE] = imageData;
+              imageDataByType[IMAGE_TYPE.MODULE] = imageData;
             }));
           }
-
 
           if (subcategories) {
             const subcategoryPromises = subcategories.map(subcat => buildPageAndSubcategories(subcat, slugs));
@@ -156,7 +189,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           return Promise.all(setupPromises).then(() => buildPage(id, slugs, imageDataByType));
         };
 
-        const createPagePromises = result.data.allContentfulContentPage.edges.map(({ node }) => {
+        const createPagePromises = allContentfulContentPage.edges.map(({ node }) => {
           // Skip subcategories
           if (node.parentCategory) return undefined;
           return buildPageAndSubcategories(node);

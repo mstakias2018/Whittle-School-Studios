@@ -10,7 +10,7 @@ import {
   REGION_LANGUAGES,
 } from './regions';
 
-const isValidSourcesBySize = sourcesBySize =>
+const isValidSourcesBySize = ({ id, ...sourcesBySize }) =>
   Object.keys(sourcesBySize).every((breakpoint) => {
     const { src, srcSet } = sourcesBySize[breakpoint];
     return (
