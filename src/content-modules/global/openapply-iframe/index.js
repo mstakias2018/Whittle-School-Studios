@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
@@ -11,25 +11,41 @@ const propTypes = {
   scriptUrl: PropTypes.string.isRequired,
 };
 
-const OpenApplyIFrame = ({ description, scriptUrl }) => (
-  <div className={styles.wrapper}>
-    <Helmet
-      script={[{
-        src: scriptUrl,
-        type: 'text/javascript',
-      }]}
-    />
-    <div className={styles.componentWrapper}>
-      <div className={styles.componentContent}>
-        <Markdown
-          className={styles.description}
-          source={description.markdown}
+class OpenApplyIFrame extends Component {
+  state = {
+    hasMounted: false,
+  }
+
+  componentDidMount() {
+    this.setState({ hasMounted: true });
+  }
+
+  render() {
+    const { description, scriptUrl } = this.props;
+
+    return (
+      <div className={styles.wrapper}>
+        <Helmet
+          script={
+            this.state.hasMounted && [{
+              src: scriptUrl,
+              type: 'text/javascript',
+            }]
+          }
         />
-        <span id="openapplyScript" />
+        <div className={styles.componentWrapper}>
+          <div className={styles.componentContent}>
+            <Markdown
+              className={styles.description}
+              source={description.markdown}
+            />
+            <span id="openapplyScript" />
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 OpenApplyIFrame.propTypes = propTypes;
 
