@@ -177,7 +177,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                 }
               }
 
-              return undefined;
+              return {};
             });
 
             setupPromises.push(Promise.all(modulePromises).then((imageData) => {
