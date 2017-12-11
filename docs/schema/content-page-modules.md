@@ -224,14 +224,24 @@ type QuoteStyle = ["PullQuote", "BlockQuote"];
 
 ```javascript
 {
-  items: {
-    type: [
-      {
-        title: { type: String },
-        description: { type: LongTextField },
-      }
-    ],
-  },
+  {
+    title1: { type: String },
+    description1: { type: LongTextField },
+    title2: { type: String },
+    description2: { type: LongTextField },
+    title3: { type: String },
+    description3: { type: LongTextField },
+    title4: { type: String },
+    description4: { type: LongTextField },
+    title5: { type: String },
+    description5: { type: LongTextField },
+    title6: { type: String },
+    description6: { type: LongTextField },
+    title7: { type: String },
+    description7: { type: LongTextField },
+    title8: { type: String },
+    description8: { type: LongTextField },
+  }
 }
 ```
 #### Fields supporting markdown
@@ -241,27 +251,21 @@ type QuoteStyle = ["PullQuote", "BlockQuote"];
 
 ```javascript
 {
-  items: [
-    {
-      title: 'First list item',
-      description: {
-        description: 'Cursus magna, vel scelerisque nisl consectetur et.',
-      },
-    },
-    {
-      title: 'Second list item',
-      description: {
-        description: 'Cursus magna, vel scelerisque nisl consectetur et.',
-      },
-    },
-    {
-      title: 'Third list item',
-      description: {
-        description: `[Cursus magna](http://www.google.com), vel scelerisque
-          nisl consectetur et.`,
-      },
-    }
-  ]
+  title1: 'First list item',
+  description1: {
+    description1: 'Cursus magna, vel scelerisque nisl consectetur et.',
+  },
+  
+  title2: 'Second list item',
+  description2: {
+    description2: 'Cursus magna, vel scelerisque nisl consectetur et.',
+  },
+  
+  title3: 'Third list item',
+  description3: {
+    description3: `[Cursus magna](http://www.google.com), vel scelerisque
+      nisl consectetur et.`,
+  },
 }
 ```
 

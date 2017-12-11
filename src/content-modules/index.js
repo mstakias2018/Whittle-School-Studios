@@ -7,12 +7,14 @@ import InlineImage from './global/inline-image';
 import OpenApplyIFrame from './global/openapply-iframe';
 import Quote from './global/quote';
 import ThreeUpBreaker from './global/three-up-breaker';
+import List from './global/list';
 
 import { PROP_TYPES } from '../constants/custom-property-types';
 
 const MODULE_MAP = {
   ContentfulBodyText: BodyText,
   ContentfulInlineImage: InlineImage,
+  ContentfulList: List,
   ContentfulOpenApplyIFrame: OpenApplyIFrame,
   ContentfulQuote: Quote,
   ContentfulSlideshowCarousel: Carousel,

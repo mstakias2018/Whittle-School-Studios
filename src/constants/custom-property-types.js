@@ -64,6 +64,30 @@ const INLINE_IMAGE = PropTypes.shape({
   ...getInlineImagePropTypes(),
 });
 
+const listPropTypes = {
+  description1: MARKDOWN.isRequired,
+  description2: MARKDOWN.isRequired,
+  description3: MARKDOWN.isRequired,
+  description4: MARKDOWN,
+  description5: MARKDOWN,
+  description6: MARKDOWN,
+  description7: MARKDOWN,
+  description8: MARKDOWN,
+  title1: PropTypes.string.isRequired,
+  title2: PropTypes.string.isRequired,
+  title3: PropTypes.string.isRequired,
+  title4: PropTypes.string,
+  title5: PropTypes.string,
+  title6: PropTypes.string,
+  title7: PropTypes.string,
+  title8: PropTypes.string,
+};
+
+const LIST = PropTypes.shape({
+  __typename: createTypenameChecker('ContentfulList'),
+  ...listPropTypes,
+});
+
 const OPENAPPLY_IFRAME = PropTypes.shape({
   __typename: createTypenameChecker('ContentfulOpenApplyIFrame'),
   description: MARKDOWN,
@@ -144,7 +168,6 @@ exports.PROP_TYPES = {
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES: PropTypes.shape(validateSourcesBySize),
   LANGUAGE: PropTypes.oneOf(REGION_LANGUAGES[process.env.GATSBY_REGION]),
-  LIST: PropTypes.arrayOf(PropTypes.shape(LIST_ITEM)),
   LIST_ITEM,
   LOCALIZED_SLUG_LIST: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
@@ -157,6 +180,7 @@ exports.PROP_TYPES = {
   MODULES: PropTypes.arrayOf(PropTypes.oneOfType([
     BODY_TEXT,
     INLINE_IMAGE,
+    LIST,
     OPENAPPLY_IFRAME,
     QUOTE,
     SLIDESHOW_CAROUSEL,

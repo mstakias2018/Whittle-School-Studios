@@ -205,6 +205,40 @@ export const pageQuery = graphql`
           title2
           title3
         }
+        ... on ContentfulList {
+        description1 {
+            markdown: description1
+          }
+          description2 {
+            markdown: description2
+          }
+          description3 {
+            markdown: description3
+          }
+          description4 {
+            markdown: description4
+          }
+          description5 {
+            markdown: description5
+          }
+          description6 {
+            markdown: description6
+          }
+          description7 {
+            markdown: description7
+          }
+          description8 {
+            markdown: description8
+          }
+          title1
+          title2
+          title3
+          title4
+          title5
+          title6
+          title7
+          title8
+        }
       }
     }
   }
