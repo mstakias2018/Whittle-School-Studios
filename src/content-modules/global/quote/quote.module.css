@@ -27,6 +27,7 @@
 
 .quote {
   @mixin pull-quote;
+  font-weight: 300;
   margin: 0;
 }
 
