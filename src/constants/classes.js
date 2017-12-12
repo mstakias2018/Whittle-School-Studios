@@ -1,4 +1,5 @@
 exports.CLASSES = {
+  BODY_TEXT: 'bodyTextComponent',
   CONTAINER: 'container',
   FOOTER: 'footer',
   GALLERY_IMAGE: 'image-gallery-image',

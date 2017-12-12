@@ -5,6 +5,7 @@ import cx from 'classnames';
 import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 import styles from './body-text.module.css';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { CLASSES } from '../../../constants/classes';
 
 const propTypes = {
   content: PROP_TYPES.MARKDOWN,
@@ -21,7 +22,7 @@ class BodyText extends Component {
     const { content, isFirstModule: hasDropCap } = this.props;
 
     return (
-      <div className={cx(styles.componentWrapper, { hasDropCap })}>
+      <div className={cx(styles.componentWrapper, { hasDropCap }, CLASSES.BODY_TEXT)}>
         <div className={styles.content}>
           <Markdown
             allowedTypes={ALLOWED_TYPES.WITH_IMAGE}

@@ -5,6 +5,14 @@
 .componentWrapper {
   @mixin component-container;
   @mixin component-vertical-spacing;
+
+  :global(.bodyTextComponent) + &.componentWrapper {
+    margin-top: -30px;
+
+    @media (--bp-md) {
+      margin-top: -60px;
+    }
+  }
 }
 
 .content {
@@ -19,6 +27,10 @@
     margin-bottom: 0;
 
     &:not(:first-child) {
+      padding-top: 20px;
+    }
+
+    :global(.bodyTextComponent) + :global(.bodyTextComponent) & {
       padding-top: 20px;
     }
   }
