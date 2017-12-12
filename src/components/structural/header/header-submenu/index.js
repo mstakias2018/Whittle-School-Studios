@@ -42,6 +42,7 @@ class Submenu extends Component {
           <ul
             className={cx(styles.items, {
               [styles.items_large]: this.isLarge(),
+              [styles.items_twoCols]: navItems.length < 3,
             })}
           >
             <li className={styles.titleContainer}>
