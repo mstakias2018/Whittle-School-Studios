@@ -34,6 +34,7 @@
 @define-mixin nested-grid-container {
   @mixin grid-container;
   padding: 0;
+  width: 100%;
 
   @media (--bp-sm-only) {
     margin: 0;
@@ -53,7 +54,6 @@
 }
 
 /* Common column patterns */
-
 @define-mixin full-width-column-sm {
   @mixin span 4, var(--grid-columns-sm), sm;
 }

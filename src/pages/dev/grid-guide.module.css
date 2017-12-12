@@ -82,7 +82,7 @@
     @mixin nested-grid-container;
   }
 
-  @media (--bp-md) {
+  @media (--bp-md-only) {
     @mixin span 4, var(--grid-columns-md), md;
     @mixin nested-grid-container;
   }
@@ -180,7 +180,6 @@
   }
 
   @media (--bp-lg) {
-    @mixin span 3, 3, lg;
     @mixin nested-grid-container;
 
     .element {
