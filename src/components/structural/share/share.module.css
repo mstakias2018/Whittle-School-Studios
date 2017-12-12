@@ -57,22 +57,28 @@
 }
 
 .copyConformation {
-  @mixin text-column-width;
-  align-items: center;
-  background-color: var(--color-secondary-light);
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 20px;
   opacity: 0;
-  transition: opacity var(--timing-fast) var(--easing-default);
+  transition: opacity var(--timing-slow) var(--easing-default);
+  width: 100%;
+
+  @media (--bp-lg) {
+    @mixin three-quart-width-column-lg;
+  }
 
   span {
+    background-color: var(--color-secondary-light);
     color: var(--color-text-dark);
+    display: block;
     font-family: var(--font-sans-serif-regular);
     font-size: 14px;
     line-height: 20px;
     padding: 20px 0;
+    text-align: center;
+    width: 100%;
   }
 }
 
