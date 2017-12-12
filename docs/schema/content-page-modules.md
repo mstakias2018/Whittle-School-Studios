@@ -204,7 +204,7 @@ type QuoteStyle = ["PullQuote", "BlockQuote"];
 
 ```javascript
 {
-  number: { type: Integer },
+  number: { type: String },
   title: { type: String }
 }
 ```

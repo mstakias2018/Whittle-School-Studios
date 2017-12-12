@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import BodyText from './global/body-text';
 import Carousel from './global/carousel';
 import InlineImage from './global/inline-image';
+import List from './global/list';
 import OpenApplyIFrame from './global/openapply-iframe';
 import Quote from './global/quote';
+import SectionTitle from './global/section-title';
 import ThreeUpBreaker from './global/three-up-breaker';
-import List from './global/list';
 
 import { PROP_TYPES } from '../constants/custom-property-types';
 
@@ -17,6 +18,7 @@ const MODULE_MAP = {
   ContentfulList: List,
   ContentfulOpenApplyIFrame: OpenApplyIFrame,
   ContentfulQuote: Quote,
+  ContentfulSectionTitle: SectionTitle,
   ContentfulSlideshowCarousel: Carousel,
   ContentfulThreeUpBreaker: ThreeUpBreaker,
 };

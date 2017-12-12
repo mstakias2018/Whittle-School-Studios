@@ -5,7 +5,7 @@ import BodyText from '../../content-modules/global/body-text';
 import InlineImage from '../../content-modules/global/inline-image';
 import InlineVideo from '../../content-modules/global/inline-video';
 import PageWrapper from '../../components/structural/page-wrapper';
-import SectionTitle from '../../components/global/section-title';
+import SectionTitle from '../../content-modules/global/section-title';
 import List from '../../content-modules/global/list';
 import ThreeUpBreaker from '../../content-modules/global/three-up-breaker';
 

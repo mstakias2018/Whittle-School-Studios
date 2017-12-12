@@ -83,6 +83,16 @@ const listPropTypes = {
   title8: PropTypes.string,
 };
 
+const sectionTitlePropertyTypes = {
+  number: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+const SECTION_TITLE = PropTypes.shape({
+  __typename: createTypenameChecker('ContentfulSectionTitle'),
+  ...sectionTitlePropertyTypes,
+});
+
 const LIST = PropTypes.shape({
   __typename: createTypenameChecker('ContentfulList'),
   ...listPropTypes,
@@ -183,6 +193,7 @@ exports.PROP_TYPES = {
     LIST,
     OPENAPPLY_IFRAME,
     QUOTE,
+    SECTION_TITLE,
     SLIDESHOW_CAROUSEL,
     THREE_UP_BREAKER,
   ])),

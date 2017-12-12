@@ -239,6 +239,10 @@ export const pageQuery = graphql`
           title7
           title8
         }
+        ... on ContentfulSectionTitle {
+          number
+          title
+        }
       }
     }
   }
