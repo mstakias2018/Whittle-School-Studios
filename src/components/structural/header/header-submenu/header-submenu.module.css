@@ -45,6 +45,8 @@
 .titleContainer {
   @media (--bp-sm-only) {
     @mixin span 2, 4, sm;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 0;
     padding-top: 20px;
   }
@@ -64,9 +66,9 @@
 
 .title {
   @mixin type-h5-italic;
+  flex-grow: 1;
 
   @media (--bp-sm-only) {
-    height: 100%;
     padding-bottom: 33px;
   }
 
@@ -148,7 +150,7 @@
 
   .itemLinkWrapper {
     align-content: flex-start;
-    height: 100%;
+    flex-grow: 1;
 
     @media (--bp-md-only) {
       padding-right: 44px;
