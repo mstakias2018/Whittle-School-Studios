@@ -9,7 +9,7 @@ import { REGION } from '../src/constants/regions';
 transferSpaces(
   [ENV.DEV, REGION.CHINA],
   [ENV.DEV, REGION.US],
-  true,
+  { shouldFilterNonEnglish: true },
 ).then(() => {
   transferSpaces(
     [ENV.DEV, REGION.US],

@@ -2,11 +2,14 @@
 
 import spaceExport from 'contentful-export';
 import spaceImport from 'contentful-import';
+import { createClient } from 'contentful-management';
 
 import { CONTENTFUL } from '../src/constants/contentful';
 
 // TODO ENV VARS
 const MANAGEMENT_TOKEN = 'CFPAT-d3337097476df5ed2ab54c9764486916b6c9e851ccffc075eb7f70282e9ea6f3';
+
+const client = createClient({ accessToken: MANAGEMENT_TOKEN });
 
 const filterFields = entries =>
   entries.map((entry) => {
@@ -20,9 +23,62 @@ const filterFields = entries =>
     };
   });
 
-export default (sourceInfo, targetInfo, shouldFilterNonEnglish = false) => {
+const getContent = (output, shouldFilterNonEnglish) => {
+  const { assets, entries, locales } = output;
+  return shouldFilterNonEnglish ? {
+    ...output,
+    assets: filterFields(assets),
+    entries: filterFields(entries),
+    locales: locales.filter(({ code }) => code === 'en-US'),
+  } : output;
+};
+
+const unpublishAndDeleteEntries = (entries) => {
+  if (!entries) return undefined;
+  return Promise.all(entries.items.map(item =>
+    new Promise((resolve) => {
+      if (!item) {
+        resolve();
+        return;
+      }
+
+      item.isPublished() ?
+        item.unpublish().then(() => item.delete().then(resolve)) :
+        item.delete().then(resolve);
+    })));
+};
+
+const clearTarget = targetSpaceId =>
+  new Promise(resolve =>
+    client.getSpace(targetSpaceId).then(space =>
+      Promise.all([
+        space.getEntries().then(unpublishAndDeleteEntries),
+        space.getAssets().then(unpublishAndDeleteEntries),
+      ]).then(resolve)));
+
+/* Transfers data between contentful spaces
+
+   Options:
+     shouldFilterNonEnglish:
+       Needed when transfering from a space with multiple languages to a space
+       with just English. Someday this might need to be more sophisticated and
+       use an array of languages.
+     shouldSkipContent:
+       Necessary when deploying to production so only structural updates are
+       translated, but content is not changed.
+
+   Known issues:
+     If the target has a field that the source does not, you'll get an error:
+     "You need to omit a field before deleting it." These changes are rare enough
+     that developers can manually prepare the target environment by deleting any
+     fields not present in the source.
+*/
+export default (sourceInfo, targetInfo, opts = {}) => {
+  const { shouldFilterNonEnglish, shouldSkipContent } = opts;
   const [sourceEnv, sourceRegion] = sourceInfo;
   const [targetEnv, targetRegion] = targetInfo;
+  const sourceSpaceId = CONTENTFUL[sourceEnv][sourceRegion].spaceId;
+  const targetSpaceId = CONTENTFUL[targetEnv][targetRegion].spaceId;
 
   console.log(`=== COPYING FROM ${sourceEnv}-${sourceRegion} TO ${targetEnv}-${targetRegion}`);
 
@@ -30,29 +86,19 @@ export default (sourceInfo, targetInfo, shouldFilterNonEnglish = false) => {
     spaceExport({
       managementToken: MANAGEMENT_TOKEN,
       saveFile: false,
+      skipContent: !!shouldSkipContent,
       skipWebhooks: true,
-      spaceId: CONTENTFUL[sourceEnv][sourceRegion].spaceId,
+      spaceId: sourceSpaceId,
     }).then((output) => {
-      const { assets, entries, locales } = output;
-      const content = shouldFilterNonEnglish ? {
-        ...output,
-        assets: filterFields(assets),
-        entries: filterFields(entries),
-        locales: locales.filter(({ code }) => code === 'en-US'),
-      } : output;
-      spaceImport({
-        content,
-        managementToken: MANAGEMENT_TOKEN,
-        spaceId: CONTENTFUL[targetEnv][targetRegion].spaceId,
-      }).then(() => {
-        console.log('Data imported successfully');
-        resolve();
-      })
-        .catch((err) => {
-          console.log('Import error', err);
-        });
-    })
-      .catch((err) => {
-        console.log('Export error', err);
-      }));
+      const importToTarget = () =>
+        spaceImport({
+          content: shouldSkipContent ? output : getContent(output, shouldFilterNonEnglish),
+          managementToken: MANAGEMENT_TOKEN,
+          spaceId: targetSpaceId,
+        }).then(resolve);
+
+      return shouldSkipContent ?
+        importToTarget() :
+        clearTarget(targetSpaceId).then(importToTarget);
+    }));
 };
