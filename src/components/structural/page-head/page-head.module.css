@@ -39,6 +39,7 @@
 
     @media (--bp-lg) {
       @mixin span 9, 12, lg;
+      padding-right: calc(var(--grid-gutter-lg) * 2);
     }
   }
 
