@@ -15,8 +15,6 @@ import {
 } from '../../utils/nav';
 import { removeMarkdown } from '../../utils/strings';
 
-import styles from './content-page.module.css';
-
 const propTypes = {
   // TODO FIX data prop type
   data: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -76,7 +74,7 @@ const ContentPageTemplate = ({
       localizedSlugList={transformLocalizedSlugData(localizedSlugData)}
       subNavProps={subNavProps}
     >
-      <div className={styles.wrapper}>
+      <div>
         <Helmet>
           <title>{seoMetaTitle || navTitle || removeMarkdown(headline)}</title>
           <meta
