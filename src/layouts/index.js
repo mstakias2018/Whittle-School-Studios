@@ -103,347 +103,200 @@ TemplateWrapper.childContextTypes = {
 export default TemplateWrapper;
 
 export const pageQuery = graphql`
+  fragment header on ContentfulHeader {
+    contentPages {
+      title: navTitle
+      link: slug
+    }
+  }
+
+  fragment footer on ContentfulFooter {
+    primaryLink1 {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    utilityLink1 {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    utilityLink2 {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+   utilityLink2Children {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink2 {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink2Children {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink3 {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink3Children {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink4 {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink4Children {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink5 {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink5Children {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink6 {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+    primaryLink6Children {
+      linkTitle
+      linkDestinationExternal
+      linkDestinationInternal {
+        slug
+        parentCategory: contentpage {
+          slug
+        }
+      }
+    }
+  }
+
+  fragment settings on ContentfulGlobalSettings {
+    translations {
+      internal {
+        content
+      }
+    }
+    fabText {
+      file {
+        url
+      }
+    }
+    contentPageShareIcons
+    footerShareIcons
+
+    # These should match our SOCIAL_NETWORK constant
+    FACEBOOK: facebookUrl
+    TWITTER: twitterUrl
+    WECHAT: weChatUrl
+    WEIBO: weiboUrl
+  }
+
   query globalQuery {
     HEADER_ENGLISH: contentfulHeader(node_locale: {eq: "en-US"}) {
-      contentPages {
-        title: navTitle
-        link: slug
-      }
+      ...header
     }
 
     HEADER_CHINESE: contentfulHeader(node_locale: {eq: "zh-CN"}) {
-      contentPages {
-        title: navTitle
-        link: slug
-      }
+      ...header
     }
 
     FOOTER_ENGLISH: contentfulFooter(node_locale: { eq: "en-US" }) {
-      primaryLink1 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      utilityLink1 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      utilityLink2 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-     utilityLink2Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink2 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink2Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink3 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink3Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink4 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink4Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink5 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink5Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink6 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink6Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
+      ...footer
     }
 
     FOOTER_CHINESE: contentfulFooter(node_locale: { eq: "zh-CN" }) {
-      primaryLink1 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      utilityLink1 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      utilityLink2 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-     utilityLink2Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink2 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink2Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink3 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink3Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink4 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink4Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink5 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink5Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink6 {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
-      primaryLink6Children {
-        linkTitle
-        linkDestinationExternal
-        linkDestinationInternal {
-          slug
-          parentCategory: contentpage {
-            slug
-          }
-        }
-      }
+      ...footer
     }
 
     SETTINGS_ENGLISH: contentfulGlobalSettings(node_locale: {eq: "en-US"}) {
-      translations {
-        internal {
-          content
-        }
-      }
-      fabText {
-        file {
-          url
-        }
-      }
-      contentPageShareIcons
-      footerShareIcons
-
-      # These should match our SOCIAL_NETWORK constant
-      FACEBOOK: facebookUrl
-      TWITTER: twitterUrl
-      WECHAT: weChatUrl
-      WEIBO: weiboUrl
+      ...settings
     }
 
     SETTINGS_CHINESE: contentfulGlobalSettings(node_locale: {eq: "zh-CN"}) {
-      translations {
-        internal {
-          content
-        }
-      }
-      fabText {
-        file {
-          url
-        }
-      }
-      contentPageShareIcons
-      footerShareIcons
-
-      # These should match our SOCIAL_NETWORK constant
-      FACEBOOK: facebookUrl
-      TWITTER: twitterUrl
-      WECHAT: weChatUrl
-      WEIBO: weiboUrl
+      ...settings
     }
   }
 `;

@@ -107,6 +107,17 @@ ContentPageTemplate.propTypes = propTypes;
 export default ContentPageTemplate;
 
 export const pageQuery = graphql`
+  fragment commonNavProps on ContentfulContentPage {
+    overviewNavTitle
+    categorySlug: slug
+    subcategories {
+      description: navDescription
+      id
+      slug
+      title: navTitle
+    }
+  }
+
   query contentPageQuery($id: String!, $idRegex: String!) {
     localizedSlugData: allContentfulContentPage(
       filter: { id: { regex: $idRegex } }
@@ -136,27 +147,13 @@ export const pageQuery = graphql`
       subhead
 
       # SUBNAV PROPERTIES - CATEGORY
-      overviewNavTitle
-      categorySlug: slug
-      subcategories {
-        description: navDescription
-        id
-        slug
-        title: navTitle
-      }
+      ...commonNavProps
 
       # SUBNAV PROPERTIES - NESTED ARTICLE
       parentCategory: contentpage {
         categoryTitle: navTitle
         categoryDescription: navDescription
-        overviewNavTitle
-        categorySlug: slug
-        subcategories {
-          description: navDescription
-          id
-          slug
-          title: navTitle
-        }
+        ...commonNavProps
       }
 
       modules {
@@ -206,7 +203,7 @@ export const pageQuery = graphql`
           title3
         }
         ... on ContentfulList {
-        description1 {
+          description1 {
             markdown: description1
           }
           description2 {
