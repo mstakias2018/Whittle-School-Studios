@@ -1,4 +1,5 @@
 @import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/mixins.css';
 @import '../../../assets/styles/includes/typography.css';
 
 .typeHome {
