@@ -6,6 +6,7 @@ import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 import styles from './body-text.module.css';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
+import { LANGUAGE } from '../../../constants/regions';
 
 const propTypes = {
   content: PROP_TYPES.MARKDOWN,
@@ -18,12 +19,30 @@ class BodyText extends Component {
     return { imageSources: this.props.imageSources };
   }
 
+  componentDidMount = () => {
+    const { isFirstModule: hasDropCap } = this.props;
+    const { language } = this.context;
+
+    if (hasDropCap && language !== LANGUAGE.CHINESE) {
+      const firstParagraph = this.markdownWrapper.querySelectorAll('p:first-of-type');
+      const paragraphElements = firstParagraph[0].childNodes;
+      const text = Object.keys(paragraphElements).filter(key => paragraphElements[key].nodeName !== 'SPAN')
+        .map(key => paragraphElements[key]);
+      if (text && text[0]) {
+        const firstTextEl = text[0].textContent;
+        text[0].textContent = `${firstTextEl.slice(0, 1)} ${firstTextEl.slice(1)}`;
+      }
+    }
+  }
+
   render() {
     const { content, isFirstModule: hasDropCap } = this.props;
-
     return (
       <div className={cx(styles.componentWrapper, { hasDropCap }, CLASSES.BODY_TEXT)}>
-        <div className={styles.content}>
+        <div
+          className={styles.content}
+          ref={(el) => { this.markdownWrapper = el; }}
+        >
           <Markdown
             allowedTypes={ALLOWED_TYPES.WITH_IMAGE}
             className={styles.componentContent}
@@ -38,6 +57,9 @@ class BodyText extends Component {
 BodyText.propTypes = propTypes;
 BodyText.childContextTypes = {
   imageSources: PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES),
+};
+BodyText.contextTypes = {
+  language: PROP_TYPES.LANGUAGE.isRequired,
 };
 
 export default BodyText;
