@@ -44,7 +44,7 @@
 .selectButton {
   @mixin type-language-select;
   @mixin reset-button;
-  color: var(--color-text-light);
+  color: var(--color-text-dark);
   display: block;
   padding: 0 10px;
   text-align: left;
@@ -58,7 +58,7 @@
 }
 
 .selectButton_isSelected {
-  color: var(--color-text-dark);
+  color: var(--color-text-light);
 }
 
 .select:not(.select_isActive) {
