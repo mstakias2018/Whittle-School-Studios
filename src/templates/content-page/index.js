@@ -13,6 +13,7 @@ import {
   transformLocalizedSlugData,
   transformSubnavProps,
 } from '../../utils/nav';
+import { removeMarkdown } from '../../utils/strings';
 
 import styles from './content-page.module.css';
 
@@ -77,7 +78,7 @@ const ContentPageTemplate = ({
     >
       <div className={styles.wrapper}>
         <Helmet>
-          <title>{seoMetaTitle || navTitle || headline}</title>
+          <title>{seoMetaTitle || navTitle || removeMarkdown(headline)}</title>
           <meta
             content={metaDescription}
             name="description"

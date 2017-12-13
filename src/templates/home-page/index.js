@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 import PageHead from '../../components/structural/page-head';
 import PageWrapper from '../../components/structural/page-wrapper';
 import { PAGE_TYPE } from '../../constants/settings';
+import { removeMarkdown } from '../../utils/strings';
 
 const propTypes = {
   // TODO FIX data prop type
@@ -27,7 +28,7 @@ const ContentPageTemplate = ({
   return (
     <PageWrapper>
       <Helmet>
-        <title>{seoMetaTitle || headline}</title>
+        <title>{seoMetaTitle || removeMarkdown(headline)}</title>
         <meta
           content={metaDescription}
           name="description"
