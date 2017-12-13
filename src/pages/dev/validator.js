@@ -99,7 +99,10 @@ class Validator extends Component {
         if (node.parentCategory) ruleGroups.push(SUBCATEGORY_RULES);
 
         const ruleValidations = ruleGroups
-          .reduce((ruleGroupList, { title, list }) => {
+          .reduce((ruleGroupList, ruleGroup) => {
+            if (!ruleGroup) return ruleGroupList;
+
+            const { title, list } = ruleGroup;
             let isRuleGroupValid = true;
 
             const validatedList = list

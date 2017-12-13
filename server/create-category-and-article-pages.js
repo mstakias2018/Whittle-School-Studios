@@ -102,11 +102,11 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
         const { allContentfulContentPage, allContentfulAsset } = result.data;
 
         const contentfulAssetsById = allContentfulAsset.edges.reduce((acc, { node }) =>
-          Object.assign({}, acc, {
+          (node.file ? Object.assign({}, acc, {
             // Get ID from URL instead of using unreliable Gatsby ID
             // https://github.com/gatsbyjs/gatsby/pull/3158
             [getIdFromImgUrl(node.file.url)]: node,
-          }), {});
+          }) : acc), {});
 
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
 
