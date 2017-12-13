@@ -7,6 +7,7 @@ import InlineVideo from '../../content-modules/global/inline-video';
 import PageWrapper from '../../components/structural/page-wrapper';
 import SectionTitle from '../../content-modules/global/section-title';
 import List from '../../content-modules/global/list';
+import Post from '../../content-modules/global/post';
 
 import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
@@ -18,6 +19,14 @@ import styles from './modules.module.css';
 const CategoryCn = () => (
   <PageWrapper>
     <div className="wrapper_isChinese">
+      <div className={styles.componentInfo}>Post</div>
+      <Post
+        date="2017-01-13"
+        link="/"
+        shortText="__顕終然省賞__ 批行選部持傷社。光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭針二覧判申年売県名能戦。一以名向写保家朔南必能演機須。万混何落要正表女収芸糸使属警治。奈極投北同載佐国賠辞検田。護竹遺未歴前芸題竹帯窮雪那決。住辰壊砲世定示多手査森城資牧組罪権。勢入勇務評問能催向国得政政特同作"
+        source="県名能戦"
+        title="明辺宅横後達社翻購択面将健"
+      />
       <div className={styles.componentInfo}>Video</div>
       <InlineVideo
         alt="适区没接后"

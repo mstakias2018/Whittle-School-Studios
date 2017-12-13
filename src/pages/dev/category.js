@@ -8,6 +8,7 @@ import PageWrapper from '../../components/structural/page-wrapper';
 import SectionTitle from '../../content-modules/global/section-title';
 import List from '../../content-modules/global/list';
 import ThreeUpBreaker from '../../content-modules/global/three-up-breaker';
+import Post from '../../content-modules/global/post';
 
 import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
@@ -18,6 +19,17 @@ import styles from './modules.module.css';
 
 const Category = () => (
   <PageWrapper>
+    <div className={styles.componentInfo}>Post</div>
+    <Post
+      date="2017-01-31"
+      link="/"
+      shortText="__Inside the atrium__ of a lavishly converted warehouse in Manhattan,
+        a group of American five-year-olds are singing a nursery rhyme – in Mandarin Chinese.
+        Through the 10ft glass wall behind them, a shaft of winter sunlight descends
+        like a celestial staircase, completing this beatific scene."
+      source="The Telegraph"
+      title="World Class: A Super School for the Global Age"
+    />
     <div className={styles.componentInfo}>Video</div>
     <InlineVideo
       alt="Tiger video"

@@ -1,0 +1,91 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/mixins.css';
+
+.postWrapper {
+  @mixin component-container;
+  @mixin component-vertical-spacing;
+}
+
+.post {
+  @mixin grid-container;
+}
+
+.dateContainer {
+  @media (--bp-sm-only) {
+    @mixin span 1, 4, sm;
+  }
+
+  @media (--bp-md-only) {
+    @mixin span 1, 8, md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 1, 12, lg;
+    @mixin custom-column 1, 12, margin-left;
+  }
+}
+
+.content {
+  @media (--bp-sm-only) {
+    @mixin span 3, 4, sm;
+  }
+
+  @media (--bp-md-only) {
+    @mixin span 5, 8, md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 8, 12, lg;
+  }
+}
+
+.source {
+  @mixin type-eyebrow;
+  display: inline-block;
+  margin-bottom: 20px;
+
+  @media (--bp-md-only) {
+    margin-bottom: 25px;
+  }
+
+  @media (--bp-lg) {
+    margin-bottom: 22px;
+  }
+}
+
+.title {
+  @mixin type-post-title;
+
+  @media (--bp-sm-only) {
+    margin-bottom: 14px;
+  }
+
+  @media (--bp-md) {
+    margin-bottom: 8px;
+  }
+
+  @media (--bp-md) {
+    margin-bottom: 15px;
+  }
+}
+
+.text {
+  @mixin type-post-description;
+
+  @media (--bp-sm-only) {
+    margin-bottom: 14px;
+  }
+
+  @media (--bp-md-only) {
+    margin-bottom: 21px;
+  }
+
+  @media (--bp-lg) {
+    margin-bottom: 24px;
+  }
+}
+
+.readMore {
+  @mixin type-link;
+}

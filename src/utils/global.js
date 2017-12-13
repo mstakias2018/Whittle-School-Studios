@@ -10,3 +10,31 @@ exports.getChunks = (array, numberOfItems) => {
 };
 
 exports.getRandomKey = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+
+const getNumberWithSufix = (no) => {
+  const sufix = ['st', 'nd', 'rd'];
+  const skipNumbers = [11, 12, 13];
+
+  let text = `${no}th`;
+
+  if (no.toString().length > 1) {
+    const numLast = parseInt(no.toString().split('')[1], 10);
+    if (numLast <= sufix.length && !skipNumbers.includes(no)) {
+      text = `${no}${sufix[numLast - 1]}`;
+    }
+  } else if (no <= sufix.length) {
+    text = `${no}${sufix[no - 1]}`;
+  }
+
+  return text;
+};
+
+exports.getDateInfo = (date) => {
+  const d = date.split('-').map(value => parseInt(value, 10));
+
+  return {
+    day: d[2],
+    dayText: getNumberWithSufix(d[2]),
+    month: d[1],
+  };
+};

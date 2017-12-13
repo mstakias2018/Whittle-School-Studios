@@ -1,0 +1,32 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.date {
+  display: block;
+  padding-top: 10px;
+  text-align: center;
+  width: 32px;
+
+  span {
+    display: block;
+  }
+
+  @media (--bp-md-only) {
+    padding-top: 32px;
+  }
+
+  @media (--bp-lg) {
+    padding-top: 16px;
+  }
+}
+
+.month {
+  @mixin type-month;
+  border-bottom: solid 1px var(--color-light-border);
+  margin-bottom: 11px;
+  padding-bottom: 10px;
+}
+
+.day {
+  @mixin type-date;
+}

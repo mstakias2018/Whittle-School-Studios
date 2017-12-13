@@ -491,3 +491,57 @@
     font-family: var(--font-sans-serif-light-cn);
   }
 }
+
+@define-mixin type-date {
+  color: var(--color-text-dark);
+  font-family: var(--font-serif-light);
+  font-size: 30px;
+  line-height: 24px;
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-serif-light-cn);
+  }
+}
+
+@define-mixin type-month {
+  color: var(--color-text-dark);
+  font-family: var(--font-sans-serif-light);
+  font-size: 14px;
+  line-height: 16px;
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-sans-serif-light-cn);
+  }
+}
+
+@define-mixin type-post-title {
+  @mixin type-h2;
+
+  font-size: 30px;
+  letter-spacing: 0.23px;
+
+  @media (--bp-md) {
+    font-size: 72px;
+    letter-spacing: 0;
+    line-height: 70px;
+  }
+
+  @media (--bp-lg) {
+    letter-spacing: 0.5px;
+  }
+}
+
+@define-mixin type-post-description {
+  @mixin type-descriptor;
+
+  letter-spacing: 0.39px;
+  line-height: 24px;
+
+  @media (--bp-md) {
+    letter-spacing: 0;
+  }
+
+  @media (--bp-lg) {
+    line-height: 30px;
+  }
+}
