@@ -14,10 +14,12 @@ import WithWindowListener from '../../../hocs/withWindow';
 import { BREAKPOINTS } from '../../../constants/breakpoints';
 import { PAGE_PADDING, FAB_SIZE } from '../../../constants/dimensions';
 import { CLASSES } from '../../../constants/classes';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 const propTypes = {
-  breakpoint: PROP_TYPES.BREAKPOINT,
+  dimensions: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+  }),
 };
 
 class Fab extends React.Component {
@@ -37,7 +39,7 @@ class Fab extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.breakpoint !== this.props.breakpoint) {
+    if (nextProps.dimensions !== this.props.dimensions) {
       this.setInitialStates();
     }
   }
