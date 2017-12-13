@@ -13,10 +13,30 @@
     display: block;
     width: 100%;
   }
+
+  picture:not(:last-child) {
+    padding-bottom: 30px;
+
+    @media (--bp-md) {
+      padding-bottom: 60px;
+    }
+  }
 }
 
 .subhead {
   @mixin type-h2-italic;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  &:not(:last-child) {
+    padding-bottom: 30px;
+
+    @media (--bp-md) {
+      padding-bottom: 60px;
+    }
+  }
 }
 
 .wrapper .pageHead .subhead {
@@ -57,12 +77,10 @@
 
   .subhead {
     @mixin span 4, 4, sm;
-    padding-bottom: 30px;
 
     @media (--bp-md-only) {
       @mixin span 8, 8, md;
       margin-top: 0;
-      padding-bottom: 60px;
     }
 
     @media (--bp-lg) {
@@ -93,7 +111,6 @@
 
   picture {
     @mixin span 4, 4, sm;
-    margin-bottom: 30px;
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
@@ -101,7 +118,6 @@
 
     @media (--bp-lg) {
       @mixin span 10, 12, lg;
-      margin-bottom: 40px;
     }
   }
 }
@@ -127,7 +143,6 @@
 
   picture {
     @mixin span 4, 4, sm;
-    margin-bottom: 30px;
 
     @media (--bp-md) {
       @mixin span 8, 8, md;
@@ -135,7 +150,6 @@
 
     @media (--bp-lg) {
       @mixin span 10, 12, lg;
-      margin-bottom: 40px;
     }
   }
 
@@ -146,7 +160,6 @@
 
     @media (--bp-md) {
       @mixin span 6, 8, md;
-      margin-bottom: 56px;
       margin-top: 0;
     }
 
