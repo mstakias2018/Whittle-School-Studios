@@ -101,6 +101,7 @@ class Submenu extends Component {
                           className={styles.itemDescription}
                         >
                           {description}
+                          <span className={styles.emptySpace} />
                           <img
                             alt=""
                             className={styles.arrow}

@@ -228,16 +228,17 @@
   @mixin type-sub-nav;
   align-self: flex-end;
   color: var(--color-text-dark);
-  display: block;
+  display: inline-block;
   flex-basis: 100%;
   font-weight: 200;
-  margin-right: 15px;
   padding-top: 10px;
   position: relative;
   width: 100%;
 
-  @media (--bp-sm-only) {
-    display: none;
+  .itemLink & {
+    @media (--bp-sm-only) {
+      display: none;
+    }
   }
 }
 
@@ -307,13 +308,11 @@
   }
 }
 
-.arrow {
-  bottom: 4px;
-  position: absolute;
-  right: 0;
-  transform: translateX(100%);
+.emptySpace {
+  padding-left: 20%;
+}
 
-  @media (--bp-md) {
-    padding-left: 7px;
-  }
+.arrow {
+  position: relative;
+  top: 3px;
 }
