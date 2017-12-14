@@ -197,8 +197,17 @@ const THUMBNAILS_LIST_ITEM = {
   title: PropTypes.string.isRequired,
 };
 
+const EVENTS_LIST = PropTypes.arrayOf(PropTypes.shape({
+  date: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  link: PropTypes.string,
+  location: PropTypes.string,
+  title: PropTypes.string.isRequired,
+}));
+
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
+  EVENTS_LIST,
   FOOTER_DATA: PropTypes.shape({
     primaryLinks: footerLinkArray,
     utilityLinks: footerLinkArray,
