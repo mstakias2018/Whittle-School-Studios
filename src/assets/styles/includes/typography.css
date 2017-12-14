@@ -380,8 +380,9 @@
 @define-mixin type-eyebrow {
   color: var(--color-text-light);
   font-family: var(--font-sans-serif-light);
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  line-height: 12px;
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
@@ -489,6 +490,21 @@
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
+  }
+}
+
+@define-mixin thumbnailsList-title {
+  color: var(--color-text-dark);
+  font-family: var(--font-serif-light-italic);
+  font-size: 30px;
+  line-height: 36px;
+
+  @media (--bp-lg) {
+    font-size: 36px;
+  }
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-serif-light-italic-cn);
   }
 }
 

@@ -98,6 +98,33 @@ const LIST = PropTypes.shape({
   ...listPropTypes,
 });
 
+const thumbnailsListPropTypes = {
+  item1Asset: PropTypes.string.isRequired,
+  item1Description: PropTypes.string.isRequired,
+  item1Title: PropTypes.string.isRequired,
+  item2Asset: PropTypes.string.isRequired,
+  item2Description: PropTypes.string.isRequired,
+  item2Title: PropTypes.string.isRequired,
+  item3Asset: PropTypes.string.isRequired,
+  item3Description: PropTypes.string.isRequired,
+  item3Title: PropTypes.string.isRequired,
+  item4Asset: PropTypes.string,
+  item4Description: PropTypes.string,
+  item4Title: PropTypes.string,
+  item5Asset: PropTypes.string,
+  item5Description: PropTypes.string,
+  item5Title: PropTypes.string,
+  item6Asset: PropTypes.string,
+  item6Description: PropTypes.string,
+  item6Title: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};
+
+const THUMBNAILS_LIST = PropTypes.shape({
+  __typename: createTypenameChecker('ContentfulList'),
+  ...thumbnailsListPropTypes,
+});
+
 const OPENAPPLY_IFRAME = PropTypes.shape({
   __typename: createTypenameChecker('ContentfulOpenApplyIFrame'),
   description: MARKDOWN,
@@ -161,6 +188,15 @@ const LIST_ITEM = {
   title: PropTypes.string.isRequired,
 };
 
+const THUMBNAILS_LIST_ITEM = {
+  asset: PropTypes.shape({
+    alt: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+  description: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
   FOOTER_DATA: PropTypes.shape({
@@ -196,6 +232,7 @@ exports.PROP_TYPES = {
     SECTION_TITLE,
     SLIDESHOW_CAROUSEL,
     THREE_UP_BREAKER,
+    THUMBNAILS_LIST,
   ])),
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
   SOCIAL_ICONS: PropTypes.shape({
@@ -210,4 +247,5 @@ exports.PROP_TYPES = {
       title: PropTypes.string.isRequired,
     }).isRequired).isRequired,
   }),
+  THUMBNAILS_LIST_ITEM,
 };

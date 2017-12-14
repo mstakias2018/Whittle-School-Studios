@@ -8,6 +8,7 @@ import PageWrapper from '../../components/structural/page-wrapper';
 import SectionTitle from '../../content-modules/global/section-title';
 import List from '../../content-modules/global/list';
 import Post from '../../content-modules/global/post';
+import ThumbnailsList from '../../content-modules/global/thumbnails-list';
 
 import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
@@ -104,6 +105,19 @@ const CategoryCn = () => (
         title="度応格改応記則用更現村開道図特"
       />
     </div>
+    <div className={styles.componentInfo}>Categorized list with thumbnails</div>
+    <ThumbnailsList
+      item1Asset={{ alt: 'Image 1 alt', image: largeImage }}
+      item1Description="金政所间风族争验口这部如 金政所间风 所间风."
+      item1Title="金政所 间风族争验"
+      item2Asset={{ alt: 'Image 2 alt', image: largeImage }}
+      item2Description="金政所间风族争验口这部如 金政所间风 所间风. 金政所间风族争验口这部如 金政所间风 所间风."
+      item2Title="金政所 间风族争验"
+      item3Asset={{ alt: 'Image 3 alt', image: largeImage }}
+      item3Description="金政所间风族争验口这部如 金政所间风 所间风."
+      item3Title="金政所 间风族争验"
+      title="金政所 所间风族争"
+    />
   </PageWrapper>
 );
 

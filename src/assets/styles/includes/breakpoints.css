@@ -1,17 +1,17 @@
 :root {
-  /* 650px */
+  /* up to 650px */
   @custom-media --bp-sm-only (width <= 40.625em);
   /* 500px-650px */
   @custom-media --bp-sm-upper-only (width > 31.25rem) and (width <= 40.625em);
-  /* 650px */
+  /* from 650px up */
   @custom-media --bp-md (width > 40.625em);
   /* 650px-1100px */
   @custom-media --bp-md-only (width > 40.625em) and (width <= 68.75em);
-  /* 1100px */
+  /* up to 1100px */
   @custom-media --bp-sm-and-md-only (width <= 68.75em);
-  /* 1100px */
+  /* from 1100px up */
   @custom-media --bp-lg (width > 68.75em);
-  /* 1600px */
+  /* from 1600px up */
   @custom-media --bp-xl (width >= 100em);
 }
 
@@ -19,4 +19,7 @@
 :root {
   /* 1100px-1280px */
   @custom-media --bp-lg-lower-only (width > 68.75em) and (width <= 80em);
+
+  /* up to 750px */
+  @custom-media --bp-sm-and-md-lower-only (width <= 46.875em);
 }
