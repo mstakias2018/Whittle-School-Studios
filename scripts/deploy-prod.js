@@ -24,8 +24,8 @@ transferSpaces(
       console.log('=== PUSHING TO STAGING/PROD BRANCHES');
       simpleGit()
         .fetch()
-        .push(['-f', 'origin', 'refs/remotes/origin/master:refs/heads/staging'])
-        .push(['-f', 'origin', 'refs/remotes/origin/master:refs/heads/production']);
+        .push(['-f', 'origin', 'refs/remotes/origin/qa:refs/heads/staging'])
+        .push(['-f', 'origin', 'refs/remotes/origin/qa:refs/heads/production']);
     });
   });
 });
