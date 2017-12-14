@@ -13,16 +13,20 @@ const propTypes = {
   title: PropTypes.string,
 };
 
-const LEFT_ALIGNMENT_CLASS = 'left';
+const INDICATORS = {
+  ALIGN_LEFT: 'left',
+  SHAPE_CIRCLE: 'circle',
+};
 
 const MarkdownImage = ({ alt, src, title: caption }, { imageSources }) => {
   const id = getIdFromImgUrl(src);
   const sourcesBySize = imageSources.find(n => n.id === id);
 
   const isVideo = /^https?:\/\/player\.vimeo\.com\/video\/\d+$/.test(src);
-  const [altTag, alignmentIndicator] = alt.split('--');
+  const [altTag, ...indicators] = alt.split('--');
   const wrapperClasses = cx(styles.wrapper, {
-    [styles.wrapper_isAlignLeft]: alignmentIndicator === LEFT_ALIGNMENT_CLASS,
+    [styles.wrapper_isAlignLeft]: indicators.includes(INDICATORS.ALIGN_LEFT),
+    _isCircle: indicators.includes(INDICATORS.SHAPE_CIRCLE),
   });
 
   const inside = isVideo ? (

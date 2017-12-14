@@ -35,6 +35,16 @@ Image - left aligned
 ![My alt tag--left](//contentful-url.com "Optional caption")
 ```
 
+Image - circle mask
+```
+![My alt tag--circle](//contentful-url.com "Optional caption")
+```
+
+Note: Circle/left attributes can be combined in any order. These are both valid:
+
+- `My alt tag--circle--left`
+- `My alt tag--left--circle`
+
 Video - right aligned
 ```
 ![My alt tag](https://player.vimeo.com/video/243740445 "Optional caption")
@@ -255,12 +265,12 @@ type QuoteStyle = ["PullQuote", "BlockQuote"];
   description1: {
     description1: 'Cursus magna, vel scelerisque nisl consectetur et.',
   },
-  
+
   title2: 'Second list item',
   description2: {
     description2: 'Cursus magna, vel scelerisque nisl consectetur et.',
   },
-  
+
   title3: 'Third list item',
   description3: {
     description3: `[Cursus magna](http://www.google.com), vel scelerisque
