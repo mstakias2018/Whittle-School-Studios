@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 
+import 'dotenv/config';
+
 import spaceExport from 'contentful-export';
 import spaceImport from 'contentful-import';
 import { createClient } from 'contentful-management';
