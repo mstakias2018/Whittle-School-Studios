@@ -58,7 +58,7 @@
 }
 
 .blockOrder {
-  width: auto;
+  flex-basis: 100px;
 }
 
 .blockOrderInner {
@@ -89,6 +89,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: calc(100% - 100px);
 }
 
 .blockTitle {
@@ -99,4 +100,10 @@
 
 .blockText {
   @mixin breaker-text;
+
+  a {
+    @mixin type-link;
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
