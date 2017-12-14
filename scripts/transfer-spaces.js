@@ -6,10 +6,7 @@ import { createClient } from 'contentful-management';
 
 import { CONTENTFUL } from '../src/constants/contentful';
 
-// TODO ENV VARS
-const MANAGEMENT_TOKEN = 'CFPAT-d3337097476df5ed2ab54c9764486916b6c9e851ccffc075eb7f70282e9ea6f3';
-
-const client = createClient({ accessToken: MANAGEMENT_TOKEN });
+const client = createClient({ accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN });
 
 const filterFields = entries =>
   entries.map((entry) => {
@@ -84,7 +81,7 @@ export default (sourceInfo, targetInfo, opts = {}) => {
 
   return new Promise(resolve =>
     spaceExport({
-      managementToken: MANAGEMENT_TOKEN,
+      managementToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
       saveFile: false,
       skipContent: !!shouldSkipContent,
       skipWebhooks: true,
@@ -93,7 +90,7 @@ export default (sourceInfo, targetInfo, opts = {}) => {
       const importToTarget = () =>
         spaceImport({
           content: shouldSkipContent ? output : getContent(output, shouldFilterNonEnglish),
-          managementToken: MANAGEMENT_TOKEN,
+          managementToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
           spaceId: targetSpaceId,
         }).then(resolve);
 

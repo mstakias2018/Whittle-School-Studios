@@ -10,3 +10,4 @@ bin/
 .DS_Store
 yarn-error.log
 .vscode/settings.json
+.env

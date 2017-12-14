@@ -2,26 +2,34 @@
 
 ## Setup
 
-1. **Clone the repo:**
+**Set up environment variables**
+
+```sh
+$ cp .env.example .env
+```
+
+Fill out environment variables with Contentful properties. Only the DEV values are needed for development; other values will be needed for deployment.
+
+**Clone the repo**
 
 ```sh
 $ git clone https://github.com/workco/whittle-school.git
 $ cd whittle-school
 ```
 
-2. **Install dependencies**:
+**Install dependencies**
 
 ```sh
 $ yarn
 ```
 
-3. **Start dev server**:
+**Start dev server**
 
 ```sh
 $ yarn develop
 ```
 
-4. **Build locally and start server**:
+**Build locally and start server**
 
 ```sh
 $ yarn start

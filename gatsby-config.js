@@ -1,4 +1,5 @@
-// TODO env variables
+require('dotenv').config();
+
 const { BRANCH_ENV_MAP, ENV } = require('./src/constants/env');
 const { CONTENTFUL } = require('./src/constants/contentful');
 
