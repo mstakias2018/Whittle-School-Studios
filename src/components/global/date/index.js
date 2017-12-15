@@ -1,20 +1,25 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import { getDateInfo } from '../../../utils/global';
 
 import styles from './date.module.css';
 
-const propTypes = { date: PropTypes.string.isRequired };
+const propTypes = {
+  date: PropTypes.string.isRequired,
+  isInline: PropTypes.bool.isRequired,
+};
 
-const Date = ({ date }, { translations }) => {
+const Date = ({ date, isInline }, { translations }) => {
   const { day, dayText, month } = getDateInfo(date);
 
   return (
     <time
       aria-label={`${translations.date.months[month].long} ${dayText}`}
-      className={styles.date}
+      className={cx(styles.date, {
+        [styles.date_inline]: isInline,
+      })}
       dateTime={date}
     >
       <span

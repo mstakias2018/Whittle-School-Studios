@@ -18,15 +18,36 @@
   @media (--bp-lg) {
     padding-top: 16px;
   }
+
+  &.date_inline {
+    display: flex;
+    padding-top: 0;
+  }
 }
 
 .month {
   @mixin type-month;
-  border-bottom: solid 1px var(--color-light-border);
-  margin-bottom: 11px;
-  padding-bottom: 10px;
+
+  .date:not(.date_inline) & {
+    border-bottom: solid 1px var(--color-light-border);
+    margin-bottom: 11px;
+    padding-bottom: 10px;
+  }
+
+  .date_inline & {
+    @mixin type-eyebrow;
+    color: var(--color-text-light);
+    letter-spacing: 0.5px;
+  }
 }
 
 .day {
   @mixin type-date;
+
+  .date_inline & {
+    @mixin type-eyebrow;
+    color: var(--color-text-light);
+    letter-spacing: 0.5px;
+    margin-left: 5px;
+  }
 }

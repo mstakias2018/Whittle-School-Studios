@@ -217,6 +217,12 @@ exports.PROP_TYPES = {
     link: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })),
+  HERO: PropTypes.shape({
+    eventListing: PropTypes.shape({
+      list: EVENTS_LIST,
+      title: PropTypes.string.isRequired,
+    }),
+  }),
   HISTORY: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),

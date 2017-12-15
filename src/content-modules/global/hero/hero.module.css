@@ -1,0 +1,13 @@
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.wrapper {
+  @mixin component-container;
+}
+
+.container {
+  @media (--bp-md) {
+    @mixin grid-container;
+  }
+}

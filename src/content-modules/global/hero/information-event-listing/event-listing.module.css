@@ -1,0 +1,48 @@
+@import '../../../../assets/styles/includes/breakpoints.css';
+@import '../../../../assets/styles/includes/mixins.css';
+@import '../../../../assets/styles/includes/typography.css';
+
+.wrapper {
+  display: none;
+
+  @media (--bp-lg) {
+    @mixin span 2, 12, lg;
+    display: block;
+  }
+}
+
+.componentTitle {
+  @mixin type-h5-italic;
+  border-top: 2px solid var(--color-text-dark);
+  color: var(--color-text-light);
+  letter-spacing: 0.2px;
+  padding: 40px 0 45px;
+}
+
+.list {
+  @mixin reset-list;
+}
+
+.listItem {
+  margin-bottom: 36px;
+  padding-right: calc(var(--grid-gutter-lg) * 2);
+}
+
+.date {
+  @mixin type-eyebrow;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.title {
+  @mixin type-h4;
+  font-size: 18px;
+  letter-spacing: 0.75px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+
+.location {
+  @mixin type-eyebrow;
+  letter-spacing: 0.5px;
+}
