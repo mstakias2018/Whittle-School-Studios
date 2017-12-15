@@ -20,3 +20,13 @@ exports.PAGE_TYPES = [PAGE_TYPE.ARTICLE, PAGE_TYPE.CATEGORY, PAGE_TYPE.HOME];
 
 
 exports.SUBMENU_BREAK = { SMALL: 2 };
+
+exports.HOME_SECTION_TITLE_COLOR = {
+  GRAY: 'gray',
+  YELLOW: 'yellow',
+};
+
+exports.HOME_SECTION_TITLE_POSITION = {
+  LEFT: 'left',
+  RIGHT: 'right',
+};

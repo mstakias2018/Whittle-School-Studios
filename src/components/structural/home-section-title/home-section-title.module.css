@@ -1,0 +1,88 @@
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/variables.css';
+@import '../../../assets/styles/includes/breakpoints.css';
+
+.wrapper {
+  @mixin component-container;
+  position: relative;
+}
+
+.text {
+  display: inline-block;
+  font-family: var(--font-serif-light);
+  font-size: 60px;
+  letter-spacing: 0.15px;
+  line-height: 70px;
+  position: absolute;
+  transform: rotate(90deg);
+  transform-origin: 35px 35px;
+
+  @media (--bp-md) {
+    font-size: 110px;
+    letter-spacing: 0.2px;
+    line-height: 92px;
+    transform-origin: 46px 46px;
+  }
+
+  @media (--bp-lg) {
+    font-size: 140px;
+    letter-spacing: 0;
+    line-height: 120px;
+    transform-origin: 60px 60px;
+  }
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-serif-light-cn);
+    transform: rotate(0);
+    width: 0;
+
+    @media (--bp-md) {
+      line-height: 110px;
+    }
+
+    @media (--bp-lg) {
+      line-height: 140px;
+    }
+  }
+}
+
+.left {
+  left: -17px;
+
+  @media (--bp-md) {
+    left: -20px;
+  }
+
+  @media (--bp-lg) {
+    left: -25px;
+  }
+}
+
+.right {
+  left: calc(100% - 48px);
+
+  @media (--bp-md) {
+    left: calc(100% - 70px);
+  }
+
+  @media (--bp-lg) {
+    left: calc(100% - 95px);
+  }
+}
+
+.top {
+  top: 20px;
+}
+
+.center {
+  top: 140px;
+}
+
+.gray {
+  color: var(--color-text-light-section-title);
+}
+
+.yellow {
+  color: var(--color-secondary-medium);
+}

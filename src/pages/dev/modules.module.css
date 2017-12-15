@@ -1,3 +1,5 @@
+@import '../../assets/styles/includes/variables.css';
+
 .componentInfo {
   font-size: 14px;
   padding: 20px;
@@ -5,4 +7,17 @@
     border-top: 1px dotted #000;
     margin-top: 20px;
   }
+}
+
+.fakeHomeSection {
+  height: 960px;
+  width: 100%;
+}
+
+.gray {
+  background-color: var(--color-background-light-green-gray);
+}
+
+.yellow {
+  background-color: var(--color-secondary-light);
 }
