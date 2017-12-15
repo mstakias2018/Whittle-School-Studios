@@ -199,7 +199,22 @@
   }
 }
 
+@define-mixin markdown-support {
+  strong {
+    font-family: var(--font-sans-serif-regular);
+
+    :global(.wrapper_isChinese) & {
+      font-family: var(--font-sans-serif-regular-cn);
+    }
+  }
+
+  a {
+    @mixin inline-type-link;
+  }
+}
+
 @define-mixin type-paragraph {
+  @mixin markdown-support;
   color: var(--color-text-dark);
   font-family: var(--font-sans-serif-light);
   font-size: 14px;
@@ -216,21 +231,10 @@
   :global(.wrapper_isChinese) & {
     font-family: var(--font-sans-serif-light-cn);
   }
-
-  strong {
-    font-family: var(--font-sans-serif-regular);
-
-    :global(.wrapper_isChinese) & {
-      font-family: var(--font-sans-serif-regular-cn);
-    }
-  }
-
-  a {
-    @mixin inline-type-link;
-  }
 }
 
 @define-mixin type-descriptor {
+  @mixin markdown-support;
   color: var(--color-text-dark);
   font-family: var(--font-sans-serif-light);
   font-size: 14px;
@@ -254,15 +258,23 @@
   }
 }
 
-/* CTA */
-@define-mixin type-link {
+@define-mixin link-common {
   color: var(--color-text-tomato);
   font-family: var(--font-sans-serif-regular);
+  transition: text-decoration var(--timing-fast) var(--easing-default);
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-sans-serif-regular-cn);
+  }
+}
+
+/* CTA */
+@define-mixin type-link {
+  @mixin link-common;
   font-size: 14px;
   text-decoration: none;
   text-decoration-color: transparent;
   text-underline-position: under;
-  transition: text-decoration var(--timing-fast) var(--easing-default);
 
   &:hover {
     text-decoration: underline;
@@ -272,22 +284,18 @@
   :global(._touchDevice) &:hover {
     text-decoration: none;
   }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-regular-cn);
-  }
 }
 
 @define-mixin inline-type-link {
+  @mixin link-common;
+  text-decoration: underline;
+  text-decoration-color: var(--color-link-hover-underline);
+  text-underline-position: under;
+
   &:hover {
     text-decoration: none;
     text-decoration-color: transparent;
   }
-
-  @mixin type-link;
-  text-decoration: underline;
-  text-decoration-color: var(--color-link-hover-underline);
-  text-underline-position: under;
 
   :global(._touchDevice) &:hover {
     text-decoration: underline;

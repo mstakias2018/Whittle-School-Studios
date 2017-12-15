@@ -5,10 +5,7 @@ import BodyText from '../../content-modules/global/body-text';
 import InlineImage from '../../content-modules/global/inline-image';
 import InlineVideo from '../../content-modules/global/inline-video';
 import PageWrapper from '../../components/structural/page-wrapper';
-import SectionTitle from '../../content-modules/global/section-title';
-import List from '../../content-modules/global/list';
 import ThreeUpBreaker from '../../content-modules/global/three-up-breaker';
-import Post from '../../content-modules/global/post';
 import ThumbnailsList from '../../content-modules/global/thumbnails-list';
 import Recirculation from '../../components/structural/recirculation';
 
@@ -100,17 +97,7 @@ const Category = () => (
         title: 'title 4',
       }]}
     />
-    <div className={styles.componentInfo}>Post</div>
-    <Post
-      date="2017-01-31"
-      link="/"
-      shortText="__Inside the atrium__ of a lavishly converted warehouse in Manhattan,
-        a group of American five-year-olds are singing a nursery rhyme – in Mandarin Chinese.
-        Through the 10ft glass wall behind them, a shaft of winter sunlight descends
-        like a celestial staircase, completing this beatific scene."
-      source="The Telegraph"
-      title="World Class: A Super School for the Global Age"
-    />
+
     <div className={styles.componentInfo}>Video</div>
     <InlineVideo
       alt="Tiger video"
@@ -160,33 +147,6 @@ const Category = () => (
       shape={IMAGE_SHAPE.RECTANGLE}
     />
 
-    <div className={styles.componentInfo}>List</div>
-    <List data={[{
-        description: 'Cursus magna, vel scelerisque nisl consectetur et.',
-        title: 'Shenzhen',
-      }, {
-        description: 'Praesent commodo cursus magna, vel scelerisque nisl.',
-        title: 'New York',
-      }, {
-        description: '[Cursus magna](/#), vel scelerisque nisl consectetur et.',
-        title: 'Washington D.C.',
-      }, {
-        description: 'Praesent commodo cursus magna, vel scelerisque.',
-        title: 'Dubai',
-      }, {
-        description: 'Praesent commodo cursus magna, vel scelerisque.',
-        title: 'Mumbai',
-      }, {
-        description: 'Praesent commodo cursus magna, vel scelerisque.',
-        title: 'Shanghai',
-      }]}
-    />
-
-    <div className={styles.componentInfo}>Section title</div>
-    <SectionTitle
-      number={5}
-      title="Our Upcoming Locations"
-    />
     <div className={styles.componentInfo}>3 up breaker component</div>
     <ThreeUpBreaker
       content1={{ markdown: 'Any parent knows what a child or two can do to a home in short order. Imagine what 2,500 can do to a school building! We must choose materials that can co-exist with the natural energy of children—or that can be replaced easily when it is time' }}
@@ -196,6 +156,7 @@ const Category = () => (
       title2="Exceptional Faculty"
       title3="Progressive Pedagogy"
     />
+
     <div className={styles.componentInfo}>Categorized list with thumbnails</div>
     <ThumbnailsList
       item1Asset={{ alt: 'Image 1 alt', image: largeImage }}

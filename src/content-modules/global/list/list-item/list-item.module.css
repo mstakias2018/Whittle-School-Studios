@@ -22,8 +22,4 @@
 
 .description {
   @mixin type-descriptor;
-
-  a {
-    @mixin inline-type-link;
-  }
 }

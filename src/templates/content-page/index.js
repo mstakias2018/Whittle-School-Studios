@@ -239,6 +239,21 @@ export const pageQuery = graphql`
           number
           title
         }
+        ... on ContentfulPost {
+          date
+          title
+          source
+          description {
+            markdown: description
+          }
+          linkInternal {
+            slug
+            parentCategory: contentpage {
+              slug
+            }
+          }
+          linkExternal
+        }
       }
     }
   }

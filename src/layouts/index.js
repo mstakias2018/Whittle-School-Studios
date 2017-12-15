@@ -110,146 +110,59 @@ export const pageQuery = graphql`
     }
   }
 
+  fragment footerLink on ContentfulFooterLink {
+    linkTitle
+    linkDestinationExternal
+    linkDestinationInternal {
+      slug
+      parentCategory: contentpage {
+        slug
+      }
+    }
+  }
+
   fragment footer on ContentfulFooter {
     primaryLink1 {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     utilityLink1 {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     utilityLink2 {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
    utilityLink2Children {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink2 {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink2Children {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink3 {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink3Children {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink4 {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink4Children {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink5 {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink5Children {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink6 {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
     primaryLink6Children {
-      linkTitle
-      linkDestinationExternal
-      linkDestinationInternal {
-        slug
-        parentCategory: contentpage {
-          slug
-        }
-      }
+      ...footerLink
     }
   }
 

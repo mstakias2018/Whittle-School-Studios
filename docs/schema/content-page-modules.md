@@ -279,7 +279,7 @@ type QuoteStyle = ["PullQuote", "BlockQuote"];
 }
 ```
 
-## DatedPost
+## Post
 
 ### Schema
 

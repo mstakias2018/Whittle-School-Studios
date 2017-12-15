@@ -1,4 +1,5 @@
 import { PAGE_TYPE } from '../constants/settings';
+import { createContentPageLink, parseLink } from './global';
 
 exports.transformSubnavProps = ({
   categoryTitle,
@@ -29,29 +30,17 @@ exports.transformSubnavProps = ({
   };
 };
 
-const createContentPageLink = ({ slug, parentCategory }) => {
-  let link = '';
-
-  if (parentCategory) {
-    link += `/${parentCategory[0].slug}`;
-  }
-
-  return `${link}/${slug}`;
-};
-
 const formatFooterLink = ({
   linkTitle,
   linkDestinationInternal,
   linkDestinationExternal,
-}) => {
-  const link = linkDestinationExternal ||
-    createContentPageLink(linkDestinationInternal);
-
-  return {
-    link,
-    title: linkTitle,
-  };
-};
+}) => ({
+  link: parseLink({
+    external: linkDestinationExternal,
+    internal: linkDestinationInternal,
+  }),
+  title: linkTitle,
+});
 
 exports.formatFooterLinks = footerData =>
   Object.keys(footerData).sort().reduce((acc, footerLinkName) => {

@@ -5,9 +5,6 @@ import BodyText from '../../content-modules/global/body-text';
 import InlineImage from '../../content-modules/global/inline-image';
 import InlineVideo from '../../content-modules/global/inline-video';
 import PageWrapper from '../../components/structural/page-wrapper';
-import SectionTitle from '../../content-modules/global/section-title';
-import List from '../../content-modules/global/list';
-import Post from '../../content-modules/global/post';
 import ThumbnailsList from '../../content-modules/global/thumbnails-list';
 import Recirculation from '../../components/structural/recirculation';
 
@@ -101,14 +98,6 @@ const CategoryCn = () => (
         }]}
       />
 
-      <div className={styles.componentInfo}>Post</div>
-      <Post
-        date="2017-01-13"
-        link="/"
-        shortText="__顕終然省賞__ 批行選部持傷社。光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭針二覧判申年売県名能戦。一以名向写保家朔南必能演機須。万混何落要正表女収芸糸使属警治。奈極投北同載佐国賠辞検田。護竹遺未歴前芸題竹帯窮雪那決。住辰壊砲世定示多手査森城資牧組罪権。勢入勇務評問能催向国得政政特同作"
-        source="県名能戦"
-        title="明辺宅横後達社翻購択面将健"
-      />
       <div className={styles.componentInfo}>Video</div>
       <InlineVideo
         alt="适区没接后"
@@ -158,47 +147,20 @@ const CategoryCn = () => (
         shape={IMAGE_SHAPE.RECTANGLE}
       />
 
-      <div className={styles.componentInfo}>List</div>
-      <List data={[{
-        description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
-        title: '金政所间风族争验口这部如',
-      }, {
-        description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
-        title: '金政所间风族争验口这部如',
-      }, {
-        description: '金政所间风族争验口这部如 金政所间风 所间风.',
-        title: '金政所间风族争验口这部如',
-      }, {
-        description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
-        title: '金政所间风族争验口这部如',
-      }, {
-        description: '[金政所间风族争验口这部如](/#), 金政如.',
-        title: '金政所间风族争验口这部如',
-      }, {
-        description: '[金政所间风族争验口这部如](/#), 金政所间风族争验口这部如.',
-        title: '金政所间风族争验口这部如',
-      }]}
-      />
-
-      <div className={styles.componentInfo}>Section title</div>
-      <SectionTitle
-        number={5}
-        title="度応格改応記則用更現村開道図特"
+      <div className={styles.componentInfo}>Categorized list with thumbnails</div>
+      <ThumbnailsList
+        item1Asset={{ alt: 'Image 1 alt', image: largeImage }}
+        item1Description="金政所间风族争验口这部如 金政所间风 所间风."
+        item1Title="金政所 间风族争验"
+        item2Asset={{ alt: 'Image 2 alt', image: largeImage }}
+        item2Description="金政所间风族争验口这部如 金政所间风 所间风. 金政所间风族争验口这部如 金政所间风 所间风."
+        item2Title="金政所 间风族争验"
+        item3Asset={{ alt: 'Image 3 alt', image: largeImage }}
+        item3Description="金政所间风族争验口这部如 金政所间风 所间风."
+        item3Title="金政所 间风族争验"
+        title="金政所 所间风族争"
       />
     </div>
-    <div className={styles.componentInfo}>Categorized list with thumbnails</div>
-    <ThumbnailsList
-      item1Asset={{ alt: 'Image 1 alt', image: largeImage }}
-      item1Description="金政所间风族争验口这部如 金政所间风 所间风."
-      item1Title="金政所 间风族争验"
-      item2Asset={{ alt: 'Image 2 alt', image: largeImage }}
-      item2Description="金政所间风族争验口这部如 金政所间风 所间风. 金政所间风族争验口这部如 金政所间风 所间风."
-      item2Title="金政所 间风族争验"
-      item3Asset={{ alt: 'Image 3 alt', image: largeImage }}
-      item3Description="金政所间风族争验口这部如 金政所间风 所间风."
-      item3Title="金政所 间风族争验"
-      title="金政所 所间风族争"
-    />
   </PageWrapper>
 );
 

@@ -1,24 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
 
+import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { parseLink } from '../../../utils/global';
 import Date from '../../../components/global/date';
 import Markdown from '../../../components/global/markdown';
+import Link from '../../../components/global/link';
 
 import styles from './post.module.css';
 
 const propTypes = {
   date: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
-  shortText: PropTypes.string.isRequired,
+  description: PROP_TYPES.MARKDOWN,
+  linkExternal: PropTypes.string,
+  linkInternal: PROP_TYPES.INTERNAL_LINK,
   source: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
 const Post = ({
   date,
-  link,
-  shortText,
+  linkExternal,
+  linkInternal,
+  description,
   source,
   title,
 }, { translations }) => (
@@ -34,11 +38,11 @@ const Post = ({
         }
         <Markdown
           className={styles.text}
-          source={shortText}
+          source={description.markdown}
         />
         <Link
           className={styles.readMore}
-          to={link}
+          to={parseLink({ external: linkExternal, internal: linkInternal })}
         >
           {translations.post.continueReading}
         </Link>

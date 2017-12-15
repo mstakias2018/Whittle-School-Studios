@@ -13,10 +13,11 @@ const propTypes = {
 
 const Date = ({ date, isInline }, { translations }) => {
   const { day, dayText, month } = getDateInfo(date);
+  const { long: longMonth, short: shortMonth } = translations.date.months[month - 1];
 
   return (
     <time
-      aria-label={`${translations.date.months[month].long} ${dayText}`}
+      aria-label={`${longMonth} ${dayText}`}
       className={cx(styles.date, {
         [styles.date_inline]: isInline,
       })}
@@ -26,7 +27,7 @@ const Date = ({ date, isInline }, { translations }) => {
         aria-hidden="true"
         className={styles.month}
       >
-        {translations.date.months[month].short}
+        {shortMonth}
       </span>
       <span
         aria-hidden="true"

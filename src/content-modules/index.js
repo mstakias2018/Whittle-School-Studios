@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import BodyText from './global/body-text';
 import Carousel from './global/carousel';
+import Post from './global/post';
 import InlineImage from './global/inline-image';
 import List from './global/list';
 import OpenApplyIFrame from './global/openapply-iframe';
@@ -17,6 +18,7 @@ const MODULE_MAP = {
   ContentfulInlineImage: InlineImage,
   ContentfulList: List,
   ContentfulOpenApplyIFrame: OpenApplyIFrame,
+  ContentfulPost: Post,
   ContentfulQuote: Quote,
   ContentfulSectionTitle: SectionTitle,
   ContentfulSlideshowCarousel: Carousel,

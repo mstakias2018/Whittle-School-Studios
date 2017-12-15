@@ -38,3 +38,18 @@ exports.getDateInfo = (date) => {
     month: d[1],
   };
 };
+
+const createContentPageLink = ({ slug, parentCategory }) => {
+  let link = '';
+
+  if (parentCategory) {
+    link += `/${parentCategory[0].slug}`;
+  }
+
+  return `${link}/${slug}`;
+};
+
+exports.createContentPageLink = createContentPageLink;
+
+exports.parseLink = ({ external, internal }) => external ||
+  (internal && createContentPageLink(internal));
