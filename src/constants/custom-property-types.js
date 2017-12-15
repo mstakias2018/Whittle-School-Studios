@@ -152,6 +152,10 @@ const threeUpBreakerPropTypes = {
   content1: MARKDOWN,
   content2: MARKDOWN,
   content3: MARKDOWN,
+  dimensions: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+  }),
   title1: PropTypes.string.isRequired,
   title2: PropTypes.string.isRequired,
   title3: PropTypes.string.isRequired,

@@ -25,6 +25,10 @@ import { transformSocialNetworks } from '../utils/social-networks';
 import { formatFooterLinks } from '../utils/nav';
 
 class TemplateWrapper extends Component {
+  state = {
+    isTouchDevice: false,
+  };
+
   getChildContext() {
     const { data, history, location: { pathname } } = this.props;
     const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
@@ -60,13 +64,19 @@ class TemplateWrapper extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      isTouchDevice: detectTouchEvents.hasSupport,
+    });
+  }
+
   render() {
     const { language, translations } = this.getChildContext();
 
     return (
       <div
         className={cx({
-          _touchDevice: detectTouchEvents.hasSupport,
+          _touchDevice: this.state.isTouchDevice,
           wrapper: true,
           [`wrapper_is${LANGUAGE_CLASS[language]}`]: true,
         })}
