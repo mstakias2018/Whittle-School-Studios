@@ -4,6 +4,11 @@ const PAGE_TYPE = {
   HOME: 'Home',
 };
 
+exports.NAV_DIRECTIONS = {
+  NEXT: 'next',
+  PREVIOUS: 'previous',
+};
+
 exports.PAGE_TYPE = PAGE_TYPE;
 
 exports.QUOTE_TYPE = {
@@ -12,5 +17,6 @@ exports.QUOTE_TYPE = {
 };
 
 exports.PAGE_TYPES = [PAGE_TYPE.ARTICLE, PAGE_TYPE.CATEGORY, PAGE_TYPE.HOME];
+
 
 exports.SUBMENU_BREAK = { SMALL: 2 };

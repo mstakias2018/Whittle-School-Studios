@@ -1,0 +1,249 @@
+@import "../../../assets/styles/includes/grid.css";
+@import "../../../assets/styles/includes/mixins.css";
+@import "../../../assets/styles/includes/typography.css";
+@import "../../../assets/styles/includes/variables.css";
+
+.wrapper {
+  @mixin component-vertical-spacing;
+  background-color: var(--color-background-light-green-gray);
+}
+
+.container {
+  @mixin component-container;
+  
+  @media (--bp-sm-only) {
+    padding-top: 41px;
+  }
+
+  @media (--bp-md) {
+    padding-top: 50px;
+  }
+}
+
+.navigation {
+  @mixin grid-container;
+  position: relative;
+
+  @media (--bp-lg) {
+    &:before {
+      @mixin span 3, 12, lg;
+      content: '';
+    }
+  }
+}
+
+.navigationItemWrapper {
+
+  @media (--bp-sm-only) {
+    @mixin span 2, var(--grid-columns-sm), sm;
+  }
+
+  &:not(.navigationItemWrapper_isBig) {
+    @media (--bp-md-only) {
+      @mixin span 2, var(--grid-columns-md), md;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 2, var(--grid-columns-lg), lg;
+    }
+
+    .description {
+      display: none;
+    }
+  }
+}
+
+.navigationItemWrapper_isBig {
+  position: relative;
+
+  &:before {
+    background-color: var(--color-light-border);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 1px;
+
+    @media (--bp-sm-only) {
+      left: 0;
+    }
+
+    @media (--bp-md-only) {
+      margin-left: var(--grid-gutter-md);
+    }
+
+    @media (--bp-lg) {
+      margin-left: var(--grid-gutter-lg);
+    }
+  }
+
+  @media (--bp-md-only) {
+    @mixin span 4, var(--grid-columns-md), md;
+    @mixin nested-grid-container;
+
+    .direction,
+    .description {
+      @mixin span 2, 4, md;
+      padding-left: 0;
+    }
+  }
+
+  @media (--bp-lg) {
+    @mixin span 4, var(--grid-columns-lg), lg;
+    @mixin nested-grid-container;
+
+    .direction,
+    .description {
+      @mixin span 2, 4, lg;
+      padding-left: 0;
+    }
+  }
+
+  .directionLabel,
+  .title {
+    padding-left: 20px;
+  }
+
+  .navigationItem {
+    @media (--bp-md-only) {
+      @mixin span 4, 4, md;
+      @mixin nested-grid-container;
+      left: calc(20px - var(--grid-gutter-md));
+      padding-bottom: 22px;
+    }
+
+    @media (--bp-lg) {
+      @mixin span 4, 4, lg;
+      @mixin nested-grid-container;
+      left: calc(20px - var(--grid-gutter-lg));
+      padding-bottom: 22px;
+    }
+  }
+
+  &.navigationItemWrapper_isSingle {
+    @media (--bp-sm-only) {
+      &:before {
+        left: var(--grid-gutter-sm);
+      }
+    }
+
+    @media (--bp-md) {
+      @mixin span 6, var(--grid-columns-md), md;
+      @mixin nested-grid-container;
+
+      .direction {
+        @mixin span 2, 6, md;
+        padding-left: 0;
+      }
+
+      .description {
+        @mixin span 4, 6, md;
+        padding-left: 0;
+      }
+    }
+
+    @media (--bp-lg) {
+      @mixin span 6, var(--grid-columns-lg), lg;
+      @mixin nested-grid-container;
+
+      .direction {
+        @mixin span 2, 6, lg;
+        padding-left: 0;
+      }
+
+      .description {
+        @mixin span 4, 6, lg;
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.navigationItem {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-decoration: none;
+
+  &:hover {
+    .title,
+    .number {
+      color: var(--color-text-tomato);
+      text-decoration: underline;
+      text-decoration-color: var(--color-link-hover-underline);
+    }
+
+    .directionLabel {
+      color: var(--color-text-tomato);
+    }
+
+    .description {
+      text-decoration: underline;
+    }
+
+    .arrow {
+      display: none;
+    }
+
+    .arrow_hover {
+      display: inline-block;
+    }
+  }
+}
+
+.direction {
+  @media (--bp-sm-only) {
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    line-height: 18px;
+  }
+}
+
+.directionLabel {
+  @mixin type-eyebrow;
+  display: block;
+  margin-bottom: 13px;
+}
+
+.arrow {
+  display: inline-block;
+  height: 8px;
+  width: 7px;
+
+  &.arrow_left {
+    margin-right: 14px;
+    transform: rotate(180deg);
+  }
+
+  &.arrow_right {
+    margin-left: 14px;
+  }
+
+  &.arrow_hover {
+    display: none;
+  }
+}
+
+.title {
+  @mixin type-h5-italic;
+  display: flex;
+
+  span {
+    display: inline-block;
+  }
+}
+
+.number {
+  @mixin type-h5;
+  margin-right: 12px;
+}
+
+.description {
+  @mixin type-caption;
+  padding-top: 25px;
+
+  @media (--bp-sm-only) {
+    display: none;
+  }
+}

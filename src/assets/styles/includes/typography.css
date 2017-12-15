@@ -152,9 +152,9 @@
   }
 }
 
-@define-mixin type-h5-italic {
+@define-mixin type-h5 {
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light-italic);
+  font-family: var(--font-serif-light);
   font-size: 20px;
   font-weight: normal;
   line-height: 20px;
@@ -163,6 +163,15 @@
     font-size: 18px;
     line-height: 18px;
   }
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-serif-light-cn);
+  }
+}
+
+@define-mixin type-h5-italic {
+  @mixin type-h5;
+  font-family: var(--font-serif-light-italic);
 
   :global(.wrapper_isChinese) & {
     font-family: var(--font-serif-light-italic-cn);

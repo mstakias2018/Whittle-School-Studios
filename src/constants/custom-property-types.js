@@ -205,6 +205,13 @@ const EVENTS_LIST = PropTypes.arrayOf(PropTypes.shape({
   title: PropTypes.string.isRequired,
 }));
 
+const NAV_ITEM = PropTypes.arrayOf(PropTypes.shape({
+  description: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  link: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+}).isRequired);
+
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
   EVENTS_LIST,
@@ -249,6 +256,7 @@ exports.PROP_TYPES = {
     THREE_UP_BREAKER,
     THUMBNAILS_LIST,
   ])),
+  NAV_ITEM,
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
   SOCIAL_ICONS: PropTypes.shape({
     contentPage: socialNetworkList.isRequired,
@@ -256,11 +264,7 @@ exports.PROP_TYPES = {
   }),
   SUB_NAV_PROPS: PropTypes.shape({
     categoryTitle: PropTypes.string.isRequired,
-    navItems: PropTypes.arrayOf(PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    }).isRequired).isRequired,
+    navItems: NAV_ITEM.isRequired,
   }),
   THUMBNAILS_LIST_ITEM,
 };

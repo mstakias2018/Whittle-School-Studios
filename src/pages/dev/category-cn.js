@@ -9,6 +9,7 @@ import SectionTitle from '../../content-modules/global/section-title';
 import List from '../../content-modules/global/list';
 import Post from '../../content-modules/global/post';
 import ThumbnailsList from '../../content-modules/global/thumbnails-list';
+import Recirculation from '../../components/structural/recirculation';
 
 import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
@@ -20,6 +21,86 @@ import styles from './modules.module.css';
 const CategoryCn = () => (
   <PageWrapper>
     <div className="wrapper_isChinese">
+      <div className={styles.componentInfo}>Recirculation</div>
+      <Recirculation items={[
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭針二覧判申年売県名能戦',
+          isActive: false,
+          link: '#',
+          title: '情彫聞',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭',
+          isActive: false,
+          link: '#',
+          title: '寄家考密集',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。判申年売県名能戦',
+          isActive: true,
+          link: '#',
+          title: '集予蔵',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭針二覧判申年売県名能戦',
+          isActive: false,
+          link: '#',
+          title: '情彫聞寄家考密',
+        }]}
+      />
+      <Recirculation items={[
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭針二覧判申年売県名能戦',
+          isActive: true,
+          link: '#',
+          title: '情彫聞',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭',
+          isActive: false,
+          link: '#',
+          title: '寄家考密集',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。判申年売県名能戦',
+          isActive: false,
+          link: '#',
+          title: '集予蔵',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭針二覧判申年売県名能戦',
+          isActive: false,
+          link: '#',
+          title: '情彫聞寄家考密',
+        }]}
+      />
+      <Recirculation items={[
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭針二覧判申年売県名能戦',
+          isActive: false,
+          link: '#',
+          title: '情彫聞',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭',
+          isActive: false,
+          link: '#',
+          title: '寄家考密集',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。判申年売県名能戦',
+          isActive: false,
+          link: '#',
+          title: '集予蔵',
+        },
+        {
+          description: '光阪傷芳死情彫聞寄家考密集予蔵。不量聞北聞拭針二覧判申年売県名能戦',
+          isActive: true,
+          link: '#',
+          title: '情彫聞寄家考密',
+        }]}
+      />
+
       <div className={styles.componentInfo}>Post</div>
       <Post
         date="2017-01-13"
