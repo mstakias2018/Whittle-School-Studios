@@ -1,7 +1,7 @@
 const { REGION } = require('./regions');
 const { ENV } = require('./env');
 
-exports.CONTENTFUL = {
+exports.CONTENTFUL_SPACE = {
   [ENV.DEV]: {
     [REGION.US]: {
       accessToken: process.env.CONTENTFUL_DEV_US_ACCESS_TOKEN,
@@ -52,4 +52,19 @@ exports.CONTENTFUL = {
       spaceName: 'China - Production/Staging',
     },
   },
+};
+
+/* These values are the Contentful module names,
+   prefaced by 'Contentful' (added by Gatsby) */
+exports.CONTENT_MODULE = {
+  BODY_TEXT: 'ContentfulBodyText',
+  CAROUSEL: 'ContentfulSlideshowCarousel',
+  INLINE_IMAGE: 'ContentfulInlineImage',
+  LIST: 'ContentfulList',
+  OPENAPPLY_IFRAME: 'ContentfulOpenApplyIFrame',
+  POST: 'ContentfulPost',
+  QUOTE: 'ContentfulQuote',
+  SECTION_TITLE: 'ContentfulSectionTitle',
+  THREE_UP_BREAKER: 'ContentfulThreeUpBreaker',
+  THUMBNAIL_LIST: 'ContentfulThumbnailList',
 };

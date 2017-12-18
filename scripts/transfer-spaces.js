@@ -6,7 +6,7 @@ import spaceExport from 'contentful-export';
 import spaceImport from 'contentful-import';
 import { createClient } from 'contentful-management';
 
-import { CONTENTFUL } from '../src/constants/contentful';
+import { CONTENTFUL_SPACE } from '../src/constants/contentful';
 
 const client = createClient({ accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN });
 
@@ -76,8 +76,8 @@ export default (sourceInfo, targetInfo, opts = {}) => {
   const { shouldFilterNonEnglish, shouldSkipContent } = opts;
   const [sourceEnv, sourceRegion] = sourceInfo;
   const [targetEnv, targetRegion] = targetInfo;
-  const sourceSpaceId = CONTENTFUL[sourceEnv][sourceRegion].spaceId;
-  const targetSpaceId = CONTENTFUL[targetEnv][targetRegion].spaceId;
+  const sourceSpaceId = CONTENTFUL_SPACE[sourceEnv][sourceRegion].spaceId;
+  const targetSpaceId = CONTENTFUL_SPACE[targetEnv][targetRegion].spaceId;
 
   console.log(`=== COPYING FROM ${sourceEnv}-${sourceRegion} TO ${targetEnv}-${targetRegion}`);
 

@@ -13,6 +13,7 @@ import { ENV } from '../../../constants/env';
 const PageWrapper = ({
   children,
   localizedSlugList,
+  shouldDisableFab,
   subNavProps,
 }, { translations }) => ([
   <Header
@@ -20,7 +21,7 @@ const PageWrapper = ({
     localizedSlugList={localizedSlugList}
     subNavProps={subNavProps}
   />,
-  <Fab key="fab" />,
+  ...(shouldDisableFab ? [] : [<Fab key="fab" />]),
   <main
     aria-label={translations.general.mainAriaLabel}
     className={CLASSES.PAGE_CONTENT}
@@ -35,6 +36,7 @@ const PageWrapper = ({
 PageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
+  shouldDisableFab: PropTypes.bool,
   subNavProps: PROP_TYPES.SUB_NAV_PROPS,
 };
 PageWrapper.contextTypes = { translations: PropTypes.object.isRequired };

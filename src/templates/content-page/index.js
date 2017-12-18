@@ -9,6 +9,7 @@ import PageWrapper from '../../components/structural/page-wrapper';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
+import { CONTENT_MODULE } from '../../constants/contentful';
 import {
   transformLocalizedSlugData,
   transformSubnavProps,
@@ -69,9 +70,13 @@ const ContentPageTemplate = ({
     navDescription ||
     subhead;
 
+  const shouldDisableFab = modules && modules.some(({ __typename: type }) =>
+    type === CONTENT_MODULE.OPENAPPLY_IFRAME);
+
   return (
     <PageWrapper
       localizedSlugList={transformLocalizedSlugData(localizedSlugData)}
+      shouldDisableFab={shouldDisableFab}
       subNavProps={subNavProps}
     >
       <div>

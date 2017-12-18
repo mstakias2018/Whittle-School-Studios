@@ -1,18 +1,18 @@
 require('dotenv').config();
 
 const { BRANCH_ENV_MAP, ENV } = require('./src/constants/env');
-const { CONTENTFUL } = require('./src/constants/contentful');
+const { CONTENTFUL_SPACE } = require('./src/constants/contentful');
 
 process.env.GATSBY_ENV = BRANCH_ENV_MAP[process.env.BRANCH] || ENV.DEV;
 
-exports.CONTENTFUL = CONTENTFUL;
+exports.CONTENTFUL_SPACE = CONTENTFUL_SPACE;
 
 module.exports = {
   plugins: [
     'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
     {
-      options: CONTENTFUL[process.env.GATSBY_ENV][process.env.GATSBY_REGION],
+      options: CONTENTFUL_SPACE[process.env.GATSBY_ENV][process.env.GATSBY_REGION],
       resolve: 'gatsby-source-contentful',
     },
     'gatsby-transformer-remark',

@@ -12,17 +12,18 @@ import SectionTitle from './global/section-title';
 import ThreeUpBreaker from './global/three-up-breaker';
 
 import { PROP_TYPES } from '../constants/custom-property-types';
+import { CONTENT_MODULE } from '../constants/contentful';
 
 const MODULE_MAP = {
-  ContentfulBodyText: BodyText,
-  ContentfulInlineImage: InlineImage,
-  ContentfulList: List,
-  ContentfulOpenApplyIFrame: OpenApplyIFrame,
-  ContentfulPost: Post,
-  ContentfulQuote: Quote,
-  ContentfulSectionTitle: SectionTitle,
-  ContentfulSlideshowCarousel: Carousel,
-  ContentfulThreeUpBreaker: ThreeUpBreaker,
+  [CONTENT_MODULE.BODY_TEXT]: BodyText,
+  [CONTENT_MODULE.CAROUSEL]: Carousel,
+  [CONTENT_MODULE.INLINE_IMAGE]: InlineImage,
+  [CONTENT_MODULE.LIST]: List,
+  [CONTENT_MODULE.OPENAPPLY_IFRAME]: OpenApplyIFrame,
+  [CONTENT_MODULE.POST]: Post,
+  [CONTENT_MODULE.QUOTE]: Quote,
+  [CONTENT_MODULE.SECTION_TITLE]: SectionTitle,
+  [CONTENT_MODULE.THREE_UP_BREAKER]: ThreeUpBreaker,
 };
 
 const propTypes = {

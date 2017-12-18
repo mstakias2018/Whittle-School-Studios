@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { IMAGE_SIZE, IMAGE_SHAPE, IMAGE_TYPE } from './images';
+import { CONTENT_MODULE } from './contentful';
 import { PAGE_TYPES } from './settings';
 import { BREAKPOINTS_NAME } from './breakpoints';
 import { SOCIAL_NETWORK } from './social-networks';
@@ -55,12 +56,12 @@ const createTypenameChecker = desiredValue => (props, propName) =>
   (props[propName] === desiredValue ? undefined : new Error('invalid typename'));
 
 const BODY_TEXT = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulBodyText'),
+  __typename: createTypenameChecker(CONTENT_MODULE.BODY_TEXT),
   content: MARKDOWN,
 });
 
 const INLINE_IMAGE = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulInlineImage'),
+  __typename: createTypenameChecker(CONTENT_MODULE.INLINE_IMAGE),
   ...getInlineImagePropTypes(),
 });
 
@@ -89,12 +90,12 @@ const sectionTitlePropertyTypes = {
 };
 
 const SECTION_TITLE = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulSectionTitle'),
+  __typename: createTypenameChecker(CONTENT_MODULE.SECTION_TITLE),
   ...sectionTitlePropertyTypes,
 });
 
 const LIST = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulList'),
+  __typename: createTypenameChecker(CONTENT_MODULE.LIST),
   ...listPropTypes,
 });
 
@@ -120,13 +121,13 @@ const thumbnailsListPropTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const THUMBNAILS_LIST = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulList'),
+const THUMBNAIL_LIST = PropTypes.shape({
+  __typename: createTypenameChecker(CONTENT_MODULE.THUMBNAIL_LIST),
   ...thumbnailsListPropTypes,
 });
 
 const OPENAPPLY_IFRAME = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulOpenApplyIFrame'),
+  __typename: createTypenameChecker(CONTENT_MODULE.OPENAPPLY_IFRAME),
   description: MARKDOWN,
 });
 
@@ -139,12 +140,12 @@ const quotePropTypes = {
 };
 
 const QUOTE = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulQuote'),
+  __typename: createTypenameChecker(CONTENT_MODULE.QUOTE),
   ...quotePropTypes,
 });
 
 const SLIDESHOW_CAROUSEL = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulSlideshowCarousel'),
+  __typename: createTypenameChecker(CONTENT_MODULE.CAROUSEL),
   slides: PropTypes.arrayOf(PropTypes.shape(getInlineImagePropTypes(true))),
 });
 
@@ -162,7 +163,7 @@ const threeUpBreakerPropTypes = {
 };
 
 const THREE_UP_BREAKER = PropTypes.shape({
-  __typename: createTypenameChecker('ContentfulThreeUpBreaker'),
+  __typename: createTypenameChecker(CONTENT_MODULE.THREE_UP_BREAKER),
   ...threeUpBreakerPropTypes,
 });
 
@@ -192,7 +193,7 @@ const LIST_ITEM = {
   title: PropTypes.string.isRequired,
 };
 
-const THUMBNAILS_LIST_ITEM = {
+const THUMBNAIL_LIST_ITEM = {
   asset: PropTypes.shape({
     alt: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
@@ -258,7 +259,7 @@ exports.PROP_TYPES = {
     SECTION_TITLE,
     SLIDESHOW_CAROUSEL,
     THREE_UP_BREAKER,
-    THUMBNAILS_LIST,
+    THUMBNAIL_LIST,
   ])),
   NAV_ITEM,
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
@@ -270,5 +271,5 @@ exports.PROP_TYPES = {
     categoryTitle: PropTypes.string.isRequired,
     navItems: NAV_ITEM.isRequired,
   }),
-  THUMBNAILS_LIST_ITEM,
+  THUMBNAIL_LIST_ITEM,
 };

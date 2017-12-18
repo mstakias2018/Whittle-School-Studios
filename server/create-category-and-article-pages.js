@@ -1,5 +1,6 @@
 const path = require('path');
 
+const { CONTENT_MODULE } = require('../src/constants/contentful');
 const { ENV } = require('../src/constants/env');
 const {
   LANGUAGE_CONTENTFUL_LOCALE,
@@ -162,11 +163,11 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           if (modules) {
             const modulePromises = modules.map((n, i) => {
               const { __typename, content, slides } = n;
-              if (__typename === 'ContentfulInlineImage') {
+              if (__typename === CONTENT_MODULE.INLINE_IMAGE) {
                 return saveInlineImage(n, [id, i]);
-              } else if (__typename === 'ContentfulSlideshowCarousel') {
+              } else if (__typename === CONTENT_MODULE.CAROUSEL) {
                 return Promise.all(slides.map((s, j) => saveCarouselImage(s, [id, i, j])));
-              } else if (__typename === 'ContentfulBodyText') {
+              } else if (__typename === CONTENT_MODULE.BODY_TEXT) {
                 const CONTENTFUL_REGEX = /\/\/images\.contentful\.com\/(\w*\/)+[\w-]*\.\w{3,4}/gi;
                 const matches = content.content.match(CONTENTFUL_REGEX);
                 if (matches) {

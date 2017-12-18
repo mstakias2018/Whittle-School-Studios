@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { CONTENTFUL } from '../../constants/contentful';
+import { CONTENTFUL_SPACE, CONTENT_MODULE } from '../../constants/contentful';
 import { ENV } from '../../constants/env';
 import { PAGE_TYPE } from '../../constants/settings';
 
@@ -25,8 +25,8 @@ const CONTENT_PAGE_RULES = {
       validator: ({ modules }) => {
         const firstModule = modules && modules[0];
         if (!firstModule) return false;
-        return firstModule.type === 'ContentfulBodyText' ||
-          firstModule.type === 'ContentfulOpenApplyIFrame';
+        return firstModule.type === CONTENT_MODULE.BODY_TEXT ||
+          firstModule.type === CONTENT_MODULE.OPENAPPLY_IFRAME;
       },
     },
   ],
@@ -180,7 +180,7 @@ class Validator extends Component {
             </li>
             <li className={styles.headerDataItem}>
               <strong>Contentful space: </strong>
-              {CONTENTFUL[process.env.GATSBY_ENV][process.env.GATSBY_REGION].spaceName}
+              {CONTENTFUL_SPACE[process.env.GATSBY_ENV][process.env.GATSBY_REGION].spaceName}
             </li>
             <li className={styles.headerDataItem}>
               <strong>Using Preview API: </strong>

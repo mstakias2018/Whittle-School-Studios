@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
 import cx from 'classnames';
-
 import Plx from 'react-plx';
 
 import styles from './fab.module.css';
 
 import FabArrowImage from '../../../assets/images/fab-arrow.svg';
 
+import Link from '../../global/link';
 import WithWindowListener from '../../../hocs/withWindow';
 
 import { BREAKPOINTS } from '../../../constants/breakpoints';
@@ -78,7 +77,7 @@ class Fab extends React.Component {
   }
 
   render() {
-    const { fabTextImage, translations } = this.context;
+    const { fabLink, fabTextImage, translations } = this.context;
 
     return (
       <div role="complementary">
@@ -155,7 +154,7 @@ class Fab extends React.Component {
             <Link
               aria-label={translations.fab.ariaLabel}
               className={styles.fabLink}
-              to="/#"
+              to={fabLink}
             >
               <img
                 alt=""
@@ -177,6 +176,7 @@ class Fab extends React.Component {
 
 Fab.propTypes = propTypes;
 Fab.contextTypes = {
+  fabLink: PropTypes.string.isRequired,
   fabTextImage: PropTypes.string.isRequired,
   translations: PropTypes.object.isRequired,
 };

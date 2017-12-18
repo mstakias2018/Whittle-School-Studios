@@ -20,6 +20,7 @@ import {
   LANGUAGE_CLASS,
   LANGUAGE_CONTENTFUL_LOCALE,
 } from '../constants/regions';
+import { parseLink } from '../utils/global';
 import { getLanguageFromPathname } from '../utils/regions';
 import { transformSocialNetworks } from '../utils/social-networks';
 import { formatFooterLinks } from '../utils/nav';
@@ -35,6 +36,8 @@ class TemplateWrapper extends Component {
     const {
       contentPageShareIcons,
       fabText: { file: { url } },
+      fabLinkExternal,
+      fabLinkInternal,
       footerShareIcons,
       translations: { internal: { content: stringifiedTranslations } },
       ...socialNetworkUrls
@@ -42,6 +45,7 @@ class TemplateWrapper extends Component {
     const translations = JSON.parse(stringifiedTranslations);
 
     return {
+      fabLink: parseLink({ external: fabLinkExternal, internal: fabLinkInternal }),
       fabTextImage: url,
       footerData: formatFooterLinks(data[`FOOTER_${language}`]),
       headerData: data[`HEADER_${language}`].contentPages,
@@ -100,6 +104,7 @@ TemplateWrapper.propTypes = {
 };
 
 TemplateWrapper.childContextTypes = {
+  fabLink: PropTypes.string.isRequired,
   fabTextImage: PropTypes.string.isRequired,
   footerData: PROP_TYPES.FOOTER_DATA.isRequired,
   headerData: PROP_TYPES.HEADER_DATA.isRequired,
@@ -187,6 +192,13 @@ export const pageQuery = graphql`
         url
       }
     }
+    fabLinkInternal {
+      slug
+      parentCategory: contentpage {
+        slug
+      }
+    }
+    fabLinkExternal
     contentPageShareIcons
     footerShareIcons
 
