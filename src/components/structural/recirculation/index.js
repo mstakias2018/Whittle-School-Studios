@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Link from 'gatsby-link';
+
+import Link from '../../global/link';
 
 import styles from './recirculation.module.css';
 
@@ -72,7 +73,7 @@ class Recirculation extends Component {
       >
         <Link
           className={styles.navigationItem}
-          to={item.link}
+          to={`/${item.link}`}
         >
           <span
             aria-label={`${type === NAV_DIRECTIONS.NEXT ?
@@ -99,19 +100,22 @@ class Recirculation extends Component {
               </span>
             }
             {type === NAV_DIRECTIONS.NEXT &&
-            <span className={styles.directionLabel}>
-                {translations.recirculation.next}
-              <img
-                alt=""
-                className={cx(styles.arrow, styles.arrow_right)}
-                src={arrow}
-              />
-              <img
-                alt=""
-                className={cx(styles.arrow, styles.arrow_right, styles.arrow_hover)}
-                src={arrowOrange}
-              />
-            </span>
+              <span
+                aria-hidden="true"
+                className={styles.directionLabel}
+              >
+                  {translations.recirculation.next}
+                <img
+                  alt=""
+                  className={cx(styles.arrow, styles.arrow_right)}
+                  src={arrow}
+                />
+                <img
+                  alt=""
+                  className={cx(styles.arrow, styles.arrow_right, styles.arrow_hover)}
+                  src={arrowOrange}
+                />
+              </span>
             }
             <span className={styles.title}>
               <span

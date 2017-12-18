@@ -7,7 +7,6 @@ import InlineVideo from '../../content-modules/global/inline-video';
 import PageWrapper from '../../components/structural/page-wrapper';
 import ThreeUpBreaker from '../../content-modules/global/three-up-breaker';
 import ThumbnailsList from '../../content-modules/global/thumbnails-list';
-import Recirculation from '../../components/structural/recirculation';
 
 import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
@@ -18,86 +17,6 @@ import styles from './modules.module.css';
 
 const Category = () => (
   <PageWrapper>
-    <div className={styles.componentInfo}>Recirculation</div>
-    <Recirculation items={[
-      {
-        description: 'description 1',
-        isActive: false,
-        link: '#',
-        title: 'title 1',
-      },
-      {
-        description: 'description 2',
-        isActive: true,
-        link: '#',
-        title: 'title 2',
-      },
-      {
-        description: 'description 3',
-        isActive: false,
-        link: '#',
-        title: 'title 3',
-      },
-      {
-        description: 'description 4',
-        isActive: false,
-        link: '#',
-        title: 'title 4',
-      }]}
-    />
-    <Recirculation items={[
-      {
-        description: 'description 1',
-        isActive: true,
-        link: '#',
-        title: 'title 1',
-      },
-      {
-        description: 'description 2',
-        isActive: false,
-        link: '#',
-        title: 'title 2',
-      },
-      {
-        description: 'description 3',
-        isActive: false,
-        link: '#',
-        title: 'title 3',
-      },
-      {
-        description: 'description 4',
-        isActive: false,
-        link: '#',
-        title: 'title 4',
-      }]}
-    />
-    <Recirculation items={[
-      {
-        description: 'description 1',
-        isActive: false,
-        link: '#',
-        title: 'title 1',
-      },
-      {
-        description: 'description 2',
-        isActive: false,
-        link: '#',
-        title: 'title 2',
-      },
-      {
-        description: 'description 3',
-        isActive: false,
-        link: '#',
-        title: 'title 3',
-      },
-      {
-        description: 'description 4',
-        isActive: true,
-        link: '#',
-        title: 'title 4',
-      }]}
-    />
-
     <div className={styles.componentInfo}>Video</div>
     <InlineVideo
       alt="Tiger video"

@@ -5,6 +5,7 @@ import Header from '../header';
 import Footer from '../footer';
 import Fab from '../fab';
 import SiteInfo from '../../site-info';
+import Recirculation from '../recirculation';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
@@ -30,6 +31,7 @@ const PageWrapper = ({
     {children}
   </main>,
   ...(process.env.GATSBY_ENV === ENV.STAGING ? [<SiteInfo key="siteInfo" />] : []),
+  ...(subNavProps ? [<Recirculation items={subNavProps.navItems} />] : []),
   <Footer key="footer" />,
 ]);
 
