@@ -2,7 +2,7 @@
   /* up to 650px */
   @custom-media --bp-sm-only (width <= 40.625em);
   /* 500px-650px */
-  @custom-media --bp-sm-upper-only (width > 31.25rem) and (width <= 40.625em);
+  @custom-media --bp-sm-upper-only (width > 31.25em) and (width <= 40.625em);
   /* from 650px up */
   @custom-media --bp-md (width > 40.625em);
   /* 650px-1100px */
