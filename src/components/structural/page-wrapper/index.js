@@ -31,7 +31,10 @@ const PageWrapper = ({
     {children}
   </main>,
   ...(process.env.GATSBY_ENV === ENV.STAGING ? [<SiteInfo key="siteInfo" />] : []),
-  ...(subNavProps ? [<Recirculation items={subNavProps.navItems} />] : []),
+  ...(subNavProps ? [<Recirculation
+    items={subNavProps.navItems}
+    key="recirculation"
+  />] : []),
   <Footer key="footer" />,
 ]);
 

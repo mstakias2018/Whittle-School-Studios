@@ -225,12 +225,14 @@ const OPENING_COUNTDOWN = PropTypes.shape({
   title: PropTypes.string.isRequired,
 });
 
-const NAV_ITEM = PropTypes.arrayOf(PropTypes.shape({
+const NAV_ITEM = {
   description: PropTypes.string.isRequired,
+  id: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
+  slug: PropTypes.string,
   title: PropTypes.string.isRequired,
-}).isRequired);
+};
 
 exports.PROP_TYPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
@@ -288,7 +290,7 @@ exports.PROP_TYPES = {
   }),
   SUB_NAV_PROPS: PropTypes.shape({
     categoryTitle: PropTypes.string.isRequired,
-    navItems: NAV_ITEM.isRequired,
+    navItems: PropTypes.arrayOf(PropTypes.shape(NAV_ITEM)).isRequired,
   }),
   THUMBNAIL_LIST_ITEM,
 };

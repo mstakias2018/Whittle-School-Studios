@@ -13,7 +13,7 @@ import { NAV_ITEM } from '../../../constants/custom-property-types';
 import { NAV_DIRECTIONS } from '../../../constants/settings';
 
 const propTypes = {
-  items: PropTypes.arrayOf(NAV_ITEM).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape(NAV_ITEM)).isRequired,
 };
 
 class Recirculation extends Component {
@@ -27,6 +27,8 @@ class Recirculation extends Component {
     this.setState(this.getItems(nextProps));
   }
 
+  getItemNumber = item => `${this.props.items.indexOf(item) + 1}`;
+
   getActiveIndex = (items) => {
     let activeIndex = 0;
     items.forEach((item, index) => {
@@ -37,8 +39,6 @@ class Recirculation extends Component {
 
     return activeIndex;
   };
-
-  getItemNumber = item => `${this.props.items.indexOf(item) + 1}`;
 
   getItems = (props) => {
     const activeIndex = this.getActiveIndex(props.items);
