@@ -37,6 +37,22 @@ exports.MY_OTHER_CONSTANT = {
 
 ## Graphql
 
+### IDs
+
+Always use the `contentful_id` property instead of the regular `id` - this will
+match the original Contentful ID without any padding added by Gatsby. See
+https://github.com/gatsbyjs/gatsby/pull/3158 for more info.
+
+Example:
+
+```javascript
+{
+  id: contentful_id
+}
+```
+
+### Long text fields
+
 Long text fields are delivered to us in the form:
 
 ```javascript

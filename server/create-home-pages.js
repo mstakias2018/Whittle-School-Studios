@@ -14,7 +14,7 @@ const createHomePages = (graphql, createPage) =>
             contentfulHomePage(
               node_locale: { eq: "${LANGUAGE_CONTENTFUL_LOCALE[language]}" }
             ) {
-              id
+              id: contentful_id
             }
           }
         `).then((result) => {

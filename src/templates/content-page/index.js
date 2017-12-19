@@ -116,15 +116,15 @@ export const pageQuery = graphql`
     categorySlug: slug
     subcategories {
       description: navDescription
-      id
+      id: contentful_id
       slug
       title: navTitle
     }
   }
 
-  query contentPageQuery($id: String!, $idRegex: String!) {
+  query contentPageQuery($id: String!, $locale: String!) {
     localizedSlugData: allContentfulContentPage(
-      filter: { id: { regex: $idRegex } }
+      filter: { contentful_id: { eq: $id } }
     ) {
       edges {
         node {
@@ -137,7 +137,10 @@ export const pageQuery = graphql`
       }
     }
 
-    currentPageData: contentfulContentPage(id: { eq: $id }) {
+    currentPageData: contentfulContentPage(
+      contentful_id: { eq: $id },
+      node_locale: { eq: $locale }
+    ) {
       hasShareButtons
       headline
       mainImageAlt

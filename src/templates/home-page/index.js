@@ -48,7 +48,7 @@ export default ContentPageTemplate;
 
 export const pageQuery = graphql`
   query homePageQuery($id: String!) {
-    homePageData: contentfulHomePage(id: { eq: $id }) {
+    homePageData: contentfulHomePage(contentful_id: { eq: $id }) {
       headline
       schoolIntroTitle {
         content: schoolIntroTitle

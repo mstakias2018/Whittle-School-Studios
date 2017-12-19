@@ -20,10 +20,12 @@ const {
 const createCategoryAndArticlePages = (graphql, createPage) =>
   REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
     new Promise((resolve, reject) => {
+      const locale = LANGUAGE_CONTENTFUL_LOCALE[language];
+
       // query run on all content pages,
       // whether category or article, top-level or nested
       const sharedQuery = `
-        id
+        id: contentful_id
         pageType
         slug
 
@@ -62,7 +64,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
       `;
 
       const localeFilter = `filter: {
-        node_locale: { eq: "${LANGUAGE_CONTENTFUL_LOCALE[language]}" }
+        node_locale: { eq: "${locale}" }
       }`;
 
       graphql(`
@@ -87,7 +89,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                   }
 
                   parentCategory: contentpage {
-                    id
+                    id: contentful_id
                   }
                   subcategories {
                     ${sharedQuery}
@@ -106,23 +108,18 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           (node.file ? Object.assign({}, acc, {
             // Get ID from URL instead of using unreliable Gatsby ID
             // https://github.com/gatsbyjs/gatsby/pull/3158
+            // TODO: This PR has been merged but didn't take effect on images,
+            // so we need to create a new PR
             [getIdFromImgUrl(node.file.url)]: node,
           }) : acc), {});
 
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
 
         const buildPage = (id, slugs, imageDataByType) => {
-          // Content page IDs are in the form
-          // - '[baseId]' (for default locale)
-          // - '[baseId]___[locale]' (for other locales)
-          const baseId = id.split('___')[0];
-
           const context = {
             id,
-            // Create a regular expression that will fetch a content pages
-            // for a given baseId in all locales
-            idRegex: `/^${baseId}(___[A-z\\-]+)?$/`,
             imageDataByType,
+            locale,
           };
 
           createPage({
@@ -132,14 +129,10 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           });
 
           if (process.env.GATSBY_ENV === ENV.STAGING) {
-            // Fix for inconsistent padding on Gatsby IDs
-            // https://github.com/gatsbyjs/gatsby/pull/3158
-            const stagingId = `${baseId.length < 23 ? 'c' : ''}${id}`;
-
             createPage({
               component: contentPageTemplate,
               context,
-              path: `${LANGUAGE_PATH[language]}/${stagingId}/`,
+              path: `${LANGUAGE_PATH[language]}/${id}/`,
             });
           }
         };

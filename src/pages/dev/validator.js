@@ -246,7 +246,7 @@ export const pageQuery = graphql`
       contentPages: edges {
         node {
           header {
-            id
+            id: contentful_id
           }
           locale: node_locale
           modules {
@@ -257,10 +257,10 @@ export const pageQuery = graphql`
           navDescription
           pageType
           parentCategory: contentpage {
-            id
+            id: contentful_id
           }
           subcategories {
-            id
+            id: contentful_id
           }
           slug
         }
