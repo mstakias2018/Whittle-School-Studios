@@ -9,6 +9,9 @@ import { PAGE_TYPE } from '../../constants/settings';
 
 import styles from './modules.module.css';
 
+import largeImage from '../../test-content/images/category-large.jpg';
+import smallImage from '../../test-content/images/category-small.jpg';
+
 const EVENT_LIST_DUMMY_DATA = [
   {
     date: '2017-10-13',
@@ -34,10 +37,6 @@ const EVENT_LIST_DUMMY_DATA = [
 ];
 
 const HERO_DUMMY_DATA = {
-  campusOpening: {
-    date: '2018-03-19',
-    title: 'Shenzhen Campus Opening',
-  },
   eventListing: {
     list: [
       {
@@ -57,6 +56,26 @@ const HERO_DUMMY_DATA = {
       },
     ],
     title: 'Parent Information',
+  },
+  openingCountdown: {
+    date: '2018-03-19',
+    title: 'Shenzhen Campus Opening',
+  },
+  schoolsIntro: {
+    description: 'Imagine a network of schools created by an international consortium of educators, architects, ' +
+    'artists and technologists. Imagine one school with many campuses in the world’s top 30 cities connected by a ' +
+    'single faculty and a common curriculum implemented with a collective intelligence. From preschool through high ' +
+    'school, our program is a seamless global experience.',
+    image: {
+      alt: 'hero image',
+      sources: {
+        lg: { src: largeImage },
+        sm: { src: smallImage },
+      },
+    },
+    link: '/',
+    title: 'Imagine a network of schools, created by an international consortium of educators, architects, ' +
+    'artists and technologists.',
   },
 };
 

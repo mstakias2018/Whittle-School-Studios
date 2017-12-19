@@ -210,6 +210,21 @@ const EVENTS_LIST = PropTypes.arrayOf(PropTypes.shape({
   title: PropTypes.string.isRequired,
 }));
 
+const SCHOOLS_INTRO = PropTypes.shape({
+  description: PropTypes.string,
+  image: PropTypes.shape({
+    alt: PropTypes.string.isRequired,
+    sources: PropTypes.shape(validateSourcesBySize),
+  }),
+  link: PropTypes.string,
+  title: PropTypes.string.isRequired,
+});
+
+const OPENING_COUNTDOWN = PropTypes.shape({
+  date: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+});
+
 const NAV_ITEM = PropTypes.arrayOf(PropTypes.shape({
   description: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
@@ -230,14 +245,12 @@ exports.PROP_TYPES = {
     title: PropTypes.string.isRequired,
   })),
   HERO: PropTypes.shape({
-    campusOpening: PropTypes.shape({
-      date: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    }),
     eventListing: PropTypes.shape({
       list: EVENTS_LIST,
       title: PropTypes.string.isRequired,
     }),
+    openingCountdown: OPENING_COUNTDOWN,
+    schoolsIntro: SCHOOLS_INTRO,
   }),
   HISTORY: PropTypes.shape({
     push: PropTypes.func.isRequired,
@@ -266,7 +279,9 @@ exports.PROP_TYPES = {
     THUMBNAIL_LIST,
   ])),
   NAV_ITEM,
+  OPENING_COUNTDOWN,
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
+  SCHOOLS_INTRO,
   SOCIAL_ICONS: PropTypes.shape({
     contentPage: socialNetworkList.isRequired,
     footer: socialNetworkList.isRequired,

@@ -11,6 +11,9 @@ import { PAGE_TYPE, HOME_SECTION_TITLE_COLOR, HOME_SECTION_TITLE_POSITION } from
 
 import styles from './modules.module.css';
 
+import largeImage from '../../test-content/images/category-large.jpg';
+import smallImage from '../../test-content/images/category-small.jpg';
+
 const EVENT_LIST_DUMMY_DATA = [
   {
     date: '2017-10-13',
@@ -36,10 +39,6 @@ const EVENT_LIST_DUMMY_DATA = [
 ];
 
 const HERO_DUMMY_DATA = {
-  campusOpening: {
-    date: '2018-03-20',
-    title: '全球 校园',
-  },
   eventListing: {
     list: [
       {
@@ -59,6 +58,24 @@ const HERO_DUMMY_DATA = {
       },
     ],
     title: 'Parent Information',
+  },
+  openingCountdown: {
+    date: '2018-03-19',
+    title: '全球 校园',
+  },
+  schoolsIntro: {
+    description: '想象一下由国际教育工作者，建筑师，艺术家和技术专家组成的学校网络。 ' +
+    '想象一下，有一所学校在世界前30个城市设有许多校园，由一个教师组成，并通过集体智慧实施共同课程。 ' +
+    '从幼儿园到高中，我们的课程是一个无缝的全球经验。',
+    image: {
+      alt: '想象一下由国际教育工作者',
+      sources: {
+        lg: { src: largeImage },
+        sm: { src: smallImage },
+      },
+    },
+    link: '/',
+    title: '想象一下由国际教育工作者，建筑师，艺术家和技术专家组成的学校网络。',
   },
 };
 
