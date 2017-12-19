@@ -39,9 +39,11 @@ class TemplateWrapper extends Component {
       fabLinkExternal,
       fabLinkInternal,
       footerShareIcons,
-      translations: { internal: { content: stringifiedTranslations } },
       ...socialNetworkUrls
     } = data[`SETTINGS_${language}`];
+    const {
+      translations: { internal: { content: stringifiedTranslations } },
+    } = data[`TRANSLATIONS_${language}`];
     const translations = JSON.parse(stringifiedTranslations);
 
     return {
@@ -182,11 +184,6 @@ export const pageQuery = graphql`
   }
 
   fragment settings on ContentfulGlobalSettings {
-    translations {
-      internal {
-        content
-      }
-    }
     fabText {
       file {
         url
@@ -207,6 +204,14 @@ export const pageQuery = graphql`
     TWITTER: twitterUrl
     WECHAT: weChatUrl
     WEIBO: weiboUrl
+  }
+
+  fragment translations on ContentfulGlobalTranslations {
+    translations {
+      internal {
+        content
+      }
+    }
   }
 
   query globalQuery {
@@ -232,6 +237,14 @@ export const pageQuery = graphql`
 
     SETTINGS_CHINESE: contentfulGlobalSettings(node_locale: {eq: "zh-CN"}) {
       ...settings
+    }
+
+    TRANSLATIONS_ENGLISH: contentfulGlobalTranslations(node_locale: {eq: "en-US"}) {
+      ...translations
+    }
+
+    TRANSLATIONS_CHINESE: contentfulGlobalTranslations(node_locale: {eq: "zh-CN"}) {
+      ...translations
     }
   }
 `;

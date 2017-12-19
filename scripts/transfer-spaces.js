@@ -10,27 +10,57 @@ import { CONTENTFUL_SPACE } from '../src/constants/contentful';
 
 const client = createClient({ accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN });
 
-const filterFields = entries =>
-  entries.map((entry) => {
+const ENTRY_TYPE = 'Entry';
+const TRANSLATION_CONTENT_TYPE = 'globalTranslations';
+
+const filterFields = (entries, opts) => {
+  const { shouldFilterNonEnglish, shouldSkipContent } = opts;
+  return entries.reduce((filteredEntries, entry) => {
+    const shouldSkipContentAndIsNotTranslationsEntry = shouldSkipContent &&
+      entry.sys.type === ENTRY_TYPE &&
+      entry.sys.contentType.sys.id !== TRANSLATION_CONTENT_TYPE;
+    if (shouldSkipContentAndIsNotTranslationsEntry) return filteredEntries;
+
     const fieldNames = entry.fields ? Object.keys(entry.fields) : [];
-    return {
-      ...entry,
-      fields: fieldNames.reduce((acc, fieldName) => {
+    const out = { ...entry };
+
+    if (shouldFilterNonEnglish) {
+      out.fields = fieldNames.reduce((acc, fieldName) => {
         acc[fieldName] = { 'en-US': entry.fields[fieldName]['en-US'] };
         return acc;
-      }, {}),
-    };
-  });
+      }, {});
+    }
 
-const getContent = (output, shouldFilterNonEnglish) => {
-  const { assets, entries, locales } = output;
-  return shouldFilterNonEnglish ? {
-    ...output,
-    assets: filterFields(assets),
-    entries: filterFields(entries),
-    locales: locales.filter(({ code }) => code === 'en-US'),
-  } : output;
+    filteredEntries.push(out);
+
+    return filteredEntries;
+  }, []);
 };
+
+const getContent = (output, opts) => {
+  const { shouldFilterNonEnglish, shouldSkipContent } = opts;
+  const { assets, entries, locales } = output;
+
+  const out = { ...output }; // spread to avoid mutation
+
+  if (shouldFilterNonEnglish) {
+    out.locales = locales.filter(({ code }) => code === 'en-US');
+  }
+
+  if (shouldSkipContent) {
+    delete out.assets;
+  } else if (shouldFilterNonEnglish) {
+    out.assets = filterFields(assets, { shouldFilterNonEnglish });
+  }
+
+  if (shouldSkipContent || shouldFilterNonEnglish) {
+    out.entries = filterFields(entries, { shouldFilterNonEnglish, shouldSkipContent });
+  }
+
+  return out;
+};
+
+exports.getContent = getContent;
 
 const unpublishAndDeleteEntries = (entries) => {
   if (!entries) return undefined;
@@ -64,7 +94,8 @@ const clearTarget = targetSpaceId =>
        use an array of languages.
      shouldSkipContent:
        Necessary when deploying to production so only structural updates are
-       translated, but content is not changed.
+       translated, but content is not changed. NOTE: Even in this case,
+       translations will be copied.
 
    Known issues:
      If the target has a field that the source does not, you'll get an error:
@@ -73,7 +104,7 @@ const clearTarget = targetSpaceId =>
      fields not present in the source.
 */
 export default (sourceInfo, targetInfo, opts = {}) => {
-  const { shouldFilterNonEnglish, shouldSkipContent } = opts;
+  const { shouldSkipContent } = opts;
   const [sourceEnv, sourceRegion] = sourceInfo;
   const [targetEnv, targetRegion] = targetInfo;
   const sourceSpaceId = CONTENTFUL_SPACE[sourceEnv][sourceRegion].spaceId;
@@ -85,13 +116,13 @@ export default (sourceInfo, targetInfo, opts = {}) => {
     spaceExport({
       managementToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
       saveFile: false,
-      skipContent: !!shouldSkipContent,
+      skipRoles: true,
       skipWebhooks: true,
       spaceId: sourceSpaceId,
     }).then((output) => {
       const importToTarget = () =>
         spaceImport({
-          content: shouldSkipContent ? output : getContent(output, shouldFilterNonEnglish),
+          content: getContent(output, opts),
           managementToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
           spaceId: targetSpaceId,
         }).then(resolve);

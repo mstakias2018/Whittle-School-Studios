@@ -5,8 +5,8 @@
   "scripts": {
     "build": "GATSBY_REGION=\"US\" gatsby build",
     "build-china": "GATSBY_REGION=\"CHINA\" gatsby build",
-    "build-ci": "if test \"$CONTEXT\" = \"deploy-preview\"; then yarn lint-js && yarn lint-css; fi && yarn build",
-    "build-ci-china": "if test \"$CONTEXT\" = \"deploy-preview\"; then yarn lint-js && yarn lint-css; fi && yarn build-china",
+    "build-ci": "if test \"$CONTEXT\" = \"deploy-preview\"; then yarn lint-js && yarn lint-css && yarn test; fi && yarn build",
+    "build-ci-china": "if test \"$CONTEXT\" = \"deploy-preview\"; then yarn lint-js && yarn lint-css && yarn test; fi && yarn build-china",
     "develop": "GATSBY_REGION=\"US\" gatsby develop",
     "develop-china": "GATSBY_REGION=\"CHINA\" gatsby develop",
     "lint-js": "eslint '**/*.js' --ignore-path .eslintignore --max-warnings 0",
@@ -14,7 +14,9 @@
     "start": "gatsby serve",
     "copy-cn-to-us": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/cn-dev-to-us-dev.js",
     "deploy-qa": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/deploy-qa.js",
-    "deploy-prod": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/deploy-prod.js"
+    "deploy-prod": "babel scripts -s -D -d bin --presets es2015,stage-0 && node bin/deploy-prod.js",
+    "test:watch": "jest --watch",
+    "test": "jest"
   },
   "dependencies": {
     "@vimeo/player": "git://github.com/vimeo/player.js#v2.2.1",
@@ -54,6 +56,7 @@
     "contentful-management": "^4.1.2",
     "dotenv": "^4.0.0",
     "eslint-config-airbnb": "^16.1.0",
+    "jest": "^22.0.1",
     "moment-timezone": "^0.5.14",
     "postcss": "6.0.13",
     "postcss-browser-reporter": "0.5.0",

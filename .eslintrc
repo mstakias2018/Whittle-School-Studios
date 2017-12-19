@@ -6,8 +6,11 @@
   },
   "extends": "airbnb",
   "globals": {
+    "describe": true,
     "env": true,
+    "expect": true,
     "graphql": true,
+    "it": true,
     "SERVER_RENDER": true
   },
   "rules": {

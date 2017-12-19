@@ -101,3 +101,22 @@ These are removed on the `production` branch in the `deleteDevPages` util.
 
 One dev page is the validator, which runs a report on all Contentful content to
 report on rule violations that are too complex for Contentful.
+
+## Tests
+
+Jest is available in the repo for complicated utils/scripts. Tests will also run
+when building pull requests.
+
+**Run all tests**
+
+```sh
+$ yarn test
+```
+
+Fill out environment variables with Contentful properties. Only the DEV values are needed for development; other values will be needed for deployment.
+
+**Run tests on changed files**
+
+```sh
+$ yarn test:watch
+```
