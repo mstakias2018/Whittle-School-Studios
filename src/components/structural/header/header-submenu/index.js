@@ -46,9 +46,9 @@ class Submenu extends Component {
             })}
           >
             <li className={styles.titleContainer}>
-              <h4 className={styles.title}>
+              <span className={styles.title}>
                 {categoryTitle}
-              </h4>
+              </span>
             </li>
             {
               navItems.map(({

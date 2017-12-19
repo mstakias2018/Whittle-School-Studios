@@ -57,7 +57,7 @@ const PageHead = ({
         }
         {type === PAGE_TYPE.CATEGORY &&
         subhead &&
-        <h2 className={styles.subhead}>{subhead}</h2>
+        <div className={styles.subhead}>{subhead}</div>
         }
         {imageSources &&
         <Picture
