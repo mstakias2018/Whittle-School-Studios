@@ -5,6 +5,8 @@ import cx from 'classnames';
 import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 
+import { removeMarkdown } from '../../../utils/strings';
+
 import styles from './title.module.css';
 
 const propTypes = {
@@ -18,14 +20,18 @@ const {
 } = require('./../../../constants/classes');
 
 const Title = ({ isSingle, text, type }) => (
-  <Markdown
-    allowedTypes={ALLOWED_TYPES.TITLE}
-    className={cx(styles[`type${type}`], CLASSES.HEADLINE, {
-      [styles[`type${type}_isSingle`]]: isSingle,
-    })}
-    containerTagName="h1"
-    source={text}
-  />
+  <h1 className={cx(styles[`type${type}`], CLASSES.HEADLINE, {
+    [styles[`type${type}_isSingle`]]: isSingle,
+  })}
+  >
+    <span className="screenReaderText">{removeMarkdown(text)}</span>
+    <Markdown
+      allowedTypes={ALLOWED_TYPES.TITLE}
+      containerProps={{ 'aria-hidden': true }}
+      containerTagName="span"
+      source={text}
+    />
+  </h1>
 );
 
 Title.propTypes = propTypes;

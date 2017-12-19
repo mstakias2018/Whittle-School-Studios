@@ -1,5 +1,6 @@
 @import '../../../assets/styles/includes/breakpoints.css';
 @import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/mixins.css';
 @import '../../../assets/styles/includes/typography.css';
 
 .wrapper {
@@ -98,6 +99,11 @@
   }
 
   h1 {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .parallaxTitle {
     @mixin span 4, 4, sm;
 
     @media (--bp-md) {
@@ -106,18 +112,6 @@
 
     @media (--bp-lg) {
       @mixin span 8, 12, lg;
-    }
-  }
-
-  picture {
-    @mixin span 4, 4, sm;
-
-    @media (--bp-md) {
-      @mixin span 8, 8, md;
-    }
-
-    @media (--bp-lg) {
-      @mixin span 10, 12, lg;
     }
   }
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Title from '../../components/global/title';
 import PageWrapper from '../../components/structural/page-wrapper';
 import Hero from '../../content-modules/global/hero';
 import PIC from '../../content-modules/global/pic';
+import PageHead from '../../components/structural/page-head';
 
 import { PAGE_TYPE } from '../../constants/settings';
 
@@ -82,12 +82,12 @@ const HERO_DUMMY_DATA = {
 const Home = () => (
   <PageWrapper>
     <div className={styles.componentInfo}>Title</div>
-    <Title
-      text="The First
-Global School
-in *Shenzhen*."
+    <PageHead
+      headline="The First Global School in *Shenzhen*."
       type={PAGE_TYPE.HOME}
     />
+    <div className={styles.placeHolder} />
+    <div className={styles.componentInfo}>hero</div>
     <Hero data={HERO_DUMMY_DATA} />
     <PIC eventsList={EVENT_LIST_DUMMY_DATA} />
   </PageWrapper>

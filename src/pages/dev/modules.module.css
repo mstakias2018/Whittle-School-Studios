@@ -21,3 +21,8 @@
 .yellow {
   background-color: var(--color-secondary-light);
 }
+
+.placeHolder {
+  background-color: var(--color-dark-border);
+  height: 300px;
+}

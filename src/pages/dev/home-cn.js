@@ -1,11 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 
-import Title from '../../components/global/title';
 import HomeSectionTitle from '../../components/structural/home-section-title';
 import PageWrapper from '../../components/structural/page-wrapper';
 import Hero from '../../content-modules/global/hero';
 import PIC from '../../content-modules/global/pic';
+import PageHead from '../../components/structural/page-head';
 
 import { PAGE_TYPE, HOME_SECTION_TITLE_COLOR, HOME_SECTION_TITLE_POSITION } from '../../constants/settings';
 
@@ -83,10 +83,11 @@ const HomeCn = () => (
   <PageWrapper>
     <div className="wrapper_isChinese">
       <div className={styles.componentInfo}>Title</div>
-      <Title
-        text="第一个全球学校在深圳"
+      <PageHead
+        headline="第一个全球学校在深圳"
         type={PAGE_TYPE.HOME}
       />
+      <div className={styles.placeHolder} />
       <Hero data={HERO_DUMMY_DATA} />
       <PIC eventsList={EVENT_LIST_DUMMY_DATA} />
       <div className={styles.componentInfo}>Section titles demo</div>
