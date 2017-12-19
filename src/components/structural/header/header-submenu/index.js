@@ -114,6 +114,7 @@ class Submenu extends Component {
                 );
               })
             }
+            {navItems.length < 3 && <li className={cx(styles.item, styles.itemPlaceholder, 'showLg')} />}
           </ul>
         }
         </nav>
