@@ -262,6 +262,39 @@ export const pageQuery = graphql`
           }
           linkExternal
         }
+        ... on ContentfulThumbnailList {
+          item1Description {
+            markdown: item1Description
+          }
+          item2Description {
+            markdown: item2Description
+          }
+          item3Description {
+            markdown: item3Description
+          }
+          item4Description {
+            markdown: item4Description
+          }
+          item5Description {
+            markdown: item5Description
+          }
+          item6Description {
+            markdown: item6Description
+          }
+          item1Title
+          item2Title
+          item3Title
+          item4Title
+          item5Title
+          item6Title
+          item1ImageAlt
+          item2ImageAlt
+          item3ImageAlt
+          item4ImageAlt
+          item5ImageAlt
+          item6ImageAlt
+          title
+        }
       }
     }
   }

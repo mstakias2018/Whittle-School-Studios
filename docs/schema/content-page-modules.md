@@ -321,26 +321,32 @@ type QuoteStyle = ["PullQuote", "BlockQuote"];
 
   item1Asset: { type: ContentfulAsset },
   item1Description: { type: LongTextField },
+  item1ImageAlt: { type: String },
   item1Title: { type: String },
 
   item2Asset: { type: ContentfulAsset },
   item2Description: { type: LongTextField },
+  item2ImageAlt: { type: String },
   item2Title: { type: String },
 
   item3Asset: { type: ContentfulAsset },
   item3Description: { type: LongTextField },
+  item3ImageAlt: { type: String },
   item3Title: { type: String },
 
   item4Asset: { type: ContentfulAsset, isRequired: false },
   item4Description: { type: LongTextField, isRequired: false },
+  item4ImageAlt: { type: String, isRequired: false },
   item4Title: { type: String, isRequired: false },
 
   item5Asset: { type: ContentfulAsset, isRequired: false },
   item5Description: { type: LongTextField, isRequired: false },
+  item5ImageAlt: { type: String, isRequired: false },
   item5Title: { type: String, isRequired: false },
 
   item6Asset: { type: ContentfulAsset, isRequired: false },
   item6Description: { type: LongTextField, isRequired: false },
+  item6ImageAlt: { type: String, isRequired: false },
   item6Title: { type: String, isRequired: false },
 }
 ```

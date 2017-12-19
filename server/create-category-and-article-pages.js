@@ -60,6 +60,26 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
               }
             }
           }
+          ... on ContentfulThumbnailList {
+            item1Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
+            }
+            item2Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
+            }
+            item3Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
+            }
+            item4Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
+            }
+            item5Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
+            }
+            item6Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
+            }
+          }
         }
       `;
 
@@ -74,7 +94,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
             allContentfulAsset(${localeFilter}) {
               edges {
                 node {
-                  ${createQuery(IMAGE_SUBTYPE.INSET)}
+                  ${createQuery(IMAGE_SUBTYPE.INSET_SQ)}
                 }
               }
             }
@@ -154,24 +174,38 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           }
 
           if (modules) {
-            const modulePromises = modules.map((n, i) => {
-              const { __typename, content, slides } = n;
-              if (__typename === CONTENT_MODULE.INLINE_IMAGE) {
-                return saveInlineImage(n, [id, i]);
-              } else if (__typename === CONTENT_MODULE.CAROUSEL) {
-                return Promise.all(slides.map((s, j) => saveCarouselImage(s, [id, i, j])));
-              } else if (__typename === CONTENT_MODULE.BODY_TEXT) {
-                const CONTENTFUL_REGEX = /\/\/images\.contentful\.com\/(\w*\/)+[\w-]*\.\w{3,4}/gi;
-                const matches = content.content.match(CONTENTFUL_REGEX);
-                if (matches) {
-                  return Promise.all(matches.map((match, j) => {
-                    const asset = contentfulAssetsById[getIdFromImgUrl(match)];
-                    return saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INSET, [id, i, j]);
-                  }));
+            const modulePromises = modules.map((module, i) => {
+              const { __typename } = module;
+              switch (__typename) {
+                case CONTENT_MODULE.INLINE_IMAGE:
+                  return saveInlineImage(module, [id, i]);
+                case CONTENT_MODULE.CAROUSEL:
+                  return Promise.all(module.slides.map((s, j) => saveCarouselImage(s, [id, i, j])));
+                case CONTENT_MODULE.BODY_TEXT: {
+                  const CONTENTFUL_REGEX = /\/\/images\.contentful\.com\/(\w*\/)+[\w-]*\.\w{3,4}/gi;
+                  const matches = module.content.content.match(CONTENTFUL_REGEX);
+                  if (matches) {
+                    return Promise.all(matches.map((match, j) => {
+                      const asset = contentfulAssetsById[getIdFromImgUrl(match)];
+                      return saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INSET_SQ, [id, i, j]);
+                    }));
+                  }
+                  return {};
                 }
+                case CONTENT_MODULE.THUMBNAIL_LIST:
+                  return Promise.all([
+                    module.item1Asset,
+                    module.item2Asset,
+                    module.item3Asset,
+                    module.item4Asset,
+                    module.item5Asset,
+                    module.item6Asset,
+                  ].map((asset, j) => (asset ?
+                    saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INSET_RT, [id, i, j]) :
+                    {})));
+                default:
+                  return {};
               }
-
-              return {};
             });
 
             setupPromises.push(Promise.all(modulePromises).then((imageData) => {

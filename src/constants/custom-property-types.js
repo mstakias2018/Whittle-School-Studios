@@ -26,6 +26,8 @@ const validateSourcesBySize = (props, propName) => {
   return isValidSourcesBySize(sourcesBySize) ? undefined : new Error('invalid sources by size');
 };
 
+const IMAGE_SOURCES = PropTypes.shape(validateSourcesBySize);
+
 const validateImageDataByType = (props, propName) => {
   const imageDataByType = props[propName];
   const isValid = Object.keys(imageDataByType).every((imageType) => {
@@ -99,31 +101,48 @@ const LIST = PropTypes.shape({
   ...listPropTypes,
 });
 
-const thumbnailsListPropTypes = {
-  item1Asset: PropTypes.string.isRequired,
-  item1Description: PropTypes.string.isRequired,
+const thumbnailListModulePropTypes = {
+  item1Description: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
+  }).isRequired,
+  item1ImageAlt: PropTypes.string.isRequired,
   item1Title: PropTypes.string.isRequired,
-  item2Asset: PropTypes.string.isRequired,
-  item2Description: PropTypes.string.isRequired,
+  item2Description: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
+  }).isRequired,
+  item2ImageAlt: PropTypes.string.isRequired,
   item2Title: PropTypes.string.isRequired,
-  item3Asset: PropTypes.string.isRequired,
-  item3Description: PropTypes.string.isRequired,
+  item3Description: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
+  }).isRequired,
+  item3ImageAlt: PropTypes.string.isRequired,
   item3Title: PropTypes.string.isRequired,
-  item4Asset: PropTypes.string,
-  item4Description: PropTypes.string,
+  item4Description: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
+  }),
+  item4ImageAlt: PropTypes.string,
   item4Title: PropTypes.string,
-  item5Asset: PropTypes.string,
-  item5Description: PropTypes.string,
+  item5Description: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
+  }),
+  item5ImageAlt: PropTypes.string,
   item5Title: PropTypes.string,
-  item6Asset: PropTypes.string,
-  item6Description: PropTypes.string,
+  item6Description: PropTypes.shape({
+    markdown: PropTypes.string.isRequired,
+  }),
+  item6ImageAlt: PropTypes.string,
   item6Title: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
-const THUMBNAIL_LIST = PropTypes.shape({
+const THUMBNAIL_LIST = {
+  imageSources: PropTypes.arrayOf(IMAGE_SOURCES).isRequired,
+  ...thumbnailListModulePropTypes,
+};
+
+const THUMBNAIL_LIST_MODULE = PropTypes.shape({
   __typename: createTypenameChecker(CONTENT_MODULE.THUMBNAIL_LIST),
-  ...thumbnailsListPropTypes,
+  ...thumbnailListModulePropTypes,
 });
 
 const OPENAPPLY_IFRAME = PropTypes.shape({
@@ -194,11 +213,8 @@ const LIST_ITEM = {
 };
 
 const THUMBNAIL_LIST_ITEM = {
-  asset: PropTypes.shape({
-    alt: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  }).isRequired,
   description: PropTypes.string.isRequired,
+  imageSources: IMAGE_SOURCES.isRequired,
   title: PropTypes.string.isRequired,
 };
 
@@ -258,7 +274,7 @@ exports.PROP_TYPES = {
     push: PropTypes.func.isRequired,
   }),
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
-  IMAGE_SOURCES: PropTypes.shape(validateSourcesBySize),
+  IMAGE_SOURCES,
   LANGUAGE: PropTypes.oneOf(REGION_LANGUAGES[process.env.GATSBY_REGION]),
   LIST_ITEM,
   LOCALIZED_SLUG_LIST: PropTypes.arrayOf(PropTypes.shape({
@@ -278,7 +294,7 @@ exports.PROP_TYPES = {
     SECTION_TITLE,
     SLIDESHOW_CAROUSEL,
     THREE_UP_BREAKER,
-    THUMBNAIL_LIST,
+    THUMBNAIL_LIST_MODULE,
   ])),
   NAV_ITEM,
   OPENING_COUNTDOWN,
@@ -292,5 +308,6 @@ exports.PROP_TYPES = {
     categoryTitle: PropTypes.string.isRequired,
     navItems: PropTypes.arrayOf(PropTypes.shape(NAV_ITEM)).isRequired,
   }),
+  THUMBNAIL_LIST,
   THUMBNAIL_LIST_ITEM,
 };

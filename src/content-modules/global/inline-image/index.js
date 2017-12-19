@@ -6,11 +6,15 @@ import Picture from '../../../components/global/picture';
 
 import styles from './inline-image.module.css';
 
-import { getInlineImagePropTypes } from '../../../constants/custom-property-types';
+import {
+  getInlineImagePropTypes,
+  PROP_TYPES,
+} from '../../../constants/custom-property-types';
 
 const propTypes = {
   ...getInlineImagePropTypes(),
   children: PropTypes.node,
+  imageSources: PROP_TYPES.IMAGE_SOURCES.isRequired,
   isInBackground: PropTypes.bool,
   isVideoCover: PropTypes.bool,
 };

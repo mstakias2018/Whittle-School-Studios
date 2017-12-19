@@ -5,27 +5,28 @@ import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './thumbnails-list.module.css';
 
-const propTypes = PROP_TYPES.THUMBNAILS_LIST;
+const propTypes = PROP_TYPES.THUMBNAIL_LIST;
 
 const ThumbnailsList = ({
   title,
-  item1Asset,
+  imageSources,
   item1Description,
+  item1ImageAlt,
   item1Title,
-  item2Asset,
   item2Description,
+  item2ImageAlt,
   item2Title,
-  item3Asset,
   item3Description,
+  item3ImageAlt,
   item3Title,
-  item4Asset,
   item4Description,
+  item4ImageAlt,
   item4Title,
-  item5Asset,
   item5Description,
+  item5ImageAlt,
   item5Title,
-  item6Asset,
   item6Description,
+  item6ImageAlt,
   item6Title,
 }) => (
   <div className={styles.wrapper}>
@@ -38,45 +39,51 @@ const ThumbnailsList = ({
         </h2>
       </div>
       <ul className={styles.list}>
-        {item1Asset && item1Description && item1Asset &&
+        {item1Title && item1Description && imageSources[0] &&
           <ThumbnailsListItem
-            asset={item1Asset}
             description={item1Description}
+            imageAlt={item1ImageAlt}
+            imageSources={imageSources[0]}
             title={item1Title}
           />
         }
-        {item2Asset && item2Description && item2Asset &&
+        {item2Title && item2Description && imageSources[1] &&
           <ThumbnailsListItem
-            asset={item2Asset}
             description={item2Description}
+            imageAlt={item2ImageAlt}
+            imageSources={imageSources[1]}
             title={item2Title}
           />
         }
-        {item3Asset && item3Description && item3Asset &&
+        {item3Title && item3Description && imageSources[2] &&
           <ThumbnailsListItem
-            asset={item3Asset}
             description={item3Description}
+            imageAlt={item3ImageAlt}
+            imageSources={imageSources[2]}
             title={item3Title}
           />
         }
-        {item4Asset && item4Description && item4Asset &&
+        {item4Title && item4Description && imageSources[3] &&
           <ThumbnailsListItem
-            asset={item4Asset}
             description={item4Description}
+            imageAlt={item4ImageAlt}
+            imageSources={imageSources[3]}
             title={item4Title}
           />
         }
-        {item5Asset && item5Description && item5Asset &&
+        {item5Title && item5Description && imageSources[4] &&
           <ThumbnailsListItem
-            asset={item5Asset}
             description={item5Description}
+            imageAlt={item5ImageAlt}
+            imageSources={imageSources[4]}
             title={item5Title}
           />
         }
-        {item6Asset && item6Description && item6Asset &&
+        {item6Title && item6Description && imageSources[5] &&
           <ThumbnailsListItem
-            asset={item6Asset}
             description={item6Description}
+            imageAlt={item6ImageAlt}
+            imageSources={imageSources[5]}
             title={item6Title}
           />
         }

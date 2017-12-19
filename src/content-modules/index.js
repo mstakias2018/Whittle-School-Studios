@@ -10,6 +10,7 @@ import OpenApplyIFrame from './global/openapply-iframe';
 import Quote from './global/quote';
 import SectionTitle from './global/section-title';
 import ThreeUpBreaker from './global/three-up-breaker';
+import ThumbnailsList from './global/thumbnails-list';
 
 import { PROP_TYPES } from '../constants/custom-property-types';
 import { CONTENT_MODULE } from '../constants/contentful';
@@ -24,6 +25,7 @@ const MODULE_MAP = {
   [CONTENT_MODULE.QUOTE]: Quote,
   [CONTENT_MODULE.SECTION_TITLE]: SectionTitle,
   [CONTENT_MODULE.THREE_UP_BREAKER]: ThreeUpBreaker,
+  [CONTENT_MODULE.THUMBNAIL_LIST]: ThumbnailsList,
 };
 
 const propTypes = {

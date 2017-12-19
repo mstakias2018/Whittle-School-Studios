@@ -35,13 +35,14 @@ exports.IMAGE_TYPE = {
 };
 
 exports.IMAGE_SUBTYPE = {
-  CAROUSEL_SQ: 'carouselSquare',
-  INLINE_RT: 'inlineRectangular',
-  INLINE_RT_VIDEO: 'inlineRectangularVideo',
-  INLINE_SQ: 'inlineSquare',
-  INSET: 'inset',
-  MAIN_ARTICLE: 'mainSquare',
-  MAIN_CATEGORY: 'mainCategory',
+  CAROUSEL_SQ: 'carouselSq',
+  INLINE_RT: 'inlineRt',
+  INLINE_RT_VIDEO: 'inlineRtVideo',
+  INLINE_SQ: 'inlineSq',
+  INSET_RT: 'insetRt',
+  INSET_SQ: 'insetSq',
+  MAIN_ARTICLE: 'mainArt',
+  MAIN_CATEGORY: 'mainCat',
 };
 
 // must match Contentful values

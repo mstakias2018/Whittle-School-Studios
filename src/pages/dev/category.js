@@ -6,7 +6,6 @@ import InlineImage from '../../content-modules/global/inline-image';
 import InlineVideo from '../../content-modules/global/inline-video';
 import PageWrapper from '../../components/structural/page-wrapper';
 import ThreeUpBreaker from '../../content-modules/global/three-up-breaker';
-import ThumbnailsList from '../../content-modules/global/thumbnails-list';
 
 import { IMAGE_SIZE, IMAGE_SHAPE } from '../../constants/images';
 
@@ -74,20 +73,6 @@ const Category = () => (
       title1="A School of One"
       title2="Exceptional Faculty"
       title3="Progressive Pedagogy"
-    />
-
-    <div className={styles.componentInfo}>Categorized list with thumbnails</div>
-    <ThumbnailsList
-      item1Asset={{ alt: 'Image 1 alt', image: largeImage }}
-      item1Description="Est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit lorem."
-      item1Title="Charlie Friedlander"
-      item2Asset={{ alt: 'Image 2 alt', image: largeImage }}
-      item2Description="Est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit lorem."
-      item2Title="Charlie Friedlander"
-      item3Asset={{ alt: 'Image 3 alt', image: largeImage }}
-      item3Description="Est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit lorem."
-      item3Title="Charlie Friedlander"
-      title="Our Heads"
     />
   </PageWrapper>
 );
