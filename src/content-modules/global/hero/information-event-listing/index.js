@@ -6,6 +6,7 @@ import Date from '../../../../components/global/date';
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
 
 import styles from './event-listing.module.css';
+import heroStyles from '../hero.module.css';
 
 const propTypes = {
   list: PROP_TYPES.EVENTS_LIST,
@@ -14,7 +15,7 @@ const propTypes = {
 
 const InformationEventListing = ({ list, title }) => (
   <div className={styles.wrapper}>
-    <h4 className={styles.componentTitle}>{title}</h4>
+    <h4 className={heroStyles.sideTitle}>{title}</h4>
     <ul className={styles.list}>
       {list.map((event, index) => (
         <li

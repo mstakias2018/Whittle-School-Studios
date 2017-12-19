@@ -11,3 +11,20 @@
     @mixin grid-container;
   }
 }
+
+.sideTitle {
+  @mixin type-h5-italic;
+  border-top: 2px solid var(--color-text-dark);
+  color: var(--color-text-light);
+  letter-spacing: 0.2px;
+  margin-bottom: 0;
+  padding: 28px 0 21px;
+
+  @media (--bp-lg) {
+    padding: 40px 0 45px;
+  }
+
+  :global(.wrapper_isChinese) & {
+    font-size: 16px;
+  }
+}

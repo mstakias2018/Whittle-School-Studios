@@ -230,6 +230,10 @@ exports.PROP_TYPES = {
     title: PropTypes.string.isRequired,
   })),
   HERO: PropTypes.shape({
+    campusOpening: PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
     eventListing: PropTypes.shape({
       list: EVENTS_LIST,
       title: PropTypes.string.isRequired,

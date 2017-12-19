@@ -11,14 +11,6 @@
   }
 }
 
-.componentTitle {
-  @mixin type-h5-italic;
-  border-top: 2px solid var(--color-text-dark);
-  color: var(--color-text-light);
-  letter-spacing: 0.2px;
-  padding: 40px 0 45px;
-}
-
 .list {
   @mixin reset-list;
 }
