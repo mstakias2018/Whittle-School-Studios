@@ -17,6 +17,7 @@ const propTypes = {
   breakpoint: PROP_TYPES.BREAKPOINT,
   localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
   subNavProps: PROP_TYPES.SUB_NAV_PROPS,
+  viewedPage: PropTypes.bool,
 };
 
 class Header extends Component {
@@ -43,7 +44,7 @@ class Header extends Component {
 
   render() {
     const { translations } = this.context;
-    const { localizedSlugList, subNavProps } = this.props;
+    const { localizedSlugList, subNavProps, viewedPage } = this.props;
 
     return (
       <header className={styles.header}>
@@ -67,7 +68,10 @@ class Header extends Component {
           </div>
         </div>
         {subNavProps &&
-          <SubMenu {...this.props.subNavProps} />}
+          <SubMenu
+            {...this.props.subNavProps}
+            viewedPage={viewedPage}
+          />}
       </header>
     );
   }

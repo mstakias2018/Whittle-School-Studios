@@ -2,12 +2,13 @@ import { PAGE_TYPE } from '../constants/settings';
 import { createContentPageLink, parseLink } from './global';
 
 exports.transformSubnavProps = ({
-  categoryTitle,
   categoryDescription,
+  categorySlug,
+  categoryTitle,
   currentPageId,
   currentPageType,
   overviewNavTitle,
-  categorySlug,
+  parentCategoryId,
   subcategories,
 }) => {
   const formatSubCategory = sub => ({
@@ -21,6 +22,7 @@ exports.transformSubnavProps = ({
     navItems: [
       {
         description: categoryDescription,
+        id: parentCategoryId,
         isActive: currentPageType === PAGE_TYPE.CATEGORY,
         link: categorySlug,
         title: overviewNavTitle,

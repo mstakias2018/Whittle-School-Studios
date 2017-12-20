@@ -1,11 +1,13 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { CookiesProvider } from 'react-cookie';
 
 import ContentModules from '../../content-modules';
 import PageHead from '../../components/structural/page-head';
 import Share from '../../components/structural/share';
 import PageWrapper from '../../components/structural/page-wrapper';
+import PageVisited from '../../components/structural/page-visited';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
@@ -25,86 +27,108 @@ const propTypes = {
   }).isRequired,
 };
 
-const ContentPageTemplate = ({
-  data: { localizedSlugData, currentPageData },
-  pathContext: { id, imageDataByType },
-}) => {
-  const {
-    hasShareButtons,
-    headline,
-    mainImageAlt,
-    modules,
-    overviewNavTitle,
-    navDescription,
-    navTitle,
-    pageType,
-    parentCategory,
-    categorySlug,
-    seoMetaDescription,
-    seoMetaTitle,
-    subcategories,
-    subhead,
-  } = currentPageData;
+class ContentPageTemplate extends React.Component {
+  state = {
+    viewed: false,
+  };
 
-  let subNavProps;
+  viewedPage = (viewed) => {
+    this.setState({ viewed });
+  };
 
-  if (parentCategory) {
-    subNavProps = transformSubnavProps({
-      ...parentCategory[0],
-      currentPageId: id,
-      currentPageType: pageType,
-    });
-  } else if (subcategories) {
-    subNavProps = transformSubnavProps({
-      categoryDescription: navDescription,
-      categorySlug,
-      categoryTitle: navTitle,
-      currentPageId: id,
-      currentPageType: pageType,
+  render() {
+    const {
+      data: { localizedSlugData, currentPageData },
+      pathContext: { id, imageDataByType },
+    } = this.props;
+
+    const {
+      hasShareButtons,
+      headline,
+      mainImageAlt,
+      modules,
       overviewNavTitle,
+      navDescription,
+      navTitle,
+      pageType,
+      parentCategory,
+      categorySlug,
+      seoMetaDescription,
+      seoMetaTitle,
       subcategories,
-    });
+      subhead,
+    } = currentPageData;
+
+    let subNavProps;
+
+    if (parentCategory) {
+      subNavProps = transformSubnavProps({
+        ...parentCategory[0],
+        currentPageId: id,
+        currentPageType: pageType,
+        parentCategoryId: parentCategory[0].id,
+      });
+    } else if (subcategories) {
+      subNavProps = transformSubnavProps({
+        categoryDescription: navDescription,
+        categorySlug,
+        categoryTitle: navTitle,
+        currentPageId: id,
+        currentPageType: pageType,
+        overviewNavTitle,
+        parentCategoryId: id,
+        subcategories,
+      });
+    }
+
+    const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
+      navDescription ||
+      subhead;
+
+    const shouldDisableFab = modules && modules.some(({ __typename: type }) =>
+      type === CONTENT_MODULE.OPENAPPLY_IFRAME);
+
+    return (
+      <CookiesProvider>
+        <PageVisited
+          pageId={id}
+          viewedPage={this.viewedPage}
+        >
+          <PageWrapper
+            localizedSlugList={transformLocalizedSlugData(localizedSlugData)}
+            shouldDisableFab={shouldDisableFab}
+            subNavProps={subNavProps}
+            viewedPage={this.state.viewed}
+          >
+            <div>
+              <Helmet>
+                <title>{seoMetaTitle || navTitle || removeMarkdown(headline)}</title>
+                <meta
+                  content={metaDescription}
+                  name="description"
+                />
+              </Helmet>
+              <PageHead
+                headline={headline}
+                imageAlt={mainImageAlt}
+                imageSources={imageDataByType[IMAGE_TYPE.MAIN]}
+                subhead={subhead}
+                type={pageType}
+              />
+              {modules &&
+              <ContentModules
+                moduleImageData={imageDataByType[IMAGE_TYPE.MODULE]}
+                modules={modules}
+              />
+              }
+              {hasShareButtons && <Share />}
+            </div>
+          </PageWrapper>
+        </PageVisited>
+      </CookiesProvider>
+    );
   }
-
-  const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
-    navDescription ||
-    subhead;
-
-  const shouldDisableFab = modules && modules.some(({ __typename: type }) =>
-    type === CONTENT_MODULE.OPENAPPLY_IFRAME);
-
-  return (
-    <PageWrapper
-      localizedSlugList={transformLocalizedSlugData(localizedSlugData)}
-      shouldDisableFab={shouldDisableFab}
-      subNavProps={subNavProps}
-    >
-      <div>
-        <Helmet>
-          <title>{seoMetaTitle || navTitle || removeMarkdown(headline)}</title>
-          <meta
-            content={metaDescription}
-            name="description"
-          />
-        </Helmet>
-        <PageHead
-          headline={headline}
-          imageAlt={mainImageAlt}
-          imageSources={imageDataByType[IMAGE_TYPE.MAIN]}
-          subhead={subhead}
-          type={pageType}
-        />
-        {modules &&
-          <ContentModules
-            moduleImageData={imageDataByType[IMAGE_TYPE.MODULE]}
-            modules={modules}
-          />
-        }
-        {hasShareButtons && <Share />}
-      </div>
-    </PageWrapper>
-  );
-};
+}
 
 ContentPageTemplate.propTypes = propTypes;
 
@@ -114,6 +138,7 @@ export const pageQuery = graphql`
   fragment commonNavProps on ContentfulContentPage {
     overviewNavTitle
     categorySlug: slug
+    id: contentful_id
     subcategories {
       description: navDescription
       id: contentful_id

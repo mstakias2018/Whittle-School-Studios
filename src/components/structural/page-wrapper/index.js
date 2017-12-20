@@ -16,11 +16,13 @@ const PageWrapper = ({
   localizedSlugList,
   shouldDisableFab,
   subNavProps,
+  viewedPage,
 }, { translations }) => ([
   <Header
     key="header"
     localizedSlugList={localizedSlugList}
     subNavProps={subNavProps}
+    viewedPage={viewedPage}
   />,
   ...(shouldDisableFab ? [] : [<Fab key="fab" />]),
   <main
@@ -43,6 +45,7 @@ PageWrapper.propTypes = {
   localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
   shouldDisableFab: PropTypes.bool,
   subNavProps: PROP_TYPES.SUB_NAV_PROPS,
+  viewedPage: PropTypes.bool,
 };
 PageWrapper.contextTypes = { translations: PropTypes.object.isRequired };
 

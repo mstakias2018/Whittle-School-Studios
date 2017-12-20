@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { withCookies, Cookies } from 'react-cookie';
 
 import { getChunks } from '../../../../utils/global';
 
@@ -9,6 +10,7 @@ import { SUBMENU_BREAK } from '../../../../constants/settings';
 
 import Arrow from '../../../../assets/images/arrow.svg';
 import Checked from '../../../../assets/images/checked.svg';
+import CheckedGray from '../../../../assets/images/checked-gray.svg';
 import Link from '../../../global/link';
 
 import styles from './header-submenu.module.css';
@@ -28,8 +30,14 @@ class Submenu extends Component {
   isLarge = () => this.props.navItems.length > 4;
 
   render() {
-    const { categoryTitle, navItems } = this.props;
+    const {
+      categoryTitle,
+      cookies,
+      navItems,
+      viewedPage,
+    } = this.props;
     const { translations } = this.context;
+    const visitedPages = cookies.get('visitedPages') || [];
 
     return (
       <div className={styles.submenu}>
@@ -53,12 +61,12 @@ class Submenu extends Component {
             {
               navItems.map(({
                 description,
+                id,
                 isActive,
                 link,
                 title,
               }, index) => {
-                // TODO Integrate in future sprint
-                const isChecked = index === 0;
+                const isChecked = visitedPages.includes(id) || (viewedPage && isActive);
 
                 return (
                   <li
@@ -86,7 +94,7 @@ class Submenu extends Component {
                             <span className={styles.itemChecked}>
                               <img
                                 alt=""
-                                src={Checked}
+                                src={isActive ? CheckedGray : Checked}
                               />
                             </span>
                           ) : (
@@ -123,7 +131,11 @@ class Submenu extends Component {
   }
 }
 
-Submenu.propTypes = PROP_TYPES.SUB_NAV_PROPS;
+Submenu.propTypes = {
+  ...PROP_TYPES.SUB_NAV_PROPS,
+  cookies: PropTypes.instanceOf(Cookies).isRequired,
+  viewedPage: PropTypes.bool,
+};
 Submenu.contextTypes = { translations: PropTypes.object.isRequired };
 
-export default Submenu;
+export default withCookies(Submenu);
