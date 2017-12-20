@@ -3,11 +3,25 @@
 @import '../../../assets/styles/includes/typography.css';
 
 .wrapper {
+  @mixin component-vertical-spacing;
+  background-color: var(--color-secondary-light);
+
+  @media (--bp-sm-only) {
+    padding-top: 40px;
+  }
+
+  @media (--bp-md) {
+    padding-top: 80px;
+  }
+}
+
+.componentContainer {
   @mixin component-container;
 }
 
 .container {
   @media (--bp-md) {
     @mixin grid-container;
+    flex-wrap: wrap;
   }
 }

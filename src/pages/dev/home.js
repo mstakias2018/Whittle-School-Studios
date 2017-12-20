@@ -101,7 +101,12 @@ const Home = () => (
     <div className={styles.placeHolder} />
     <div className={styles.componentInfo}>hero</div>
     <Hero data={HERO_DUMMY_DATA} />
-    <PIC eventsList={EVENT_LIST_DUMMY_DATA} />
+    <PIC
+      city="Shenzhen"
+      eventsList={EVENT_LIST_DUMMY_DATA}
+      text="Identifying and understanding the key differences between
+      schools is an essential part of that decision making experience."
+    />
     <div className={styles.componentInfo}>Section titles demo</div>
     <div className={cx(styles.fakeHomeSection, styles.gray)} />
     <div className={cx(styles.fakeHomeSection, styles.yellow)}>

@@ -98,7 +98,11 @@ const HomeCn = () => (
       />
       <div className={styles.placeHolder} />
       <Hero data={HERO_DUMMY_DATA} />
-      <PIC eventsList={EVENT_LIST_DUMMY_DATA} />
+      <PIC
+        city="在深圳"
+        eventsList={EVENT_LIST_DUMMY_DATA}
+        text="'想象一下由国际教育工作者，建筑师，艺术家和技术专家组成的学校网络。"
+      />
       <div className={styles.componentInfo}>Section titles demo</div>
       <div className={cx(styles.fakeHomeSection, styles.gray)} />
       <div className={cx(styles.fakeHomeSection, styles.yellow)}>

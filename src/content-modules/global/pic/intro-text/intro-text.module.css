@@ -1,0 +1,48 @@
+@import '../../../../assets/styles/includes/grid.css';
+@import '../../../../assets/styles/includes/mixins.css';
+@import '../../../../assets/styles/includes/typography.css';
+
+.wrapper {
+  @media (--bp-sm-only) {
+    @mixin span 3, 4, sm;
+    @mixin custom-column 1, 4, margin-left;
+    margin-bottom: 55px;
+  }
+
+  @media (--bp-md-only) {
+    @mixin span 6, 8, md;
+    @mixin custom-column 2, 8, margin-left;
+    margin-bottom: 82px;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 3, 12, lg;
+    @mixin custom-column 2, 12, margin-left;
+  }
+}
+
+.cityTitleContainer {
+  align-items: center;
+  display: flex;
+
+  @media (--bp-sm-only) {
+    margin-bottom: 14px;
+  }
+
+  @media (--bp-md) {
+    margin-bottom: 12px;
+  }
+}
+
+.cityTitle {
+  @mixin type-descriptor;
+}
+
+.locationTag {
+  margin-right: 10px;
+}
+
+.text {
+  @mixin type-h2-italic;
+  @mixin large-body-text;
+}
