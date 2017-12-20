@@ -16,6 +16,12 @@
   position: relative;
   text-align: right;
 
+  :global(.wrapper_isChinese) & {
+    /* prevent Chinese text from breaking
+       https://developer.mozilla.org/en-US/docs/Web/CSS/word-break */
+    word-break: keep-all;
+  }
+
   @media (--bp-sm-only) {
     border-top: solid 1px var(--color-light-border);
     padding: 16px 0 30px;

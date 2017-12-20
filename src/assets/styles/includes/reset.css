@@ -10,10 +10,6 @@ html {
 body {
   margin: 0;
 
-  /* prevent Chinese text from breaking
-     https://developer.mozilla.org/en-US/docs/Web/CSS/word-break */
-  word-break: keep-all;
-
   @media (--bp-sm-only) {
     padding: 0 var(--component-wrapper-margin-sm) var(--component-wrapper-margin-sm);
   }

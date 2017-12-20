@@ -34,7 +34,7 @@ const Markdown = ({
       Link: MarkdownLink,
     }}
     skipHtml
-    source={source}
+    source={source && source.replace(/__/g, '**')}
     unwrapDisallowed={allowedTypes === ALLOWED_TYPES.TITLE}
     {...props}
   />
