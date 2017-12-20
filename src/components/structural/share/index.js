@@ -9,7 +9,7 @@ import iconCopy from '../../../assets/images/icon-copy.svg';
 import Link from '../../../components/global/link';
 import { SOCIAL_NETWORK } from '../../../constants/social-networks';
 import { TIMINGS } from '../../../constants/timings';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 
 class Share extends Component {
@@ -104,7 +104,7 @@ class Share extends Component {
 }
 
 Share.contextTypes = {
-  socialIcons: PROP_TYPES.SOCIAL_ICONS.isRequired,
+  socialIcons: PROP_SHAPES.SOCIAL_ICONS.isRequired,
   translations: PropTypes.object.isRequired,
 };
 

@@ -52,14 +52,14 @@ exports.getInlineImagePropTypes = getInlineImagePropTypes;
 
 const MARKDOWN = PropTypes.shape({
   markdown: PropTypes.string.isRequired,
-}).isRequired;
+});
 
 const createTypenameChecker = desiredValue => (props, propName) =>
   (props[propName] === desiredValue ? undefined : new Error('invalid typename'));
 
 const BODY_TEXT = PropTypes.shape({
   __typename: createTypenameChecker(CONTENT_MODULE.BODY_TEXT),
-  content: MARKDOWN,
+  content: MARKDOWN.isRequired,
 });
 
 const INLINE_IMAGE = PropTypes.shape({
@@ -67,7 +67,7 @@ const INLINE_IMAGE = PropTypes.shape({
   ...getInlineImagePropTypes(),
 });
 
-const listPropTypes = {
+const LIST = {
   description1: MARKDOWN.isRequired,
   description2: MARKDOWN.isRequired,
   description3: MARKDOWN.isRequired,
@@ -96,40 +96,28 @@ const SECTION_TITLE = PropTypes.shape({
   ...sectionTitlePropertyTypes,
 });
 
-const LIST = PropTypes.shape({
+const LIST_MODULE = PropTypes.shape({
   __typename: createTypenameChecker(CONTENT_MODULE.LIST),
-  ...listPropTypes,
+  ...LIST,
 });
 
 const thumbnailListModulePropTypes = {
-  item1Description: PropTypes.shape({
-    markdown: PropTypes.string.isRequired,
-  }).isRequired,
+  item1Description: MARKDOWN.isRequired,
   item1ImageAlt: PropTypes.string.isRequired,
   item1Title: PropTypes.string.isRequired,
-  item2Description: PropTypes.shape({
-    markdown: PropTypes.string.isRequired,
-  }).isRequired,
+  item2Description: MARKDOWN.isRequired,
   item2ImageAlt: PropTypes.string.isRequired,
   item2Title: PropTypes.string.isRequired,
-  item3Description: PropTypes.shape({
-    markdown: PropTypes.string.isRequired,
-  }).isRequired,
+  item3Description: MARKDOWN.isRequired,
   item3ImageAlt: PropTypes.string.isRequired,
   item3Title: PropTypes.string.isRequired,
-  item4Description: PropTypes.shape({
-    markdown: PropTypes.string.isRequired,
-  }),
+  item4Description: MARKDOWN,
   item4ImageAlt: PropTypes.string,
   item4Title: PropTypes.string,
-  item5Description: PropTypes.shape({
-    markdown: PropTypes.string.isRequired,
-  }),
+  item5Description: MARKDOWN,
   item5ImageAlt: PropTypes.string,
   item5Title: PropTypes.string,
-  item6Description: PropTypes.shape({
-    markdown: PropTypes.string.isRequired,
-  }),
+  item6Description: MARKDOWN,
   item6ImageAlt: PropTypes.string,
   item6Title: PropTypes.string,
   title: PropTypes.string.isRequired,
@@ -147,7 +135,7 @@ const THUMBNAIL_LIST_MODULE = PropTypes.shape({
 
 const OPENAPPLY_IFRAME = PropTypes.shape({
   __typename: createTypenameChecker(CONTENT_MODULE.OPENAPPLY_IFRAME),
-  description: MARKDOWN,
+  description: MARKDOWN.isRequired,
 });
 
 const quotePropTypes = {
@@ -169,9 +157,9 @@ const SLIDESHOW_CAROUSEL = PropTypes.shape({
 });
 
 const threeUpBreakerPropTypes = {
-  content1: MARKDOWN,
-  content2: MARKDOWN,
-  content3: MARKDOWN,
+  content1: MARKDOWN.isRequired,
+  content2: MARKDOWN.isRequired,
+  content3: MARKDOWN.isRequired,
   dimensions: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
@@ -213,7 +201,7 @@ const LIST_ITEM = {
 };
 
 const THUMBNAIL_LIST_ITEM = {
-  description: PropTypes.string.isRequired,
+  description: MARKDOWN.isRequired,
   imageSources: IMAGE_SOURCES.isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -241,16 +229,28 @@ const OPENING_COUNTDOWN = PropTypes.shape({
   title: PropTypes.string.isRequired,
 });
 
-const NAV_ITEM = {
+const NAV_ITEM_LIST = PropTypes.arrayOf(PropTypes.shape({
   description: PropTypes.string.isRequired,
   id: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
   slug: PropTypes.string,
   title: PropTypes.string.isRequired,
+}));
+
+const PROP_TYPES = {
+  LIST,
+  LIST_ITEM,
+  SUB_NAV: {
+    categoryTitle: PropTypes.string.isRequired,
+    navItems: NAV_ITEM_LIST.isRequired,
+  },
+  THUMBNAIL_LIST_ITEM,
 };
 
-exports.PROP_TYPES = {
+exports.PROP_TYPES = PROP_TYPES;
+
+exports.PROP_SHAPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
   EVENTS_LIST,
   FOOTER_DATA: PropTypes.shape({
@@ -276,7 +276,6 @@ exports.PROP_TYPES = {
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES,
   LANGUAGE: PropTypes.oneOf(REGION_LANGUAGES[process.env.GATSBY_REGION]),
-  LIST_ITEM,
   LOCALIZED_SLUG_LIST: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
     locale: PropTypes.oneOf([
@@ -288,7 +287,7 @@ exports.PROP_TYPES = {
   MODULES: PropTypes.arrayOf(PropTypes.oneOfType([
     BODY_TEXT,
     INLINE_IMAGE,
-    LIST,
+    LIST_MODULE,
     OPENAPPLY_IFRAME,
     QUOTE,
     SECTION_TITLE,
@@ -296,7 +295,7 @@ exports.PROP_TYPES = {
     THREE_UP_BREAKER,
     THUMBNAIL_LIST_MODULE,
   ])),
-  NAV_ITEM,
+  NAV_ITEM_LIST,
   OPENING_COUNTDOWN,
   PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
   SCHOOLS_INTRO,
@@ -304,10 +303,6 @@ exports.PROP_TYPES = {
     contentPage: socialNetworkList.isRequired,
     footer: socialNetworkList.isRequired,
   }),
-  SUB_NAV_PROPS: PropTypes.shape({
-    categoryTitle: PropTypes.string.isRequired,
-    navItems: PropTypes.arrayOf(PropTypes.shape(NAV_ITEM)).isRequired,
-  }),
+  SUB_NAV_PROPS: PropTypes.shape(PROP_TYPES.SUB_NAV),
   THUMBNAIL_LIST,
-  THUMBNAIL_LIST_ITEM,
 };

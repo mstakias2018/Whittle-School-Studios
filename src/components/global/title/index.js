@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
 import { removeMarkdown } from '../../../utils/strings';
 
@@ -12,7 +12,7 @@ import styles from './title.module.css';
 const propTypes = {
   isSingle: PropTypes.bool,
   text: PropTypes.string.isRequired,
-  type: PROP_TYPES.PAGE_TYPES.isRequired,
+  type: PROP_SHAPES.PAGE_TYPES.isRequired,
 };
 
 const {

@@ -10,14 +10,14 @@ import {
   REGION_LANGUAGES,
   REGION_URLS,
 } from '../../../../constants/regions';
-import { PROP_TYPES } from '../../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 import { getDefaultLangPath } from '../../../../utils/regions';
 
 import styles from './header-locales.module.css';
 
 const propTypes = {
   isSmall: PropTypes.bool,
-  localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
+  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
 };
 
 class Locales extends Component {
@@ -125,7 +125,7 @@ class Locales extends Component {
 }
 
 Locales.contextTypes = {
-  language: PROP_TYPES.LANGUAGE.isRequired,
+  language: PROP_SHAPES.LANGUAGE.isRequired,
   translations: PropTypes.object.isRequired,
 };
 Locales.propTypes = propTypes;

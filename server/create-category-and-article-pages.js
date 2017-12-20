@@ -190,7 +190,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                       return saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INSET_SQ, [id, i, j]);
                     }));
                   }
-                  return {};
+                  return [];
                 }
                 case CONTENT_MODULE.THUMBNAIL_LIST:
                   return Promise.all([

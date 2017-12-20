@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { adaptSourcesBySize } from '../../../utils/images';
 
 const propTypes = {
-  ...PROP_TYPES.IMAGE_PROP_TYPES,
+  ...PROP_SHAPES.IMAGE_PROP_TYPES,
   className: PropTypes.string,
   isAriaHidden: PropTypes.bool,
 };

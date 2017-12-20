@@ -7,7 +7,7 @@ import Fab from '../fab';
 import SiteInfo from '../../site-info';
 import Recirculation from '../recirculation';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 import { ENV } from '../../../constants/env';
 
@@ -42,9 +42,9 @@ const PageWrapper = ({
 
 PageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
+  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
   shouldDisableFab: PropTypes.bool,
-  subNavProps: PROP_TYPES.SUB_NAV_PROPS,
+  subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
   viewedPage: PropTypes.bool,
 };
 PageWrapper.contextTypes = { translations: PropTypes.object.isRequired };

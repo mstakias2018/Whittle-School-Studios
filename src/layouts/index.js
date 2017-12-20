@@ -14,7 +14,7 @@ import '../assets/styles/main.css';
    so fonts will live in layouts/ */
 import './fonts.module.css';
 
-import { PROP_TYPES } from '../constants/custom-property-types';
+import { PROP_SHAPES } from '../constants/custom-property-types';
 import {
   LANGUAGE,
   LANGUAGE_CLASS,
@@ -100,18 +100,18 @@ class TemplateWrapper extends Component {
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
-  data: PROP_TYPES.GLOBAL_SETTINGS.isRequired,
-  history: PROP_TYPES.HISTORY.isRequired,
+  data: PROP_SHAPES.GLOBAL_SETTINGS.isRequired,
+  history: PROP_SHAPES.HISTORY.isRequired,
   location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
 };
 
 TemplateWrapper.childContextTypes = {
   fabLink: PropTypes.string.isRequired,
   fabTextImage: PropTypes.string.isRequired,
-  footerData: PROP_TYPES.FOOTER_DATA.isRequired,
-  headerData: PROP_TYPES.HEADER_DATA.isRequired,
-  history: PROP_TYPES.HISTORY.isRequired,
-  language: PROP_TYPES.LANGUAGE.isRequired,
+  footerData: PROP_SHAPES.FOOTER_DATA.isRequired,
+  headerData: PROP_SHAPES.HEADER_DATA.isRequired,
+  history: PROP_SHAPES.HISTORY.isRequired,
+  language: PROP_SHAPES.LANGUAGE.isRequired,
   pathname: PropTypes.string.isRequired,
   socialIcons: PropTypes.object.isRequired,
   translations: PropTypes.object.isRequired,

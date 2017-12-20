@@ -7,7 +7,7 @@ import { PROP_TYPES } from '../../../../constants/custom-property-types';
 
 import styles from './thumbnails-list-item.module.css';
 
-const propTypes = PROP_TYPES.THUMBNAILS_LIST_ITEM;
+const propTypes = PROP_TYPES.THUMBNAIL_LIST_ITEM;
 
 const ThumbnailsListItem = ({
   description,

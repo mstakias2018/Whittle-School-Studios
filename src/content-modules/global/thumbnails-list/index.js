@@ -1,11 +1,11 @@
 import React from 'react';
 
 import ThumbnailsListItem from './thumbnails-list-item';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
 import styles from './thumbnails-list.module.css';
 
-const propTypes = PROP_TYPES.THUMBNAIL_LIST;
+const propTypes = PROP_SHAPES.THUMBNAIL_LIST;
 
 const ThumbnailsList = ({
   title,

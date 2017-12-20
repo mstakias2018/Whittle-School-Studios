@@ -5,12 +5,12 @@ import Link from 'gatsby-link';
 import Date from '../../../components/global/date';
 import Markdown from '../../../components/global/markdown';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
 import styles from './events-list.module.css';
 
 const propTypes = {
-  list: PROP_TYPES.EVENTS_LIST,
+  list: PROP_SHAPES.EVENTS_LIST,
 };
 
 const EventsList = ({ list }, { translations }) => (

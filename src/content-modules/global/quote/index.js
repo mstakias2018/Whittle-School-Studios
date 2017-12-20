@@ -1,12 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { QUOTE_TYPE } from '../../../constants/settings';
 
 import styles from './quote.module.css';
 
-const propTypes = PROP_TYPES.QUOTE;
+const propTypes = PROP_SHAPES.QUOTE;
 
 const PullQuote = ({ quoteType, content, source }) => (
   <div className={cx(styles.wrapper, { [styles.wrapper_isBlockQuote]: quoteType === QUOTE_TYPE.BLOCK })}>

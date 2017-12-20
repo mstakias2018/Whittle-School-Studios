@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Link from '../../../global/link';
 import styles from './share-icons.module.css';
-import { PROP_TYPES } from '../../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 
 const FooterShareIcons = (props, context) => {
   const {
@@ -35,7 +35,7 @@ const FooterShareIcons = (props, context) => {
 };
 
 FooterShareIcons.contextTypes = {
-  socialIcons: PROP_TYPES.SOCIAL_ICONS.isRequired,
+  socialIcons: PROP_SHAPES.SOCIAL_ICONS.isRequired,
   translations: PropTypes.object.isRequired,
 };
 

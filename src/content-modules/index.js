@@ -12,7 +12,7 @@ import SectionTitle from './global/section-title';
 import ThreeUpBreaker from './global/three-up-breaker';
 import ThumbnailsList from './global/thumbnails-list';
 
-import { PROP_TYPES } from '../constants/custom-property-types';
+import { PROP_SHAPES } from '../constants/custom-property-types';
 import { CONTENT_MODULE } from '../constants/contentful';
 
 const MODULE_MAP = {
@@ -30,10 +30,10 @@ const MODULE_MAP = {
 
 const propTypes = {
   moduleImageData: PropTypes.arrayOf(PropTypes.oneOfType([
-    PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES),
-    PROP_TYPES.IMAGE_SOURCES,
+    PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES),
+    PROP_SHAPES.IMAGE_SOURCES,
   ])),
-  modules: PROP_TYPES.MODULES,
+  modules: PROP_SHAPES.MODULES,
 };
 
 const ContentModules = ({ moduleImageData, modules }) =>

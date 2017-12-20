@@ -4,13 +4,13 @@ import cx from 'classnames';
 
 import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 import styles from './body-text.module.css';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 import { LANGUAGE } from '../../../constants/regions';
 
 const propTypes = {
-  content: PROP_TYPES.MARKDOWN,
-  imageSources: PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES),
+  content: PROP_SHAPES.MARKDOWN.isRequired,
+  imageSources: PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES).isRequired,
   isFirstModule: PropTypes.bool,
 };
 
@@ -56,10 +56,10 @@ class BodyText extends Component {
 
 BodyText.propTypes = propTypes;
 BodyText.childContextTypes = {
-  imageSources: PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES),
+  imageSources: PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES),
 };
 BodyText.contextTypes = {
-  language: PROP_TYPES.LANGUAGE.isRequired,
+  language: PROP_SHAPES.LANGUAGE.isRequired,
 };
 
 export default BodyText;

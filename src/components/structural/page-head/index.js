@@ -6,7 +6,7 @@ import Plx from 'react-plx';
 import Title from '../../global/title';
 import Picture from '../../global/picture';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { PAGE_TYPE } from '../../../constants/settings';
 import { PARALLAX_HOME_TITLE } from '../../../constants/parallax';
 
@@ -15,12 +15,12 @@ import WithWindowListener from '../../../hocs/withWindow';
 import styles from './page-head.module.css';
 
 const propTypes = {
-  breakpoint: PROP_TYPES.BREAKPOINT,
+  breakpoint: PROP_SHAPES.BREAKPOINT,
   headline: PropTypes.string.isRequired,
   imageAlt: PropTypes.string,
-  imageSources: PROP_TYPES.IMAGE_SOURCES,
+  imageSources: PROP_SHAPES.IMAGE_SOURCES,
   subhead: PropTypes.string,
-  type: PROP_TYPES.PAGE_TYPES.isRequired,
+  type: PROP_SHAPES.PAGE_TYPES.isRequired,
 };
 
 const PageHead = ({

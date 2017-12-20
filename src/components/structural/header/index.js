@@ -9,14 +9,14 @@ import Locales from './header-locales';
 import WithWindowListener from '../../../hocs/withWindow';
 
 import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
 import styles from './header.module.css';
 
 const propTypes = {
-  breakpoint: PROP_TYPES.BREAKPOINT,
-  localizedSlugList: PROP_TYPES.LOCALIZED_SLUG_LIST,
-  subNavProps: PROP_TYPES.SUB_NAV_PROPS,
+  breakpoint: PROP_SHAPES.BREAKPOINT,
+  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
+  subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
   viewedPage: PropTypes.bool,
 };
 
@@ -79,7 +79,7 @@ class Header extends Component {
 
 Header.propTypes = propTypes;
 Header.contextTypes = {
-  language: PROP_TYPES.LANGUAGE.isRequired,
+  language: PROP_SHAPES.LANGUAGE.isRequired,
   translations: PropTypes.object.isRequired,
 };
 

@@ -10,11 +10,11 @@ import styles from './carousel.module.css';
 import { adaptSourcesBySize } from '../../../utils/images';
 import {
   getInlineImagePropTypes,
-  PROP_TYPES,
+  PROP_SHAPES,
 } from '../../../constants/custom-property-types';
 
 const propTypes = {
-  imageSources: PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES).isRequired,
+  imageSources: PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES).isRequired,
   slides: PropTypes.arrayOf(PropTypes.shape(getInlineImagePropTypes(true))).isRequired,
 };
 

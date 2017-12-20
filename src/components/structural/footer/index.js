@@ -7,7 +7,7 @@ import styles from './footer.module.css';
 import Link from '../../global/link';
 import FooterShareIcons from './share-icons';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 
 const renderBlock = (item, index, className) => (
@@ -109,7 +109,7 @@ const Footer = (props, context) => {
 };
 
 Footer.contextTypes = {
-  footerData: PROP_TYPES.FOOTER_DATA.isRequired,
+  footerData: PROP_SHAPES.FOOTER_DATA.isRequired,
   translations: PropTypes.object.isRequired,
 };
 

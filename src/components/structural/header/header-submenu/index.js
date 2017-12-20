@@ -132,7 +132,7 @@ class Submenu extends Component {
 }
 
 Submenu.propTypes = {
-  ...PROP_TYPES.SUB_NAV_PROPS,
+  ...PROP_TYPES.SUB_NAV,
   cookies: PropTypes.instanceOf(Cookies).isRequired,
   viewedPage: PropTypes.bool,
 };

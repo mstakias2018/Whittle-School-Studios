@@ -220,7 +220,6 @@ body {
   font-feature-settings: "kern", "liga", "clig", "calt";
   font-kerning: normal;
   font-weight: normal;
-  word-wrap: break-word;
 }
 img {
   margin-bottom: 0;

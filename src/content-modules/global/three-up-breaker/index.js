@@ -3,10 +3,10 @@ import styles from './three-up-breaker.module.css';
 
 import Markdown from '../../../components/global/markdown';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import WithWindowListener from '../../../hocs/withWindow';
 
-const propTypes = PROP_TYPES.THREE_UP_BREAKER;
+const propTypes = PROP_SHAPES.THREE_UP_BREAKER;
 
 class ThreeUpBreaker extends Component {
   state = {

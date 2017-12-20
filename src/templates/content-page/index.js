@@ -9,7 +9,7 @@ import Share from '../../components/structural/share';
 import PageWrapper from '../../components/structural/page-wrapper';
 import PageVisited from '../../components/structural/page-visited';
 
-import { PROP_TYPES } from '../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
 import { CONTENT_MODULE } from '../../constants/contentful';
 import {
@@ -23,7 +23,7 @@ const propTypes = {
   data: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
   pathContext: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    imageDataByType: PROP_TYPES.IMAGE_DATA_BY_TYPE.isRequired,
+    imageDataByType: PROP_SHAPES.IMAGE_DATA_BY_TYPE.isRequired,
   }).isRequired,
 };
 

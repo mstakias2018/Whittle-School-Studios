@@ -8,13 +8,13 @@ import styles from './inline-image.module.css';
 
 import {
   getInlineImagePropTypes,
-  PROP_TYPES,
+  PROP_SHAPES,
 } from '../../../constants/custom-property-types';
 
 const propTypes = {
   ...getInlineImagePropTypes(),
   children: PropTypes.node,
-  imageSources: PROP_TYPES.IMAGE_SOURCES.isRequired,
+  imageSources: PROP_SHAPES.IMAGE_SOURCES.isRequired,
   isInBackground: PropTypes.bool,
   isVideoCover: PropTypes.bool,
 };

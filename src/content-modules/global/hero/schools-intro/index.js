@@ -6,13 +6,13 @@ import cx from 'classnames';
 import OpeningCountdown from '../opening-countdown';
 import Picture from '../../../../components/global/picture';
 
-import { PROP_TYPES } from '../../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 
 import styles from './intro.module.css';
 
 const propTypes = {
-  data: PROP_TYPES.SCHOOLS_INTRO,
-  openingCountdown: PROP_TYPES.OPENING_COUNTDOWN,
+  data: PROP_SHAPES.SCHOOLS_INTRO,
+  openingCountdown: PROP_SHAPES.OPENING_COUNTDOWN,
 };
 
 const SchoolsIntro = ({

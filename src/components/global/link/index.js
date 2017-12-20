@@ -4,7 +4,7 @@ import GatsbyLink from 'gatsby-link';
 
 import { LANGUAGE_PATH } from '../../../constants/regions';
 import { KEYS } from '../../../constants/keys';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -71,8 +71,8 @@ class Link extends Component {
 
 Link.propTypes = propTypes;
 Link.contextTypes = {
-  history: PROP_TYPES.HISTORY.isRequired,
-  language: PROP_TYPES.LANGUAGE.isRequired,
+  history: PROP_SHAPES.HISTORY.isRequired,
+  language: PROP_SHAPES.LANGUAGE.isRequired,
 };
 
 export default Link;

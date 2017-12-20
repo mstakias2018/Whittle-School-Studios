@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import EventsList from '../events-list';
 import IntroText from './intro-text';
 
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
 import styles from './pic.module.css';
 
 const propTypes = {
   city: PropTypes.string.isRequired,
-  eventsList: PROP_TYPES.EVENTS_LIST,
+  eventsList: PROP_SHAPES.EVENTS_LIST,
   text: PropTypes.string.isRequired,
 };
 

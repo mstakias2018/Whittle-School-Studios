@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import Date from '../../../../components/global/date';
 
-import { PROP_TYPES } from '../../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 
 import styles from './event-listing.module.css';
 import heroStyles from '../hero.module.css';
 
 const propTypes = {
-  list: PROP_TYPES.EVENTS_LIST,
+  list: PROP_SHAPES.EVENTS_LIST,
   title: PropTypes.string.isRequired,
 };
 

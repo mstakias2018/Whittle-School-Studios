@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { PROP_TYPES } from '../../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 import { getIdFromImgUrl } from '../../../../utils/images';
 import Picture from '../../picture';
 import styles from './image.module.css';
@@ -57,7 +57,7 @@ const MarkdownImage = ({ alt, src, title: caption }, { imageSources }) => {
 
 MarkdownImage.propTypes = propTypes;
 MarkdownImage.contextTypes = {
-  imageSources: PropTypes.arrayOf(PROP_TYPES.IMAGE_SOURCES),
+  imageSources: PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES),
 };
 
 export default MarkdownImage;

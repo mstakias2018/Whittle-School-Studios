@@ -1,28 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ListItem from './list-item';
 
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 import styles from './list.module.css';
-
-const propTypes = {
-  description1: PropTypes.string.isRequired,
-  description2: PropTypes.string.isRequired,
-  description3: PropTypes.string.isRequired,
-  description4: PropTypes.string,
-  description5: PropTypes.string,
-  description6: PropTypes.string,
-  description7: PropTypes.string,
-  description8: PropTypes.string,
-  title1: PropTypes.string.isRequired,
-  title2: PropTypes.string.isRequired,
-  title3: PropTypes.string.isRequired,
-  title4: PropTypes.string,
-  title5: PropTypes.string,
-  title6: PropTypes.string,
-  title7: PropTypes.string,
-  title8: PropTypes.string,
-};
 
 const List = ({
   description1, description2, description3, description4, description5, description6,
@@ -84,6 +65,6 @@ const List = ({
   </div>
 );
 
-List.propTypes = propTypes;
+List.propTypes = PROP_TYPES.LIST;
 
 export default List;

@@ -8,12 +8,12 @@ import InlineImage from '../../../content-modules/global/inline-image';
 
 import { BREAKPOINTS } from '../../../constants/breakpoints';
 import { IMAGE_SHAPE } from '../../../constants/images';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
 const propTypes = {
   alt: PropTypes.string.isRequired,
   caption: PropTypes.string,
-  coverImageSources: PROP_TYPES.IMAGE_SOURCES.isRequired,
+  coverImageSources: PROP_SHAPES.IMAGE_SOURCES.isRequired,
   src: PropTypes.string.isRequired,
 };
 

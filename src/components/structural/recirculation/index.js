@@ -9,11 +9,11 @@ import styles from './recirculation.module.css';
 import arrow from '../../../assets/images/arrow.svg';
 import arrowOrange from '../../../assets/images/arrow-orange.svg';
 
-import { NAV_ITEM } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { NAV_DIRECTIONS } from '../../../constants/settings';
 
 const propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape(NAV_ITEM)).isRequired,
+  items: PROP_SHAPES.NAV_ITEM_LIST.isRequired,
 };
 
 class Recirculation extends Component {
