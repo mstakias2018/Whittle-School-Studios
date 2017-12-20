@@ -9,6 +9,7 @@ import styles from './home-section-title.module.css';
 
 const propTypes = {
   color: PropTypes.string,
+  containerIsWide: PropTypes.bool,
   dimensions: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
@@ -44,13 +45,16 @@ class HomeSectionTitle extends React.Component {
 
   render() {
     const {
-      color, isBreakingTop, text, position,
+      color, containerIsWide, isBreakingTop, text, position,
     } = this.props;
 
     return (
       <Plx
         animateWhenNotInViewport
-        className={styles.wrapper}
+        className={cx(
+            styles.wrapper,
+            { [styles.wideContainer]: containerIsWide },
+        )}
         parallaxData={
           [{
             duration: this.state.clientHeight,

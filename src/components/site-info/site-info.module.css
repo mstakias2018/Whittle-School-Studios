@@ -47,7 +47,7 @@
   @mixin full-width-column-sm;
 
   @media (--bp-md) {
-    @mixin span 8, var(--grid-columns-md), md;
+    @mixin full-width-column-md;
   }
 }
 

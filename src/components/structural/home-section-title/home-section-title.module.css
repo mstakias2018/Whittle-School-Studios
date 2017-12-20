@@ -1,11 +1,14 @@
-@import '../../../assets/styles/includes/grid.css';
-@import '../../../assets/styles/includes/mixins.css';
-@import '../../../assets/styles/includes/variables.css';
-@import '../../../assets/styles/includes/breakpoints.css';
+@import "../../../assets/styles/includes/grid.css";
+@import "../../../assets/styles/includes/mixins.css";
+@import "../../../assets/styles/includes/variables.css";
+@import "../../../assets/styles/includes/breakpoints.css";
 
 .wrapper {
-  @mixin component-container;
   position: relative;
+
+  &.wideContainer {
+    @mixin component-container;
+  }
 }
 
 .text {
@@ -72,7 +75,11 @@
 }
 
 .top {
-  top: 20px;
+  top: 80px;
+
+  @media (--bp-md) {
+    top: 20px;
+  }
 }
 
 .center {

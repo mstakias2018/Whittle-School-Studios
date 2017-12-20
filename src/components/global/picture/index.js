@@ -11,22 +11,17 @@ const propTypes = {
 };
 
 const Picture = ({
-  alt,
-  className,
-  isAriaHidden,
-  sourcesBySize,
+  alt, className, isAriaHidden, sourcesBySize,
 }) => {
   const { sourceList, largestSrc } = adaptSourcesBySize(sourcesBySize);
 
   return (
     <picture className={className}>
-      {sourceList.map(({ media, srcSet }) => (
-        <source
-          key={media}
-          media={media}
-          srcSet={srcSet}
-        />
-      ))}
+      {sourceList.map(({ media, srcSet, src }) => (<source
+        key={media}
+        media={media}
+        srcSet={srcSet || src}
+      />))}
       <img
         alt={alt}
         aria-hidden={isAriaHidden}

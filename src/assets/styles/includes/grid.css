@@ -59,6 +59,26 @@
   @mixin span 4, var(--grid-columns-sm), sm;
 }
 
+@define-mixin full-width-column-md {
+  @mixin span 8, var(--grid-columns-md), md;
+}
+
+@define-mixin full-width-column-lg {
+  @mixin span 12, var(--grid-columns-lg), lg;
+}
+
+@define-mixin full-width-column {
+  @mixin span 4, var(--grid-columns-sm), sm;
+
+  @media (--bp-md) {
+    @mixin span 8, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 12, var(--grid-columns-lg), lg;
+  }
+}
+
 @define-mixin three-quart-width-column-md {
   @mixin span 6, var(--grid-columns-md), md;
 }
