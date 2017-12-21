@@ -90,6 +90,11 @@
     &:first-of-type {
       .menuItemLinkWrapper {
         padding-left: 0;
+        
+        .menuItemLink {
+          display: block;
+          min-width: 80px;
+        }
       }
     }
 
