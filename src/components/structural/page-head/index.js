@@ -67,7 +67,7 @@ const PageHead = ({
         }
         {type === PAGE_TYPE.ARTICLE &&
         subhead &&
-        <h2 className={styles.subhead}>{subhead}</h2>
+        <h2 className={cx(styles.subhead, styles.subhead_withBorder)}>{subhead}</h2>
         }
       </div>
     </div>

@@ -161,6 +161,15 @@
       @mixin span 6, 12, lg;
       text-align: center;
     }
+
+    &.subhead_withBorder {
+      &:after {
+        @mixin component-vertical-spacing;
+        border-bottom: 1px solid var(--color-text-light);
+        content: '';
+        display: block;
+      }
+    }
   }
 }
 
