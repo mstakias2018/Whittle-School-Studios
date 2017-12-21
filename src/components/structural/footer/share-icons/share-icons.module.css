@@ -20,7 +20,6 @@
   @media (--bp-lg) {
     @mixin span 6, var(--grid-columns-lg), lg;
     flex-direction: row;
-    flex-wrap: wrap;
   }
 }
 
