@@ -315,10 +315,14 @@
 }
 
 .emptySpace {
-  padding-left: 20%;
+  padding-left: 20px;
+
+  @media (--bp-lg) {
+    padding-left: 20%;
+  }
 }
 
 .arrow {
-  position: relative;
-  top: 3px;
+  bottom: 3px;
+  position: absolute;
 }
