@@ -43,6 +43,10 @@
     transform: translateY(390px);
     width: var(--fab-size-lg);
 
+    .contentText {
+      animation: fabStartPosition 0;
+    }
+
     &:hover {
       .contentText {
         animation: fabHover 1.5s linear infinite;
@@ -52,8 +56,11 @@
 }
 
 @keyframes fabHover {
-  0% {transform: rotate(0);}
   100% {transform: rotate(360deg);}
+}
+
+@keyframes fabStartPosition {
+  100% {transform: rotate(0);}
 }
 
 .content {
