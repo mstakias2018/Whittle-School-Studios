@@ -22,7 +22,7 @@ const SectionTitle = ({ number, title }) => (
           aria-hidden="true"
           className={styles.number}
         >
-          {`0${number}`}
+          {number < 10 ? `0${number}` : number}
         </span>
         <span
           aria-hidden="true"
