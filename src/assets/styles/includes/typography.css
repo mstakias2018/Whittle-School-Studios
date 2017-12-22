@@ -249,15 +249,6 @@
   }
 }
 
-@define-mixin type-list-title {
-  @mixin type-descriptor;
-  font-family: var(--font-sans-serif-regular);
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-regular-cn);
-  }
-}
-
 @define-mixin link-common {
   color: var(--color-text-tomato);
   font-family: var(--font-sans-serif-regular);

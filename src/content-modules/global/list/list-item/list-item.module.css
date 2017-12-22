@@ -16,10 +16,20 @@
 }
 
 .title {
-  @mixin type-list-title;
+  @mixin type-descriptor;
   display: block;
+  font-family: var(--font-sans-serif-regular);
+  line-height: 18px;
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-sans-serif-regular-cn);
+  }
 }
 
 .description {
-  @mixin type-descriptor;
+  @mixin type-caption;
+  
+  @media (--bp-sm-only) {
+    line-height: 18px;
+  }
 }
