@@ -6,39 +6,54 @@ import Footer from '../footer';
 import Fab from '../fab';
 import SiteInfo from '../../site-info';
 import Recirculation from '../recirculation';
+import Skip from '../skip-to-content';
 
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 import { ENV } from '../../../constants/env';
 
-const PageWrapper = ({
-  children,
-  localizedSlugList,
-  shouldDisableFab,
-  subNavProps,
-  viewedPage,
-}, { translations }) => ([
-  <Header
-    key="header"
-    localizedSlugList={localizedSlugList}
-    subNavProps={subNavProps}
-    viewedPage={viewedPage}
-  />,
-  ...(shouldDisableFab ? [] : [<Fab key="fab" />]),
-  <main
-    aria-label={translations.general.mainAriaLabel}
-    className={CLASSES.PAGE_CONTENT}
-    key="main"
-  >
-    {children}
-  </main>,
-  ...(process.env.GATSBY_ENV === ENV.STAGING ? [<SiteInfo key="siteInfo" />] : []),
-  ...(subNavProps ? [<Recirculation
-    items={subNavProps.navItems}
-    key="recirculation"
-  />] : []),
-  <Footer key="footer" />,
-]);
+class PageWrapper extends React.Component {
+  handleSkipToContent = () => {
+    this.mainContent.focus();
+  };
+
+  render() {
+    const {
+      children,
+      localizedSlugList,
+      shouldDisableFab,
+      subNavProps,
+      viewedPage,
+    } = this.props;
+    const { translations } = this.context;
+
+    return ([
+      <Skip handleSkipToContent={this.handleSkipToContent} />,
+      <Header
+        key="header"
+        localizedSlugList={localizedSlugList}
+        subNavProps={subNavProps}
+        viewedPage={viewedPage}
+      />,
+      ...(shouldDisableFab ? [] : [<Fab key="fab" />]),
+      <main
+        aria-label={translations.general.mainAriaLabel}
+        className={CLASSES.PAGE_CONTENT}
+        key="main"
+        ref={(el) => { this.mainContent = el; }}
+        tabIndex={-1}
+      >
+        {children}
+      </main>,
+      ...(process.env.GATSBY_ENV === ENV.STAGING ? [<SiteInfo key="siteInfo" />] : []),
+      ...(subNavProps ? [<Recirculation
+        items={subNavProps.navItems}
+        key="recirculation"
+      />] : []),
+      <Footer key="footer" />,
+    ]);
+  }
+}
 
 PageWrapper.propTypes = {
   children: PropTypes.node.isRequired,

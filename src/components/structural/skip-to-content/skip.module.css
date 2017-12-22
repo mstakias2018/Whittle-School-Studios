@@ -1,0 +1,31 @@
+@import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/variables.css';
+@import '../../../assets/styles/includes/typography.css';
+
+.button {
+  @mixin reset-button;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  &:not(:focus) {
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+}
+
+.text {
+  @mixin type-language-select;
+  background-color: var(--color-text-tomato);
+  color: var(--color-background-white);
+  line-height: 50px;
+  text-align: center;
+  width: 100%;
+}
