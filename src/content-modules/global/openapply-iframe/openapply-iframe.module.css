@@ -15,6 +15,7 @@
 .componentContent {
   @mixin image-column-width;
   @mixin type-paragraph;
+  min-height: 400px;
 
   @media (--bp-md-only) {
     @mixin custom-column 1, var(--grid-columns-md), margin-left;
@@ -38,4 +39,32 @@
     margin-bottom: 56px;
     padding-bottom: 60px;
   }
+}
+
+.componentContent > iframe {
+  margin-top: -100px;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.iframe_loaded > iframe {
+  opacity: 1;
+}
+
+.loadingPlaceholder {
+  align-items: center;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+
+.loadingSpinner {
+  animation: loading 1.5s linear infinite;
+}
+
+@keyframes loading {
+  100% {transform: rotate(360deg);}
 }
