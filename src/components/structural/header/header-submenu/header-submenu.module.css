@@ -88,25 +88,6 @@
   flex-direction: column;
   position: relative;
 
-  &:hover {
-    .itemNumber,
-    .itemTitle {
-      text-decoration: underline;
-    }
-
-    .itemDescription {
-      color: var(--color-text-dark);
-      text-decoration: none;
-    }
-  }
-
-  &.item_active {
-    .itemNumber,
-    .itemTitle {
-      color: var(--color-text-light);
-    }
-  }
-
   @media (--bp-sm-only) {
     @mixin span 2, 4, sm;
     margin-bottom: 0;
@@ -167,6 +148,13 @@
     display: flex;
     flex-wrap: wrap;
     text-decoration: none;
+
+    &:hover {
+      .itemTitleContainer {
+        text-decoration: underline;
+        text-decoration-color: var(--color-text-tomato);
+      }
+    }
   }
 
   &.item_smallLastItem {
@@ -186,7 +174,21 @@
       .itemLinkWrapper {
         border-right: none;
       }
-    };
+    }
+  }
+}
+
+.item_active {
+  .itemLink {
+    &:hover {
+      .itemTitleContainer {
+        text-decoration-color: var(--color-text-light);
+      }
+    }
+
+    .itemTitleContainer {
+      color: var(--color-text-light);
+    }
   }
 }
 
@@ -205,38 +207,42 @@
   width: 100%;
 }
 
+.itemNumber {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.placeHolder {
+  flex-shrink: 0;
+  margin-left: -1px;
+  width: 17px;
+}
+
 .itemChecked {
-  display: block;
-}
-
-.itemNumber {
-  @mixin type-link;
-}
-
-.itemChecked,
-.itemNumber {
+  flex-shrink: 0;
   margin-right: 16px;
+  width: 12px;
 }
 
 .itemTitleContainer {
+  @mixin subnav-type-link;
+  align-items: flex-start;
   display: flex;
 }
 
 .itemTitle {
-  @mixin type-link;
+  flex-shrink: 1;
 
   @media (--bp-md) {
-    height: 32px;
+    height: 40px;
   }
 }
 
 .itemDescription {
-  @mixin type-sub-nav;
+  @mixin type-nav-text;
   align-self: flex-end;
-  color: var(--color-text-dark);
   display: inline-block;
   flex-basis: 100%;
-  font-weight: 200;
   padding-top: 10px;
   position: relative;
   width: 100%;

@@ -277,6 +277,15 @@
   }
 }
 
+@define-mixin subnav-type-link {
+  @mixin type-link;
+  line-height: 20px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 @define-mixin inline-type-link {
   @mixin link-common;
   text-decoration: underline;
@@ -322,12 +331,16 @@
   text-decoration: none;
 }
 
-@define-mixin type-nav {
+@define-mixin type-nav-text {
   color: var(--color-text-dark);
   font-family: var(--font-sans-serif-regular);
   font-size: 14px;
   line-height: 20px;
   text-decoration: none;
+}
+
+@define-mixin type-nav {
+  @mixin type-nav-text;
   text-decoration-color: transparent;
   text-underline-position: under;
   transition: color var(--timing-fast) var(--easing-default), text-decoration var(--timing-fast) var(--easing-default);

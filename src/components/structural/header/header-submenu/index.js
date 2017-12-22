@@ -102,6 +102,11 @@ class Submenu extends Component {
                               {`0${index + 1}`}
                             </span>
                           )}
+                          {
+                            /* IE Hack for white space underline */
+                            !isChecked &&
+                            <span className={styles.placeHolder}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                          }
                           <span className={styles.itemTitle}>{title}</span>
                         </span>
                         <span
