@@ -45,13 +45,17 @@ const getInlineImagePropTypes = (withCircle = false) => ({
   caption: PropTypes.string,
   shape: PropTypes.oneOf(withCircle ?
     [IMAGE_SHAPE.CIRCLE, IMAGE_SHAPE.SQUARE, IMAGE_SHAPE.RECTANGLE] :
-    [IMAGE_SHAPE.SQUARE, IMAGE_SHAPE.RECTANGLE]).isRequired,
+    [IMAGE_SHAPE.SQUARE, IMAGE_SHAPE.RECTANGLE]),
 });
 
 exports.getInlineImagePropTypes = getInlineImagePropTypes;
 
 const MARKDOWN = PropTypes.shape({
   markdown: PropTypes.string.isRequired,
+});
+
+const VIDEO_EMBED_CODE = PropTypes.shape({
+  embedCode: PropTypes.string.isRequired,
 });
 
 const createTypenameChecker = desiredValue => (props, propName) =>
@@ -65,6 +69,12 @@ const BODY_TEXT = PropTypes.shape({
 const INLINE_IMAGE = PropTypes.shape({
   __typename: createTypenameChecker(CONTENT_MODULE.INLINE_IMAGE),
   ...getInlineImagePropTypes(),
+});
+
+const INLINE_VIDEO = PropTypes.shape({
+  __typename: createTypenameChecker(CONTENT_MODULE.INLINE_VIDEO),
+  ...getInlineImagePropTypes(),
+  videoEmbedCode: VIDEO_EMBED_CODE,
 });
 
 const LIST = {
@@ -105,21 +115,27 @@ const thumbnailListModulePropTypes = {
   item1Description: MARKDOWN.isRequired,
   item1ImageAlt: PropTypes.string.isRequired,
   item1Title: PropTypes.string.isRequired,
+  item1VideoEmbedCode: VIDEO_EMBED_CODE,
   item2Description: MARKDOWN.isRequired,
   item2ImageAlt: PropTypes.string.isRequired,
   item2Title: PropTypes.string.isRequired,
+  item2VideoEmbedCode: VIDEO_EMBED_CODE,
   item3Description: MARKDOWN.isRequired,
   item3ImageAlt: PropTypes.string.isRequired,
   item3Title: PropTypes.string.isRequired,
+  item3VideoEmbedCode: VIDEO_EMBED_CODE,
   item4Description: MARKDOWN,
   item4ImageAlt: PropTypes.string,
   item4Title: PropTypes.string,
+  item4VideoEmbedCode: VIDEO_EMBED_CODE,
   item5Description: MARKDOWN,
   item5ImageAlt: PropTypes.string,
   item5Title: PropTypes.string,
+  item5VideoEmbedCode: VIDEO_EMBED_CODE,
   item6Description: MARKDOWN,
   item6ImageAlt: PropTypes.string,
   item6Title: PropTypes.string,
+  item6VideoEmbedCode: VIDEO_EMBED_CODE,
   title: PropTypes.string.isRequired,
 };
 
@@ -238,6 +254,12 @@ const NAV_ITEM_LIST = PropTypes.arrayOf(PropTypes.shape({
   title: PropTypes.string.isRequired,
 }));
 
+const VIDEO = {
+  alt: PropTypes.string.isRequired,
+  imageSources: IMAGE_SOURCES,
+  videoEmbedCode: VIDEO_EMBED_CODE,
+};
+
 const PROP_TYPES = {
   LIST,
   LIST_ITEM,
@@ -246,6 +268,12 @@ const PROP_TYPES = {
     navItems: NAV_ITEM_LIST.isRequired,
   },
   THUMBNAIL_LIST_ITEM,
+  VIDEO,
+  WITH_VIDEO: {
+    ...VIDEO,
+    assetWithVideo: PropTypes.node.isRequired,
+    hasPlayButton: PropTypes.bool,
+  },
 };
 
 exports.PROP_TYPES = PROP_TYPES;
@@ -287,6 +315,7 @@ exports.PROP_SHAPES = {
   MODULES: PropTypes.arrayOf(PropTypes.oneOfType([
     BODY_TEXT,
     INLINE_IMAGE,
+    INLINE_VIDEO,
     LIST_MODULE,
     OPENAPPLY_IFRAME,
     QUOTE,

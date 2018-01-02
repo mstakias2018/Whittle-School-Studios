@@ -1,0 +1,109 @@
+@import '../../assets/styles/includes/breakpoints.css';
+@import '../../assets/styles/includes/mixins.css';
+@import '../../assets/styles/includes/variables.css';
+
+.wrapper {
+  position: relative;
+}
+
+.wrapper:not(.wrapper_hasCoverPhoto) {
+  height: 0;
+  padding-bottom: calc(9 / 16 * 100%);
+  position: relative;
+}
+
+.videoWrapper {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.videoWrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper_hasCoverPhoto .iframe {
+  height: 100.5%;
+  margin: calc(-2px - .25%) -.25% calc(2px - .25%);
+  width: 100.5%;
+}
+
+.wrapper_hasCoverPhoto:not(.wrapper_hasPlayed) .iframe {
+  display: none;
+}
+
+.button {
+  @mixin reset-button;
+  bottom: -22px;
+  height: var(--play-button-width);
+  left: 14px;
+  position: absolute;
+  width: var(--play-button-width);
+  z-index: 20;
+
+  @media (--bp-md) {
+    bottom: -28px;
+    height: var(--play-button-width-md);
+    width: var(--play-button-width-md);
+  }
+
+  &:before {
+    background-image: url(../../assets/images/play-button.svg);
+    background-size: contain;
+    bottom: -4px;
+    content: '';
+    left: -4px;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    transition: background-image var(--timing-fast) var(--easing-default);
+  }
+
+  &:hover:before {
+    background-image: url(../../assets/images/play-button-hover.svg);
+  }
+}
+
+.button_isSmall {
+  bottom: -8px;
+  height: var(--play-button-width-small);
+  left: 7px;
+  width: var(--play-button-width-small);
+
+  @media (--bp-md) {
+    bottom: -15px;
+    height: var(--play-button-width-small-md);
+    width: var(--play-button-width-small-md);
+  }
+}
+
+.wrapper_isPlaying .button {
+  &:before {
+    background-image: url(../../assets/images/pause-button.svg);
+  }
+
+  &:hover:before {
+    background-image: url(../../assets/images/pause-button-hover.svg);
+  }
+}
+
+.hiddenButton {
+  @mixin reset-button;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}

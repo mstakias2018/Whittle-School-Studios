@@ -73,6 +73,9 @@
 
   --play-button-width: 48px;
   --play-button-width-md: 60px;
+
+  --play-button-width-small: 24px;
+  --play-button-width-small-md: 35px;
 }
 
 :root {

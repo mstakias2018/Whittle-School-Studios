@@ -49,6 +49,11 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
               ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
             }
           }
+          ... on ContentfulInlineVideo {
+            asset {
+              ${createQuery(IMAGE_SUBTYPE.INLINE_RT_VIDEO)}
+            }
+          }
           ... on ContentfulSlideshowCarousel {
             slides {
               shape
@@ -179,6 +184,8 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
               switch (__typename) {
                 case CONTENT_MODULE.INLINE_IMAGE:
                   return saveInlineImage(module, [id, i]);
+                case CONTENT_MODULE.INLINE_VIDEO:
+                  return saveImage(module.asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INLINE_RT_VIDEO, [id, i]);
                 case CONTENT_MODULE.CAROUSEL:
                   return Promise.all(module.slides.map((s, j) => saveCarouselImage(s, [id, i, j])));
                 case CONTENT_MODULE.BODY_TEXT: {

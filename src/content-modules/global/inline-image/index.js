@@ -1,49 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import Picture from '../../../components/global/picture';
+import WithVideo from '../../../hocs/with-video';
+import { IMAGE_SHAPE } from '../../../constants/images';
 
 import styles from './inline-image.module.css';
 
 import {
   getInlineImagePropTypes,
-  PROP_SHAPES,
+  PROP_TYPES,
 } from '../../../constants/custom-property-types';
 
 const propTypes = {
   ...getInlineImagePropTypes(),
-  children: PropTypes.node,
-  imageSources: PROP_SHAPES.IMAGE_SOURCES.isRequired,
-  isInBackground: PropTypes.bool,
-  isVideoCover: PropTypes.bool,
+  ...PROP_TYPES.WITH_VIDEO,
 };
 
+// Used for *two* contentful modules: InlineImage and InlineVideo
 const InlineImage = ({
-  alt,
+  assetWithVideo,
   caption,
-  children,
-  imageSources,
-  isInBackground,
-  isVideoCover,
-  shape,
+  hasPlayButton,
+  shape = IMAGE_SHAPE.RECTANGLE,
 }) => {
   const captionClasses = cx(styles.caption, {
-    [styles.caption_isVideo]: isVideoCover,
+    [styles.caption_hasPlayButton]: hasPlayButton,
   });
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.componentWrapper}>
         <div className={cx(styles.image, styles[`image_is${shape}`])}>
-          <div className={styles.imageInner}>
-            <Picture
-              alt={alt}
-              isAriaHidden={isInBackground}
-              sourcesBySize={imageSources}
-            />
-            {children}
-          </div>
+          {assetWithVideo}
         </div>
         {caption && (
           <div className={captionClasses}>
@@ -57,4 +45,4 @@ const InlineImage = ({
 
 InlineImage.propTypes = propTypes;
 
-export default InlineImage;
+export default WithVideo(InlineImage);

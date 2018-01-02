@@ -60,6 +60,7 @@ exports.CONTENT_MODULE = {
   BODY_TEXT: 'ContentfulBodyText',
   CAROUSEL: 'ContentfulSlideshowCarousel',
   INLINE_IMAGE: 'ContentfulInlineImage',
+  INLINE_VIDEO: 'ContentfulInlineVideo',
   LIST: 'ContentfulList',
   OPENAPPLY_IFRAME: 'ContentfulOpenApplyIFrame',
   POST: 'ContentfulPost',

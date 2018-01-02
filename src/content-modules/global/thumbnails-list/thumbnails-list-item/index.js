@@ -1,18 +1,20 @@
 import React from 'react';
 
 import Markdown from '../../../../components/global/markdown';
-import Picture from '../../../../components/global/picture';
+import WithVideo from '../../../../hocs/with-video';
 
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
 
 import styles from './thumbnails-list-item.module.css';
 
-const propTypes = PROP_TYPES.THUMBNAIL_LIST_ITEM;
+const propTypes = {
+  ...PROP_TYPES.THUMBNAIL_LIST_ITEM,
+  ...PROP_TYPES.WITH_VIDEO,
+};
 
 const ThumbnailsListItem = ({
+  assetWithVideo,
   description,
-  imageAlt,
-  imageSources,
   title,
 }) => (
   <li className={styles.listItem}>
@@ -25,14 +27,11 @@ const ThumbnailsListItem = ({
       />
     </div>
     <div className={styles.asset}>
-      <Picture
-        alt={imageAlt}
-        sourcesBySize={imageSources}
-      />
+      {assetWithVideo}
     </div>
   </li>
 );
 
 ThumbnailsListItem.propTypes = propTypes;
 
-export default ThumbnailsListItem;
+export default WithVideo(ThumbnailsListItem, { isSmall: true });

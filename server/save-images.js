@@ -87,6 +87,8 @@ const downloadPromise = (url, dest) =>
    }
 */
 const saveImage = (imageNode, type, subtype, nestedFolders) => {
+  if (!imageNode) return {};
+
   let imageTypeDir = `${STATIC_IMAGE_PATH}${type}/`;
   if (!shouldSkipDownloadingImages) {
     if (!fs.existsSync(imageTypeDir)) {

@@ -17,6 +17,7 @@ import {
   transformSubnavProps,
 } from '../../utils/nav';
 import { removeMarkdown } from '../../utils/strings';
+import { cleanImageData } from '../../utils/images';
 
 const propTypes = {
   // TODO FIX data prop type
@@ -117,7 +118,7 @@ class ContentPageTemplate extends React.Component {
               />
               {modules &&
               <ContentModules
-                moduleImageData={imageDataByType[IMAGE_TYPE.MODULE]}
+                moduleImageData={cleanImageData(imageDataByType[IMAGE_TYPE.MODULE])}
                 modules={modules}
               />
               }
@@ -199,6 +200,13 @@ export const pageQuery = graphql`
           shape
           alt
           caption
+        }
+        ... on ContentfulInlineVideo{
+          alt
+          caption
+          videoEmbedCode {
+            embedCode: videoEmbedCode
+          }
         }
         ... on ContentfulOpenApplyIFrame {
           description {
@@ -318,6 +326,24 @@ export const pageQuery = graphql`
           item4ImageAlt
           item5ImageAlt
           item6ImageAlt
+          item1VideoEmbedCode {
+            embedCode: item1VideoEmbedCode,
+          },
+          item2VideoEmbedCode {
+            embedCode: item2VideoEmbedCode,
+          },
+          item3VideoEmbedCode {
+            embedCode: item3VideoEmbedCode,
+          },
+          item4VideoEmbedCode {
+            embedCode: item4VideoEmbedCode,
+          },
+          item5VideoEmbedCode {
+            embedCode: item5VideoEmbedCode,
+          },
+          item6VideoEmbedCode {
+            embedCode: item6VideoEmbedCode,
+          },
           title
         }
       }

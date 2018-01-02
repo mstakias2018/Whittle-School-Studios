@@ -27,3 +27,10 @@ exports.getIdFromImgUrl = (url) => {
   const matches = url.match(/\/\/images\.contentful\.com\/\w+\/(\w+)/);
   return matches && matches[1];
 };
+
+const cleanImageSources = imageSources =>
+  (imageSources && Object.keys(imageSources).length ? imageSources : undefined);
+
+exports.cleanImageData = imageData =>
+  imageData.map(data =>
+    (Array.isArray(data) ? data.map(cleanImageSources) : cleanImageSources(data)));
