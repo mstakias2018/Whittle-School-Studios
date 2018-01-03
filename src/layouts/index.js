@@ -25,6 +25,8 @@ import { getLanguageFromPathname } from '../utils/regions';
 import { transformSocialNetworks } from '../utils/social-networks';
 import { formatFooterLinks } from '../utils/nav';
 
+const { ENV } = require('../constants/env');
+
 class TemplateWrapper extends Component {
   state = {
     isTouchDevice: false,
@@ -92,7 +94,9 @@ class TemplateWrapper extends Component {
           titleTemplate={`%s | ${translations.general.schoolName}`}
         />
         {this.props.children()}
-        <VirtualGrid />
+        {process.env.GATSBY_ENV !== ENV.PRODUCTION &&
+          <VirtualGrid />
+        }
       </div>
     );
   }

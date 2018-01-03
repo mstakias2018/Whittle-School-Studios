@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import detectTouchEvents from 'detect-touch-events';
+
 import WithWindowListener from '../../hocs/withWindow';
 
 import styles from './virtual-grid.module.css';
@@ -46,7 +48,7 @@ class VirtualGrid extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.orientation !== this.props.orientation) {
+    if (nextProps.orientation !== this.props.orientation && detectTouchEvents.hasSupport) {
       orientationChanges += 1;
 
       if (orientationChanges % 2 === 0) {
