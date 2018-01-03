@@ -9,6 +9,7 @@ html {
 }
 body {
   margin: 0;
+  min-width: 320px;
 
   @media (--bp-sm-only) {
     padding: 0 var(--component-wrapper-margin-sm) var(--component-wrapper-margin-sm);
