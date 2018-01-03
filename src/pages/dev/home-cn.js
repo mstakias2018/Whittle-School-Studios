@@ -5,7 +5,6 @@ import cx from 'classnames';
 import HomeSectionTitle from '../../components/structural/home-section-title';
 import PageWrapper from '../../components/structural/page-wrapper';
 import Hero from '../../content-modules/global/hero';
-import PIC from '../../content-modules/global/pic';
 import PageHead from '../../components/structural/page-head';
 import HomeCampuses from '../../components/structural/home-campuses';
 
@@ -21,30 +20,6 @@ import largeImage from '../../test-content/images/category-large.jpg';
 import smallImage from '../../test-content/images/category-small.jpg';
 
 import styles from './modules.module.css';
-
-const EVENT_LIST_DUMMY_DATA = [
-  {
-    date: '2017-10-13',
-    description: '文字、標點符號出現機率大致符合台灣文章習慣。',
-    link: '#',
-    location: '小校园 PIC',
-    title: '作坊 (3〜5岁',
-  },
-  {
-    date: '2017-10-21',
-    description: '文字、標點符號出現機率大致符合台灣文章習慣。',
-    link: '#',
-    location: '小校园 PIC',
-    title: '董事会 见面＆问候',
-  },
-  {
-    date: '2017-11-04',
-    description: '文字、標點符號出現機率大致符合台灣文章習慣。',
-    link: '#',
-    location: '小校园 PIC',
-    title: '作坊 (3〜5岁',
-  },
-];
 
 const HERO_DUMMY_DATA = {
   eventListing: {
@@ -98,11 +73,6 @@ const HomeCn = () => (
       />
       <div className={styles.placeHolder} />
       <Hero data={HERO_DUMMY_DATA} />
-      <PIC
-        city="在深圳"
-        eventsList={EVENT_LIST_DUMMY_DATA}
-        text="'想象一下由国际教育工作者，建筑师，艺术家和技术专家组成的学校网络。"
-      />
       <div className={styles.componentInfo}>Section titles demo</div>
       <div className={cx(styles.fakeHomeSection, styles.gray)} />
       <div className={cx(styles.fakeHomeSection, styles.yellow)}>

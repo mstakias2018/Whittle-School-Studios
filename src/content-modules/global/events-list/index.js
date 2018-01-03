@@ -1,48 +1,66 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
 
+import Link from '../../../components/global/link';
 import Date from '../../../components/global/date';
 import Markdown from '../../../components/global/markdown';
 
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './events-list.module.css';
 
-const propTypes = {
-  list: PROP_SHAPES.EVENTS_LIST,
-};
+const propTypes = PROP_TYPES.EVENTS_LIST.isRequired;
 
-const EventsList = ({ list }, { translations }) => (
-  <div className={styles.wrapper}>
-    <ul className={styles.list}>
-      {list.map((event, index) => (
-        <li
-          className={styles.listItem}
-          key={index}
-        >
-          <div className={styles.date}>
-            <Date date={event.date} />
-          </div>
-          <div className={styles.content}>
-            <h3 className={styles.title}>{event.title}</h3>
-            <span className={styles.location}>{event.location}</span>
-            <Markdown
-              className={styles.description}
-              source={event.description}
-            />
-            <Link
-              className={styles.register}
-              to={event.link}
-            >
-              {translations.events.register}
-            </Link>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+class EventsList extends Component {
+  createItem = (n) => {
+    const date = this.props[`event${n}Date`];
+    const description = this.props[`event${n}Description`].markdown;
+    const link = this.props[`event${n}RegistrationLink`];
+    const location = this.props[`event${n}Location`];
+    const title = this.props[`event${n}TitleLine1`];
+    const title2 = this.props[`event${n}TitleLine2`];
+
+    const { translations } = this.context;
+
+    return (
+      <li
+        className={styles.listItem}
+        key={n}
+      >
+        <div className={styles.date}>
+          <Date date={date} />
+        </div>
+        <div className={styles.content}>
+          <h3 className={styles.title}>
+            <span>{title}</span>
+            <span>{title2}</span>
+          </h3>
+          <span className={styles.location}>{location}</span>
+          <Markdown
+            className={styles.description}
+            source={description}
+          />
+          <Link
+            className={styles.register}
+            to={link}
+          >
+            {translations.events.register}
+          </Link>
+        </div>
+      </li>
+    );
+  };
+
+  render() {
+    return (
+      <div className={styles.wrapper}>
+        <ul className={styles.list}>
+          {[...Array(5)].fill(0).map((_, index) => this.props[`event${index + 1}Date`] && this.createItem(index + 1))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 EventsList.propTypes = propTypes;
 EventsList.contextTypes = { translations: PropTypes.object.isRequired };

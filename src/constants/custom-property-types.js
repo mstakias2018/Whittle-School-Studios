@@ -222,13 +222,38 @@ const THUMBNAIL_LIST_ITEM = {
   title: PropTypes.string.isRequired,
 };
 
-const EVENTS_LIST = PropTypes.arrayOf(PropTypes.shape({
-  date: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  link: PropTypes.string,
-  location: PropTypes.string,
-  title: PropTypes.string.isRequired,
-}));
+const EVENTS_LIST = {
+  event1Date: PropTypes.string.isRequired,
+  event1Description: MARKDOWN.isRequired,
+  event1Location: PropTypes.string.isRequired,
+  event1RegistrationLink: PropTypes.string.isRequired,
+  event1TitleLine1: PropTypes.string.isRequired,
+  event1TitleLine2: PropTypes.string,
+  event2Date: PropTypes.string,
+  event2Description: MARKDOWN,
+  event2Location: PropTypes.string,
+  event2RegistrationLink: PropTypes.string,
+  event2TitleLine1: PropTypes.string,
+  event2TitleLine2: PropTypes.string,
+  event3Date: PropTypes.string,
+  event3Description: MARKDOWN,
+  event3Location: PropTypes.string,
+  event3RegistrationLink: PropTypes.string,
+  event3TitleLine1: PropTypes.string,
+  event3TitleLine2: PropTypes.string,
+  event4Date: PropTypes.string,
+  event4Description: MARKDOWN,
+  event4Location: PropTypes.string,
+  event4RegistrationLink: PropTypes.string,
+  event4TitleLine1: PropTypes.string,
+  event4TitleLine2: PropTypes.string,
+  event5Date: PropTypes.string,
+  event5Description: MARKDOWN,
+  event5Location: PropTypes.string,
+  event5RegistrationLink: PropTypes.string,
+  event5TitleLine1: PropTypes.string,
+  event5TitleLine2: PropTypes.string,
+};
 
 const SCHOOLS_INTRO = PropTypes.shape({
   description: PropTypes.string,
@@ -261,6 +286,7 @@ const VIDEO = {
 };
 
 const PROP_TYPES = {
+  EVENTS_LIST,
   LIST,
   LIST_ITEM,
   SUB_NAV: {
@@ -280,7 +306,6 @@ exports.PROP_TYPES = PROP_TYPES;
 
 exports.PROP_SHAPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
-  EVENTS_LIST,
   FOOTER_DATA: PropTypes.shape({
     primaryLinks: footerLinkArray,
     utilityLinks: footerLinkArray,

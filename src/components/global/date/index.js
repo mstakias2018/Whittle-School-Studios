@@ -8,7 +8,7 @@ import styles from './date.module.css';
 
 const propTypes = {
   date: PropTypes.string.isRequired,
-  isInline: PropTypes.bool.isRequired,
+  isInline: PropTypes.bool,
 };
 
 const Date = ({ date, isInline }, { translations }) => {

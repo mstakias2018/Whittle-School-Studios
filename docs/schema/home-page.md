@@ -23,7 +23,7 @@
   videoModule: { type: Reference<VideoGroup>, isRequired: false }
 
   eventListTitle: { type: string },
-  eventListModule: { type: Reference<EventList> },
+  eventList: { type: Reference<EventList> },
 
   campusesTitle: { type: string },
   campusesModule: { type: Reference<Campuses> },
@@ -68,7 +68,7 @@
   videoModule: Reference<VideoGroup>,
 
   module1Title: 'Workshops',
-  module1: Reference<EventList>,
+  module1: Reference<PicModule>,
 
   module2Title: 'Campuses',
   module2: Reference<Campuses>

@@ -6,9 +6,8 @@
 
 ```javascript
 {
-  cityName: { type: String },
-  description: { type: LongTextField },
-
+  cityName: { type: String }
+  introText: { tyep: LongTextField }
   event1Date: { type: String }, // format YYYY-MM-DD
   event1TitleLine1: { type: String },
   event1TitleLine2: { type: String, isRequired: false },
@@ -50,11 +49,8 @@
 
 ```javascript
 {
-  cityName: 'Washington, D.C.',
-  description: {
-    description: 'Cursus magna, vel scelerisque nisl consectetur et.',
-  },
-
+  cityName: 'Shenzhen',
+  introText: 'Identifying and understanding the key differences between et.',
   event1Date: '2018-03-20',
   event1TitleLine1: 'PYP Workshop',
   event1TitleLine2: '(Ages 3-5)',

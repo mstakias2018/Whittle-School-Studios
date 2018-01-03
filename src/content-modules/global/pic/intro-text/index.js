@@ -6,11 +6,11 @@ import locationImage from '../../../../assets/images/location-tag.svg';
 import styles from './intro-text.module.css';
 
 const propTypes = {
-  city: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  cityName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
-const IntroText = ({ city, text }) => (
+const IntroText = ({ cityName, description }) => (
   <div className={styles.wrapper}>
     <div className={styles.cityTitleContainer}>
       <img
@@ -18,9 +18,9 @@ const IntroText = ({ city, text }) => (
         className={styles.locationTag}
         src={locationImage}
       />
-      <span className={styles.cityTitle}>{city}</span>
+      <span className={styles.cityTitle}>{cityName}</span>
     </div>
-    <p className={styles.text}>{text}</p>
+    <p className={styles.text}>{description}</p>
   </div>
 );
 

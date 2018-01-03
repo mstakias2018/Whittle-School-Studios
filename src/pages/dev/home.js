@@ -5,7 +5,6 @@ import cx from 'classnames';
 import HomeSectionTitle from '../../components/structural/home-section-title';
 import PageWrapper from '../../components/structural/page-wrapper';
 import Hero from '../../content-modules/global/hero';
-import PIC from '../../content-modules/global/pic';
 import PageHead from '../../components/structural/page-head';
 import HomeCampuses from '../../components/structural/home-campuses';
 
@@ -21,30 +20,6 @@ import largeImage from '../../test-content/images/category-large.jpg';
 import smallImage from '../../test-content/images/category-small.jpg';
 
 import styles from './modules.module.css';
-
-const EVENT_LIST_DUMMY_DATA = [
-  {
-    date: '2017-10-13',
-    description: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.',
-    link: '/register',
-    location: 'Whittle Campus PIC',
-    title: 'PYP Workshop (Ages 3-5)',
-  },
-  {
-    date: '2017-10-21',
-    description: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.',
-    link: '/register',
-    location: 'Whittle Campus PIC',
-    title: 'Board of Directors Meet & Greet',
-  },
-  {
-    date: '2017-11-04',
-    description: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.',
-    link: '/register',
-    location: 'Whittle Campus PIC',
-    title: 'PYP Workshop (Ages 9-12)',
-  },
-];
 
 const HERO_DUMMY_DATA = {
   eventListing: {
@@ -101,12 +76,6 @@ const Home = () => (
     <div className={styles.placeHolder} />
     <div className={styles.componentInfo}>hero</div>
     <Hero data={HERO_DUMMY_DATA} />
-    <PIC
-      city="Shenzhen"
-      eventsList={EVENT_LIST_DUMMY_DATA}
-      text="Identifying and understanding the key differences between
-      schools is an essential part of that decision making experience."
-    />
     <div className={styles.componentInfo}>Section titles demo</div>
     <div className={cx(styles.fakeHomeSection, styles.gray)} />
     <div className={cx(styles.fakeHomeSection, styles.yellow)}>
