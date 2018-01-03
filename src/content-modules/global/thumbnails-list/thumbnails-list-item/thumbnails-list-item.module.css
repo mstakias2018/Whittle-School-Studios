@@ -61,7 +61,6 @@
 
 .videoLength {
   @mixin type-eyebrow;
-  display: none;
   padding-bottom: 16px;
 }
 

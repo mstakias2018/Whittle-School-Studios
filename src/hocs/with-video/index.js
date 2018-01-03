@@ -28,7 +28,6 @@ const WithVideo = (WrappedComponent, options = {}) => {
       if (this.state.isVimeo) {
         const Player = require('@vimeo/player'); // eslint-disable-line global-require
         this.player = new Player(this.iframe);
-        // this.player.getDuration().then(duration => console.log(duration));
         this.player.on('play', this.toggleVideoState.bind(null, true));
         this.player.on('pause', this.toggleVideoState.bind(null, false));
       }

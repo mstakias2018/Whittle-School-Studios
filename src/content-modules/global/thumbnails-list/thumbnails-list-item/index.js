@@ -16,11 +16,12 @@ const ThumbnailsListItem = ({
   assetWithVideo,
   description,
   title,
+  videoDuration,
 }) => (
   <li className={styles.listItem}>
     <div className={styles.text}>
       <h3 className={styles.title}>{title}</h3>
-      <div className={styles.videoLength}>5:15</div>
+      {videoDuration && <div className={styles.videoLength}>{videoDuration}</div>}
       <Markdown
         className={styles.description}
         source={description.markdown}

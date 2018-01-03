@@ -326,6 +326,12 @@ export const pageQuery = graphql`
           item4ImageAlt
           item5ImageAlt
           item6ImageAlt
+          item1VideoDuration
+          item2VideoDuration
+          item3VideoDuration
+          item4VideoDuration
+          item5VideoDuration
+          item6VideoDuration
           item1VideoEmbedCode {
             embedCode: item1VideoEmbedCode,
           },
