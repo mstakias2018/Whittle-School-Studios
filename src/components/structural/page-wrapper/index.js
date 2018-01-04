@@ -28,7 +28,10 @@ class PageWrapper extends React.Component {
     const { translations } = this.context;
 
     return ([
-      <Skip handleSkipToContent={this.handleSkipToContent} />,
+      <Skip
+        handleSkipToContent={this.handleSkipToContent}
+        key="skip"
+      />,
       <Header
         key="header"
         localizedSlugList={localizedSlugList}
