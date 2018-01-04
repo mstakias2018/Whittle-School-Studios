@@ -285,6 +285,10 @@ const NAV_ITEM_LIST = PropTypes.arrayOf(PropTypes.shape({
   title: PropTypes.string.isRequired,
 }));
 
+const LINK = PropTypes.shape({
+  slug: PropTypes.string.isRequired,
+});
+
 const VIDEO = {
   alt: PropTypes.string.isRequired,
   imageSources: IMAGE_SOURCES,
@@ -335,6 +339,7 @@ exports.PROP_SHAPES = {
   IMAGE_DATA_BY_TYPE: PropTypes.shape(validateImageDataByType),
   IMAGE_SOURCES,
   LANGUAGE: PropTypes.oneOf(REGION_LANGUAGES[process.env.GATSBY_REGION]),
+  LINK,
   LOCALIZED_SLUG_LIST: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
     locale: PropTypes.oneOf([

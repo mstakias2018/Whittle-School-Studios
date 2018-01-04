@@ -6,9 +6,10 @@ import WithWindowListener from '../../../hocs/withWindow';
 
 import HomeSectionTitle from '../home-section-title';
 import Picture from '../../global/picture';
+import { createContentPageLink } from '../../../utils/global';
 
 import { HOME_SECTION_TITLE_COLOR, HOME_SECTION_TITLE_POSITION } from '../../../constants/settings';
-import { PROP_TYPES } from '../../../constants/custom-property-types';
+import { PROP_TYPES, PROP_SHAPES } from '../../../constants/custom-property-types';
 import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
 
 import Link from '../../global/link';
@@ -17,18 +18,18 @@ import Markdown, { ALLOWED_TYPES } from '../../global/markdown';
 import styles from './home-campuses.module.css';
 
 const propTypes = {
-  architectImage: PropTypes.string,
+  architectImage: PROP_SHAPES.IMAGE_SOURCES.isRequired,
   architectName: PropTypes.string,
-  architectQuote: PropTypes.string,
+  architectQuote: PROP_SHAPES.MARKDOWN,
   breakpoint: PROP_TYPES.BREAKPOINT,
-  descriptionText: PropTypes.string,
+  descriptionText: PROP_SHAPES.MARKDOWN.isRequired,
   dimensions: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
   }),
   imageAlt: PropTypes.string,
-  imageSources: PROP_TYPES.IMAGE_SOURCES,
-  linkTarget: PropTypes.string,
+  imageSources: PROP_SHAPES.IMAGE_SOURCES,
+  linkTarget: PROP_SHAPES.LINK,
   linkText: PropTypes.string,
   sectionTitleText: PropTypes.string.isRequired,
 };
@@ -123,13 +124,13 @@ class HomeCampuses extends React.Component {
               <Markdown
                 allowedTypes={ALLOWED_TYPES.SHORT_TEXT}
                 className={styles.description}
-                source={descriptionText}
+                source={descriptionText.markdown}
               />
               {this.props.linkText &&
                 this.props.linkTarget && (
                   <Link
                     className={styles.link}
-                    to={linkTarget}
+                    to={createContentPageLink(linkTarget)}
                   >
                     {linkText}
                   </Link>
@@ -138,16 +139,16 @@ class HomeCampuses extends React.Component {
             <div className={styles.architectBlock}>
               <div className={styles.architectInnerBlock}>
                 <div className={styles.architectName}>{architectName}</div>
-                <img
+                <Picture
                   alt={imageAlt}
                   className={styles.architectImage}
-                  src={architectImage}
+                  sourcesBySize={architectImage}
                 />
               </div>
               <Markdown
                 allowedTypes={ALLOWED_TYPES.SHORT_TEXT}
                 className={styles.architectQuote}
-                source={`"${architectQuote}"`}
+                source={architectQuote.markdown}
               />
             </div>
           </div>

@@ -5,18 +5,28 @@ import Helmet from 'react-helmet';
 import PageHead from '../../components/structural/page-head';
 import PIC from '../../content-modules/global/pic';
 import PageWrapper from '../../components/structural/page-wrapper';
+import HomeCampuses from '../../components/structural/home-campuses';
+
 import { PAGE_TYPE } from '../../constants/settings';
+import { PROP_SHAPES } from '../../constants/custom-property-types';
+import { STRUCTURAL_COMPONENTS } from '../../constants/contentful';
 import { removeMarkdown } from '../../utils/strings';
 
 const propTypes = {
   // TODO FIX data prop type
   data: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+  pathContext: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    imageDataByType: PROP_SHAPES.IMAGE_DATA_BY_TYPE.isRequired,
+  }).isRequired,
 };
 
 const ContentPageTemplate = ({
   data: { homePageData },
+  pathContext,
 }) => {
   const {
+    campusModule,
     headline,
     eventList,
     schoolIntroTitle,
@@ -44,6 +54,14 @@ const ContentPageTemplate = ({
         cityName={eventList.cityName}
         description={eventList.introText.markdown}
         eventList={eventList}
+      />
+      <HomeCampuses
+        {...campusModule}
+        architectImage={pathContext.imageDataByType &&
+          pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage}
+        imageSources={pathContext.imageDataByType &&
+          pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image}
+        sectionTitleText="Campuses."
       />
     </PageWrapper>
   );
@@ -109,6 +127,23 @@ export const pageQuery = graphql`
         event5RegistrationLink
         event5TitleLine1
         event5TitleLine2
+      }
+      campusModule {
+        architectName
+        architectQuote {
+          markdown: architectQuote
+        }
+        descriptionText: description {
+          markdown: description
+        }
+        imageAlt
+        linkTarget: linkDestination {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+        linkText: linkTitle
       }
     }
   }

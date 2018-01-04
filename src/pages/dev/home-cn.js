@@ -87,8 +87,12 @@ const HomeCn = () => (
       <HomeCampuses
         architectImage={renzoImage}
         architectName="Renzo Piano"
-        architectQuote="復祖迫今係豆局 空康赤界扱. 都阪渡語犯 将済済式打 原少企理. 南晴要紙対 興超義純 治前数分格日府. 森歳毎授年輪氏 夢岡歌果念稿真."
-        descriptionText="身断整 表応第用訟 変治他 **語引査責油**. 調見月 写拓内地治用高 貿在集意投 師準式. 幌員松確 沼米宿指島棋 敗束無桜禁. 姿量畝井害 資器断過浩周寒馬. 寿事驚供広毎 重面広奥番反."
+        architectQuote={{
+          markdown: '復祖迫今係豆局 空康赤界扱. 都阪渡語犯 将済済式打 原少企理. 南晴要紙対 興超義純 治前数分格日府. 森歳毎授年輪氏 夢岡歌果念稿真.',
+        }}
+        descriptionText={{
+          markdown: '身断整 表応第用訟 変治他 **語引査責油**. 調見月 写拓内地治用高 貿在集意投 師準式. 幌員松確 沼米宿指島棋 敗束無桜禁. 姿量畝井害 資器断過浩周寒馬. 寿事驚供広毎 重面広奥番反.',
+        }}
         imageAlt="用訟変治"
         imageSources={{
           [IMAGE_SIZE.SMALL_MID]: {
@@ -101,7 +105,9 @@ const HomeCn = () => (
             src: campusLargeImage,
           },
         }}
-        linkTarget="#"
+        linkTarget={{
+          slug: '#',
+        }}
         linkText="語引査責油"
         sectionTitleText="个学校第"
       />

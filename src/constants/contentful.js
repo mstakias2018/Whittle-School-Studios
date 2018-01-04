@@ -69,3 +69,7 @@ exports.CONTENT_MODULE = {
   THREE_UP_BREAKER: 'ContentfulThreeUpBreaker',
   THUMBNAIL_LIST: 'ContentfulThumbnailList',
 };
+
+exports.STRUCTURAL_COMPONENTS = {
+  HOME_CAMPUSES: 'ContentfulCampuses',
+};

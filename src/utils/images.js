@@ -15,7 +15,7 @@ exports.adaptSourcesBySize = (sourcesBySize) => {
     return acc;
   }, []);
 
-  const largestSrc = sourceList[sourceList.length - 1].src;
+  const largestSrc = sourceList[sourceList.length - 1] ? sourceList[sourceList.length - 1].src : '';
 
   return {
     largestSrc,
