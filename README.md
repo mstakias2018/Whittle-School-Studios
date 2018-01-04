@@ -8,7 +8,8 @@
 $ cp .env.example .env
 ```
 
-Fill out environment variables with Contentful properties. Only the DEV values are needed for development; other values will be needed for deployment.
+Fill out environment variables with Contentful properties. Only the DEV values
+are needed for development; other values will be needed for deployment.
 
 **Clone the repo**
 
@@ -35,6 +36,9 @@ $ yarn develop
 $ yarn start
 $ yarn build
 ```
+
+Known issue: depending on your connection, developing/building locally can take
+5-20 seconds on Gatsby's `createPages` step.
 
 ### China
 

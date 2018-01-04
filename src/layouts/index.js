@@ -27,6 +27,13 @@ import { formatFooterLinks } from '../utils/nav';
 
 const { ENV } = require('../constants/env');
 
+const LAYOUT_MODEL = {
+  FOOTER: 'allContentfulFooter',
+  HEADER: 'allContentfulHeader',
+  SETTINGS: 'allContentfulGlobalSettings',
+  TRANSLATIONS: 'allContentfulGlobalTranslations',
+};
+
 class TemplateWrapper extends Component {
   state = {
     isTouchDevice: false,
@@ -35,6 +42,20 @@ class TemplateWrapper extends Component {
   getChildContext() {
     const { data, history, location: { pathname } } = this.props;
     const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
+    const getLanguageDataFor = (key) => {
+      let out;
+
+      data[key].edges.some(({ node: { locale, ...props } }) => {
+        if (locale === LANGUAGE_CONTENTFUL_LOCALE[language]) {
+          out = props;
+          return true;
+        }
+        return false;
+      });
+
+      return out;
+    };
+
     const {
       contentPageShareIcons,
       fabText: { file: { url } },
@@ -42,17 +63,17 @@ class TemplateWrapper extends Component {
       fabLinkInternal,
       footerShareIcons,
       ...socialNetworkUrls
-    } = data[`SETTINGS_${language}`];
+    } = getLanguageDataFor(LAYOUT_MODEL.SETTINGS);
     const {
       translations: { internal: { content: stringifiedTranslations } },
-    } = data[`TRANSLATIONS_${language}`];
+    } = getLanguageDataFor(LAYOUT_MODEL.TRANSLATIONS);
     const translations = JSON.parse(stringifiedTranslations);
 
     return {
       fabLink: parseLink({ external: fabLinkExternal, internal: fabLinkInternal }),
       fabTextImage: url,
-      footerData: formatFooterLinks(data[`FOOTER_${language}`]),
-      headerData: data[`HEADER_${language}`].contentPages,
+      footerData: formatFooterLinks(getLanguageDataFor(LAYOUT_MODEL.FOOTER)),
+      headerData: getLanguageDataFor(LAYOUT_MODEL.HEADER).contentPages,
       history,
       language,
       pathname,
@@ -124,13 +145,6 @@ TemplateWrapper.childContextTypes = {
 export default TemplateWrapper;
 
 export const pageQuery = graphql`
-  fragment header on ContentfulHeader {
-    contentPages {
-      title: navTitle
-      link: slug
-    }
-  }
-
   fragment footerLink on ContentfulFooterLink {
     linkTitle
     linkDestinationExternal
@@ -142,113 +156,108 @@ export const pageQuery = graphql`
     }
   }
 
-  fragment footer on ContentfulFooter {
-    primaryLink1 {
-      ...footerLink
-    }
-    utilityLink1 {
-      ...footerLink
-    }
-    utilityLink2 {
-      ...footerLink
-    }
-   utilityLink2Children {
-      ...footerLink
-    }
-    primaryLink2 {
-      ...footerLink
-    }
-    primaryLink2Children {
-      ...footerLink
-    }
-    primaryLink3 {
-      ...footerLink
-    }
-    primaryLink3Children {
-      ...footerLink
-    }
-    primaryLink4 {
-      ...footerLink
-    }
-    primaryLink4Children {
-      ...footerLink
-    }
-    primaryLink5 {
-      ...footerLink
-    }
-    primaryLink5Children {
-      ...footerLink
-    }
-    primaryLink6 {
-      ...footerLink
-    }
-    primaryLink6Children {
-      ...footerLink
-    }
-  }
-
-  fragment settings on ContentfulGlobalSettings {
-    fabText {
-      file {
-        url
-      }
-    }
-    fabLinkInternal {
-      slug
-      parentCategory: contentpage {
-        slug
-      }
-    }
-    fabLinkExternal
-    contentPageShareIcons
-    footerShareIcons
-
-    # These should match our SOCIAL_NETWORK constant
-    FACEBOOK: facebookUrl
-    TWITTER: twitterUrl
-    WECHAT: weChatUrl
-    WEIBO: weiboUrl
-  }
-
-  fragment translations on ContentfulGlobalTranslations {
-    translations {
-      internal {
-        content
-      }
-    }
-  }
-
   query globalQuery {
-    HEADER_ENGLISH: contentfulHeader(node_locale: {eq: "en-US"}) {
-      ...header
+    allContentfulHeader {
+      edges {
+        node {
+          locale: node_locale
+          contentPages {
+            title: navTitle
+            link: slug
+          }
+        }
+      }
     }
 
-    HEADER_CHINESE: contentfulHeader(node_locale: {eq: "zh-CN"}) {
-      ...header
+    allContentfulFooter {
+      edges {
+        node {
+          locale: node_locale
+          primaryLink1 {
+            ...footerLink
+          }
+          utilityLink1 {
+            ...footerLink
+          }
+          utilityLink2 {
+            ...footerLink
+          }
+          utilityLink2Children {
+            ...footerLink
+          }
+          primaryLink2 {
+            ...footerLink
+          }
+          primaryLink2Children {
+            ...footerLink
+          }
+          primaryLink3 {
+            ...footerLink
+          }
+          primaryLink3Children {
+            ...footerLink
+          }
+          primaryLink4 {
+            ...footerLink
+          }
+          primaryLink4Children {
+            ...footerLink
+          }
+          primaryLink5 {
+            ...footerLink
+          }
+          primaryLink5Children {
+            ...footerLink
+          }
+          primaryLink6 {
+            ...footerLink
+          }
+          primaryLink6Children {
+            ...footerLink
+          }
+        }
+      }
     }
 
-    FOOTER_ENGLISH: contentfulFooter(node_locale: { eq: "en-US" }) {
-      ...footer
+    allContentfulGlobalSettings {
+      edges {
+        node {
+          locale: node_locale
+          fabText {
+            file {
+              url
+            }
+          }
+          fabLinkInternal {
+            slug
+            parentCategory: contentpage {
+              slug
+            }
+          }
+          fabLinkExternal
+          contentPageShareIcons
+          footerShareIcons
+
+          # These should match our SOCIAL_NETWORK constant
+          FACEBOOK: facebookUrl
+          TWITTER: twitterUrl
+          WECHAT: weChatUrl
+          WEIBO: weiboUrl
+        }
+      }
     }
 
-    FOOTER_CHINESE: contentfulFooter(node_locale: { eq: "zh-CN" }) {
-      ...footer
-    }
-
-    SETTINGS_ENGLISH: contentfulGlobalSettings(node_locale: {eq: "en-US"}) {
-      ...settings
-    }
-
-    SETTINGS_CHINESE: contentfulGlobalSettings(node_locale: {eq: "zh-CN"}) {
-      ...settings
-    }
-
-    TRANSLATIONS_ENGLISH: contentfulGlobalTranslations(node_locale: {eq: "en-US"}) {
-      ...translations
-    }
-
-    TRANSLATIONS_CHINESE: contentfulGlobalTranslations(node_locale: {eq: "zh-CN"}) {
-      ...translations
+    allContentfulGlobalTranslations {
+      edges {
+        node {
+          locale: node_locale
+          translations {
+            internal {
+              content
+            }
+          }
+        }
+      }
     }
   }
 `;
