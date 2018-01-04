@@ -4012,9 +4012,9 @@ gatsby-react-router-scroll@^1.0.6:
     scroll-behavior "^0.9.1"
     warning "^3.0.0"
 
-"gatsby-source-contentful@git://github.com/sarahatwork/gatsby-source-contentful#fix-rebased":
+gatsby-source-contentful@^1.3.31:
   version "1.3.31"
-  resolved "git://github.com/sarahatwork/gatsby-source-contentful#c384889128a8c877e3d6db0be15590c1c74f739e"
+  resolved "https://registry.yarnpkg.com/gatsby-source-contentful/-/gatsby-source-contentful-1.3.31.tgz#8353249800f157a157204f4ec7b129b0415a9e7d"
   dependencies:
     axios "^0.16.1"
     babel-runtime "^6.26.0"

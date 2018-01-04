@@ -17,16 +17,23 @@ const createHomePages = (graphql, createPage) =>
     new Promise((resolve, reject) => {
       graphql(`
           {
-            contentfulHomePage(
-              node_locale: { eq: "${LANGUAGE_CONTENTFUL_LOCALE[language]}" }
+            allContentfulHomePage(
+              filter: { node_locale: { eq: "${LANGUAGE_CONTENTFUL_LOCALE[language]}" } }
             ) {
-              id: contentful_id
-              campusModule {
-                image {
-                  ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
-                }
-                architectImage {
-                  ${createQuery(IMAGE_SUBTYPE.INLINE_SQ)}
+              edges {
+                node {
+                  dummycontentindex {
+                    id
+                  }
+                  id: contentful_id
+                  campusModule {
+                    image {
+                      ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
+                    }
+                    architectImage {
+                      ${createQuery(IMAGE_SUBTYPE.INLINE_SQ)}
+                    }
+                  }
                 }
               }
             }
@@ -53,10 +60,16 @@ const createHomePages = (graphql, createPage) =>
         const modulePromises = [];
         const imageDataByType = {};
 
-        const {
-          id,
-          campusModule,
-        } = result.data.contentfulHomePage;
+        let homepage;
+        result.data.allContentfulHomePage.edges.some(({ node }) => {
+          if (!node.dummycontentindex) {
+            homepage = node;
+            return true;
+          }
+          return false;
+        });
+
+        const { id, campusModule } = homepage;
 
         if (campusModule) {
           imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES] = {};
