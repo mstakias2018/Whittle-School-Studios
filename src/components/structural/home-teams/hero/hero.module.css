@@ -1,0 +1,121 @@
+@import "../../../../assets/styles/includes/breakpoints.css";
+@import "../../../../assets/styles/includes/mixins.css";
+@import "../../../../assets/styles/includes/grid.css";
+
+.wrapper {
+  @mixin full-width-column;
+  @mixin nested-grid-container;
+  flex-wrap: wrap;
+  padding-bottom: 50px;
+  padding-top: 40px;
+
+  @media (--bp-md) {
+    @mixin nested-grid-container;
+    padding-bottom: 50px;
+    padding-top: 60px;
+  }
+
+  @media (--bp-lg) {
+    @mixin nested-grid-container;
+    padding-bottom: 100px;
+    padding-top: 60px;
+  }
+}
+
+.heroImageWrapper {
+  @mixin span 3, var(--grid-columns-sm), sm;
+  @mixin custom-column 1, var(--grid-columns-sm), margin-left;
+
+  @media (--bp-md) {
+    @mixin span 3, var(--grid-columns-md), md;
+    @mixin custom-column 1, var(--grid-columns-md), margin-left;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 3, var(--grid-columns-lg), lg;
+    @mixin custom-column 2, var(--grid-columns-lg), margin-left;
+  }
+}
+
+.heroImage {
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+
+.heroContent {
+  @mixin full-width-column-sm;
+
+  @media (--bp-md) {
+    @mixin span 4, var(--grid-columns-md), md;
+  }
+
+  @media (--bp-md-only) {
+    padding-left: calc(3 * var(--grid-gutter-md));
+  }
+
+  @media (--bp-lg) {
+    @mixin span 4, var(--grid-columns-lg), lg;
+    @mixin custom-column 1, var(--grid-columns-lg), margin-left;
+  }
+}
+
+.heroContentInner {
+  height: auto;
+  position: relative;
+
+  &:before {
+    @media (--bp-md) {
+      border-left: 1px solid var(--color-light-border);
+      content: '';
+      height: calc(100% - 12px);
+      left: calc(-2 * var(--grid-gutter-md));
+      position: absolute;
+      top: 9px;
+    }
+
+    @media (--bp-lg) {
+      left: calc(-2 * var(--grid-gutter-lg));
+    }
+  }
+}
+
+.heroContentName {
+  @mixin type-h3;
+  letter-spacing: 0.2px;
+  line-height: 24px;
+
+  @media (--bp-sm-only) {
+    padding-top: 20px;
+  }
+
+  @media (--bp-md) {
+    line-height: 48px;
+  }
+}
+
+.heroContentTitle {
+  @mixin type-eyebrow;
+  padding-top: 8px;
+}
+
+.heroContentBio {
+  @mixin type-descriptor;
+  line-height: 24px;
+  padding-top: 20px;
+
+  @media (--bp-md) {
+    line-height: 26px;
+  }
+}
+
+.heroLinkWrapper {
+  margin-top: 20px;
+
+  @media (--bp-md) {
+    margin-top: 30px;
+  }
+}
+
+.heroLink {
+  @mixin type-link;
+}

@@ -30,3 +30,8 @@ exports.HOME_SECTION_TITLE_POSITION = {
   LEFT: 'left',
   RIGHT: 'right',
 };
+
+exports.HOME_TEAMS_STATISTIC_TYPE = {
+  PERCENTAGE: 'percentage', // must match Contentful value
+  RATIO: 'ratio', // must match Contentful value
+};

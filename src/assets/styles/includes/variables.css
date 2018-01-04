@@ -68,6 +68,7 @@
 
   /* keep in sync with image-config PAGE_MARGIN_PX variables */
   --component-wrapper-margin-sm: 10px;
+  --component-wrapper-margin-sm-upper-only: 10px;
   --component-wrapper-margin-md: 24px;
   --component-wrapper-margin-lg: 40px;
 

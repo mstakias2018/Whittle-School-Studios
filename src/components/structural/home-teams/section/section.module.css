@@ -1,0 +1,86 @@
+@import "../../../../assets/styles/includes/breakpoints.css";
+@import "../../../../assets/styles/includes/mixins.css";
+@import "../../../../assets/styles/includes/grid.css";
+@import '../../../../assets/styles/includes/variables.css';
+
+.wrapper {
+  @mixin reset-list;
+  @mixin full-width-column;
+  @mixin nested-grid-container;
+  flex-wrap: wrap;
+  padding-bottom: 50px;
+
+  @media (--bp-md) {
+    @mixin nested-grid-container;
+  }
+
+  @media (--bp-lg) {
+    @mixin nested-grid-container;
+    padding-bottom: 50px;
+  }
+
+  &:nth-child(2) {
+    padding-top: 50px;
+
+    @media (--bp-lg) {
+      padding-top: 10px;
+    }
+  }
+}
+
+.smallBioList {
+  @mixin reset-list;
+  display: flex;
+  margin-left: calc(-1 * (var(--container-margin-sm) + var(--grid-gutter-sm)));
+  min-width: 100vw;
+  overflow: scroll;
+  padding-bottom: 20px;
+  padding-top: 50px;
+  position: relative;
+
+  @media (--bp-sm-upper-only) {
+    margin-left: calc(-1 * (var(--container-margin-sm-upper-only) + var(--grid-gutter-sm)));
+  }
+}
+
+.mediumAndLargeBioList {
+  @mixin reset-list;
+  @mixin full-width-column;
+  @mixin nested-grid-container;
+  flex-wrap: wrap;
+
+  @media (--bp-md) {
+    @mixin nested-grid-container;
+  }
+
+  @media (--bp-lg) {
+    @mixin nested-grid-container;
+  }
+}
+
+.title {
+  @mixin full-width-column-sm;
+  @mixin type-h4-italic;
+
+  @media (--bp-md) {
+    @mixin full-width-column-md;
+  }
+
+  @media (--bp-md-only) {
+    padding-bottom: 50px;
+  }
+
+  @media (--bp-lg) {
+    @mixin span 2, var(--grid-columns-lg), lg;
+    @mixin custom-column 1, var(--grid-columns-lg), margin-left;
+    padding-right: calc(2 * var(--grid-gutter-lg));
+  }
+}
+
+.linkWrapper {
+  margin-top: 10px;
+}
+
+.link {
+  @mixin type-link;
+}

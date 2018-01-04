@@ -1,0 +1,142 @@
+@import "../../../../assets/styles/includes/breakpoints.css";
+@import "../../../../assets/styles/includes/mixins.css";
+@import "../../../../assets/styles/includes/grid.css";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 60px;
+  width: 100%;
+
+  @media (--bp-lg) {
+    @mixin span 5, var(--grid-columns-lg), lg;
+  }
+}
+
+.rightMargin {
+  @media (--bp-lg) {
+    @mixin custom-column 1, var(--grid-columns-lg), margin-right;
+  }
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 225px;
+  justify-content: center;
+  width: 225px;
+
+  @media (--bp-md) {
+    height: 360px;
+    width: 380px;
+  }
+}
+
+.bottomText,
+.topText {
+  @mixin type-h4-italic;
+  text-align: center;
+
+  @media (--bp-sm-only) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.numberBlock {
+  height: auto;
+  padding-top: 20px;
+
+  @media (--bp-md) {
+    padding-top: 30px;
+  }
+}
+
+.percentageNumber {
+  color: var(--color-text-dark);
+  font-family: var(--font-serif-light-italic);
+  font-size: 190px;
+  letter-spacing: -3.5px;
+  line-height: 130px;
+
+  @media (--bp-md) {
+    font-size: 315px;
+    letter-spacing: -6px;
+    line-height: 215px;
+  }
+
+  :global(.wrapper_isChinese) & {
+    font-family: var(--font-serif-light-italic-cn);
+  }
+}
+
+.percentageSign {
+  color: var(--color-text-dark);
+  font-family: var(--font-serif-book-italic);
+  font-size: 72px;
+
+  @media (--bp-md) {
+    font-size: 110px;
+  }
+}
+
+.ratioBlock {
+  align-items: center;
+  display: flex;
+  height: auto;
+}
+
+.ratioNumber {
+  color: var(--color-text-dark);
+  font-family: var(--font-serif-light-italic);
+  font-size: 190px;
+  letter-spacing: -3.5px;
+  line-height: 150px;
+
+  @media (--bp-md) {
+    font-size: 300px;
+    letter-spacing: -6px;
+    line-height: 260px;
+  }
+}
+
+.ratioNumberLeft {
+  left: -10px;
+  position: relative;
+  top: -15px;
+
+  @media (--bp-md) {
+    left: -20px;
+    top: -30px;
+  }
+}
+
+.ratioNumberRight {
+  bottom: -15px;
+  position: relative;
+  right: -10px;
+
+  @media (--bp-md) {
+    bottom: -30px;
+    right: -10px;
+  }
+}
+
+.ratioText {
+  @mixin type-h5-italic;
+  font-size: 20px;
+  line-height: 24px;
+  max-width: 60px;
+  text-align: center;
+
+  @media (--bp-sm-only) {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  @media (--bp-md) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}

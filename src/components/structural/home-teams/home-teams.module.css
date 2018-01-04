@@ -1,0 +1,17 @@
+@import "../../../assets/styles/includes/breakpoints.css";
+@import "../../../assets/styles/includes/mixins.css";
+@import "../../../assets/styles/includes/grid.css";
+
+.wideWrapper {
+  background-color: var(--color-background-light-green-gray);
+}
+
+.wrapper {
+  @mixin component-container;
+}
+
+.content {
+  @mixin grid-container;
+  @mixin reset-list;
+  flex-wrap: wrap;
+}

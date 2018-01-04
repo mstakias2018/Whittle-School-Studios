@@ -1,0 +1,120 @@
+@import "../../../../assets/styles/includes/breakpoints.css";
+@import "../../../../assets/styles/includes/mixins.css";
+@import "../../../../assets/styles/includes/grid.css";
+@import '../../../../assets/styles/includes/variables.css';
+
+@define-mixin set-bio-width-on-small $breakpoint: sm {
+  $calculated-width: calc(((100% - (2 * var(--container-margin-$(breakpoint))) - (2 * var(--grid-gutter-$(breakpoint))) - (2 * var(--component-wrapper-margin-$(breakpoint)))) / 2) - 25px);
+  $first-last-padding: calc(var(--container-margin-$(breakpoint)) + var(--component-wrapper-margin-$(breakpoint)));
+  flex-basis: $calculated-width;
+  max-width: $calculated-width;
+  min-width: $calculated-width;
+  padding-left: calc(2 * var(--grid-gutter-$(breakpoint)));
+  padding-right: 25px;
+  width: $calculated-width;
+
+  &:first-child {
+    padding-left: $first-last-padding;
+  }
+
+  &:last-child {
+    padding-right: $first-last-padding;
+  }
+}
+
+.wrapper {
+  @mixin type-h4-italic;
+  margin-bottom: 0;
+
+  @media (--bp-sm-only) {
+    @mixin set-bio-width-on-small sm;
+    box-sizing: content-box;
+
+    &:not(:first-child) {
+      border-left: 1px solid var(--color-light-border);
+    }
+  }
+
+  @media (--bp-sm-upper-only) {
+    @mixin set-bio-width-on-small sm-upper-only;
+  }
+
+  @media (--bp-md) {
+    @mixin span 3, var(--grid-columns-md), md;
+    @mixin custom-column 1, var(--grid-columns-md), margin-right;
+    padding-bottom: 85px;
+    padding-left: calc(3 * var(--grid-gutter-md));
+  }
+
+  @media (--bp-lg) {
+    @mixin span 2, var(--grid-columns-lg), lg;
+    @mixin custom-column 1, var(--grid-columns-lg), margin-right;
+    padding-bottom: 130px;
+  }
+}
+
+.wrapper_hasLeftMargin {
+  @media (--bp-lg) {
+    @mixin custom-column 3, var(--grid-columns-lg), margin-left;
+  }
+}
+
+.bioInner {
+  height: auto;
+  position: relative;
+
+  &:before {
+    @media (--bp-md) {
+      border-left: 1px solid var(--color-light-border);
+      content: '';
+      height: calc(100% - 12px);
+      left: calc(-2 * var(--grid-gutter-md));
+      position: absolute;
+      top: 9px;
+    }
+
+    @media (--bp-lg) {
+      left: calc(-2 * var(--grid-gutter-lg));
+    }
+  }
+}
+
+.image {
+  border: 1px solid transparent;
+  border-radius: 50%;
+  box-sizing: content-box;
+  height: 80px;
+  padding-bottom: 8px;
+  width: 80px;
+
+  @media (--bp-sm-only) {
+    height: 60px;
+    padding-bottom: 13px;
+    width: 60px;
+  }
+}
+
+.name {
+  @mixin type-h3;
+  letter-spacing: 0.2px;
+}
+
+.title {
+  @mixin type-eyebrow;
+  padding-top: 11px;
+
+  @media (--bp-sm-only) {
+    padding-top: 7px;
+  }
+}
+
+.description {
+  @mixin type-descriptor;
+  line-height: 24px;
+  padding-top: 11px;
+
+  @media (--bp-md) {
+    line-height: 26px;
+    padding-top: 17px;
+  }
+}
