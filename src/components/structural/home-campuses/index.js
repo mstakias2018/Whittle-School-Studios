@@ -9,7 +9,7 @@ import Picture from '../../global/picture';
 import { createContentPageLink } from '../../../utils/global';
 
 import { HOME_SECTION_TITLE_COLOR, HOME_SECTION_TITLE_POSITION } from '../../../constants/settings';
-import { PROP_TYPES, PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
 
 import Link from '../../global/link';
@@ -21,7 +21,7 @@ const propTypes = {
   architectImage: PROP_SHAPES.IMAGE_SOURCES.isRequired,
   architectName: PropTypes.string,
   architectQuote: PROP_SHAPES.MARKDOWN,
-  breakpoint: PROP_TYPES.BREAKPOINT,
+  breakpoint: PROP_SHAPES.BREAKPOINT,
   descriptionText: PROP_SHAPES.MARKDOWN.isRequired,
   dimensions: PropTypes.shape({
     x: PropTypes.number,
