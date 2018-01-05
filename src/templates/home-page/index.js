@@ -61,7 +61,6 @@ const ContentPageTemplate = ({
           pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage}
         imageSources={pathContext.imageDataByType &&
           pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image}
-        sectionTitleText="Campuses."
       />
     </PageWrapper>
   );
@@ -147,6 +146,7 @@ export const pageQuery = graphql`
           }
         }
         linkText: linkTitle
+        sectionTitle
       }
     }
   }

@@ -6,7 +6,6 @@ import HomeSectionTitle from '../../components/structural/home-section-title';
 import PageWrapper from '../../components/structural/page-wrapper';
 import Hero from '../../content-modules/global/hero';
 import PageHead from '../../components/structural/page-head';
-import HomeCampuses from '../../components/structural/home-campuses';
 import HomeTeams from '../../components/structural/home-teams';
 
 import {
@@ -17,9 +16,6 @@ import {
 } from '../../constants/settings';
 import { IMAGE_SIZE } from '../../constants/images';
 
-import campusLargeImage from '../../test-content/images/home-campus-large.jpg';
-import campusMediumImage from '../../test-content/images/home-campus-medium.jpg';
-import campusSmallImage from '../../test-content/images/home-campus-small.jpg';
 import renzoImage from '../../test-content/images/renzo-img.jpg';
 import whittleImage from '../../test-content/images/whittle-img.jpg';
 
@@ -261,33 +257,6 @@ const Home = () => (
         text="Workshops."
       />
     </div>
-    <HomeCampuses
-      architectImage={renzoImage}
-      architectName="Renzo Piano"
-      architectQuote={{
-        markdown: 'The roof of our school is a magic place — a place of *freedom and discovery*. It has a ‘forest’ where you can see the sun and planets and stars at night. It’s a place of freedom where a **child** can look up and dream.',
-      }}
-      descriptionText={{
-        markdown: 'In the fall of 2020, our first four campuses will open in China, the U.S., the Middle East and Asia, with the intended cities being Shenzhen, Washington, D.C., Dubai and Singapore. Each 600,000-square-foot campus designed by **Renzo Piano Building Workshop** will serve 2,500 students ages three to 18, with about 160 per grade.',
-      }}
-      imageAlt="Campus image"
-      imageSources={{
-        [IMAGE_SIZE.SMALL_MID]: {
-          src: campusSmallImage,
-        },
-        [IMAGE_SIZE.MEDIUM_MID]: {
-          src: campusMediumImage,
-        },
-        [IMAGE_SIZE.LARGE]: {
-          src: campusLargeImage,
-        },
-      }}
-      linkTarget={{
-        slug: '#',
-      }}
-      linkText="Explore the campuses"
-      sectionTitleText="Campuses."
-    />
     <HomeTeams
       heroDescription="An education and media entrepreneur, Chris conceived and founded Edison Schools (now EdisonLearning) in 1992 with Benno Schmidt and currently serves on its board of directors. Edison has been instrumental in establishing the charter school movement and now serves 450,000 students on three continents."
       heroImage={whittleImage}

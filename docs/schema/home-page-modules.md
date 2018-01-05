@@ -68,6 +68,8 @@
 
 ```javascript
 {
+  sectionTitle: { type: String},
+  
   image: { type: ContentfulAsset, isRequired: false },
   imageAlt: { type: String, isRequired: false },
   videoUrl: { type: String, isRequired: false }, // TODO finalize all video props
@@ -90,6 +92,8 @@
 
 ```javascript
 {
+  sectionTitle: 'Campuses.',
+  
   image: CONTENTFUL_ASSET_PROPS,
   imageAlt: 'Shenzhen campus',
 

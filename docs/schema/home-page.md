@@ -70,7 +70,6 @@
   module1Title: 'Workshops',
   module1: Reference<PicModule>,
 
-  module2Title: 'Campuses',
   module2: Reference<Campuses>
 
   module3Title: 'Teams',

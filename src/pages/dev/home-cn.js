@@ -6,7 +6,6 @@ import HomeSectionTitle from '../../components/structural/home-section-title';
 import PageWrapper from '../../components/structural/page-wrapper';
 import Hero from '../../content-modules/global/hero';
 import PageHead from '../../components/structural/page-head';
-import HomeCampuses from '../../components/structural/home-campuses';
 import HomeTeams from '../../components/structural/home-teams';
 
 import {
@@ -17,11 +16,18 @@ import {
 } from '../../constants/settings';
 import { IMAGE_SIZE } from '../../constants/images';
 
-import campusLargeImage from '../../test-content/images/home-campus-large.jpg';
-import campusMediumImage from '../../test-content/images/home-campus-medium.jpg';
-import campusSmallImage from '../../test-content/images/home-campus-small.jpg';
 import renzoImage from '../../test-content/images/renzo-img.jpg';
 import whittleImage from '../../test-content/images/whittle-img.jpg';
+
+import heroVideo1LargeImage from '../../test-content/images/home-hero-video-1-large.jpg';
+import heroVideo2LargeImage from '../../test-content/images/home-hero-video-2-large.jpg';
+import heroVideo3LargeImage from '../../test-content/images/home-hero-video-3-large.jpg';
+import heroVideo1MediumImage from '../../test-content/images/home-hero-video-1-medium.jpg';
+import heroVideo2MediumImage from '../../test-content/images/home-hero-video-2-medium.jpg';
+import heroVideo3MediumImage from '../../test-content/images/home-hero-video-3-medium.jpg';
+import heroVideo1SmallImage from '../../test-content/images/home-hero-video-1-small.jpg';
+import heroVideo2SmallImage from '../../test-content/images/home-hero-video-2-small.jpg';
+import heroVideo3SmallImage from '../../test-content/images/home-hero-video-3-small.jpg';
 
 import largeImage from '../../test-content/images/category-large.jpg';
 import smallImage from '../../test-content/images/category-small.jpg';
@@ -59,13 +65,13 @@ const HERO_DUMMY_DATA = {
         },
         imageSources: {
           [IMAGE_SIZE.SMALL_MID]: {
-            src: campusSmallImage,
+            src: heroVideo1SmallImage,
           },
           [IMAGE_SIZE.MEDIUM_MID]: {
-            src: campusMediumImage,
+            src: heroVideo1MediumImage,
           },
           [IMAGE_SIZE.LARGE]: {
-            src: campusLargeImage,
+            src: heroVideo1LargeImage,
           },
         },
         link: '/',
@@ -82,13 +88,13 @@ const HERO_DUMMY_DATA = {
         },
         imageSources: {
           [IMAGE_SIZE.SMALL_MID]: {
-            src: campusSmallImage,
+            src: heroVideo2SmallImage,
           },
           [IMAGE_SIZE.MEDIUM_MID]: {
-            src: campusMediumImage,
+            src: heroVideo2MediumImage,
           },
           [IMAGE_SIZE.LARGE]: {
-            src: campusLargeImage,
+            src: heroVideo2LargeImage,
           },
         },
         link: '/',
@@ -105,13 +111,13 @@ const HERO_DUMMY_DATA = {
         },
         imageSources: {
           [IMAGE_SIZE.SMALL_MID]: {
-            src: campusSmallImage,
+            src: heroVideo3SmallImage,
           },
           [IMAGE_SIZE.MEDIUM_MID]: {
-            src: campusMediumImage,
+            src: heroVideo3MediumImage,
           },
           [IMAGE_SIZE.LARGE]: {
-            src: campusLargeImage,
+            src: heroVideo3LargeImage,
           },
         },
         link: '/',
@@ -246,33 +252,6 @@ const HomeCn = () => (
           text="学校在深圳"
         />
       </div>
-      <HomeCampuses
-        architectImage={renzoImage}
-        architectName="Renzo Piano"
-        architectQuote={{
-          markdown: '復祖迫今係豆局 空康赤界扱. 都阪渡語犯 将済済式打 原少企理. 南晴要紙対 興超義純 治前数分格日府. 森歳毎授年輪氏 夢岡歌果念稿真.',
-        }}
-        descriptionText={{
-          markdown: '身断整 表応第用訟 変治他 **語引査責油**. 調見月 写拓内地治用高 貿在集意投 師準式. 幌員松確 沼米宿指島棋 敗束無桜禁. 姿量畝井害 資器断過浩周寒馬. 寿事驚供広毎 重面広奥番反.',
-        }}
-        imageAlt="用訟変治"
-        imageSources={{
-          [IMAGE_SIZE.SMALL_MID]: {
-            src: campusSmallImage,
-          },
-          [IMAGE_SIZE.MEDIUM_MID]: {
-            src: campusMediumImage,
-          },
-          [IMAGE_SIZE.LARGE]: {
-            src: campusLargeImage,
-          },
-        }}
-        linkTarget={{
-          slug: '#',
-        }}
-        linkText="語引査責油"
-        sectionTitleText="个学校第"
-      />
       <HomeTeams
         heroDescription="教育和媒体企业家克里斯于1992年与本诺·施密特（Benno Schmidt）一起设计并创立了爱迪生学校（现为爱迪生学习），目前担任董事会成员。 爱迪生一直致力于建立特许学校运动，现在在三大洲拥有45万名学生。"
         heroImage={whittleImage}

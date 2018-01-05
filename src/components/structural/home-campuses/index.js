@@ -31,7 +31,7 @@ const propTypes = {
   imageSources: PROP_SHAPES.IMAGE_SOURCES,
   linkTarget: PROP_SHAPES.LINK,
   linkText: PropTypes.string,
-  sectionTitleText: PropTypes.string.isRequired,
+  sectionTitle: PropTypes.string.isRequired,
 };
 
 class HomeCampuses extends React.Component {
@@ -85,7 +85,7 @@ class HomeCampuses extends React.Component {
       imageSources,
       linkTarget,
       linkText,
-      sectionTitleText,
+      sectionTitle,
     } = this.props;
 
     return (
@@ -94,7 +94,7 @@ class HomeCampuses extends React.Component {
           color={HOME_SECTION_TITLE_COLOR.GRAY}
           isBreakingTop={this.state.shouldTitleBreakTop}
           position={HOME_SECTION_TITLE_POSITION.RIGHT}
-          text={sectionTitleText}
+          text={sectionTitle}
         />
         <Plx
           animateWhenNotInViewport
