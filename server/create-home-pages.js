@@ -15,10 +15,12 @@ const {
 const createHomePages = (graphql, createPage) =>
   REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
     new Promise((resolve, reject) => {
+      const locale = LANGUAGE_CONTENTFUL_LOCALE[language];
+
       graphql(`
           {
             allContentfulHomePage(
-              filter: { node_locale: { eq: "${LANGUAGE_CONTENTFUL_LOCALE[language]}" } }
+              filter: { node_locale: { eq: "${locale}" } }
             ) {
               edges {
                 node {
@@ -49,6 +51,7 @@ const createHomePages = (graphql, createPage) =>
           const context = {
             id,
             imageDataByType,
+            locale,
           };
           createPage({
             component: homePageTemplate,

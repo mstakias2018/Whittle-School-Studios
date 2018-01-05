@@ -72,8 +72,11 @@ ContentPageTemplate.propTypes = propTypes;
 export default ContentPageTemplate;
 
 export const pageQuery = graphql`
-  query homePageQuery($id: String!) {
-    homePageData: contentfulHomePage(contentful_id: { eq: $id }) {
+  query homePageQuery($id: String!, $locale: String!) {
+    homePageData: contentfulHomePage(
+      contentful_id: { eq: $id },
+      node_locale: { eq: $locale }
+    ) {
       headline
       schoolIntroTitle {
         content: schoolIntroTitle
