@@ -26,7 +26,7 @@
 }
 
 .quote {
-  @mixin pull-quote;
+  @mixin type-quote;
   font-weight: 300;
   margin: 0;
 }
@@ -36,8 +36,11 @@
 }
 
 .author {
-  @mixin pull-author;
+  @mixin font-family font-sans-serif-regular;
   bottom: 4px;
+  color: var(--color-text-dark);
+  font-size: 14px;
+  line-height: 14px;
   position: relative;
   white-space: pre;
 

@@ -118,4 +118,5 @@
 
 .heroLink {
   @mixin type-link;
+  @mixin type-link-default-size;
 }

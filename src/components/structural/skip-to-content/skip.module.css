@@ -22,10 +22,12 @@
 }
 
 .text {
-  @mixin type-language-select;
+  @mixin font-family font-sans-serif-regular;
   background-color: var(--color-text-tomato);
   color: var(--color-background-white);
+  font-size: 14px;
   line-height: 50px;
   text-align: center;
+  text-decoration: none;
   width: 100%;
 }

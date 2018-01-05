@@ -24,7 +24,9 @@
 }
 
 .text {
-  @mixin footershare-text;
+  @mixin type-h5-italic;
+  letter-spacing: 0.25px;
+  opacity: 0.9;
   width: 100%;
 
   @media (--bp-sm-and-md-only) {
@@ -44,11 +46,13 @@
 }
 
 .icons {
-  @mixin footershare-text;
+  @mixin type-h5-italic;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  letter-spacing: 0.25px;
   margin-left: 0;
+  opacity: 0.9;
 
   @media (--bp-lg) {
     flex-basis: calc(50% - 10px);

@@ -55,37 +55,45 @@
 }
 
 .title {
-  @mixin type-post-title;
+  @mixin type-h2;
+  font-size: 30px;
+  letter-spacing: 0.23px;
 
   @media (--bp-sm-only) {
     margin-bottom: 14px;
   }
 
   @media (--bp-md) {
+    font-size: 72px;
+    letter-spacing: 0;
+    line-height: 70px;
     margin-bottom: 8px;
   }
 
-  @media (--bp-md) {
+  @media (--bp-lg) {
+    letter-spacing: 0.5px;
     margin-bottom: 15px;
   }
 }
 
 .text {
-  @mixin type-post-description;
+  @mixin type-descriptor;
+  letter-spacing: 0.39px;
+  line-height: 24px;
+  margin-bottom: 14px;
 
-  @media (--bp-sm-only) {
-    margin-bottom: 14px;
-  }
-
-  @media (--bp-md-only) {
+  @media (--bp-md) {
+    letter-spacing: 0;
     margin-bottom: 21px;
   }
 
   @media (--bp-lg) {
+    line-height: 30px;
     margin-bottom: 24px;
   }
 }
 
 .readMore {
   @mixin type-link;
+  @mixin type-link-default-size;
 }

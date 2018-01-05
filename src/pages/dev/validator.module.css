@@ -56,7 +56,7 @@
 }
 
 .ruleGroupTitle {
-  font-family: var(--font-sans-serif-regular);
+  @mixin font-family font-sans-serif-regular, false;
   margin-bottom: 5px;
   margin-top: 12px;
 }

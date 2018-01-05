@@ -21,7 +21,16 @@
 }
 
 .shareText {
-  @mixin type-share;
+  @mixin font-family font-serif-light-italic;
+  color: var(--color-text-light);
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  line-height: 20px;
+
+  @media (--bp-lg) {
+    line-height: 36px;
+  }
 }
 
 .shareIcon {
@@ -70,10 +79,10 @@
   }
 
   span {
+    @mixin font-family font-sans-serif-regular;
     background-color: var(--color-secondary-light);
     color: var(--color-text-dark);
     display: block;
-    font-family: var(--font-sans-serif-regular);
     font-size: 14px;
     line-height: 20px;
     padding: 20px 0;

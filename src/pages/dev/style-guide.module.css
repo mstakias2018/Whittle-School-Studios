@@ -20,7 +20,7 @@
 }
 
 .display {
-  @mixin type-display;
+  @mixin type-big-number;
 }
 
 .heading1Home {
@@ -69,10 +69,13 @@
 
 .link {
   @mixin type-link;
+  @mixin type-link-default-size;
 }
 
 .nav {
   @mixin type-nav;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .descriptor {
@@ -84,19 +87,12 @@
 }
 
 .footer {
-  @mixin type-footer;
+  @mixin type-caption;
+  opacity: 0.9;
 }
 
 .eyebrow {
   @mixin type-eyebrow;
-}
-
-.video {
-  @mixin type-video;
-}
-
-.carousel {
-  @mixin type-carousel;
 }
 
 .menu {

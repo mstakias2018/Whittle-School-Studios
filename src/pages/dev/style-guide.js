@@ -59,8 +59,6 @@ const StyleGuide = () => (
         </a>
       </div>
       <div className={styles.block}>
-        <p className={styles.video}>Video headline</p>
-        <p className={styles.carousel}>Carousel names</p>
         <p className={styles.caption}>Caption</p>
         <p className={styles.footer}>Footer label</p>
         <p className={styles.eyebrow}>Labels/ Eyebrow / Legal </p>

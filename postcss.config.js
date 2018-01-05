@@ -1,7 +1,6 @@
 /* eslint-disable sort-keys */
 module.exports = {
   plugins: {
-    'postcss-conditionals': {},
     'postcss-import': {
       root: 'styles',
     },
@@ -18,6 +17,7 @@ module.exports = {
       propList: ['*'],
     },
     'postcss-extend': {},
+    'postcss-conditionals': {},
     'postcss-discard-duplicates': {},
   },
 };

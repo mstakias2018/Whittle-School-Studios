@@ -54,8 +54,8 @@
 }
 
 .percentageNumber {
+  @mixin font-family font-serif-light-italic, false;
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light-italic);
   font-size: 190px;
   letter-spacing: -3.5px;
   line-height: 130px;
@@ -65,15 +65,11 @@
     letter-spacing: -6px;
     line-height: 215px;
   }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
 }
 
 .percentageSign {
+  @mixin font-family font-serif-book-italic, false;
   color: var(--color-text-dark);
-  font-family: var(--font-serif-book-italic);
   font-size: 72px;
 
   @media (--bp-md) {
@@ -88,8 +84,8 @@
 }
 
 .ratioNumber {
+  @mixin font-family font-serif-light-italic, false;
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light-italic);
   font-size: 190px;
   letter-spacing: -3.5px;
   line-height: 150px;

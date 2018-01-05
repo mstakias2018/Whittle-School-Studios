@@ -90,7 +90,8 @@
 
 .menuBlockItem {
   @mixin type-nav;
-  line-height: 1.29;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .menuBlockSubItemWrapper {
@@ -106,8 +107,10 @@
 }
 
 .menuBlockSubItem {
-  @mixin type-sub-nav;
-  line-height: 1.29;
+  @mixin type-nav;
+  @mixin font-family font-sans-serif-light;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .menuBlockItem,
@@ -122,7 +125,8 @@
 
 .copyright {
   @mixin full-width-column-sm;
-  @mixin type-footer;
+  @mixin type-caption;
+  opacity: 0.9;
 
   @media (--bp-sm-and-md-only) {
     order: 1000;

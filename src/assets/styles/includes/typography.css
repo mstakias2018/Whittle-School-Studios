@@ -1,46 +1,40 @@
 @import 'breakpoints.css';
 @import 'variables.css';
 
-/* For Statistics and Big Numbers */
-@define-mixin type-display {
-  color: var(--color-text-dark);
-  font-family: var(--font-serif-light-italic);
-  font-size: 180px;
-  font-weight: normal;
-  line-height: 100%;
-
-  @media (--bp-md) {
-    font-size: 220px;
-  }
-
-  @media (--bp-lg) {
-    font-size: 400px;
-  }
+@define-mixin font-family $font, $isTranslated: true {
+  font-family: var(--$(font));
 
   :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
+    @if $(isTranslated) {
+      font-family: var(--$(font)-cn);
+    }
+  }
+}
+
+/* For Statistics and Big Numbers */
+@define-mixin type-big-number {
+  @mixin font-family font-serif-light-italic;
+  color: var(--color-text-dark);
+  font-size: 180px;
+  font-weight: normal;
+  line-height: 100px;
+
+  @media (--bp-md) {
+    font-size: 400px;
   }
 }
 
 /* headings */
 @define-mixin type-h1 {
+  @mixin font-family font-serif-light;
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light);
   font-size: 48px;
   font-weight: 400;
-  line-height: 38px;
+  line-height: 48px;
   margin-bottom: 0;
 
   em {
-    font-family: var(--font-serif-light-italic);
-  }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
-
-    em {
-      font-family: var(--font-serif-light-italic-cn);
-    }
+    @mixin font-family font-serif-light-italic;
   }
 }
 
@@ -55,37 +49,48 @@
 
 @define-mixin type-h1-category {
   @mixin type-h1;
-  letter-spacing: 0.25px;
-  line-height: 48px;
 
   @media (--bp-md) {
     font-size: 96px;
-    letter-spacing: 0.24px;
     line-height: 96px;
   }
 
   @media (--bp-lg) {
     font-size: 120px;
-    letter-spacing: 0.3px;
     line-height: 120px;
   }
 }
 
 @define-mixin type-h1-article {
   @mixin type-h1;
-  letter-spacing: 0.12px;
-  line-height: 48px;
 
   @media (--bp-md) {
     font-size: 72px;
-    letter-spacing: 0.5px;
     line-height: 70px;
   }
 }
 
 @define-mixin type-h2 {
+  @mixin font-family font-serif-light;
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light);
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 36px;
+
+  @media (--bp-md) {
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+
+@define-mixin type-h2-italic {
+  @mixin type-h2;
+  @mixin font-family font-serif-light-italic;
+}
+
+@define-mixin type-h3 {
+  @mixin font-family font-serif-light;
+  color: var(--color-text-dark);
   font-size: 24px;
   font-weight: normal;
   line-height: 30px;
@@ -94,95 +99,49 @@
     font-size: 30px;
     line-height: 36px;
   }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
-  }
-}
-
-@define-mixin type-h2-italic {
-  @mixin type-h2;
-  font-family: var(--font-serif-light-italic);
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
-}
-
-@define-mixin type-h3 {
-  color: var(--color-text-dark);
-  font-family: var(--font-serif-light);
-  font-size: 30px;
-  font-weight: normal;
-  letter-spacing: 0.3px;
-  line-height: 30px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
-  }
 }
 
 @define-mixin type-h3-italic {
   @mixin type-h3;
-  font-family: var(--font-serif-light-italic);
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
+  @mixin font-family font-serif-light-italic;
 }
 
 @define-mixin type-h4 {
+  @mixin font-family font-serif-light;
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light);
-  font-size: 24px;
+  font-size: 30px;
   font-weight: normal;
   line-height: 30px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
-  }
 }
 
 @define-mixin type-h4-italic {
   @mixin type-h4;
-  font-family: var(--font-serif-light-italic);
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
+  @mixin font-family font-serif-light-italic;
 }
 
 @define-mixin type-h5 {
+  @mixin font-family font-serif-light;
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light);
-  font-size: 20px;
+  font-size: 24px;
   font-weight: normal;
-  line-height: 20px;
+  line-height: 30px;
 
-  @media (--bp-md) {
-    font-size: 18px;
-    line-height: 18px;
-  }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
+  @media (--bp-sm-only) {
+    line-height: 24px;
   }
 }
 
 @define-mixin type-h5-italic {
   @mixin type-h5;
-  font-family: var(--font-serif-light-italic);
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
+  @mixin font-family font-serif-light-italic;
+  line-height: 30px;
 }
 
 /* article copy */
 @define-mixin type-dropcap {
+  @mixin font-family font-serif-light-italic;
   color: var(--color-text-dark);
   float: left;
-  font-family: var(--font-serif-light-italic);
   font-size: 86px;
   line-height: 52px;
   margin-right: 9px;
@@ -193,19 +152,15 @@
     font-size: 100px;
     line-height: 72px;
   }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
 }
 
 @define-mixin markdown-support {
   strong {
-    font-family: var(--font-sans-serif-regular);
+    @mixin font-family font-sans-serif-regular;
+  }
 
-    :global(.wrapper_isChinese) & {
-      font-family: var(--font-sans-serif-regular-cn);
-    }
+  em {
+    font-style: italic;
   }
 
   a {
@@ -214,9 +169,9 @@
 }
 
 @define-mixin type-paragraph {
+  @mixin font-family font-sans-serif-light;
   @mixin markdown-support;
   color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-light);
   font-size: 14px;
   line-height: 24px;
 
@@ -227,42 +182,67 @@
   :global(.wrapper):not(:global(.wrapper_isChinese)) :global(.hasDropCap) &:first-child:first-letter {
     @mixin type-dropcap;
   }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-light-cn);
-  }
 }
 
 @define-mixin type-descriptor {
+  @mixin font-family font-sans-serif-light;
   @mixin markdown-support;
   color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-light);
-  font-size: 14px;
+  font-size: 12px;
   line-height: 18px;
 
   @media (--bp-md) {
+    font-size: 14px;
     line-height: 24px;
   }
+}
 
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-light-cn);
+@define-mixin type-caption {
+  @mixin font-family font-sans-serif-light;
+  color: var(--color-text-dark);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@define-mixin type-eyebrow {
+  @mixin font-family font-sans-serif-light;
+  color: var(--color-text-light);
+  font-size: 11px;
+  line-height: 14px;
+}
+
+@define-mixin type-menu {
+  @mixin font-family font-serif-book-italic;
+  color: var(--color-text-dark);
+  font-size: 14px;
+  line-height: 30px;
+}
+
+@define-mixin large-body-text {
+  font-size: 30px;
+  line-height: 36px;
+
+  @media (--bp-md) {
+    font-size: 36px;
+    line-height: 48px;
   }
 }
 
+@define-mixin type-quote {
+  @mixin font-family font-serif-light-italic;
+  @mixin large-body-text;
+  color: var(--color-text-light);
+}
+
+/* Links */
 @define-mixin link-common {
+  @mixin font-family font-sans-serif-regular;
   color: var(--color-text-tomato);
-  font-family: var(--font-sans-serif-regular);
   transition: text-decoration var(--timing-fast) var(--easing-default);
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-regular-cn);
-  }
 }
 
-/* CTA */
 @define-mixin type-link {
   @mixin link-common;
-  font-size: 14px;
   text-decoration: none;
   text-decoration-color: transparent;
   text-underline-position: under;
@@ -277,13 +257,9 @@
   }
 }
 
-@define-mixin subnav-type-link {
-  @mixin type-link;
-  line-height: 20px;
-
-  &:hover {
-    text-decoration: none;
-  }
+@define-mixin type-link-default-size {
+  font-size: 14px;
+  line-height: 16px;
 }
 
 @define-mixin inline-type-link {
@@ -303,44 +279,10 @@
   }
 }
 
-@define-mixin type-language {
-  color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-regular);
-  font-size: 14px;
-  line-height: 18px;
-  text-decoration: none;
-  text-decoration-color: transparent;
-  text-underline-position: under;
-
-  @media (--bp-md) {
-    font-size: 11px;
-    line-height: 16px;
-  }
-
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--color-link-hover-underline);
-  }
-}
-
-@define-mixin type-language-select {
-  color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-regular);
-  font-size: 14px;
-  line-height: 36px;
-  text-decoration: none;
-}
-
-@define-mixin type-nav-text {
-  color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-regular);
-  font-size: 14px;
-  line-height: 20px;
-  text-decoration: none;
-}
-
 @define-mixin type-nav {
-  @mixin type-nav-text;
+  @mixin font-family font-sans-serif-regular;
+  color: var(--color-text-dark);
+  text-decoration: none;
   text-decoration-color: transparent;
   text-underline-position: under;
   transition: color var(--timing-fast) var(--easing-default), text-decoration var(--timing-fast) var(--easing-default);
@@ -359,233 +301,5 @@
     color: var(--color-text-dark);
     text-decoration: none;
     text-decoration-color: transparent;
-  }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-regular-cn);
-  }
-}
-
-@define-mixin type-sub-nav {
-  @mixin type-nav;
-  font-family: var(--font-sans-serif-light);
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-light-cn);
-  }
-}
-
-/* Other*/
-@define-mixin type-caption {
-  color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-light);
-  font-size: 12px;
-  line-height: 14px;
-
-  @media (--bp-md) {
-    line-height: 18px;
-  }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-light-cn);
-  }
-}
-
-@define-mixin type-footer {
-  @mixin type-caption;
-  font-size: 12px;
-  line-height: 18px;
-  opacity: 0.9;
-}
-
-@define-mixin type-eyebrow {
-  color: var(--color-text-light);
-  font-family: var(--font-sans-serif-light);
-  font-size: 11px;
-  letter-spacing: 1px;
-  line-height: 12px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-light-cn);
-  }
-}
-
-@define-mixin type-video {
-  color: var(--color-text-dark);
-  font-family: var(--font-serif-light);
-  font-size: 24px;
-  line-height: 24px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
-  }
-}
-
-@define-mixin type-carousel {
-  color: var(--color-text-dark);
-  font-family: var(--font-serif-light);
-  font-size: 18px;
-  line-height: 20px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
-  }
-}
-
-@define-mixin type-menu {
-  color: var(--color-text-dark);
-  font-family: var(--font-serif-book-italic);
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  line-height: 30px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-book-italic-cn);
-  }
-}
-
-@define-mixin footershare-text {
-  color: var(--color-text-dark);
-  font-family: var(--font-serif-light-italic);
-  font-size: 24px;
-  letter-spacing: 0.25px;
-  line-height: 30px;
-  opacity: 0.9;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-book-italic-cn);
-  }
-}
-
-@define-mixin large-body-text {
-  font-size: 30px;
-  line-height: 36px;
-
-  @media (--bp-md) {
-    font-size: 36px;
-    line-height: 48px;
-  }
-}
-
-@define-mixin pull-quote {
-  @mixin large-body-text;
-  color: var(--color-text-light);
-  font-family: var(--font-serif-light-italic);
-  letter-spacing: 0.3px;
-
-  @media (--bp-md) {
-    letter-spacing: 0;
-  }
-}
-
-@define-mixin type-share {
-  color: var(--color-text-light);
-  font-family: var(--font-serif-light-italic);
-  font-size: 18px;
-  font-weight: normal;
-  letter-spacing: 0.4px;
-  line-height: 20px;
-
-  @media (--bp-lg) {
-    line-height: 36px;
-  }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
-}
-
-@define-mixin pull-author {
-  color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-regular);
-  font-size: 14px;
-  line-height: 14px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-regular-cn);
-  }
-}
-
-@define-mixin breaker-text {
-  color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-light);
-  font-size: 16px;
-  line-height: 24px;
-
-  strong {
-    font-family: var(--font-sans-serif-regular);
-  }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-light-cn);
-  }
-}
-
-@define-mixin thumbnailsList-title {
-  color: var(--color-text-dark);
-  font-family: var(--font-serif-light-italic);
-  font-size: 30px;
-  line-height: 36px;
-
-  @media (--bp-lg) {
-    font-size: 36px;
-  }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
-}
-
-@define-mixin type-date {
-  color: var(--color-text-dark);
-  font-family: var(--font-serif-light);
-  font-size: 30px;
-  line-height: 24px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
-  }
-}
-
-@define-mixin type-month {
-  color: var(--color-text-dark);
-  font-family: var(--font-sans-serif-light);
-  font-size: 14px;
-  line-height: 16px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-light-cn);
-  }
-}
-
-@define-mixin type-post-title {
-  @mixin type-h2;
-
-  font-size: 30px;
-  letter-spacing: 0.23px;
-
-  @media (--bp-md) {
-    font-size: 72px;
-    letter-spacing: 0;
-    line-height: 70px;
-  }
-
-  @media (--bp-lg) {
-    letter-spacing: 0.5px;
-  }
-}
-
-@define-mixin type-post-description {
-  @mixin type-descriptor;
-
-  letter-spacing: 0.39px;
-  line-height: 24px;
-
-  @media (--bp-md) {
-    letter-spacing: 0;
-  }
-
-  @media (--bp-lg) {
-    line-height: 30px;
   }
 }

@@ -1,5 +1,6 @@
 @import '../../../assets/styles/includes/breakpoints.css';
 @import '../../../assets/styles/includes/typography.css';
+@import '../../../assets/styles/includes/variables.css';
 
 .date {
   display: block;
@@ -26,7 +27,10 @@
 }
 
 .month {
-  @mixin type-month;
+  @mixin font-family font-sans-serif-light;
+  color: var(--color-text-dark);
+  font-size: 14px;
+  line-height: 16px;
 
   .date:not(.date_inline) & {
     border-bottom: solid 1px var(--color-light-border);
@@ -42,7 +46,10 @@
 }
 
 .day {
-  @mixin type-date;
+  @mixin font-family font-serif-light;
+  color: var(--color-text-dark);
+  font-size: 30px;
+  line-height: 24px;
 
   .date_inline & {
     @mixin type-eyebrow;

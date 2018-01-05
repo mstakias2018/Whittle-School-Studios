@@ -90,7 +90,7 @@
     &:first-of-type {
       .menuItemLinkWrapper {
         padding-left: 0;
-        
+
         .menuItemLink {
           display: block;
           min-width: 80px;
@@ -132,4 +132,6 @@
   }
 
   @mixin type-nav;
+  font-size: 14px;
+  line-height: 20px;
 }

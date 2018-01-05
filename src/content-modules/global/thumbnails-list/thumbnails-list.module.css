@@ -52,7 +52,8 @@
 }
 
 .title {
-  @mixin thumbnailsList-title;
+  @mixin type-quote;
+  color: var(--color-text-dark);
   font-weight: 300;
 
   @media (--bp-sm-only) {
@@ -64,6 +65,7 @@
   }
 
   @media (--bp-lg) {
+    line-height: 36px;
     padding-right: calc(var(--grid-gutter-lg) * 2);
   }
 }

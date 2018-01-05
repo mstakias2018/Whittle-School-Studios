@@ -87,8 +87,8 @@
 }
 
 .description {
+  @mixin font-family font-serif-light-italic;
   color: var(--color-text-dark);
-  font-family: var(--font-serif-light-italic);
   font-size: 18px;
   letter-spacing: 0.25px;
   line-height: 30px;
@@ -108,14 +108,11 @@
   p {
     margin-bottom: 0;
   }
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-italic-cn);
-  }
 }
 
 .link {
   @mixin type-link;
+  @mixin type-link-default-size;
 }
 
 .architectBlock {
@@ -169,7 +166,10 @@
 }
 
 .architectName {
-  @mixin pull-author;
+  @mixin font-family font-sans-serif-regular;
+  color: var(--color-text-dark);
+  font-size: 14px;
+  line-height: 14px;
   padding-bottom: 19px;
   position: relative;
   width: auto;
@@ -199,7 +199,9 @@
 }
 
 .architectQuote {
-  @mixin pull-author;
+  @mixin font-family font-sans-serif-regular;
+  color: var(--color-text-dark);
+  font-size: 14px;
   line-height: 24px;
   text-align: left;
 

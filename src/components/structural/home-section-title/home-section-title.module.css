@@ -12,8 +12,8 @@
 }
 
 .text {
+  @mixin font-family font-serif-light;
   display: inline-block;
-  font-family: var(--font-serif-light);
   font-size: 60px;
   letter-spacing: 0.15px;
   line-height: 70px;
@@ -36,7 +36,6 @@
   }
 
   :global(.wrapper_isChinese) & {
-    font-family: var(--font-serif-light-cn);
     transform: rotate(0);
     width: 0;
 

@@ -225,9 +225,14 @@
 }
 
 .itemTitleContainer {
-  @mixin subnav-type-link;
+  @mixin type-link;
+  @mixin type-link-default-size;
   align-items: flex-start;
   display: flex;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .itemTitle {
@@ -239,12 +244,16 @@
 }
 
 .itemDescription {
-  @mixin type-nav-text;
+  @mixin font-family font-sans-serif-regular;
   align-self: flex-end;
+  color: var(--color-text-dark);
   display: inline-block;
   flex-basis: 100%;
+  font-size: 14px;
+  line-height: 20px;
   padding-top: 10px;
   position: relative;
+  text-decoration: none;
   width: 100%;
 
   .itemLink & {

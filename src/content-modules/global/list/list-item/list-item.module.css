@@ -17,27 +17,16 @@
 
 .title {
   @mixin type-descriptor;
+  @mixin font-family font-sans-serif-regular;
   display: block;
-  font-family: var(--font-sans-serif-regular);
-  line-height: 18px;
-
-  :global(.wrapper_isChinese) & {
-    font-family: var(--font-sans-serif-regular-cn);
-  }
+  font-weight: 500;
 }
 
 .description {
   @mixin type-caption;
+  font-weight: 300;
 
   strong {
-    font-family: var(--font-sans-serif-regular);
-
-    :global(.wrapper_isChinese) & {
-      font-family: var(--font-sans-serif-regular-cn);
-    }
-  }
-  
-  @media (--bp-sm-only) {
-    line-height: 18px;
+    @mixin font-family font-sans-serif-regular;
   }
 }
