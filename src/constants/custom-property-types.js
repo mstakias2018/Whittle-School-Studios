@@ -295,6 +295,13 @@ const VIDEO = {
   videoEmbedCode: VIDEO_EMBED_CODE,
 };
 
+const HERO_VIDEO = PropTypes.shape({
+  description: MARKDOWN.isRequired,
+  link: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  ...VIDEO,
+});
+
 const PROP_TYPES = {
   EVENTS_LIST,
   LIST,
@@ -330,9 +337,14 @@ exports.PROP_SHAPES = {
       list: EVENTS_LIST,
       title: PropTypes.string.isRequired,
     }),
+    heroVideos: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      videos: PropTypes.arrayOf(HERO_VIDEO),
+    }),
     openingCountdown: OPENING_COUNTDOWN,
     schoolsIntro: SCHOOLS_INTRO,
   }),
+  HERO_VIDEO,
   HISTORY: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),

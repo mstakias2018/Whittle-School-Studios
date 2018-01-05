@@ -23,6 +23,16 @@ import campusSmallImage from '../../test-content/images/home-campus-small.jpg';
 import renzoImage from '../../test-content/images/renzo-img.jpg';
 import whittleImage from '../../test-content/images/whittle-img.jpg';
 
+import heroVideo1LargeImage from '../../test-content/images/home-hero-video-1-large.jpg';
+import heroVideo2LargeImage from '../../test-content/images/home-hero-video-2-large.jpg';
+import heroVideo3LargeImage from '../../test-content/images/home-hero-video-3-large.jpg';
+import heroVideo1MediumImage from '../../test-content/images/home-hero-video-1-medium.jpg';
+import heroVideo2MediumImage from '../../test-content/images/home-hero-video-2-medium.jpg';
+import heroVideo3MediumImage from '../../test-content/images/home-hero-video-3-medium.jpg';
+import heroVideo1SmallImage from '../../test-content/images/home-hero-video-1-small.jpg';
+import heroVideo2SmallImage from '../../test-content/images/home-hero-video-2-small.jpg';
+import heroVideo3SmallImage from '../../test-content/images/home-hero-video-3-small.jpg';
+
 import largeImage from '../../test-content/images/category-large.jpg';
 import smallImage from '../../test-content/images/category-small.jpg';
 
@@ -48,6 +58,77 @@ const HERO_DUMMY_DATA = {
       },
     ],
     title: 'Parent Information',
+  },
+  heroVideos: {
+    title: 'Educational Program',
+    videos: [
+      {
+        alt: 'Global Experiences video',
+        description: {
+          markdown: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.',
+        },
+        imageSources: {
+          [IMAGE_SIZE.SMALL_MID]: {
+            src: heroVideo1SmallImage,
+          },
+          [IMAGE_SIZE.MEDIUM_MID]: {
+            src: heroVideo1MediumImage,
+          },
+          [IMAGE_SIZE.LARGE]: {
+            src: heroVideo1LargeImage,
+          },
+        },
+        link: '/',
+        title: 'Global Experiences',
+        videoEmbedCode: {
+          embedCode: '<iframe src="https://player.vimeo.com/video/243740445?color=d9542b&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
+        },
+      },
+      {
+        alt: 'Personal Pathways',
+        description: {
+          markdown: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.',
+        },
+        imageSources: {
+          [IMAGE_SIZE.SMALL_MID]: {
+            src: heroVideo2SmallImage,
+          },
+          [IMAGE_SIZE.MEDIUM_MID]: {
+            src: heroVideo2MediumImage,
+          },
+          [IMAGE_SIZE.LARGE]: {
+            src: heroVideo2LargeImage,
+          },
+        },
+        link: '/',
+        title: 'Personal Pathways',
+        videoEmbedCode: {
+          embedCode: '<iframe src="https://player.vimeo.com/video/243740445?color=d9542b&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
+        },
+      },
+      {
+        alt: 'Learning by Creating',
+        description: {
+          markdown: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.',
+        },
+        imageSources: {
+          [IMAGE_SIZE.SMALL_MID]: {
+            src: heroVideo3SmallImage,
+          },
+          [IMAGE_SIZE.MEDIUM_MID]: {
+            src: heroVideo3MediumImage,
+          },
+          [IMAGE_SIZE.LARGE]: {
+            src: heroVideo3LargeImage,
+          },
+        },
+        link: '/',
+        title: 'Learning by Creating',
+        videoEmbedCode: {
+          embedCode: '<iframe src="https://player.vimeo.com/video/243740445?color=d9542b&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
+        },
+      },
+    ],
   },
   openingCountdown: {
     date: '2018-03-19',

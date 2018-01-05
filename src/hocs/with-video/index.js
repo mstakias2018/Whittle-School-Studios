@@ -54,7 +54,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
     toggleVideoState = (isPlaying) => {
       if (
         isPlaying && (
-          options.isSmall ||
+          (options.isSmall || this.props.isSmall) ||
           this.props.breakpoint === BREAKPOINTS_NAME.small
         )
       ) this.toggleFullscreen();
@@ -158,7 +158,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
                     <button
                       aria-label={this.context.translations.video[isPlaying ? 'pause' : 'play']}
                       className={cx(styles.button, {
-                        [styles.button_isSmall]: options.isSmall,
+                        [styles.button_isSmall]: options.isSmall || this.props.isSmall,
                       })}
                       onClick={this.toggleVideo}
                     />

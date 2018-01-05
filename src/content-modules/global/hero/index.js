@@ -1,6 +1,7 @@
 import React from 'react';
 import InformationEventListing from './information-event-listing';
 import SchoolsIntro from './schools-intro';
+import Videos from './videos';
 
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
@@ -19,6 +20,7 @@ const Hero = ({ data }) => (
         openingCountdown={data.openingCountdown}
       />
     </div>
+    <Videos {...data.heroVideos} />
   </div>
 );
 

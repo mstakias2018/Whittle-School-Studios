@@ -49,6 +49,80 @@ const HERO_DUMMY_DATA = {
     ],
     title: 'Parent Information',
   },
+  heroVideos: {
+    title: '教育计划',
+    videos: [
+      {
+        alt: '全球经验',
+        description: {
+          markdown: '文字、標點符號出現機率大致符合台灣文章習慣。聽說很多學排版的都會用這個工具。',
+        },
+        imageSources: {
+          [IMAGE_SIZE.SMALL_MID]: {
+            src: campusSmallImage,
+          },
+          [IMAGE_SIZE.MEDIUM_MID]: {
+            src: campusMediumImage,
+          },
+          [IMAGE_SIZE.LARGE]: {
+            src: campusLargeImage,
+          },
+        },
+        link: '/',
+        title: '全球经验',
+        videoEmbedCode: {
+          embedCode: `<iframe src="https://player.vimeo.com/video/248996255?color=ffffff&title=0&byline=0&portrait=0&badge=0" width="640" height="640" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/248996255">INFINITE WORLDS</a> from <a href="https://vimeo.com/philiplueck">philiplueck</a> on <a href="https://vimeo.com">Vimeo</a>.</p>`,
+        },
+      },
+      {
+        alt: '个人途径',
+        description: {
+          markdown: '文字、標點符號出現機率大致符合台灣文章習慣。聽說很多學排版的都會用這個工具。',
+        },
+        imageSources: {
+          [IMAGE_SIZE.SMALL_MID]: {
+            src: campusSmallImage,
+          },
+          [IMAGE_SIZE.MEDIUM_MID]: {
+            src: campusMediumImage,
+          },
+          [IMAGE_SIZE.LARGE]: {
+            src: campusLargeImage,
+          },
+        },
+        link: '/',
+        title: '个人途径',
+        videoEmbedCode: {
+          embedCode: `<iframe src="https://player.vimeo.com/video/243740445?color=d9542b&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/243740445">Integrated learning experience</a> from <a href="https://vimeo.com/user74207196">Mike Stakias</a> on <a href="https://vimeo.com">Vimeo</a>.</p>`,
+        },
+      },
+      {
+        alt: '学习创建',
+        description: {
+          markdown: '文字、標點符號出現機率大致符合台灣文章習慣。聽說很多學排版的都會用這個工具。',
+        },
+        imageSources: {
+          [IMAGE_SIZE.SMALL_MID]: {
+            src: campusSmallImage,
+          },
+          [IMAGE_SIZE.MEDIUM_MID]: {
+            src: campusMediumImage,
+          },
+          [IMAGE_SIZE.LARGE]: {
+            src: campusLargeImage,
+          },
+        },
+        link: '/',
+        title: '学习创建',
+        videoEmbedCode: {
+          embedCode: `<iframe src="https://player.vimeo.com/video/243740445?color=d9542b&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/243740445">Integrated learning experience</a> from <a href="https://vimeo.com/user74207196">Mike Stakias</a> on <a href="https://vimeo.com">Vimeo</a>.</p>`,
+        },
+      },
+    ],
+  },
   openingCountdown: {
     date: '2018-03-19',
     title: '全球 校园',
