@@ -52,11 +52,14 @@ exports.formatFooterLinks = footerData =>
       'utilityLinks';
     const linkList = acc[linkListName];
 
-    if (Array.isArray(linkData)) {
-      linkList[linkList.length - 1].subLinks = linkData.map(formatFooterLink);
-    } else {
-      linkList.push(formatFooterLink(linkData));
+    if (linkData) {
+      if (Array.isArray(linkData)) {
+        linkList[linkList.length - 1].subLinks = linkData.map(formatFooterLink);
+      } else {
+        linkList.push(formatFooterLink(linkData));
+      }
     }
+
     return acc;
   }, {
     primaryLinks: [],
