@@ -22,7 +22,7 @@ const MainMenu = ({
 }) => (
   <div className={cx(
     styles.menu,
-    { [styles.menu_isVisible]: isActive },
+    { [styles.menu_isVisible]: isActive }
     )}
   >
     <nav

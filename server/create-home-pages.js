@@ -79,7 +79,8 @@ const createHomePages = (graphql, createPage) =>
               campusModule.image,
               IMAGE_TYPE.MODULE,
               IMAGE_SUBTYPE.INLINE_RT,
-              [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES]); // eslint-disable-line function-paren-newline
+              [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES]
+            );
             if (campusImage) {
               modulePromises.push(campusImage.then((imageData) => {
                 imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image = imageData;
@@ -92,7 +93,8 @@ const createHomePages = (graphql, createPage) =>
               campusModule.architectImage,
               IMAGE_TYPE.MODULE,
               IMAGE_SUBTYPE.INLINE_SQ,
-              [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES]); // eslint-disable-line function-paren-newline
+              [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES]
+            );
             if (architectImage) {
               modulePromises.push(architectImage.then((imageData) => {
                 imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage = imageData;

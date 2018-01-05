@@ -198,7 +198,7 @@ class Carousel extends Component {
             <div className={styles.carouselInfo}>
               <div className={cx(
                   styles.caption,
-                  { [styles.caption_isFading]: this.state.fading },
+                  { [styles.caption_isFading]: this.state.fading }
                 )}
               >
                 {this.state.currentCaption}

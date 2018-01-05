@@ -53,7 +53,7 @@ class HomeSectionTitle extends React.Component {
         animateWhenNotInViewport
         className={cx(
             styles.wrapper,
-            { [styles.wideContainer]: containerIsWide },
+            { [styles.wideContainer]: containerIsWide }
         )}
         parallaxData={
           [{
@@ -74,7 +74,7 @@ class HomeSectionTitle extends React.Component {
             styles.text,
             styles[color],
             styles[position],
-            isBreakingTop ? styles.top : styles.center,
+            isBreakingTop ? styles.top : styles.center
           )}
         >
           {text}

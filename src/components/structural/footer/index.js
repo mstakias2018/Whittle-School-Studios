@@ -15,7 +15,7 @@ const renderBlock = (item, index, className) => (
     className={cx(
       styles.menuBlockItemWrapper,
       styles.menuBlockItemWrapper_noSub,
-      className,
+      className
     )}
     key={index}
   >
@@ -32,7 +32,7 @@ const renderBlockWithSubItems = (item, index, isInMultiple = false, className) =
   <div
     className={cx(
       className,
-      isInMultiple ? styles.menuBlockInMultiple : styles.menuBlock,
+      isInMultiple ? styles.menuBlockInMultiple : styles.menuBlock
     )}
     key={index}
   >

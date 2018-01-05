@@ -81,12 +81,12 @@ class TemplateWrapper extends Component {
         contentPage: transformSocialNetworks(
           contentPageShareIcons,
           socialNetworkUrls,
-          translations,
+          translations
         ),
         footer: transformSocialNetworks(
           footerShareIcons,
           socialNetworkUrls,
-          translations,
+          translations
         ),
       },
       translations,

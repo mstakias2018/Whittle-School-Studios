@@ -66,7 +66,7 @@ export default function () {
     publish(
       windowInfo.breakpoint,
       windowInfo.orientation,
-      windowInfo.dimensions,
+      windowInfo.dimensions
     );
 
     ticking = false;

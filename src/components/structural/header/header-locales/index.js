@@ -84,7 +84,7 @@ class Locales extends Component {
           selectedLabel={
             this.getSelectedLabel(
               translations.header.selectors.regionAriaLabel,
-              translations.header.regions[process.env.GATSBY_REGION],
+              translations.header.regions[process.env.GATSBY_REGION]
             )
           }
           selectedValue={process.env.GATSBY_REGION}
@@ -111,7 +111,7 @@ class Locales extends Component {
                 selectedLabel={
                   this.getSelectedLabel(
                     translations.header.selectors.languageAriaLabel,
-                    translations.header.languages[language],
+                    translations.header.languages[language]
                   )
                 }
                 selectedValue={language}

@@ -148,13 +148,13 @@ class Recirculation extends Component {
             {this.state.previousItem &&
               this.getNavigationItem(
                 this.state.previousItem,
-                NAV_DIRECTIONS.PREVIOUS,
+                NAV_DIRECTIONS.PREVIOUS
               )
             }
             {this.state.nextItem &&
               this.getNavigationItem(
                 this.state.nextItem,
-                NAV_DIRECTIONS.NEXT,
+                NAV_DIRECTIONS.NEXT
               )
             }
           </nav>

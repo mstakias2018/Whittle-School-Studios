@@ -9,15 +9,15 @@ import { REGION } from '../src/constants/regions';
 transferSpaces(
   [ENV.DEV, REGION.CHINA],
   [ENV.DEV, REGION.US],
-  { shouldFilterNonEnglish: true },
+  { shouldFilterNonEnglish: true }
 ).then(() => {
   transferSpaces(
     [ENV.DEV, REGION.US],
-    [ENV.QA, REGION.US],
+    [ENV.QA, REGION.US]
   ).then(() => {
     transferSpaces(
       [ENV.DEV, REGION.CHINA],
-      [ENV.QA, REGION.CHINA],
+      [ENV.QA, REGION.CHINA]
     ).then(() => {
       console.log('=== PUSHING TO QA BRANCH');
       simpleGit()

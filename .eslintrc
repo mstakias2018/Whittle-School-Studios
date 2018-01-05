@@ -26,6 +26,13 @@
     "react/jsx-sort-props": ["error", {"reservedFirst": false}],
     "semi": ["error", "always"],
     "strict": ["error"],
+    "comma-dangle": ["error", {
+      "arrays": "only-multiline",
+      "objects": "only-multiline",
+      "imports": "only-multiline",
+      "exports": "only-multiline",
+      "functions": "never"
+    }],
 
     "import/no-extraneous-dependencies": 0,
     "react/no-array-index-key": 0,

@@ -92,7 +92,7 @@ class Share extends Component {
             aria-hidden
             className={cx(
                 styles.copyConformation,
-                { [styles.copyConformation_isVisible]: this.state.copying },
+                { [styles.copyConformation_isVisible]: this.state.copying }
               )}
           >
             <span>{translations.share.linkCopied}</span>

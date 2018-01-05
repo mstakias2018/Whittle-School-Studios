@@ -73,7 +73,7 @@ class OpenApplyIFrame extends Component {
               styles.componentContent,
               {
                 [styles.iframe_loaded]: this.state.isIframeLoaded,
-              },
+              }
             )}
             ref={(el) => { this.wrapper = el; }}
           >

@@ -9,17 +9,17 @@ import { REGION } from '../src/constants/regions';
 transferSpaces(
   [ENV.QA, REGION.CHINA],
   [ENV.QA, REGION.US],
-  { shouldFilterNonEnglish: true, shouldSkipContent: true },
+  { shouldFilterNonEnglish: true, shouldSkipContent: true }
 ).then(() => {
   transferSpaces(
     [ENV.QA, REGION.US],
     [ENV.PRODUCTION, REGION.US],
-    { shouldSkipContent: true },
+    { shouldSkipContent: true }
   ).then(() => {
     transferSpaces(
       [ENV.QA, REGION.CHINA],
       [ENV.PRODUCTION, REGION.CHINA],
-      { shouldSkipContent: true },
+      { shouldSkipContent: true }
     ).then(() => {
       console.log('=== PUSHING TO STAGING/PROD BRANCHES');
       simpleGit()
