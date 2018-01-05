@@ -8,12 +8,12 @@ import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 const FooterShareIcons = (props, context) => {
   const {
     socialIcons: { footer: footerSocialIcons },
-    translations,
+    translation,
   } = context;
   return (
     <div className={styles.wrapper}>
       <div className={styles.text}>
-        {translations.footer.shareText}
+        {translation('footer.shareText')}
       </div>
       <div className={styles.icons}>
         {footerSocialIcons.map(({ label, url, icon }, index) => (
@@ -36,7 +36,7 @@ const FooterShareIcons = (props, context) => {
 
 FooterShareIcons.contextTypes = {
   socialIcons: PROP_SHAPES.SOCIAL_ICONS.isRequired,
-  translations: PropTypes.object.isRequired,
+  translation: PropTypes.func.isRequired,
 };
 
 export default FooterShareIcons;

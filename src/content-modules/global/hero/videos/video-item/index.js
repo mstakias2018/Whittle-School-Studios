@@ -24,7 +24,7 @@ const VideoItem = ({
   isSmall,
   link,
   title,
-}, { translations }) => (
+}, { translation }) => (
   <div className={cx(styles.wrapper, {
          [styles.video_isSmall]: isSmall,
          [styles.video_hasPlayButton]: hasPlayButton,
@@ -42,7 +42,7 @@ const VideoItem = ({
           className={commonStyles.link}
           to={link}
         >
-          {translations.general.learnMore}
+          {translation('general.learnMore')}
         </Link>
       </div>
       <Markdown
@@ -54,6 +54,6 @@ const VideoItem = ({
 );
 
 VideoItem.propTypes = propTypes;
-VideoItem.contextTypes = { translations: PropTypes.object.isRequired };
+VideoItem.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default WithVideo(VideoItem);

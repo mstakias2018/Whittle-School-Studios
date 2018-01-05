@@ -73,7 +73,7 @@ class TeamsSection extends Component {
   };
 
   renderTitle = () => {
-    const { translations } = this.context;
+    const { translation } = this.context;
     return (
       <div className={styles.title}>
         {this.props.teamSectionTitle}
@@ -82,7 +82,7 @@ class TeamsSection extends Component {
             className={styles.link}
             to={this.props.teamLinkTarget}
           >
-            {translations.teams.teamLinkText}
+            {translation('teams.teamLinkText')}
           </Link>
         </div>
       </div>
@@ -179,7 +179,7 @@ class TeamsSection extends Component {
   }
 }
 
-TeamsSection.contextTypes = { translations: PropTypes.object.isRequired };
+TeamsSection.contextTypes = { translation: PropTypes.func.isRequired };
 TeamsSection.propTypes = teamSectionPropTypes;
 
 export default WithWindowListener(TeamsSection);

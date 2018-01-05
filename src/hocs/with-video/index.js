@@ -156,7 +156,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
                   )}
                   {hasPlayButton && (
                     <button
-                      aria-label={this.context.translations.video[isPlaying ? 'pause' : 'play']}
+                      aria-label={this.context.translation(`video.${isPlaying ? 'pause' : 'play'}`)}
                       className={cx(styles.button, {
                         [styles.button_isSmall]: options.isSmall || this.props.isSmall,
                       })}
@@ -174,7 +174,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
   }
 
   Video.propTypes = propTypes;
-  Video.contextTypes = { translations: PropTypes.object.isRequired };
+  Video.contextTypes = { translation: PropTypes.func.isRequired };
 
   return WithWindowListener(Video);
 };

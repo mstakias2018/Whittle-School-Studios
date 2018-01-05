@@ -27,7 +27,7 @@ class Locales extends Component {
     if (regionLangagues.length === 1) return [];
 
     const { localizedSlugList = [] } = this.props;
-    const { translations } = this.context;
+    const { translation } = this.context;
 
     return REGION_LANGUAGES[process.env.GATSBY_REGION].map((language) => {
       let currentPageWithLocalizedSlugs = '';
@@ -41,7 +41,7 @@ class Locales extends Component {
 
       return {
         link: `${LANGUAGE_PATH[language]}${currentPageWithLocalizedSlugs}`,
-        title: translations.header.languages[language],
+        title: translation(`header.languages.${language}`),
         value: language,
       };
     });
@@ -50,7 +50,7 @@ class Locales extends Component {
   getRegionItems = () =>
     Object.keys(REGION).map(region => ({
       link: `${REGION_URLS[process.env.GATSBY_ENV][region]}${getDefaultLangPath(region)}`,
-      title: this.context.translations.header.regions[region],
+      title: this.context.translation(`header.regions.${region}`),
       value: region,
     }));
 
@@ -60,7 +60,7 @@ class Locales extends Component {
       key="srText"
     >
       {`${menuAriaLabel}.`}
-      {this.context.translations.header.selectors.currentSelectionAriaLabel} -
+      {this.context.translation('header.selectors.currentSelectionAriaLabel')} -
     </span>,
     <span key="visibleText">
       {selectedValueLabel}
@@ -68,7 +68,7 @@ class Locales extends Component {
   ]);
 
   render() {
-    const { language, translations } = this.context;
+    const { language, translation } = this.context;
     const hasLanguageSelector = REGION_LANGUAGES[process.env.GATSBY_REGION].length > 1;
     const LocaleWrapperTag = hasLanguageSelector ? 'ul' : 'div';
     const RegionSelectorTag = hasLanguageSelector ? 'li' : 'span';
@@ -83,8 +83,8 @@ class Locales extends Component {
           items={this.getRegionItems()}
           selectedLabel={
             this.getSelectedLabel(
-              translations.header.selectors.regionAriaLabel,
-              translations.header.regions[process.env.GATSBY_REGION]
+              translation('header.selectors.regionAriaLabel'),
+              translation(`header.regions.${process.env.GATSBY_REGION}`)
             )
           }
           selectedValue={process.env.GATSBY_REGION}
@@ -110,8 +110,8 @@ class Locales extends Component {
                 items={this.getLanguageItems()}
                 selectedLabel={
                   this.getSelectedLabel(
-                    translations.header.selectors.languageAriaLabel,
-                    translations.header.languages[language]
+                    translation('header.selectors.languageAriaLabel'),
+                    translation(`header.languages.${language}`)
                   )
                 }
                 selectedValue={language}
@@ -126,7 +126,7 @@ class Locales extends Component {
 
 Locales.contextTypes = {
   language: PROP_SHAPES.LANGUAGE.isRequired,
-  translations: PropTypes.object.isRequired,
+  translation: PropTypes.func.isRequired,
 };
 Locales.propTypes = propTypes;
 

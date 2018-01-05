@@ -62,7 +62,7 @@ class Recirculation extends Component {
   };
 
   getNavigationItem = (item, type) => {
-    const { translations } = this.context;
+    const { translation } = this.context;
 
     return (
       <div className={cx(styles.navigationItemWrapper, {
@@ -77,7 +77,7 @@ class Recirculation extends Component {
         >
           <span
             aria-label={`${type === NAV_DIRECTIONS.NEXT ?
-              translations.recirculation.next : translations.recirculation.previous}
+              translation('recirculation.next') : translation('recirculation.previous')}
               ${this.getItemNumber(item)} ${item.title}`}
             className={styles.direction}
           >
@@ -96,7 +96,7 @@ class Recirculation extends Component {
                   className={cx(styles.arrow, styles.arrow_left, styles.arrow_hover)}
                   src={arrowOrange}
                 />
-                {translations.recirculation.previous}
+                {translation('recirculation.previous')}
               </span>
             }
             {type === NAV_DIRECTIONS.NEXT &&
@@ -104,7 +104,7 @@ class Recirculation extends Component {
                 aria-hidden="true"
                 className={styles.directionLabel}
               >
-                  {translations.recirculation.next}
+                  {translation('recirculation.next')}
                 <img
                   alt=""
                   className={cx(styles.arrow, styles.arrow_right)}
@@ -165,6 +165,6 @@ class Recirculation extends Component {
 }
 
 Recirculation.propTypes = propTypes;
-Recirculation.contextTypes = { translations: PropTypes.object.isRequired };
+Recirculation.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default Recirculation;

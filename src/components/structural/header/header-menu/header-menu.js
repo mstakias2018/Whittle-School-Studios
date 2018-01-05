@@ -18,7 +18,7 @@ const MainMenu = ({
   localizedSlugList,
 }, {
   headerData,
-  translations,
+  translation,
 }) => (
   <div className={cx(
     styles.menu,
@@ -26,7 +26,7 @@ const MainMenu = ({
     )}
   >
     <nav
-      aria-label={translations.header.primaryAriaLabel}
+      aria-label={translation('header.primaryAriaLabel')}
       className={styles.menuItemsContainer}
     >
       <ul className={styles.menuItems}>
@@ -59,7 +59,7 @@ const MainMenu = ({
 MainMenu.propTypes = propTypes;
 MainMenu.contextTypes = {
   headerData: PROP_SHAPES.HEADER_DATA.isRequired,
-  translations: PropTypes.object.isRequired,
+  translation: PropTypes.func.isRequired,
 };
 
 export default MainMenu;

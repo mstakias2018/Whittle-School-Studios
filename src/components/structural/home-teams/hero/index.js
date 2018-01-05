@@ -23,7 +23,7 @@ const TeamsHero = (props, context) => {
     heroImageAlt,
     heroLinkTarget,
   } = props;
-  const { translations } = context;
+  const { translation } = context;
 
   return (
     <li className={styles.wrapper}>
@@ -51,7 +51,7 @@ const TeamsHero = (props, context) => {
                 className={styles.heroLink}
                 to={heroLinkTarget}
               >
-                {translations.teams.heroLinkText}
+                {translation('teams.heroLinkText')}
               </Link>
             </div>
           )}
@@ -61,7 +61,7 @@ const TeamsHero = (props, context) => {
   );
 };
 
-TeamsHero.contextTypes = { translations: PropTypes.object.isRequired };
+TeamsHero.contextTypes = { translation: PropTypes.func.isRequired };
 TeamsHero.propTypes = propTypes;
 
 export default TeamsHero;

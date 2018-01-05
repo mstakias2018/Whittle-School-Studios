@@ -25,7 +25,7 @@ const Post = ({
   description,
   source,
   title,
-}, { translations }) => (
+}, { translation }) => (
   <div className={styles.postWrapper}>
     <div className={styles.post}>
       <div className={styles.dateContainer}>
@@ -44,7 +44,7 @@ const Post = ({
           className={styles.readMore}
           to={parseLink({ external: linkExternal, internal: linkInternal })}
         >
-          {translations.post.continueReading}
+          {translation('post.continueReading')}
         </Link>
       </div>
     </div>
@@ -52,6 +52,6 @@ const Post = ({
 );
 
 Post.propTypes = propTypes;
-Post.contextTypes = { translations: PropTypes.object.isRequired };
+Post.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default Post;

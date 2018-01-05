@@ -43,7 +43,7 @@ class Header extends Component {
   };
 
   render() {
-    const { translations } = this.context;
+    const { translation } = this.context;
     const { localizedSlugList, subNavProps, viewedPage } = this.props;
 
     return (
@@ -59,7 +59,7 @@ class Header extends Component {
               className={styles.toggleMenu}
               onClick={this.toggleMenu}
             >
-              {!this.state.menuActive ? translations.general.menu : translations.general.close}
+              {!this.state.menuActive ? translation('general.menu') : translation('general.close')}
             </button>
             <MainMenu
               isActive={this.state.menuActive}
@@ -80,7 +80,7 @@ class Header extends Component {
 Header.propTypes = propTypes;
 Header.contextTypes = {
   language: PROP_SHAPES.LANGUAGE.isRequired,
-  translations: PropTypes.object.isRequired,
+  translation: PropTypes.func.isRequired,
 };
 
 export default WithWindowListener(Header);

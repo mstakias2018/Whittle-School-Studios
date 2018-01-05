@@ -23,7 +23,7 @@ const SchoolsIntro = ({
     title,
   },
   openingCountdown,
-}, { translations }) => (
+}, { translation }) => (
   <div className={styles.wrapper}>
     <div className={styles.introWrapper}>
       <Picture
@@ -40,7 +40,7 @@ const SchoolsIntro = ({
               className={styles.link}
               to={link}
             >
-              {translations.general.learnMore}
+              {translation('general.learnMore')}
             </Link>
           </div>
         </div>
@@ -56,6 +56,6 @@ const SchoolsIntro = ({
 );
 
 SchoolsIntro.propTypes = propTypes;
-SchoolsIntro.contextTypes = { translations: PropTypes.object.isRequired };
+SchoolsIntro.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default SchoolsIntro;

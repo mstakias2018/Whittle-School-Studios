@@ -25,7 +25,7 @@ class PageWrapper extends React.Component {
       subNavProps,
       viewedPage,
     } = this.props;
-    const { translations } = this.context;
+    const { translation } = this.context;
 
     return ([
       <Skip
@@ -40,7 +40,7 @@ class PageWrapper extends React.Component {
       />,
       ...(shouldDisableFab ? [] : [<Fab key="fab" />]),
       <main
-        aria-label={translations.general.mainAriaLabel}
+        aria-label={translation('general.mainAriaLabel')}
         className={CLASSES.PAGE_CONTENT}
         key="main"
         ref={(el) => { this.mainContent = el; }}
@@ -65,6 +65,6 @@ PageWrapper.propTypes = {
   subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
   viewedPage: PropTypes.bool,
 };
-PageWrapper.contextTypes = { translations: PropTypes.object.isRequired };
+PageWrapper.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default PageWrapper;

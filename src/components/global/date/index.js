@@ -11,9 +11,11 @@ const propTypes = {
   isInline: PropTypes.bool,
 };
 
-const Date = ({ date, isInline }, { translations }) => {
+const Date = ({ date, isInline }, { translation }) => {
   const { day, dayText, month } = getDateInfo(date);
-  const { long: longMonth, short: shortMonth } = translations.date.months[month - 1];
+  const intervals = translation('date.months') && translation('date.months')[month - 1];
+  const longMonth = intervals && intervals.long;
+  const shortMonth = intervals && intervals.short;
 
   return (
     <time
@@ -40,6 +42,6 @@ const Date = ({ date, isInline }, { translations }) => {
 };
 
 Date.propTypes = propTypes;
-Date.contextTypes = { translations: PropTypes.object.isRequired };
+Date.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default Date;

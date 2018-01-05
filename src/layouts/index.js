@@ -40,21 +40,8 @@ class TemplateWrapper extends Component {
   };
 
   getChildContext() {
-    const { data, history, location: { pathname } } = this.props;
+    const { history, location: { pathname } } = this.props;
     const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
-    const getLanguageDataFor = (key) => {
-      let out;
-
-      data[key].edges.some(({ node: { locale, dummycontentindex, ...props } }) => {
-        if (locale === LANGUAGE_CONTENTFUL_LOCALE[language] && !dummycontentindex) {
-          out = props;
-          return true;
-        }
-        return false;
-      });
-
-      return out;
-    };
 
     const {
       contentPageShareIcons,
@@ -63,17 +50,13 @@ class TemplateWrapper extends Component {
       fabLinkInternal,
       footerShareIcons,
       ...socialNetworkUrls
-    } = getLanguageDataFor(LAYOUT_MODEL.SETTINGS);
-    const {
-      translations: { internal: { content: stringifiedTranslations } },
-    } = getLanguageDataFor(LAYOUT_MODEL.TRANSLATIONS);
-    const translations = JSON.parse(stringifiedTranslations);
+    } = this.getLanguageDataFor(LAYOUT_MODEL.SETTINGS);
 
     return {
       fabLink: parseLink({ external: fabLinkExternal, internal: fabLinkInternal }),
       fabTextImage: url,
-      footerData: formatFooterLinks(getLanguageDataFor(LAYOUT_MODEL.FOOTER)),
-      headerData: getLanguageDataFor(LAYOUT_MODEL.HEADER).contentPages,
+      footerData: formatFooterLinks(this.getLanguageDataFor(LAYOUT_MODEL.FOOTER)),
+      headerData: this.getLanguageDataFor(LAYOUT_MODEL.HEADER).contentPages,
       history,
       language,
       pathname,
@@ -81,15 +64,15 @@ class TemplateWrapper extends Component {
         contentPage: transformSocialNetworks(
           contentPageShareIcons,
           socialNetworkUrls,
-          translations
+          this.getTranslation
         ),
         footer: transformSocialNetworks(
           footerShareIcons,
           socialNetworkUrls,
-          translations
+          this.getTranslation
         ),
       },
-      translations,
+      translation: this.getTranslation,
     };
   }
 
@@ -99,8 +82,46 @@ class TemplateWrapper extends Component {
     });
   }
 
+  getLanguageDataFor = (key) => {
+    const { data, location: { pathname } } = this.props;
+    const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
+    let out;
+
+    data[key].edges.some(({ node: { locale, dummycontentindex, ...props } }) => {
+      if (locale === LANGUAGE_CONTENTFUL_LOCALE[language] && !dummycontentindex) {
+        out = props;
+        return true;
+      }
+      return false;
+    });
+
+    return out;
+  };
+
+  getTranslation = (translation) => {
+    const translationArray = translation.split('.');
+
+    const {
+      translations: { internal: { content: stringifiedTranslations } },
+    } = this.getLanguageDataFor(LAYOUT_MODEL.TRANSLATIONS);
+
+    const translations = JSON.parse(stringifiedTranslations);
+
+    let item = null;
+
+    for (let i = 0; i < translationArray.length; i += 1) {
+      if (translations[translationArray[i]] && !item) {
+        item = translations[translationArray[i]];
+      } else {
+        item = item && item[translationArray[i]];
+      }
+    }
+
+    return item || null;
+  }
+
   render() {
-    const { language, translations } = this.getChildContext();
+    const { language, translation } = this.getChildContext();
 
     return (
       <div
@@ -112,7 +133,7 @@ class TemplateWrapper extends Component {
       >
         <Helmet
           htmlAttributes={{ lang: LANGUAGE_CONTENTFUL_LOCALE[language] }}
-          titleTemplate={`%s | ${translations.general.schoolName}`}
+          titleTemplate={`%s | ${translation('general.schoolName')}`}
         />
         {this.props.children()}
         {process.env.GATSBY_ENV !== ENV.PRODUCTION &&
@@ -139,7 +160,7 @@ TemplateWrapper.childContextTypes = {
   language: PROP_SHAPES.LANGUAGE.isRequired,
   pathname: PropTypes.string.isRequired,
   socialIcons: PropTypes.object.isRequired,
-  translations: PropTypes.object.isRequired,
+  translation: PropTypes.func.isRequired,
 };
 
 export default TemplateWrapper;

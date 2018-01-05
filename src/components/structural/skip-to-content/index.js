@@ -7,18 +7,18 @@ const propTypes = {
   handleSkipToContent: PropTypes.func.isRequired,
 };
 
-const Skip = (props, { translations }) => (
+const Skip = (props, { translation }) => (
   <button
     className={styles.button}
     onClick={props.handleSkipToContent}
   >
     <div className={styles.text}>
-      {translations.general.skip}
+      {translation('general.skip')}
     </div>
   </button>
 );
 
 Skip.propTypes = propTypes;
-Skip.contextTypes = { translations: PropTypes.object.isRequired };
+Skip.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default Skip;

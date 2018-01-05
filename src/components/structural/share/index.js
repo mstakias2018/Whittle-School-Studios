@@ -39,7 +39,7 @@ class Share extends Component {
     label,
     network,
   }, index) => {
-    const { translations } = this.context;
+    const { translation } = this.context;
     const linkDestination = network !== SOCIAL_NETWORK.WECHAT ?
       `${shareLink}${this.state.currentUrl}` : shareLink;
 
@@ -50,7 +50,7 @@ class Share extends Component {
       >
         <Link to={linkDestination}>
           <img
-            alt={`${translations.share.socialIconAriaLabel} ${label}`}
+            alt={`${translation('share.socialIconAriaLabel')} ${label}`}
             src={icon}
           />
         </Link>
@@ -61,22 +61,22 @@ class Share extends Component {
   render() {
     const {
       socialIcons: { contentPage: contentPageSocialIcons },
-      translations,
+      translation,
     } = this.context;
 
     return (
       <div className={cx(styles.wrapper, CLASSES.SHARE_COMPONENT)}>
         <div className={styles.content}>
           <div className={styles.share}>
-            <div className={styles.shareText}>{translations.share.shareLabel}:</div>
+            <div className={styles.shareText}>{translation('share.shareLabel')}:</div>
             <CopyToClipboard
               onCopy={this.copyLink}
               text={this.state.currentUrl}
             >
               <button
                 aria-label={this.state.copying ?
-                  translations.share.linkCopied :
-                  translations.share.copyLinkLabel}
+                  translation('share.linkCopied') :
+                  translation('share.copyLinkLabel')}
                 className={styles.copyButton}
                 disabled={this.state.copying}
               >
@@ -95,7 +95,7 @@ class Share extends Component {
                 { [styles.copyConformation_isVisible]: this.state.copying }
               )}
           >
-            <span>{translations.share.linkCopied}</span>
+            <span>{translation('share.linkCopied')}</span>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ class Share extends Component {
 
 Share.contextTypes = {
   socialIcons: PROP_SHAPES.SOCIAL_ICONS.isRequired,
-  translations: PropTypes.object.isRequired,
+  translation: PropTypes.func.isRequired,
 };
 
 export default Share;

@@ -52,7 +52,7 @@ const Statistic = (props, context) => {
             {textLineTop}
           </div>
         }
-        {renderNumber(type, number1, number2, context.translations.teams.ratioDividerText)}
+        {renderNumber(type, number1, number2, context.translation('teams.ratioDividerText'))}
         {textLineBottom &&
           <div className={styles.bottomText}>
             {textLineBottom}
@@ -63,7 +63,7 @@ const Statistic = (props, context) => {
   );
 };
 
-Statistic.contextTypes = { translations: PropTypes.object.isRequired };
+Statistic.contextTypes = { translation: PropTypes.func.isRequired };
 Statistic.propTypes = statisticPropTypes;
 
 export default Statistic;

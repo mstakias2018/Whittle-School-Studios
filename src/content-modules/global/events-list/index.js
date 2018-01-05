@@ -20,7 +20,7 @@ class EventsList extends Component {
     const title = this.props[`event${n}TitleLine1`];
     const title2 = this.props[`event${n}TitleLine2`];
 
-    const { translations } = this.context;
+    const { translation } = this.context;
 
     return (
       <li
@@ -44,7 +44,7 @@ class EventsList extends Component {
             className={styles.register}
             to={link}
           >
-            {translations.events.register}
+            {translation('events.register')}
           </Link>
         </div>
       </li>
@@ -63,6 +63,8 @@ class EventsList extends Component {
 }
 
 EventsList.propTypes = propTypes;
-EventsList.contextTypes = { translations: PropTypes.object.isRequired };
+EventsList.contextTypes = {
+  translation: PropTypes.func.isRequired,
+};
 
 export default EventsList;

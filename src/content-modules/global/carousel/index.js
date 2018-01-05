@@ -135,10 +135,10 @@ class Carousel extends Component {
   }
 
   renderLeftNav = () => {
-    const { translations } = this.context;
+    const { translation } = this.context;
     return (
       <button
-        aria-label={translations.carousel.prevAriaLabel}
+        aria-label={translation('carousel.prevAriaLabel')}
         className={cx('image-gallery-custom-left-nav', styles.arrow, styles.arrowLeft)}
         disabled={this.state.currentSlide === 0}
         onClick={this.onClickLeft}
@@ -147,11 +147,11 @@ class Carousel extends Component {
   }
 
   renderRightNav = () => {
-    const { translations } = this.context;
+    const { translation } = this.context;
 
     return (
       <button
-        aria-label={translations.carousel.nextAriaLabel}
+        aria-label={translation('carousel.nextAriaLabel')}
         className={cx('image-gallery-custom-right-nav', styles.arrow, styles.arrowRight)}
         disabled={this.state.currentSlide === this.props.slides.length - 1}
         onClick={this.onClickRight}
@@ -160,11 +160,11 @@ class Carousel extends Component {
   }
 
   renderFullscreenButton = () => {
-    const { translations } = this.context;
+    const { translation } = this.context;
 
     return (
       <button
-        aria-label={translations.carousel.fullScreenAriaLabel}
+        aria-label={translation('carousel.fullScreenAriaLabel')}
         className={styles.fullScreenButton}
         onClick={this.onFullScreenClick}
       />
@@ -215,7 +215,7 @@ class Carousel extends Component {
   }
 }
 
-Carousel.contextTypes = { translations: PropTypes.object.isRequired };
+Carousel.contextTypes = { translation: PropTypes.func.isRequired };
 Carousel.propTypes = propTypes;
 
 export default Carousel;

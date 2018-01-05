@@ -47,11 +47,7 @@ class OpeningCountdown extends React.Component {
   render() {
     const { countdown } = this.state;
     const { title } = this.props;
-    const {
-      translations: {
-        dateIntervals,
-      },
-    } = this.context;
+    const { translation } = this.context;
 
     return (
       <div className={styles.wrapper}>
@@ -63,7 +59,7 @@ class OpeningCountdown extends React.Component {
               key={index}
             >
               <span className="screenReaderText">
-                {`${countdown[interval]} ${dateIntervals[interval]}`}
+                {`${countdown[interval]} ${translation(`dateIntervals.${interval}`)}`}
               </span>
               <span
                 aria-hidden="true"
@@ -78,7 +74,7 @@ class OpeningCountdown extends React.Component {
                 aria-hidden="true"
                 className={styles.label}
               >
-                {dateIntervals[interval]}
+                {translation(`dateIntervals.${interval}`)}
               </span>
             </div>
           ))}
@@ -89,6 +85,6 @@ class OpeningCountdown extends React.Component {
 }
 
 OpeningCountdown.propTypes = propTypes;
-OpeningCountdown.contextTypes = { translations: PropTypes.object.isRequired };
+OpeningCountdown.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default OpeningCountdown;

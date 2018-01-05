@@ -36,13 +36,13 @@ class Submenu extends Component {
       navItems,
       viewedPage,
     } = this.props;
-    const { translations } = this.context;
+    const { translation } = this.context;
     const visitedPages = cookies.get('visitedPages') || [];
 
     return (
       <div className={styles.submenu}>
         <nav
-          aria-label={translations.header.secondaryAriaLabel}
+          aria-label={translation('header.secondaryAriaLabel')}
           className={styles.submenuContainer}
         >
           {
@@ -83,7 +83,7 @@ class Submenu extends Component {
                       >
                         <span className="screenReaderText">
                           {`${index + 1}. ${title}.`}
-                          {isChecked && `${translations.header.checkedItemAriaLabel}.`}
+                          {isChecked && `${translation('header.checkedItemAriaLabel')}.`}
                           {`${description}.`}
                         </span>
                         <span
@@ -141,6 +141,6 @@ Submenu.propTypes = {
   cookies: PropTypes.instanceOf(Cookies).isRequired,
   viewedPage: PropTypes.bool,
 };
-Submenu.contextTypes = { translations: PropTypes.object.isRequired };
+Submenu.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default withCookies(Submenu);

@@ -77,7 +77,7 @@ class Fab extends React.Component {
   }
 
   render() {
-    const { fabLink, fabTextImage, translations } = this.context;
+    const { fabLink, fabTextImage, translation } = this.context;
 
     return (
       <div role="complementary">
@@ -152,7 +152,7 @@ class Fab extends React.Component {
             ]}
           >
             <Link
-              aria-label={translations.fab.ariaLabel}
+              aria-label={translation('fab.ariaLabel')}
               className={styles.fabLink}
               to={fabLink}
             >
@@ -178,7 +178,7 @@ Fab.propTypes = propTypes;
 Fab.contextTypes = {
   fabLink: PropTypes.string.isRequired,
   fabTextImage: PropTypes.string.isRequired,
-  translations: PropTypes.object.isRequired,
+  translation: PropTypes.func.isRequired,
 };
 
 export default WithWindowListener(Fab);
