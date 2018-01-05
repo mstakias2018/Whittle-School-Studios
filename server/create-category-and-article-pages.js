@@ -29,6 +29,10 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
         pageType
         slug
 
+        dummycontentindex {
+          id
+        }
+
         articleMainImage: mainImage {
           ${createQuery(IMAGE_SUBTYPE.MAIN_ARTICLE)}
         }
@@ -229,8 +233,8 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
         };
 
         const createPagePromises = allContentfulContentPage.edges.map(({ node }) => {
-          // Skip subcategories
-          if (node.parentCategory) return undefined;
+          // Skip subcategories and dummy content
+          if (node.parentCategory || node.dummycontentindex) return undefined;
           return buildPageAndSubcategories(node);
         });
 

@@ -45,8 +45,8 @@ class TemplateWrapper extends Component {
     const getLanguageDataFor = (key) => {
       let out;
 
-      data[key].edges.some(({ node: { locale, ...props } }) => {
-        if (locale === LANGUAGE_CONTENTFUL_LOCALE[language]) {
+      data[key].edges.some(({ node: { locale, dummycontentindex, ...props } }) => {
+        if (locale === LANGUAGE_CONTENTFUL_LOCALE[language] && !dummycontentindex) {
           out = props;
           return true;
         }
@@ -172,7 +172,11 @@ export const pageQuery = graphql`
     allContentfulFooter {
       edges {
         node {
+          dummycontentindex {
+            id
+          }
           locale: node_locale
+
           primaryLink1 {
             ...footerLink
           }
@@ -222,7 +226,11 @@ export const pageQuery = graphql`
     allContentfulGlobalSettings {
       edges {
         node {
+          dummycontentindex {
+            id
+          }
           locale: node_locale
+
           fabText {
             file {
               url

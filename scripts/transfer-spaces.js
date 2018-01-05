@@ -7,54 +7,87 @@ import spaceImport from 'contentful-import';
 import { createClient } from 'contentful-management';
 
 import { CONTENTFUL_SPACE } from '../src/constants/contentful';
+import { LANGUAGE, LANGUAGE_CONTENTFUL_LOCALE } from '../src/constants/regions';
 
 const client = createClient({ accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN });
 
-const ENTRY_TYPE = 'Entry';
 const TRANSLATION_CONTENT_TYPE = 'globalTranslations';
+const DUMMY_CONTENT_INDEX_CONTENT_TYPE = 'dummyContentIndex';
 
-const filterFields = (entries, opts) => {
+const ENGLISH = LANGUAGE_CONTENTFUL_LOCALE[LANGUAGE.ENGLISH];
+
+const filterNonEnglishFields = entries => entries.map((entry) => {
+  const fieldNames = entry.fields ? Object.keys(entry.fields) : [];
+  const out = { ...entry };
+
+  out.fields = fieldNames.reduce((acc, fieldName) => {
+    acc[fieldName] = { [ENGLISH]: entry.fields[fieldName][ENGLISH] };
+    return acc;
+  }, {});
+
+  return out;
+});
+
+const getFilteredContent = (entries, assets, opts) => {
   const { shouldFilterNonEnglish, shouldSkipContent } = opts;
-  return entries.reduce((filteredEntries, entry) => {
-    const shouldSkipContentAndIsNotTranslationsEntry = shouldSkipContent &&
-      entry.sys.type === ENTRY_TYPE &&
-      entry.sys.contentType.sys.id !== TRANSLATION_CONTENT_TYPE;
-    if (shouldSkipContentAndIsNotTranslationsEntry) return filteredEntries;
 
-    const fieldNames = entry.fields ? Object.keys(entry.fields) : [];
-    const out = { ...entry };
+  let filteredEntries = [...entries];
+  let filteredAssets = [...assets];
 
-    if (shouldFilterNonEnglish) {
-      out.fields = fieldNames.reduce((acc, fieldName) => {
-        acc[fieldName] = { 'en-US': entry.fields[fieldName]['en-US'] };
-        return acc;
-      }, {});
-    }
+  if (shouldFilterNonEnglish) {
+    filteredEntries = filterNonEnglishFields(filteredEntries);
+    filteredAssets = filterNonEnglishFields(filteredAssets);
+  }
 
-    filteredEntries.push(out);
+  if (shouldSkipContent) {
+    const findEntryByType = type =>
+      filteredEntries.find(e => e.sys.contentType.sys.id === type);
 
-    return filteredEntries;
-  }, []);
+    const translations = findEntryByType(TRANSLATION_CONTENT_TYPE);
+    const dummyContentIndex = findEntryByType(DUMMY_CONTENT_INDEX_CONTENT_TYPE);
+
+    const {
+      asset: dummyAssetData,
+      entries: dummyEntryData,
+    } = dummyContentIndex.fields;
+
+    // Ids are not localized so we can always grab by the English locale
+    const dummyEntryIds = dummyEntryData[ENGLISH].map(e => e.sys.id);
+    const dummyAssetId = dummyAssetData[ENGLISH].sys.id;
+
+    const dummyEntries = dummyEntryIds.map(id =>
+      filteredEntries.find(e => e.sys.id === id));
+    const dummyAsset = filteredAssets.find(a => a.sys.id === dummyAssetId);
+
+    filteredEntries = [
+      translations,
+      dummyContentIndex,
+      ...dummyEntries,
+    ];
+    filteredAssets = [dummyAsset];
+  }
+
+  return {
+    assets: filteredAssets,
+    entries: filteredEntries,
+  };
 };
 
 const getContent = (output, opts) => {
   const { shouldFilterNonEnglish, shouldSkipContent } = opts;
   const { assets, entries, locales } = output;
 
-  const out = { ...output }; // spread to avoid mutation
+  let out = { ...output }; // spread to avoid mutation
 
   if (shouldFilterNonEnglish) {
-    out.locales = locales.filter(({ code }) => code === 'en-US');
-  }
-
-  if (shouldSkipContent) {
-    delete out.assets;
-  } else if (shouldFilterNonEnglish) {
-    out.assets = filterFields(assets, { shouldFilterNonEnglish });
+    out.locales = locales.filter(({ code }) => code === ENGLISH);
   }
 
   if (shouldSkipContent || shouldFilterNonEnglish) {
-    out.entries = filterFields(entries, { shouldFilterNonEnglish, shouldSkipContent });
+    out = {
+      ...out,
+      ...getFilteredContent(entries, assets, opts),
+    };
   }
 
   return out;
