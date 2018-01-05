@@ -1,7 +1,19 @@
 require('dotenv').config();
 
-const { BRANCH_ENV_MAP, ENV } = require('./src/constants/env');
+const { ENV } = require('./src/constants/env');
 const { CONTENTFUL_SPACE } = require('./src/constants/contentful');
+
+const BRANCHES = {
+  PRODUCTION: 'production',
+  QA: 'qa',
+  STAGING: 'staging',
+};
+
+const BRANCH_ENV_MAP = {
+  [BRANCHES.QA]: ENV.QA,
+  [BRANCHES.STAGING]: ENV.STAGING,
+  [BRANCHES.PRODUCTION]: ENV.PRODUCTION,
+};
 
 process.env.GATSBY_ENV = BRANCH_ENV_MAP[process.env.BRANCH] || ENV.DEV;
 

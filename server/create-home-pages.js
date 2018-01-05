@@ -42,6 +42,7 @@ const createHomePages = (graphql, createPage) =>
           }
         `).then((result) => {
         if (result.errors) {
+          console.log(result.errors); // eslint-disable-line no-console
           reject(result.errors);
         }
 

@@ -6,7 +6,6 @@ const {
 } = require('../src/constants/images');
 const IMAGE_CONFIG = require('../src/constants/image-config');
 const { PAGE_TYPE } = require('../src/constants/settings');
-const { ENV } = require('../src/constants/env');
 const { getIdFromImgUrl } = require('../src/utils/images');
 
 const STATIC_IMAGE_PATH = './static/images/';
@@ -14,7 +13,7 @@ const STATIC_IMAGE_PATH = './static/images/';
 const formatPathForBrowser = path => path.replace('./static', '');
 
 // Only download images on Netlify - otherwise it's too slow
-const shouldSkipDownloadingImages = process.env.GATSBY_ENV === ENV.DEV;
+const shouldSkipDownloadingImages = !process.env.BRANCH;
 
 exports.resetImageDir = () => {
   if (fs.existsSync(STATIC_IMAGE_PATH)) {

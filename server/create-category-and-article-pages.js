@@ -129,6 +129,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           }
         `).then((result) => {
         if (result.errors) {
+          console.log(result.errors); // eslint-disable-line no-console
           reject(result.errors);
         }
         const { allContentfulContentPage, allContentfulAsset } = result.data;
