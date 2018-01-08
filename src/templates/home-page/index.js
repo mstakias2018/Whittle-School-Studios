@@ -37,6 +37,12 @@ const ContentPageTemplate = ({
   const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
     (schoolIntroTitle && schoolIntroTitle.content);
 
+  // eventList and campusModule are required, but we check for their existence
+  // to avoid breaking the site on new deploysto production
+
+  // after these modules are filled in on US - Prod and China - Prod,
+  // these checks can be removed
+
   return (
     <PageWrapper>
       <Helmet>
@@ -50,18 +56,18 @@ const ContentPageTemplate = ({
         headline={headline}
         type={PAGE_TYPE.HOME}
       />
-      <PIC
+      {eventList && <PIC
         cityName={eventList.cityName}
         description={eventList.introText.markdown}
         eventList={eventList}
-      />
-      <HomeCampuses
+      />}
+      {campusModule && <HomeCampuses
         {...campusModule}
         architectImage={pathContext.imageDataByType &&
           pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage}
         imageSources={pathContext.imageDataByType &&
           pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image}
-      />
+      />}
     </PageWrapper>
   );
 };
