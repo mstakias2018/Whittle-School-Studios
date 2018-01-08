@@ -6,6 +6,7 @@ import PageHead from '../../components/structural/page-head';
 import PIC from '../../content-modules/global/pic';
 import PageWrapper from '../../components/structural/page-wrapper';
 import HomeCampuses from '../../components/structural/home-campuses';
+import Hero from '../../content-modules/global/hero';
 
 import { PAGE_TYPE } from '../../constants/settings';
 import { PROP_SHAPES } from '../../constants/custom-property-types';
@@ -28,6 +29,7 @@ const ContentPageTemplate = ({
   const {
     campusModule,
     headline,
+    hero,
     eventList,
     schoolIntroTitle,
     seoMetaDescription,
@@ -56,10 +58,17 @@ const ContentPageTemplate = ({
         headline={headline}
         type={PAGE_TYPE.HOME}
       />
+      <Hero
+        data={hero}
+        eventList={eventList}
+        image={pathContext.imageDataByType &&
+        pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO].image}
+      />
       {eventList && <PIC
         cityName={eventList.cityName}
         description={eventList.introText.markdown}
         eventList={eventList}
+        sectionTitle={eventList.sectionTitle}
       />}
       {campusModule && <HomeCampuses
         {...campusModule}
@@ -90,7 +99,28 @@ export const pageQuery = graphql`
         content: seoMetaDescription
       }
       seoMetaTitle
+      hero {
+        eventListTitle
+        imageAlt
+        title
+        description {
+          markdown: description
+        }
+        link {
+          linkTitle
+          linkDestinationInternal {
+            slug
+            parentCategory: contentpage {
+              slug
+            }
+          }
+          linkDestinationExternal
+        }
+        countdownTitle
+        countdownDate
+      }
       eventList {
+        sectionTitle
         cityName
         introText {
           markdown: introText

@@ -9,20 +9,10 @@
 
   headline: { type: String },
 
-  campusOpeningDate: { type: String }, // in format YYYY-MM-DD
-
-  schoolIntroImage: { type: ContentfulAsset },
-  schoolIntroImageAlt: { type: String },
-  schoolIntroTitle: { type: String },
-  schoolIntroBodyText: { type: LongTextField },
-  schoolIntroLinks: {
-    type: [{ type: FooterLink }], // TODO when integrating, rename to Link
-    isRequired: false,
-  },
+  hero: { type: Reference<Hero> },
 
   videoModule: { type: Reference<VideoGroup>, isRequired: false }
 
-  eventListTitle: { type: string },
   eventList: { type: Reference<EventList> },
 
   campusesTitle: { type: string },
@@ -45,30 +35,12 @@
     esse cillum dolore eu fugiat nulla pariatur.`,
 
   headline: 'The first global school in _Shenzhen_',
-
-  campusOpeningDate: '2019-01-18',
-
-  schoolIntroImage: CONTENTFUL_ASSET_PROPS,
-  schoolIntroImageAlt: 'Our new Shenzhen campus',
-  schoolIntroTitle: `Imagine a network of schools created by an international
-    consortium of educators, architects, artists and technologists.`,
-  schoolIntroBodyText: {
-    schoolIntroBodyText: `Imagine a network of schools created by a global
-      consortium of educators, architects, artists and technologists. Imagine 1
-      school with many campuses in the world’s top 30 cities connected by one
-      faculty & a common curriculum implemented with a collective intelligence.
-      From preschool through high school, our program is a seamless global
-      experience.`,
-    },
-  schoolIntroLinks: [{
-    linkTitle: 'Apply Now',
-    linkDestinationInternal: Reference<ContentPage>
-  }],
+  
+  hero: Reference<Hero>,
 
   videoModule: Reference<VideoGroup>,
 
-  module1Title: 'Workshops',
-  module1: Reference<PicModule>,
+  module1: Reference<EventList>,
 
   module2: Reference<Campuses>
 

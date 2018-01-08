@@ -1,61 +1,73 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
 import cx from 'classnames';
 
+import Link from '../../../../components/global/link';
 import OpeningCountdown from '../opening-countdown';
 import Picture from '../../../../components/global/picture';
+import { parseLink } from '../../../../utils/global';
 
-import { PROP_SHAPES } from '../../../../constants/custom-property-types';
+import { PROP_TYPES } from '../../../../constants/custom-property-types';
 
 import styles from './intro.module.css';
 
-const propTypes = {
-  data: PROP_SHAPES.SCHOOLS_INTRO,
-  openingCountdown: PROP_SHAPES.OPENING_COUNTDOWN,
-};
+const propTypes = PROP_TYPES.SCHOOLS_INTRO.isRequired;
 
 const SchoolsIntro = ({
-  data: {
-    description,
-    image,
-    link,
-    title,
-  },
-  openingCountdown,
-}, { translation }) => (
-  <div className={styles.wrapper}>
-    <div className={styles.introWrapper}>
-      <Picture
-        alt={image.alt}
-        className={styles.image}
-        sourcesBySize={image.sources}
-      />
-      <div className={styles.content}>
-        <div className={styles.contentWrapper}>
-          <div className={styles.contentInner}>
-            <h2 className={styles.title}>{title}</h2>
-            <p className={styles.description}>{description}</p>
-            <Link
-              className={styles.link}
-              to={link}
-            >
-              {translation('general.learnMore')}
-            </Link>
+  description,
+  imageAlt,
+  image,
+  link,
+  title,
+  countdownTitle,
+  countdownDate,
+}) => {
+  const {
+    linkDestinationExternal,
+    linkDestinationInternal,
+    linkTitle,
+  } = link;
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.introWrapper}>
+        <Picture
+          alt={imageAlt}
+          className={styles.image}
+          sourcesBySize={image}
+        />
+        <div className={styles.content}>
+          <div className={styles.contentWrapper}>
+            <div className={styles.contentInner}>
+              <h2 className={styles.title}>{title}</h2>
+              <p className={styles.description}>{description.markdown}</p>
+              {(linkDestinationInternal || linkDestinationExternal) &&
+              <Link
+                className={styles.link}
+                to={parseLink({ external: linkDestinationExternal, internal: linkDestinationInternal })}
+              >
+                {linkTitle}
+              </Link>
+              }
+            </div>
+          </div>
+          <div className={cx(styles.countdownWrapper, 'showMd')}>
+            <OpeningCountdown
+              date={countdownDate}
+              title={countdownTitle}
+            />
           </div>
         </div>
-        <div className={cx(styles.countdownWrapper, 'showMd')}>
-          <OpeningCountdown {...openingCountdown} />
-        </div>
+      </div>
+      <div className={cx(styles.countdownWrapper, 'hideMd')}>
+        <OpeningCountdown
+          date={countdownDate}
+          title={countdownTitle}
+        />
       </div>
     </div>
-    <div className={cx(styles.countdownWrapper, 'hideMd')}>
-      <OpeningCountdown {...openingCountdown} />
-    </div>
-  </div>
-);
+  );
+};
 
 SchoolsIntro.propTypes = propTypes;
-SchoolsIntro.contextTypes = { translation: PropTypes.func.isRequired };
 
 export default SchoolsIntro;

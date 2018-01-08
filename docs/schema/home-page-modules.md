@@ -1,13 +1,46 @@
 # HomePage Modules
 
+## Hero
+
+### Schema
+
+```javascript
+{
+  title: { type: String },
+  countdownDate: { type: String },
+  countdownTitle: { type: String },
+  description: { type: LongTextField },
+  image: { type: ContentfulAsset },
+  imageAlt: { type: String },
+  link: { type: Reference<FooterLink> }
+  eventListTitle: { type: String },
+}
+```
+
+### Example
+
+```javascript
+{
+  title: 'Imagine a network of schools, created by an international consortium of educators, architects, artists and technologists.',
+  description: 'Imagine a network of schools created by an international consortium of educators, architects, artists and technologists. Imagine one school with many campuses in the world’s top 30 cities connected by a single faculty and a common curriculum implemented with a collective intelligence. From preschool through high school, our program is a seamless global experience.',
+  countdownDate: '2018-04-03',
+  countdownTitle: 'Shenzhen Campus Opening',
+  image: CONTENTFUL_ASSET_PROPS,
+  imageAlt: 'Some image alt',
+  link: Reference<FooterLink>,
+  eventListTitle: 'Parent Information',
+}
+```
+
 ## EventList
 
 ### Schema
 
 ```javascript
 {
-  cityName: { type: String }
-  introText: { tyep: LongTextField }
+  cityName: { type: String },
+  introText: { tyep: LongTextField },
+  sectionTitle: { type: String },
   event1Date: { type: String }, // format YYYY-MM-DD
   event1TitleLine1: { type: String },
   event1TitleLine2: { type: String, isRequired: false },
@@ -51,6 +84,7 @@
 {
   cityName: 'Shenzhen',
   introText: 'Identifying and understanding the key differences between et.',
+  sectionTitle: 'Workshops.',
   event1Date: '2018-03-20',
   event1TitleLine1: 'PYP Workshop',
   event1TitleLine2: '(Ages 3-5)',

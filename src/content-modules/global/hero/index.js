@@ -1,26 +1,29 @@
 import React from 'react';
+
 import InformationEventListing from './information-event-listing';
 import SchoolsIntro from './schools-intro';
 import Videos from './videos';
-
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './hero.module.css';
 
-const propTypes = {
-  data: PROP_SHAPES.HERO,
-};
+const propTypes = PROP_TYPES.HERO;
 
-const Hero = ({ data }) => (
+const Hero = ({ data, eventList, image }) => (
   <div className={styles.wrapper}>
     <div className={styles.container}>
-      <InformationEventListing {...data.eventListing} />
+      <InformationEventListing
+        {...eventList}
+        title={data.eventListTitle}
+      />
       <SchoolsIntro
-        data={data.schoolsIntro}
-        openingCountdown={data.openingCountdown}
+        {...data}
+        image={image}
       />
     </div>
+    {data.heroVideos &&
     <Videos {...data.heroVideos} />
+    }
   </div>
 );
 

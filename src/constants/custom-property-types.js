@@ -261,19 +261,25 @@ const EVENTS_LIST = {
   event5TitleLine2: PropTypes.string,
 };
 
-const SCHOOLS_INTRO = PropTypes.shape({
-  description: PropTypes.string,
-  image: PropTypes.shape({
-    alt: PropTypes.string.isRequired,
-    sources: PropTypes.shape(validateSourcesBySize),
+const SCHOOLS_INTRO = {
+  countdownDate: PropTypes.string.isRequired,
+  countdownTitle: PropTypes.string.isRequired,
+  description: PropTypes.shape({
+    markdown: PropTypes.string.isRequired
   }),
-  link: PropTypes.string,
+  image: PropTypes.shape(validateSourcesBySize),
+  imageAlt: PropTypes.string.isRequired,
+  link: PropTypes.shape({
+    linkDestinationExternal: PropTypes.string,
+    linkDestinationInternal: PropTypes.string,
+    linkTitle: PropTypes.string,
+  }),
   title: PropTypes.string.isRequired,
-});
+};
 
 const OPENING_COUNTDOWN = PropTypes.shape({
-  date: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  countdownDate: PropTypes.string.isRequired,
+  countdownTitle: PropTypes.string.isRequired,
 });
 
 const NAV_ITEM_LIST = PropTypes.arrayOf(PropTypes.shape({
@@ -302,10 +308,25 @@ const HERO_VIDEO = PropTypes.shape({
   ...VIDEO,
 });
 
+const HERO = {
+  eventListTitle: PropTypes.string,
+  heroVideos: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    videos: PropTypes.arrayOf(HERO_VIDEO),
+  }),
+  ...SCHOOLS_INTRO,
+};
+
 const PROP_TYPES = {
   EVENTS_LIST,
+  HERO: {
+    data: PropTypes.shape(HERO),
+    eventList: PropTypes.shape(EVENTS_LIST).isRequired,
+    image: IMAGE_SOURCES,
+  },
   LIST,
   LIST_ITEM,
+  SCHOOLS_INTRO: PropTypes.shape({ SCHOOLS_INTRO }),
   SUB_NAV: {
     categoryTitle: PropTypes.string.isRequired,
     navItems: NAV_ITEM_LIST.isRequired,
@@ -332,18 +353,7 @@ exports.PROP_SHAPES = {
     link: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })),
-  HERO: PropTypes.shape({
-    eventListing: PropTypes.shape({
-      list: EVENTS_LIST,
-      title: PropTypes.string.isRequired,
-    }),
-    heroVideos: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      videos: PropTypes.arrayOf(HERO_VIDEO),
-    }),
-    openingCountdown: OPENING_COUNTDOWN,
-    schoolsIntro: SCHOOLS_INTRO,
-  }),
+  HERO,
   HERO_VIDEO,
   HISTORY: PropTypes.shape({
     push: PropTypes.func.isRequired,

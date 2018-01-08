@@ -28,6 +28,11 @@ const createHomePages = (graphql, createPage) =>
                     id
                   }
                   id: contentful_id
+                  hero {
+                    image {
+                      ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
+                    }
+                  }
                   campusModule {
                     image {
                       ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
@@ -73,7 +78,25 @@ const createHomePages = (graphql, createPage) =>
           return false;
         });
 
-        const { id, campusModule } = homepage;
+        const { id, campusModule, hero } = homepage;
+
+        if (hero) {
+          imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO] = {};
+
+          if (hero.image) {
+            const heroImage = saveImage(
+              hero.image,
+              IMAGE_TYPE.MODULE,
+              IMAGE_SUBTYPE.INLINE_RT,
+              [id, STRUCTURAL_COMPONENTS.HOME_HERO]
+            );
+            if (heroImage) {
+              modulePromises.push(heroImage.then((imageData) => {
+                imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO].image = imageData;
+              }));
+            }
+          }
+        }
 
         if (campusModule) {
           imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES] = {};

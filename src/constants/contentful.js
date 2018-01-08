@@ -72,4 +72,5 @@ exports.CONTENT_MODULE = {
 
 exports.STRUCTURAL_COMPONENTS = {
   HOME_CAMPUSES: 'ContentfulCampuses',
+  HOME_HERO: 'ContentfulHero',
 };
