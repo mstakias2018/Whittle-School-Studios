@@ -40,6 +40,26 @@
   }
 }
 
+.postWrapper {
+  &:not(:last-of-type) {
+    .content {
+      border-bottom: solid 1px var(--color-light-border);
+
+      @media (--bp-sm-only) {
+        padding-bottom: 38px;
+      }
+
+      @media (--bp-md-only) {
+        padding-bottom: 56px;
+      }
+
+      @media (--bp-lg) {
+        padding-bottom: 47px;
+      }
+    }
+  }
+}
+
 .source {
   @mixin type-eyebrow;
   display: inline-block;
