@@ -8180,12 +8180,13 @@ react-markdown@^2.5.0:
     commonmark-react-renderer "^4.3.4"
     prop-types "^15.5.1"
 
-react-plx@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-plx/-/react-plx-0.2.0.tgz#85227fd3a6b74ea8d0ca6029324ca1c2fd77ff7a"
+react-plx@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-plx/-/react-plx-1.0.4.tgz#cffce4f2d24bae7cf67699669a454f205c3639d9"
   dependencies:
     bezier-easing "^2.0.3"
     prop-types "^15.5.8"
+    window-scroll-manager "^0.2.1"
 
 react-proxy@^3.0.0-alpha.0:
   version "3.0.0-alpha.1"
@@ -10583,6 +10584,10 @@ widest-line@^1.0.0:
   resolved "https://registry.yarnpkg.com/widest-line/-/widest-line-1.0.0.tgz#0c09c85c2a94683d0d7eaf8ee097d564bf0e105c"
   dependencies:
     string-width "^1.0.1"
+
+window-scroll-manager@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/window-scroll-manager/-/window-scroll-manager-0.2.1.tgz#afc5014cc711aa52c910f835f354aa7b975dc18b"
 
 window-size@0.1.0:
   version "0.1.0"

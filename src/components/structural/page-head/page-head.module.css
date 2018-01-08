@@ -2,6 +2,7 @@
 @import '../../../assets/styles/includes/grid.css';
 @import '../../../assets/styles/includes/mixins.css';
 @import '../../../assets/styles/includes/typography.css';
+@import '../../../assets/styles/includes/variables.css';
 
 .wrapper {
   @mixin component-container;
@@ -52,40 +53,40 @@
   flex-wrap: wrap;
 
   h1 {
-    @mixin span 4, 4, sm;
+    @mixin span 4, var(--grid-columns-sm), sm;
 
     @media (--bp-md) {
-      @mixin span 8, 8, md;
+      @mixin span 8, var(--grid-columns-md), md;
     }
 
     @media (--bp-lg) {
-      @mixin span 9, 12, lg;
+      @mixin span 9, var(--grid-columns-lg), lg;
       padding-right: calc(var(--grid-gutter-lg) * 2);
     }
   }
 
   picture {
-    @mixin span 4, 4, sm;
+    @mixin span 4, var(--grid-columns-sm), sm;
 
     @media (--bp-md) {
-      @mixin span 8, 8, md;
+      @mixin span 8, var(--grid-columns-md), md;
     }
 
     @media (--bp-lg) {
-      @mixin span 12, 12, lg;
+      @mixin span 12, var(--grid-columns-lg), lg;
     }
   }
 
   .subhead {
-    @mixin span 4, 4, sm;
+    @mixin span 4, var(--grid-columns-sm), sm;
 
     @media (--bp-md-only) {
-      @mixin span 8, 8, md;
+      @mixin span 8, var(--grid-columns-md), md;
       margin-top: 0;
     }
 
     @media (--bp-lg) {
-      @mixin span 3, 12, lg;
+      @mixin span 3, var(--grid-columns-lg), lg;
       padding-top: 60px;
     }
   }
@@ -104,14 +105,19 @@
   }
 
   .parallaxTitle {
-    @mixin span 4, 4, sm;
+    @mixin span 4, var(--grid-columns-sm), sm;
+
+    @media (--bp-sm-only) {
+      transform: translateY(60px);
+    }
 
     @media (--bp-md) {
-      @mixin span 8, 8, md;
+      @mixin span 8, var(--grid-columns-md), md;
+      transform: translateY(105px);
     }
 
     @media (--bp-lg) {
-      @mixin span 8, 12, lg;
+      @mixin span 8, var(--grid-columns-lg), lg;
     }
   }
 }
@@ -124,41 +130,41 @@
   }
 
   h1 {
-    @mixin span 4, 4, sm;
+    @mixin span 4, var(--grid-columns-sm), sm;
 
     @media (--bp-md) {
-      @mixin span 8, 8, md;
+      @mixin span 8, var(--grid-columns-md), md;
     }
 
     @media (--bp-lg) {
-      @mixin span 8, 12, lg;
+      @mixin span 8, var(--grid-columns-lg), lg;
     }
   }
 
   picture {
-    @mixin span 4, 4, sm;
+    @mixin span 4, var(--grid-columns-sm), sm;
 
     @media (--bp-md) {
-      @mixin span 8, 8, md;
+      @mixin span 8, var(--grid-columns-md), md;
     }
 
     @media (--bp-lg) {
-      @mixin span 10, 12, lg;
+      @mixin span 10, var(--grid-columns-lg), lg;
     }
   }
 
   .subhead {
-    @mixin span 4, 4, sm;
+    @mixin span 4, var(--grid-columns-sm), sm;
     font-size: 30px;
     line-height: 36px;
 
     @media (--bp-md) {
-      @mixin span 6, 8, md;
+      @mixin span 6, var(--grid-columns-md), md;
       margin-top: 0;
     }
 
     @media (--bp-lg) {
-      @mixin span 6, 12, lg;
+      @mixin span 6, var(--grid-columns-lg), lg;
       text-align: center;
     }
 

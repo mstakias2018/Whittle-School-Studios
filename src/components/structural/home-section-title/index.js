@@ -66,7 +66,7 @@ class HomeSectionTitle extends React.Component {
                 startValue: 0,
               },
             ],
-            start: 'top',
+            start: 'self',
           }]
         }
       >

@@ -48,6 +48,7 @@ const PageHead = ({
       >
         {(type === PAGE_TYPE.HOME) ?
           <Plx
+            animateWhenNotInViewport
             className={styles.parallaxTitle}
             parallaxData={PARALLAX_HOME_TITLE[breakpoint]}
           >

@@ -44,7 +44,7 @@
     "react-hot-loader": "^3.0.0-beta.6",
     "react-image-gallery": "git://github.com/sarahatwork/react-image-gallery#a11y-fixes",
     "react-markdown": "^2.5.0",
-    "react-plx": "^0.2.0",
+    "react-plx": "^1.0.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "request": "^2.83.0",

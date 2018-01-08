@@ -110,7 +110,7 @@ class HomeCampuses extends React.Component {
                   startValue: 0,
                 },
               ],
-              start: 'top',
+              start: 'self',
             },
           ]}
         >

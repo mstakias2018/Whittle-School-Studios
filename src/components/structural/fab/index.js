@@ -138,7 +138,7 @@ class Fab extends React.Component {
             className={styles.content}
             parallaxData={[
               {
-                duration: `.${CLASSES.FOOTER}`,
+                end: `.${CLASSES.FOOTER}`,
                 name: 'second',
                 properties: [
                   {
