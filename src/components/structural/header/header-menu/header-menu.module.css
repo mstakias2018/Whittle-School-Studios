@@ -70,6 +70,22 @@
   }
 }
 
+.menuItems_aligned {
+  @media (--bp-lg) {
+    @mixin nested-grid-container;
+  }
+
+  .menuItem {
+    @media (--bp-lg) {
+      @mixin span 2, 10, lg;
+
+      .menuItemLinkWrapper {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
 .menuItem {
   margin: 0;
   padding: 0;

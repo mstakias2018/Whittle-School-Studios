@@ -29,7 +29,15 @@ const MainMenu = ({
       aria-label={translation('header.primaryAriaLabel')}
       className={styles.menuItemsContainer}
     >
-      <ul className={styles.menuItems}>
+      <ul
+        className={cx(
+            styles.menuItems,
+            {
+              [styles.menuItems_aligned]: headerData.length === 5
+            }
+          )
+        }
+      >
         {headerData.map(({ link, title }, index) => (
           <li
             className={styles.menuItem}
