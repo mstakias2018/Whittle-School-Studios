@@ -85,17 +85,11 @@
   }
 }
 
-.wrapper_isPlaying .button {
-  &:before {
-    background-image: url(../../assets/images/pause-button.svg);
-  }
-
-  &:hover:before {
-    background-image: url(../../assets/images/pause-button-hover.svg);
-  }
+.wrapper_hasPlayed .button {
+  display: none;
 }
 
-.hiddenButton {
+.buttonOverCoverPhoto {
   @mixin reset-button;
   height: 100%;
   left: 0;

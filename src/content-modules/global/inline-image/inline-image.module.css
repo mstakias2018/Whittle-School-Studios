@@ -1,4 +1,5 @@
 @import '../../../assets/styles/includes/grid.css';
+@import '../../../assets/styles/includes/mixins.css';
 @import '../../../assets/styles/includes/variables.css';
 @import '../../../assets/styles/includes/typography.css';
 
@@ -36,6 +37,7 @@
 .caption {
   @mixin text-column-width;
   @mixin type-caption;
+  @mixin play-button-animation;
 
   @media (--bp-md) {
     @mixin span 5, var(--grid-columns-md), md;
@@ -44,15 +46,15 @@
 
 .caption_hasPlayButton {
   @media (--bp-sm-only) {
-    margin-left: 17px;
-    margin-top: 25px;
+    left: 17px;
+    top: 25px;
   }
 
   @media (--bp-md-only) {
-    margin-left: calc(var(--play-button-width-md) + 25px);
+    left: calc(var(--play-button-width-md) + 25px);
   }
 
   @media (--bp-lg-lower-only) {
-    padding-left: 30px;
+    left: 30px;
   }
 }

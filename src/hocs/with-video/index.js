@@ -98,14 +98,9 @@ const WithVideo = (WrappedComponent, options = {}) => {
 
     render() {
       const { alt, imageSources } = this.props;
-      const {
-        hasPlayed,
-        isPlaying,
-        isVimeo,
-        src,
-      } = this.state;
+      const { hasPlayed, isVimeo, src } = this.state;
       const hasVideo = !!src;
-      const hasPlayButton = isVimeo;
+      const hasPlayButton = isVimeo && !hasPlayed;
       const shouldUseCoverPhoto = isVimeo;
       const isCoverPhotoInBackground = hasVideo && (!shouldUseCoverPhoto || hasPlayed);
       const hasCoverPhoto = shouldUseCoverPhoto && imageSources;
@@ -127,7 +122,6 @@ const WithVideo = (WrappedComponent, options = {}) => {
                 className={cx(styles.wrapper, {
                   [styles.wrapper_hasCoverPhoto]: hasCoverPhoto,
                   [styles.wrapper_hasPlayed]: hasPlayed,
-                  [styles.wrapper_isPlaying]: isPlaying,
                 })}
               >
                 {hasCoverPhoto && (
@@ -149,14 +143,14 @@ const WithVideo = (WrappedComponent, options = {}) => {
                   {hasCoverPhoto && !isCoverPhotoInBackground && (
                     <button
                       aria-hidden="true"
-                      className={styles.hiddenButton}
+                      className={styles.buttonOverCoverPhoto}
                       onClick={this.toggleVideo}
                       tabIndex="-1"
                     />
                   )}
                   {hasPlayButton && (
                     <button
-                      aria-label={this.context.translation(`video.${isPlaying ? 'pause' : 'play'}`)}
+                      aria-label={this.context.translation('video.play')}
                       className={cx(styles.button, {
                         [styles.button_isSmall]: options.isSmall || this.props.isSmall,
                       })}

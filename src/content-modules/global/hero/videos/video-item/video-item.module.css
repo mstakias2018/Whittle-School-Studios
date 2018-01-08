@@ -54,6 +54,7 @@
 }
 
 .titleWrapper {
+  @mixin play-button-animation padding-left;
   padding-left: 14px;
 
   .video_isSmall & {

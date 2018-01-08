@@ -109,3 +109,12 @@
     padding-left: 29px;
   }
 }
+
+@define-mixin play-button-animation $property: left {
+  $(property): 0;
+  position: relative;
+  top: 0;
+  transition:
+    $property var(--timing-fast) var(--easing-default),
+    top var(--timing-fast) var(--easing-default);
+}
