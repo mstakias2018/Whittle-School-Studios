@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../header';
@@ -27,34 +27,36 @@ class PageWrapper extends React.Component {
     } = this.props;
     const { translation } = this.context;
 
-    return ([
-      <Skip
-        handleSkipToContent={this.handleSkipToContent}
-        key="skip"
-      />,
-      <Header
-        key="header"
-        localizedSlugList={localizedSlugList}
-        subNavProps={subNavProps}
-        viewedPage={viewedPage}
-      />,
-      ...(shouldDisableFab ? [] : [<Fab key="fab" />]),
-      <main
-        aria-label={translation('general.mainAriaLabel')}
-        className={CLASSES.PAGE_CONTENT}
-        key="main"
-        ref={(el) => { this.mainContent = el; }}
-        tabIndex={-1}
-      >
-        {children}
-      </main>,
-      ...(process.env.GATSBY_ENV === ENV.STAGING ? [<SiteInfo key="siteInfo" />] : []),
-      ...(subNavProps ? [<Recirculation
-        items={subNavProps.navItems}
-        key="recirculation"
-      />] : []),
-      <Footer key="footer" />,
-    ]);
+    return (
+      <Fragment>
+        <Skip handleSkipToContent={this.handleSkipToContent} />
+        <Header
+          localizedSlugList={localizedSlugList}
+          subNavProps={subNavProps}
+          viewedPage={viewedPage}
+        />
+        {!shouldDisableFab &&
+        <Fab />
+        }
+        <main
+          aria-label={translation('general.mainAriaLabel')}
+          className={CLASSES.PAGE_CONTENT}
+          ref={(el) => { this.mainContent = el; }}
+          tabIndex={-1}
+        >
+          {children}
+        </main>
+        {(process.env.GATSBY_ENV === ENV.STAGING) &&
+        <SiteInfo />
+        }
+        {subNavProps &&
+        <Recirculation
+          items={subNavProps.navItems}
+        />
+        }
+        <Footer />
+      </Fragment>
+    );
   }
 }
 
