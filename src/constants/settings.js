@@ -1,3 +1,6 @@
+const { ENV } = require('./env');
+const { REGION } = require('./regions');
+
 const PAGE_TYPE = {
   ARTICLE: 'Article', // must match Contentful value
   CATEGORY: 'Category', // must match Contentful value
@@ -34,4 +37,23 @@ exports.HOME_SECTION_TITLE_POSITION = {
 exports.HOME_TEAMS_STATISTIC_TYPE = {
   PERCENTAGE: 'percentage', // must match Contentful value
   RATIO: 'ratio', // must match Contentful value
+};
+
+exports.GOOGLE_ANALYTICS = {
+  [ENV.DEV]: {
+    [REGION.US]: 'UA-112001805-1',
+    [REGION.CHINA]: 'UA-112001805-2',
+  },
+  [ENV.QA]: {
+    [REGION.US]: 'UA-112001805-3',
+    [REGION.CHINA]: 'UA-112001805-4',
+  },
+  [ENV.STAGING]: {
+    [REGION.US]: 'UA-112001805-5',
+    [REGION.CHINA]: 'UA-112001805-6',
+  },
+  [ENV.PRODUCTION]: {
+    [REGION.US]: 'UA-112001805-7',
+    [REGION.CHINA]: 'UA-112001805-8',
+  },
 };

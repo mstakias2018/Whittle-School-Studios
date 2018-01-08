@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { ENV } = require('./src/constants/env');
 const { CONTENTFUL_SPACE } = require('./src/constants/contentful');
+const { GOOGLE_ANALYTICS } = require('./src/constants/settings');
 
 const BRANCHES = {
   PRODUCTION: 'production',
@@ -28,6 +29,12 @@ module.exports = {
       resolve: 'gatsby-source-contentful',
     },
     'gatsby-transformer-remark',
+    {
+      options: {
+        trackingId: GOOGLE_ANALYTICS[process.env.GATSBY_ENV][process.env.GATSBY_REGION],
+      },
+      resolve: 'gatsby-plugin-google-analytics',
+    },
   ],
   siteMetadata: {
     title: 'Gatsby Default Starter',

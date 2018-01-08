@@ -9,6 +9,7 @@ import FabArrowImage from '../../../assets/images/fab-arrow.svg';
 
 import Link from '../../global/link';
 import WithWindowListener from '../../../hocs/withWindow';
+import { sendAnalyticsEvent } from '../../../utils/global';
 
 import { BREAKPOINTS } from '../../../constants/breakpoints';
 import { PAGE_PADDING, FAB_SIZE } from '../../../constants/dimensions';
@@ -154,6 +155,7 @@ class Fab extends React.Component {
             <Link
               aria-label={translation('fab.ariaLabel')}
               className={styles.fabLink}
+              onClick={() => sendAnalyticsEvent('FAB', 'click', fabLink)}
               to={fabLink}
             >
               <img

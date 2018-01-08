@@ -53,3 +53,10 @@ exports.createContentPageLink = createContentPageLink;
 
 exports.parseLink = ({ external, internal }) => external ||
   (internal && createContentPageLink(internal));
+
+exports.sendAnalyticsEvent = (
+  eventCategory,
+  eventAction,
+  eventLabel, // optional
+  eventValue // optional
+) => window && window.ga('send', 'event', eventCategory, eventAction, eventLabel, eventValue);
