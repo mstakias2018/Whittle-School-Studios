@@ -67,7 +67,7 @@ const renderUtilityLink = (item, index, className) => (
 );
 
 const Footer = (props, context) => {
-  const { footerData, translation } = context;
+  const { footerData, socialIcons, translation } = context;
   const {
     primaryLinks: [firstPrimaryLink, ...otherPrimaryLinks],
     utilityLinks,
@@ -101,7 +101,9 @@ const Footer = (props, context) => {
             <div>{translation('footer.copyrightLine1')}</div>
             <div>{translation('footer.copyrightLine2')}</div>
           </div>
+          {socialIcons.footer.length > 0 &&
           <FooterShareIcons />
+          }
         </div>
       </div>
     </footer>
@@ -110,6 +112,7 @@ const Footer = (props, context) => {
 
 Footer.contextTypes = {
   footerData: PROP_SHAPES.FOOTER_DATA.isRequired,
+  socialIcons: PROP_SHAPES.SOCIAL_ICONS.isRequired,
   translation: PropTypes.func.isRequired,
 };
 
