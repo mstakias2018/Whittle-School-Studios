@@ -57,14 +57,17 @@
   font-weight: 300;
 
   @media (--bp-sm-only) {
+    @mixin type-h5-italic;
     padding-bottom: 5px;
   }
 
-  @media (--bp-md) {
+  @media (--bp-md-only) {
+    @mixin type-h5-italic;
     padding-right: calc(var(--grid-gutter-md) * 2);
   }
 
   @media (--bp-lg) {
+    font-weight: 300;
     line-height: 36px;
     padding-right: calc(var(--grid-gutter-lg) * 2);
   }

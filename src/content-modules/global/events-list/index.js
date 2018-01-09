@@ -14,13 +14,15 @@ const propTypes = PROP_TYPES.EVENTS_LIST.isRequired;
 class EventsList extends Component {
   createItem = (n) => {
     const date = this.props[`event${n}Date`];
-    const description = this.props[`event${n}Description`].markdown;
+    const description = this.props[`event${n}Description`] ? this.props[`event${n}Description`].markdown : null;
     const link = this.props[`event${n}RegistrationLink`];
     const location = this.props[`event${n}Location`];
     const title = this.props[`event${n}TitleLine1`];
     const title2 = this.props[`event${n}TitleLine2`];
 
     const { translation } = this.context;
+
+    if (!(link && location && title)) return null;
 
     return (
       <li

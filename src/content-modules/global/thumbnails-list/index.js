@@ -18,7 +18,7 @@ class ThumbnailsList extends Component {
       this.props[`item${n}VideoDuration`],
       this.props[`item${n}VideoEmbedCode`],
     ];
-    const imageSources = this.props.imageSources[n];
+    const imageSources = this.props.imageSources[n - 1];
 
     return (title && description && (imageSources || videoDuration)) ? (
       <ThumbnailsListItem
