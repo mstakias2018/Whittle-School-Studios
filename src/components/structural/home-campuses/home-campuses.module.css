@@ -199,11 +199,15 @@
 }
 
 .architectQuote {
-  @mixin font-family font-sans-serif-regular;
+  @mixin font-family font-sans-serif-light;
   color: var(--color-text-dark);
   font-size: 14px;
   line-height: 24px;
   text-align: left;
+
+  strong {
+    @mixin font-family font-sans-serif-regular;
+  }
 
   @media (--bp-md) {
     text-align: center;
