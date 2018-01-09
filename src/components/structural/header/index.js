@@ -16,6 +16,7 @@ import styles from './header.module.css';
 const propTypes = {
   breakpoint: PROP_SHAPES.BREAKPOINT,
   localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
+  skipComponent: PropTypes.node.isRequired,
   subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
   viewedPage: PropTypes.bool,
 };
@@ -44,10 +45,16 @@ class Header extends Component {
 
   render() {
     const { translation } = this.context;
-    const { localizedSlugList, subNavProps, viewedPage } = this.props;
+    const {
+      localizedSlugList,
+      skipComponent,
+      subNavProps,
+      viewedPage,
+    } = this.props;
 
     return (
       <header className={styles.header}>
+        {skipComponent}
         <Locales localizedSlugList={localizedSlugList} />
         <div className="container">
           <div className={cx(styles.container, {

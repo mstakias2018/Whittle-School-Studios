@@ -29,9 +29,9 @@ class PageWrapper extends React.Component {
 
     return (
       <Fragment>
-        <Skip handleSkipToContent={this.handleSkipToContent} />
         <Header
           localizedSlugList={localizedSlugList}
+          skipComponent={<Skip handleSkipToContent={this.handleSkipToContent} />}
           subNavProps={subNavProps}
           viewedPage={viewedPage}
         />
