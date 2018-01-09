@@ -20,14 +20,17 @@ const MainMenu = ({
   headerData,
   translation,
 }) => (
-  <div className={cx(
-    styles.menu,
-    { [styles.menu_isVisible]: isActive }
+  <nav
+    className={cx(
+      styles.menu,
+      { [styles.menu_isVisible]: isActive }
     )}
+    id="mainMenu"
   >
-    <nav
+    <div
       aria-label={translation('header.primaryAriaLabel')}
       className={styles.menuItemsContainer}
+      role="menu"
     >
       <ul
         className={cx(
@@ -56,12 +59,12 @@ const MainMenu = ({
           ))
         }
       </ul>
-    </nav>
+    </div>
     <Locales
       isSmall
       localizedSlugList={localizedSlugList}
     />
-  </div>
+  </nav>
 );
 
 MainMenu.propTypes = propTypes;

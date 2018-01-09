@@ -56,6 +56,9 @@ class Header extends Component {
           >
             <Logo />
             <button
+              aria-controls="mainMenu"
+              aria-expanded={this.state.menuActive}
+              aria-haspopup="true"
               className={styles.toggleMenu}
               onClick={this.toggleMenu}
             >
