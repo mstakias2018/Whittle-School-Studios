@@ -19,6 +19,8 @@ import {
   LANGUAGE,
   LANGUAGE_CLASS,
   LANGUAGE_CONTENTFUL_LOCALE,
+  LANGUAGE_PATH,
+  REGION_SHORT,
 } from '../constants/regions';
 import { parseLink } from '../utils/global';
 import { getLanguageFromPathname } from '../utils/regions';
@@ -132,7 +134,7 @@ class TemplateWrapper extends Component {
         })}
       >
         <Helmet
-          htmlAttributes={{ lang: LANGUAGE_CONTENTFUL_LOCALE[language] }}
+          htmlAttributes={{ lang: `${LANGUAGE_PATH[language]}-${REGION_SHORT[process.env.GATSBY_REGION]}` }}
           titleTemplate={`%s | ${translation('general.schoolName')}`}
         />
         {this.props.children()}

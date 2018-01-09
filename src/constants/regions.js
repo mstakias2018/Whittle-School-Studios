@@ -5,6 +5,11 @@ const REGION = {
   US: 'US',
 };
 
+exports.REGION_SHORT = {
+  [REGION.CHINA]: 'CN',
+  [REGION.US]: 'US',
+};
+
 exports.REGION = REGION;
 
 const LANGUAGE = {
