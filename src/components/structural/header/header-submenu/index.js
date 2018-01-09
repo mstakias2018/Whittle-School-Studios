@@ -78,7 +78,9 @@ class Submenu extends Component {
                   >
                     <span className={styles.itemLinkWrapper}>
                       <Link
-                        className={styles.itemLink}
+                        className={cx(styles.itemLink, {
+                          [styles.item_checked]: isChecked,
+                        })}
                         to={`/${link}`}
                       >
                         <span className="screenReaderText">
@@ -90,23 +92,15 @@ class Submenu extends Component {
                           aria-hidden="true"
                           className={styles.itemTitleContainer}
                         >
-                          {isChecked ? (
-                            <span className={styles.itemChecked}>
+                          <span className={styles.itemNumber}>
+                            {isChecked ?
                               <img
                                 alt=""
                                 src={isActive ? CheckedGray : Checked}
-                              />
-                            </span>
-                          ) : (
-                            <span className={styles.itemNumber}>
-                              {`0${index + 1}`}
-                            </span>
-                          )}
-                          {
-                            /* IE Hack for white space underline */
-                            !isChecked &&
-                            <span className={styles.placeHolder}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                          }
+                              /> : `0${index + 1}`}
+                          </span>
+                          {/* IE Hack for white space underline */}
+                          <span className={styles.placeHolder}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                           <span className={styles.itemTitle}>{title}</span>
                         </span>
                         <span
