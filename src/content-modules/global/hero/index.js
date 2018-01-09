@@ -9,7 +9,14 @@ import styles from './hero.module.css';
 
 const propTypes = PROP_TYPES.HERO;
 
-const Hero = ({ data, eventList, image }) => (
+const Hero = ({
+  data,
+  eventList,
+  image,
+  video1AssetCoverPhoto,
+  video2AssetCoverPhoto,
+  video3AssetCoverPhoto,
+}) => (
   <div className={styles.wrapper}>
     <div className={styles.container}>
       <InformationEventListing
@@ -21,8 +28,13 @@ const Hero = ({ data, eventList, image }) => (
         image={image}
       />
     </div>
-    {data.heroVideos &&
-    <Videos {...data.heroVideos} />
+    {data.videos &&
+    <Videos
+      {...data.videos}
+      video1AssetCoverPhoto={video1AssetCoverPhoto}
+      video2AssetCoverPhoto={video2AssetCoverPhoto}
+      video3AssetCoverPhoto={video3AssetCoverPhoto}
+    />
     }
   </div>
 );

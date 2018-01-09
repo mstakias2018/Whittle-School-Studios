@@ -5,6 +5,7 @@ import cx from 'classnames';
 
 import Markdown from '../../../../../components/global/markdown';
 import WithVideo from '../../../../../hocs/with-video';
+import { parseLink } from '../../../../../utils/global';
 
 import { PROP_SHAPES, PROP_TYPES } from '../../../../../constants/custom-property-types';
 
@@ -38,12 +39,14 @@ const VideoItem = ({
         <h4 className={styles.title}>
           {title}
         </h4>
-        <Link
-          className={commonStyles.link}
-          to={link}
-        >
-          {translation('general.learnMore')}
-        </Link>
+        {link && (link.linkDestinationInternal || link.linkDestinationExternal) &&
+          <Link
+            className={commonStyles.link}
+            to={parseLink({ external: link.linkDestinationExternal, internal: link.linkDestinationInternal })}
+          >
+            {translation('general.learnMore')}
+          </Link>
+        }
       </div>
       <Markdown
         className={cx(styles.description, 'hideSm')}

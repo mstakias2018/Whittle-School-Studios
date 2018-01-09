@@ -38,13 +38,13 @@ const ContentPageTemplate = ({
 
   const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
     (schoolIntroTitle && schoolIntroTitle.content);
+  const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
 
   // eventList and campusModule are required, but we check for their existence
   // to avoid breaking the site on new deploysto production
 
   // after these modules are filled in on US - Prod and China - Prod,
   // these checks can be removed
-
   return (
     <PageWrapper>
       <Helmet>
@@ -61,8 +61,10 @@ const ContentPageTemplate = ({
       <Hero
         data={hero}
         eventList={eventList}
-        image={pathContext.imageDataByType &&
-        pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO].image}
+        image={heroImages && heroImages.image}
+        video1AssetCoverPhoto={heroImages && heroImages.video1AssetCoverPhoto}
+        video2AssetCoverPhoto={heroImages && heroImages.video2AssetCoverPhoto}
+        video3AssetCoverPhoto={heroImages && heroImages.video3AssetCoverPhoto}
       />
       {eventList && <PIC
         cityName={eventList.cityName}
@@ -118,6 +120,60 @@ export const pageQuery = graphql`
         }
         countdownTitle
         countdownDate
+        videos {
+          title
+          video1Title
+          video1Link {
+            linkDestinationExternal
+            linkDestinationInternal {
+              slug
+              parentCategory: contentpage {
+                slug
+              }
+            }
+          }
+          video1Description {
+            markdown: video1Description
+          }
+          video1ImageVideoAlt
+          video1VideoEmbedCode {
+            embedCode: video1VideoEmbedCode
+          }
+          video2Title
+          video2Link {
+            linkDestinationExternal
+            linkDestinationInternal {
+              slug
+              parentCategory: contentpage {
+                slug
+              }
+            }
+          }
+          video2Description {
+            markdown: video2Description
+          }
+          video2ImageVideoAlt
+          video2VideoEmbedCode {
+            embedCode: video2VideoEmbedCode
+          }
+          video3Title
+          video3Link {
+            linkDestinationExternal
+            linkDestinationInternal {
+              slug
+              parentCategory: contentpage {
+                slug
+              }
+            }
+          }
+          video3Description {
+            markdown: video3Description
+          }
+          video3ImageVideoAlt
+          video3VideoEmbedCode {
+            embedCode: video3VideoEmbedCode
+          }
+        }
       }
       eventList {
         sectionTitle

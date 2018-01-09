@@ -261,6 +261,19 @@ const EVENTS_LIST = {
   event5TitleLine2: PropTypes.string,
 };
 
+const LINK = PropTypes.shape({
+  parentCategory: PropTypes.arrayOf(PropTypes.shape({
+    slug: PropTypes.string
+  })),
+  slug: PropTypes.string.isRequired,
+});
+
+const FOOTER_LINK = PropTypes.shape({
+  linkDestinationExternal: PropTypes.string,
+  linkDestinationInternal: LINK,
+  linkTitle: PropTypes.string,
+});
+
 const SCHOOLS_INTRO = {
   countdownDate: PropTypes.string.isRequired,
   countdownTitle: PropTypes.string.isRequired,
@@ -269,11 +282,7 @@ const SCHOOLS_INTRO = {
   }),
   image: PropTypes.shape(validateSourcesBySize),
   imageAlt: PropTypes.string.isRequired,
-  link: PropTypes.shape({
-    linkDestinationExternal: PropTypes.string,
-    linkDestinationInternal: PropTypes.string,
-    linkTitle: PropTypes.string,
-  }),
+  link: FOOTER_LINK,
   title: PropTypes.string.isRequired,
 };
 
@@ -291,10 +300,6 @@ const NAV_ITEM_LIST = PropTypes.arrayOf(PropTypes.shape({
   title: PropTypes.string.isRequired,
 }));
 
-const LINK = PropTypes.shape({
-  slug: PropTypes.string.isRequired,
-});
-
 const VIDEO = {
   alt: PropTypes.string.isRequired,
   imageSources: IMAGE_SOURCES,
@@ -303,17 +308,36 @@ const VIDEO = {
 
 const HERO_VIDEO = PropTypes.shape({
   description: MARKDOWN.isRequired,
-  link: PropTypes.string,
+  link: FOOTER_LINK,
   title: PropTypes.string.isRequired,
   ...VIDEO,
 });
 
+const HERO_VIDEOS = PropTypes.shape({
+  title: PropTypes.string,
+  video1AssetCoverPhoto: IMAGE_SOURCES,
+  video1Description: MARKDOWN,
+  video1ImageVideoAlt: PropTypes.string.isRequired,
+  video1Link: FOOTER_LINK,
+  video1Title: PropTypes.string,
+  video1VideoEmbedCode: VIDEO_EMBED_CODE.isRequired,
+  video2AssetCoverPhoto: IMAGE_SOURCES,
+  video2Description: MARKDOWN,
+  video2ImageVideoAlt: PropTypes.string,
+  video2Link: FOOTER_LINK,
+  video2Title: PropTypes.string,
+  video2VideoEmbedCode: VIDEO_EMBED_CODE,
+  video3AssetCoverPhoto: IMAGE_SOURCES,
+  video3Description: MARKDOWN,
+  video3ImageVideoAlt: PropTypes.string,
+  video3Link: FOOTER_LINK,
+  video3Title: PropTypes.string,
+  video3VideoEmbedCode: VIDEO_EMBED_CODE,
+});
+
 const HERO = {
   eventListTitle: PropTypes.string,
-  heroVideos: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    videos: PropTypes.arrayOf(HERO_VIDEO),
-  }),
+  videos: HERO_VIDEOS,
   ...SCHOOLS_INTRO,
 };
 
@@ -355,6 +379,7 @@ exports.PROP_SHAPES = {
   })),
   HERO,
   HERO_VIDEO,
+  HERO_VIDEOS,
   HISTORY: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),

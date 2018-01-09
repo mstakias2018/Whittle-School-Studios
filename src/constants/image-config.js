@@ -28,6 +28,16 @@ const IMAGE_CONFIG = {
     [BREAKPOINTS_NAME.medium]: { colRatio: 6 / 8, heightRatio: RATIO.RECT },
     [BREAKPOINTS_NAME.large]: { colRatio: 8 / 12, heightRatio: RATIO.RECT },
   },
+  [IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO]: {
+    [BREAKPOINTS_NAME.small]: { colRatio: 1, heightRatio: RATIO.RECT },
+    [BREAKPOINTS_NAME.medium]: { colRatio: 1, heightRatio: RATIO.RECT },
+    [BREAKPOINTS_NAME.large]: { colRatio: 6 / 12, heightRatio: RATIO.RECT },
+  },
+  [IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL]: {
+    [BREAKPOINTS_NAME.small]: { colRatio: 2 / 4, heightRatio: RATIO.RECT },
+    [BREAKPOINTS_NAME.medium]: { colRatio: 4 / 8, heightRatio: RATIO.RECT },
+    [BREAKPOINTS_NAME.large]: { colRatio: 2 / 12, heightRatio: RATIO.RECT },
+  },
   [IMAGE_SUBTYPE.INLINE_RT]: {
     [BREAKPOINTS_NAME.small]: { colRatio: 1, heightRatio: RATIO.SQUARE },
     [BREAKPOINTS_NAME.medium]: { colRatio: 6 / 8, heightRatio: RATIO.RECT },

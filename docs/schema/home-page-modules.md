@@ -12,8 +12,9 @@
   description: { type: LongTextField },
   image: { type: ContentfulAsset },
   imageAlt: { type: String },
-  link: { type: Reference<FooterLink> }
+  link: { type: Reference<FooterLink> },
   eventListTitle: { type: String },
+  videos: { type: Reference<Videos> },
 }
 ```
 
@@ -29,6 +30,7 @@
   imageAlt: 'Some image alt',
   link: Reference<FooterLink>,
   eventListTitle: 'Parent Information',
+  videos: Reference<Videos>,
 }
 ```
 
@@ -93,6 +95,49 @@
     event1Description: 'Cursus magna, vel scelerisque nisl consectetur et.',
   },
   event1RegistrationLink: 'http://www.openapply.com/register/123',
+}
+```
+
+## Videos
+
+### Schema
+
+```javascript
+{
+  title: { type: String, isRequired: false },
+  
+  video1Title: { type: String, isRequired: false },
+  video1Link: { type: Reference<FooterLink>, isRequired: false },
+  video1Description: { type: LongTextField, isRequired: false },
+  video1AssetCoverPhoto: { type: ContentfulAsset, isRequired: false },
+  video1ImageVideoAlt: { type: String },
+  
+  video2Title: { type: String, isRequired: false },
+  video2Link: { type: Reference<FooterLink>, isRequired: false },
+  video2Description: { type: LongTextField, isRequired: false },
+  video2AssetCoverPhoto: { type: ContentfulAsset, isRequired: false },
+  video2ImageVideoAlt: { type: String, isRequired: false },
+  
+  video3Title: { type: String, isRequired: false },
+  video3Link: { type: Reference<FooterLink>, isRequired: false },
+  video3Description: { type: LongTextField, isRequired: false },
+  video3AssetCoverPhoto: { type: ContentfulAsset, isRequired: false },
+  video3ImageVideoAlt: { type: String, isRequired: false },
+}
+```
+
+### Example
+
+```javascript
+{
+  title: 'Educational Program',
+  video1Title: 'Global Experiences',
+  video1Link: Reference<FooterLink>,
+  video1Description: {
+      video1Description: 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.',
+    },
+  video1AssetCoverPhoto: CONTENTFUL_ASSET_PROPS,
+  video1ImageVideoAlt: 'Global Experiences',
 }
 ```
 

@@ -37,6 +37,8 @@ exports.IMAGE_TYPE = {
 exports.IMAGE_SUBTYPE = {
   CAROUSEL_SQ: 'carouselSq',
   INLINE_RT: 'inlineRt',
+  INLINE_RT_HERO_VIDEO: 'inlineRtHeroVideo',
+  INLINE_RT_HERO_VIDEO_SMALL: 'inlineRtHeroVideoSmall',
   INLINE_RT_VIDEO: 'inlineRtVideo',
   INLINE_SQ: 'inlineSq',
   INSET_RT: 'insetRt',

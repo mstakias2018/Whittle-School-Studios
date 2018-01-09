@@ -32,6 +32,17 @@ const createHomePages = (graphql, createPage) =>
                     image {
                       ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
                     }
+                    videos {
+                      video1AssetCoverPhoto {
+                        ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO)}
+                      }
+                      video2AssetCoverPhoto {
+                        ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL)}
+                      }
+                      video3AssetCoverPhoto {
+                        ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL)}
+                      }
+                    }
                   }
                   campusModule {
                     image {
@@ -84,6 +95,41 @@ const createHomePages = (graphql, createPage) =>
           imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO] = {};
 
           if (hero.image) {
+            const heroImage = saveImage(
+              hero.image,
+              IMAGE_TYPE.MODULE,
+              IMAGE_SUBTYPE.INLINE_RT,
+              [id, STRUCTURAL_COMPONENTS.HOME_HERO]
+            );
+            if (heroImage) {
+              modulePromises.push(heroImage.then((imageData) => {
+                imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO].image = imageData;
+              }));
+            }
+          }
+
+          if (hero.videos) {
+            [
+              hero.videos.video1AssetCoverPhoto,
+              hero.videos.video2AssetCoverPhoto,
+              hero.videos.video3AssetCoverPhoto,
+            ].forEach((asset, j) => {
+              if (asset) {
+                const videoImage = saveImage(
+                  asset,
+                  IMAGE_TYPE.MODULE,
+                  j === 0 ? IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO : IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL,
+                  [id, STRUCTURAL_COMPONENTS.HOME_HERO]
+                );
+
+                if (videoImage) {
+                  modulePromises.push(videoImage.then((imageData) => {
+                    imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO][`video${j + 1}AssetCoverPhoto`] = imageData;
+                  }));
+                }
+              }
+            });
+
             const heroImage = saveImage(
               hero.image,
               IMAGE_TYPE.MODULE,
