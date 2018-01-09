@@ -33,10 +33,10 @@ class EventsList extends Component {
           <Date date={date} />
         </div>
         <div className={styles.content}>
-          <h3 className={styles.title}>
+          <h2 className={styles.title}>
             <span>{title}</span>
             <span>{title2}</span>
-          </h3>
+          </h2>
           <span className={styles.location}>{location}</span>
           <Markdown
             className={styles.description}
