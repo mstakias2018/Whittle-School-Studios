@@ -59,11 +59,11 @@ const MainMenu = ({
           ))
         }
       </ul>
+      <Locales
+        isSmall
+        localizedSlugList={localizedSlugList}
+      />
     </div>
-    <Locales
-      isSmall
-      localizedSlugList={localizedSlugList}
-    />
   </nav>
 );
 

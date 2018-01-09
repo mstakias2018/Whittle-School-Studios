@@ -21,20 +21,24 @@
   }
 
   &:not(.menu_isVisible) {
-    @media (--bp-sm-and-md-only) {
-      display: none;
+    .menuItemsContainer {
+      @media (--bp-sm-and-md-only) {
+        display: none;
+      }
     }
   }
 
   &.menu_isVisible {
-    display: block;
+    .menuItemsContainer {
+      display: block;
 
-    @media (--bp-sm-only) {
-      margin-top: 37px;
-    }
+      @media (--bp-sm-only) {
+        margin-top: 37px;
+      }
 
-    @media (--bp-md) {
-      margin-top: 54px;
+      @media (--bp-md) {
+        margin-top: 54px;
+      }
     }
   }
 }
