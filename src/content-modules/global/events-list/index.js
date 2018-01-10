@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Link from '../../../components/global/link';
 import Date from '../../../components/global/date';
 import Markdown from '../../../components/global/markdown';
+import { sortEventDates } from '../../../utils/global';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 
@@ -57,7 +58,7 @@ class EventsList extends Component {
     return (
       <div className={styles.wrapper}>
         <ul className={styles.list}>
-          {[...Array(5)].fill(0).map((_, index) => this.props[`event${index + 1}Date`] && this.createItem(index + 1))}
+          {sortEventDates(this.props, 5).map(item => this.createItem(item.number))}
         </ul>
       </div>
     );
