@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Link from '../../../components/global/link';
 import Date from '../../../components/global/date';
-import Markdown from '../../../components/global/markdown';
+import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 import { sortEventDates } from '../../../utils/global';
 
 import { PROP_TYPES } from '../../../constants/custom-property-types';
@@ -40,6 +40,7 @@ class EventsList extends Component {
           </h2>
           <span className={styles.location}>{location}</span>
           <Markdown
+            allowedTypes={ALLOWED_TYPES.SHORT_TEXT}
             className={styles.description}
             source={description}
           />
