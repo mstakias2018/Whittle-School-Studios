@@ -5,9 +5,9 @@ import NotFound from '../components/structural/not-found';
 
 const PAGE_NOT_FOUND = {
   text: {
-    markdown: 'Unfortunately this link doesnt exsist, please check your url or return to the homepage.',
+    markdown: '不幸的是，这个链接不存在，请检查您的网址或返回主页。',
   },
-  title: 'Sorry, page not found.',
+  title: '对不起，页面未找到。',
 };
 
 const NotFoundPage = () => (
