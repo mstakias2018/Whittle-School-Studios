@@ -30,7 +30,7 @@ class OpeningCountdown extends React.Component {
     clearInterval(this.countdownInterval);
   }
 
-  getCountdown = () => this.countdown(moment(), moment(this.props.date).add(8, 'hours'));
+  getCountdown = () => this.countdown(moment(), moment.utc(this.props.date).tz(moment.tz.guess()));
 
   countdown = (dateNow, eventDate) => {
     const countdown = {};
