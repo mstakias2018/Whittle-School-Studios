@@ -213,6 +213,9 @@ export const pageQuery = graphql`
             markdown: description
           }
           scriptUrl
+          scriptTags {
+            scriptTags
+          }
         }
         ... on ContentfulQuote {
           quoteType

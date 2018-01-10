@@ -6,12 +6,15 @@ import cx from 'classnames';
 import Markdown from '../../../components/global/markdown';
 import styles from './openapply-iframe.module.css';
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { LANGUAGE_PATH } from '../../../constants/regions';
 
 import loadingSpinner from '../../../assets/images/loading-spinner.svg';
 
 const propTypes = {
   description: PROP_SHAPES.MARKDOWN.isRequired,
-  scriptUrl: PropTypes.string.isRequired,
+  scriptTags: PropTypes.shape({
+    scriptTags: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 class OpenApplyIFrame extends Component {
@@ -54,15 +57,55 @@ class OpenApplyIFrame extends Component {
     });
   }
 
+  getUrlLang = (url) => {
+    const vars = url.split('&');
+
+    for (let i = 0; i < vars.length; i += 1) {
+      const pair = vars[i].split('=');
+
+      if (pair[0] === 'lang') {
+        return pair[1].split('-')[0];
+      }
+    }
+
+    return false;
+  }
+
+  getSourceUrl = () => {
+    const { scriptTags: { scriptTags: scriptTagsString } } = this.props;
+    const { language } = this.context;
+
+    const regex = /<script[^>]+src='?([^"\s]+)"?\s*'><\/script>/g;
+
+    let scriptLangUrl;
+    let defaultUrl;
+    let match = regex.exec(scriptTagsString);
+    while (match) {
+      const source = match[1];
+      const scriptLanguage = this.getUrlLang(source);
+
+      if (scriptLanguage === LANGUAGE_PATH[language]) {
+        scriptLangUrl = source;
+      }
+
+      if (!scriptLanguage) {
+        defaultUrl = source;
+      }
+      match = regex.exec(scriptTagsString);
+    }
+
+    return scriptLangUrl || defaultUrl;
+  }
+
   render() {
-    const { description, scriptUrl } = this.props;
+    const { description } = this.props;
 
     return (
       <div className={styles.wrapper}>
         <Helmet
           script={
             this.state.hasMounted && [{
-              src: scriptUrl,
+              src: this.getSourceUrl(),
               type: 'text/javascript',
             }]
           }
@@ -97,5 +140,8 @@ class OpenApplyIFrame extends Component {
 }
 
 OpenApplyIFrame.propTypes = propTypes;
+OpenApplyIFrame.contextTypes = {
+  language: PROP_SHAPES.LANGUAGE.isRequired,
+};
 
 export default OpenApplyIFrame;
