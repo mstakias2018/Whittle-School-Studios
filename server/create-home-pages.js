@@ -52,6 +52,31 @@ const createHomePages = (graphql, createPage) =>
                       ${createQuery(IMAGE_SUBTYPE.INLINE_SQ)}
                     }
                   }
+                  teamsModule {
+                    heroImage {
+                      ${createQuery(IMAGE_SUBTYPE.TEAMS_HERO_SQ)}
+                    }
+                    sections {
+                      person1Image {
+                        ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+                      }
+                      person2Image {
+                        ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+                      }
+                      person3Image {
+                        ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+                      }
+                      person4Image {
+                        ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+                      }
+                      person5Image {
+                        ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+                      }
+                      person6Image {
+                        ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -89,7 +114,9 @@ const createHomePages = (graphql, createPage) =>
           return false;
         });
 
-        const { id, campusModule, hero } = homepage;
+        const {
+          id, campusModule, teamsModule, hero
+        } = homepage;
 
         if (hero) {
           imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO] = {};
@@ -172,6 +199,42 @@ const createHomePages = (graphql, createPage) =>
               modulePromises.push(architectImage.then((imageData) => {
                 imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage = imageData;
               }));
+            }
+          }
+        }
+
+        if (teamsModule) {
+          imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS] = {};
+          if (teamsModule.heroImage) {
+            const heroImage = saveImage(
+              teamsModule.heroImage,
+              IMAGE_TYPE.MODULE,
+              IMAGE_SUBTYPE.TEAMS_HERO_SQ,
+              [id, STRUCTURAL_COMPONENTS.HOME_TEAMS]
+            );
+            if (heroImage) {
+              modulePromises.push(heroImage.then((imageData) => {
+                imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS].heroImage = imageData;
+              }));
+            }
+          }
+          if (teamsModule.sections) {
+            for (let i = 0; i < 5; i += 1) {
+              if (teamsModule.sections[i]) {
+                for (let j = 1; j <= 6; j += 1) {
+                  if (teamsModule.sections[i][`person${j}Image`]) {
+                    const personImage = saveImage(
+                      teamsModule.sections[i][`person${j}Image`],
+                      IMAGE_TYPE.MODULE,
+                      IMAGE_SUBTYPE.TEAMS_BIO_SQ,
+                      [id, STRUCTURAL_COMPONENTS.HOME_TEAMS]
+                    );
+                    modulePromises.push(personImage.then((imageData) => {
+                      imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS][`personImage${i}${j}`] = imageData;
+                    }));
+                  }
+                }
+              }
             }
           }
         }

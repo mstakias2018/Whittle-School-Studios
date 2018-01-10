@@ -66,6 +66,7 @@ exports.CONTENT_MODULE = {
   POST: 'ContentfulPost',
   QUOTE: 'ContentfulQuote',
   SECTION_TITLE: 'ContentfulSectionTitle',
+  TEAMS: 'ContentfulTeams',
   THREE_UP_BREAKER: 'ContentfulThreeUpBreaker',
   THUMBNAIL_LIST: 'ContentfulThumbnailList',
 };
@@ -73,4 +74,5 @@ exports.CONTENT_MODULE = {
 exports.STRUCTURAL_COMPONENTS = {
   HOME_CAMPUSES: 'ContentfulCampuses',
   HOME_HERO: 'ContentfulHero',
+  HOME_TEAMS: 'ContentfulTeams'
 };

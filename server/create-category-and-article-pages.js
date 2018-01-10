@@ -89,6 +89,31 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
               ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
             }
           }
+          ... on ContentfulTeams {
+            heroImage {
+              ${createQuery(IMAGE_SUBTYPE.TEAMS_HERO_SQ)}
+            }
+            sections {
+              person1Image {
+                ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+              }
+              person2Image {
+                ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+              }
+              person3Image {
+                ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+              }
+              person4Image {
+                ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+              }
+              person5Image {
+                ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+              }
+              person6Image {
+                ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
+              }
+            }
+          }
         }
       `;
 
@@ -215,6 +240,26 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                   ].map((asset, j) => (asset ?
                     saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INSET_RT, [id, i, j]) :
                     {})));
+                case CONTENT_MODULE.TEAMS:
+                  return Promise.all([
+                    module.heroImage,
+                    module.sections,
+                  ].map((asset, j) => (
+                    j === 0 ?
+                      saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.TEAMS_HERO_SQ, [id, i, j]) :
+                      asset.map(subAsset => (
+                        [
+                          subAsset.person1Image,
+                          subAsset.person2Image,
+                          subAsset.person3Image,
+                          subAsset.person4Image,
+                          subAsset.person5Image,
+                          subAsset.person6Image,
+                        ].map(image => (
+                          saveImage(image, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.TEAMS_BIO_SQ, [id, i, j])
+                        ))
+                      ))
+                  )));
                 default:
                   return {};
               }

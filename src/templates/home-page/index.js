@@ -7,6 +7,7 @@ import PIC from '../../content-modules/global/pic';
 import PageWrapper from '../../components/structural/page-wrapper';
 import HomeCampuses from '../../components/structural/home-campuses';
 import Hero from '../../content-modules/global/hero';
+import HomeTeams from '../../components/structural/home-teams';
 
 import { PAGE_TYPE } from '../../constants/settings';
 import { PROP_SHAPES } from '../../constants/custom-property-types';
@@ -19,7 +20,7 @@ const propTypes = {
   pathContext: PropTypes.shape({
     id: PropTypes.string.isRequired,
     imageDataByType: PROP_SHAPES.IMAGE_DATA_BY_TYPE.isRequired,
-  }).isRequired,
+  }),
 };
 
 const ContentPageTemplate = ({
@@ -34,6 +35,7 @@ const ContentPageTemplate = ({
     schoolIntroTitle,
     seoMetaDescription,
     seoMetaTitle,
+    teamsModule,
   } = homePageData;
 
   const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
@@ -78,6 +80,10 @@ const ContentPageTemplate = ({
           pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage}
         imageSources={pathContext.imageDataByType &&
           pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image}
+      />}
+      {teamsModule && <HomeTeams
+        data={teamsModule}
+        pathContext={pathContext}
       />}
     </PageWrapper>
   );
@@ -239,6 +245,76 @@ export const pageQuery = graphql`
         }
         linkText: linkTitle
         sectionTitle
+      }
+      teamsModule {
+        sectionTitleText: sectionTitle
+        heroImageAlt
+        heroName
+        heroTitle
+        heroDescription {
+          markdown: heroDescription
+        }
+        heroLinkTarget: heroLinkDestination {
+          slug
+          parentCategory: contentpage {
+            slug
+          }
+        }
+        statistic1Number1
+        statistic1Number2
+        statistic1TextLineBottom
+        statistic1TextLineTop
+        statistic1Type
+        statistic2Number1
+        statistic2Number2
+        statistic2TextLineBottom
+        statistic2TextLineTop
+        statistic2Type
+        sections {
+          sectionTitle
+          sectionLinkDestination {
+            slug
+            parentCategory: contentpage {
+              slug
+            }
+          }
+          person1ImageAlt
+          person1Name
+          person1Title
+          person1Description {
+            markdown: person1Description
+          }
+          person2ImageAlt
+          person2Name
+          person2Title
+          person2Description {
+            markdown: person2Description
+          }
+          person3ImageAlt
+          person3Name
+          person3Title
+          person3Description {
+            markdown: person3Description
+          }
+          person4ImageAlt
+          person4Name
+          person4Title
+          person4Description {
+            markdown: person4Description
+          }
+          person5ImageAlt
+          person5Name
+          person5Title
+          person5Description {
+            markdown: person5Description
+          }
+          person6ImageAlt
+          person6Name
+          person6Title
+          person6Description {
+            markdown: person6Description
+          }
+        }
       }
     }
   }

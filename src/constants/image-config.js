@@ -58,6 +58,16 @@ const IMAGE_CONFIG = {
     [BREAKPOINTS_NAME.medium]: { colRatio: 3 / 8, heightRatio: RATIO.RECT },
     [BREAKPOINTS_NAME.large]: { colRatio: 3 / 12, heightRatio: RATIO.RECT },
   },
+  [IMAGE_SUBTYPE.TEAMS_HERO_SQ]: {
+    [BREAKPOINTS_NAME.small]: { colRatio: 3 / 4, heightRatio: RATIO.SQUARE },
+    [BREAKPOINTS_NAME.medium]: { colRatio: 3 / 8, heightRatio: RATIO.SQUARE },
+    [BREAKPOINTS_NAME.large]: { colRatio: 3 / 12, heightRatio: RATIO.SQUARE },
+  },
+  [IMAGE_SUBTYPE.TEAMS_BIO_SQ]: {
+    [BREAKPOINTS_NAME.small]: { colRatio: 2 / 4, heightRatio: RATIO.SQUARE },
+    [BREAKPOINTS_NAME.medium]: { colRatio: 3 / 8, heightRatio: RATIO.SQUARE },
+    [BREAKPOINTS_NAME.large]: { colRatio: 2 / 12, heightRatio: RATIO.SQUARE },
+  },
 };
 
 module.exports = calcDimensions(IMAGE_CONFIG);

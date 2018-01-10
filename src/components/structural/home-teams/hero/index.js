@@ -2,14 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Link from '../../../global/link';
+import Picture from '../../../global/picture';
+import Markdown, { ALLOWED_TYPES } from '../../../global/markdown';
+import { PROP_SHAPES } from '../../../../constants/custom-property-types';
+import { createContentPageLink } from '../../../../utils/global';
 
 import styles from './hero.module.css';
 
 const propTypes = {
-  heroDescription: PropTypes.string.isRequired,
-  heroImage: PropTypes.string.isRequired,
+  heroDescription: PROP_SHAPES.MARKDOWN.isRequired,
+  heroImage: PROP_SHAPES.IMAGE_SOURCES.isRequired,
   heroImageAlt: PropTypes.string,
-  heroLinkTarget: PropTypes.string.isRequired,
+  heroLinkTarget: PROP_SHAPES.LINK.isRequired,
   heroName: PropTypes.string.isRequired,
   heroTitle: PropTypes.string,
 };
@@ -28,11 +32,11 @@ const TeamsHero = (props, context) => {
   return (
     <li className={styles.wrapper}>
       <div className={styles.heroImageWrapper}>
-        <img
+        {heroImage && <Picture
           alt={heroImageAlt}
           className={styles.heroImage}
-          src={heroImage}
-        />
+          sourcesBySize={heroImage}
+        />}
       </div>
       <div className={styles.heroContent}>
         <div className={styles.heroContentInner}>
@@ -42,14 +46,16 @@ const TeamsHero = (props, context) => {
           <div className={styles.heroContentTitle}>
             {heroTitle}
           </div>
-          <div className={styles.heroContentBio}>
-            {heroDescription}
-          </div>
+          <Markdown
+            allowedTypes={ALLOWED_TYPES.SHORT_TEXT}
+            className={styles.heroContentBio}
+            source={heroDescription.markdown}
+          />
           {heroLinkTarget && (
             <div className={styles.heroLinkWrapper}>
               <Link
                 className={styles.heroLink}
-                to={heroLinkTarget}
+                to={createContentPageLink(heroLinkTarget)}
               >
                 {translation('teams.heroLinkText')}
               </Link>

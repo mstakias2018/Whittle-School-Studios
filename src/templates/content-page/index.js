@@ -42,7 +42,6 @@ class ContentPageTemplate extends React.Component {
       data: { localizedSlugData, currentPageData },
       pathContext: { id, imageDataByType },
     } = this.props;
-
     const {
       hasShareButtons,
       headline,
@@ -354,6 +353,76 @@ export const pageQuery = graphql`
             embedCode: item6VideoEmbedCode,
           },
           title
+        }
+        ... on ContentfulTeams {
+          sectionTitleText: sectionTitle
+          heroImageAlt
+          heroName
+          heroTitle
+          heroDescription {
+            markdown: heroDescription
+          }
+          heroLinkTarget: heroLinkDestination {
+            slug
+            parentCategory: contentpage {
+              slug
+            }
+          }
+          statistic1Number1
+          statistic1Number2
+          statistic1TextLineBottom
+          statistic1TextLineTop
+          statistic1Type
+          statistic2Number1
+          statistic2Number2
+          statistic2TextLineBottom
+          statistic2TextLineTop
+          statistic2Type
+          sections {
+            sectionTitle
+            sectionLinkDestination {
+              slug
+              parentCategory: contentpage {
+                slug
+              }
+            }
+            person1ImageAlt
+            person1Name
+            person1Title
+            person1Description {
+              markdown: person1Description
+            }
+            person2ImageAlt
+            person2Name
+            person2Title
+            person2Description {
+              markdown: person2Description
+            }
+            person3ImageAlt
+            person3Name
+            person3Title
+            person3Description {
+              markdown: person3Description
+            }
+            person4ImageAlt
+            person4Name
+            person4Title
+            person4Description {
+              markdown: person4Description
+            }
+            person5ImageAlt
+            person5Name
+            person5Title
+            person5Description {
+              markdown: person5Description
+            }
+            person6ImageAlt
+            person6Name
+            person6Title
+            person6Description {
+              markdown: person6Description
+            }
+          }
         }
       }
     }

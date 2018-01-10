@@ -38,8 +38,9 @@
 }
 
 .heroImage {
-  border: 1px solid transparent;
-  border-radius: 50%;
+  img {
+    border-radius: 50%;
+  }
 }
 
 .heroContent {

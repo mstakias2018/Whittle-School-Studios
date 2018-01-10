@@ -8,12 +8,13 @@ import styles from './section.module.css';
 import TeamsBio, { bioPropType } from '../bio';
 import Statistic, { statisticPropTypes } from '../statistic';
 import Link from '../../../global/link';
+import { createContentPageLink } from '../../../../utils/global';
 
 import { BREAKPOINTS_NAME } from '../../../../constants/breakpoints';
-import { PROP_TYPES } from '../../../../constants/custom-property-types';
+import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 
 const teamSectionPropTypes = {
-  breakpoint: PROP_TYPES.BREAKPOINT,
+  breakpoint: PROP_SHAPES.BREAKPOINT,
   firstBio: PropTypes.bool,
   numOfBiosInFirst: PropTypes.number,
   secondBio: PropTypes.bool,
@@ -25,7 +26,7 @@ const teamSectionPropTypes = {
   teamBio4: PropTypes.shape(bioPropType),
   teamBio5: PropTypes.shape(bioPropType),
   teamBio6: PropTypes.shape(bioPropType),
-  teamLinkTarget: PropTypes.string.isRequired,
+  teamLinkTarget: PROP_SHAPES.LINK.isRequired,
   teamSectionTitle: PropTypes.string.isRequired,
 };
 
@@ -80,7 +81,7 @@ class TeamsSection extends Component {
         <div className={styles.linkWrapper}>
           <Link
             className={styles.link}
-            to={this.props.teamLinkTarget}
+            to={createContentPageLink(this.props.teamLinkTarget)}
           >
             {translation('teams.teamLinkText')}
           </Link>

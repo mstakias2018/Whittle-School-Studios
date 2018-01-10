@@ -1,145 +1,213 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import HomeSectionTitle from '../home-section-title';
 
 import TeamsHero from './hero';
-import TeamsSection, { teamSectionPropTypes } from './section';
-import { statisticPropTypes } from './statistic';
+import TeamsSection from './section';
 
 import styles from './home-teams.module.css';
 
 import { HOME_SECTION_TITLE_COLOR, HOME_SECTION_TITLE_POSITION } from '../../../constants/settings';
 
+import { STRUCTURAL_COMPONENTS } from '../../../constants/contentful';
+
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
+
 const propTypes = {
-  heroDescription: PropTypes.string.isRequired,
-  heroImage: PropTypes.string.isRequired,
-  heroImageAlt: PropTypes.string,
-  heroLinkTarget: PropTypes.string.isRequired,
-  heroName: PropTypes.string.isRequired,
-  heroTitle: PropTypes.string,
-  sectionTitleText: PropTypes.string.isRequired,
-  statistic1: PropTypes.shape(statisticPropTypes),
-  statistic2: PropTypes.shape(statisticPropTypes),
-  teamSection1: PropTypes.shape(teamSectionPropTypes),
-  teamSection2: PropTypes.shape(teamSectionPropTypes),
-  teamSection3: PropTypes.shape(teamSectionPropTypes),
-  teamSection4: PropTypes.shape(teamSectionPropTypes),
-  teamSection5: PropTypes.shape(teamSectionPropTypes),
+  data: PropTypes.shape({
+    heroDescription: PROP_SHAPES.MARKDOWN.isRequired,
+    heroImageAlt: PropTypes.string,
+    heroLinkTarget: PROP_SHAPES.LINK.isRequired,
+    heroName: PropTypes.string.isRequired,
+    heroTitle: PropTypes.string,
+    sections: PropTypes.arrayOf(PropTypes.shape({
+      person1Description: PROP_SHAPES.MARKDOWN.isRequired,
+      person1ImageAlt: PropTypes.string,
+      person1Name: PropTypes.string.isRequired,
+      person1Title: PropTypes.string.isRequired,
+      person2Description: PROP_SHAPES.MARKDOWN.isRequired,
+      person2ImageAlt: PropTypes.string,
+      person2Name: PropTypes.string.isRequired,
+      person2Title: PropTypes.string.isRequired,
+      person3Description: PROP_SHAPES.MARKDOWN.isRequired,
+      person3ImageAlt: PropTypes.string,
+      person3Name: PropTypes.string.isRequired,
+      person3Title: PropTypes.string.isRequired,
+      person4Description: PROP_SHAPES.MARKDOWN,
+      person4ImageAlt: PropTypes.string,
+      person4Name: PropTypes.string,
+      person4Title: PropTypes.string,
+      person5Description: PROP_SHAPES.MARKDOWN,
+      person5ImageAlt: PropTypes.string,
+      person5Name: PropTypes.string,
+      person5Title: PropTypes.string,
+      person6Description: PROP_SHAPES.MARKDOWN,
+      person6ImageAlt: PropTypes.string,
+      person6Name: PropTypes.string,
+      person6Title: PropTypes.string,
+      sectionLinkDestination: PROP_SHAPES.LINK.isRequired,
+      sectionTitle: PropTypes.string.isRequired,
+    })),
+    sectionTitleText: PropTypes.string.isRequired,
+    statistic1Number1: PropTypes.number,
+    statistic1Number2: PropTypes.number,
+    statistic1TextLineBottom: PropTypes.string,
+    statistic1TextLineTop: PropTypes.string,
+    statistic1Type: PropTypes.string,
+    statistic2Number1: PropTypes.number,
+    statistic2Number2: PropTypes.number,
+    statistic2TextLineBottom: PropTypes.string,
+    statistic2TextLineTop: PropTypes.string,
+    statistic2Type: PropTypes.string,
+  }).isRequired,
+  isOnContentPage: PropTypes.bool,
+  pathContext: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
 
-const getNumOfnumOfBiosInFirst = (teamSection) => {
+const getNumOfnumOfBiosInFirst = (section) => {
   let toRet = 0;
 
   for (let i = 0; i < 6; i += 1) {
-    toRet += teamSection[`teamBio${i}`] ? 1 : 0;
+    toRet += section[`person${i}Name`] ? 1 : 0;
   }
 
   return toRet;
 };
 
+const setSingleBio = (data, isOnContentPage, pathContext, sectionNumber, bioNumber) => {
+  if (!data.sections[sectionNumber - 1][`person${bioNumber}Name`]) {
+    return null;
+  }
+  return {
+    bioDescription: data.sections[sectionNumber - 1][`person${bioNumber}Description`],
+    bioImage: isOnContentPage ?
+      pathContext && pathContext[1] && pathContext[1][sectionNumber - 1][bioNumber - 1].fulfillmentValue :
+      pathContext && pathContext.imageDataByType &&
+      pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS][`personImage${sectionNumber - 1}${bioNumber}`],
+    bioImageAlt: data.sections[sectionNumber - 1][`person${bioNumber}ImageAlt`],
+    bioName: data.sections[sectionNumber - 1][`person${bioNumber}Name`],
+    bioTitle: data.sections[sectionNumber - 1][`person${bioNumber}Title`]
+  };
+};
+
 const HomeTeams = ({
-  sectionTitleText,
-  heroDescription,
-  heroImage,
-  heroImageAlt,
-  heroLinkTarget,
-  heroName,
-  heroTitle,
-  statistic1,
-  statistic2,
-  teamSection1,
-  teamSection2,
-  teamSection3,
-  teamSection4,
-  teamSection5,
-}) => (
-  <div className={styles.wideWrapper}>
-    <div className={styles.wrapper}>
-      <HomeSectionTitle
-        color={HOME_SECTION_TITLE_COLOR.GRAY}
-        isBreakingTop
-        position={HOME_SECTION_TITLE_POSITION.LEFT}
-        text={sectionTitleText}
-      />
-      <ul className={styles.content}>
-        <TeamsHero
-          heroDescription={heroDescription}
-          heroImage={heroImage}
-          heroImageAlt={heroImageAlt}
-          heroLinkTarget={heroLinkTarget}
-          heroName={heroName}
-          heroTitle={heroTitle}
-        />
-        <TeamsSection
-          firstBio
-          numOfBiosInFirst={getNumOfnumOfBiosInFirst(teamSection1)}
-          statistic1={statistic1}
-          statistic2={statistic2}
-          teamBio1={teamSection1.teamBio1}
-          teamBio2={teamSection1.teamBio2}
-          teamBio3={teamSection1.teamBio3}
-          teamBio4={teamSection1.teamBio4}
-          teamBio5={teamSection1.teamBio5}
-          teamBio6={teamSection1.teamBio6}
-          teamLinkTarget={teamSection1.teamLinkTarget}
-          teamSectionTitle={teamSection1.teamSectionTitle}
-        />
-        {teamSection2 &&
+  data,
+  isOnContentPage,
+  pathContext
+}) => {
+  const statistic1 = {
+    number1: data.statistic1Number1,
+    number2: data.statistic1Number2,
+    textLineBottom: data.statistic1TextLineBottom,
+    textLineTop: data.statistic1TextLineTop,
+    type: data.statistic1Type
+  };
+
+  const statistic2 = {
+    number1: data.statistic2Number1,
+    number2: data.statistic2Number2,
+    textLineBottom: data.statistic2TextLineBottom,
+    textLineTop: data.statistic2TextLineTop,
+    type: data.statistic2Type
+  };
+
+  return (
+    <div className={cx(
+        styles.wideWrapper,
+        { [styles.wrapper_hasTopPadding]: isOnContentPage }
+      )}
+    >
+      <div className={styles.wrapper}>
+        {!isOnContentPage && <HomeSectionTitle
+          color={HOME_SECTION_TITLE_COLOR.GRAY}
+          isBreakingTop
+          position={HOME_SECTION_TITLE_POSITION.LEFT}
+          text={data.sectionTitleText}
+        />}
+        <ul className={styles.content}>
+          <TeamsHero
+            heroDescription={data.heroDescription}
+            heroImage={isOnContentPage ?
+              pathContext && pathContext[0] :
+              pathContext && pathContext.imageDataByType &&
+              pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS].heroImage}
+            heroImageAlt={data.heroImageAlt}
+            heroLinkTarget={data.heroLinkTarget}
+            heroName={data.heroName}
+            heroTitle={data.heroTitle}
+          />
           <TeamsSection
-            numOfBiosInFirst={getNumOfnumOfBiosInFirst(teamSection1)}
-            secondBio
+            firstBio
+            numOfBiosInFirst={getNumOfnumOfBiosInFirst(data.sections[0])}
+            statistic1={statistic1}
             statistic2={statistic2}
-            teamBio1={teamSection2.teamBio1}
-            teamBio2={teamSection2.teamBio2}
-            teamBio3={teamSection2.teamBio3}
-            teamBio4={teamSection2.teamBio4}
-            teamBio5={teamSection2.teamBio5}
-            teamBio6={teamSection2.teamBio6}
-            teamLinkTarget={teamSection2.teamLinkTarget}
-            teamSectionTitle={teamSection1.teamSectionTitle}
+            teamBio1={setSingleBio(data, isOnContentPage, pathContext, 1, 1)}
+            teamBio2={setSingleBio(data, isOnContentPage, pathContext, 1, 2)}
+            teamBio3={setSingleBio(data, isOnContentPage, pathContext, 1, 3)}
+            teamBio4={setSingleBio(data, isOnContentPage, pathContext, 1, 4)}
+            teamBio5={setSingleBio(data, isOnContentPage, pathContext, 1, 5)}
+            teamBio6={setSingleBio(data, isOnContentPage, pathContext, 1, 6)}
+            teamLinkTarget={data.sections[0].sectionLinkDestination}
+            teamSectionTitle={data.sections[0].sectionTitle}
           />
-        }
-        {teamSection3 &&
-          <TeamsSection
-            teamBio1={teamSection3.teamBio1}
-            teamBio2={teamSection3.teamBio2}
-            teamBio3={teamSection3.teamBio3}
-            teamBio4={teamSection3.teamBio4}
-            teamBio5={teamSection3.teamBio5}
-            teamBio6={teamSection3.teamBio6}
-            teamLinkTarget={teamSection3.teamLinkTarget}
-            teamSectionTitle={teamSection3.teamSectionTitle}
-          />
-        }
-        {teamSection4 &&
-          <TeamsSection
-            teamBio1={teamSection4.teamBio1}
-            teamBio2={teamSection4.teamBio2}
-            teamBio3={teamSection4.teamBio3}
-            teamBio4={teamSection4.teamBio4}
-            teamBio5={teamSection4.teamBio5}
-            teamBio6={teamSection4.teamBio6}
-            teamLinkTarget={teamSection4.teamLinkTarget}
-            teamSectionTitle={teamSection4.teamSectionTitle}
-          />
-        }
-        {teamSection5 &&
-          <TeamsSection
-            teamBio1={teamSection5.teamBio1}
-            teamBio2={teamSection5.teamBio2}
-            teamBio3={teamSection5.teamBio3}
-            teamBio4={teamSection5.teamBio4}
-            teamBio5={teamSection5.teamBio5}
-            teamBio6={teamSection5.teamBio6}
-            teamLinkTarget={teamSection5.teamLinkTarget}
-            teamSectionTitle={teamSection5.teamSectionTitle}
-          />
-        }
-      </ul>
+          {data.sections[1] &&
+            <TeamsSection
+              numOfBiosInFirst={getNumOfnumOfBiosInFirst(data.sections[0])}
+              secondBio
+              statistic2={statistic2}
+              teamBio1={setSingleBio(data, isOnContentPage, pathContext, 2, 1)}
+              teamBio2={setSingleBio(data, isOnContentPage, pathContext, 2, 2)}
+              teamBio3={setSingleBio(data, isOnContentPage, pathContext, 2, 3)}
+              teamBio4={setSingleBio(data, isOnContentPage, pathContext, 2, 4)}
+              teamBio5={setSingleBio(data, isOnContentPage, pathContext, 2, 5)}
+              teamBio6={setSingleBio(data, isOnContentPage, pathContext, 2, 6)}
+              teamLinkTarget={data.sections[1].sectionLinkDestination}
+              teamSectionTitle={data.sections[1].sectionTitle}
+            />
+          }
+          {data.sections[2] &&
+            <TeamsSection
+              teamBio1={setSingleBio(data, isOnContentPage, pathContext, 3, 1)}
+              teamBio2={setSingleBio(data, isOnContentPage, pathContext, 3, 2)}
+              teamBio3={setSingleBio(data, isOnContentPage, pathContext, 3, 3)}
+              teamBio4={setSingleBio(data, isOnContentPage, pathContext, 3, 4)}
+              teamBio5={setSingleBio(data, isOnContentPage, pathContext, 3, 5)}
+              teamBio6={setSingleBio(data, isOnContentPage, pathContext, 3, 6)}
+              teamLinkTarget={data.sections[2].sectionLinkDestination}
+              teamSectionTitle={data.sections[2].sectionTitle}
+            />
+          }
+          {data.sections[3] &&
+            <TeamsSection
+              teamBio1={setSingleBio(data, isOnContentPage, pathContext, 4, 1)}
+              teamBio2={setSingleBio(data, isOnContentPage, pathContext, 4, 2)}
+              teamBio3={setSingleBio(data, isOnContentPage, pathContext, 4, 3)}
+              teamBio4={setSingleBio(data, isOnContentPage, pathContext, 4, 4)}
+              teamBio5={setSingleBio(data, isOnContentPage, pathContext, 4, 5)}
+              teamBio6={setSingleBio(data, isOnContentPage, pathContext, 4, 6)}
+              teamLinkTarget={data.sections[3].sectionLinkDestination}
+              teamSectionTitle={data.sections[3].sectionTitle}
+            />
+          }
+          {data.sections[4] &&
+            <TeamsSection
+              teamBio1={setSingleBio(data, isOnContentPage, pathContext, 5, 1)}
+              teamBio2={setSingleBio(data, isOnContentPage, pathContext, 5, 2)}
+              teamBio3={setSingleBio(data, isOnContentPage, pathContext, 5, 3)}
+              teamBio4={setSingleBio(data, isOnContentPage, pathContext, 5, 4)}
+              teamBio5={setSingleBio(data, isOnContentPage, pathContext, 5, 5)}
+              teamBio6={setSingleBio(data, isOnContentPage, pathContext, 5, 6)}
+              teamLinkTarget={data.sections[4].sectionLinkDestination}
+              teamSectionTitle={data.sections[4].sectionTitle}
+            />
+          }
+        </ul>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 HomeTeams.propTypes = propTypes;
 

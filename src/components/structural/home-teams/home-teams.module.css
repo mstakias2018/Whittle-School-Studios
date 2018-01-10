@@ -6,6 +6,12 @@
   background-color: var(--color-background-light-green-gray);
 }
 
+.wrapper_hasTopPadding {
+  @media (--bp-sm-only) {
+    padding-top: 30px;
+  }
+}
+
 .wrapper {
   @mixin component-container;
 }

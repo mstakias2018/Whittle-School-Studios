@@ -11,6 +11,7 @@ import Quote from './global/quote';
 import SectionTitle from './global/section-title';
 import ThreeUpBreaker from './global/three-up-breaker';
 import ThumbnailsList from './global/thumbnails-list';
+import HomeTeams from '../components/structural/home-teams';
 
 import { PROP_SHAPES } from '../constants/custom-property-types';
 import { CONTENT_MODULE } from '../constants/contentful';
@@ -27,6 +28,7 @@ const MODULE_MAP = {
   [CONTENT_MODULE.SECTION_TITLE]: SectionTitle,
   [CONTENT_MODULE.THREE_UP_BREAKER]: ThreeUpBreaker,
   [CONTENT_MODULE.THUMBNAIL_LIST]: ThumbnailsList,
+  [CONTENT_MODULE.TEAMS]: HomeTeams,
 };
 
 const propTypes = {
@@ -40,12 +42,22 @@ const propTypes = {
 const ContentModules = ({ moduleImageData, modules }) =>
   modules.map(({ __typename: type, ...props }, i) => {
     const Component = MODULE_MAP[type];
-    return Component && (
-      <Component
-        imageSources={moduleImageData && moduleImageData[i]}
-        isFirstModule={i === 0}
+    if (type !== CONTENT_MODULE.TEAMS) {
+      return Component && (
+        <Component
+          imageSources={moduleImageData && moduleImageData[i]}
+          isFirstModule={i === 0}
+          key={i}
+          {...props}
+        />
+      );
+    }
+    return (
+      <HomeTeams
+        data={props}
+        isOnContentPage
         key={i}
-        {...props}
+        pathContext={moduleImageData && moduleImageData[i]}
       />
     );
   });

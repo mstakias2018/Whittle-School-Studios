@@ -80,17 +80,18 @@
 }
 
 .image {
-  border: 1px solid transparent;
-  border-radius: 50%;
   box-sizing: content-box;
-  height: 80px;
   padding-bottom: 8px;
-  width: 80px;
+  width: 100%;
 
   @media (--bp-sm-only) {
-    height: 60px;
     padding-bottom: 13px;
     width: 60px;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 100%;
   }
 }
 
