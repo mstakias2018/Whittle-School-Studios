@@ -6,7 +6,10 @@ const {
 } = require('../src/constants/images');
 const IMAGE_CONFIG = require('../src/constants/image-config');
 const { PAGE_TYPE } = require('../src/constants/settings');
-const { getIdFromImgUrl } = require('../src/utils/images');
+const {
+  getIdFromImgUrl,
+  getLocaleIdFromImgUrl,
+} = require('../src/utils/images');
 
 const STATIC_IMAGE_PATH = './static/images/';
 
@@ -58,8 +61,20 @@ exports.createQuery = (imageSubtype) => {
   `;
 };
 
+const DOWNLOADS = [];
+
 const downloadPromise = (url, dest) =>
   new Promise((resolve) => {
+    const downloadKey = `${url}${dest}`;
+    // If we've already downloaded this image to this location,
+    // do not download again. This will happen for images only
+    // have a default en-US file defined.
+    if (DOWNLOADS.includes(downloadKey)) {
+      resolve();
+      return;
+    }
+    DOWNLOADS.push(downloadKey);
+
     const writeStream = fs.createWriteStream(dest);
     request(url).pipe(writeStream);
     writeStream.on('finish', resolve);
@@ -106,7 +121,9 @@ const saveImage = (imageNode, type, subtype, nestedFolders) => {
     }
   }
 
-  const { file: { fileName, url } } = imageNode;
+  const { file: { fileName: originalFileName, url } } = imageNode;
+  const localeId = getLocaleIdFromImgUrl(url);
+  const fileName = `${localeId}${originalFileName}`;
   const sourcesBySize = { id: getIdFromImgUrl(url) };
 
   const promises = Object.keys(IMAGE_CONFIG[subtype]).map((imageSize) => {
