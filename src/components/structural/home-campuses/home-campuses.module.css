@@ -172,6 +172,7 @@
   line-height: 14px;
   padding-bottom: 19px;
   position: relative;
+  text-align: center;
   width: auto;
 
   @media (--bp-sm-only) {
