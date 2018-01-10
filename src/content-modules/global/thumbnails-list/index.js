@@ -31,27 +31,28 @@ class ThumbnailsList extends Component {
         videoEmbedCode={videoEmbedCode}
       />
     ) : null;
-  }
+  };
 
   render() {
     const { title } = this.props;
+    const items = THUMBNAIL_RANGE
+      .map(this.renderThumbnailItem)
+      .filter(item => item !== null);
 
-    return (
+    return items.length > 0 ? (
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <div className={styles.titleWrapper}>
-            <h2
-              className={styles.title}
-            >
+            <h2 className={styles.title}>
               {title}
             </h2>
           </div>
           <ul className={styles.list}>
-            {THUMBNAIL_RANGE.map(this.renderThumbnailItem)}
+            {items}
           </ul>
         </div>
       </div>
-    );
+    ) : null;
   }
 }
 
