@@ -74,8 +74,8 @@ exports.sortEventDates = (arrayToSort, numOfItems) => {
   });
 
   sortedArray.sort((a, b) => {
-    const c = new Date(`${a.date} 00:00:00`);
-    const d = new Date(`${b.date} 00:00:00`);
+    const c = new Date(a.date);
+    const d = new Date(b.date);
     return c - d;
   });
 
