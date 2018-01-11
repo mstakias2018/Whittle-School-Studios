@@ -51,7 +51,7 @@ class OpeningCountdown extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <h4 className={cx(heroStyles.sideTitle, styles.componentTitle)}>{title}</h4>
+        <h2 className={cx(heroStyles.sideTitle, styles.componentTitle)}>{title}</h2>
         <div className={styles.countdown}>
           {INTERVALS.map((interval, index) => (
             <div

@@ -44,7 +44,7 @@ class InformationEventListing extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <h4 className={heroStyles.sideTitle}>{this.props.title}</h4>
+        <h2 className={heroStyles.sideTitle}>{this.props.title}</h2>
         <ul className={styles.list}>
           {sortEventDates(this.props, 3).map(item => this.createItem(item.number))}
         </ul>

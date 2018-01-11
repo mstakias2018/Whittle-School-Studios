@@ -36,9 +36,9 @@ const VideoItem = ({
     </div>
     <div className={styles.content}>
       <div className={styles.titleWrapper}>
-        <h4 className={styles.title}>
+        <h3 className={styles.title}>
           {title}
-        </h4>
+        </h3>
         {link && (link.linkDestinationInternal || link.linkDestinationExternal) &&
           <Link
             className={commonStyles.link}
