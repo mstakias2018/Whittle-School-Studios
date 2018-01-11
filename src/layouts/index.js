@@ -168,7 +168,7 @@ TemplateWrapper.childContextTypes = {
 export default TemplateWrapper;
 
 export const pageQuery = graphql`
-  fragment footerLink on ContentfulFooterLink {
+  fragment footerLink on ContentfulLink {
     linkTitle
     linkDestinationExternal
     linkDestinationInternal {
