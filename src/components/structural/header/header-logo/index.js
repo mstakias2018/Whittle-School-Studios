@@ -13,7 +13,7 @@ const Logo = (props, { translation }) => (
       to="/"
     >
       <img
-        alt={translation('header.logoAlt')}
+        alt={translation && translation('header.logoAlt')}
         src={LogoImg}
       />
     </Link>

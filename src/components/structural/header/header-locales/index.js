@@ -41,7 +41,7 @@ class Locales extends Component {
 
       return {
         link: `${LANGUAGE_PATH[language]}${currentPageWithLocalizedSlugs}`,
-        title: translation(`header.languages.${language}`),
+        title: translation && translation(`header.languages.${language}`),
         value: language,
       };
     });
@@ -50,7 +50,7 @@ class Locales extends Component {
   getRegionItems = () =>
     Object.keys(REGION).map(region => ({
       link: `${REGION_URLS[process.env.GATSBY_ENV][region]}${getDefaultLangPath(region)}`,
-      title: this.context.translation(`header.regions.${region}`),
+      title: this.context.translation && this.context.translation(`header.regions.${region}`),
       value: region,
     }));
 
@@ -60,7 +60,7 @@ class Locales extends Component {
       key="srText"
     >
       {`${menuAriaLabel}.`}
-      {this.context.translation('header.selectors.currentSelectionAriaLabel')} -
+      {this.context.translation && this.context.translation('header.selectors.currentSelectionAriaLabel')} -
     </span>,
     <span key="visibleText">
       {selectedValueLabel}
@@ -83,8 +83,8 @@ class Locales extends Component {
           items={this.getRegionItems()}
           selectedLabel={
             this.getSelectedLabel(
-              translation('header.selectors.regionAriaLabel'),
-              translation(`header.regions.${process.env.GATSBY_REGION}`)
+              translation && translation('header.selectors.regionAriaLabel'),
+              translation && translation(`header.regions.${process.env.GATSBY_REGION}`)
             )
           }
           selectedValue={process.env.GATSBY_REGION}
@@ -110,8 +110,8 @@ class Locales extends Component {
                 items={this.getLanguageItems()}
                 selectedLabel={
                   this.getSelectedLabel(
-                    translation('header.selectors.languageAriaLabel'),
-                    translation(`header.languages.${language}`)
+                    translation && translation('header.selectors.languageAriaLabel'),
+                    translation && translation(`header.languages.${language}`)
                   )
                 }
                 selectedValue={language}

@@ -22,10 +22,6 @@ const PAGE_NOT_FOUND = {
       src: largeImage,
     },
   },
-  text: {
-    markdown: 'Unfortunately this link doesnt exsist, please check your url or return to the homepage.',
-  },
-  title: 'Sorry, page not found.',
 };
 
 const NotFoundPage = () => (

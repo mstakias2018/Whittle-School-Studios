@@ -155,7 +155,7 @@ class Fab extends React.Component {
             ]}
           >
             <Link
-              aria-label={translation('fab.ariaLabel')}
+              aria-label={translation && translation('fab.ariaLabel')}
               className={styles.fabLink}
               onClick={() => sendAnalyticsEvent('FAB', 'click', fabLink)}
               to={fabLink}

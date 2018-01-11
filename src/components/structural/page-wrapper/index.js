@@ -36,7 +36,7 @@ class PageWrapper extends React.Component {
           viewedPage={viewedPage}
         />
         <main
-          aria-label={translation('general.mainAriaLabel')}
+          aria-label={translation && translation('general.mainAriaLabel')}
           className={CLASSES.PAGE_CONTENT}
           ref={(el) => { this.mainContent = el; }}
           tabIndex={-1}

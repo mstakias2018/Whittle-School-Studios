@@ -78,7 +78,7 @@ class Recirculation extends Component {
         >
           <span
             aria-label={`${type === NAV_DIRECTIONS.NEXT ?
-              translation('recirculation.next') : translation('recirculation.previous')}
+              translation && translation('recirculation.next') : translation && translation('recirculation.previous')}
               ${this.getItemNumber(item)} ${item.title}`}
             className={styles.direction}
           >
@@ -97,7 +97,7 @@ class Recirculation extends Component {
                   className={cx(styles.arrow, styles.arrow_left, styles.arrow_hover)}
                   src={arrowOrange}
                 />
-                {translation('recirculation.previous')}
+                {translation && translation('recirculation.previous')}
               </span>
             }
             {type === NAV_DIRECTIONS.NEXT &&
@@ -105,7 +105,7 @@ class Recirculation extends Component {
                 aria-hidden="true"
                 className={styles.directionLabel}
               >
-                  {translation('recirculation.next')}
+                  {translation && translation('recirculation.next')}
                 <img
                   alt=""
                   className={cx(styles.arrow, styles.arrow_right)}

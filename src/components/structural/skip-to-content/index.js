@@ -13,7 +13,7 @@ const Skip = (props, { translation }) => (
     onClick={props.handleSkipToContent}
   >
     <div className={styles.text}>
-      {translation('general.skip')}
+      {translation && translation('general.skip')}
     </div>
   </button>
 );

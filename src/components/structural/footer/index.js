@@ -68,10 +68,14 @@ const renderUtilityLink = (item, index, className) => (
 
 const Footer = (props, context) => {
   const { footerData, socialIcons, translation } = context;
-  const {
-    primaryLinks: [firstPrimaryLink, ...otherPrimaryLinks],
-    utilityLinks,
-  } = footerData;
+
+  let firstPrimaryLink;
+  let otherPrimaryLinks;
+  let utilityLinks;
+  if (footerData) {
+    [firstPrimaryLink, ...otherPrimaryLinks] = footerData.primaryLinks;
+    [utilityLinks] = footerData;
+  }
 
   return (
     <footer className={cx(styles.wrapper, CLASSES.FOOTER)}>
@@ -80,15 +84,15 @@ const Footer = (props, context) => {
 
           {/* column 1 - 1st primary link with no children + utility links (md,lg) */}
           <div className={styles.menuBlock}>
-            {renderBlock(firstPrimaryLink)}
-            {utilityLinks.map((item, i) => renderUtilityLink(item, i, 'hideSm'))}
+            {firstPrimaryLink && renderBlock(firstPrimaryLink)}
+            {utilityLinks && utilityLinks.map((item, i) => renderUtilityLink(item, i, 'hideSm'))}
           </div>
 
           {/* columns 2-6 - other primary links */}
-          {otherPrimaryLinks.map((item, i) => renderBlockWithSubItems(item, i))}
+          {otherPrimaryLinks && otherPrimaryLinks.map((item, i) => renderBlockWithSubItems(item, i))}
 
           {/* utility links (sm) */}
-          {utilityLinks.map((item, i) => (
+          {utilityLinks && utilityLinks.map((item, i) => (
             <div
               className={cx(styles.menuBlock, 'showSm')}
               key={i}
@@ -98,10 +102,10 @@ const Footer = (props, context) => {
           ))}
 
           <div className={styles.copyright}>
-            <div>{translation('footer.copyrightLine1')}</div>
-            <div>{translation('footer.copyrightLine2')}</div>
+            <div>{translation && translation('footer.copyrightLine1')}</div>
+            <div>{translation && translation('footer.copyrightLine2')}</div>
           </div>
-          {socialIcons.footer.length > 0 &&
+          {socialIcons && socialIcons.footer.length > 0 &&
           <FooterShareIcons />
           }
         </div>

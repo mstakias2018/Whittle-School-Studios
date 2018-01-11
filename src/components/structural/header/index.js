@@ -69,7 +69,8 @@ class Header extends Component {
               className={styles.toggleMenu}
               onClick={this.toggleMenu}
             >
-              {!this.state.menuActive ? translation('general.menu') : translation('general.close')}
+              {!this.state.menuActive ? translation && translation('general.menu') :
+                translation && translation('general.close')}
             </button>
             <MainMenu
               isActive={this.state.menuActive}

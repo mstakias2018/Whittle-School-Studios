@@ -28,7 +28,7 @@ const MainMenu = ({
     id="mainMenu"
   >
     <div
-      aria-label={translation('header.primaryAriaLabel')}
+      aria-label={translation && translation('header.primaryAriaLabel')}
       className={styles.menuItemsContainer}
       role="menu"
     >
@@ -36,12 +36,12 @@ const MainMenu = ({
         className={cx(
             styles.menuItems,
             {
-              [styles.menuItems_aligned]: headerData.length === 5
+              [styles.menuItems_aligned]: headerData && headerData.length === 5
             }
           )
         }
       >
-        {headerData.map(({ link, title }, index) => (
+        {headerData && headerData.map(({ link, title }, index) => (
           <li
             className={styles.menuItem}
             key={index}
