@@ -234,6 +234,13 @@
   margin-right: 12px;
 }
 
+.title,
+.number {
+  @media (--bp-sm-only) {
+    font-size: 18px;
+  }
+}
+
 .description {
   @mixin type-caption;
   padding-top: 25px;
