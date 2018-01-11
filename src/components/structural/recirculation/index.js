@@ -11,6 +11,7 @@ import arrowOrange from '../../../assets/images/arrow-orange.svg';
 
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { NAV_DIRECTIONS } from '../../../constants/settings';
+import { CLASSES } from '../../../constants/classes';
 
 const propTypes = {
   items: PROP_SHAPES.NAV_ITEM_LIST.isRequired,
@@ -65,7 +66,7 @@ class Recirculation extends Component {
     const { translation } = this.context;
 
     return (
-      <div className={cx(styles.navigationItemWrapper, {
+      <div className={cx(styles.navigationItemWrapper, CLASSES.RECIRCULATION, {
         [styles.navigationItemWrapper_isBig]: type === NAV_DIRECTIONS.NEXT ||
         (type === NAV_DIRECTIONS.PREVIOUS && !this.isFullSize()),
         [styles.navigationItemWrapper_isSingle]: !this.isFullSize(),

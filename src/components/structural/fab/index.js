@@ -11,11 +11,13 @@ import Link from '../../global/link';
 import WithWindowListener from '../../../hocs/withWindow';
 import { sendAnalyticsEvent } from '../../../utils/global';
 
-import { BREAKPOINTS } from '../../../constants/breakpoints';
-import { PAGE_PADDING, FAB_SIZE } from '../../../constants/dimensions';
+import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
+import { COMPONENT_BOTTOM_PADDING, FAB_SIZE } from '../../../constants/dimensions';
 import { CLASSES } from '../../../constants/classes';
+import { PROP_SHAPES } from '../../../constants/custom-property-types';
 
 const propTypes = {
+  breakpoint: PROP_SHAPES.BREAKPOINT,
   dimensions: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
@@ -25,11 +27,10 @@ const propTypes = {
 class Fab extends React.Component {
   state = {
     appearDuration: 0,
+    bottomFabBarrier: `.${CLASSES.FOOTER}`,
     clientHeight: 0,
-    clientWidth: 0,
     elementHeight: 0,
-    footerHeight: 0,
-    footerPadding: 0,
+    recirculationPadding: 0,
     startAppearAt: 0,
     startRotationAt: 0,
   }
@@ -53,24 +54,20 @@ class Fab extends React.Component {
   setInitialStates = () => {
     setTimeout(() => {
       const clientHeight = window.innerHeight;
-      const clientWidth = window.innerWidth;
-      const elementHeight = clientWidth < BREAKPOINTS.BREAKPOINT_LG ? FAB_SIZE.SMALL : FAB_SIZE.LARGE;
-      const footerHeight = document.querySelector(`.${CLASSES.FOOTER}`).clientHeight;
-      let footerPadding = 0;
-      if (clientWidth < BREAKPOINTS.BREAKPOINT_MD) {
-        footerPadding = PAGE_PADDING.PAGE_PADDING_SM;
-      } else if (clientWidth < BREAKPOINTS.BREAKPOINT_LG) {
-        footerPadding = PAGE_PADDING.PAGE_PADDING_MD;
-      } else footerPadding = PAGE_PADDING.PAGE_PADDING_LG;
+      const elementHeight = FAB_SIZE[this.props.breakpoint];
       const pageContentTop = document.querySelector(`.${CLASSES.PAGE_CONTENT}`).offsetTop;
+      const checkRecirculation = document.querySelector(`.${CLASSES.RECIRCULATION}`);
+      const bottomFabBarrier = checkRecirculation ?
+        `.${CLASSES.RECIRCULATION}` :
+        `.${CLASSES.FOOTER}`;
+      const recirculationPadding = checkRecirculation ? COMPONENT_BOTTOM_PADDING[this.props.breakpoint] : 0;
 
       this.setState({
         appearDuration: 3 * elementHeight,
+        bottomFabBarrier,
         clientHeight,
-        clientWidth,
         elementHeight,
-        footerHeight,
-        footerPadding,
+        recirculationPadding,
         startAppearAt: pageContentTop,
         startRotationAt: pageContentTop + (3 * elementHeight),
       });
@@ -79,15 +76,19 @@ class Fab extends React.Component {
 
   render() {
     const { fabLink, fabTextImage, translation } = this.context;
+    const smallerThanLG = [BREAKPOINTS_NAME.small, BREAKPOINTS_NAME.medium];
 
     return (
-      <div role="complementary">
+      <div
+        className={styles.wrapperAbsolute}
+        role="complementary"
+      >
         <Plx
           animateWhenNotInViewport
           className={styles.wrapper}
           onFocus={this.onFocus}
           parallaxData={
-            this.state.clientWidth > BREAKPOINTS.BREAKPOINT_LG ?
+            !smallerThanLG.includes(this.props.breakpoint) ?
             [
               {
                 duration: this.state.appearDuration,
@@ -102,24 +103,23 @@ class Fab extends React.Component {
                 start: this.state.startAppearAt,
               },
               {
-                duration: (this.state.footerHeight + this.state.footerPadding),
-                name: 'third',
-                offset: -this.state.clientHeight,
+                duration: '100%',
+                name: 'second',
                 properties: [
                   {
-                    endValue: -this.state.footerHeight - this.state.footerPadding,
-                    property: 'translateY',
-                    startValue: 0,
+                    endValue: 1,
+                    property: 'opacity',
+                    startValue: 1,
                   },
                 ],
-                start: `.${CLASSES.FOOTER}`,
+                start: this.state.bottomFabBarrier,
+                startOffset: -this.state.recirculationPadding,
               },
             ] :
             [
               {
-                duration: 150,
+                duration: this.state.clientHeight / 2,
                 name: 'third',
-                offset: -this.state.clientHeight - 150,
                 properties: [
                   {
                     endValue: 0,
@@ -127,7 +127,8 @@ class Fab extends React.Component {
                     startValue: 1,
                   },
                 ],
-                start: `.${CLASSES.FOOTER}`,
+                start: this.state.bottomFabBarrier,
+                startOffset: -this.state.clientHeight / 2,
               },
             ]
 
@@ -138,17 +139,18 @@ class Fab extends React.Component {
             animateWhenNotInViewport
             className={styles.content}
             parallaxData={[
-              {
-                end: `.${CLASSES.FOOTER}`,
-                name: 'second',
-                properties: [
-                  {
-                    endValue: this.state.clientWidth < BREAKPOINTS.BREAKPOINT_LG ? 0 : 360,
-                    property: 'rotate',
-                    startValue: 0,
-                  },
-                ],
-                start: this.state.startRotationAt,
+             {
+               end: `.${CLASSES.FOOTER}`,
+               name: 'second',
+               properties: [
+                 {
+                   endValue: smallerThanLG.includes(this.props.breakpoint) ?
+                    0 : 360,
+                   property: 'rotate',
+                   startValue: 0,
+                 },
+               ],
+               start: this.state.startRotationAt,
               },
             ]}
           >

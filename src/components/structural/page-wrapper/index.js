@@ -35,15 +35,15 @@ class PageWrapper extends React.Component {
           subNavProps={subNavProps}
           viewedPage={viewedPage}
         />
-        {!shouldDisableFab &&
-        <Fab />
-        }
         <main
           aria-label={translation('general.mainAriaLabel')}
           className={CLASSES.PAGE_CONTENT}
           ref={(el) => { this.mainContent = el; }}
           tabIndex={-1}
         >
+          {!shouldDisableFab &&
+          <Fab />
+          }
           {children}
         </main>
         {(process.env.GATSBY_ENV === ENV.STAGING) &&

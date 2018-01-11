@@ -22,6 +22,7 @@
 
 :global .pageContent {
   background-color: var(--color-background-light-gray);
+  position: relative;
 }
 
 :global(._isCircle) img {

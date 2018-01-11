@@ -8,6 +8,7 @@ exports.CLASSES = {
   GALLERY_IMAGE_RIGHT: 'right',
   HEADLINE: 'headline',
   PAGE_CONTENT: 'pageContent',
+  RECIRCULATION: 'recirculationModule',
   SECTION_TITLE: 'sectionTitle',
   SHARE_COMPONENT: 'shareComponent',
 };
