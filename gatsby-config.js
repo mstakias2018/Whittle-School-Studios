@@ -35,6 +35,24 @@ module.exports = {
       },
       resolve: 'gatsby-plugin-google-analytics',
     },
+    {
+      options: {
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: false,
+          favicons: true,
+          firefox: true,
+          twitter: false,
+          windows: false,
+          yandex: false,
+        },
+        injectHTML: true,
+        logo: './src/assets/images/favicon.png',
+      },
+      resolve: 'gatsby-plugin-favicon',
+    }
   ],
   siteMetadata: {
     title: 'Gatsby Default Starter',
