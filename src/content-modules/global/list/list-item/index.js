@@ -13,11 +13,13 @@ const ListItem = ({
   title,
 }) => (
   <li className={styles.listItem}>
-    <span className={styles.title}>{title}</span>
-    <Markdown
-      className={styles.description}
-      source={description}
-    />
+    <span>
+      <span className={styles.title}>{title}</span>
+      <Markdown
+        className={styles.description}
+        source={description}
+      />
+    </span>
   </li>
 );
 
