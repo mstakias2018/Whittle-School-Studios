@@ -255,8 +255,8 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                           subAsset.person4Image,
                           subAsset.person5Image,
                           subAsset.person6Image,
-                        ].map(image => (
-                          saveImage(image, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.TEAMS_BIO_SQ, [id, i, j])
+                        ].map((image, k) => (
+                          saveImage(image, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.TEAMS_BIO_SQ, [id, i, j, k])
                         ))
                       ))
                   )));

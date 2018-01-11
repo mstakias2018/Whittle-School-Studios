@@ -146,7 +146,7 @@ const createHomePages = (graphql, createPage) =>
                   asset,
                   IMAGE_TYPE.MODULE,
                   j === 0 ? IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO : IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL,
-                  [id, STRUCTURAL_COMPONENTS.HOME_HERO]
+                  [id, STRUCTURAL_COMPONENTS.HOME_HERO, j]
                 );
 
                 if (videoImage) {
@@ -156,18 +156,6 @@ const createHomePages = (graphql, createPage) =>
                 }
               }
             });
-
-            const heroImage = saveImage(
-              hero.image,
-              IMAGE_TYPE.MODULE,
-              IMAGE_SUBTYPE.HERO,
-              [id, STRUCTURAL_COMPONENTS.HOME_HERO]
-            );
-            if (heroImage) {
-              modulePromises.push(heroImage.then((imageData) => {
-                imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO].image = imageData;
-              }));
-            }
           }
         }
 
@@ -179,7 +167,7 @@ const createHomePages = (graphql, createPage) =>
               campusModule.image,
               IMAGE_TYPE.MODULE,
               IMAGE_SUBTYPE.INLINE_RT,
-              [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES]
+              [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES, 'campus']
             );
             if (campusImage) {
               modulePromises.push(campusImage.then((imageData) => {
@@ -193,7 +181,7 @@ const createHomePages = (graphql, createPage) =>
               campusModule.architectImage,
               IMAGE_TYPE.MODULE,
               IMAGE_SUBTYPE.INLINE_SQ,
-              [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES]
+              [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES, 'architect']
             );
             if (architectImage) {
               modulePromises.push(architectImage.then((imageData) => {
@@ -227,7 +215,7 @@ const createHomePages = (graphql, createPage) =>
                       teamsModule.sections[i][`person${j}Image`],
                       IMAGE_TYPE.MODULE,
                       IMAGE_SUBTYPE.TEAMS_BIO_SQ,
-                      [id, STRUCTURAL_COMPONENTS.HOME_TEAMS]
+                      [id, STRUCTURAL_COMPONENTS.HOME_TEAMS, i, j]
                     );
                     modulePromises.push(personImage.then((imageData) => {
                       imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS][`personImage${i}${j}`] = imageData;
