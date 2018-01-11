@@ -36,7 +36,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
     setVideoState({ videoEmbedCode } = this.props) {
       const src = videoEmbedCode &&
         videoEmbedCode.embedCode &&
-        videoEmbedCode.embedCode.match(/src="(https?:\/\/[\w.-/?=&]*)"/)[1];
+        videoEmbedCode.embedCode.match(/src=[“"]([^“"]*)[”"]/)[1];
 
       this.setState({
         isVimeo: !!(src && src.match('player.vimeo.com')),
