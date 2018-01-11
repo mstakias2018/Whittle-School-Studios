@@ -57,11 +57,11 @@ class HomeSectionTitle extends React.Component {
         )}
         parallaxData={
           [{
-            duration: this.state.clientHeight,
+            duration: this.state.clientHeight * 1.5,
             offset: -this.state.clientHeight,
             properties: [
               {
-                endValue: -140,
+                endValue: -210,
                 property: 'translateY',
                 startValue: 0,
               },

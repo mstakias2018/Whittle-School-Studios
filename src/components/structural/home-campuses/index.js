@@ -56,11 +56,11 @@ class HomeCampuses extends React.Component {
       let paralaxEndValue;
       switch (this.props.breakpoint) {
         case BREAKPOINTS_NAME.medium:
-          paralaxEndValue = -70;
+          paralaxEndValue = -40;
           break;
         case BREAKPOINTS_NAME.large:
         case BREAKPOINTS_NAME.extraLarge:
-          paralaxEndValue = -140;
+          paralaxEndValue = -90;
           break;
         default:
           paralaxEndValue = 0;
@@ -101,7 +101,7 @@ class HomeCampuses extends React.Component {
           className={styles.content}
           parallaxData={[
             {
-              duration: 200,
+              duration: this.state.clientHeight / 2,
               offset: -this.state.clientHeight,
               properties: [
                 {
