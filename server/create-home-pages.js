@@ -30,7 +30,7 @@ const createHomePages = (graphql, createPage) =>
                   id: contentful_id
                   hero {
                     image {
-                      ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
+                      ${createQuery(IMAGE_SUBTYPE.HERO)}
                     }
                     videos {
                       video1AssetCoverPhoto {
@@ -125,7 +125,7 @@ const createHomePages = (graphql, createPage) =>
             const heroImage = saveImage(
               hero.image,
               IMAGE_TYPE.MODULE,
-              IMAGE_SUBTYPE.INLINE_RT,
+              IMAGE_SUBTYPE.HERO,
               [id, STRUCTURAL_COMPONENTS.HOME_HERO]
             );
             if (heroImage) {
@@ -160,7 +160,7 @@ const createHomePages = (graphql, createPage) =>
             const heroImage = saveImage(
               hero.image,
               IMAGE_TYPE.MODULE,
-              IMAGE_SUBTYPE.INLINE_RT,
+              IMAGE_SUBTYPE.HERO,
               [id, STRUCTURAL_COMPONENTS.HOME_HERO]
             );
             if (heroImage) {
