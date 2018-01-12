@@ -45,8 +45,14 @@ const createHomePages = (graphql, createPage) =>
                     }
                   }
                   campusModule {
-                    image {
-                      ${createQuery(IMAGE_SUBTYPE.CAMPUS)}
+                    imageSq: image {
+                        ${createQuery(IMAGE_SUBTYPE.CAMPUS)}
+                    }
+                    imageRt: image {
+                      ${createQuery(IMAGE_SUBTYPE.CAMPUS_VIDEO)}
+                    }
+                    videoEmbedCode {
+                      id
                     }
                     architectImage {
                       ${createQuery(IMAGE_SUBTYPE.CAMPUS_ARCHITECT)}
@@ -162,11 +168,11 @@ const createHomePages = (graphql, createPage) =>
         if (campusModule) {
           imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES] = {};
 
-          if (campusModule.image) {
+          if (campusModule.imageSq && campusModule.imageRt) {
             const campusImage = saveImage(
-              campusModule.image,
+              campusModule.videoEmbedCode ? campusModule.imageRt : campusModule.imageSq,
               IMAGE_TYPE.MODULE,
-              IMAGE_SUBTYPE.CAMPUS,
+              campusModule.videoEmbedCode ? IMAGE_SUBTYPE.CAMPUS_VIDEO : IMAGE_SUBTYPE.CAMPUS,
               [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES, 'campus']
             );
             if (campusImage) {

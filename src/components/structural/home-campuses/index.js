@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import Plx from 'react-plx';
+import WithVideo from '../../../hocs/with-video';
 import WithWindowListener from '../../../hocs/withWindow';
 
 import HomeSectionTitle from '../home-section-title';
@@ -9,7 +11,7 @@ import Picture from '../../global/picture';
 import { createContentPageLink } from '../../../utils/global';
 
 import { HOME_SECTION_TITLE_COLOR, HOME_SECTION_TITLE_POSITION } from '../../../constants/settings';
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_TYPES, PROP_SHAPES } from '../../../constants/custom-property-types';
 import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
 
 import Link from '../../global/link';
@@ -19,6 +21,7 @@ import styles from './home-campuses.module.css';
 
 const propTypes = {
   architectImage: PROP_SHAPES.IMAGE_SOURCES.isRequired,
+  architectImageAlt: PropTypes.string,
   architectName: PropTypes.string,
   architectQuote: PROP_SHAPES.MARKDOWN,
   breakpoint: PROP_SHAPES.BREAKPOINT,
@@ -27,11 +30,10 @@ const propTypes = {
     x: PropTypes.number,
     y: PropTypes.number,
   }),
-  imageAlt: PropTypes.string,
-  imageSources: PROP_SHAPES.IMAGE_SOURCES,
   linkTarget: PROP_SHAPES.LINK,
   linkText: PropTypes.string,
   sectionTitle: PropTypes.string.isRequired,
+  ...PROP_TYPES.WITH_VIDEO,
 };
 
 class HomeCampuses extends React.Component {
@@ -78,18 +80,22 @@ class HomeCampuses extends React.Component {
   render() {
     const {
       architectImage,
+      architectImageAlt,
       architectName,
       architectQuote,
+      assetWithVideo,
       descriptionText,
-      imageAlt,
-      imageSources,
+      hasVideo,
       linkTarget,
       linkText,
       sectionTitle,
     } = this.props;
 
     return (
-      <div className={styles.wrapper}>
+      <div className={cx(styles.wrapper, {
+        [styles.wrapper_hasVideo]: hasVideo,
+        })}
+      >
         <HomeSectionTitle
           color={HOME_SECTION_TITLE_COLOR.GRAY}
           isBreakingTop={this.state.shouldTitleBreakTop}
@@ -114,11 +120,9 @@ class HomeCampuses extends React.Component {
             },
           ]}
         >
-          <Picture
-            alt={imageAlt}
-            className={styles.headImage}
-            sourcesBySize={imageSources}
-          />
+          <div className={styles.headImage}>
+            {assetWithVideo}
+          </div>
           <div className={styles.contentBlock}>
             <div className={styles.descriptionBlock}>
               <Markdown
@@ -140,7 +144,7 @@ class HomeCampuses extends React.Component {
               <div className={styles.architectInnerBlock}>
                 <div className={styles.architectName}>{architectName}</div>
                 <Picture
-                  alt={imageAlt}
+                  alt={architectImageAlt}
                   className={styles.architectImage}
                   sourcesBySize={architectImage}
                 />
@@ -160,4 +164,4 @@ class HomeCampuses extends React.Component {
 
 HomeCampuses.propTypes = propTypes;
 
-export default WithWindowListener(HomeCampuses);
+export default WithVideo(WithWindowListener(HomeCampuses));

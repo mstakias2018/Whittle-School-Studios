@@ -229,6 +229,8 @@ export const pageQuery = graphql`
         event5TitleLine2
       }
       campusModule {
+        alt: imageAlt
+        architectImageAlt
         architectName
         architectQuote {
           markdown: architectQuote
@@ -236,7 +238,6 @@ export const pageQuery = graphql`
         descriptionText: description {
           markdown: description
         }
-        imageAlt
         linkTarget: linkDestination {
           slug
           parentCategory: contentpage {
@@ -244,6 +245,9 @@ export const pageQuery = graphql`
           }
         }
         linkText: linkTitle
+        videoEmbedCode {
+          embedCode: videoEmbedCode,
+        },
         sectionTitle
       }
       teamsModule {
