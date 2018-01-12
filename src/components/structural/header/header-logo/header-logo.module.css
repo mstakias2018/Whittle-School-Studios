@@ -3,7 +3,7 @@
 
 .logoContainer {
   @mixin span 2, var(--grid-columns-sm), sm;
-  align-items: flex-end;
+  align-items: center;
   align-self: stretch;
   display: flex;
 
@@ -19,6 +19,7 @@
 
 .logo {
   display: block;
+  max-width: 105px;
 
   img {
     margin: 0;

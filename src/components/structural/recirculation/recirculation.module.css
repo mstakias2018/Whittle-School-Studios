@@ -10,7 +10,7 @@
 
 .container {
   @mixin component-container;
-  
+
   @media (--bp-sm-only) {
     padding-top: 41px;
   }
@@ -203,8 +203,7 @@
 
 .arrow {
   display: inline-block;
-  height: 8px;
-  width: 7px;
+  height: 9px;
 
   &.arrow_left {
     margin-right: 14px;

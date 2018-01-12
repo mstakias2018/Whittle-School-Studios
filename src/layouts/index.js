@@ -51,6 +51,7 @@ class TemplateWrapper extends Component {
       fabLinkExternal,
       fabLinkInternal,
       footerShareIcons,
+      headerLogo: { file: { headerUrl } },
       ...socialNetworkUrls
     } = this.getLanguageDataFor(LAYOUT_MODEL.SETTINGS);
 
@@ -59,6 +60,7 @@ class TemplateWrapper extends Component {
       fabTextImage: url,
       footerData: formatFooterLinks(this.getLanguageDataFor(LAYOUT_MODEL.FOOTER)),
       headerData: this.getLanguageDataFor(LAYOUT_MODEL.HEADER).contentPages,
+      headerLogoImage: headerUrl,
       history,
       language,
       pathname,
@@ -158,6 +160,7 @@ TemplateWrapper.childContextTypes = {
   fabTextImage: PropTypes.string.isRequired,
   footerData: PROP_SHAPES.FOOTER_DATA.isRequired,
   headerData: PROP_SHAPES.HEADER_DATA.isRequired,
+  headerLogoImage: PropTypes.string.isRequired,
   history: PROP_SHAPES.HISTORY.isRequired,
   language: PROP_SHAPES.LANGUAGE.isRequired,
   pathname: PropTypes.string.isRequired,
@@ -268,7 +271,11 @@ export const pageQuery = graphql`
           fabLinkExternal
           contentPageShareIcons
           footerShareIcons
-
+          headerLogo{
+            file {
+              headerUrl: url
+            }
+          }
           # These should match our SOCIAL_NETWORK constant
           FACEBOOK: facebookUrl
           TWITTER: twitterUrl

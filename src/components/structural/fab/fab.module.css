@@ -82,7 +82,6 @@
 }
 
 .fabArrow {
-  height: 9px;
   left: 50%;
   pointer-events: none;
   position: absolute;
@@ -91,7 +90,6 @@
   width: 31px;
 
   @media (--bp-lg) {
-    height: 13px;
     width: 50px;
   }
 }

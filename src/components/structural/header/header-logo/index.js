@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import Link from '../../../global/link';
 
-import LogoImg from '../../../../assets/images/logo.svg';
 import styles from './header-logo.module.css';
 
-const Logo = (props, { translation }) => (
+const Logo = (props, { headerLogoImage, translation }) => (
   <div className={styles.logoContainer}>
     <Link
       className={styles.logo}
@@ -14,12 +13,15 @@ const Logo = (props, { translation }) => (
     >
       <img
         alt={translation && translation('header.logoAlt')}
-        src={LogoImg}
+        src={headerLogoImage}
       />
     </Link>
   </div>
 );
 
-Logo.contextTypes = { translation: PropTypes.func.isRequired };
+Logo.contextTypes = {
+  headerLogoImage: PropTypes.string.isRequired,
+  translation: PropTypes.func.isRequired
+};
 
 export default Logo;
