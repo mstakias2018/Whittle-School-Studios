@@ -4,19 +4,27 @@ import cx from 'classnames';
 
 import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 import styles from './body-text.module.css';
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES, PROP_TYPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 import { LANGUAGE } from '../../../constants/regions';
+import { parseInsetContent } from '../../../utils/strings';
 
 const propTypes = {
-  content: PROP_SHAPES.MARKDOWN.isRequired,
+  content: PROP_SHAPES.MARKDOWN.isRequired, // eslint-disable-line react/no-unused-prop-types
   imageSources: PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES).isRequired,
   isFirstModule: PropTypes.bool,
 };
 
 class BodyText extends Component {
   getChildContext() {
-    return { imageSources: this.props.imageSources };
+    return {
+      imageSources: this.props.imageSources,
+      videoEmbedCodes: this.state.parsedContent.videoEmbedCodes,
+    };
+  }
+
+  componentWillMount() {
+    this.setParsedContent();
   }
 
   componentDidMount = () => {
@@ -35,8 +43,18 @@ class BodyText extends Component {
     }
   }
 
+  setParsedContent({ content: { markdown } } = this.props) {
+    this.setState({
+      parsedContent: parseInsetContent(markdown),
+    });
+  }
+
+  componentWilReceiveProps(props) {
+    this.setParsedContent(props);
+  }
+
   render() {
-    const { content, isFirstModule: hasDropCap } = this.props;
+    const { isFirstModule: hasDropCap } = this.props;
     return (
       <div className={cx(styles.componentWrapper, { hasDropCap }, CLASSES.BODY_TEXT)}>
         <div
@@ -46,7 +64,7 @@ class BodyText extends Component {
           <Markdown
             allowedTypes={ALLOWED_TYPES.WITH_IMAGE}
             className={styles.componentContent}
-            source={content.markdown}
+            source={this.state.parsedContent.filteredMarkdown}
           />
         </div>
       </div>
@@ -55,9 +73,7 @@ class BodyText extends Component {
 }
 
 BodyText.propTypes = propTypes;
-BodyText.childContextTypes = {
-  imageSources: PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES),
-};
+BodyText.childContextTypes = PROP_TYPES.MARKDOWN_IMAGE_CONTEXT;
 BodyText.contextTypes = {
   language: PROP_SHAPES.LANGUAGE.isRequired,
 };

@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 
-import { PROP_SHAPES } from '../../../../constants/custom-property-types';
+import { PROP_TYPES } from '../../../../constants/custom-property-types';
 import { getIdFromImgUrl } from '../../../../utils/images';
-import Picture from '../../picture';
-import styles from './image.module.css';
+import InsetImage from './inset-image';
 
 const propTypes = {
   alt: PropTypes.string.isRequired,
@@ -13,51 +11,32 @@ const propTypes = {
   title: PropTypes.string,
 };
 
-const INDICATORS = {
-  ALIGN_LEFT: 'left',
-  SHAPE_CIRCLE: 'circle',
-};
-
-const MarkdownImage = ({ alt, src, title: caption }, { imageSources }) => {
+const MarkdownImage = ({
+  alt,
+  src,
+  title: caption,
+}, {
+  imageSources,
+  videoEmbedCodes,
+}) => {
   const id = getIdFromImgUrl(src);
   const sourcesBySize = imageSources.find(n => n.id === id);
-
-  const isVideo = /^https?:\/\/player\.vimeo\.com\/video\/\d+$/.test(src);
   const [altTag, ...indicators] = alt.split('--');
-  const wrapperClasses = cx(styles.wrapper, {
-    [styles.wrapper_isAlignLeft]: indicators.includes(INDICATORS.ALIGN_LEFT),
-    _isCircle: indicators.includes(INDICATORS.SHAPE_CIRCLE),
-  });
-
-  const inside = isVideo ? (
-    <iwrapper
-      allowFullScreen
-      className={cx(styles.asset, styles.asset_iframe)}
-      frameBorder="0"
-      mozallowfullscreen="true"
-      src={src}
-      title={alt}
-      webkitallowfullscreen="true"
-    />
-  ) : (
-    <Picture
-      alt={altTag}
-      className={styles.asset}
-      sourcesBySize={sourcesBySize}
-    />
-  );
+  const videoMatch = alt.match(/--VIDEO-(\d)/);
+  const videoNumber = videoMatch && videoMatch[1];
 
   return (
-    <span className={wrapperClasses}>
-      {inside}
-      {caption && <span className={styles.caption}>{caption}</span>}
-    </span>
+    <InsetImage
+      alt={altTag}
+      caption={caption}
+      imageSources={sourcesBySize}
+      indicators={indicators}
+      videoEmbedCode={{ embedCode: videoEmbedCodes[videoNumber] }}
+    />
   );
 };
 
 MarkdownImage.propTypes = propTypes;
-MarkdownImage.contextTypes = {
-  imageSources: PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES),
-};
+MarkdownImage.contextTypes = PROP_TYPES.MARKDOWN_IMAGE_CONTEXT;
 
 export default MarkdownImage;

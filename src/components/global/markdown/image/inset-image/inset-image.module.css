@@ -1,6 +1,7 @@
-@import '../../../../assets/styles/includes/breakpoints.css';
-@import '../../../../assets/styles/includes/grid.css';
-@import '../../../../assets/styles/includes/variables.css';
+@import '../../../../../assets/styles/includes/breakpoints.css';
+@import '../../../../../assets/styles/includes/grid.css';
+@import '../../../../../assets/styles/includes/mixins.css';
+@import '../../../../../assets/styles/includes/variables.css';
 
 /* We need to use some special calculations for inset images because they are
    nested inside paragraphs - after trial & error this was the best solution.
@@ -31,6 +32,14 @@
 
   &:first-child {
     margin-top: 10px;
+  }
+}
+
+.wrapper_hasPlayButton:not(.wrapper_hasCaption) {
+  padding-bottom: 4px;
+
+  @media (--bp-md) {
+    padding-bottom: 11px;
   }
 }
 
@@ -72,6 +81,7 @@
 }
 
 .caption {
+  @mixin small-video-wrapper;
   @mixin type-caption;
   display: inline-block;
   margin-top: 10px;

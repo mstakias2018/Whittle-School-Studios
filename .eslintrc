@@ -11,6 +11,7 @@
     "expect": true,
     "graphql": true,
     "it": true,
+    "test": true,
     "SERVER_RENDER": true
   },
   "rules": {

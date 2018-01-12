@@ -9,6 +9,7 @@ const {
 } = require('../src/constants/regions');
 const { IMAGE_TYPE, IMAGE_SUBTYPE } = require('../src/constants/images');
 const { getIdFromImgUrl } = require('../src/utils/images');
+const { parseInsetContent } = require('../src/utils/strings');
 const {
   createQuery,
   saveImage,
@@ -16,6 +17,14 @@ const {
   saveInlineImage,
   saveMainImage,
 } = require('./save-images');
+
+const getAssetById = (acc, node) => (node.file ? Object.assign({}, acc, {
+  // Get ID from URL instead of using unreliable Gatsby ID
+  // https://github.com/gatsbyjs/gatsby/pull/3158
+  // TODO: This PR has been merged but didn't take effect on images,
+  // so we need to create a new PR
+  [getIdFromImgUrl(node.file.url)]: node,
+}) : acc);
 
 const createCategoryAndArticlePages = (graphql, createPage) =>
   REGION_LANGUAGES[process.env.GATSBY_REGION].map(language =>
@@ -127,8 +136,11 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
             # inside markdown, so let's get inset dimensions for all assets
             allContentfulAsset(${localeFilter}) {
               edges {
-                node {
+                dataSq: node {
                   ${createQuery(IMAGE_SUBTYPE.INSET_SQ)}
+                }
+                dataRt: node {
+                  ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
                 }
               }
             }
@@ -159,14 +171,11 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
         }
         const { allContentfulContentPage, allContentfulAsset } = result.data;
 
-        const contentfulAssetsById = allContentfulAsset.edges.reduce((acc, { node }) =>
-          (node.file ? Object.assign({}, acc, {
-            // Get ID from URL instead of using unreliable Gatsby ID
-            // https://github.com/gatsbyjs/gatsby/pull/3158
-            // TODO: This PR has been merged but didn't take effect on images,
-            // so we need to create a new PR
-            [getIdFromImgUrl(node.file.url)]: node,
-          }) : acc), {});
+        const contentfulAssetsById = {};
+        contentfulAssetsById.sq = allContentfulAsset.edges.reduce((acc, { dataSq: node }) =>
+          getAssetById(acc, node), {});
+        contentfulAssetsById.rt = allContentfulAsset.edges.reduce((acc, { dataRt: node }) =>
+          getAssetById(acc, node), {});
 
         const contentPageTemplate = path.resolve('./src/templates/content-page/index.js');
 
@@ -219,12 +228,16 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                 case CONTENT_MODULE.CAROUSEL:
                   return Promise.all(module.slides.map((s, j) => saveCarouselImage(s, [id, i, j])));
                 case CONTENT_MODULE.BODY_TEXT: {
-                  const CONTENTFUL_REGEX = /\/\/images\.contentful\.com\/(\w*\/)+[\w-]*\.\w{3,4}/gi;
-                  const matches = module.content.content.match(CONTENTFUL_REGEX);
-                  if (matches) {
-                    return Promise.all(matches.map((match, j) => {
-                      const asset = contentfulAssetsById[getIdFromImgUrl(match)];
-                      return saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INSET_SQ, [id, i, j]);
+                  const insetImages = parseInsetContent(module.content.content).images;
+                  if (insetImages) {
+                    return Promise.all(insetImages.map(({ hasVideo, url }, j) => {
+                      const asset = contentfulAssetsById[hasVideo ? 'rt' : 'sq'][getIdFromImgUrl(url)];
+                      return saveImage(
+                        asset,
+                        IMAGE_TYPE.MODULE,
+                        hasVideo ? IMAGE_SUBTYPE.INSET_RT : IMAGE_SUBTYPE.INSET_SQ,
+                        [id, i, j]
+                      );
                     }));
                   }
                   return [];

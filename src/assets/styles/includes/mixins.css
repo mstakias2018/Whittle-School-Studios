@@ -118,3 +118,21 @@
     $property var(--timing-fast) var(--easing-default),
     top var(--timing-fast) var(--easing-default);
 }
+
+/* We need to repeat 7px under different mqs for specificity */
+@define-mixin small-video-wrapper {
+  @mixin play-button-animation padding-left;
+  padding-left: 7px;
+
+  @media (--bp-md) {
+    padding-left: 7px;
+  }
+
+  @media (--bp-lg) {
+    padding-left: 7px;
+  }
+
+  .wrapper:not(.wrapper_hasPlayButton) & {
+    padding-left: 0;
+  }
+}

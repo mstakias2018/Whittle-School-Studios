@@ -350,6 +350,10 @@ const PROP_TYPES = {
   },
   LIST,
   LIST_ITEM,
+  MARKDOWN_IMAGE_CONTEXT: {
+    imageSources: PropTypes.arrayOf(IMAGE_SOURCES),
+    videoEmbedCodes: PropTypes.arrayOf(PropTypes.string),
+  },
   SCHOOLS_INTRO: PropTypes.shape({ SCHOOLS_INTRO }),
   SUB_NAV: {
     categoryTitle: PropTypes.string.isRequired,
@@ -360,7 +364,8 @@ const PROP_TYPES = {
   WITH_VIDEO: {
     ...VIDEO,
     assetWithVideo: PropTypes.node.isRequired,
-    hasPlayButton: PropTypes.bool,
+    hasPlayButton: PropTypes.bool.isRequired,
+    hasVideo: PropTypes.bool.isRequired,
   },
 };
 

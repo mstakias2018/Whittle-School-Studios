@@ -162,6 +162,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
             ) : asset
           }
           hasPlayButton={hasPlayButton}
+          hasVideo={hasVideo}
         />
       );
     }

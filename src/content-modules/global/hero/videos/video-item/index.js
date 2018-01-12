@@ -27,8 +27,8 @@ const VideoItem = ({
   title,
 }, { translation }) => (
   <div className={cx(styles.wrapper, {
-         [styles.video_isSmall]: isSmall,
-         [styles.video_hasPlayButton]: hasPlayButton,
+         [styles.wrapper_isSmall]: isSmall,
+         [styles.wrapper_hasPlayButton]: hasPlayButton,
        })}
   >
     <div className={styles.asset}>
