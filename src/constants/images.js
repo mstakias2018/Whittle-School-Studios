@@ -35,6 +35,8 @@ exports.IMAGE_TYPE = {
 };
 
 exports.IMAGE_SUBTYPE = {
+  CAMPUS: 'campusRt',
+  CAMPUS_ARCHITECT: 'campusArchitectSq',
   CAROUSEL_SQ: 'carouselSq',
   INLINE_RT: 'inlineRt',
   INLINE_RT_HERO_VIDEO: 'inlineRtHeroVideo',

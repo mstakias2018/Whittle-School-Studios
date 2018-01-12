@@ -46,10 +46,10 @@ const createHomePages = (graphql, createPage) =>
                   }
                   campusModule {
                     image {
-                      ${createQuery(IMAGE_SUBTYPE.INLINE_RT)}
+                      ${createQuery(IMAGE_SUBTYPE.CAMPUS)}
                     }
                     architectImage {
-                      ${createQuery(IMAGE_SUBTYPE.INLINE_SQ)}
+                      ${createQuery(IMAGE_SUBTYPE.CAMPUS_ARCHITECT)}
                     }
                   }
                   teamsModule {
@@ -166,7 +166,7 @@ const createHomePages = (graphql, createPage) =>
             const campusImage = saveImage(
               campusModule.image,
               IMAGE_TYPE.MODULE,
-              IMAGE_SUBTYPE.INLINE_RT,
+              IMAGE_SUBTYPE.CAMPUS,
               [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES, 'campus']
             );
             if (campusImage) {
@@ -180,7 +180,7 @@ const createHomePages = (graphql, createPage) =>
             const architectImage = saveImage(
               campusModule.architectImage,
               IMAGE_TYPE.MODULE,
-              IMAGE_SUBTYPE.INLINE_SQ,
+              IMAGE_SUBTYPE.CAMPUS_ARCHITECT,
               [id, STRUCTURAL_COMPONENTS.HOME_CAMPUSES, 'architect']
             );
             if (architectImage) {
