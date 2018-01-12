@@ -31,6 +31,14 @@ const teamSectionPropTypes = {
 };
 
 class TeamsSection extends Component {
+  state = { breakpoint: BREAKPOINTS_NAME.large };
+
+  componentDidMount() {
+    this.setState({
+      breakpoint: this.props.breakpoint,
+    });
+  }
+
   getNumOfBios = () => {
     let numOfBiosInThisSection = 0;
     numOfBiosInThisSection += this.props.teamBio1 ? 1 : 0;
@@ -156,11 +164,11 @@ class TeamsSection extends Component {
 
   render() {
     const {
-      breakpoint,
       secondBio,
       statistic1,
       statistic2,
     } = this.props;
+    const { breakpoint } = this.state;
 
     const isSmallBrakepoint = breakpoint === BREAKPOINTS_NAME.small;
 
