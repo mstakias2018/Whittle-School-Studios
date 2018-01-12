@@ -3,37 +3,32 @@
 @import '../../assets/styles/includes/variables.css';
 
 .wrapper {
-  position: relative;
-}
-
-.wrapper:not(.wrapper_hasCoverPhoto) {
   height: 0;
   padding-bottom: calc(9 / 16 * 100%);
   position: relative;
 }
 
-.videoWrapper {
+.sectionWrapper {
   height: 100%;
   position: absolute;
   top: 0;
   width: 100%;
 }
 
-.videoWrapper {
-  position: absolute;
-  top: 0;
+.sectionWrapperInner {
+  height: 100%;
+  overflow: hidden;
   width: 100%;
 }
 
 .iframe {
-  height: 100%;
-  width: 100%;
+  height: 102%;
+  margin: -1px -1% calc(2px - 1%);
+  width: 102%;
 }
 
-.wrapper_hasCoverPhoto .iframe {
-  height: 100.5%;
-  margin: calc(-2px - .25%) -.25% calc(2px - .25%);
-  width: 100.5%;
+.wrapper_isVimeo .iframe {
+  background: var(--color-background-black);
 }
 
 .wrapper_hasCoverPhoto:not(.wrapper_hasPlayed) .iframe {

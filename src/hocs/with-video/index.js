@@ -122,24 +122,32 @@ const WithVideo = (WrappedComponent, options = {}) => {
                 className={cx(styles.wrapper, {
                   [styles.wrapper_hasCoverPhoto]: hasCoverPhoto,
                   [styles.wrapper_hasPlayed]: hasPlayed,
+                  [styles.wrapper_isVimeo]: isVimeo,
                 })}
               >
                 {hasCoverPhoto && (
-                  <div aria-hidden={hasPlayed}>
-                    {asset}
+                  <div className={styles.sectionWrapper}>
+                    <div
+                      aria-hidden={hasPlayed}
+                      className={styles.sectionWrapperInner}
+                    >
+                      {asset}
+                    </div>
                   </div>
                 )}
-                <div className={styles.videoWrapper}>
-                  <iframe
-                    allowFullScreen
-                    className={styles.iframe}
-                    frameBorder="0"
-                    mozallowfullscreen="true"
-                    ref={(el) => { this.iframe = el; }}
-                    src={src}
-                    title={alt}
-                    webkitallowfullscreen="true"
-                  />
+                <div className={styles.sectionWrapper}>
+                  <div className={styles.sectionWrapperInner}>
+                    <iframe
+                      allowFullScreen
+                      className={styles.iframe}
+                      frameBorder="0"
+                      mozallowfullscreen="true"
+                      ref={(el) => { this.iframe = el; }}
+                      src={src}
+                      title={alt}
+                      webkitallowfullscreen="true"
+                    />
+                  </div>
                   {hasCoverPhoto && !isCoverPhotoInBackground && (
                     <button
                       aria-hidden="true"
