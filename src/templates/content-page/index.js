@@ -211,7 +211,6 @@ export const pageQuery = graphql`
           description {
             markdown: description
           }
-          scriptUrl
           scriptTags {
             scriptTags
           }
