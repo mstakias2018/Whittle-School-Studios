@@ -58,6 +58,7 @@
 }
 
 .blockOrder {
+  display: flex;
   flex-basis: 100px;
 }
 
@@ -65,7 +66,6 @@
   @mixin type-h3;
   @mixin three-up-section-title-padding-right;
   display: flex;
-  height: 100%;
   position: relative;
   width: 65px;
 

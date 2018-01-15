@@ -53,7 +53,9 @@ class ThreeUpBreaker extends Component {
           <div className={styles.content}>
             <div className={styles.block}>
               <div className={styles.blockOrder}>
-                <div className={styles.blockOrderInner}>01</div>
+                <div className={styles.blockOrderInner}>
+                  <span aria-hidden="true">01</span><span className="screenReaderText">1</span>
+                </div>
               </div>
               <div className={styles.blockContent}>
                 <h2
@@ -71,7 +73,9 @@ class ThreeUpBreaker extends Component {
             </div>
             <div className={styles.block}>
               <div className={styles.blockOrder}>
-                <div className={styles.blockOrderInner}>02</div>
+                <div className={styles.blockOrderInner}>
+                  <span aria-hidden="true">02</span><span className="screenReaderText">2</span>
+                </div>
               </div>
               <div className={styles.blockContent}>
                 <h2
@@ -89,7 +93,9 @@ class ThreeUpBreaker extends Component {
             </div>
             <div className={styles.block}>
               <div className={styles.blockOrder}>
-                <div className={styles.blockOrderInner}>03</div>
+                <div className={styles.blockOrderInner}>
+                  <span aria-hidden="true">03</span><span className="screenReaderText">3</span>
+                </div>
               </div>
               <div className={styles.blockContent}>
                 <h2
