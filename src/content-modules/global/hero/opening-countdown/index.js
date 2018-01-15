@@ -38,7 +38,7 @@ class OpeningCountdown extends React.Component {
     INTERVALS.forEach((interval) => {
       const diff = eventDate.diff(dateNow, interval);
       dateNow.add(diff, interval);
-      countdown[interval] = diff;
+      countdown[interval] = diff > 0 ? diff : 0;
     });
 
     return countdown;
