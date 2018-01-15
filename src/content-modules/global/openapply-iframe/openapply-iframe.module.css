@@ -43,6 +43,7 @@
 
 .componentContent > iframe {
   margin-top: -100px;
+  max-width: 100%;
   opacity: 0;
   position: relative;
   z-index: 1;
