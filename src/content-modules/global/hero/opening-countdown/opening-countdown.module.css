@@ -23,12 +23,12 @@
 
 .componentTitle {
   @media (--bp-md) {
-    padding: 45px calc(var(--grid-gutter-md) * 2) 15px;
+    padding: 45px 0 15px;
     text-align: center;
   }
 
   @media (--bp-lg) {
-    padding: 40px calc(var(--grid-gutter-lg) * 2) 22px;
+    padding: 40px 0 22px;
   }
 }
 
