@@ -8,6 +8,7 @@ import PageWrapper from '../../components/structural/page-wrapper';
 import HomeCampuses from '../../components/structural/home-campuses';
 import Hero from '../../content-modules/global/hero';
 import HomeTeams from '../../components/structural/home-teams';
+import MetaTags from '../../components/structural/meta-tags';
 
 import { PAGE_TYPE } from '../../constants/settings';
 import { PROP_SHAPES } from '../../constants/custom-property-types';
@@ -34,13 +35,16 @@ const ContentPageTemplate = ({
     eventList,
     schoolIntroTitle,
     seoMetaDescription,
+    seoMetaKeywords,
     seoMetaTitle,
     teamsModule,
   } = homePageData;
 
   const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
     (schoolIntroTitle && schoolIntroTitle.content);
+  const metaKeywords = seoMetaKeywords && seoMetaKeywords.content;
   const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
+  const metaTitle = seoMetaTitle || removeMarkdown(headline);
 
   // eventList and campusModule are required, but we check for their existence
   // to avoid breaking the site on new deploysto production
@@ -50,12 +54,15 @@ const ContentPageTemplate = ({
   return (
     <PageWrapper>
       <Helmet>
-        <title>{seoMetaTitle || removeMarkdown(headline)}</title>
-        <meta
-          content={metaDescription}
-          name="description"
-        />
+        <title>{metaTitle}</title>
       </Helmet>
+      <MetaTags
+        description={metaDescription}
+        imageSources={heroImages && heroImages.image}
+        keywords={metaKeywords}
+        pageType="webpage"
+        title={metaTitle}
+      />
       <PageHead
         headline={headline}
         type={PAGE_TYPE.HOME}
@@ -105,6 +112,9 @@ export const pageQuery = graphql`
       }
       seoMetaDescription {
         content: seoMetaDescription
+      }
+      seoMetaKeywords {
+        content: seoMetaKeywords
       }
       seoMetaTitle
       hero {

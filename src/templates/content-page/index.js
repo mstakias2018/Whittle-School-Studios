@@ -8,6 +8,7 @@ import PageHead from '../../components/structural/page-head';
 import Share from '../../components/structural/share';
 import PageWrapper from '../../components/structural/page-wrapper';
 import PageVisited from '../../components/structural/page-visited';
+import MetaTags from '../../components/structural/meta-tags';
 
 import { PROP_SHAPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
@@ -54,6 +55,7 @@ class ContentPageTemplate extends React.Component {
       parentCategory,
       categorySlug,
       seoMetaDescription,
+      seoMetaKeywords,
       seoMetaTitle,
       subcategories,
       subhead,
@@ -84,6 +86,8 @@ class ContentPageTemplate extends React.Component {
     const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
       navDescription ||
       subhead;
+    const metaKeywords = seoMetaKeywords && seoMetaKeywords.content;
+    const metaTitle = seoMetaTitle || navTitle || removeMarkdown(headline);
 
     const shouldDisableFab = modules && modules.some(({ __typename: type }) =>
       type === CONTENT_MODULE.OPENAPPLY_IFRAME);
@@ -102,12 +106,15 @@ class ContentPageTemplate extends React.Component {
           >
             <div>
               <Helmet>
-                <title>{seoMetaTitle || navTitle || removeMarkdown(headline)}</title>
-                <meta
-                  content={metaDescription}
-                  name="description"
-                />
+                <title>{metaTitle}</title>
               </Helmet>
+              <MetaTags
+                description={metaDescription}
+                imageSources={imageDataByType && imageDataByType[IMAGE_TYPE.MAIN]}
+                keywords={metaKeywords}
+                pageType="article"
+                title={metaTitle}
+              />
               <PageHead
                 headline={headline}
                 imageAlt={mainImageAlt}
@@ -174,6 +181,9 @@ export const pageQuery = graphql`
       pageType
       seoMetaDescription {
         content: seoMetaDescription
+      }
+      seoMetaKeywords {
+        content: seoMetaKeywords
       }
       seoMetaTitle
       subhead
