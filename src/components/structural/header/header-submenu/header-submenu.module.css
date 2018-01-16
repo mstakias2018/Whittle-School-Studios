@@ -245,6 +245,7 @@
 }
 
 .itemNumber {
+  @mixin font-family font-sans-serif-regular, false;
   display: inline;
   flex-shrink: 0;
 

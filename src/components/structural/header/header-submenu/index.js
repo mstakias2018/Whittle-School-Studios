@@ -16,6 +16,13 @@ import Link from '../../../global/link';
 import styles from './header-submenu.module.css';
 
 class Submenu extends Component {
+  getArticleTitle = (title, index, translation) => {
+    if (index > 0) {
+      return title || translation('header.subMenuTitileFallback.article');
+    }
+    return title || translation('header.subMenuTitileFallback.overview');
+  }
+
   isLastRow = (index, size) => {
     const keys = Object.keys(this.props.navItems);
     keys.unshift('_');
@@ -104,21 +111,25 @@ class Submenu extends Component {
                             <span className={styles.underline}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                           </span>
                           <span className={styles.itemTitle}>
-                            <span className={styles.underline}>{title}</span>
+                            <span className={styles.underline}>
+                              {this.getArticleTitle(title, index, translation)}
+                            </span>
                           </span>
                         </span>
-                        <span
-                          aria-hidden="true"
-                          className={styles.itemDescription}
-                        >
-                          {description}
-                          <span className={styles.emptySpace} />
-                          <img
-                            alt=""
-                            className={styles.arrow}
-                            src={Arrow}
-                          />
-                        </span>
+                        {description &&
+                          <span
+                            aria-hidden="true"
+                            className={styles.itemDescription}
+                          >
+                            {description}
+                            <span className={styles.emptySpace} />
+                            <img
+                              alt=""
+                              className={styles.arrow}
+                              src={Arrow}
+                            />
+                          </span>
+                        }
                       </Link>
                     </span>
                   </li>

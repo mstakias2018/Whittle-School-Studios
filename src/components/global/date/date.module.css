@@ -46,7 +46,7 @@
 }
 
 .day {
-  @mixin font-family font-serif-light;
+  @mixin font-family font-serif-light, false;
   color: var(--color-text-dark);
   font-size: 30px;
   line-height: 24px;
@@ -56,5 +56,9 @@
     color: var(--color-text-light);
     letter-spacing: 0.5px;
     margin-left: 5px;
+
+    :global(.wrapper_isChinese) & {
+      @mixin font-family font-sans-serif-light, false;
+    }
   }
 }

@@ -84,6 +84,10 @@
     color: var(--color-text-dark);
     text-decoration: none;
   }
+
+  &.selectButton_hasSameFontTranslated {
+    @mixin font-family font-sans-serif-regular, false;
+  }
 }
 
 .selectButton_isSelected {

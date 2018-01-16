@@ -15,6 +15,7 @@ const propTypes = {
   isSmall: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
+    sameFontTranslated: PropTypes.bool,
     title: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
   })).isRequired,
@@ -156,6 +157,7 @@ class Drop extends React.Component {
                 <Link
                   className={cx(styles.selectButton, {
                     [styles.selectButton_isSelected]: isSelected,
+                    [styles.selectButton_hasSameFontTranslated]: item.sameFontTranslated,
                   })}
                   onClick={this.close}
                   refFn={(el) => {

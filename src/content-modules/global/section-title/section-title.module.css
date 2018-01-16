@@ -46,6 +46,10 @@
   @media (--bp-lg) {
     width: 70px;
   }
+
+  :global(.wrapper_isChinese) & {
+    @mixin font-family font-serif-light, false;
+  }
 }
 
 .title {

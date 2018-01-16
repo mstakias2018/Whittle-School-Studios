@@ -4,6 +4,7 @@ import cx from 'classnames';
 
 import Drop from '../../../global/drop';
 import {
+  LANGUAGE,
   LANGUAGE_CONTENTFUL_LOCALE,
   LANGUAGE_PATH,
   REGION,
@@ -41,6 +42,7 @@ class Locales extends Component {
 
       return {
         link: `${LANGUAGE_PATH[language]}${currentPageWithLocalizedSlugs}`,
+        sameFontTranslated: language === LANGUAGE.ENGLISH,
         title: translation && translation(`header.languages.${language}`),
         value: language,
       };
