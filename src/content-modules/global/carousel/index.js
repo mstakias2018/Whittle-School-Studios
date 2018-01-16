@@ -48,7 +48,7 @@ class Carousel extends Component {
       const { sourceList, largestSrc } = adaptSourcesBySize(itemImageSources);
 
       return {
-        imgSet: sourceList,
+        imageSet: sourceList,
         original: largestSrc,
         originalAlt: alt,
         originalClass: `_is${shape}`,
