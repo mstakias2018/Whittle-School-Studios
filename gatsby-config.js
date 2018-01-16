@@ -52,9 +52,7 @@ module.exports = {
         logo: './src/assets/images/favicon.png',
       },
       resolve: 'gatsby-plugin-favicon',
-    }
+    },
+    'gatsby-plugin-netlify', // must be last
   ],
-  siteMetadata: {
-    title: 'Gatsby Default Starter',
-  },
 };
