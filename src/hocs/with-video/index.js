@@ -100,10 +100,10 @@ const WithVideo = (WrappedComponent, options = {}) => {
       const { alt, imageSources } = this.props;
       const { hasPlayed, isVimeo, src } = this.state;
       const hasVideo = !!src;
-      const hasPlayButton = isVimeo && !hasPlayed;
       const shouldUseCoverPhoto = isVimeo;
       const isCoverPhotoInBackground = hasVideo && (!shouldUseCoverPhoto || hasPlayed);
       const hasCoverPhoto = shouldUseCoverPhoto && imageSources;
+      const hasPlayButton = isVimeo && !hasPlayed && hasCoverPhoto;
 
       const asset = imageSources && (
         <Picture
