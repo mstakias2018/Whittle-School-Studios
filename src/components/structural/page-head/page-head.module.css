@@ -7,6 +7,11 @@
 .wrapper {
   @mixin component-container;
   @mixin component-vertical-spacing;
+  padding-bottom: 20px;
+
+  @media (--bp-md) {
+    padding-bottom: 35px;
+  }
 }
 
 .pageHead {
@@ -16,12 +21,24 @@
     width: 100%;
   }
 
-  picture:not(:last-child) {
-    padding-bottom: 30px;
+  picture:last-child {
+    padding-bottom: 10px;
 
     @media (--bp-md) {
-      padding-bottom: 60px;
+      padding-bottom: 25px;
     }
+  }
+
+  picture:not(:last-child) {
+    padding-bottom: 20px;
+
+    @media (--bp-md) {
+      padding-bottom: 35px;
+    }
+  }
+
+  :global(.headline):last-child {
+    padding-bottom: 0;
   }
 }
 
@@ -33,10 +50,10 @@
   }
 
   &:not(:last-child) {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 
     @media (--bp-md) {
-      padding-bottom: 60px;
+      padding-bottom: 35px;
     }
   }
 }
