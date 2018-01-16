@@ -37,8 +37,13 @@ class BodyText extends Component {
       const text = Object.keys(paragraphElements).filter(key => paragraphElements[key].nodeName !== 'SPAN')
         .map(key => paragraphElements[key]);
       if (text && text[0]) {
+        const textWrapperElement = document.createElement('span');
         const firstTextEl = text[0].textContent;
-        text[0].textContent = `${firstTextEl.slice(0, 1)} ${firstTextEl.slice(1)}`;
+
+        textWrapperElement.innerHTML = `<span>${firstTextEl.slice(0, 1)}</span>${firstTextEl.slice(1)}`;
+        textWrapperElement.setAttribute('aria-label', firstTextEl);
+
+        firstParagraph[0].replaceChild(textWrapperElement, text[0]);
       }
     }
   }
