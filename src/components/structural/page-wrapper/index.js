@@ -13,8 +13,19 @@ import { CLASSES } from '../../../constants/classes';
 import { ENV } from '../../../constants/env';
 
 class PageWrapper extends React.Component {
+  state = { mainElementAttributes: {} };
+
   handleSkipToContent = () => {
-    this.mainContent.focus();
+    this.setState({ mainElementAttributes: { tabIndex: -1 } });
+    setTimeout(() => {
+      this.mainContent.focus();
+    });
+  };
+
+  handleSkipBlur = () => {
+    setTimeout(() => {
+      this.setState({ mainElementAttributes: {} });
+    });
   };
 
   render() {
@@ -31,15 +42,18 @@ class PageWrapper extends React.Component {
       <Fragment>
         <Header
           localizedSlugList={localizedSlugList}
-          skipComponent={<Skip handleSkipToContent={this.handleSkipToContent} />}
+          skipComponent={
+            <Skip handleSkipToContent={this.handleSkipToContent} />
+          }
           subNavProps={subNavProps}
           viewedPage={viewedPage}
         />
         <main
           aria-label={translation && translation('general.mainAriaLabel')}
           className={CLASSES.PAGE_CONTENT}
+          onBlur={this.handleSkipBlur}
           ref={(el) => { this.mainContent = el; }}
-          tabIndex={-1}
+          {...this.state.mainElementAttributes}
         >
           {!shouldDisableFab &&
           <Fab />
