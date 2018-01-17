@@ -130,6 +130,7 @@ class TemplateWrapper extends Component {
     return (
       <div
         className={cx({
+          _notTouchDevice: !this.state.isTouchDevice,
           _touchDevice: this.state.isTouchDevice,
           wrapper: true,
           [`wrapper_is${LANGUAGE_CLASS[language]}`]: true,

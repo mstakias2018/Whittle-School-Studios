@@ -151,7 +151,7 @@
     flex-wrap: wrap;
     text-decoration: none;
 
-    &:hover {
+    :global(._notTouchDevice) &:hover {
       @media (--ie-only) {
         .itemNumber {
           &:after {
@@ -201,7 +201,7 @@
 
 .item_active {
   .itemLink {
-    &:hover {
+    :global(._notTouchDevice) &:hover {
       .underline {
         box-shadow:
           inset 0 -2px var(--color-background-light-gray),
