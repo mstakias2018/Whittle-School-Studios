@@ -105,6 +105,7 @@ class Drop extends React.Component {
   };
 
   close = () => {
+    window.scrollTo(0, 0);
     this.setState({ selectActive: false });
     this.refElements.btn.focus();
   };
