@@ -1,6 +1,7 @@
 const moment = require('moment-timezone');
 
 const createHomePages = require('./server/create-home-pages');
+const saveGlobalImages = require('./server/save-global-images');
 const createCategoryAndArticlePages = require('./server/create-category-and-article-pages');
 const { resetImageDir } = require('./server/save-images');
 const { getDefaultLangPath } = require('./src/utils/regions');
@@ -17,7 +18,7 @@ exports.onCreatePage = process.env.GATSBY_ENV === ENV.PRODUCTION ?
   deleteDevPages : undefined;
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createRedirect, createPage } = boundActionCreators;
+  const { createRedirect, createNode, createPage } = boundActionCreators;
 
   createRedirect({
     fromPath: '/',
@@ -33,5 +34,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   return Promise.all([
     ...createCategoryAndArticlePages(graphql, createPage),
     ...createHomePages(graphql, createPage),
+    ...saveGlobalImages(graphql, createNode),
   ]);
 };

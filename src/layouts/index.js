@@ -15,6 +15,7 @@ import '../assets/styles/main.css';
 import './fonts.module.css';
 
 import { PROP_SHAPES } from '../constants/custom-property-types';
+import { GLOBAL_IMAGE_TYPE } from '../constants/images';
 import {
   LANGUAGE,
   LANGUAGE_CLASS,
@@ -26,12 +27,12 @@ import { parseLink } from '../utils/global';
 import { getLanguageFromPathname } from '../utils/regions';
 import { transformSocialNetworks } from '../utils/social-networks';
 import { formatFooterLinks } from '../utils/nav';
-
-const { ENV } = require('../constants/env');
+import { ENV } from '../constants/env';
 
 const LAYOUT_MODEL = {
   FOOTER: 'allContentfulFooter',
   HEADER: 'allContentfulHeader',
+  IMAGE_DATA: 'allWhittleImageData',
   SETTINGS: 'allContentfulGlobalSettings',
   TRANSLATIONS: 'allContentfulGlobalTranslations',
 };
@@ -47,20 +48,25 @@ class TemplateWrapper extends Component {
 
     const {
       contentPageShareIcons,
-      fabText: { file: { url } },
       fabLinkExternal,
       fabLinkInternal,
       footerShareIcons,
-      headerLogo: { file: { headerUrl } },
       ...socialNetworkUrls
     } = this.getLanguageDataFor(LAYOUT_MODEL.SETTINGS);
 
+    const globalImages = Object.keys(GLOBAL_IMAGE_TYPE).reduce((acc, imageType) => ({
+      ...acc,
+      [imageType]: this.getLanguageDataFor(
+        LAYOUT_MODEL.IMAGE_DATA,
+        n => n.imageType === imageType
+      ).src,
+    }), {});
+
     return {
       fabLink: parseLink({ external: fabLinkExternal, internal: fabLinkInternal }),
-      fabTextImage: url,
       footerData: formatFooterLinks(this.getLanguageDataFor(LAYOUT_MODEL.FOOTER)),
+      globalImages,
       headerData: this.getLanguageDataFor(LAYOUT_MODEL.HEADER).contentPages,
-      headerLogoImage: headerUrl,
       history,
       language,
       pathname,
@@ -86,13 +92,17 @@ class TemplateWrapper extends Component {
     });
   }
 
-  getLanguageDataFor = (key) => {
+  getLanguageDataFor = (key, testFunc) => {
     const { data, location: { pathname } } = this.props;
     const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
     let out;
 
     data[key].edges.some(({ node: { locale, dummycontentindex, ...props } }) => {
-      if (locale === LANGUAGE_CONTENTFUL_LOCALE[language] && !dummycontentindex) {
+      if (
+        locale === LANGUAGE_CONTENTFUL_LOCALE[language] &&
+        !dummycontentindex &&
+        (!testFunc || testFunc(props))
+      ) {
         out = props;
         return true;
       }
@@ -158,10 +168,9 @@ TemplateWrapper.propTypes = {
 
 TemplateWrapper.childContextTypes = {
   fabLink: PropTypes.string.isRequired,
-  fabTextImage: PropTypes.string.isRequired,
   footerData: PROP_SHAPES.FOOTER_DATA.isRequired,
+  globalImages: PROP_SHAPES.GLOBAL_IMAGES.isRequired,
   headerData: PROP_SHAPES.HEADER_DATA.isRequired,
-  headerLogoImage: PropTypes.string.isRequired,
   history: PROP_SHAPES.HISTORY.isRequired,
   language: PROP_SHAPES.LANGUAGE.isRequired,
   pathname: PropTypes.string.isRequired,
@@ -272,11 +281,6 @@ export const pageQuery = graphql`
           fabLinkExternal
           contentPageShareIcons
           footerShareIcons
-          headerLogo{
-            file {
-              headerUrl: url
-            }
-          }
           # These should match our SOCIAL_NETWORK constant
           FACEBOOK: facebookUrl
           TWITTER: twitterUrl
@@ -295,6 +299,17 @@ export const pageQuery = graphql`
               content
             }
           }
+        }
+      }
+    }
+
+    allWhittleImageData {
+      edges {
+        node {
+          id
+          imageType
+          locale: node_locale
+          src
         }
       }
     }

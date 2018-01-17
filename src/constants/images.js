@@ -29,15 +29,26 @@ exports.IMAGE_MQ = {
 
 /* IMAGE CONFIG */
 
-exports.IMAGE_TYPE = {
+const IMAGE_TYPE = {
+  FAB_TEXT: 'fabText',
+  HEADER_LOGO: 'headerLogo',
   MAIN: 'main',
   MODULE: 'module',
+};
+
+exports.IMAGE_TYPE = IMAGE_TYPE;
+
+// values must match contentful field names
+exports.GLOBAL_IMAGE_TYPE = {
+  [IMAGE_TYPE.FAB_TEXT]: 'fabText',
+  [IMAGE_TYPE.HEADER_LOGO]: 'headerLogo',
 };
 
 exports.IMAGE_SUBTYPE = {
   CAMPUS: 'campusRt',
   CAMPUS_ARCHITECT: 'campusArchitectSq',
   CAROUSEL_SQ: 'carouselSq',
+  HERO: 'hero',
   INLINE_RT: 'inlineRt',
   INLINE_RT_HERO_VIDEO: 'inlineRtHeroVideo',
   INLINE_RT_HERO_VIDEO_SMALL: 'inlineRtHeroVideoSmall',

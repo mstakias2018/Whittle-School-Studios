@@ -15,6 +15,7 @@ import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
 import { COMPONENT_BOTTOM_PADDING, FAB_SIZE } from '../../../constants/dimensions';
 import { CLASSES } from '../../../constants/classes';
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { IMAGE_TYPE } from '../../../constants/images';
 
 const propTypes = {
   breakpoint: PROP_SHAPES.BREAKPOINT,
@@ -75,7 +76,7 @@ class Fab extends React.Component {
   }
 
   render() {
-    const { fabLink, fabTextImage, translation } = this.context;
+    const { fabLink, globalImages, translation } = this.context;
     const smallerThanLG = [BREAKPOINTS_NAME.small, BREAKPOINTS_NAME.medium];
 
     return (
@@ -163,7 +164,7 @@ class Fab extends React.Component {
               <img
                 alt=""
                 className={cx(styles.content, styles.contentText)}
-                src={fabTextImage}
+                src={globalImages[IMAGE_TYPE.FAB_TEXT]}
               />
             </Link>
           </Plx>
@@ -181,7 +182,7 @@ class Fab extends React.Component {
 Fab.propTypes = propTypes;
 Fab.contextTypes = {
   fabLink: PropTypes.string.isRequired,
-  fabTextImage: PropTypes.string.isRequired,
+  globalImages: PROP_SHAPES.GLOBAL_IMAGES.isRequired,
   translation: PropTypes.func.isRequired,
 };
 

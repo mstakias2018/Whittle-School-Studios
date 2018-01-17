@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 
-import { IMAGE_SIZE, IMAGE_SHAPE, IMAGE_TYPE } from './images';
+import {
+  GLOBAL_IMAGE_TYPE,
+  IMAGE_SIZE,
+  IMAGE_SHAPE,
+  IMAGE_TYPE,
+} from './images';
 import { CONTENT_MODULE } from './contentful';
 import { PAGE_TYPES } from './settings';
 import { BREAKPOINTS_NAME } from './breakpoints';
@@ -38,6 +43,16 @@ const validateImageDataByType = (props, propName) => {
       isValidSourcesBySize(imageData);
   });
   return isValid ? undefined : new Error('invalid image data by type');
+};
+
+const validateGlobalImages = (props, propName) => {
+  const globalImages = props[propName];
+  const isValid = Object.keys(globalImages).every((imageType) => {
+    const src = globalImages[imageType];
+    return Object.values(GLOBAL_IMAGE_TYPE).includes(imageType) &&
+      typeof src === 'string';
+  });
+  return isValid ? undefined : new Error('invalid global images');
 };
 
 const getInlineImagePropTypes = (withCircle = false) => ({
@@ -380,6 +395,7 @@ exports.PROP_SHAPES = {
     primaryLinks: footerLinkArray,
     utilityLinks: footerLinkArray,
   }),
+  GLOBAL_IMAGES: PropTypes.shape(validateGlobalImages),
   GLOBAL_SETTINGS: PropTypes.shape(validateGlobalSettings),
   HEADER_DATA: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,

@@ -2,7 +2,9 @@ const fs = require('file-system');
 const request = require('request');
 
 const {
-  IMAGE_SHAPE, IMAGE_SUBTYPE, IMAGE_TYPE,
+  IMAGE_SHAPE,
+  IMAGE_SUBTYPE,
+  IMAGE_TYPE,
 } = require('../src/constants/images');
 const IMAGE_CONFIG = require('../src/constants/image-config');
 const { PAGE_TYPE } = require('../src/constants/settings');
@@ -76,7 +78,7 @@ const downloadPromise = (url, dest) =>
     DOWNLOADS.push(downloadKey);
 
     const writeStream = fs.createWriteStream(dest);
-    request(url).pipe(writeStream);
+    request(/https?:/.test(url) ? url : `http:${url}`).pipe(writeStream);
     writeStream.on('finish', resolve);
   });
 
@@ -123,8 +125,21 @@ const saveImage = (imageNode, type, subtype, nestedFolders) => {
 
   const { file: { fileName: originalFileName, url } } = imageNode;
   const localeId = getLocaleIdFromImgUrl(url);
-  const fileName = `${localeId}${originalFileName}`;
+  const fileName = `${localeId}-${originalFileName}`;
   const sourcesBySize = { id: getIdFromImgUrl(url) };
+
+  if (!subtype) {
+    return new Promise((resolve) => {
+      if (shouldSkipDownloadingImages) {
+        resolve(url);
+        return;
+      }
+
+      const srcName = `${imageTypeDir}${fileName}`;
+      downloadPromise(url, srcName).then(() =>
+        resolve(formatPathForBrowser(srcName)));
+    });
+  }
 
   const promises = Object.keys(IMAGE_CONFIG[subtype]).map((imageSize) => {
     const imageSizePromises = [];
@@ -140,7 +155,7 @@ const saveImage = (imageNode, type, subtype, nestedFolders) => {
       fs.mkdirSync(sizeDir);
 
       const srcName = `${sizeDir}${fileName}`;
-      imageSizePromises.push(downloadPromise(`http:${src}`, srcName).then(() => {
+      imageSizePromises.push(downloadPromise(src, srcName).then(() => {
         imageData.src = formatPathForBrowser(srcName);
       }));
     }
@@ -159,7 +174,7 @@ const saveImage = (imageNode, type, subtype, nestedFolders) => {
           fs.mkdirSync(resDir);
 
           const srcSetName = `${resDir}${fileName}`;
-          imageSizePromises.push(downloadPromise(`http:${itemFileName}`, srcSetName).then(() => {
+          imageSizePromises.push(downloadPromise(itemFileName, srcSetName).then(() => {
             imageData.srcSet.push(formatPathForBrowser(`${srcSetName} ${resolution}`));
           }));
         }
