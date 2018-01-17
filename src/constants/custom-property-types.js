@@ -306,14 +306,14 @@ const VIDEO = {
   videoEmbedCode: VIDEO_EMBED_CODE,
 };
 
-const HERO_VIDEO = PropTypes.shape({
+const HERO_VIDEO = {
   description: MARKDOWN.isRequired,
   link: FOOTER_LINK,
   title: PropTypes.string.isRequired,
   ...VIDEO,
-});
+};
 
-const HERO_VIDEOS = PropTypes.shape({
+const HERO_VIDEOS = {
   title: PropTypes.string,
   video1AssetCoverPhoto: IMAGE_SOURCES,
   video1Description: MARKDOWN,
@@ -333,11 +333,11 @@ const HERO_VIDEOS = PropTypes.shape({
   video3Link: FOOTER_LINK,
   video3Title: PropTypes.string,
   video3VideoEmbedCode: VIDEO_EMBED_CODE,
-});
+};
 
 const HERO = {
   eventListTitle: PropTypes.string,
-  videos: HERO_VIDEOS,
+  videos: PropTypes.shape(HERO_VIDEOS),
   ...SCHOOLS_INTRO,
 };
 

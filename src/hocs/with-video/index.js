@@ -103,7 +103,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
       const shouldUseCoverPhoto = isVimeo;
       const isCoverPhotoInBackground = hasVideo && (!shouldUseCoverPhoto || hasPlayed);
       const hasCoverPhoto = shouldUseCoverPhoto && imageSources;
-      const hasPlayButton = isVimeo && !hasPlayed && hasCoverPhoto;
+      const hasPlayButton = Boolean(isVimeo && !hasPlayed && hasCoverPhoto);
 
       const asset = imageSources && (
         <Picture
