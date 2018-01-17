@@ -127,12 +127,12 @@ class ContentPageTemplate extends React.Component {
                 subhead={subhead}
                 type={pageType}
               />
-              {modules &&
-              <ContentModules
-                moduleImageData={cleanImageData(imageDataByType[IMAGE_TYPE.MODULE])}
-                modules={modules}
-              />
-              }
+              {modules && (
+                <ContentModules
+                  moduleImageData={cleanImageData(imageDataByType[IMAGE_TYPE.MODULE])}
+                  modules={modules}
+                />
+              )}
               {hasShareButtons && <Share />}
             </div>
           </PageWrapper>

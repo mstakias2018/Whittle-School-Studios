@@ -74,23 +74,29 @@ const ContentPageTemplate = ({
           heroImages.video3AssetCoverPhoto,
         ]}
       />
-      {eventList && <PIC
-        cityName={eventList.cityName}
-        description={eventList.introText.markdown}
-        eventList={eventList}
-        sectionTitle={eventList.sectionTitle}
-      />}
-      {campusModule && <HomeCampuses
-        {...campusModule}
-        architectImage={pathContext.imageDataByType &&
-          pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage}
-        imageSources={pathContext.imageDataByType &&
-          pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image}
-      />}
-      {teamsModule && <HomeTeams
-        data={teamsModule}
-        pathContext={pathContext}
-      />}
+      {eventList && (
+        <PIC
+          cityName={eventList.cityName}
+          description={eventList.introText.markdown}
+          eventList={eventList}
+          sectionTitle={eventList.sectionTitle}
+        />
+      )}
+      {campusModule && (
+        <HomeCampuses
+          {...campusModule}
+          architectImage={pathContext.imageDataByType &&
+            pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage}
+          imageSources={pathContext.imageDataByType &&
+            pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image}
+        />
+      )}
+      {teamsModule && (
+        <HomeTeams
+          data={teamsModule}
+          pathContext={pathContext}
+        />
+      )}
     </PageWrapper>
   );
 };

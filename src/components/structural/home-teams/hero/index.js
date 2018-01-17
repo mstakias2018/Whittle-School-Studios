@@ -32,11 +32,13 @@ const TeamsHero = (props, context) => {
   return (
     <li className={styles.wrapper}>
       <div className={styles.heroImageWrapper}>
-        {heroImage && <Picture
-          alt={heroImageAlt}
-          className={styles.heroImage}
-          sourcesBySize={heroImage}
-        />}
+        {heroImage && (
+          <Picture
+            alt={heroImageAlt}
+            className={styles.heroImage}
+            sourcesBySize={heroImage}
+          />
+        )}
       </div>
       <div className={styles.heroContent}>
         <div className={styles.heroContentInner}>

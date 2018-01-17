@@ -82,7 +82,7 @@ class Recirculation extends Component {
               ${this.getItemNumber(item)} ${item.title}`}
             className={styles.direction}
           >
-            {type === NAV_DIRECTIONS.PREVIOUS &&
+            {type === NAV_DIRECTIONS.PREVIOUS && (
               <span
                 aria-hidden="true"
                 className={styles.directionLabel}
@@ -99,13 +99,13 @@ class Recirculation extends Component {
                 />
                 {translation && translation('recirculation.previous')}
               </span>
-            }
-            {type === NAV_DIRECTIONS.NEXT &&
+            )}
+            {type === NAV_DIRECTIONS.NEXT && (
               <span
                 aria-hidden="true"
                 className={styles.directionLabel}
               >
-                  {translation && translation('recirculation.next')}
+                {translation && translation('recirculation.next')}
                 <img
                   alt=""
                   className={cx(styles.arrow, styles.arrow_right)}
@@ -117,7 +117,7 @@ class Recirculation extends Component {
                   src={arrowOrange}
                 />
               </span>
-            }
+            )}
             <span className={styles.title}>
               <span
                 aria-hidden="true"
@@ -150,14 +150,12 @@ class Recirculation extends Component {
               this.getNavigationItem(
                 this.state.previousItem,
                 NAV_DIRECTIONS.PREVIOUS
-              )
-            }
+              )}
             {this.state.nextItem &&
               this.getNavigationItem(
                 this.state.nextItem,
                 NAV_DIRECTIONS.NEXT
-              )
-            }
+              )}
           </nav>
         </div>
       </div>

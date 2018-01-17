@@ -73,11 +73,12 @@ class Header extends Component {
             <MainMenu isActive={this.state.menuActive} />
           </div>
         </div>
-        {subNavProps &&
+        {subNavProps && (
           <SubMenu
             {...this.props.subNavProps}
             viewedPage={viewedPage}
-          />}
+          />
+        )}
       </header>
     );
   }

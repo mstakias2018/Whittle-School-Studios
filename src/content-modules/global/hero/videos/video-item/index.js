@@ -39,14 +39,14 @@ const VideoItem = ({
         <h3 className={styles.title}>
           {title}
         </h3>
-        {link && (link.linkDestinationInternal || link.linkDestinationExternal) &&
+        {link && (link.linkDestinationInternal || link.linkDestinationExternal) && (
           <Link
             className={commonStyles.link}
             to={parseLink({ external: link.linkDestinationExternal, internal: link.linkDestinationInternal })}
           >
             {translation('general.learnMore')}
           </Link>
-        }
+        )}
       </div>
       <Markdown
         className={cx(styles.description, 'hideSm')}

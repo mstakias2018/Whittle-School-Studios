@@ -21,11 +21,12 @@ const NotFound = ({
     [styles.wrapper_hasImage]: imageSources,
   })}
   >
-    {imageSources &&
+    {imageSources && (
       <Picture
         alt={imageAlt}
         sourcesBySize={imageSources}
-      />}
+      />
+    )}
     <div className={styles.textWrapper}>
       <h1 className={styles.number}>404</h1>
       <h2 className={styles.title}>{translation && translation('pageNotFound.title')}</h2>

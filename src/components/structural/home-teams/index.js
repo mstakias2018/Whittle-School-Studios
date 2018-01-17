@@ -120,12 +120,14 @@ const HomeTeams = ({
       )}
     >
       <div className={styles.wrapper}>
-        {!isOnContentPage && <HomeSectionTitle
-          color={HOME_SECTION_TITLE_COLOR.GRAY}
-          isBreakingTop
-          position={HOME_SECTION_TITLE_POSITION.LEFT}
-          text={data.sectionTitleText}
-        />}
+        {!isOnContentPage && (
+          <HomeSectionTitle
+            color={HOME_SECTION_TITLE_COLOR.GRAY}
+            isBreakingTop
+            position={HOME_SECTION_TITLE_POSITION.LEFT}
+            text={data.sectionTitleText}
+          />
+        )}
         <ul className={styles.content}>
           <TeamsHero
             heroDescription={data.heroDescription}
@@ -152,7 +154,7 @@ const HomeTeams = ({
             teamLinkTarget={data.sections[0].sectionLinkDestination}
             teamSectionTitle={data.sections[0].sectionTitle}
           />
-          {data.sections[1] &&
+          {data.sections[1] && (
             <TeamsSection
               numOfBiosInFirst={getNumOfnumOfBiosInFirst(data.sections[0])}
               secondBio
@@ -166,8 +168,8 @@ const HomeTeams = ({
               teamLinkTarget={data.sections[1].sectionLinkDestination}
               teamSectionTitle={data.sections[1].sectionTitle}
             />
-          }
-          {data.sections[2] &&
+          )}
+          {data.sections[2] && (
             <TeamsSection
               teamBio1={setSingleBio(data, isOnContentPage, pathContext, 3, 1)}
               teamBio2={setSingleBio(data, isOnContentPage, pathContext, 3, 2)}
@@ -178,8 +180,8 @@ const HomeTeams = ({
               teamLinkTarget={data.sections[2].sectionLinkDestination}
               teamSectionTitle={data.sections[2].sectionTitle}
             />
-          }
-          {data.sections[3] &&
+          )}
+          {data.sections[3] && (
             <TeamsSection
               teamBio1={setSingleBio(data, isOnContentPage, pathContext, 4, 1)}
               teamBio2={setSingleBio(data, isOnContentPage, pathContext, 4, 2)}
@@ -190,8 +192,8 @@ const HomeTeams = ({
               teamLinkTarget={data.sections[3].sectionLinkDestination}
               teamSectionTitle={data.sections[3].sectionTitle}
             />
-          }
-          {data.sections[4] &&
+          )}
+          {data.sections[4] && (
             <TeamsSection
               teamBio1={setSingleBio(data, isOnContentPage, pathContext, 5, 1)}
               teamBio2={setSingleBio(data, isOnContentPage, pathContext, 5, 2)}
@@ -202,7 +204,7 @@ const HomeTeams = ({
               teamLinkTarget={data.sections[4].sectionLinkDestination}
               teamSectionTitle={data.sections[4].sectionTitle}
             />
-          }
+          )}
         </ul>
       </div>
     </div>

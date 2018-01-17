@@ -86,12 +86,12 @@ const MetaTags = ({
         content={description}
         name="description"
       />
-      {keywords &&
-      <meta
-        content={keywords}
-        name="keywords"
-      />
-      }
+      {keywords && (
+        <meta
+          content={keywords}
+          name="keywords"
+        />
+      )}
     </Helmet>
   );
 };

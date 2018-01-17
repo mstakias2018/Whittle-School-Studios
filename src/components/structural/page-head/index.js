@@ -31,11 +31,13 @@ const PageHead = ({
   subhead,
   type,
 }) => {
-  const title = (<Title
-    isSingle={!subhead && !imageSources}
-    text={headline}
-    type={type}
-  />);
+  const title = (
+    <Title
+      isSingle={!subhead && !imageSources}
+      text={headline}
+      type={type}
+    />
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -46,7 +48,7 @@ const PageHead = ({
           [styles.pageHead_category]: type === PAGE_TYPE.CATEGORY,
         })}
       >
-        {(type === PAGE_TYPE.HOME) ?
+        {(type === PAGE_TYPE.HOME) ? (
           <Plx
             animateWhenNotInViewport
             className={styles.parallaxTitle}
@@ -54,18 +56,17 @@ const PageHead = ({
           >
             {title}
           </Plx>
-          : title
-        }
+        ) : title}
         {type === PAGE_TYPE.CATEGORY &&
         subhead &&
         <div className={styles.subhead}>{subhead}</div>
         }
-        {imageSources &&
-        <Picture
-          alt={imageAlt}
-          sourcesBySize={imageSources}
-        />
-        }
+        {imageSources && (
+          <Picture
+            alt={imageAlt}
+            sourcesBySize={imageSources}
+          />
+        )}
         {type === PAGE_TYPE.ARTICLE &&
         subhead &&
         <h2 className={cx(styles.subhead, styles.subhead_withBorder)}>{subhead}</h2>

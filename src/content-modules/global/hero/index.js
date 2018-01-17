@@ -26,12 +26,12 @@ const Hero = ({
         image={image}
       />
     </div>
-    {data.videos &&
-    <Videos
-      {...data.videos}
-      imageSources={imageSources}
-    />
-    }
+    {data.videos && (
+      <Videos
+        {...data.videos}
+        imageSources={imageSources}
+      />
+    )}
   </div>
 );
 

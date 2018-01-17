@@ -40,14 +40,14 @@ const Post = ({
           className={styles.text}
           source={description.markdown}
         />
-        {(linkInternal || linkExternal) &&
-        <Link
-          className={styles.readMore}
-          to={parseLink({ external: linkExternal, internal: linkInternal })}
-        >
-          {translation('post.continueReading')}
-        </Link>
-        }
+        {(linkInternal || linkExternal) && (
+          <Link
+            className={styles.readMore}
+            to={parseLink({ external: linkExternal, internal: linkInternal })}
+          >
+            {translation('post.continueReading')}
+          </Link>
+        )}
       </div>
     </div>
   </div>

@@ -15,11 +15,11 @@ const PullQuote = ({ quoteType, content, source }) => (
         <blockquote className={styles.quote}>
           {content.content}
           {source && <span className={styles.lastLineSeparator} />}
-          {source &&
+          {source && (
             <span className={styles.author}>
               {source}
             </span>
-          }
+          )}
         </blockquote>
       </div>
     </div>

@@ -47,17 +47,17 @@ const Statistic = (props, context) => {
   return (
     <div className={cx(styles.wrapper, { [styles.rightMargin]: hasRightMargin })}>
       <div className={styles.content}>
-        {textLineTop &&
+        {textLineTop && (
           <div className={styles.topText}>
             {textLineTop}
           </div>
-        }
+        )}
         {renderNumber(type, number1, number2, context.translation('teams.ratioDividerText'))}
-        {textLineBottom &&
+        {textLineBottom && (
           <div className={styles.bottomText}>
             {textLineBottom}
           </div>
-        }
+        )}
       </div>
     </div>
   );

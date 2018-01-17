@@ -52,93 +52,94 @@ class Submenu extends Component {
           aria-label={translation('header.secondaryAriaLabel')}
           className={styles.submenuContainer}
         >
-          {
-          navItems &&
-          <ul
-            className={cx(styles.items, {
-              [styles.items_large]: this.isLarge(),
-              [styles.items_twoCols]: navItems.length < 3,
-            })}
-          >
-            <li className={styles.titleContainer}>
-              <span className={styles.title}>
-                {categoryTitle}
-              </span>
-            </li>
-            {
-              navItems.map(({
-                description,
-                id,
-                isActive,
-                link,
-                title,
-              }, index) => {
-                const isChecked = visitedPages.includes(id) || (viewedPage && isActive);
+          {navItems && (
+            <ul
+              className={cx(styles.items, {
+                [styles.items_large]: this.isLarge(),
+                [styles.items_twoCols]: navItems.length < 3,
+              })}
+            >
+              <li className={styles.titleContainer}>
+                <span className={styles.title}>
+                  {categoryTitle}
+                </span>
+              </li>
+              {
+                navItems.map(({
+                  description,
+                  id,
+                  isActive,
+                  link,
+                  title,
+                }, index) => {
+                  const isChecked = visitedPages.includes(id) || (viewedPage && isActive);
 
-                return (
-                  <li
-                    className={cx(styles.item, {
-                      [styles.item_active]: isActive,
-                      [styles.item_smallLastItem]: this.isLastRow(index, SUBMENU_BREAK.SMALL),
-                    })}
-                    key={index}
-                  >
-                    <span className={styles.itemLinkWrapper}>
-                      <Link
-                        className={styles.itemLink}
-                        to={`/${link}`}
-                      >
-                        <span className="screenReaderText">
-                          {`${index + 1}. ${title}.`}
-                          {isChecked && `${translation('header.checkedItemAriaLabel')}.`}
-                          {`${description}.`}
-                        </span>
-                        <span
-                          aria-hidden="true"
-                          className={styles.itemTitleContainer}
+                  return (
+                    <li
+                      className={cx(styles.item, {
+                        [styles.item_active]: isActive,
+                        [styles.item_smallLastItem]: this.isLastRow(index, SUBMENU_BREAK.SMALL),
+                      })}
+                      key={index}
+                    >
+                      <span className={styles.itemLinkWrapper}>
+                        <Link
+                          className={styles.itemLink}
+                          to={`/${link}`}
                         >
-                          <span className={styles.itemNumber}>
-                            {isChecked ?
-                              <span className={styles.underline}>
-                                <img
-                                  alt=""
-                                  src={isActive ? CheckedGray : Checked}
-                                />
-                              </span> : <span className={styles.underline}>{`0${index + 1}`}</span>}
+                          <span className="screenReaderText">
+                            {`${index + 1}. ${title}.`}
+                            {isChecked && `${translation('header.checkedItemAriaLabel')}.`}
+                            {`${description}.`}
                           </span>
-                          {/* IE Hack for white space underline */}
-                          <span className={styles.placeHolder}>
-                            <span className={styles.underline}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                          </span>
-                          <span className={styles.itemTitle}>
-                            <span className={styles.underline}>
-                              {this.getArticleTitle(title, index, translation)}
-                            </span>
-                          </span>
-                        </span>
-                        {description &&
                           <span
                             aria-hidden="true"
-                            className={styles.itemDescription}
+                            className={styles.itemTitleContainer}
                           >
-                            {description}
-                            <span className={styles.emptySpace} />
-                            <img
-                              alt=""
-                              className={styles.arrow}
-                              src={Arrow}
-                            />
+                            <span className={styles.itemNumber}>
+                              {isChecked ?
+                                (
+                                  <span className={styles.underline}>
+                                    <img
+                                      alt=""
+                                      src={isActive ? CheckedGray : Checked}
+                                    />
+                                  </span>
+                                ) : <span className={styles.underline}>{`0${index + 1}`}</span>}
+                            </span>
+                            {/* IE Hack for white space underline */}
+                            <span className={styles.placeHolder}>
+                              <span className={styles.underline}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <span className={styles.itemTitle}>
+                              <span className={styles.underline}>
+                                {this.getArticleTitle(title, index, translation)}
+                              </span>
+                            </span>
                           </span>
-                        }
-                      </Link>
-                    </span>
-                  </li>
-                );
-              })
-            }
-            {navItems.length < 3 && <li className={cx(styles.item, styles.itemPlaceholder, 'showLg')} />}
-          </ul>
-        }
+                          {description && (
+                            <span
+                              aria-hidden="true"
+                              className={styles.itemDescription}
+                            >
+                              {description}
+                              <span className={styles.emptySpace} />
+                              <img
+                                alt=""
+                                className={styles.arrow}
+                                src={Arrow}
+                              />
+                            </span>
+                          )}
+                        </Link>
+                      </span>
+                    </li>
+                  );
+                })
+              }
+              {navItems.length < 3 && <li className={cx(styles.item, styles.itemPlaceholder, 'showLg')} />}
+            </ul>
+          )}
         </nav>
       </div>
     );

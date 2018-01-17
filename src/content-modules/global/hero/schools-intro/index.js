@@ -33,14 +33,14 @@ const SchoolsIntro = ({
           <div className={styles.contentInner}>
             <h2 className={styles.title}>{title}</h2>
             <p className={styles.description}>{description.markdown}</p>
-            {link && (link.linkDestinationInternal || link.linkDestinationExternal) &&
-            <Link
-              className={styles.link}
-              to={parseLink({ external: link.linkDestinationExternal, internal: link.linkDestinationInternal })}
-            >
-              {link.linkTitle}
-            </Link>
-            }
+            {link && (link.linkDestinationInternal || link.linkDestinationExternal) && (
+              <Link
+                className={styles.link}
+                to={parseLink({ external: link.linkDestinationExternal, internal: link.linkDestinationInternal })}
+              >
+                {link.linkTitle}
+              </Link>
+            )}
           </div>
         </div>
         <div className={cx(styles.countdownWrapper, 'showMd')}>

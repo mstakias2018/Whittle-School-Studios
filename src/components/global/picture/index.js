@@ -17,11 +17,13 @@ const Picture = ({
 
   return (
     <picture className={className}>
-      {sourceList.map(({ media, srcSet, src }) => (<source
-        key={media}
-        media={media}
-        srcSet={srcSet || src}
-      />))}
+      {sourceList.map(({ media, srcSet, src }) => (
+        <source
+          key={media}
+          media={media}
+          srcSet={srcSet || src}
+        />
+      ))}
       <img
         alt={alt}
         aria-hidden={isAriaHidden}

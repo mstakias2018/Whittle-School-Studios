@@ -25,6 +25,15 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-max-props-per-line": ["error", { "maximum":1 }],
     "react/jsx-sort-props": ["error", {"reservedFirst": false}],
+    "react/jsx-wrap-multilines": ["error", {
+      "declaration": "parens-new-line",
+      "assignment": "parens-new-line",
+      "return": "parens-new-line",
+      "arrow": "parens-new-line",
+      "condition": "parens-new-line",
+      "logical": "parens-new-line",
+      "prop": "parens-new-line"
+    }],
     "semi": ["error", "always"],
     "strict": ["error"],
     "comma-dangle": ["error", {

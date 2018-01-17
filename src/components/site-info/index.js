@@ -96,10 +96,11 @@ class SiteInfo extends Component {
                 </li>
               </ul>
             </div>
-            {isPolling &&
+            {isPolling && (
               <div className={styles.pollingWrapper}>
                 Time to refresh {timeToRefresh}
-              </div>}
+              </div>
+            )}
           </div>
         </div>
       </div>
