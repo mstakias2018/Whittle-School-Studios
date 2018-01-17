@@ -314,26 +314,29 @@ const HERO_VIDEO = {
 };
 
 const HERO_VIDEOS = {
+  imageSources: PropTypes.arrayOf(IMAGE_SOURCES),
   title: PropTypes.string,
-  video1AssetCoverPhoto: IMAGE_SOURCES,
   video1Description: MARKDOWN,
   video1ImageVideoAlt: PropTypes.string.isRequired,
   video1Link: FOOTER_LINK,
   video1Title: PropTypes.string,
   video1VideoEmbedCode: VIDEO_EMBED_CODE.isRequired,
-  video2AssetCoverPhoto: IMAGE_SOURCES,
   video2Description: MARKDOWN,
   video2ImageVideoAlt: PropTypes.string,
   video2Link: FOOTER_LINK,
   video2Title: PropTypes.string,
   video2VideoEmbedCode: VIDEO_EMBED_CODE,
-  video3AssetCoverPhoto: IMAGE_SOURCES,
   video3Description: MARKDOWN,
   video3ImageVideoAlt: PropTypes.string,
   video3Link: FOOTER_LINK,
   video3Title: PropTypes.string,
   video3VideoEmbedCode: VIDEO_EMBED_CODE,
 };
+
+const VIDEOS_MODULE = PropTypes.shape({
+  __typename: createTypenameChecker(CONTENT_MODULE.VIDEOS),
+  ...HERO_VIDEOS,
+});
 
 const HERO = {
   eventListTitle: PropTypes.string,
@@ -411,6 +414,7 @@ exports.PROP_SHAPES = {
     SLIDESHOW_CAROUSEL,
     THREE_UP_BREAKER,
     THUMBNAIL_LIST_MODULE,
+    VIDEOS_MODULE,
   ])),
   NAV_ITEM_LIST,
   OPENING_COUNTDOWN,

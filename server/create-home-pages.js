@@ -10,6 +10,7 @@ const { IMAGE_TYPE, IMAGE_SUBTYPE } = require('../src/constants/images');
 const {
   createQuery,
   saveImage,
+  saveVideoCoverPhotos,
 } = require('./save-images');
 
 const createHomePages = (graphql, createPage) =>
@@ -148,12 +149,7 @@ const createHomePages = (graphql, createPage) =>
               hero.videos.video3AssetCoverPhoto,
             ].forEach((asset, j) => {
               if (asset) {
-                const videoImage = saveImage(
-                  asset,
-                  IMAGE_TYPE.MODULE,
-                  j === 0 ? IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO : IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL,
-                  [id, STRUCTURAL_COMPONENTS.HOME_HERO, j]
-                );
+                const videoImage = saveVideoCoverPhotos(asset, j, [id, STRUCTURAL_COMPONENTS.HOME_HERO, j]);
 
                 if (videoImage) {
                   modulePromises.push(videoImage.then((imageData) => {

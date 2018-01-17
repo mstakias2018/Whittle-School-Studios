@@ -13,9 +13,7 @@ const Hero = ({
   data,
   eventList,
   image,
-  video1AssetCoverPhoto,
-  video2AssetCoverPhoto,
-  video3AssetCoverPhoto,
+  imageSources,
 }) => (
   <div className={styles.wrapper}>
     <div className={styles.container}>
@@ -31,9 +29,7 @@ const Hero = ({
     {data.videos &&
     <Videos
       {...data.videos}
-      video1AssetCoverPhoto={video1AssetCoverPhoto}
-      video2AssetCoverPhoto={video2AssetCoverPhoto}
-      video3AssetCoverPhoto={video3AssetCoverPhoto}
+      imageSources={imageSources}
     />
     }
   </div>

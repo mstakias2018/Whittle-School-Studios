@@ -12,10 +12,11 @@ const { getIdFromImgUrl } = require('../src/utils/images');
 const { parseInsetContent } = require('../src/utils/strings');
 const {
   createQuery,
-  saveImage,
   saveCarouselImage,
+  saveImage,
   saveInlineImage,
   saveMainImage,
+  saveVideoCoverPhotos,
 } = require('./save-images');
 
 const getAssetById = (acc, node) => (node.file ? Object.assign({}, acc, {
@@ -121,6 +122,17 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
               person6Image {
                 ${createQuery(IMAGE_SUBTYPE.TEAMS_BIO_SQ)}
               }
+            }
+          }
+          ... on ContentfulVideos {
+            video1AssetCoverPhoto {
+              ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO)}
+            }
+            video2AssetCoverPhoto {
+              ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL)}
+            }
+            video3AssetCoverPhoto {
+              ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL)}
             }
           }
         }
@@ -273,6 +285,12 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                         ))
                       ))
                   )));
+                case CONTENT_MODULE.VIDEOS:
+                  return Promise.all([
+                    module.video1AssetCoverPhoto,
+                    module.video2AssetCoverPhoto,
+                    module.video3AssetCoverPhoto,
+                  ].map((asset, j) => (asset ? saveVideoCoverPhotos(asset, j, [id, i, j]) : {})));
                 default:
                   return {};
               }

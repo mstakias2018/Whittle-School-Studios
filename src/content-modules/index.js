@@ -12,6 +12,7 @@ import SectionTitle from './global/section-title';
 import ThreeUpBreaker from './global/three-up-breaker';
 import ThumbnailsList from './global/thumbnails-list';
 import HomeTeams from '../components/structural/home-teams';
+import Videos from '../content-modules/global/hero/videos';
 
 import { PROP_SHAPES } from '../constants/custom-property-types';
 import { CONTENT_MODULE } from '../constants/contentful';
@@ -29,6 +30,7 @@ const MODULE_MAP = {
   [CONTENT_MODULE.THREE_UP_BREAKER]: ThreeUpBreaker,
   [CONTENT_MODULE.THUMBNAIL_LIST]: ThumbnailsList,
   [CONTENT_MODULE.TEAMS]: HomeTeams,
+  [CONTENT_MODULE.VIDEOS]: Videos,
 };
 
 const propTypes = {
@@ -47,6 +49,7 @@ const ContentModules = ({ moduleImageData, modules }) =>
         <Component
           imageSources={moduleImageData && moduleImageData[i]}
           isFirstModule={i === 0}
+          isOnContentPage
           key={i}
           {...props}
         />

@@ -69,6 +69,7 @@ exports.CONTENT_MODULE = {
   TEAMS: 'ContentfulTeams',
   THREE_UP_BREAKER: 'ContentfulThreeUpBreaker',
   THUMBNAIL_LIST: 'ContentfulThumbnailList',
+  VIDEOS: 'ContentfulVideos',
 };
 
 exports.STRUCTURAL_COMPONENTS = {

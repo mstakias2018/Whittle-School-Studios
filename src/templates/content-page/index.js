@@ -433,6 +433,61 @@ export const pageQuery = graphql`
             }
           }
         }
+        ... on ContentfulVideos {
+          title
+          video1Title
+          video1Link {
+            linkDestinationExternal
+            linkDestinationInternal {
+              slug
+              parentCategory: contentpage {
+                slug
+              }
+            }
+          }
+          video1Description {
+            markdown: video1Description
+          }
+          video1ImageVideoAlt
+          video1VideoEmbedCode {
+            embedCode: video1VideoEmbedCode
+          }
+          video2Title
+          video2Link {
+            linkDestinationExternal
+            linkDestinationInternal {
+              slug
+              parentCategory: contentpage {
+                slug
+              }
+            }
+          }
+          video2Description {
+            markdown: video2Description
+          }
+          video2ImageVideoAlt
+          video2VideoEmbedCode {
+            embedCode: video2VideoEmbedCode
+          }
+          video3Title
+          video3Link {
+            linkDestinationExternal
+            linkDestinationInternal {
+              slug
+              parentCategory: contentpage {
+                slug
+              }
+            }
+          }
+          video3Description {
+            markdown: video3Description
+          }
+          video3ImageVideoAlt
+          video3VideoEmbedCode {
+            embedCode: video3VideoEmbedCode
+          }
+        
+        }
       }
     }
   }

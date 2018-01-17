@@ -15,7 +15,13 @@
   }
 
   @media (--bp-lg) {
-    @mixin grid-container;
+    &:not(.videos_isOnContentPage) {
+      @mixin grid-container;
+    }
+  }
+
+  &.videos_isOnContentPage {
+    @mixin component-container;
   }
 }
 
@@ -23,6 +29,11 @@
   @media (--bp-lg) {
     @mixin span 8, 12, lg;
     @mixin custom-column 2, 12, margin-left;
+
+    .videos_isOnContentPage & {
+      padding-left: calc(var(--grid-gutter-lg) / 2);
+      padding-right: calc(var(--grid-gutter-lg) / 2);
+    }
   }
 }
 

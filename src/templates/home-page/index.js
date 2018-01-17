@@ -71,9 +71,11 @@ const ContentPageTemplate = ({
         data={hero}
         eventList={eventList}
         image={heroImages && heroImages.image}
-        video1AssetCoverPhoto={heroImages && heroImages.video1AssetCoverPhoto}
-        video2AssetCoverPhoto={heroImages && heroImages.video2AssetCoverPhoto}
-        video3AssetCoverPhoto={heroImages && heroImages.video3AssetCoverPhoto}
+        imageSources={heroImages && [
+          heroImages.video1AssetCoverPhoto,
+          heroImages.video2AssetCoverPhoto,
+          heroImages.video3AssetCoverPhoto,
+        ]}
       />
       {eventList && <PIC
         cityName={eventList.cityName}

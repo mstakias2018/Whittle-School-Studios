@@ -58,12 +58,14 @@
     padding-left: 14px;
   }
 
-  @media (--bp-md) {
+  @media (--bp-md-only) {
     @mixin span 4, var(--grid-columns-md), md;
   }
 
   @media (--bp-lg) {
-    @mixin span 3, 6, lg;
+    .wrapper:not(.wrapper_isSmall) & {
+      @mixin span 3, 6, lg;
+    }
   }
 
   @mixin small-video-wrapper;
