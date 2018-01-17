@@ -5,7 +5,7 @@ import Link from '../../../global/link';
 import Picture from '../../../global/picture';
 import Markdown, { ALLOWED_TYPES } from '../../../global/markdown';
 import { PROP_SHAPES } from '../../../../constants/custom-property-types';
-import { createContentPageLink } from '../../../../utils/global';
+import { createContentPageLink } from '../../../../utils/nav';
 
 import styles from './hero.module.css';
 

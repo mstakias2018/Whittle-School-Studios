@@ -8,7 +8,7 @@ import WithWindowListener from '../../../hocs/withWindow';
 
 import HomeSectionTitle from '../home-section-title';
 import Picture from '../../global/picture';
-import { createContentPageLink } from '../../../utils/global';
+import { createContentPageLink } from '../../../utils/nav';
 
 import { HOME_SECTION_TITLE_COLOR, HOME_SECTION_TITLE_POSITION } from '../../../constants/settings';
 import { PROP_TYPES, PROP_SHAPES } from '../../../constants/custom-property-types';

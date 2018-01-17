@@ -7,7 +7,6 @@ import styles from './share.module.css';
 import iconCopy from '../../../assets/images/icon-copy.svg';
 
 import Link from '../../../components/global/link';
-import { SOCIAL_NETWORK } from '../../../constants/social-networks';
 import { TIMINGS } from '../../../constants/timings';
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
@@ -15,11 +14,6 @@ import { CLASSES } from '../../../constants/classes';
 class Share extends Component {
   state = {
     copying: false,
-    currentUrl: '',
-  }
-
-  componentDidMount = () => {
-    this.setState({ currentUrl: window.location.href });
   }
 
   copyLink = () => {
@@ -34,14 +28,19 @@ class Share extends Component {
   }
 
   renderIcon = ({
-    shareLink,
+    getShareLink,
     icon,
     label,
-    network,
+    url,
   }, index) => {
-    const { translation } = this.context;
-    const linkDestination = network !== SOCIAL_NETWORK.WECHAT ?
-      `${shareLink}${this.state.currentUrl}` : shareLink;
+    const { currentUrl, metaTitle, translation } = this.context;
+
+    const linkDestination = getShareLink({
+      encodedUrl: encodeURIComponent(currentUrl),
+      pageTitle: metaTitle,
+      profileUrl: url,
+      url: currentUrl,
+    });
 
     return (
       <div
@@ -104,6 +103,8 @@ class Share extends Component {
 }
 
 Share.contextTypes = {
+  currentUrl: PropTypes.string.isRequired,
+  metaTitle: PropTypes.string.isRequired,
   socialIcons: PROP_SHAPES.SOCIAL_ICONS.isRequired,
   translation: PropTypes.func.isRequired,
 };

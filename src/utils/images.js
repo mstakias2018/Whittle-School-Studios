@@ -7,6 +7,7 @@ exports.adaptSourcesBySize = (sourcesBySize) => {
     const sourceInfo = sourcesBySize[breakpoint];
     if (sourceInfo) {
       acc.push({
+        breakpoint,
         media: IMAGE_MQ[breakpoint],
         src: sourceInfo.src,
         srcSet: sourceInfo.srcSet,
@@ -15,10 +16,11 @@ exports.adaptSourcesBySize = (sourcesBySize) => {
     return acc;
   }, []);
 
-  const largestSrc = sourceList[sourceList.length - 1] ? sourceList[sourceList.length - 1].src : '';
+  const largestImageInfo = sourceList[sourceList.length - 1];
 
   return {
-    largestSrc,
+    largestBreakpoint: largestImageInfo ? largestImageInfo.breakpoint : '',
+    largestSrc: largestImageInfo ? largestImageInfo.src : '',
     sourceList,
   };
 };

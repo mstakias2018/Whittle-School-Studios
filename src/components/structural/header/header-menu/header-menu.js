@@ -10,12 +10,10 @@ import styles from './header-menu.module.css';
 
 const propTypes = {
   isActive: PropTypes.bool.isRequired,
-  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
 };
 
 const MainMenu = ({
   isActive,
-  localizedSlugList,
 }, {
   headerData,
   translation,
@@ -59,10 +57,7 @@ const MainMenu = ({
           ))
         }
       </ul>
-      <Locales
-        isSmall
-        localizedSlugList={localizedSlugList}
-      />
+      <Locales isSmall />
     </div>
   </nav>
 );

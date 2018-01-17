@@ -58,7 +58,7 @@ exports.REGION_URLS = {
     [REGION.CHINA]: 'https://staging--whit-cn.netlify.com/',
   },
   [ENV.PRODUCTION]: {
-    [REGION.US]: 'https://whit-us.netlify.com/',
+    [REGION.US]: 'https://www.whittleschool.org/',
     [REGION.CHINA]: 'https://whit-cn.netlify.com/',
   },
 };

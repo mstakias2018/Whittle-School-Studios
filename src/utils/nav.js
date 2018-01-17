@@ -1,5 +1,26 @@
+import {
+  LANGUAGE_CONTENTFUL_LOCALE,
+  LANGUAGE_PATH,
+  REGION_URLS,
+} from '../constants/regions';
 import { PAGE_TYPE } from '../constants/settings';
-import { createContentPageLink, parseLink } from './global';
+
+const createContentPageLink = ({ slug, parentCategory }) => {
+  let link = '';
+
+  if (parentCategory) {
+    link += `/${parentCategory[0].slug}`;
+  }
+
+  return `${link}/${slug}`;
+};
+
+exports.createContentPageLink = createContentPageLink;
+
+const parseLink = ({ external, internal }) => external ||
+  (internal && createContentPageLink(internal));
+
+exports.parseLink = parseLink;
 
 exports.transformSubnavProps = ({
   categoryDescription,
@@ -70,3 +91,35 @@ exports.transformLocalizedSlugData = ({ edges }) => edges.map(({ node }) => ({
   link: createContentPageLink(node),
   locale: node.locale,
 }));
+
+const getCurrentPageWithLocalizedSlugs = (localizedSlugList, language) => {
+  let currentPageWithLocalizedSlugs = '';
+  localizedSlugList.some(({ locale, link }) => {
+    if (LANGUAGE_CONTENTFUL_LOCALE[language] === locale) {
+      currentPageWithLocalizedSlugs = link;
+      return true;
+    }
+    return false;
+  });
+  return currentPageWithLocalizedSlugs;
+};
+
+exports.getCurrentPageWithLocalizedSlugs = getCurrentPageWithLocalizedSlugs;
+
+exports.getUrlData = (localizedSlugList, language) => {
+  const currentPageWithLocalizedSlugs = getCurrentPageWithLocalizedSlugs(
+    localizedSlugList,
+    language
+  );
+  const rootUrl = REGION_URLS[process.env.GATSBY_ENV][process.env.GATSBY_REGION];
+  const currentUrl = [
+    rootUrl,
+    LANGUAGE_PATH[language],
+    currentPageWithLocalizedSlugs,
+  ].join('');
+
+  return {
+    currentUrl,
+    rootUrl,
+  };
+};

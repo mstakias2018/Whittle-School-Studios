@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 import Markdown from '../../../../../components/global/markdown';
 import WithVideo from '../../../../../hocs/with-video';
-import { parseLink } from '../../../../../utils/global';
+import { parseLink } from '../../../../../utils/nav';
 
 import { PROP_SHAPES, PROP_TYPES } from '../../../../../constants/custom-property-types';
 

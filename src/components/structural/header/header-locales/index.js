@@ -5,7 +5,6 @@ import cx from 'classnames';
 import Drop from '../../../global/drop';
 import {
   LANGUAGE,
-  LANGUAGE_CONTENTFUL_LOCALE,
   LANGUAGE_PATH,
   REGION,
   REGION_LANGUAGES,
@@ -13,12 +12,12 @@ import {
 } from '../../../../constants/regions';
 import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 import { getDefaultLangPath } from '../../../../utils/regions';
+import { getCurrentPageWithLocalizedSlugs } from '../../../../utils/nav';
 
 import styles from './header-locales.module.css';
 
 const propTypes = {
   isSmall: PropTypes.bool,
-  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
 };
 
 class Locales extends Component {
@@ -27,18 +26,13 @@ class Locales extends Component {
     const regionLangagues = REGION_LANGUAGES[process.env.GATSBY_REGION];
     if (regionLangagues.length === 1) return [];
 
-    const { localizedSlugList = [] } = this.props;
-    const { translation } = this.context;
+    const { localizedSlugList = [], translation } = this.context;
 
     return REGION_LANGUAGES[process.env.GATSBY_REGION].map((language) => {
-      let currentPageWithLocalizedSlugs = '';
-      localizedSlugList.some(({ locale, link }) => {
-        if (LANGUAGE_CONTENTFUL_LOCALE[language] === locale) {
-          currentPageWithLocalizedSlugs = link;
-          return true;
-        }
-        return false;
-      });
+      const currentPageWithLocalizedSlugs = getCurrentPageWithLocalizedSlugs(
+        localizedSlugList,
+        language
+      );
 
       return {
         link: `${LANGUAGE_PATH[language]}${currentPageWithLocalizedSlugs}`,
@@ -128,6 +122,7 @@ class Locales extends Component {
 
 Locales.contextTypes = {
   language: PROP_SHAPES.LANGUAGE.isRequired,
+  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
   translation: PropTypes.func.isRequired,
 };
 Locales.propTypes = propTypes;

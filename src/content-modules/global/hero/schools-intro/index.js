@@ -4,7 +4,7 @@ import cx from 'classnames';
 import Link from '../../../../components/global/link';
 import OpeningCountdown from '../opening-countdown';
 import Picture from '../../../../components/global/picture';
-import { parseLink } from '../../../../utils/global';
+import { parseLink } from '../../../../utils/nav';
 
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
 

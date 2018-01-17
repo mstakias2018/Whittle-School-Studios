@@ -1,6 +1,5 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { CookiesProvider } from 'react-cookie';
 
 import ContentModules from '../../content-modules';
@@ -8,7 +7,6 @@ import PageHead from '../../components/structural/page-head';
 import Share from '../../components/structural/share';
 import PageWrapper from '../../components/structural/page-wrapper';
 import PageVisited from '../../components/structural/page-visited';
-import MetaTags from '../../components/structural/meta-tags';
 
 import { PROP_SHAPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
@@ -34,13 +32,21 @@ class ContentPageTemplate extends React.Component {
     viewed: false,
   };
 
+  getChildContext() {
+    const { data: { localizedSlugData } } = this.props;
+
+    return {
+      localizedSlugList: transformLocalizedSlugData(localizedSlugData),
+    };
+  }
+
   viewedPage = (viewed) => {
     this.setState({ viewed });
   };
 
   render() {
     const {
-      data: { localizedSlugData, currentPageData },
+      data: { currentPageData },
       pathContext: { id, imageDataByType },
     } = this.props;
     const {
@@ -91,6 +97,15 @@ class ContentPageTemplate extends React.Component {
 
     const shouldDisableFab = modules && modules.some(({ __typename: type }) =>
       type === CONTENT_MODULE.OPENAPPLY_IFRAME);
+    const mainImageSources = imageDataByType[IMAGE_TYPE.MAIN];
+
+    const metaProps = {
+      description: metaDescription,
+      imageSources: mainImageSources,
+      keywords: metaKeywords,
+      title: metaTitle,
+      type: pageType,
+    };
 
     return (
       <CookiesProvider>
@@ -99,26 +114,16 @@ class ContentPageTemplate extends React.Component {
           viewedPage={this.viewedPage}
         >
           <PageWrapper
-            localizedSlugList={transformLocalizedSlugData(localizedSlugData)}
+            metaProps={metaProps}
             shouldDisableFab={shouldDisableFab}
             subNavProps={subNavProps}
             viewedPage={this.state.viewed}
           >
             <div>
-              <Helmet>
-                <title>{metaTitle}</title>
-              </Helmet>
-              <MetaTags
-                description={metaDescription}
-                imageSources={imageDataByType && imageDataByType[IMAGE_TYPE.MAIN]}
-                keywords={metaKeywords}
-                pageType="article"
-                title={metaTitle}
-              />
               <PageHead
                 headline={headline}
                 imageAlt={mainImageAlt}
-                imageSources={imageDataByType[IMAGE_TYPE.MAIN]}
+                imageSources={mainImageSources}
                 subhead={subhead}
                 type={pageType}
               />
@@ -138,6 +143,10 @@ class ContentPageTemplate extends React.Component {
 }
 
 ContentPageTemplate.propTypes = propTypes;
+
+ContentPageTemplate.childContextTypes = {
+  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST.isRequired,
+};
 
 export default ContentPageTemplate;
 

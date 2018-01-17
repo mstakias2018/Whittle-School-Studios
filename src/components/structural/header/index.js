@@ -15,7 +15,6 @@ import styles from './header.module.css';
 
 const propTypes = {
   breakpoint: PROP_SHAPES.BREAKPOINT,
-  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
   skipComponent: PropTypes.node.isRequired,
   subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
   viewedPage: PropTypes.bool,
@@ -46,7 +45,6 @@ class Header extends Component {
   render() {
     const { translation } = this.context;
     const {
-      localizedSlugList,
       skipComponent,
       subNavProps,
       viewedPage,
@@ -55,7 +53,7 @@ class Header extends Component {
     return (
       <header className={styles.header}>
         {skipComponent}
-        <Locales localizedSlugList={localizedSlugList} />
+        <Locales />
         <div className="container">
           <div className={cx(styles.container, {
             [styles.container_isMenuOpen]: this.state.menuActive,
@@ -72,10 +70,7 @@ class Header extends Component {
               {!this.state.menuActive ? translation && translation('general.menu') :
                 translation && translation('general.close')}
             </button>
-            <MainMenu
-              isActive={this.state.menuActive}
-              localizedSlugList={localizedSlugList}
-            />
+            <MainMenu isActive={this.state.menuActive} />
           </div>
         </div>
         {subNavProps &&

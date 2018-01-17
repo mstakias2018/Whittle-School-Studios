@@ -39,21 +39,6 @@ exports.getDateInfo = (date) => {
   };
 };
 
-const createContentPageLink = ({ slug, parentCategory }) => {
-  let link = '';
-
-  if (parentCategory) {
-    link += `/${parentCategory[0].slug}`;
-  }
-
-  return `${link}/${slug}`;
-};
-
-exports.createContentPageLink = createContentPageLink;
-
-exports.parseLink = ({ external, internal }) => external ||
-  (internal && createContentPageLink(internal));
-
 exports.sendAnalyticsEvent = (
   eventCategory,
   eventAction,

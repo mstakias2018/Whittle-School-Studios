@@ -8,7 +8,7 @@ import styles from './section.module.css';
 import TeamsBio, { bioPropType } from '../bio';
 import Statistic, { statisticPropTypes } from '../statistic';
 import Link from '../../../global/link';
-import { createContentPageLink } from '../../../../utils/global';
+import { createContentPageLink } from '../../../../utils/nav';
 
 import { BREAKPOINTS_NAME } from '../../../../constants/breakpoints';
 import { PROP_SHAPES } from '../../../../constants/custom-property-types';

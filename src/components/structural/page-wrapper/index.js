@@ -7,13 +7,25 @@ import Fab from '../fab';
 import SiteInfo from '../../site-info';
 import Recirculation from '../recirculation';
 import Skip from '../skip-to-content';
+import MetaTags from '../meta-tags';
 
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES, PROP_TYPES } from '../../../constants/custom-property-types';
 import { CLASSES } from '../../../constants/classes';
 import { ENV } from '../../../constants/env';
+import { getUrlData } from '../../../utils/nav';
 
 class PageWrapper extends React.Component {
   state = { mainElementAttributes: {} };
+
+  getChildContext() {
+    const { localizedSlugList = [], language } = this.context;
+    const { metaProps } = this.props;
+
+    return {
+      ...getUrlData(localizedSlugList, language),
+      metaTitle: metaProps && metaProps.title,
+    };
+  }
 
   handleSkipToContent = () => {
     this.setState({ mainElementAttributes: { tabIndex: -1 } });
@@ -31,7 +43,7 @@ class PageWrapper extends React.Component {
   render() {
     const {
       children,
-      localizedSlugList,
+      metaProps,
       shouldDisableFab,
       subNavProps,
       viewedPage,
@@ -40,8 +52,8 @@ class PageWrapper extends React.Component {
 
     return (
       <Fragment>
+        <MetaTags {...metaProps} />
         <Header
-          localizedSlugList={localizedSlugList}
           skipComponent={
             <Skip handleSkipToContent={this.handleSkipToContent} />
           }
@@ -60,14 +72,12 @@ class PageWrapper extends React.Component {
           }
           {children}
         </main>
-        {(process.env.GATSBY_ENV === ENV.STAGING) &&
-        <SiteInfo />
-        }
-        {subNavProps &&
-        <Recirculation
-          items={subNavProps.navItems}
-        />
-        }
+        {process.env.GATSBY_ENV === ENV.STAGING && <SiteInfo />}
+        {subNavProps && (
+          <Recirculation
+            items={subNavProps.navItems}
+          />
+        )}
         <Footer />
       </Fragment>
     );
@@ -76,11 +86,20 @@ class PageWrapper extends React.Component {
 
 PageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
+  metaProps: PropTypes.shape(PROP_TYPES.META_TAG_PROPS).isRequired,
   shouldDisableFab: PropTypes.bool,
   subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
   viewedPage: PropTypes.bool,
 };
-PageWrapper.contextTypes = { translation: PropTypes.func.isRequired };
+PageWrapper.contextTypes = {
+  language: PropTypes.string.isRequired,
+  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST.isRequired,
+  translation: PropTypes.func.isRequired,
+};
+PageWrapper.childContextTypes = {
+  currentUrl: PropTypes.string.isRequired,
+  metaTitle: PropTypes.string.isRequired,
+  rootUrl: PropTypes.string.isRequired,
+};
 
 export default PageWrapper;

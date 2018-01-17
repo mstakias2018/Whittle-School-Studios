@@ -21,19 +21,28 @@ exports.CONTENTFUL_SOCIAL_NETWORK_MAP = {
 
 exports.SOCIAL_NETWORK_CONFIG = {
   [SOCIAL_NETWORK.FACEBOOK]: {
+    getShareLink: ({ url }) => `https://www.facebook.com/sharer/sharer.php?u=${url}`,
     icon: iconFacebook,
-    shareLink: 'https://www.facebook.com/sharer/sharer.php?u=',
   },
   [SOCIAL_NETWORK.TWITTER]: {
+    getShareLink: ({ encodedUrl, pageTitle, profileUrl }) => {
+      const twitterHandleMatch = profileUrl && profileUrl.match(/twitter\.com\/(\w*)/);
+      const twitterHandle = twitterHandleMatch && twitterHandleMatch[1];
+
+      return [
+        `https://twitter.com/intent/tweet?url=${encodedUrl}`,
+        ...(pageTitle ? [`text=${pageTitle}`] : []),
+        ...(twitterHandle ? [`via=${twitterHandle}`] : []),
+      ].join('&');
+    },
     icon: iconTwitter,
-    shareLink: 'https://twitter.com/home?status=',
   },
   [SOCIAL_NETWORK.WECHAT]: {
+    getShareLink: () => 'https://web.wechat.com/',
     icon: iconWeChat,
-    shareLink: 'https://web.wechat.com/',
   },
   [SOCIAL_NETWORK.WEIBO]: {
+    getShareLink: ({ url }) => `http://v.t.sina.com.cn/share/share.php?url=${url}`,
     icon: iconWeibo,
-    shareLink: 'http://v.t.sina.com.cn/share/share.php?url=',
   },
 };

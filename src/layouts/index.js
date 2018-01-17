@@ -23,10 +23,9 @@ import {
   LANGUAGE_PATH,
   REGION_SHORT,
 } from '../constants/regions';
-import { parseLink } from '../utils/global';
 import { getLanguageFromPathname } from '../utils/regions';
 import { transformSocialNetworks } from '../utils/social-networks';
-import { formatFooterLinks } from '../utils/nav';
+import { formatFooterLinks, parseLink } from '../utils/nav';
 import { ENV } from '../constants/env';
 
 const LAYOUT_MODEL = {

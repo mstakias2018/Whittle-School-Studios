@@ -359,6 +359,16 @@ const HERO = {
   ...SCHOOLS_INTRO,
 };
 
+const PAGE_TYPES_SHAPE = PropTypes.oneOf(PAGE_TYPES);
+
+const META_TAG_PROPS = {
+  description: PropTypes.string.isRequired,
+  imageSources: IMAGE_SOURCES,
+  keywords: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  type: PAGE_TYPES_SHAPE.isRequired,
+};
+
 const PROP_TYPES = {
   EVENTS_LIST,
   HERO: {
@@ -372,6 +382,7 @@ const PROP_TYPES = {
     imageSources: PropTypes.arrayOf(IMAGE_SOURCES),
     videoEmbedCodes: PropTypes.arrayOf(PropTypes.string),
   },
+  META_TAG_PROPS,
   SCHOOLS_INTRO: PropTypes.shape({ SCHOOLS_INTRO }),
   SUB_NAV: {
     categoryTitle: PropTypes.string.isRequired,
@@ -434,7 +445,7 @@ exports.PROP_SHAPES = {
   ])),
   NAV_ITEM_LIST,
   OPENING_COUNTDOWN,
-  PAGE_TYPES: PropTypes.oneOf(PAGE_TYPES),
+  PAGE_TYPES: PAGE_TYPES_SHAPE,
   SCHOOLS_INTRO,
   SOCIAL_ICONS: PropTypes.shape({
     contentPage: socialNetworkList.isRequired,

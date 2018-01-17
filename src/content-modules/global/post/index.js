@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
-import { parseLink } from '../../../utils/global';
+import { parseLink } from '../../../utils/nav';
 import Date from '../../../components/global/date';
 import Markdown from '../../../components/global/markdown';
 import Link from '../../../components/global/link';

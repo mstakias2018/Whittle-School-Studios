@@ -1,6 +1,5 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 
 import PageHead from '../../components/structural/page-head';
 import PIC from '../../content-modules/global/pic';
@@ -8,7 +7,6 @@ import PageWrapper from '../../components/structural/page-wrapper';
 import HomeCampuses from '../../components/structural/home-campuses';
 import Hero from '../../content-modules/global/hero';
 import HomeTeams from '../../components/structural/home-teams';
-import MetaTags from '../../components/structural/meta-tags';
 
 import { PAGE_TYPE } from '../../constants/settings';
 import { PROP_SHAPES } from '../../constants/custom-property-types';
@@ -43,8 +41,17 @@ const ContentPageTemplate = ({
   const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
     (schoolIntroTitle && schoolIntroTitle.content);
   const metaKeywords = seoMetaKeywords && seoMetaKeywords.content;
-  const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
   const metaTitle = seoMetaTitle || removeMarkdown(headline);
+  const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
+  const mainHeroImage = heroImages && heroImages.image;
+
+  const metaProps = {
+    description: metaDescription,
+    imageSources: mainHeroImage,
+    keywords: metaKeywords,
+    title: metaTitle,
+    type: PAGE_TYPE.HOME,
+  };
 
   // eventList and campusModule are required, but we check for their existence
   // to avoid breaking the site on new deploysto production
@@ -52,17 +59,7 @@ const ContentPageTemplate = ({
   // after these modules are filled in on US - Prod and China - Prod,
   // these checks can be removed
   return (
-    <PageWrapper>
-      <Helmet>
-        <title>{metaTitle}</title>
-      </Helmet>
-      <MetaTags
-        description={metaDescription}
-        imageSources={heroImages && heroImages.image}
-        keywords={metaKeywords}
-        pageType="webpage"
-        title={metaTitle}
-      />
+    <PageWrapper metaProps={metaProps}>
       <PageHead
         headline={headline}
         type={PAGE_TYPE.HOME}
@@ -70,7 +67,7 @@ const ContentPageTemplate = ({
       <Hero
         data={hero}
         eventList={eventList}
-        image={heroImages && heroImages.image}
+        image={mainHeroImage}
         imageSources={heroImages && [
           heroImages.video1AssetCoverPhoto,
           heroImages.video2AssetCoverPhoto,
