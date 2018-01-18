@@ -29,6 +29,7 @@ const propTypes = {
 
 class ContentPageTemplate extends React.Component {
   state = {
+    lastElementBottom: 0,
     viewed: false,
   };
 
@@ -39,6 +40,10 @@ class ContentPageTemplate extends React.Component {
       localizedSlugList: transformLocalizedSlugData(localizedSlugData),
     };
   }
+
+  setLastElementBottom = (lastElementBottom) => {
+    this.setState({ lastElementBottom });
+  };
 
   viewedPage = (viewed) => {
     this.setState({ viewed });
@@ -110,11 +115,13 @@ class ContentPageTemplate extends React.Component {
     return (
       <CookiesProvider>
         <PageVisited
+          lastElementBottom={this.state.lastElementBottom}
           pageId={id}
           viewedPage={this.viewedPage}
         >
           <PageWrapper
             metaProps={metaProps}
+            setLastElementBottom={this.setLastElementBottom}
             shouldDisableFab={shouldDisableFab}
             subNavProps={subNavProps}
             viewedPage={this.state.viewed}

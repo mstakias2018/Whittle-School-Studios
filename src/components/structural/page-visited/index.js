@@ -5,6 +5,7 @@ import { withCookies, Cookies } from 'react-cookie';
 const propTypes = {
   children: PropTypes.node.isRequired,
   cookies: PropTypes.instanceOf(Cookies).isRequired,
+  lastElementBottom: PropTypes.number.isRequired,
   pageId: PropTypes.string,
   viewedPage: PropTypes.func.isRequired,
 };
@@ -18,7 +19,7 @@ class PageVisited extends React.Component {
     document.removeEventListener('scroll', this.trackScrolling);
   }
 
-  isBottom = el => el.getBoundingClientRect().bottom <= window.innerHeight;
+  isBottom = el => el.getBoundingClientRect().bottom - this.props.lastElementBottom <= window.innerHeight;
 
   trackScrolling = () => {
     const { cookies, pageId, viewedPage } = this.props;

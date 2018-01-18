@@ -45,6 +45,7 @@ class PageWrapper extends React.Component {
       children,
       isHomePage,
       metaProps,
+      setLastElementBottom,
       shouldDisableFab,
       subNavProps,
       viewedPage,
@@ -77,6 +78,7 @@ class PageWrapper extends React.Component {
         {subNavProps && (
           <Recirculation
             items={subNavProps.navItems}
+            setLastElementBottom={setLastElementBottom}
           />
         )}
         <Footer />
@@ -89,6 +91,7 @@ PageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   isHomePage: PropTypes.bool,
   metaProps: PropTypes.shape(PROP_TYPES.META_TAG_PROPS).isRequired,
+  setLastElementBottom: PropTypes.func,
   shouldDisableFab: PropTypes.bool,
   subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
   viewedPage: PropTypes.bool,

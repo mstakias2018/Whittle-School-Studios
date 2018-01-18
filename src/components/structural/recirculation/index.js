@@ -15,6 +15,7 @@ import { CLASSES } from '../../../constants/classes';
 
 const propTypes = {
   items: PROP_SHAPES.NAV_ITEM_LIST.isRequired,
+  setLastElementBottom: PropTypes.func,
 };
 
 class Recirculation extends Component {
@@ -22,6 +23,14 @@ class Recirculation extends Component {
     super(props);
 
     this.state = this.getItems(props);
+  }
+
+  componentDidMount() {
+    if (this.props.setLastElementBottom) {
+      setTimeout(() => {
+        this.props.setLastElementBottom(document.body.clientHeight - this.componentWrapper.offsetTop);
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -143,7 +152,10 @@ class Recirculation extends Component {
 
   render() {
     return (
-      <div className={styles.wrapper}>
+      <div
+        className={styles.wrapper}
+        ref={(el) => { this.componentWrapper = el; }}
+      >
         <div className={styles.container}>
           <nav className={styles.navigation}>
             {this.state.previousItem &&
