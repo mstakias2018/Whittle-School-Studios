@@ -41,7 +41,7 @@ const ContentPageTemplate = ({
   const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
     (schoolIntroTitle && schoolIntroTitle.content);
   const metaKeywords = seoMetaKeywords && seoMetaKeywords.content;
-  const metaTitle = seoMetaTitle || removeMarkdown(headline);
+  const metaTitle = seoMetaTitle || removeMarkdown(headline) || (schoolIntroTitle && schoolIntroTitle.content);
   const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
   const mainHeroImage = heroImages && heroImages.image;
 
