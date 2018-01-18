@@ -73,11 +73,33 @@ const getFilteredContent = (entries, assets, opts) => {
   };
 };
 
-const getContent = (output, opts) => {
+const getContent = (output, opts, spaceId) => {
   const { shouldFilterNonEnglish, shouldSkipContent } = opts;
   const { assets, entries, locales } = output;
+  const publishedAssets = assets.filter(a => a.sys.publishedAt);
 
-  let out = { ...output }; // spread to avoid mutation
+  const unpublishedEntryIds = entries.reduce((acc, { sys }) => {
+    if (sys.version - sys.publishedVersion > 1) {
+      acc.push(sys.id);
+    }
+
+    return acc;
+  }, []);
+
+  if (unpublishedEntryIds.length) {
+    throw new Error([
+      'Cannot transfer from space with unpublished updates.',
+      'Please check the following entries:',
+      '',
+      ...unpublishedEntryIds.map(id =>
+        `- https://app.contentful.com/spaces/${spaceId}/entries/${id}`),
+    ].join('\n'));
+  }
+
+  let out = {
+    ...output,
+    assets: publishedAssets,
+  };
 
   if (shouldFilterNonEnglish) {
     out.locales = locales.filter(({ code }) => code === ENGLISH);
@@ -86,7 +108,7 @@ const getContent = (output, opts) => {
   if (shouldSkipContent || shouldFilterNonEnglish) {
     out = {
       ...out,
-      ...getFilteredContent(entries, assets, opts),
+      ...getFilteredContent(entries, publishedAssets, opts),
     };
   }
 
@@ -155,7 +177,7 @@ export default (sourceInfo, targetInfo, opts = {}) => {
     }).then((output) => {
       const importToTarget = () =>
         spaceImport({
-          content: getContent(output, opts),
+          content: getContent(output, opts, sourceSpaceId),
           managementToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
           spaceId: targetSpaceId,
         }).then(resolve);

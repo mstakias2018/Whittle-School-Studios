@@ -1,5 +1,6 @@
 import { getContent } from '../scripts/transfer-spaces';
 import mockExport from './mock-export';
+import mockExportUnpublished from './mock-export-unpublished';
 
 const TRANSLATION_CONTENT_TYPE = 'globalTranslations';
 const DUMMY_CONTENT_INDEX_CONTENT_TYPE = 'dummyContentIndex';
@@ -40,6 +41,8 @@ const parseResult = (result) => {
     && dummyEntryIds.length === dummyEntries.length;
   const hasDummyAsset = dummyAssetId && assets.some(a => a.sys.id === dummyAssetId);
 
+  const hasOnlyPublishedAssets = assets.every(a => a.sys.publishedAt);
+
   const hasNonDummyAssets = assets.length > 1;
   const hasNonDummyEntries =
     entries.length > dummyEntries.length + PROTECTED_CONTENT_TYPES.length;
@@ -55,6 +58,7 @@ const parseResult = (result) => {
     hasGlobalTranslations,
     hasNonDummyAssets,
     hasNonDummyEntries,
+    hasOnlyPublishedAssets,
     localeCodes: locales.map(l => l.code),
   };
 };
@@ -72,6 +76,7 @@ describe('getContent', () => {
     expect(result.hasGlobalTranslations).toBe(true);
     expect(result.hasNonDummyAssets).toBe(true);
     expect(result.hasNonDummyEntries).toBe(true);
+    expect(result.hasOnlyPublishedAssets).toBe(true);
     expect(result.localeCodes).toEqual([LANGUAGE.ENGLISH, LANGUAGE.CHINESE]);
   });
 
@@ -87,6 +92,7 @@ describe('getContent', () => {
     expect(result.hasGlobalTranslations).toBe(true);
     expect(result.hasNonDummyAssets).toBe(true);
     expect(result.hasNonDummyEntries).toBe(true);
+    expect(result.hasOnlyPublishedAssets).toBe(true);
     expect(result.localeCodes).toEqual([LANGUAGE.ENGLISH]);
   });
 
@@ -102,6 +108,7 @@ describe('getContent', () => {
     expect(result.hasGlobalTranslations).toBe(true);
     expect(result.hasNonDummyAssets).toBe(false);
     expect(result.hasNonDummyEntries).toBe(false);
+    expect(result.hasOnlyPublishedAssets).toBe(true);
     expect(result.localeCodes).toEqual([LANGUAGE.ENGLISH, LANGUAGE.CHINESE]);
   });
 
@@ -117,6 +124,11 @@ describe('getContent', () => {
     expect(result.hasGlobalTranslations).toBe(true);
     expect(result.hasNonDummyAssets).toBe(false);
     expect(result.hasNonDummyEntries).toBe(false);
+    expect(result.hasOnlyPublishedAssets).toBe(true);
     expect(result.localeCodes).toEqual([LANGUAGE.ENGLISH]);
+  });
+
+  it('throws an error when there are unpublished entries', () => {
+    expect(() => parseResult(getContent(mockExportUnpublished, {}))).toThrowError();
   });
 });

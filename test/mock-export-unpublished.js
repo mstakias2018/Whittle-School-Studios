@@ -8113,7 +8113,7 @@ module.exports = {
         id: '1y0BVrygl2Mo0iiw4Ym2eQ',
         type: 'Entry',
         createdAt: '2017-11-20T16:41:50.225Z',
-        updatedAt: '2018-01-17T21:37:22.660Z',
+        updatedAt: '2018-01-17T20:55:35.592Z',
         createdBy: {
           sys: {
             type: 'Link',
@@ -8128,18 +8128,18 @@ module.exports = {
             id: '2jNQ11AkTRw4aZ7RC5XD2m'
           }
         },
-        publishedCounter: 11,
-        version: 73,
+        publishedCounter: 10,
+        version: 69,
         publishedBy: {
           sys: {
             type: 'Link',
             linkType: 'User',
-            id: '2jNQ11AkTRw4aZ7RC5XD2m'
+            id: '6Nei44MnEAd8PpKPZZHeIG'
           }
         },
-        publishedVersion: 72,
+        publishedVersion: 67,
         firstPublishedAt: '2017-11-20T16:44:27.814Z',
-        publishedAt: '2018-01-17T21:37:22.660Z',
+        publishedAt: '2018-01-17T10:01:48.038Z',
         contentType: {
           sys: {
             type: 'Link',
@@ -8161,7 +8161,6 @@ module.exports = {
           'zh-CN': '委响果'
         },
         slug: {
-          'en-US': 'the-whittle-vision',
           'zh-CN': 'the-whittle-vision-cn'
         },
         headline: {
@@ -13497,7 +13496,7 @@ module.exports = {
         id: '6QKdoRL8iIcOOAC4eyCcsi',
         type: 'Entry',
         createdAt: '2017-12-14T18:04:15.645Z',
-        updatedAt: '2018-01-17T21:37:14.168Z',
+        updatedAt: '2018-01-09T11:32:38.885Z',
         createdBy: {
           sys: {
             type: 'Link',
@@ -13509,21 +13508,21 @@ module.exports = {
           sys: {
             type: 'Link',
             linkType: 'User',
-            id: '2jNQ11AkTRw4aZ7RC5XD2m'
+            id: '4eFTAohh8Wle0Ls9OnsUSy'
           }
         },
-        publishedCounter: 4,
-        version: 60,
+        publishedCounter: 3,
+        version: 59,
         publishedBy: {
           sys: {
             type: 'Link',
             linkType: 'User',
-            id: '2jNQ11AkTRw4aZ7RC5XD2m'
+            id: '6214ankndWlLU2Ir99aaKG'
           }
         },
-        publishedVersion: 59,
+        publishedVersion: 56,
         firstPublishedAt: '2017-12-14T18:07:55.693Z',
-        publishedAt: '2018-01-17T21:37:14.168Z',
+        publishedAt: '2018-01-08T13:50:43.334Z',
         contentType: {
           sys: {
             type: 'Link',
@@ -20170,7 +20169,7 @@ module.exports = {
         id: 'VMkIz4RMiIkWUaKMy24MU',
         type: 'Entry',
         createdAt: '2018-01-05T03:48:39.035Z',
-        updatedAt: '2018-01-17T21:37:14.104Z',
+        updatedAt: '2018-01-16T10:08:17.771Z',
         createdBy: {
           sys: {
             type: 'Link',
@@ -20182,11 +20181,11 @@ module.exports = {
           sys: {
             type: 'Link',
             linkType: 'User',
-            id: '2jNQ11AkTRw4aZ7RC5XD2m'
+            id: '6n9DTQYgQ2KhC3T6Ks5yZM'
           }
         },
-        publishedCounter: 2,
-        version: 36,
+        publishedCounter: 1,
+        version: 35,
         publishedBy: {
           sys: {
             type: 'Link',
@@ -20194,9 +20193,9 @@ module.exports = {
             id: '2jNQ11AkTRw4aZ7RC5XD2m'
           }
         },
-        publishedVersion: 35,
+        publishedVersion: 27,
         firstPublishedAt: '2018-01-05T03:49:35.369Z',
-        publishedAt: '2018-01-17T21:37:14.104Z',
+        publishedAt: '2018-01-05T03:49:35.369Z',
         contentType: {
           sys: {
             type: 'Link',
@@ -20473,7 +20472,7 @@ module.exports = {
         id: '6fTY1v2a8E8eQaeuCkSGiS',
         type: 'Entry',
         createdAt: '2018-01-05T13:08:32.086Z',
-        updatedAt: '2018-01-17T21:06:55.134Z',
+        updatedAt: '2018-01-08T14:45:57.092Z',
         createdBy: {
           sys: {
             type: 'Link',
@@ -20485,21 +20484,21 @@ module.exports = {
           sys: {
             type: 'Link',
             linkType: 'User',
-            id: '4eFTAohh8Wle0Ls9OnsUSy'
+            id: '6n9DTQYgQ2KhC3T6Ks5yZM'
           }
         },
-        publishedCounter: 4,
-        version: 116,
+        publishedCounter: 3,
+        version: 83,
         publishedBy: {
           sys: {
             type: 'Link',
             linkType: 'User',
-            id: '4eFTAohh8Wle0Ls9OnsUSy'
+            id: '6n9DTQYgQ2KhC3T6Ks5yZM'
           }
         },
-        publishedVersion: 115,
+        publishedVersion: 82,
         firstPublishedAt: '2018-01-05T13:14:39.178Z',
-        publishedAt: '2018-01-17T21:06:55.134Z',
+        publishedAt: '2018-01-08T14:45:57.092Z',
         contentType: {
           sys: {
             type: 'Link',
@@ -20530,7 +20529,7 @@ module.exports = {
             sys: {
               type: 'Link',
               linkType: 'Asset',
-              id: 'ul4XFgkBtAUYY2Q8k0A0I'
+              id: '1GcmWnu9Ra4EI2uI2CKqyM'
             }
           }
         },
@@ -20548,7 +20547,7 @@ module.exports = {
         },
         person1Description: {
           'en-US':
-            'Est non commodo luctus, nisi erat porttitor ligula, __eget lacinia odio__. Est *non com*modo luctus, nisi erat porttitor ligula, eget lacinia odio.',
+            'Est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio. Est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio.',
           'zh-CN': '文字、標點符號出現機率大致符合台灣文章習慣。聽說很多學。'
         },
         person2Image: {
@@ -20565,8 +20564,8 @@ module.exports = {
           'zh-CN': '创办人'
         },
         person2Name: {
-          'en-US': 'Appleright Madison',
-          'zh-CN': 'Appleright Madison'
+          'en-US': 'Dominic Madison',
+          'zh-CN': 'Dominic Madison'
         },
         person2Title: {
           'en-US': 'Board member',
@@ -20591,8 +20590,8 @@ module.exports = {
           'zh-CN': '创办人'
         },
         person3Name: {
-          'en-US': 'Dominic Henderson',
-          'zh-CN': 'Dominic Henderson'
+          'en-US': 'Dominic Madison',
+          'zh-CN': 'Dominic Madison'
         },
         person3Title: {
           'en-US': 'Board member',
@@ -20617,8 +20616,8 @@ module.exports = {
           'zh-CN': '创办人'
         },
         person4Name: {
-          'en-US': 'Walker Johnson Madison',
-          'zh-CN': 'Walker Johnson Madison'
+          'en-US': 'Dominic Madison',
+          'zh-CN': 'Dominic Madison'
         },
         person4Title: {
           'en-US': 'Board member',
