@@ -164,7 +164,7 @@ class Fab extends React.Component {
               <img
                 alt=""
                 className={cx(styles.content, styles.contentText)}
-                src={globalImages[IMAGE_TYPE.FAB_TEXT]}
+                src={globalImages && globalImages[IMAGE_TYPE.FAB_TEXT]}
               />
             </Link>
           </Plx>

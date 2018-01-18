@@ -15,7 +15,7 @@ const Logo = (props, { globalImages, translation }) => (
     >
       <img
         alt={translation && translation('header.logoAlt')}
-        src={globalImages[IMAGE_TYPE.HEADER_LOGO]}
+        src={globalImages && globalImages[IMAGE_TYPE.HEADER_LOGO]}
       />
     </Link>
   </div>
