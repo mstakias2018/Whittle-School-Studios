@@ -97,7 +97,13 @@
 
 .name {
   @mixin type-h3;
+  font-size: 18px;
   letter-spacing: 0.2px;
+  line-height: 18px;
+
+  @media (--bp-md) {
+    line-height: 30px;
+  }
 }
 
 .title {
@@ -111,11 +117,9 @@
 
 .description {
   @mixin type-descriptor;
-  line-height: 24px;
   padding-top: 11px;
 
   @media (--bp-md) {
-    line-height: 26px;
     padding-top: 17px;
   }
 }

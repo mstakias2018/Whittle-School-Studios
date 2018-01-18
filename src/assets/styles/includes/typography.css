@@ -42,8 +42,12 @@
   @mixin type-h1;
 
   @media (--bp-md) {
-    font-size: 110px;
-    line-height: 92px;
+    font-size: 96px;
+    line-height: 96px;
+  }
+
+  @media (--bp-lg) {
+    font-size: 120px;
   }
 }
 

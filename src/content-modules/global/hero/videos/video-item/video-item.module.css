@@ -73,6 +73,7 @@
 
 .title {
   @mixin type-h4;
+  font-size: 24px;
   margin-bottom: 20px;
 
   @media (--bp-sm-only) {
@@ -80,13 +81,14 @@
   }
 
   @media (--bp-md) {
+    font-size: 24px;
     margin-bottom: 10px;
   }
 
-  @media (--bp-md) {
+  @media (--bp-lg) {
     .wrapper_isSmall & {
       font-size: 18px;
-      line-height: 24px;
+      line-height: 20px;
     }
   }
 }

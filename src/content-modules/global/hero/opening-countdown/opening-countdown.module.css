@@ -83,6 +83,11 @@
   letter-spacing: 0.4px;
   line-height: 48px;
 
+  @media (--bp-sm-only) {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
   @media (--bp-md) {
     font-size: 36px;
     letter-spacing: 0.2px;

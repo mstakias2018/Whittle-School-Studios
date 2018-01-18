@@ -90,9 +90,9 @@
 .description {
   @mixin font-family font-serif-light-italic;
   color: var(--color-text-dark);
-  font-size: 18px;
+  font-size: 12px;
   letter-spacing: 0.25px;
-  line-height: 30px;
+  line-height: 18px;
   padding-bottom: 30px;
 
   @media (--bp-md) {

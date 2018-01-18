@@ -36,6 +36,10 @@
   span {
     display: block;
   }
+
+  @media (--bp-lg) {
+    line-height: 20px;
+  }
 }
 
 .location {

@@ -68,6 +68,7 @@
 
 .title {
   @mixin type-h3;
+  font-size: 30px;
   margin-bottom: 21px;
 
   span {
@@ -80,6 +81,7 @@
 
   @media (--bp-md) {
     letter-spacing: 0;
+    line-height: 30px;
     margin-bottom: 14px;
   }
 }
@@ -108,7 +110,7 @@
   }
 
   @media (--bp-md) {
-    line-height: 18px;
+    line-height: 24px;
     margin-bottom: 22px;
   }
 

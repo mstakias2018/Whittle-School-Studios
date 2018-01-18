@@ -36,11 +36,15 @@
 .bottomText,
 .topText {
   @mixin type-h4-italic;
+  font-size: 24px;
   text-align: center;
 
   @media (--bp-sm-only) {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 24px;
+  }
+
+  @media (--bp-md) {
+    line-height: 36px;
   }
 }
 
@@ -56,12 +60,12 @@
 .percentageNumber {
   @mixin font-family font-serif-light-italic, false;
   color: var(--color-text-dark);
-  font-size: 190px;
+  font-size: 180px;
   letter-spacing: -3.5px;
   line-height: 130px;
 
   @media (--bp-md) {
-    font-size: 315px;
+    font-size: 400px;
     letter-spacing: -6px;
     line-height: 215px;
   }
@@ -86,12 +90,12 @@
 .ratioNumber {
   @mixin font-family font-serif-light-italic, false;
   color: var(--color-text-dark);
-  font-size: 190px;
+  font-size: 180px;
   letter-spacing: -3.5px;
   line-height: 150px;
 
   @media (--bp-md) {
-    font-size: 300px;
+    font-size: 400px;
     letter-spacing: -6px;
     line-height: 260px;
   }
@@ -121,18 +125,8 @@
 
 .ratioText {
   @mixin type-h5-italic;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 20px;
   max-width: 60px;
   text-align: center;
-
-  @media (--bp-sm-only) {
-    font-size: 18px;
-    line-height: 20px;
-  }
-
-  @media (--bp-md) {
-    font-size: 20px;
-    line-height: 24px;
-  }
 }

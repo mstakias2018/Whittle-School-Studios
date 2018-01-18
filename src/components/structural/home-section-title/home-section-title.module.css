@@ -14,22 +14,22 @@
 .text {
   @mixin font-family font-serif-light;
   display: inline-block;
-  font-size: 60px;
+  font-size: 48px;
   letter-spacing: 0.15px;
-  line-height: 70px;
+  line-height: 48px;
   position: absolute;
   transform: rotate(90deg);
   transform-origin: 35px 35px;
 
   @media (--bp-md) {
-    font-size: 110px;
+    font-size: 96px;
     letter-spacing: 0.2px;
-    line-height: 92px;
+    line-height: 96px;
     transform-origin: 46px 46px;
   }
 
   @media (--bp-lg) {
-    font-size: 140px;
+    font-size: 120px;
     letter-spacing: 0;
     line-height: 120px;
     transform-origin: 60px 60px;
