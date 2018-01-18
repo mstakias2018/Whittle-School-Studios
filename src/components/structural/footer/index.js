@@ -78,7 +78,10 @@ const Footer = (props, context) => {
   }
 
   return (
-    <footer className={cx(styles.wrapper, CLASSES.FOOTER)}>
+    <footer
+      className={cx(styles.wrapper, CLASSES.FOOTER)}
+      role="contentinfo"
+    >
       <div className={CLASSES.CONTAINER}>
         <div className={styles.content}>
 
