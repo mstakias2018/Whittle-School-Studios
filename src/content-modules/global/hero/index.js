@@ -1,9 +1,12 @@
 import React from 'react';
+import cx from 'classnames';
 
 import InformationEventListing from './information-event-listing';
 import SchoolsIntro from './schools-intro';
 import Videos from './videos';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
+
+import { CLASSES } from '../../../constants/classes';
 
 import styles from './hero.module.css';
 
@@ -16,7 +19,7 @@ const Hero = ({
   imageSources,
 }) => (
   <div className={styles.wrapper}>
-    <div className={styles.container}>
+    <div className={cx(styles.container, CLASSES.COUNTDOWN_COMPONENT_WRAPPER)}>
       <InformationEventListing
         {...eventList}
         title={data.eventListTitle}

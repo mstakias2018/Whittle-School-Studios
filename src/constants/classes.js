@@ -1,6 +1,7 @@
 exports.CLASSES = {
   BODY_TEXT: 'bodyTextComponent',
   CONTAINER: 'container',
+  COUNTDOWN_COMPONENT_WRAPPER: 'countdownComponentWrapper',
   FOOTER: 'footer',
   GALLERY_IMAGE: 'image-gallery-image',
   GALLERY_IMAGE_CENTER: 'center',

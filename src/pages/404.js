@@ -4,7 +4,7 @@ import PageWrapper from '../components/structural/page-wrapper';
 import NotFound from '../components/structural/not-found';
 
 const NotFoundPage = () => (
-  <PageWrapper>
+  <PageWrapper shouldDisableFab>
     <NotFound />
   </PageWrapper>
 );

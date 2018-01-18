@@ -23,26 +23,30 @@ const propTypes = {
     x: PropTypes.number,
     y: PropTypes.number,
   }),
+  isHomePage: PropTypes.bool,
 };
+
+const smallerThanLG = [BREAKPOINTS_NAME.small, BREAKPOINTS_NAME.medium];
 
 class Fab extends React.Component {
   state = {
-    appearDuration: 0,
     bottomFabBarrier: `.${CLASSES.FOOTER}`,
     clientHeight: 0,
     elementHeight: 0,
+    initiallyDisabled: true,
     recirculationPadding: 0,
     startAppearAt: 0,
+    startAppearAtOffset: 0,
     startRotationAt: 0,
   }
 
   componentDidMount = () => {
-    this.setInitialStates();
+    this.setInitialStates(this.props.isHomePage);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.dimensions !== this.props.dimensions) {
-      this.setInitialStates();
+      this.setInitialStates(this.props.isHomePage);
     }
   }
 
@@ -52,33 +56,44 @@ class Fab extends React.Component {
     }
   }
 
-  setInitialStates = () => {
+  setInitialStates = (shouldWait = false) => {
     setTimeout(() => {
       const clientHeight = window.innerHeight;
       const elementHeight = FAB_SIZE[this.props.breakpoint];
       const pageContentTop = document.querySelector(`.${CLASSES.PAGE_CONTENT}`).offsetTop;
       const checkRecirculation = document.querySelector(`.${CLASSES.RECIRCULATION}`);
+      const countdownComponentWrapper = document.querySelector(`.${CLASSES.COUNTDOWN_COMPONENT_WRAPPER}`);
       const bottomFabBarrier = checkRecirculation ?
         `.${CLASSES.RECIRCULATION}` :
         `.${CLASSES.FOOTER}`;
       const recirculationPadding = checkRecirculation ? COMPONENT_BOTTOM_PADDING[this.props.breakpoint] : 0;
-
+      let startAppearAt = pageContentTop;
+      let startAppearAtOffset = 0;
+      if (countdownComponentWrapper) {
+        startAppearAt = countdownComponentWrapper;
+        startAppearAtOffset = smallerThanLG.includes(this.props.breakpoint) ?
+          countdownComponentWrapper.clientHeight + elementHeight :
+          countdownComponentWrapper.clientHeight - (2 * elementHeight);
+        if (clientHeight > 1000) {
+          startAppearAt = 0;
+          startAppearAtOffset = 0;
+        }
+      }
       this.setState({
-        appearDuration: 3 * elementHeight,
         bottomFabBarrier,
         clientHeight,
         elementHeight,
+        initiallyDisabled: false,
         recirculationPadding,
-        startAppearAt: pageContentTop,
+        startAppearAt,
+        startAppearAtOffset,
         startRotationAt: pageContentTop + (3 * elementHeight),
       });
-    }, 0);
+    }, shouldWait ? 1500 : 0);
   }
 
   render() {
     const { fabLink, globalImages, translation } = this.context;
-    const smallerThanLG = [BREAKPOINTS_NAME.small, BREAKPOINTS_NAME.medium];
-
     return (
       <div
         className={styles.wrapperAbsolute}
@@ -86,14 +101,14 @@ class Fab extends React.Component {
       >
         <Plx
           animateWhenNotInViewport
-          className={styles.wrapper}
+          className={cx(styles.wrapper, { [styles.wrapper_isHidden]: this.state.initiallyDisabled })}
           onFocus={this.onFocus}
           parallaxData={
             !smallerThanLG.includes(this.props.breakpoint) ?
             [
               {
-                duration: this.state.appearDuration,
-                name: 'first',
+                duration: 2 * this.state.elementHeight,
+                name: 'firstLG',
                 properties: [
                   {
                     endValue: 0,
@@ -102,10 +117,11 @@ class Fab extends React.Component {
                   },
                 ],
                 start: this.state.startAppearAt,
+                startOffset: this.state.startAppearAtOffset,
               },
               {
                 duration: '100%',
-                name: 'second',
+                name: 'secondLG',
                 properties: [
                   {
                     endValue: 1,
@@ -120,7 +136,20 @@ class Fab extends React.Component {
             [
               {
                 duration: this.state.clientHeight / 2,
-                name: 'third',
+                name: 'firstSM',
+                properties: [
+                  {
+                    endValue: 1,
+                    property: 'opacity',
+                    startValue: 0,
+                  },
+                ],
+                start: this.state.startAppearAt,
+                startOffset: this.state.startAppearAtOffset,
+              },
+              {
+                duration: this.state.clientHeight / 2,
+                name: 'secondSM',
                 properties: [
                   {
                     endValue: 0,
@@ -142,7 +171,7 @@ class Fab extends React.Component {
             parallaxData={[
              {
                end: `.${CLASSES.FOOTER}`,
-               name: 'second',
+               name: 'firstRotation',
                properties: [
                  {
                    endValue: smallerThanLG.includes(this.props.breakpoint) ?

@@ -59,7 +59,10 @@ const ContentPageTemplate = ({
   // after these modules are filled in on US - Prod and China - Prod,
   // these checks can be removed
   return (
-    <PageWrapper metaProps={metaProps}>
+    <PageWrapper
+      isHomePage
+      metaProps={metaProps}
+    >
       <PageHead
         headline={headline}
         type={PAGE_TYPE.HOME}

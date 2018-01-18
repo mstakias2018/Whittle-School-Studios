@@ -43,6 +43,7 @@ class PageWrapper extends React.Component {
   render() {
     const {
       children,
+      isHomePage,
       metaProps,
       shouldDisableFab,
       subNavProps,
@@ -68,7 +69,7 @@ class PageWrapper extends React.Component {
           {...this.state.mainElementAttributes}
         >
           {!shouldDisableFab &&
-          <Fab />
+          <Fab isHomePage={isHomePage} />
           }
           {children}
         </main>
@@ -86,6 +87,7 @@ class PageWrapper extends React.Component {
 
 PageWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  isHomePage: PropTypes.bool,
   metaProps: PropTypes.shape(PROP_TYPES.META_TAG_PROPS).isRequired,
   shouldDisableFab: PropTypes.bool,
   subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
