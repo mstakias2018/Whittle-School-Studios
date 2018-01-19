@@ -79,17 +79,14 @@
 }
 
 .number {
-  @mixin type-h1;
+  @mixin large-body-text;
+  @mixin font-family font-serif-light;
+  color: var(--color-text-dark);
+  font-weight: 400;
   letter-spacing: 0.4px;
-  line-height: 48px;
-
-  @media (--bp-sm-only) {
-    font-size: 30px;
-    line-height: 36px;
-  }
+  margin-bottom: 0;
 
   @media (--bp-md) {
-    font-size: 36px;
     letter-spacing: 0.2px;
   }
 }

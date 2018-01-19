@@ -90,9 +90,9 @@
 .description {
   @mixin font-family font-serif-light-italic;
   color: var(--color-text-dark);
-  font-size: 12px;
+  font-size: 18px;
   letter-spacing: 0.25px;
-  line-height: 18px;
+  line-height: 30px;
   padding-bottom: 30px;
 
   @media (--bp-md) {
@@ -208,16 +208,9 @@
 }
 
 .architectQuote {
-  @mixin font-family font-sans-serif-light;
-  color: var(--color-text-dark);
-  font-size: 14px;
-  line-height: 24px;
+  @mixin type-descriptor;
   text-align: left;
   width: 100%;
-
-  strong {
-    @mixin font-family font-sans-serif-regular;
-  }
 
   @media (--bp-md) {
     text-align: center;

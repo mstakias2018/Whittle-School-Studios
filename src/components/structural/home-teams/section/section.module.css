@@ -61,9 +61,7 @@
 
 .title {
   @mixin full-width-column-sm;
-  @mixin type-h4-italic;
-  font-size: 24px;
-  line-height: 30px;
+  @mixin type-h4-italic-24;
 
   @media (--bp-md) {
     @mixin full-width-column-md;

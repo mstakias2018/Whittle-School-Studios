@@ -67,21 +67,16 @@
 }
 
 .title {
-  @mixin type-h3;
-  font-size: 30px;
+  @mixin type-h4;
+  letter-spacing: 0.2px;
   margin-bottom: 21px;
 
   span {
     display: block;
   }
 
-  @media (--bp-sm-only) {
-    letter-spacing: 0.2px;
-  }
-
   @media (--bp-md) {
     letter-spacing: 0;
-    line-height: 30px;
     margin-bottom: 14px;
   }
 }

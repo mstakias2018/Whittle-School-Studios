@@ -13,14 +13,16 @@
 
 /* For Statistics and Big Numbers */
 @define-mixin type-big-number {
-  @mixin font-family font-serif-light-italic;
+  @mixin font-family font-serif-light-italic, false;
   color: var(--color-text-dark);
   font-size: 180px;
   font-weight: normal;
+  letter-spacing: -3.5px;
   line-height: 100px;
 
   @media (--bp-md) {
     font-size: 400px;
+    letter-spacing: -6px;
   }
 }
 
@@ -123,6 +125,11 @@
   @mixin font-family font-serif-light-italic;
 }
 
+@define-mixin type-h4-italic-24 {
+  @mixin type-h4-italic;
+  font-size: 24px;
+}
+
 @define-mixin type-h5 {
   @mixin font-family font-serif-light;
   color: var(--color-text-dark);
@@ -139,6 +146,19 @@
   @mixin type-h5;
   @mixin font-family font-serif-light-italic;
   line-height: 30px;
+}
+
+@define-mixin type-section-label {
+  @mixin font-family font-serif-light-italic;
+  color: var(--color-text-light);
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+
+  :global(.wrapper_isChinese) & {
+    font-size: 16px;
+  }
 }
 
 /* article copy */

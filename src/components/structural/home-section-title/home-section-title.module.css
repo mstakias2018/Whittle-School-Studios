@@ -12,7 +12,7 @@
 }
 
 .text {
-  @mixin font-family font-serif-light;
+  @mixin type-h1-category;
   display: inline-block;
   font-size: 48px;
   letter-spacing: 0.15px;
@@ -22,16 +22,12 @@
   transform-origin: 35px 35px;
 
   @media (--bp-md) {
-    font-size: 96px;
     letter-spacing: 0.2px;
-    line-height: 96px;
     transform-origin: 46px 46px;
   }
 
   @media (--bp-lg) {
-    font-size: 120px;
     letter-spacing: 0;
-    line-height: 120px;
     transform-origin: 60px 60px;
   }
 

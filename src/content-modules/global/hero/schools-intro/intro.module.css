@@ -83,16 +83,10 @@
 }
 
 .description {
-  @mixin type-paragraph;
+  @mixin type-descriptor;
   margin-bottom: 27px;
 
-  @media (--bp-sm-only) {
-    font-size: 12px;
-    line-height: 18px;
-  }
-
   @media (--bp-md) {
-    line-height: 24px;
     margin-bottom: 36px;
   }
 
