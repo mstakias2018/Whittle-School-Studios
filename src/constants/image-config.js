@@ -31,6 +31,11 @@ const IMAGE_CONFIG = {
   [IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO]: {
     [BREAKPOINTS_NAME.small]: { colRatio: 1, heightRatio: RATIO.RECT },
     [BREAKPOINTS_NAME.medium]: { colRatio: 1, heightRatio: RATIO.RECT },
+    [BREAKPOINTS_NAME.large]: { colRatio: 6 / 12, heightRatio: RATIO.RECT },
+  },
+  [IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_LARGE]: {
+    [BREAKPOINTS_NAME.small]: { colRatio: 1, heightRatio: RATIO.RECT },
+    [BREAKPOINTS_NAME.medium]: { colRatio: 1, heightRatio: RATIO.RECT },
     [BREAKPOINTS_NAME.large]: { colRatio: 8 / 12, heightRatio: RATIO.RECT },
   },
   [IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL]: {

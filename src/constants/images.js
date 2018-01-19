@@ -51,6 +51,7 @@ exports.IMAGE_SUBTYPE = {
   HERO: 'hero',
   INLINE_RT: 'inlineRt',
   INLINE_RT_HERO_VIDEO: 'inlineRtHeroVideo',
+  INLINE_RT_HERO_VIDEO_LARGE: 'inlineRtHeroVideoLarge',
   INLINE_RT_HERO_VIDEO_SMALL: 'inlineRtHeroVideoSmall',
   INLINE_RT_VIDEO: 'inlineRtVideo',
   INLINE_SQ: 'inlineSq',

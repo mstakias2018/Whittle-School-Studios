@@ -223,7 +223,10 @@ exports.saveInlineImage = ({
   return saveImage(inlineImage, IMAGE_TYPE.MODULE, inlineImageSubtype, nestedFolders);
 };
 
-exports.saveVideoCoverPhotos = (module, index, nestedFolders) => {
-  const imageSubtype = index === 0 ? IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO : IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL;
+exports.saveVideoCoverPhotos = (module, index, isOnlyOneVideo, nestedFolders) => {
+  const firstVideoImageSubtype = isOnlyOneVideo ?
+    IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_LARGE :
+    IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO;
+  const imageSubtype = index === 0 ? firstVideoImageSubtype : IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL;
   return saveImage(module, IMAGE_TYPE.MODULE, imageSubtype, nestedFolders);
 };

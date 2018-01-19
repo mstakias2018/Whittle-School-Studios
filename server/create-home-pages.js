@@ -37,11 +37,20 @@ const createHomePages = (graphql, createPage) =>
                       video1AssetCoverPhoto {
                         ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO)}
                       }
+                      video1AssetCoverPhotoLarge: video1AssetCoverPhoto {
+                        ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_LARGE)}
+                      }
                       video2AssetCoverPhoto {
                         ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL)}
                       }
+                      video2VideoEmbedCode {
+                        embedCode: video2VideoEmbedCode
+                      }
                       video3AssetCoverPhoto {
                         ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL)}
+                      }
+                      video3VideoEmbedCode {
+                        embedCode: video3VideoEmbedCode
                       }
                     }
                   }
@@ -143,13 +152,23 @@ const createHomePages = (graphql, createPage) =>
           }
 
           if (hero.videos) {
+            const isOnlyOneVideo = !hero.videos.video2VideoEmbedCode && !hero.videos.video3VideoEmbedCode;
+            const firstVideoImage = isOnlyOneVideo ?
+              hero.videos.video1AssetCoverPhotoLarge :
+              hero.videos.video1AssetCoverPhoto;
+
             [
-              hero.videos.video1AssetCoverPhoto,
+              firstVideoImage,
               hero.videos.video2AssetCoverPhoto,
               hero.videos.video3AssetCoverPhoto,
             ].forEach((asset, j) => {
               if (asset) {
-                const videoImage = saveVideoCoverPhotos(asset, j, [id, STRUCTURAL_COMPONENTS.HOME_HERO, j]);
+                const videoImage = saveVideoCoverPhotos(
+                  asset,
+                  j,
+                  isOnlyOneVideo,
+                  [id, STRUCTURAL_COMPONENTS.HOME_HERO, j]
+                );
 
                 if (videoImage) {
                   modulePromises.push(videoImage.then((imageData) => {

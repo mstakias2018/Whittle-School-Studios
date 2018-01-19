@@ -128,11 +128,20 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
             video1AssetCoverPhoto {
               ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO)}
             }
+            video1AssetCoverPhotoLarge: video1AssetCoverPhoto {
+              ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_LARGE)}
+            }
             video2AssetCoverPhoto {
               ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL)}
             }
+            video2VideoEmbedCode {
+              embedCode: video2VideoEmbedCode
+            }
             video3AssetCoverPhoto {
               ${createQuery(IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL)}
+            }
+            video3VideoEmbedCode {
+              embedCode: video3VideoEmbedCode
             }
           }
         }
@@ -285,12 +294,18 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                         ))
                       ))
                   )));
-                case CONTENT_MODULE.VIDEOS:
+                case CONTENT_MODULE.VIDEOS: {
+                  const isOnlyOneVideo = !module.video2VideoEmbedCode && !module.video3VideoEmbedCode;
+                  const firstVideoImage = isOnlyOneVideo ?
+                    module.video1AssetCoverPhotoLarge :
+                    module.video1AssetCoverPhoto;
+
                   return Promise.all([
-                    module.video1AssetCoverPhoto,
+                    firstVideoImage,
                     module.video2AssetCoverPhoto,
                     module.video3AssetCoverPhoto,
-                  ].map((asset, j) => (asset ? saveVideoCoverPhotos(asset, j, [id, i, j]) : {})));
+                  ].map((asset, j) => (asset ? saveVideoCoverPhotos(asset, j, isOnlyOneVideo, [id, i, j]) : {})));
+                }
                 default:
                   return {};
               }
