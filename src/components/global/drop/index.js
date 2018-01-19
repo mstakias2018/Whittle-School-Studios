@@ -132,7 +132,7 @@ class Drop extends React.Component {
           onKeyDown={this.handleKey}
           ref={(el) => { this.refElements.btn = el; }}
         >
-          <span>{selectedLabel}</span>
+          <span className={styles.dropButtonText}>{selectedLabel}</span>
           <img
             alt=""
             className={styles.arrow}
