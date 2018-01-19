@@ -49,7 +49,7 @@
     @mixin span 1, 4, lg;
   }
 
-  > time {
+  time {
     padding-top: 0;
   }
 }

@@ -18,26 +18,27 @@ const Date = ({ date, isInline }, { translation }) => {
   const shortMonth = intervals && intervals.short;
 
   return (
-    <time
-      aria-label={`${longMonth} ${dayText}`}
-      className={cx(styles.date, {
-        [styles.date_inline]: isInline,
-      })}
-      dateTime={date}
-    >
-      <span
-        aria-hidden="true"
-        className={styles.month}
+    <span aria-label={`${longMonth} ${dayText}`}>
+      <time
+        className={cx(styles.date, {
+          [styles.date_inline]: isInline,
+        })}
+        dateTime={date}
       >
-        {shortMonth}
-      </span>
-      <span
-        aria-hidden="true"
-        className={styles.day}
-      >
-        {day}
-      </span>
-    </time>
+        <span
+          aria-hidden="true"
+          className={styles.month}
+        >
+          {shortMonth}
+        </span>
+        <span
+          aria-hidden="true"
+          className={styles.day}
+        >
+          {day}
+        </span>
+      </time>
+    </span>
   );
 };
 

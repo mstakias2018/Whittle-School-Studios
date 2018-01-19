@@ -19,7 +19,7 @@ const getNumberWithSufix = (no) => {
 
   if (no.toString().length > 1) {
     const numLast = parseInt(no.toString().split('')[1], 10);
-    if (numLast <= sufix.length && !skipNumbers.includes(no)) {
+    if (numLast <= sufix.length && !skipNumbers.includes(no) && numLast > 0) {
       text = `${no}${sufix[numLast - 1]}`;
     }
   } else if (no <= sufix.length) {
