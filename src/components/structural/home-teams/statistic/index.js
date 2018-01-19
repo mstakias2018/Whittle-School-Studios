@@ -45,7 +45,7 @@ const Statistic = (props, context) => {
     type,
   } = props;
   return (
-    <div className={cx(styles.wrapper, { [styles.rightMargin]: hasRightMargin })}>
+    <li className={cx(styles.wrapper, { [styles.rightMargin]: hasRightMargin })}>
       <div className={styles.content}>
         {textLineTop && (
           <div className={styles.topText}>
@@ -59,7 +59,7 @@ const Statistic = (props, context) => {
           </div>
         )}
       </div>
-    </div>
+    </li>
   );
 };
 

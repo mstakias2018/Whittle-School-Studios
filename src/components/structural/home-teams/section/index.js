@@ -84,7 +84,7 @@ class TeamsSection extends Component {
   renderTitle = () => {
     const { translation } = this.context;
     return (
-      <div className={styles.title}>
+      <li className={styles.title}>
         {this.props.teamSectionTitle}
         <div className={styles.linkWrapper}>
           <Link
@@ -94,7 +94,7 @@ class TeamsSection extends Component {
             {translation('teams.teamLinkText')}
           </Link>
         </div>
-      </div>
+      </li>
     );
   };
 
