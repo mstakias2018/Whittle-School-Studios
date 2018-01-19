@@ -5,6 +5,7 @@ import cx from 'classnames';
 import styles from './with-video.module.css';
 import Picture from '../../components/global/picture';
 import WithWindowListener from '../withWindow';
+import LoadingSpinner from '../../components/structural/loading-spinner';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { BREAKPOINTS_NAME } from '../../constants/breakpoints';
@@ -136,6 +137,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
                   </div>
                 )}
                 <div className={styles.sectionWrapper}>
+                  {!hasCoverPhoto && !isVimeo && <LoadingSpinner isSmall={options.isSmall || this.props.isSmall} />}
                   <div className={styles.sectionWrapperInner}>
                     <iframe
                       allowFullScreen

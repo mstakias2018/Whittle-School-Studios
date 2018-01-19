@@ -4,11 +4,11 @@ import Helmet from 'react-helmet';
 import cx from 'classnames';
 
 import Markdown from '../../../components/global/markdown';
+import LoadingSpinner from '../../../components/structural/loading-spinner';
+
 import styles from './openapply-iframe.module.css';
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { LANGUAGE_PATH } from '../../../constants/regions';
-
-import loadingSpinner from '../../../assets/images/loading-spinner.svg';
 
 const propTypes = {
   description: PROP_SHAPES.MARKDOWN.isRequired,
@@ -125,11 +125,7 @@ class OpenApplyIFrame extends Component {
               source={description.markdown}
             />
             <div className={styles.loadingPlaceholder}>
-              <img
-                alt=""
-                className={styles.loadingSpinner}
-                src={loadingSpinner}
-              />
+              <LoadingSpinner />
             </div>
             <span id="openapplyScript" />
           </div>
