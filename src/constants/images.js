@@ -45,8 +45,9 @@ exports.GLOBAL_IMAGE_TYPE = {
 };
 
 exports.IMAGE_SUBTYPE = {
-  CAMPUS: 'campusRt',
-  CAMPUS_ARCHITECT: 'campusArchitectSq',
+  CAMPUS: 'campus',
+  CAMPUS_ARCHITECT: 'campusArchitect',
+  CAMPUS_COVER: 'campusVideo',
   CAROUSEL_SQ: 'carouselSq',
   HERO: 'hero',
   INLINE_RT: 'inlineRt',

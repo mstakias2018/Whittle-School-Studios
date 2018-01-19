@@ -29,11 +29,13 @@ const TeamsBio = ({
   <li className={cx(styles.wrapper, { [styles.wrapper_hasLeftMargin]: hasLeftMargin })}>
     <div className={styles.bioInner}>
       {bioImage && (
-        <Picture
-          alt={bioImageAlt}
-          className={styles.image}
-          sourcesBySize={bioImage}
-        />
+        <div className={styles.imageWrapper}>
+          <Picture
+            alt={bioImageAlt}
+            className={styles.image}
+            sourcesBySize={bioImage}
+          />
+        </div>
       )}
       <div className={styles.name}>
         {bioName}

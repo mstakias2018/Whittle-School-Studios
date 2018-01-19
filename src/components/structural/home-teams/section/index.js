@@ -39,6 +39,16 @@ class TeamsSection extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.breakpoint !== this.props.breakpoint) {
+      setTimeout(() => {
+        this.setState({
+          breakpoint: this.props.breakpoint,
+        });
+      }, 0);
+    }
+  }
+
   getNumOfBios = () => {
     let numOfBiosInThisSection = 0;
     numOfBiosInThisSection += this.props.teamBio1 ? 1 : 0;
@@ -49,6 +59,11 @@ class TeamsSection extends Component {
     numOfBiosInThisSection += this.props.teamBio6 ? 1 : 0;
     return numOfBiosInThisSection;
   };
+
+  isSmallBP = () => this.state.breakpoint === BREAKPOINTS_NAME.small;
+  isMediumBP = () => this.state.breakpoint === BREAKPOINTS_NAME.medium;
+  isLargeBP = () => this.state.breakpoint === BREAKPOINTS_NAME.large
+    || this.state.breakpoint === BREAKPOINTS_NAME.extraLarge;
 
   renderBio = (num, hasLeftMargin = false) => {
     const bio = this.props[`teamBio${num}`];
@@ -115,48 +130,56 @@ class TeamsSection extends Component {
     </ul>
   );
 
-  renderMediumAndLargeLayout = (breakpoint) => {
-    const isMediumBrakepoint = breakpoint === BREAKPOINTS_NAME.medium;
-    const isLargeBrakepoint = breakpoint === BREAKPOINTS_NAME.large ||
-      breakpoint === BREAKPOINTS_NAME.extraLarge;
+  renderMediumAndLargeLayout = () => {
     const numOfBiosInThisSection = this.getNumOfBios();
     return (
       <ul className={styles.mediumAndLargeBioList}>
         {this.renderTitle()}
         {this.renderBio(1)}
-        {isLargeBrakepoint && this.props.statistic1 &&
-          this.renderStatistic(1)
+        {this.isLargeBP()
+          && this.props.statistic1
+          && this.renderStatistic(1)
         }
         {this.renderBio(2, !!this.props.statistic1)}
-        {isMediumBrakepoint && this.props.statistic1 &&
-          this.renderStatistic(1)
+        {this.isMediumBP()
+          && this.props.statistic1
+          && this.renderStatistic(1)
         }
-        {isMediumBrakepoint && this.props.statistic2 && this.props.secondBio && this.props.numOfBiosInFirst < 5 &&
-          this.renderStatistic(2)
+        {this.isMediumBP()
+          && this.props.statistic2
+          && this.props.secondBio
+          && this.props.numOfBiosInFirst < 5
+          && this.renderStatistic(2)
         }
         {this.renderBio(3)}
-        {isLargeBrakepoint &&
-         this.props.statistic2 &&
-         this.props.secondBio &&
-         this.props.numOfBiosInFirst < 5 &&
-         numOfBiosInThisSection > 3 &&
-         this.renderStatistic(2, true)
+        {this.isLargeBP()
+          && this.props.statistic2
+          && this.props.secondBio
+          && this.props.numOfBiosInFirst < 5
+          && numOfBiosInThisSection > 3
+          && this.renderStatistic(2, true)
         }
         {this.props.teamBio4 &&
           this.renderBio(4, (!this.props.statistic1 && !this.props.statistic2) ||
                             (this.props.secondBio && this.props.numOfBiosInFirst > 4))
         }
-        {isLargeBrakepoint && this.props.statistic2 && this.props.firstBio && this.props.numOfBiosInFirst > 4 &&
-          this.renderStatistic(2, !this.props.secondBio)
+        {this.isLargeBP()
+          && this.props.statistic2
+          && this.props.firstBio
+          && this.props.numOfBiosInFirst > 4
+          && this.renderStatistic(2, !this.props.secondBio)
         }
-        {this.props.teamBio5 &&
-          this.renderBio(5, (this.props.firstBio && !this.props.statistic2))
+        {this.props.teamBio5
+          && this.renderBio(5, (this.props.firstBio && !this.props.statistic2))
         }
-        {this.props.teamBio6 &&
-          this.renderBio(6)
+        {this.props.teamBio6
+          && this.renderBio(6)
         }
-        {isMediumBrakepoint && this.props.statistic2 && this.props.firstBio && this.props.numOfBiosInFirst >= 5 &&
-          this.renderStatistic(2)
+        {this.isMediumBP()
+          && this.props.statistic2
+          && this.props.firstBio
+          && this.props.numOfBiosInFirst >= 5
+          && this.renderStatistic(2)
         }
       </ul>
     );
@@ -168,21 +191,21 @@ class TeamsSection extends Component {
       statistic1,
       statistic2,
     } = this.props;
-    const { breakpoint } = this.state;
-
-    const isSmallBrakepoint = breakpoint === BREAKPOINTS_NAME.small;
 
     return (
       <li className={styles.wrapper}>
-        {isSmallBrakepoint && statistic1 &&
-          this.renderStatistic(1)
+        {this.isSmallBP()
+          && statistic1
+          && this.renderStatistic(1)
         }
-        {isSmallBrakepoint && secondBio && statistic2 &&
-          this.renderStatistic(2)
+        {this.isSmallBP()
+          && secondBio
+          && statistic2
+          && this.renderStatistic(2)
         }
-        {isSmallBrakepoint && this.renderTitle()}
-        {isSmallBrakepoint && this.renderSmallLayout()}
-        {!isSmallBrakepoint && this.renderMediumAndLargeLayout(breakpoint)}
+        {this.isSmallBP() && this.renderTitle()}
+        {this.isSmallBP() && this.renderSmallLayout()}
+        {!this.isSmallBP() && this.renderMediumAndLargeLayout()}
       </li>
     );
   }

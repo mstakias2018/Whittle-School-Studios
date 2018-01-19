@@ -79,15 +79,26 @@
   }
 }
 
-.image {
-  box-sizing: content-box;
+.imageWrapper {
   padding-bottom: 8px;
-  width: 100%;
+  width: 60px;
 
   @media (--bp-sm-only) {
     padding-bottom: 13px;
-    width: 60px;
   }
+
+  @media (--bp-md) {
+    width: 80px;
+  }
+
+  @media (--bp-lg) {
+    width: 100px;
+  }
+}
+
+.image {
+  box-sizing: content-box;
+  width: 100%;
 
   img {
     border-radius: 50%;
