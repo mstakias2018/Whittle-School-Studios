@@ -162,7 +162,8 @@ Comment this block when full screen is reanabled*/
   transition: opacity var(--timing-fast) var(--easing-default);
   width: 10px;
 
-  &:disabled {
+  &.arrow_isDisabled {
+    cursor: pointer;
     opacity: 0.2;
     pointer-events: none;
   }

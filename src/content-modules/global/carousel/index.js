@@ -13,18 +13,16 @@ import {
   PROP_SHAPES,
 } from '../../../constants/custom-property-types';
 
+import { KEYS } from './../../../constants/keys';
+
 const propTypes = {
   imageSources: PropTypes.arrayOf(PROP_SHAPES.IMAGE_SOURCES).isRequired,
   slides: PropTypes.arrayOf(PropTypes.shape(getInlineImagePropTypes(true))).isRequired,
 };
 
-const {
-  CLASSES,
-} = require('./../../../constants/classes');
+const { CLASSES } = require('./../../../constants/classes');
 
-const {
-  TIMINGS,
-} = require('./../../../constants/timings');
+const { TIMINGS } = require('./../../../constants/timings');
 
 const CAROUSEL_DIRECTION = {
   LEFT: -1,
@@ -119,11 +117,13 @@ class Carousel extends Component {
   handleARIA = () => {
     let allGalleryItems;
     let currentItem;
+    let peekingImages;
     if (typeof window !== 'undefined') {
       allGalleryItems = document.querySelectorAll(`.${CLASSES.GALLERY_IMAGE} img`);
       // We use querySelectorAll here in case we have more than one carousel on page
       currentItem = document.querySelectorAll(`.${CLASSES.GALLERY_IMAGE_CENTER} .${CLASSES.GALLERY_IMAGE} img`);
 
+      peekingImages = document.querySelectorAll(`.${CLASSES.GALLERY_IMAGE_SLIDE}`);
       // IE fix
       for (let i = 0, len = allGalleryItems.length; i < len; i += 1) {
         allGalleryItems[i].setAttribute('aria-hidden', 'true');
@@ -131,17 +131,54 @@ class Carousel extends Component {
       for (let i = 0, len = currentItem.length; i < len; i += 1) {
         currentItem[i].setAttribute('aria-hidden', 'false');
       }
+      for (let i = 0, len = peekingImages.length; i < len; i += 1) {
+        peekingImages[i].setAttribute('aria-hidden', 'true');
+      }
     }
   }
+
+  handleKey = (e) => {
+    const preventKeys = [KEYS.left, KEYS.right];
+
+    if ((e.keyCode === KEYS.left && this.isPrevButtonDisabled())
+    || (e.keyCode === KEYS.right && this.isNextButtonDisabled())) {
+      return;
+    }
+
+    if (preventKeys.includes(e.keyCode)) {
+      e.preventDefault();
+    }
+
+    switch (e.keyCode) {
+      case KEYS.left:
+        this.onClickLeft();
+        break;
+      case KEYS.right:
+        this.onClickRight();
+        break;
+      default:
+        break;
+    }
+  }
+
+  isNextButtonDisabled = () => this.state.currentSlide === this.props.slides.length - 1;
+
+  isPrevButtonDisabled = () => this.state.currentSlide === 0;
 
   renderLeftNav = () => {
     const { translation } = this.context;
     return (
       <button
+        aria-disabled={this.isPrevButtonDisabled()}
         aria-label={translation('carousel.prevAriaLabel')}
-        className={cx('image-gallery-custom-left-nav', styles.arrow, styles.arrowLeft)}
-        disabled={this.state.currentSlide === 0}
+        className={cx(
+          CLASSES.LEFT_ARROW,
+          styles.arrow,
+          styles.arrowLeft,
+          { [styles.arrow_isDisabled]: this.isPrevButtonDisabled() }
+        )}
         onClick={this.onClickLeft}
+        onKeyDown={this.handleKey}
       />
     );
   }
@@ -151,10 +188,16 @@ class Carousel extends Component {
 
     return (
       <button
+        aria-disabled={this.isNextButtonDisabled()}
         aria-label={translation('carousel.nextAriaLabel')}
-        className={cx('image-gallery-custom-right-nav', styles.arrow, styles.arrowRight)}
-        disabled={this.state.currentSlide === this.props.slides.length - 1}
+        className={cx(
+          CLASSES.RIGHT_ARROW,
+          styles.arrow,
+          styles.arrowRight,
+          { [styles.arrow_isDisabled]: this.isNextButtonDisabled() }
+        )}
         onClick={this.onClickRight}
+        onKeyDown={this.handleKey}
       />
     );
   }
@@ -177,6 +220,7 @@ class Carousel extends Component {
         <div className={styles.componentWrapper}>
           <div className={styles.componentContent}>
             <ImageGallery
+              disableArrowKeys
               infinite={false}
               items={this.formattedItems}
               onClick={this.onClickImage}

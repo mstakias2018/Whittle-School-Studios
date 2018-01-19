@@ -39,11 +39,27 @@
   }
 }
 
+.toggleMenuWrapper {
+  @mixin span 1, 4, sm;
+  display: flex;
+  justify-content: flex-end;
+
+  @media (--bp-md) {
+    @mixin span 1, 8, md;
+  }
+
+  @media (--bp-lg) {
+    display: none;
+  }
+}
+
 .toggleMenu {
   @mixin type-menu;
   background-color: transparent;
   border: none;
   height: 40px;
+  margin-right: -20px;
+  padding: 0 20px;
 
   @media (--bp-lg) {
     display: none;

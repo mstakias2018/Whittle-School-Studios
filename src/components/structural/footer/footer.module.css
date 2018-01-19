@@ -91,7 +91,7 @@
 .menuBlockItem {
   @mixin type-nav;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 18px;
 }
 
 .menuBlockSubItemWrapper {
@@ -110,7 +110,7 @@
   @mixin type-nav;
   @mixin font-family font-sans-serif-light;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 18px;
 }
 
 .menuBlockItem,

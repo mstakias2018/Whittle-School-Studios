@@ -60,16 +60,18 @@ class Header extends Component {
           })}
           >
             <Logo />
-            <button
-              aria-controls="mainMenu"
-              aria-expanded={this.state.menuActive}
-              aria-haspopup="true"
-              className={styles.toggleMenu}
-              onClick={this.toggleMenu}
-            >
-              {!this.state.menuActive ? translation && translation('general.menu') :
-                translation && translation('general.close')}
-            </button>
+            <div className={styles.toggleMenuWrapper}>
+              <button
+                aria-controls="mainMenu"
+                aria-expanded={this.state.menuActive}
+                aria-haspopup="true"
+                className={styles.toggleMenu}
+                onClick={this.toggleMenu}
+              >
+                {!this.state.menuActive ? translation && translation('general.menu') :
+                  translation && translation('general.close')}
+              </button>
+            </div>
             <MainMenu isActive={this.state.menuActive} />
           </div>
         </div>

@@ -152,7 +152,6 @@
 }
 
 .architectImage {
-  border-radius: 50%;
   height: 60px;
   width: 60px;
 
@@ -167,6 +166,10 @@
     height: 100px;
     margin-bottom: 30px;
     width: 100px;
+  }
+
+  img {
+    border-radius: 50%;
   }
 }
 
@@ -225,7 +228,7 @@
   .headImage {
     margin-top: 65px;
   }
-  
+
   .contentBlock {
     padding-top: 65px;
   }
