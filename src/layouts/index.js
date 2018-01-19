@@ -21,6 +21,7 @@ import {
   LANGUAGE_CLASS,
   LANGUAGE_CONTENTFUL_LOCALE,
   LANGUAGE_PATH,
+  REGION_DEFAULT_LANGUAGE,
   REGION_SHORT,
 } from '../constants/regions';
 import { getLanguageFromPathname } from '../utils/regions';
@@ -93,7 +94,7 @@ class TemplateWrapper extends Component {
 
   getLanguageDataFor = (key, testFunc) => {
     const { data, location: { pathname } } = this.props;
-    const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
+    const language = getLanguageFromPathname(pathname) || REGION_DEFAULT_LANGUAGE[process.env.GATSBY_REGION];
     let out;
 
     data[key].edges.some(({ node: { locale, dummycontentindex, ...props } }) => {
