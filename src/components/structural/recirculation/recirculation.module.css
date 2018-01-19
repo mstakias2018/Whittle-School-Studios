@@ -192,6 +192,10 @@
     font-size: 12px;
     letter-spacing: 0.2px;
     line-height: 18px;
+
+    :global(.wrapper_isChinese) & {
+      font-size: 14px;
+    }
   }
 }
 
