@@ -54,7 +54,15 @@
 
 .blockOrder {
   display: flex;
-  flex-basis: 100px;
+  flex-basis: 55px;
+
+  @media (--bp-md) {
+    flex-basis: 65px;
+  }
+
+  @media (--bp-lg) {
+    flex-basis: 70px;
+  }
 }
 
 .blockOrderInner {
@@ -62,7 +70,11 @@
   @mixin three-up-section-title-padding-right;
   display: flex;
   position: relative;
-  width: 65px;
+  width: 55px;
+
+  @media (--bp-md) {
+    width: 65px;
+  }
 
   @media (--bp-lg) {
     justify-content: center;
@@ -79,11 +91,24 @@
   }
 }
 
+.blockOrderNumber {
+  text-align: right;
+  width: 100%;
+}
+
 .blockContent {
   @mixin three-up-section-title-padding-left;
   display: flex;
   flex-direction: column;
-  max-width: calc(100% - 100px);
+  max-width: calc(100% - 55px);
+
+  @media (--bp-md) {
+    max-width: calc(100% - 65px);
+  }
+
+  @media (--bp-lg) {
+    max-width: calc(100% - 70px);
+  }
 }
 
 .blockTitle {

@@ -87,14 +87,18 @@
 }
 
 @define-mixin three-up-section-title-padding-right {
-  padding-right: 33px;
+  padding-right: 20px;
 
   @media (--bp-md) {
     padding-right: 27px;
   }
 
   @media (--bp-lg) {
-    padding-right: 29px;
+    padding-right: 25px;
+  }
+
+  @media (--bp-lg-lower-only) {
+    padding-right: 20px;
   }
 }
 
@@ -106,7 +110,11 @@
   }
 
   @media (--bp-lg) {
-    padding-left: 29px;
+    padding-left: 25px;
+  }
+
+  @media (--bp-lg-lower-only) {
+    padding-left: 20px;
   }
 }
 

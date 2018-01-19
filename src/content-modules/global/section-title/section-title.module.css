@@ -41,7 +41,12 @@
   @mixin type-h3;
   @mixin three-up-section-title-padding-right;
   border-right: solid 1px var(--color-light-border);
-  width: 65px;
+  text-align: right;
+  width: 55px;
+
+  @media (--bp-md) {
+    width: 65px;
+  }
 
   @media (--bp-lg) {
     width: 70px;
