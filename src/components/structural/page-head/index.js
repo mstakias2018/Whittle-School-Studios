@@ -8,14 +8,10 @@ import Picture from '../../global/picture';
 
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { PAGE_TYPE } from '../../../constants/settings';
-import { PARALLAX_HOME_TITLE } from '../../../constants/parallax';
-
-import WithWindowListener from '../../../hocs/withWindow';
 
 import styles from './page-head.module.css';
 
 const propTypes = {
-  breakpoint: PROP_SHAPES.BREAKPOINT,
   headline: PropTypes.string.isRequired,
   imageAlt: PropTypes.string,
   imageSources: PROP_SHAPES.IMAGE_SOURCES,
@@ -24,7 +20,6 @@ const propTypes = {
 };
 
 const PageHead = ({
-  breakpoint,
   headline,
   imageAlt,
   imageSources,
@@ -40,7 +35,11 @@ const PageHead = ({
   );
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={cx(styles.wrapper, {
+        [styles.wrapper_home]: type === PAGE_TYPE.HOME,
+      })}
+    >
       <div
         className={cx(styles.pageHead, {
           [styles.pageHead_home]: type === PAGE_TYPE.HOME,
@@ -52,7 +51,19 @@ const PageHead = ({
           <Plx
             animateWhenNotInViewport
             className={styles.parallaxTitle}
-            parallaxData={PARALLAX_HOME_TITLE[breakpoint]}
+            parallaxData={[
+              {
+                duration: 1000,
+                properties: [
+                  {
+                    endValue: -80,
+                    property: 'translateY',
+                    startValue: 0,
+                  },
+                ],
+                start: 0,
+              },
+            ]}
           >
             {title}
           </Plx>
@@ -78,4 +89,4 @@ const PageHead = ({
 
 PageHead.propTypes = propTypes;
 
-export default WithWindowListener(PageHead);
+export default PageHead;

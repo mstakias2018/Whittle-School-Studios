@@ -4,7 +4,6 @@
 
 .typeHome {
   @mixin type-h1-home;
-  @mixin component-vertical-spacing;
 }
 
 .typeCategory {

@@ -12,6 +12,23 @@
   @media (--bp-md) {
     padding-bottom: 35px;
   }
+
+  &_home {
+    @media (--bp-sm-only) {
+      padding-bottom: 34px;
+      padding-top: 35px;
+    }
+
+    @media (--bp-md-only) {
+      padding-bottom: 13px;
+      padding-top: 65px;
+    }
+
+    @media (--bp-lg) {
+      padding-bottom: 38px;
+      padding-top: 110px;
+    }
+  }
 }
 
 .pageHead {
@@ -124,13 +141,8 @@
   .parallaxTitle {
     @mixin span 4, var(--grid-columns-sm), sm;
 
-    @media (--bp-sm-only) {
-      transform: translateY(60px);
-    }
-
     @media (--bp-md) {
       @mixin span 8, var(--grid-columns-md), md;
-      transform: translateY(105px);
     }
 
     @media (--bp-lg) {
