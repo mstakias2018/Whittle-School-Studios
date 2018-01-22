@@ -17,8 +17,10 @@ const STATIC_IMAGE_PATH = './static/images/';
 
 const formatPathForBrowser = path => path.replace('./static', '');
 
+// TODO We've temporarily disabled image downloading because of ENOSPC errors
+//      Need to find a permanent solutio and remove
 // Only download images on Netlify - otherwise it's too slow
-const shouldSkipDownloadingImages = !process.env.BRANCH;
+const shouldSkipDownloadingImages = true || !process.env.BRANCH;
 
 exports.resetImageDir = () => {
   if (fs.existsSync(STATIC_IMAGE_PATH)) {
