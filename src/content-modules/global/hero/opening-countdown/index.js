@@ -15,22 +15,31 @@ const INTERVALS = ['weeks', 'days', 'hours', 'minutes'];
 
 class OpeningCountdown extends React.Component {
   state = {
-    countdown: {},
+    countdown: {
+      days: '-',
+      hours: '-',
+      minutes: '-',
+      weeks: '-',
+    },
   };
 
-  componentDidMount() {
-    this.countdownInterval = setInterval(() => {
-      this.setState({
-        countdown: this.getCountdown(),
-      });
-    }, 1000);
+  componentWillMount() {
+    this.setState({
+      countdown: this.getCountdown(),
+    });
   }
 
   componentWillUnmount() {
     clearInterval(this.countdownInterval);
   }
 
-  getCountdown = () => this.countdown(moment(), moment.utc(this.props.date).tz(moment.tz.guess()));
+  getCountdown = () => this.countdown(moment(), moment(this.props.date));
+
+  countdownInterval = setInterval(() => {
+    this.setState({
+      countdown: this.getCountdown(),
+    });
+  }, 1000);
 
   countdown = (dateNow, eventDate) => {
     const countdown = {};
