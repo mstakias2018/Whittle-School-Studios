@@ -21,8 +21,11 @@ exports.parseInsetContent = (markdown) => {
       ...caption ? [caption] : [],
     ];
 
+    const altTag = alt.split('--');
+
     if (image) {
       images.push({
+        alt: altTag[0] || null,
         hasVideo: !!videoEmbedCode,
         url: image,
       });

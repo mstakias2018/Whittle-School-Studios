@@ -10,6 +10,7 @@ describe('parseInsetContent', () => {
         '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.',
       images: [
         {
+          alt: 'daffodils',
           hasVideo: false,
           url: '//images.contentful.com/a/b/c/daffodils.jpg',
         },
@@ -36,6 +37,7 @@ describe('parseInsetContent', () => {
         '![daffodils--VIDEO-0](//images.contentful.com/a/b/c/daffodils.jpg)Lorem ipsum.',
       images: [
         {
+          alt: 'daffodils',
           hasVideo: true,
           url: '//images.contentful.com/a/b/c/daffodils.jpg',
         },
@@ -63,6 +65,7 @@ describe('parseInsetContent', () => {
         '![daffodils--VIDEO-0](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.',
       images: [
         {
+          alt: 'daffodils',
           hasVideo: true,
           url: '//images.contentful.com/a/b/c/daffodils.jpg',
         },
@@ -79,6 +82,7 @@ describe('parseInsetContent', () => {
         '![daffodils--VIDEO-0](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children--VIDEO-1](VIDEO-NO-COVER-IMAGE)',
       images: [
         {
+          alt: 'daffodils',
           hasVideo: true,
           url: '//images.contentful.com/a/b/c/daffodils.jpg',
         },
@@ -98,10 +102,12 @@ describe('parseInsetContent', () => {
         '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children--VIDEO-0](//images.contentful.com/a/b/c/children.jpg "My caption")',
       images: [
         {
+          alt: 'daffodils',
           hasVideo: false,
           url: '//images.contentful.com/a/b/c/daffodils.jpg',
         },
         {
+          alt: 'children',
           hasVideo: true,
           url: '//images.contentful.com/a/b/c/children.jpg',
         },
