@@ -17,7 +17,6 @@ import './fonts.module.css';
 import { PROP_SHAPES } from '../constants/custom-property-types';
 import { GLOBAL_IMAGE_TYPE } from '../constants/images';
 import {
-  LANGUAGE,
   LANGUAGE_CLASS,
   LANGUAGE_CONTENTFUL_LOCALE,
   LANGUAGE_PATH,
@@ -44,7 +43,7 @@ class TemplateWrapper extends Component {
 
   getChildContext() {
     const { history, location: { pathname } } = this.props;
-    const language = getLanguageFromPathname(pathname) || LANGUAGE.ENGLISH;
+    const language = getLanguageFromPathname(pathname) || REGION_DEFAULT_LANGUAGE[process.env.GATSBY_REGION];
 
     const {
       contentPageShareIcons,
