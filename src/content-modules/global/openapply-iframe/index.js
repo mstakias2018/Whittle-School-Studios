@@ -104,10 +104,10 @@ class OpenApplyIFrame extends Component {
       <div className={styles.wrapper}>
         <Helmet
           script={
-            this.state.hasMounted && [{
+            this.state.hasMounted ? [{
               src: this.getSourceUrl(),
               type: 'text/javascript',
-            }]
+            }] : undefined
           }
         />
         <div className={styles.componentWrapper}>
