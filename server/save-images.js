@@ -46,6 +46,7 @@ exports.createQuery = (imageSubtype) => {
       ${imageSize}: resolutions(
         width: ${sizeConfig.width},
         height: ${sizeConfig.height},
+        cropFocus: FACES,
         resizingBehavior: FILL,
         quality: 100,
       ) {
