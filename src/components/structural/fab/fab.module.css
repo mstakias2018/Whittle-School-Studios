@@ -109,3 +109,7 @@
     width: 50px;
   }
 }
+
+.fabLink {
+  display: block;
+}
