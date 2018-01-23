@@ -247,6 +247,11 @@
     font-size: 16px;
     line-height: 18px;
   }
+
+  @media (--bp-md-only) {
+    font-size: 18px;
+    line-height: 20px;
+  }
 }
 
 .description {
@@ -255,5 +260,13 @@
 
   @media (--bp-sm-only) {
     display: none;
+  }
+
+  @media (--bp-md-only) {
+    margin-top: 1px;
+  }
+
+  @media (--bp-lg) {
+    margin-top: 4px;
   }
 }
