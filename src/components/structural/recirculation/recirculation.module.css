@@ -6,6 +6,10 @@
 .wrapper {
   @mixin component-vertical-spacing;
   background-color: var(--color-background-light-green-gray);
+
+  @media (--bp-md) {
+    padding-bottom: 50px;
+  }
 }
 
 .container {
@@ -16,7 +20,7 @@
   }
 
   @media (--bp-md) {
-    padding-top: 50px;
+    padding-top: 40px;
   }
 }
 
