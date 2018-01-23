@@ -90,7 +90,7 @@
   }
 
   @media (--bp-md) {
-    line-height: 48px;
+    line-height: 30px;
   }
 }
 

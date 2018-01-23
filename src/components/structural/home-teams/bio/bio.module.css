@@ -60,7 +60,7 @@
 }
 
 .bioInner {
-  height: auto;
+  height: 100%;
   position: relative;
 
   &:before {

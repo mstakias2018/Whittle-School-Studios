@@ -12,6 +12,7 @@ import { createContentPageLink } from '../../../../utils/nav';
 
 import { BREAKPOINTS_NAME } from '../../../../constants/breakpoints';
 import { PROP_SHAPES } from '../../../../constants/custom-property-types';
+import { HOME_TEAMS_STATISTIC_TYPE } from '../../../../constants/settings';
 
 const teamSectionPropTypes = {
   breakpoint: PROP_SHAPES.BREAKPOINT,
@@ -65,36 +66,37 @@ class TeamsSection extends Component {
   isLargeBP = () => this.state.breakpoint === BREAKPOINTS_NAME.large
     || this.state.breakpoint === BREAKPOINTS_NAME.extraLarge;
 
+  isStatisticValid = statistic => statistic &&
+  (statistic.type === HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE ?
+    statistic.number1
+    : statistic.number1 && statistic.number2);
+
   renderBio = (num, hasLeftMargin = false) => {
     const bio = this.props[`teamBio${num}`];
-    const toRet = (
-      <TeamsBio
-        bioDescription={bio.bioDescription}
-        bioImage={bio.bioImage}
-        bioImageAlt={bio.bioImageAlt}
-        bioName={bio.bioName}
-        bioTitle={bio.bioTitle}
-        hasLeftMargin={hasLeftMargin}
-      />
-    );
-    return toRet;
+    return bio.bioName && bio.bioTitle && bio.bioDescription ?
+      (
+        <TeamsBio
+          bioDescription={bio.bioDescription}
+          bioImage={bio.bioImage}
+          bioImageAlt={bio.bioImageAlt}
+          bioName={bio.bioName}
+          bioTitle={bio.bioTitle}
+          hasLeftMargin={hasLeftMargin}
+        />
+      ) : null;
   };
 
-  renderStatistic = (num, hasRightMargin = false) => {
-    const statistic = this.props[`statistic${num}`];
-    const toRet = (
-      <Statistic
-        hasRightMargin={hasRightMargin}
-        layout={statistic.layout}
-        number1={statistic.number1}
-        number2={statistic.number2}
-        textLineBottom={statistic.textLineBottom}
-        textLineTop={statistic.textLineTop}
-        type={statistic.type}
-      />
-    );
-    return toRet;
-  };
+  renderStatistic = (statistic, hasRightMargin = false) => (
+    <Statistic
+      hasRightMargin={hasRightMargin}
+      layout={statistic.layout}
+      number1={statistic.number1}
+      number2={statistic.number2}
+      textLineBottom={statistic.textLineBottom}
+      textLineTop={statistic.textLineTop}
+      type={statistic.type}
+    />
+  );
 
   renderTitle = () => {
     const { translation } = this.context;
@@ -130,56 +132,59 @@ class TeamsSection extends Component {
     </ul>
   );
 
-  renderMediumAndLargeLayout = () => {
+  renderMediumAndLargeLayout = (stat1, stat2) => {
     const numOfBiosInThisSection = this.getNumOfBios();
     return (
       <ul className={styles.mediumAndLargeBioList}>
         {this.renderTitle()}
         {this.renderBio(1)}
         {this.isLargeBP()
-          && this.props.statistic1
-          && this.renderStatistic(1)
+          && stat1
+          && this.renderStatistic(stat1)
         }
-        {this.renderBio(2, !!this.props.statistic1)}
+        {this.renderBio(2, stat1)}
         {this.isMediumBP()
-          && this.props.statistic1
-          && this.renderStatistic(1)
+          && stat1
+          && this.renderStatistic(stat1)
         }
         {this.isMediumBP()
-          && this.props.statistic2
+          && stat2
           && this.props.secondBio
           && this.props.numOfBiosInFirst < 5
-          && this.renderStatistic(2)
+          && this.renderStatistic(stat2)
         }
         {this.renderBio(3)}
         {this.isLargeBP()
-          && this.props.statistic2
+          && stat2
           && this.props.secondBio
           && this.props.numOfBiosInFirst < 5
           && numOfBiosInThisSection > 3
-          && this.renderStatistic(2, true)
+          && this.renderStatistic(stat2, true)
         }
         {this.props.teamBio4 &&
-          this.renderBio(4, (!this.props.statistic1 && !this.props.statistic2) ||
+          this.renderBio(4, (!stat1 && !stat2) ||
                             (this.props.secondBio && this.props.numOfBiosInFirst > 4))
         }
         {this.isLargeBP()
-          && this.props.statistic2
+          && stat2
           && this.props.firstBio
           && this.props.numOfBiosInFirst > 4
-          && this.renderStatistic(2, !this.props.secondBio)
+          && this.renderStatistic(stat2, !this.props.secondBio)
         }
         {this.props.teamBio5
-          && this.renderBio(5, (this.props.firstBio && !this.props.statistic2))
+          && this.renderBio(5, (this.props.firstBio && !stat2))
         }
         {this.props.teamBio6
-          && this.renderBio(6)
+          && this.renderBio(6, this.props.secondBio &&
+                               this.props.numOfBiosInFirst < 5 &&
+                               numOfBiosInThisSection > 3 &&
+                               stat2)
         }
         {this.isMediumBP()
-          && this.props.statistic2
+          && stat2
           && this.props.firstBio
           && this.props.numOfBiosInFirst >= 5
-          && this.renderStatistic(2)
+          && this.renderStatistic(stat2)
         }
       </ul>
     );
@@ -192,20 +197,36 @@ class TeamsSection extends Component {
       statistic2,
     } = this.props;
 
+    let statToUse1 = null;
+    let statToUse2 = null;
+
+    if (this.isStatisticValid(statistic1)) {
+      statToUse1 = statistic1;
+    }
+
+    if (this.isStatisticValid(statistic2)) {
+      statToUse2 = statistic2;
+    }
+
+    if (!statToUse1) {
+      statToUse1 = statToUse2;
+      statToUse2 = null;
+    }
+
     return (
       <li className={styles.wrapper}>
         {this.isSmallBP()
-          && statistic1
-          && this.renderStatistic(1)
+          && statToUse1
+          && this.renderStatistic(statToUse1)
         }
         {this.isSmallBP()
           && secondBio
-          && statistic2
-          && this.renderStatistic(2)
+          && statToUse2
+          && this.renderStatistic(statToUse2)
         }
         {this.isSmallBP() && this.renderTitle()}
         {this.isSmallBP() && this.renderSmallLayout()}
-        {!this.isSmallBP() && this.renderMediumAndLargeLayout()}
+        {!this.isSmallBP() && this.renderMediumAndLargeLayout(statToUse1, statToUse2)}
       </li>
     );
   }
