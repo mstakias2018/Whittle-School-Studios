@@ -7,11 +7,12 @@ import loadingSpinner from '../../../assets/images/loading-spinner.svg';
 import styles from './loading-spinner.module.css';
 
 const propTypes = {
+  className: PropTypes.string,
   isSmall: PropTypes.bool,
 };
 
-const LoadingSpinner = ({ isSmall }) => (
-  <div className={styles.loadingWrapper}>
+const LoadingSpinner = ({ className, isSmall }) => (
+  <span className={cx(className, styles.loadingWrapper)}>
     <img
       alt=""
       className={cx(styles.loadingSpinner, {
@@ -19,7 +20,7 @@ const LoadingSpinner = ({ isSmall }) => (
       })}
       src={loadingSpinner}
     />
-  </div>
+  </span>
 );
 
 LoadingSpinner.propTypes = propTypes;

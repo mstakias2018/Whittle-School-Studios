@@ -20,7 +20,6 @@
   display: block;
   height: 100%;
   overflow: hidden;
-  position: relative;
   width: 100%;
 }
 
@@ -30,12 +29,24 @@
   width: 102%;
 }
 
+.wrapper:not(.wrapper_hasCoverPhoto) .coverPhotoWrapper {
+  display: none;
+}
+
 .wrapper_isVimeo .iframe {
   background: var(--color-background-black);
 }
 
+.wrapper_hasCoverPhoto .loadingSpinner:not(.loadingSpinner_isInButton) {
+  display: none;
+}
+
 .wrapper_hasCoverPhoto:not(.wrapper_hasPlayed) .iframe {
   display: none;
+}
+
+.wrapper_hasCoverPhoto:not(.wrapper_isLoaded) .coverPhotoWrapper {
+  background-color: var(--color-background-light-green-gray);
 }
 
 .button {
@@ -44,6 +55,7 @@
   height: var(--play-button-width);
   left: 14px;
   position: absolute;
+  transition: opacity var(--timing-fast) var(--easing-default);
   width: var(--play-button-width);
   z-index: 20;
 
@@ -54,7 +66,7 @@
   }
 
   &:before {
-    background-image: url(../../assets/images/play-button.svg);
+    background-image: url(../../assets/images/video-default.svg);
     background-size: contain;
     bottom: -4px;
     content: '';
@@ -66,7 +78,52 @@
   }
 
   &:hover:before {
-    background-image: url(../../assets/images/play-button-hover.svg);
+    background-image: url(../../assets/images/video-hover.svg);
+  }
+
+  .wrapper:not(.wrapper_hasPlayButton) & {
+    opacity: 0;
+  }
+}
+
+.buttonInner {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.buttonIconWrapper {
+  position: relative;
+  transition: opacity var(--timing-fast) var(--easing-default);
+}
+
+.buttonIconWrapper_isLoadingSpinner {
+  width: 18px;
+
+  .button_isSmall & {
+    width: 11px;
+  }
+
+  .wrapper_isLoaded & {
+    opacity: 0;
+  }
+}
+
+.buttonIconWrapper_isPlayButton {
+  margin-top: 3px;
+  width: 15px;
+
+  .button_isSmall & {
+    margin-top: 2px;
+    width: 8px;
+  }
+
+  .wrapper:not(.wrapper_isLoaded) & {
+    opacity: 0;
   }
 }
 
@@ -81,10 +138,6 @@
     height: var(--play-button-width-small-md);
     width: var(--play-button-width-small-md);
   }
-}
-
-.wrapper_hasPlayed .button {
-  display: none;
 }
 
 .buttonOverCoverPhoto {

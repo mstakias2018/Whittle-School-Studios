@@ -6,6 +6,7 @@ import styles from './with-video.module.css';
 import Picture from '../../components/global/picture';
 import WithWindowListener from '../withWindow';
 import LoadingSpinner from '../../components/structural/loading-spinner';
+import playIcon from '../../assets/images/video-play.svg';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { BREAKPOINTS_NAME } from '../../constants/breakpoints';
@@ -17,6 +18,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
   class Video extends Component {
     state = {
       hasPlayed: false,
+      isLoaded: false,
       isPlaying: false,
       isVimeo: false,
       src: '',
@@ -30,6 +32,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
       if (this.state.isVimeo) {
         const Player = require('@vimeo/player'); // eslint-disable-line global-require
         this.player = new Player(this.iframe);
+        this.player.on('loaded', () => this.setState({ isLoaded: true }));
         this.player.on('play', this.toggleVideoState.bind(null, true));
         this.player.on('pause', this.toggleVideoState.bind(null, false));
       }
@@ -93,12 +96,18 @@ const WithVideo = (WrappedComponent, options = {}) => {
 
     render() {
       const { alt, imageSources } = this.props;
-      const { hasPlayed, isVimeo, src } = this.state;
+      const {
+        hasPlayed,
+        isLoaded,
+        isVimeo,
+        src,
+      } = this.state;
       const hasVideo = !!src;
       const shouldUseCoverPhoto = isVimeo;
       const isCoverPhotoInBackground = hasVideo && (!shouldUseCoverPhoto || hasPlayed);
       const hasCoverPhoto = shouldUseCoverPhoto && imageSources;
-      const hasPlayButton = Boolean(isVimeo && !hasPlayed && hasCoverPhoto);
+      const hasPlayButton = !!(isVimeo && !hasPlayed && hasCoverPhoto);
+      const isLoadingVimeo = isVimeo && !isLoaded;
 
       const asset = imageSources && (
         <Picture
@@ -116,22 +125,25 @@ const WithVideo = (WrappedComponent, options = {}) => {
               <span
                 className={cx(styles.wrapper, {
                   [styles.wrapper_hasCoverPhoto]: hasCoverPhoto,
+                  [styles.wrapper_hasPlayButton]: hasPlayButton,
                   [styles.wrapper_hasPlayed]: hasPlayed,
+                  [styles.wrapper_isLoaded]: isLoaded,
                   [styles.wrapper_isVimeo]: isVimeo,
                 })}
               >
-                {hasCoverPhoto && (
-                  <span className={styles.sectionWrapper}>
-                    <span
-                      aria-hidden={hasPlayed}
-                      className={styles.sectionWrapperInner}
-                    >
-                      {asset}
-                    </span>
+                <LoadingSpinner
+                  className={cx(styles.loadingSpinner)}
+                  isSmall={options.isSmall || this.props.isSmall}
+                />
+                <span className={cx(styles.sectionWrapper, styles.coverPhotoWrapper)}>
+                  <span
+                    aria-hidden={hasPlayed}
+                    className={styles.sectionWrapperInner}
+                  >
+                    {asset}
                   </span>
-                )}
+                </span>
                 <span className={styles.sectionWrapper}>
-                  {!hasCoverPhoto && !isVimeo && <LoadingSpinner isSmall={options.isSmall || this.props.isSmall} />}
                   <span className={styles.sectionWrapperInner}>
                     <iframe
                       allowFullScreen
@@ -144,7 +156,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
                       webkitallowfullscreen="true"
                     />
                   </span>
-                  {hasCoverPhoto && !isCoverPhotoInBackground && (
+                  {hasCoverPhoto && !isCoverPhotoInBackground && !isLoadingVimeo && (
                     <button
                       aria-hidden="true"
                       className={styles.buttonOverCoverPhoto}
@@ -152,15 +164,29 @@ const WithVideo = (WrappedComponent, options = {}) => {
                       tabIndex="-1"
                     />
                   )}
-                  {hasPlayButton && (
-                    <button
-                      aria-label={this.context.translation('video.play')}
-                      className={cx(styles.button, {
-                        [styles.button_isSmall]: options.isSmall || this.props.isSmall,
-                      })}
-                      onClick={this.toggleVideo}
-                    />
-                  )}
+                  <button
+                    aria-label={this.context.translation(isLoadingVimeo ? 'video.playLoading' : 'video.play')}
+                    className={cx(styles.button, {
+                      [styles.button_isSmall]: options.isSmall || this.props.isSmall,
+                    })}
+                    disabled={isLoadingVimeo}
+                    onClick={isLoadingVimeo ? undefined : this.toggleVideo}
+                  >
+                    <span className={styles.buttonInner}>
+                      <span className={cx(styles.buttonIconWrapper, styles.buttonIconWrapper_isPlayButton)}>
+                        <img
+                          alt=""
+                          className={styles.playIcon}
+                          src={playIcon}
+                        />
+                      </span>
+                    </span>
+                    <span className={styles.buttonInner}>
+                      <span className={cx(styles.buttonIconWrapper, styles.buttonIconWrapper_isLoadingSpinner)}>
+                        <LoadingSpinner className={cx(styles.loadingSpinner, styles.loadingSpinner_isInButton)} />
+                      </span>
+                    </span>
+                  </button>
                 </span>
               </span>
             ) : asset
