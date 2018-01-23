@@ -10,10 +10,10 @@
 
   --font-sans-serif-light-cn: 'pingfang_sclight', sans-serif;
   --font-sans-serif-regular-cn: 'pingfang_scregular', sans-serif;
-  --font-serif-light-cn: 'SimSun', serif;
-  --font-serif-light-italic-cn: 'SimSun', serif;
-  --font-serif-book-cn: 'SimSun', serif;
-  --font-serif-book-italic-cn: 'SimSun', serif;
+  --font-serif-light-cn: 'SimSun', 'STSong', 'HiraMinProN-W3', 'Noto Serif CJK SC', 'Noto Serif CJK', 'DroidSansFallback', serif;
+  --font-serif-light-italic-cn: 'SimSun', 'STSong', 'HiraMinProN-W3', 'Noto Serif CJK SC', 'Noto Serif CJK', 'DroidSansFallback', serif;
+  --font-serif-book-cn: 'SimSun', 'STSong', 'HiraMinProN-W3', 'Noto Serif CJK SC', 'Noto Serif CJK', 'DroidSansFallback', serif;
+  --font-serif-book-italic-cn: 'SimSun', 'STSong', 'HiraMinProN-W3', 'Noto Serif CJK SC', 'Noto Serif CJK', 'DroidSansFallback', serif;
 }
 
 /* Colors */
