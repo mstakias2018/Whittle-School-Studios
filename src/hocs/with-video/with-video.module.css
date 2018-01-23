@@ -3,6 +3,7 @@
 @import '../../assets/styles/includes/variables.css';
 
 .wrapper {
+  display: block;
   height: 0;
   padding-bottom: calc(9 / 16 * 100%);
   position: relative;
@@ -16,6 +17,7 @@
 }
 
 .sectionWrapperInner {
+  display: block;
   height: 100%;
   overflow: hidden;
   position: relative;

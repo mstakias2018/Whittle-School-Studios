@@ -113,7 +113,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
           {...this.props}
           assetWithVideo={
             hasVideo ? (
-              <div
+              <span
                 className={cx(styles.wrapper, {
                   [styles.wrapper_hasCoverPhoto]: hasCoverPhoto,
                   [styles.wrapper_hasPlayed]: hasPlayed,
@@ -121,18 +121,18 @@ const WithVideo = (WrappedComponent, options = {}) => {
                 })}
               >
                 {hasCoverPhoto && (
-                  <div className={styles.sectionWrapper}>
-                    <div
+                  <span className={styles.sectionWrapper}>
+                    <span
                       aria-hidden={hasPlayed}
                       className={styles.sectionWrapperInner}
                     >
                       {asset}
-                    </div>
-                  </div>
+                    </span>
+                  </span>
                 )}
-                <div className={styles.sectionWrapper}>
+                <span className={styles.sectionWrapper}>
                   {!hasCoverPhoto && !isVimeo && <LoadingSpinner isSmall={options.isSmall || this.props.isSmall} />}
-                  <div className={styles.sectionWrapperInner}>
+                  <span className={styles.sectionWrapperInner}>
                     <iframe
                       allowFullScreen
                       className={styles.iframe}
@@ -143,7 +143,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
                       title={alt}
                       webkitallowfullscreen="true"
                     />
-                  </div>
+                  </span>
                   {hasCoverPhoto && !isCoverPhotoInBackground && (
                     <button
                       aria-hidden="true"
@@ -161,8 +161,8 @@ const WithVideo = (WrappedComponent, options = {}) => {
                       onClick={this.toggleVideo}
                     />
                   )}
-                </div>
-              </div>
+                </span>
+              </span>
             ) : asset
           }
           hasPlayButton={hasPlayButton}
