@@ -63,6 +63,8 @@
   }
 
   @media (--bp-lg) {
+    width: 100%;
+
     .wrapper:not(.wrapper_isSmall) & {
       @mixin span 3, 6, lg;
     }
