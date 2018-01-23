@@ -295,6 +295,7 @@ const SCHOOLS_INTRO = {
   description: PropTypes.shape({
     markdown: PropTypes.string.isRequired
   }),
+  hasLine: PropTypes.bool,
   image: PropTypes.shape(validateSourcesBySize),
   imageAlt: PropTypes.string.isRequired,
   link: FOOTER_LINK,

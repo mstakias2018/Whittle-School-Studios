@@ -50,8 +50,10 @@
 .contentInner {
   @mixin component-vertical-spacing;
 
-  @media (--bp-md) {
-    border-bottom: 1px solid var(--color-light-border);
+  &_hasLine {
+    @media (--bp-md) {
+      border-bottom: 1px solid var(--color-light-border);
+    }
   }
 }
 

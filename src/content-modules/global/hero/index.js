@@ -26,6 +26,7 @@ const Hero = ({
       />
       <SchoolsIntro
         {...data}
+        hasLine={!!data.videos}
         image={image}
       />
     </div>

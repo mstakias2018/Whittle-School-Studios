@@ -20,6 +20,7 @@ const SchoolsIntro = ({
   title,
   countdownTitle,
   countdownDate,
+  hasLine,
 }) => (
   <div className={styles.wrapper}>
     <div className={styles.introWrapper}>
@@ -30,7 +31,10 @@ const SchoolsIntro = ({
       />
       <div className={styles.content}>
         <div className={styles.contentWrapper}>
-          <div className={styles.contentInner}>
+          <div className={cx(styles.contentInner, {
+            [styles.contentInner_hasLine]: hasLine,
+          })}
+          >
             <h2 className={styles.title}>{title}</h2>
             <p className={styles.description}>{description.markdown}</p>
             {link && (link.linkDestinationInternal || link.linkDestinationExternal) && (
@@ -46,6 +50,7 @@ const SchoolsIntro = ({
         <div className={cx(styles.countdownWrapper, 'showMd')}>
           <OpeningCountdown
             date={countdownDate}
+            hasLine={hasLine}
             title={countdownTitle}
           />
         </div>
@@ -54,6 +59,7 @@ const SchoolsIntro = ({
     <div className={cx(styles.countdownWrapper, 'hideMd')}>
       <OpeningCountdown
         date={countdownDate}
+        hasLine={hasLine}
         title={countdownTitle}
       />
     </div>
