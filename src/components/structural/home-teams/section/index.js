@@ -27,7 +27,7 @@ const teamSectionPropTypes = {
   teamBio4: PropTypes.shape(bioPropType),
   teamBio5: PropTypes.shape(bioPropType),
   teamBio6: PropTypes.shape(bioPropType),
-  teamLinkTarget: PROP_SHAPES.LINK.isRequired,
+  teamLinkTarget: PROP_SHAPES.LINK,
   teamSectionTitle: PropTypes.string.isRequired,
 };
 
@@ -103,14 +103,16 @@ class TeamsSection extends Component {
     return (
       <li className={styles.title}>
         {this.props.teamSectionTitle}
-        <div className={styles.linkWrapper}>
-          <Link
-            className={styles.link}
-            to={createContentPageLink(this.props.teamLinkTarget)}
-          >
-            {translation('teams.teamLinkText')}
-          </Link>
-        </div>
+        {this.props.teamLinkTarget && (
+          <div className={styles.linkWrapper}>
+            <Link
+              className={styles.link}
+              to={createContentPageLink(this.props.teamLinkTarget)}
+            >
+              {translation('teams.teamLinkText')}
+            </Link>
+          </div>
+        )}
       </li>
     );
   };

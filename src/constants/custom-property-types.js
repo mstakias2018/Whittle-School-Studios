@@ -421,10 +421,10 @@ const PROP_TYPES = {
 exports.PROP_TYPES = PROP_TYPES;
 
 const TEAMS = {
-  heroDescription: MARKDOWN.isRequired,
+  heroDescription: MARKDOWN,
   heroImageAlt: PropTypes.string,
-  heroLinkTarget: LINK.isRequired,
-  heroName: PropTypes.string.isRequired,
+  heroLinkTarget: LINK,
+  heroName: PropTypes.string,
   heroTitle: PropTypes.string,
   sections: PropTypes.arrayOf(PropTypes.shape({
     person1Description: MARKDOWN.isRequired,

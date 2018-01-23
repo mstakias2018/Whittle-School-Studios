@@ -56,6 +56,7 @@
 .percentageNumber {
   @mixin type-big-number;
   line-height: 130px;
+  -webkit-text-stroke: 0.45px;
 
   @media (--bp-md) {
     line-height: 235px;
@@ -81,6 +82,7 @@
 .ratioNumber {
   @mixin type-big-number;
   line-height: 150px;
+  -webkit-text-stroke: 0.45px;
 
   @media (--bp-md) {
     line-height: 280px;

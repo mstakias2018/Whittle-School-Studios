@@ -13,10 +13,12 @@
 
 .text {
   @mixin type-h1-category;
+  cursor: default;
   display: inline-block;
   font-size: 48px;
   letter-spacing: 0.15px;
   line-height: 48px;
+  pointer-events: none;
   position: absolute;
   transform: rotate(90deg);
   transform-origin: 35px 35px;

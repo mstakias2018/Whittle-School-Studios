@@ -122,6 +122,7 @@ class Drop extends React.Component {
       <div
         className={styles.drop}
         onBlur={this.handleOnBlur}
+        tabIndex="-1"
       >
         <button
           aria-controls={`${this.id}Selection`}

@@ -10,11 +10,11 @@ import { createContentPageLink } from '../../../../utils/nav';
 import styles from './hero.module.css';
 
 const propTypes = {
-  heroDescription: PROP_SHAPES.MARKDOWN.isRequired,
-  heroImage: PROP_SHAPES.IMAGE_SOURCES.isRequired,
+  heroDescription: PROP_SHAPES.MARKDOWN,
+  heroImage: PROP_SHAPES.IMAGE_SOURCES,
   heroImageAlt: PropTypes.string,
-  heroLinkTarget: PROP_SHAPES.LINK.isRequired,
-  heroName: PropTypes.string.isRequired,
+  heroLinkTarget: PROP_SHAPES.LINK,
+  heroName: PropTypes.string,
   heroTitle: PropTypes.string,
 };
 

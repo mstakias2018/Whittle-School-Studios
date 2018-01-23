@@ -68,10 +68,22 @@ const HomeTeams = ({
     type: data.statistic2Type
   };
 
+  const heroImage = isOnContentPage ?
+    pathContext && pathContext[0] :
+    pathContext && pathContext.imageDataByType &&
+    pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS].heroImage;
+
+  const blockHasHero = data.heroName &&
+                       data.heroTitle &&
+                       data.heroDescription;
+
   return (
     <div className={cx(
         styles.wideWrapper,
-        { [styles.wrapper_hasTopPadding]: isOnContentPage }
+        {
+          [styles.wrapper_isOnContentPage]: isOnContentPage,
+          [styles.wrapper_hasNoHero]: !blockHasHero,
+        }
       )}
     >
       <div className={styles.wrapper}>
@@ -84,17 +96,16 @@ const HomeTeams = ({
           />
         )}
         <ul className={styles.content}>
-          <TeamsHero
-            heroDescription={data.heroDescription}
-            heroImage={isOnContentPage ?
-              pathContext && pathContext[0] :
-              pathContext && pathContext.imageDataByType &&
-              pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS].heroImage}
-            heroImageAlt={data.heroImageAlt}
-            heroLinkTarget={data.heroLinkTarget}
-            heroName={data.heroName}
-            heroTitle={data.heroTitle}
-          />
+          {blockHasHero && (
+            <TeamsHero
+              heroDescription={data.heroDescription}
+              heroImage={heroImage}
+              heroImageAlt={data.heroImageAlt}
+              heroLinkTarget={data.heroLinkTarget}
+              heroName={data.heroName}
+              heroTitle={data.heroTitle}
+            />
+          )}
           <TeamsSection
             firstBio
             numOfBiosInFirst={getNumOfnumOfBiosInFirst(data.sections[0])}
