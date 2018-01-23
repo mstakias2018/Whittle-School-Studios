@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 import { parseLink } from '../../../utils/nav';
 import Date from '../../../components/global/date';
 import Markdown from '../../../components/global/markdown';
@@ -9,14 +9,7 @@ import Link from '../../../components/global/link';
 
 import styles from './post.module.css';
 
-const propTypes = {
-  date: PropTypes.string.isRequired,
-  description: PROP_SHAPES.MARKDOWN.isRequired,
-  linkExternal: PropTypes.string,
-  linkInternal: PROP_SHAPES.INTERNAL_LINK,
-  source: PropTypes.string,
-  title: PropTypes.string.isRequired,
-};
+const propTypes = PROP_TYPES.POST;
 
 const Post = ({
   date,

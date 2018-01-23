@@ -9,6 +9,7 @@ class List extends Component {
   createItem = n => (
     <ListItem
       description={this.props[`description${n}`].markdown}
+      key={n - 1}
       title={this.props[`title${n}`]}
     />
   );

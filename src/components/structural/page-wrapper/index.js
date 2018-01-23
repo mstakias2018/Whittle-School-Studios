@@ -98,7 +98,7 @@ PageWrapper.propTypes = {
 };
 PageWrapper.contextTypes = {
   language: PropTypes.string.isRequired,
-  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST.isRequired,
+  localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
   translation: PropTypes.func.isRequired,
 };
 PageWrapper.childContextTypes = {

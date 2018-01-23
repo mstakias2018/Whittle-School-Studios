@@ -70,7 +70,7 @@ const MARKDOWN = PropTypes.shape({
 });
 
 const VIDEO_EMBED_CODE = PropTypes.shape({
-  embedCode: PropTypes.string.isRequired,
+  embedCode: PropTypes.string,
 });
 
 const createTypenameChecker = desiredValue => (props, propName) =>
@@ -128,7 +128,7 @@ const LIST_MODULE = PropTypes.shape({
 
 const thumbnailListModulePropTypes = {
   item1Description: MARKDOWN.isRequired,
-  item1ImageAlt: PropTypes.string.isRequired,
+  item1ImageAlt: PropTypes.string,
   item1Title: PropTypes.string.isRequired,
   item1VideoDuration: PropTypes.string,
   item1VideoEmbedCode: VIDEO_EMBED_CODE,
@@ -307,16 +307,16 @@ const OPENING_COUNTDOWN = PropTypes.shape({
 });
 
 const NAV_ITEM_LIST = PropTypes.arrayOf(PropTypes.shape({
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   id: PropTypes.string,
   isActive: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
   slug: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }));
 
 const VIDEO = {
-  alt: PropTypes.string.isRequired,
+  alt: PropTypes.string,
   imageSources: IMAGE_SOURCES,
   videoEmbedCode: VIDEO_EMBED_CODE,
 };
@@ -362,12 +362,26 @@ const HERO = {
 const PAGE_TYPES_SHAPE = PropTypes.oneOf(PAGE_TYPES);
 
 const META_TAG_PROPS = {
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   imageSources: IMAGE_SOURCES,
   keywords: PropTypes.string,
   title: PropTypes.string.isRequired,
   type: PAGE_TYPES_SHAPE.isRequired,
 };
+
+const POST = {
+  date: PropTypes.string.isRequired,
+  description: MARKDOWN.isRequired,
+  linkExternal: PropTypes.string,
+  linkInternal: LINK,
+  source: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};
+
+const POST_MODULE = PropTypes.shape({
+  __typename: createTypenameChecker(CONTENT_MODULE.POST),
+  ...POST,
+});
 
 const PROP_TYPES = {
   EVENTS_LIST,
@@ -383,6 +397,7 @@ const PROP_TYPES = {
     videoEmbedCodes: PropTypes.arrayOf(PropTypes.string),
   },
   META_TAG_PROPS,
+  POST,
   SCHOOLS_INTRO: PropTypes.shape({ SCHOOLS_INTRO }),
   SUB_NAV: {
     categoryTitle: PropTypes.string.isRequired,
@@ -399,6 +414,58 @@ const PROP_TYPES = {
 };
 
 exports.PROP_TYPES = PROP_TYPES;
+
+const TEAMS = {
+  heroDescription: MARKDOWN.isRequired,
+  heroImageAlt: PropTypes.string,
+  heroLinkTarget: LINK.isRequired,
+  heroName: PropTypes.string.isRequired,
+  heroTitle: PropTypes.string,
+  sections: PropTypes.arrayOf(PropTypes.shape({
+    person1Description: MARKDOWN.isRequired,
+    person1ImageAlt: PropTypes.string,
+    person1Name: PropTypes.string.isRequired,
+    person1Title: PropTypes.string.isRequired,
+    person2Description: MARKDOWN.isRequired,
+    person2ImageAlt: PropTypes.string,
+    person2Name: PropTypes.string.isRequired,
+    person2Title: PropTypes.string.isRequired,
+    person3Description: MARKDOWN.isRequired,
+    person3ImageAlt: PropTypes.string,
+    person3Name: PropTypes.string.isRequired,
+    person3Title: PropTypes.string.isRequired,
+    person4Description: MARKDOWN,
+    person4ImageAlt: PropTypes.string,
+    person4Name: PropTypes.string,
+    person4Title: PropTypes.string,
+    person5Description: MARKDOWN,
+    person5ImageAlt: PropTypes.string,
+    person5Name: PropTypes.string,
+    person5Title: PropTypes.string,
+    person6Description: MARKDOWN,
+    person6ImageAlt: PropTypes.string,
+    person6Name: PropTypes.string,
+    person6Title: PropTypes.string,
+    sectionLinkDestination: LINK.isRequired,
+    sectionTitle: PropTypes.string.isRequired,
+  })),
+  sectionTitleText: PropTypes.string.isRequired,
+  statistic1Number1: PropTypes.number,
+  statistic1Number2: PropTypes.number,
+  statistic1TextLineBottom: PropTypes.string,
+  statistic1TextLineTop: PropTypes.string,
+  statistic1Type: PropTypes.string,
+  statistic2Number1: PropTypes.number,
+  statistic2Number2: PropTypes.number,
+  statistic2TextLineBottom: PropTypes.string,
+  statistic2TextLineTop: PropTypes.string,
+  statistic2Type: PropTypes.string,
+};
+
+const TEAMS_MODULE = PropTypes.shape({
+  __typename: createTypenameChecker(CONTENT_MODULE.TEAMS),
+  ...TEAMS,
+});
 
 exports.PROP_SHAPES = {
   BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
@@ -436,9 +503,11 @@ exports.PROP_SHAPES = {
     INLINE_VIDEO,
     LIST_MODULE,
     OPENAPPLY_IFRAME,
+    POST_MODULE,
     QUOTE,
     SECTION_TITLE,
     SLIDESHOW_CAROUSEL,
+    TEAMS_MODULE,
     THREE_UP_BREAKER,
     THUMBNAIL_LIST_MODULE,
     VIDEOS_MODULE,
@@ -452,5 +521,6 @@ exports.PROP_SHAPES = {
     footer: socialNetworkList.isRequired,
   }),
   SUB_NAV_PROPS: PropTypes.shape(PROP_TYPES.SUB_NAV),
+  TEAMS: PropTypes.shape(TEAMS),
   THUMBNAIL_LIST,
 };
