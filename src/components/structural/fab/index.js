@@ -95,10 +95,7 @@ class Fab extends React.Component {
   render() {
     const { fabLink, globalImages, translation } = this.context;
     return (
-      <div
-        className={styles.wrapperAbsolute}
-        role="complementary"
-      >
+      <div className={styles.wrapperAbsolute}>
         <Plx
           animateWhenNotInViewport
           className={cx(styles.wrapper, { [styles.wrapper_isHidden]: this.state.initiallyDisabled })}
@@ -130,7 +127,7 @@ class Fab extends React.Component {
                   },
                 ],
                 start: this.state.bottomFabBarrier,
-                startOffset: -this.state.recirculationPadding,
+                startOffset: -this.state.recirculationPadding + 10,
               },
             ] :
             [
@@ -170,7 +167,8 @@ class Fab extends React.Component {
             className={styles.content}
             parallaxData={[
              {
-               end: `.${CLASSES.FOOTER}`,
+               end: this.state.bottomFabBarrier,
+               endOffset: -this.state.recirculationPadding,
                name: 'firstRotation',
                properties: [
                  {
