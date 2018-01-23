@@ -140,9 +140,10 @@ class TeamsSection extends Component {
         {this.renderBio(1)}
         {this.isLargeBP()
           && stat1
+          && this.props.firstBio
           && this.renderStatistic(stat1)
         }
-        {this.renderBio(2, stat1)}
+        {this.renderBio(2, stat1 && this.props.firstBio)}
         {this.isMediumBP()
           && stat1
           && this.renderStatistic(stat1)
