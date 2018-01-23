@@ -395,7 +395,11 @@ const PROP_TYPES = {
   LIST_ITEM,
   MARKDOWN_IMAGE_CONTEXT: {
     imageSources: PropTypes.arrayOf(IMAGE_SOURCES),
-    videoEmbedCodes: PropTypes.arrayOf(PropTypes.string),
+    insetAssets: PropTypes.arrayOf({
+      alt: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string,
+      videoEmbedCode: PropTypes.string,
+    }),
   },
   META_TAG_PROPS,
   POST,

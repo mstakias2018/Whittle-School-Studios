@@ -19,7 +19,7 @@ class BodyText extends Component {
   getChildContext() {
     return {
       imageSources: this.props.imageSources,
-      videoEmbedCodes: this.state.parsedContent.videoEmbedCodes,
+      insetAssets: this.state.parsedContent.assets,
     };
   }
 

@@ -9,6 +9,7 @@ import LoadingSpinner from '../../components/structural/loading-spinner';
 
 import { PROP_TYPES } from '../../constants/custom-property-types';
 import { BREAKPOINTS_NAME } from '../../constants/breakpoints';
+import { parseVideoEmbedCode } from '../../utils/strings';
 
 const propTypes = PROP_TYPES.VIDEO;
 
@@ -35,14 +36,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
     }
 
     setVideoState({ videoEmbedCode } = this.props) {
-      const src = videoEmbedCode &&
-        videoEmbedCode.embedCode &&
-        videoEmbedCode.embedCode.match(/src=[“"]([^“"]*)[”"]/)[1];
-
-      this.setState({
-        isVimeo: !!(src && src.match('player.vimeo.com')),
-        src,
-      });
+      this.setState(parseVideoEmbedCode(videoEmbedCode));
     }
 
     componentWilReceiveProps(props) {

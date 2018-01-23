@@ -249,19 +249,18 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                 case CONTENT_MODULE.CAROUSEL:
                   return Promise.all(module.slides.map((s, j) => saveCarouselImage(s, [id, i, j])));
                 case CONTENT_MODULE.BODY_TEXT: {
-                  const insetImages = parseInsetContent(module.content.content).images;
-                  if (insetImages) {
-                    return Promise.all(insetImages.map(({ hasVideo, url }, j) => {
-                      const asset = contentfulAssetsById[hasVideo ? 'rt' : 'sq'][getIdFromImgUrl(url)];
-                      return saveImage(
-                        asset,
-                        IMAGE_TYPE.MODULE,
-                        hasVideo ? IMAGE_SUBTYPE.INSET_RT : IMAGE_SUBTYPE.INSET_SQ,
-                        [id, i, j]
-                      );
-                    }));
-                  }
-                  return [];
+                  const { assets } = parseInsetContent(module.content.content);
+                  return Promise.all(assets.map(({ hasVideo, imageUrl }, j) => {
+                    if (!imageUrl) return {};
+
+                    const asset = contentfulAssetsById[hasVideo ? 'rt' : 'sq'][getIdFromImgUrl(imageUrl)];
+                    return saveImage(
+                      asset,
+                      IMAGE_TYPE.MODULE,
+                      hasVideo ? IMAGE_SUBTYPE.INSET_RT : IMAGE_SUBTYPE.INSET_SQ,
+                      [id, i, j]
+                    );
+                  }));
                 }
                 case CONTENT_MODULE.THUMBNAIL_LIST:
                   return Promise.all([

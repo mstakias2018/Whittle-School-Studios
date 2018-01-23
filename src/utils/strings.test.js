@@ -6,16 +6,14 @@ describe('parseInsetContent', () => {
     const markdown =
       '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.';
     expect(parseInsetContent(markdown)).toEqual({
-      filteredMarkdown:
-        '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.',
-      images: [
+      assets: [
         {
           alt: 'daffodils',
-          hasVideo: false,
-          url: '//images.contentful.com/a/b/c/daffodils.jpg',
+          imageUrl: '//images.contentful.com/a/b/c/daffodils.jpg',
         },
       ],
-      videoEmbedCodes: [],
+      filteredMarkdown:
+        '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.',
     });
   });
 
@@ -23,9 +21,11 @@ describe('parseInsetContent', () => {
     const markdown =
       '![daffodils](<iframe src="http://test.com" allowfullscreen></iframe>)Lorem ipsum.';
     expect(parseInsetContent(markdown)).toEqual({
+      assets: [{
+        alt: 'daffodils',
+        videoEmbedCode: '<iframe src="http://test.com" allowfullscreen></iframe>',
+      }],
       filteredMarkdown: '![daffodils--VIDEO-0](VIDEO-NO-COVER-IMAGE)Lorem ipsum.',
-      images: [],
-      videoEmbedCodes: ['<iframe src="http://test.com" allowfullscreen></iframe>'],
     });
   });
 
@@ -33,16 +33,13 @@ describe('parseInsetContent', () => {
     const markdown =
       '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg <iframe src="http://test.com" allowfullscreen></iframe>)Lorem ipsum.';
     expect(parseInsetContent(markdown)).toEqual({
+      assets: [{
+        alt: 'daffodils',
+        imageUrl: '//images.contentful.com/a/b/c/daffodils.jpg',
+        videoEmbedCode: '<iframe src="http://test.com" allowfullscreen></iframe>',
+      }],
       filteredMarkdown:
         '![daffodils--VIDEO-0](//images.contentful.com/a/b/c/daffodils.jpg)Lorem ipsum.',
-      images: [
-        {
-          alt: 'daffodils',
-          hasVideo: true,
-          url: '//images.contentful.com/a/b/c/daffodils.jpg',
-        },
-      ],
-      videoEmbedCodes: ['<iframe src="http://test.com" allowfullscreen></iframe>'],
     });
   });
 
@@ -50,10 +47,12 @@ describe('parseInsetContent', () => {
     const markdown =
       '![daffodils]("My caption" <iframe src="http://test.com" allowfullscreen></iframe>)Lorem ipsum.';
     expect(parseInsetContent(markdown)).toEqual({
+      assets: [{
+        alt: 'daffodils',
+        videoEmbedCode: '<iframe src="http://test.com" allowfullscreen></iframe>',
+      }],
       filteredMarkdown:
         '![daffodils--VIDEO-0](VIDEO-NO-COVER-IMAGE "My caption")Lorem ipsum.',
-      images: [],
-      videoEmbedCodes: ['<iframe src="http://test.com" allowfullscreen></iframe>'],
     });
   });
 
@@ -61,16 +60,13 @@ describe('parseInsetContent', () => {
     const markdown =
       '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption" <iframe src="http://test.com" allowfullscreen></iframe>)Lorem ipsum.';
     expect(parseInsetContent(markdown)).toEqual({
+      assets: [{
+        alt: 'daffodils',
+        imageUrl: '//images.contentful.com/a/b/c/daffodils.jpg',
+        videoEmbedCode: '<iframe src="http://test.com" allowfullscreen></iframe>',
+      }],
       filteredMarkdown:
         '![daffodils--VIDEO-0](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.',
-      images: [
-        {
-          alt: 'daffodils',
-          hasVideo: true,
-          url: '//images.contentful.com/a/b/c/daffodils.jpg',
-        },
-      ],
-      videoEmbedCodes: ['<iframe src="http://test.com" allowfullscreen></iframe>'],
     });
   });
 
@@ -78,19 +74,19 @@ describe('parseInsetContent', () => {
     const markdown =
       '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption" <iframe src="http://test.com" allowfullscreen></iframe>)Lorem ipsum.![children](<iframe src="http://test2.com" allowfullscreen></iframe>)';
     expect(parseInsetContent(markdown)).toEqual({
-      filteredMarkdown:
-        '![daffodils--VIDEO-0](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children--VIDEO-1](VIDEO-NO-COVER-IMAGE)',
-      images: [
+      assets: [
         {
           alt: 'daffodils',
-          hasVideo: true,
-          url: '//images.contentful.com/a/b/c/daffodils.jpg',
+          imageUrl: '//images.contentful.com/a/b/c/daffodils.jpg',
+          videoEmbedCode: '<iframe src="http://test.com" allowfullscreen></iframe>',
         },
+        {
+          alt: 'children',
+          videoEmbedCode: '<iframe src="http://test2.com" allowfullscreen></iframe>',
+        }
       ],
-      videoEmbedCodes: [
-        '<iframe src="http://test.com" allowfullscreen></iframe>',
-        '<iframe src="http://test2.com" allowfullscreen></iframe>',
-      ],
+      filteredMarkdown:
+        '![daffodils--VIDEO-0](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children--VIDEO-1](VIDEO-NO-COVER-IMAGE)',
     });
   });
 
@@ -98,23 +94,27 @@ describe('parseInsetContent', () => {
     const markdown =
       '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children](//images.contentful.com/a/b/c/children.jpg "My caption" <iframe src="http://test.com" allowfullscreen></iframe>)';
     expect(parseInsetContent(markdown)).toEqual({
-      filteredMarkdown:
-        '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children--VIDEO-0](//images.contentful.com/a/b/c/children.jpg "My caption")',
-      images: [
+      assets: [
         {
           alt: 'daffodils',
-          hasVideo: false,
-          url: '//images.contentful.com/a/b/c/daffodils.jpg',
+          imageUrl: '//images.contentful.com/a/b/c/daffodils.jpg',
         },
         {
           alt: 'children',
-          hasVideo: true,
-          url: '//images.contentful.com/a/b/c/children.jpg',
-        },
+          imageUrl: '//images.contentful.com/a/b/c/children.jpg',
+          videoEmbedCode: '<iframe src="http://test.com" allowfullscreen></iframe>',
+        }
       ],
-      videoEmbedCodes: [
-        '<iframe src="http://test.com" allowfullscreen></iframe>',
-      ],
+      filteredMarkdown:
+        '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children--VIDEO-0](//images.contentful.com/a/b/c/children.jpg "My caption")',
+    });
+  });
+
+  test('just text', () => {
+    const markdown = 'Lorem ipsum.';
+    expect(parseInsetContent(markdown)).toEqual({
+      assets: [],
+      filteredMarkdown: 'Lorem ipsum.',
     });
   });
 });

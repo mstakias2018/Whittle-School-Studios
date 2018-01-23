@@ -17,7 +17,7 @@ const MarkdownImage = ({
   title: caption,
 }, {
   imageSources,
-  videoEmbedCodes,
+  insetAssets,
 }) => {
   const id = getIdFromImgUrl(src);
   const sourcesBySize = imageSources.find(n => n.id === id);
@@ -31,7 +31,7 @@ const MarkdownImage = ({
       caption={caption}
       imageSources={sourcesBySize}
       indicators={indicators}
-      videoEmbedCode={{ embedCode: videoEmbedCodes[videoNumber] }}
+      videoEmbedCode={videoNumber && { embedCode: insetAssets[videoNumber].videoEmbedCode }}
     />
   );
 };

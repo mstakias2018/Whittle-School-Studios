@@ -2,20 +2,44 @@ import { IMAGE_SHAPE } from './images';
 import { LANGUAGE, LANGUAGE_CONTENTFUL_LOCALE } from './regions';
 import { CONTENT_MODULE } from './contentful';
 import { PAGE_TYPE } from './settings';
-import { parseInsetContent } from '../utils/strings';
+import { isVimeo, parseInsetContent } from '../utils/strings';
 
 const checkOpenIframe = modules => modules.some(({ type } = module) => type === CONTENT_MODULE.OPENAPPLY_IFRAME);
-const isVimeoVideo = src => !!(src && src.match('player.vimeo.com'));
-const hasCoverImage = src => src && !src.match('VIDEO-NO-COVER-IMAGE');
+
+const RULE_TEXT = {
+  ARTICLE_SUBCATEGORIES: 'Articles must not have subcategories',
+  CAROUSEL_POSITION: 'Carousel cannot be the the last or next-to-last module on the page',
+  CATEGORY_HEADER_NAV_PROPS: 'Categories in header must have Nav Title value',
+  CATEGORY_WITH_SUB_NAV_PROPS: 'Categories with subcategories must have Nav Title, '
+    + 'Nav Description, and Overview Nav Title values',
+  CONTAIN_BODY_TEXT: 'Page must contain BodyText',
+  FIRST_MODULE_BODY_TEXT: 'First module must be BodyText',
+  HEADER_LINKS_CATEGORIES: 'Header links can only be Categories',
+  IFRAME_ONLY_MODULE: 'If an OpenApplyIFrame exists, it is the only module on the page',
+  INLINE_IMAGE_SHAPE: 'Inline images can only have the circle shape when children of a Carousel',
+  MAIN_IMAGE_ALT: 'Main image alt must be provided if main image exists',
+  NO_MAIN_IMAGE_NO_SUBHEAD: 'If no main image exists, no subhead will exist',
+  NO_STACKED: 'No module other than BodyText may be consecutively stacked',
+  ONE_OR_MORE_MODULES: 'Pages must have one or more modules',
+  PIC_MODULE_PROPS: 'PIC module: Every event must have a date, title, location, description, and link.',
+  SECTION_TITLES_PERIOD: '[English only] Section titles should always end in a period.',
+  SUBCATEGORY_NAV_PROPS: 'Subcategories must have Nav Title and Nav Description values',
+  VIDEO_ALT_TAGS: 'All videos must have alt tags',
+  VIDEOS_COUNT: 'Videos module should display either 1, 3, or no videos. '
+    + 'Never display 2 video (the design does not support this).',
+  VIMEO_COVER_PHOTO: 'All Vimeo videos must have a cover photo',
+};
+
+exports.RULE_TEXT = RULE_TEXT;
 
 exports.CONTENT_PAGE_RULES = {
   list: [
     {
-      text: 'Pages must have one or more modules',
+      text: RULE_TEXT.ONE_OR_MORE_MODULES,
       validator: ({ modules }) => modules && modules.length >= 1,
     },
     {
-      text: 'First module must be BodyText',
+      text: RULE_TEXT.FIRST_MODULE_BODY_TEXT,
       validator: ({ modules }) => {
         const firstModule = modules && modules[0];
         if (!firstModule) return false;
@@ -24,14 +48,14 @@ exports.CONTENT_PAGE_RULES = {
       },
     },
     {
-      text: 'If an OpenApplyIFrame exists, it is the only module on the page',
+      text: RULE_TEXT.IFRAME_ONLY_MODULE,
       validator: ({ modules }) => {
         if (!modules) return true;
         return !(checkOpenIframe(modules) && modules.length !== 1);
       }
     },
     {
-      text: 'Page must contain BodyText',
+      text: RULE_TEXT.CONTAIN_BODY_TEXT,
       validator: ({ modules }) => {
         if (!modules) return false;
         if (checkOpenIframe(modules)) return true;
@@ -39,15 +63,15 @@ exports.CONTENT_PAGE_RULES = {
       },
     },
     {
-      text: 'If no main image exists, no subhead will exist',
+      text: RULE_TEXT.NO_MAIN_IMAGE_NO_SUBHEAD,
       validator: ({ subhead, mainImage }) => !(subhead && !mainImage),
     },
     {
-      text: 'Main image alt must be provided if main image exists',
+      text: RULE_TEXT.MAIN_IMAGE_ALT,
       validator: ({ mainImage, mainImageAlt }) => !(mainImage && !mainImageAlt),
     },
     {
-      text: 'No module other than BodyText may be consecutively stacked',
+      text: RULE_TEXT.NO_STACKED,
       validator: ({ modules }) => {
         if (!modules) return true;
 
@@ -63,7 +87,7 @@ exports.CONTENT_PAGE_RULES = {
       },
     },
     {
-      text: 'Carousel cannot be the the last or next-to-last module on the page',
+      text: RULE_TEXT.CAROUSEL_POSITION,
       validator: ({ modules }) => {
         if (!modules) return true;
         // Check if it's last
@@ -77,7 +101,7 @@ exports.CONTENT_PAGE_RULES = {
       },
     },
     {
-      text: 'All videos must have alt tags',
+      text: RULE_TEXT.VIDEO_ALT_TAGS,
       validator: ({ modules }) => {
         if (!modules) return true;
 
@@ -96,10 +120,10 @@ exports.CONTENT_PAGE_RULES = {
           }
           // Validate body text
           if (item.type === CONTENT_MODULE.BODY_TEXT) {
-            const text = parseInsetContent(item.content.text);
+            const { assets } = parseInsetContent(item.content.text);
 
             // Check body items
-            if (text.images.filter(image => image.hasVideo && image.alt).length !== text.videoEmbedCodes.length) {
+            if (assets.some(asset => asset.videoEmbedCode && !asset.alt)) {
               return true;
             }
           }
@@ -108,42 +132,55 @@ exports.CONTENT_PAGE_RULES = {
       }
     },
     {
-      text: 'All Vimeo videos must have a cover photo',
+      text: RULE_TEXT.VIMEO_COVER_PHOTO,
       validator: ({ modules }) => {
         if (!modules) return true;
 
         return !(modules.some((item) => {
           // Validate inline video
-          if (item.type === CONTENT_MODULE.INLINE_VIDEO) return isVimeoVideo(item.video.videoEmbedCode) && !item.asset;
+          if (item.type === CONTENT_MODULE.INLINE_VIDEO) return isVimeo(item.video.videoEmbedCode) && !item.asset;
           // Validate thumbnailList
           if (item.type === CONTENT_MODULE.THUMBNAIL_LIST) {
             if (Array(6).fill(0).some((_, index) => item[`video${index + 1}`] &&
-              isVimeoVideo(item[`video${index + 1}`].videoEmbedCode)
+              isVimeo(item[`video${index + 1}`].videoEmbedCode)
                   && !item[`asset${index + 1}`])) return true;
           }
           // Validate videos
           if (item.type === CONTENT_MODULE.VIDEOS) {
             return Array(3).fill(0)
-              .some((_, index) => item[`video${index + 1}`] && !item[`video${index + 1}cover`]);
+              .some((_, index) => item[`video${index + 1}`]
+                && isVimeo(item[`video${index + 1}`].videoEmbedCode)
+                && !item[`video${index + 1}cover`]);
           }
           // Validate body text
           if (item.type === CONTENT_MODULE.BODY_TEXT) {
-            const text = parseInsetContent(item.content.text);
-            return text.videoEmbedCodes.some(video => isVimeoVideo(video) && !hasCoverImage(video));
+            const { assets } = parseInsetContent(item.content.text);
+            return assets.some(({ imageUrl, videoEmbedCode }) => isVimeo(videoEmbedCode) && !imageUrl);
           }
           return false;
         }));
       }
     },
     {
-      text: 'Inline images can only have the circle shape when children of a Carousel',
+      text: RULE_TEXT.VIDEOS_COUNT,
       validator: ({ modules }) => {
         if (!modules) return true;
 
-        return !(modules.some(({ type, shape }) => type === CONTENT_MODULE.INLINE_IMAGE &&
-          shape === IMAGE_SHAPE.CIRCLE));
-      }
-    }
+        return modules.every(item => item.type === CONTENT_MODULE.VIDEOS
+          && Array(3).fill(0)
+            .filter((_, index) => item[`video${index + 1}`]
+              && item[`video${index + 1}`].videoEmbedCode).length !== 2);
+      },
+    },
+    {
+      text: RULE_TEXT.INLINE_IMAGE_SHAPE,
+      validator: ({ modules }) => {
+        if (!modules) return true;
+
+        return !(modules.some(({ type, shape }) => type === CONTENT_MODULE.INLINE_IMAGE
+          && shape === IMAGE_SHAPE.CIRCLE));
+      },
+    },
   ],
   title: 'content page',
 };
@@ -151,7 +188,7 @@ exports.CONTENT_PAGE_RULES = {
 const ARTICLE_RULES = {
   list: [
     {
-      text: 'Articles must not have subcategories',
+      text: RULE_TEXT.ARTICLE_SUBCATEGORIES,
       validator: ({ subcategories }) => !(subcategories && subcategories.length),
     },
   ],
@@ -161,8 +198,7 @@ const ARTICLE_RULES = {
 const CATEGORY_RULES = {
   list: [
     {
-      text: `Categories with subcategories must have Nav Title, Nav Description,
-             and Overview Nav Title values`,
+      text: RULE_TEXT.CATEGORY_WITH_SUB_NAV_PROPS,
       validator: ({
         overviewNavTitle,
         navDescription,
@@ -171,7 +207,7 @@ const CATEGORY_RULES = {
       }) => !(subcategories && !(overviewNavTitle && navDescription && navTitle)),
     },
     {
-      text: 'Categories in header must have Nav Title value',
+      text: RULE_TEXT.CATEGORY_HEADER_NAV_PROPS,
       validator: ({ header, navTitle }) => !(header && !navTitle),
     },
   ],
@@ -186,7 +222,7 @@ exports.PAGE_TYPE_RULES = {
 exports.SUBCATEGORY_RULES = {
   list: [
     {
-      text: 'Subcategories must have Nav Title and Nav Description values',
+      text: RULE_TEXT.SUBCATEGORY_NAV_PROPS,
       validator: ({ navTitle, navDescription }) => navTitle && navDescription,
     },
   ],
@@ -196,7 +232,7 @@ exports.SUBCATEGORY_RULES = {
 exports.HEADER_RULES = {
   list: [
     {
-      text: 'Header links can only be Categories',
+      text: RULE_TEXT.HEADER_LINKS_CATEGORIES,
       validator: ({ contentPages }) => {
         if (!contentPages) return true;
         return !(contentPages.some(({ pageType }) => pageType !== PAGE_TYPE.CATEGORY));
@@ -209,13 +245,13 @@ exports.HEADER_RULES = {
 exports.HOMEPAGE_RULES = {
   list: [
     {
-      text: `Hero module- video: Display either 1, 3, or no videos. Never display 
-      2 video (the design does not support this)`,
-      validator: ({ hero: { videos } }) => Array(3).fill(0)
-        .filter((_, index) => videos[`video${index + 1}`].videoEmbedCode).length !== 2,
+      text: RULE_TEXT.VIDEOS_COUNT,
+      validator: ({ hero: { videos } = {} }) => !videos || Array(3).fill(0)
+        .filter((_, index) => videos[`video${index + 1}`]
+          && videos[`video${index + 1}`].videoEmbedCode).length !== 2,
     },
     {
-      text: 'PIC module: Every event must have a date, title, location, description, and link.',
+      text: RULE_TEXT.PIC_MODULE_PROPS,
       validator: ({ eventList }) => {
         if (!eventList) return true;
         for (let i = 1; i <= 5; i += 1) {
@@ -231,43 +267,49 @@ exports.HOMEPAGE_RULES = {
       },
     },
     {
-      text: 'All Vimeo videos must have a cover photo.',
-      validator: ({ hero: { videos }, campusModule: { video, image } }) => {
-        for (let i = 1; i <= 3; i += 1) {
-          // Check if we need to validate elements
-          if (videos[`video${i}`]) {
-            // Validate
-            if (isVimeoVideo(videos[`video${i}`].videoEmbedCode) && !videos[`video${i}cover`]) return false;
+      text: RULE_TEXT.VIMEO_COVER_PHOTO,
+      validator: ({ hero: { videos } = {}, campusModule: { video, image } = {} }) => {
+        if (videos) {
+          for (let i = 1; i <= 3; i += 1) {
+            // Check if we need to validate elements
+            if (videos[`video${i}`]) {
+              // Validate
+              if (isVimeo(videos[`video${i}`].videoEmbedCode) && !videos[`video${i}cover`]) return false;
+            }
           }
         }
-        return !(video && isVimeoVideo(video.videoEmbedCode) && !image);
+
+        return !(video && isVimeo(video.videoEmbedCode) && !image);
       },
     },
     {
-      text: 'All videos must have alt tags',
-      validator: ({ hero: { videos }, campusModule: { imageAlt, video } }) => {
-        for (let i = 1; i <= 3; i += 1) {
-          // Check if we need to validate elements
-          if (videos[`video${i}`]) {
-            // Validate
-            if (videos[`video${i}`].videoEmbedCode && !videos[`alt${i}`]) return false;
+      text: RULE_TEXT.VIDEO_ALT_TAGS,
+      validator: ({ hero: { videos } = {}, campusModule: { imageAlt, video } = {} }) => {
+        if (videos) {
+          for (let i = 1; i <= 3; i += 1) {
+            // Check if we need to validate elements
+            if (videos[`video${i}`]) {
+              // Validate
+              if (videos[`video${i}`].videoEmbedCode && !videos[`alt${i}`]) return false;
+            }
           }
         }
+
         return !(video && video.videoEmbedCode && !imageAlt);
       },
     },
     {
-      text: '[English only] Section titles should always end in a period.',
+      text: RULE_TEXT.SECTION_TITLES_PERIOD,
       validator: ({
         locale,
-        campusModule: { campusSectionTitle },
-        teamsModule: { teamsSectionTitle },
-        eventList: { eventListSectionTitle },
+        campusModule: { campusSectionTitle } = {},
+        eventList: { eventListSectionTitle } = {},
+        teamsModule: { teamsSectionTitle } = {},
       }) => {
         if (LANGUAGE_CONTENTFUL_LOCALE[LANGUAGE.CHINESE] === locale) return true;
 
         return !([campusSectionTitle, teamsSectionTitle, eventListSectionTitle]
-          .some(title => title[title.length - 1] !== '.'));
+          .some(title => title && title[title.length - 1] !== '.'));
       }
     },
   ],

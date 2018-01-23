@@ -59,7 +59,10 @@
     "contentful-import": "^4.5.7",
     "contentful-management": "^4.1.2",
     "dotenv": "^4.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-airbnb": "^16.1.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.0.1",
     "moment-timezone": "^0.5.14",
     "postcss": "6.0.13",
@@ -81,5 +84,13 @@
     "simple-git": "^1.82.0",
     "stylelint": "~8.2.0",
     "stylelint-order": "^0.7.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.css$": "identity-obj-proxy"
+    },
+    "setupFiles": [
+      "<rootDir>/test/setup.js"
+    ]
   }
 }
