@@ -59,6 +59,7 @@ class Share extends Component {
 
   render() {
     const {
+      currentUrl,
       socialIcons: { contentPage: contentPageSocialIcons },
       translation,
     } = this.context;
@@ -70,7 +71,7 @@ class Share extends Component {
             <div className={styles.shareText}>{translation('share.shareLabel')}:</div>
             <CopyToClipboard
               onCopy={this.copyLink}
-              text={this.state.currentUrl}
+              text={currentUrl}
             >
               <button
                 aria-label={this.state.copying ?
