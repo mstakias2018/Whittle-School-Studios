@@ -16,6 +16,7 @@ const {
   saveImage,
   saveInlineImage,
   saveMainImage,
+  saveThumbnailListImage,
   saveVideoCoverPhotos,
 } = require('./save-images');
 
@@ -80,22 +81,59 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
             }
           }
           ... on ContentfulThumbnailList {
-            item1Asset {
+            imageShape
+            item1VideoEmbedCode {
+              embedCode: item1VideoEmbedCode,
+            }
+            item2VideoEmbedCode {
+              embedCode: item2VideoEmbedCode,
+            }
+            item3VideoEmbedCode {
+              embedCode: item3VideoEmbedCode,
+            }
+            item4VideoEmbedCode {
+              embedCode: item4VideoEmbedCode,
+            }
+            item5VideoEmbedCode {
+              embedCode: item5VideoEmbedCode,
+            }
+            item6VideoEmbedCode {
+              embedCode: item6VideoEmbedCode,
+            }
+            squareItem1Asset: item1Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_SQ)}
+            }
+            squareItem2Asset: item2Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_SQ)}
+            }
+            squareItem3Asset: item3Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_SQ)}
+            }
+            squareItem4Asset: item4Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_SQ)}
+            }
+            squareItem5Asset: item5Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_SQ)}
+            }
+            squareItem6Asset: item6Asset {
+              ${createQuery(IMAGE_SUBTYPE.INSET_SQ)}
+            }
+            rectItem1Asset: item1Asset {
               ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
             }
-            item2Asset {
+            rectItem2Asset: item2Asset {
               ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
             }
-            item3Asset {
+            rectItem3Asset: item3Asset {
               ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
             }
-            item4Asset {
+            rectItem4Asset: item4Asset {
               ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
             }
-            item5Asset {
+            rectItem5Asset: item5Asset {
               ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
             }
-            item6Asset {
+            rectItem6Asset: item6Asset {
               ${createQuery(IMAGE_SUBTYPE.INSET_RT)}
             }
           }
@@ -263,16 +301,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                   }));
                 }
                 case CONTENT_MODULE.THUMBNAIL_LIST:
-                  return Promise.all([
-                    module.item1Asset,
-                    module.item2Asset,
-                    module.item3Asset,
-                    module.item4Asset,
-                    module.item5Asset,
-                    module.item6Asset,
-                  ].map((asset, j) => (asset ?
-                    saveImage(asset, IMAGE_TYPE.MODULE, IMAGE_SUBTYPE.INSET_RT, [id, i, j]) :
-                    {})));
+                  return Promise.all(Array(6).fill(0).map((_, j) => saveThumbnailListImage(module, j, [id, i, j])));
                 case CONTENT_MODULE.TEAMS:
                   return Promise.all([
                     module.heroImage,

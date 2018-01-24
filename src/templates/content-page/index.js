@@ -360,23 +360,23 @@ export const pageQuery = graphql`
           item5VideoDuration
           item6VideoDuration
           item1VideoEmbedCode {
-            embedCode: item1VideoEmbedCode,
-          },
+            embedCode: item1VideoEmbedCode
+          }
           item2VideoEmbedCode {
-            embedCode: item2VideoEmbedCode,
-          },
+            embedCode: item2VideoEmbedCode
+          }
           item3VideoEmbedCode {
-            embedCode: item3VideoEmbedCode,
-          },
+            embedCode: item3VideoEmbedCode
+          }
           item4VideoEmbedCode {
-            embedCode: item4VideoEmbedCode,
-          },
+            embedCode: item4VideoEmbedCode
+          }
           item5VideoEmbedCode {
-            embedCode: item5VideoEmbedCode,
-          },
+            embedCode: item5VideoEmbedCode
+          }
           item6VideoEmbedCode {
-            embedCode: item6VideoEmbedCode,
-          },
+            embedCode: item6VideoEmbedCode
+          }
           title
         }
         ... on ContentfulTeams {
@@ -502,7 +502,7 @@ export const pageQuery = graphql`
           video3VideoEmbedCode {
             embedCode: video3VideoEmbedCode
           }
-        
+
         }
       }
     }

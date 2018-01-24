@@ -264,8 +264,8 @@ export const pageQuery = graphql`
         }
         linkText: linkTitle
         videoEmbedCode {
-          embedCode: videoEmbedCode,
-        },
+          embedCode: videoEmbedCode
+        }
         sectionTitle
       }
       teamsModule {

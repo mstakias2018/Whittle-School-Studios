@@ -233,3 +233,18 @@ exports.saveVideoCoverPhotos = (module, index, isOnlyOneVideo, nestedFolders) =>
   const imageSubtype = index === 0 ? firstVideoImageSubtype : IMAGE_SUBTYPE.INLINE_RT_HERO_VIDEO_SMALL;
   return saveImage(module, IMAGE_TYPE.MODULE, imageSubtype, nestedFolders);
 };
+
+exports.saveThumbnailListImage = (module, index, nestedFolders) => {
+  const n = index + 1;
+  const [videoEmbedCode, squareAsset, rectAsset] = [
+    module[`item${n}VideoEmbedCode`],
+    module[`squareItem${n}Asset`],
+    module[`rectItem${n}Asset`],
+  ];
+
+  const [asset, imageSubtype] = videoEmbedCode || module.imageShape === IMAGE_SHAPE.RECTANGLE ?
+    [rectAsset, IMAGE_SUBTYPE.INSET_RT] :
+    [squareAsset, IMAGE_SUBTYPE.INSET_SQ];
+
+  return saveImage(asset, IMAGE_TYPE.MODULE, imageSubtype, nestedFolders);
+};
