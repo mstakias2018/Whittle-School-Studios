@@ -31,10 +31,11 @@ const smallerThanLG = [BREAKPOINTS_NAME.small, BREAKPOINTS_NAME.medium];
 class Fab extends React.Component {
   state = {
     bottomFabBarrier: `.${CLASSES.FOOTER}`,
-    clientHeight: 0,
+    clientHeight: 1,
     elementHeight: 0,
     initiallyDisabled: true,
-    recirculationPadding: 0,
+    rotationOffset: 0,
+    secondLGOffset: 0,
     startAppearAt: 0,
     startAppearAtOffset: 0,
     startRotationAt: 0,
@@ -66,7 +67,8 @@ class Fab extends React.Component {
       const bottomFabBarrier = checkRecirculation ?
         `.${CLASSES.RECIRCULATION}` :
         `.${CLASSES.FOOTER}`;
-      const recirculationPadding = checkRecirculation ? COMPONENT_BOTTOM_PADDING[this.props.breakpoint] : 0;
+      const rotationOffset = checkRecirculation ? COMPONENT_BOTTOM_PADDING[this.props.breakpoint] : 0;
+      const secondLGOffset = checkRecirculation ? COMPONENT_BOTTOM_PADDING[this.props.breakpoint] - 20 : 0;
       let startAppearAt = pageContentTop;
       let startAppearAtOffset = 0;
       if (countdownComponentWrapper) {
@@ -84,7 +86,8 @@ class Fab extends React.Component {
         clientHeight,
         elementHeight,
         initiallyDisabled: false,
-        recirculationPadding,
+        rotationOffset,
+        secondLGOffset,
         startAppearAt,
         startAppearAtOffset,
         startRotationAt: pageContentTop + (3 * elementHeight),
@@ -119,15 +122,9 @@ class Fab extends React.Component {
               {
                 duration: '100%',
                 name: 'secondLG',
-                properties: [
-                  {
-                    endValue: 1,
-                    property: 'opacity',
-                    startValue: 1,
-                  },
-                ],
+                properties: [],
                 start: this.state.bottomFabBarrier,
-                startOffset: -this.state.recirculationPadding + 10,
+                startOffset: this.props.isHomePage ? 0 : -this.state.secondLGOffset,
               },
             ] :
             [
@@ -168,7 +165,7 @@ class Fab extends React.Component {
             parallaxData={[
              {
                end: this.state.bottomFabBarrier,
-               endOffset: -this.state.recirculationPadding,
+               endOffset: -this.state.rotationOffset,
                name: 'firstRotation',
                properties: [
                  {
