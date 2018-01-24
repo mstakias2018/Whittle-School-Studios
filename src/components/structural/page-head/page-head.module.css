@@ -186,10 +186,12 @@
     @mixin span 4, var(--grid-columns-sm), sm;
     font-size: 30px;
     line-height: 36px;
+    padding-bottom: 10px;
 
     @media (--bp-md) {
       @mixin span 6, var(--grid-columns-md), md;
       margin-top: 0;
+      padding-bottom: 25px;
     }
 
     @media (--bp-lg) {
@@ -199,10 +201,14 @@
 
     &.subhead_withBorder {
       &:after {
-        @mixin component-vertical-spacing;
         border-bottom: 1px solid var(--color-text-light);
         content: '';
         display: block;
+        padding-bottom: 20px;
+
+        @media (--bp-md) {
+          padding-bottom: 35px;
+        }
       }
     }
   }
