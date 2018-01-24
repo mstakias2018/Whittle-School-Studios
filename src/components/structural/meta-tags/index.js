@@ -37,7 +37,12 @@ const MetaTags = ({
     const { largestBreakpoint, largestSrc } = adaptSourcesBySize(imageSources);
     pageImage = largestSrc;
     if (pageImage.match(/^\/[^/]/)) {
+      // Add root URL to relative paths
       pageImage = `${rootUrl}${pageImage.slice(1)}`;
+    }
+    if (pageImage.match(/^\/\//)) {
+      // Add https to protocol-less URLs
+      pageImage = `https:${pageImage}`;
     }
     pageImageBp = largestBreakpoint;
   }
