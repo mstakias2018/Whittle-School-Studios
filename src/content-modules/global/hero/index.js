@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import InformationEventListing from './information-event-listing';
 import SchoolsIntro from './schools-intro';
-import Videos from './videos';
+import Videos from '../videos';
 import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import { CLASSES } from '../../../constants/classes';

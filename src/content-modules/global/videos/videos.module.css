@@ -1,6 +1,6 @@
-@import '../../../../assets/styles/includes/breakpoints.css';
-@import '../../../../assets/styles/includes/mixins.css';
-@import '../../../../assets/styles/includes/typography.css';
+@import '../../../assets/styles/includes/breakpoints.css';
+@import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/typography.css';
 
 .wrapper {
   @mixin component-vertical-spacing;
@@ -29,6 +29,7 @@
   @media (--bp-lg) {
     @mixin span 8, 12, lg;
     @mixin custom-column 2, 12, margin-left;
+    margin-bottom: 120px;
 
     .videos_isOnContentPage & {
       padding-left: calc(var(--grid-gutter-lg) / 2);
@@ -61,6 +62,9 @@
 
   @media (--bp-lg) {
     @mixin span 2, 8, lg;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
@@ -72,12 +76,6 @@
   @media (--bp-md-only) {
     @mixin span 4, 8, md;
   }
-
-  @media (--bp-lg) {
-    &:first-child {
-      margin-bottom: 34px;
-    }
-  }
 }
 
 .title {
@@ -87,9 +85,4 @@
   @media (--bp-md) {
     margin-bottom: 30px;
   }
-}
-
-.link {
-  @mixin type-link;
-  @mixin type-link-default-size;
 }

@@ -1,31 +1,37 @@
-@import '../../../../../assets/styles/includes/breakpoints.css';
-@import '../../../../../assets/styles/includes/mixins.css';
-@import '../../../../../assets/styles/includes/typography.css';
+@import '../../../../assets/styles/includes/breakpoints.css';
+@import '../../../../assets/styles/includes/mixins.css';
+@import '../../../../assets/styles/includes/typography.css';
 
 .wrapper {
   margin: 0;
+  position: relative;
 }
 
-.asset {
-  margin-bottom: 34px;
+.contentWrapper {
+  padding-top: 34px;
 
   .wrapper_isSmall & {
-    margin-bottom: 20px;
+    padding-top: 20px;
   }
 
   @media (--bp-md) {
-    margin-bottom: 40px;
+    padding-top: 40px;
 
     .wrapper_isSmall & {
-      margin-bottom: 40px;
+      padding-top: 40px;
     }
   }
 
   @media (--bp-lg) {
-    margin-bottom: 40px;
+    padding-top: 40px;
+
+    .wrapper:not(.wrapper_isSmall) &,
+    .wrapper_isSecond & {
+      position: absolute;
+    }
 
     .wrapper_isSmall & {
-      margin-bottom: 20px;
+      padding-top: 20px;
     }
   }
 }
@@ -87,4 +93,9 @@
       line-height: 20px;
     }
   }
+}
+
+.link {
+  @mixin type-link;
+  @mixin type-link-default-size;
 }
