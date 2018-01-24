@@ -302,11 +302,15 @@ exports.HOMEPAGE_RULES = {
       text: RULE_TEXT.SECTION_TITLES_PERIOD,
       validator: ({
         locale,
-        campusModule: { campusSectionTitle } = {},
-        eventList: { eventListSectionTitle } = {},
-        teamsModule: { teamsSectionTitle } = {},
+        campusModule,
+        eventList,
+        teamsModule,
       }) => {
         if (LANGUAGE_CONTENTFUL_LOCALE[LANGUAGE.CHINESE] === locale) return true;
+
+        const { campusSectionTitle } = campusModule || {};
+        const { eventListSectionTitle } = eventList || {};
+        const { teamsSectionTitle } = teamsModule || {};
 
         return !([campusSectionTitle, teamsSectionTitle, eventListSectionTitle]
           .some(title => title && title[title.length - 1] !== '.'));
