@@ -73,7 +73,7 @@ class TeamsSection extends Component {
 
   renderBio = (num, hasLeftMargin = false) => {
     const bio = this.props[`teamBio${num}`];
-    return bio.bioName && bio.bioTitle && bio.bioDescription ?
+    return bio && bio.bioName && bio.bioTitle && bio.bioDescription ?
       (
         <TeamsBio
           bioDescription={bio.bioDescription}
@@ -158,11 +158,10 @@ class TeamsSection extends Component {
         }
         {this.renderBio(3)}
         {this.isLargeBP()
-          && stat2
-          && this.props.secondBio
-          && this.props.numOfBiosInFirst < 5
+          && stat1
+          && !this.props.firstBio
           && numOfBiosInThisSection > 3
-          && this.renderStatistic(stat2, true)
+          && this.renderStatistic(stat1, true)
         }
         {this.props.teamBio4 &&
           this.renderBio(4, (!stat1 && !stat2) ||
@@ -175,13 +174,13 @@ class TeamsSection extends Component {
           && this.renderStatistic(stat2, !this.props.secondBio)
         }
         {this.props.teamBio5
-          && this.renderBio(5, (this.props.firstBio && !stat2))
+          && this.renderBio(5, (this.props.firstBio && stat1 && !stat2))
         }
         {this.props.teamBio6
           && this.renderBio(6, this.props.secondBio &&
                                this.props.numOfBiosInFirst < 5 &&
                                numOfBiosInThisSection > 3 &&
-                               stat2)
+                               !!stat1)
         }
         {this.isMediumBP()
           && stat2
