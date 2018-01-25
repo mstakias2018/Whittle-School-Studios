@@ -14,10 +14,11 @@
 
   @media (--bp-md) {
     font-size: 12px;
-    line-height: 16px;
+    line-height: 18px;
 
     :global(.wrapper_isChinese) & {
       font-size: 14px;
+      line-height: 16px;
     }
   }
 }
