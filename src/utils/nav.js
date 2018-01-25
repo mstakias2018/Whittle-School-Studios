@@ -123,3 +123,10 @@ exports.getUrlData = (localizedSlugList, language) => {
     rootUrl,
   };
 };
+
+exports.getArticleTitle = (title, index, translation) => {
+  if (index > 0) {
+    return title || translation('header.subMenuTitileFallback.article');
+  }
+  return title || translation('header.subMenuTitileFallback.overview');
+};

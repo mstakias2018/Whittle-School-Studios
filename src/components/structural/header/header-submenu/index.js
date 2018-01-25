@@ -9,6 +9,7 @@ import { getChunks } from '../../../../utils/global';
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
 import { SUBMENU_BREAK } from '../../../../constants/settings';
 import { BREAKPOINTS_NAME } from '../../../../constants/breakpoints';
+import { getArticleTitle } from '../../../../utils/nav';
 
 import Arrow from '../../../../assets/images/arrow.svg';
 import Checked from '../../../../assets/images/checked.svg';
@@ -145,7 +146,7 @@ class Submenu extends Component {
                             </span>
                             <span className={styles.itemTitle}>
                               <span className={styles.underline}>
-                                {this.getArticleTitle(title, index, translation)}
+                                {getArticleTitle(title, index, translation)}
                               </span>
                             </span>
                           </span>

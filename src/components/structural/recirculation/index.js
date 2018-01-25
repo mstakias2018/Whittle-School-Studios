@@ -13,6 +13,8 @@ import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { NAV_DIRECTIONS } from '../../../constants/settings';
 import { CLASSES } from '../../../constants/classes';
 
+import { getArticleTitle } from '../../../utils/nav';
+
 const propTypes = {
   items: PROP_SHAPES.NAV_ITEM_LIST.isRequired,
   setLastElementBottom: PropTypes.func,
@@ -135,7 +137,7 @@ class Recirculation extends Component {
                 {`0${this.getItemNumber(item)}`}
               </span>
               <span aria-hidden="true">
-                {item.title}
+                {getArticleTitle(item.title, this.getItemNumber(item), translation)}
               </span>
             </span>
           </span>
