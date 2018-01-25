@@ -8,7 +8,6 @@ import heroStyles from '../hero.module.css';
 
 const propTypes = {
   date: PropTypes.string.isRequired,
-  hasLine: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
@@ -50,14 +49,11 @@ class OpeningCountdown extends React.Component {
 
   render() {
     const { countdown } = this.state;
-    const { title, hasLine } = this.props;
+    const { title } = this.props;
     const { translation } = this.context;
 
     return (
-      <div className={cx(styles.wrapper, {
-        [styles.wrapper_hasLine]: hasLine
-      })}
-      >
+      <div className={styles.wrapper}>
         <h2 className={cx(heroStyles.sideTitle, styles.componentTitle)}>{title}</h2>
         <div className={styles.countdown}>
           {INTERVALS.map((interval, index) => (

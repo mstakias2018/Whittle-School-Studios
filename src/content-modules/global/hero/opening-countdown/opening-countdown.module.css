@@ -11,26 +11,7 @@
     .componentTitle {
       @media (--bp-md-only) {
         border-top: none;
-        padding-top: 12px;
-      }
-    }
-  }
-}
-
-.wrapper_hasLine {
-  .countdown {
-    @media (--bp-md) {
-      &:after {
-        border-left: 1px solid var(--color-text-light);
-        content: '';
-        height: 48px;
-        width: 1px;
-      }
-    }
-
-    @media (--bp-lg) {
-      &:after {
-        height: 100px;
+        padding-top: 7px;
       }
     }
   }

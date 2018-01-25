@@ -50,7 +50,6 @@ const SchoolsIntro = ({
         <div className={cx(styles.countdownWrapper, 'showMd')}>
           <OpeningCountdown
             date={countdownDate}
-            hasLine={hasLine}
             title={countdownTitle}
           />
         </div>
@@ -59,7 +58,6 @@ const SchoolsIntro = ({
     <div className={cx(styles.countdownWrapper, 'hideMd')}>
       <OpeningCountdown
         date={countdownDate}
-        hasLine={hasLine}
         title={countdownTitle}
       />
     </div>
