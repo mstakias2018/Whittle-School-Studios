@@ -92,7 +92,8 @@ exports.CONTENT_PAGE_RULES = {
     {
       text: RULE_TEXT.CAROUSEL_POSITION,
       validator: ({ modules }) => {
-        if (!modules) return true;
+        if (!modules || modules.length === 0) return true;
+
         // Check if it's last
         const isLast = modules[modules.length - 1].type === CONTENT_MODULE.CAROUSEL;
         if (isLast) return false;
@@ -277,9 +278,12 @@ exports.HOMEPAGE_RULES = {
   list: [
     {
       text: RULE_TEXT.VIDEOS_COUNT,
-      validator: ({ hero: { videos } = {} }) => !videos || Array(3).fill(0)
-        .filter((_, index) => videos[`video${index + 1}`]
-          && videos[`video${index + 1}`].videoEmbedCode).length !== 2,
+      validator: ({ hero }) => {
+        const { videos } = hero || {};
+
+        return !videos || Array(3).fill(0).filter((_, index) => videos[`video${index + 1}`] &&
+          videos[`video${index + 1}`].videoEmbedCode).length !== 2;
+      }
     },
     {
       text: RULE_TEXT.PIC_MODULE_PROPS,
@@ -299,7 +303,10 @@ exports.HOMEPAGE_RULES = {
     },
     {
       text: RULE_TEXT.VIMEO_COVER_PHOTO,
-      validator: ({ hero: { videos } = {}, campusModule: { video, image } = {} }) => {
+      validator: ({ hero, campusModule }) => {
+        const { videos } = hero || {};
+        const { video, image } = campusModule || {};
+
         if (videos) {
           for (let i = 1; i <= 3; i += 1) {
             // Check if we need to validate elements
@@ -315,7 +322,10 @@ exports.HOMEPAGE_RULES = {
     },
     {
       text: RULE_TEXT.VIDEO_ALT_TAGS,
-      validator: ({ hero: { videos } = {}, campusModule: { imageAlt, video } = {} }) => {
+      validator: ({ hero, campusModule }) => {
+        const { videos } = hero || {};
+        const { imageAlt, video } = campusModule || {};
+
         if (videos) {
           for (let i = 1; i <= 3; i += 1) {
             // Check if we need to validate elements
