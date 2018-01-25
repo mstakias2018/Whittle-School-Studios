@@ -17,17 +17,41 @@ const statisticPropTypes = {
   type: PropTypes.string,
 };
 
+const digitsThatBreakBottom = ['3', '4', '5', '7', '9'];
+
+const isNumberBreakingBottom = (num) => {
+  if (num) {
+    return num.toString().split('').some(x => digitsThatBreakBottom.includes(x));
+  }
+  return false;
+};
+
 const renderNumber = (type, number1, number2, ratioDividerText) => {
+  const testNumber = type === HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE ?
+    isNumberBreakingBottom(number1) :
+    isNumberBreakingBottom(number2);
   if (type === HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE) {
     return (
-      <div className={styles.numberBlock}>
+      <div className={cx(
+          styles.numberBlock,
+          {
+            [styles.extraBottomPadding]: testNumber,
+          }
+        )}
+      >
         <span className={styles.percentageNumber}>{number1}</span>
         <span className={styles.percentageSign}>%</span>
       </div>
     );
   }
   return (
-    <div className={styles.ratioBlock}>
+    <div className={cx(
+        styles.ratioBlock,
+        {
+          [styles.extraBottomPadding]: testNumber,
+        }
+      )}
+    >
       <div className={cx(styles.ratioNumber, styles.ratioNumberLeft)}>{number1}</div>
       <div className={styles.ratioText}>{ratioDividerText}</div>
       <div className={cx(styles.ratioNumber, styles.ratioNumberRight)}>{number2}</div>
@@ -45,7 +69,13 @@ const Statistic = (props, context) => {
     type,
   } = props;
   return (
-    <li className={cx(styles.wrapper, { [styles.rightMargin]: hasRightMargin })}>
+    <li className={cx(
+        styles.wrapper,
+        {
+          [styles.rightMargin]: hasRightMargin,
+        }
+      )}
+    >
       <div className={styles.content}>
         {textLineTop && (
           <div className={styles.topText}>

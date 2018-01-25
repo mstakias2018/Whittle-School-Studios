@@ -23,12 +23,10 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 225px;
   justify-content: center;
   width: 225px;
 
   @media (--bp-md) {
-    height: 360px;
     width: 380px;
   }
 }
@@ -49,7 +47,7 @@
   padding-top: 20px;
 
   @media (--bp-md) {
-    padding-top: 30px;
+    padding-top: 40px;
   }
 }
 
@@ -116,4 +114,20 @@
   color: var(--color-text-dark);
   max-width: 60px;
   text-align: center;
+}
+
+.extraBottomPadding {
+  padding-bottom: 40px;
+
+  @media (--bp-md) {
+    padding-bottom: 90px;
+  }
+}
+
+.extraTopPadding {
+  padding-bottom: 40px;
+
+  @media (--bp-md) {
+    padding-top: 120px;
+  }
 }

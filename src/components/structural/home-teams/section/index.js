@@ -217,19 +217,21 @@ class TeamsSection extends Component {
     }
 
     return (
-      <li className={styles.wrapper}>
-        {this.isSmallBP()
-          && statToUse1
-          && this.renderStatistic(statToUse1)
-        }
-        {this.isSmallBP()
-          && secondBio
-          && statToUse2
-          && this.renderStatistic(statToUse2)
-        }
-        {this.isSmallBP() && this.renderTitle()}
-        {this.isSmallBP() && this.renderSmallLayout()}
-        {!this.isSmallBP() && this.renderMediumAndLargeLayout(statToUse1, statToUse2)}
+      <li className={styles.wrapperOutter}>
+        <ul className={styles.wrapper}>
+          {this.isSmallBP()
+            && statToUse1
+            && this.renderStatistic(statToUse1)
+          }
+          {this.isSmallBP()
+            && secondBio
+            && statToUse2
+            && this.renderStatistic(statToUse2)
+          }
+          {this.isSmallBP() && this.renderTitle()}
+          {this.isSmallBP() && this.renderSmallLayout()}
+          {!this.isSmallBP() && this.renderMediumAndLargeLayout(statToUse1, statToUse2)}
+        </ul>
       </li>
     );
   }

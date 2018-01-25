@@ -6,8 +6,11 @@
   @mixin full-width-column;
   @mixin nested-grid-container;
   flex-wrap: wrap;
-  padding-bottom: 50px;
-  padding-top: 40px;
+
+  @media (--bp-sm-only) {
+    padding-bottom: 50px;
+    padding-top: 40px;
+  }
 
   @media (--bp-md) {
     @mixin nested-grid-container;
