@@ -45,7 +45,7 @@
 }
 
 .title {
-  @mixin type-h2;
+  @mixin type-h3;
   margin: 0;
   padding-bottom: 10px;
 
@@ -54,7 +54,6 @@
   }
 
   @media (--bp-lg) {
-    font-size: 36px;
     padding-right: 15%;
   }
 }
