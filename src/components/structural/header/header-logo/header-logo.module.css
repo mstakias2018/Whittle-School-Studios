@@ -19,10 +19,19 @@
 
 .logo {
   display: block;
-  max-width: 105px;
+  width: 89px;
+
+  @media (--bp-md) {
+    width: 118px;
+  }
+
+  @media (--bp-lg) {
+    width: 106px;
+  }
 
   img {
     margin: 0;
     vertical-align: middle;
+    width: 100%;
   }
 }
