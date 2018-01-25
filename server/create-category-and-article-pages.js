@@ -270,7 +270,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
           const imageDataByType = {};
 
           const mainImagePromise = saveMainImage(node, [id]);
-          if (mainImagePromise) {
+          if (mainImagePromise && mainImagePromise.then) {
             setupPromises.push(mainImagePromise.then((imageData) => {
               imageDataByType[IMAGE_TYPE.MAIN] = imageData;
             }));

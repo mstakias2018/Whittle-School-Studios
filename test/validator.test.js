@@ -474,6 +474,60 @@ describe('Validator', () => {
         expect(result).toContain(RULE_TEXT.VIDEOS_COUNT);
       });
     });
+
+    describe(RULE_TEXT.TEAMS_BIO_IMAGE, () => {
+      test('pass', () => {
+        const result = getOutputForContentPage({
+          teams: {
+            sections: [
+              {
+                image1: { id: 'someid1234' },
+                image2: { id: 'someid1234' },
+                image3: { id: 'someid1234' },
+                image4: { id: 'someid1234' },
+                image5: { id: 'someid1234' },
+                image6: { id: 'someid1234' },
+                title1: 'title',
+                title2: 'title',
+                title3: 'title',
+                title4: 'title',
+                title5: 'title',
+                title6: 'title',
+              }
+            ]
+          }
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
+      });
+      test('pass - no sections', () => {
+        const result = getOutputForContentPage({
+          teams: {}
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
+      });
+      test('fail - missing image', () => {
+        const result = getOutputForContentPage({
+          teams: {
+            sections: [
+              {
+                image1: { id: 'someid1234' },
+                image2: { id: 'someid1234' },
+                image4: { id: 'someid1234' },
+                image5: { id: 'someid1234' },
+                image6: { id: 'someid1234' },
+                title1: 'title',
+                title2: 'title',
+                title3: 'title',
+                title4: 'title',
+                title5: 'title',
+                title6: 'title',
+              }
+            ]
+          }
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
+      });
+    });
   });
 
   describe('article rules', () => {
@@ -544,6 +598,33 @@ describe('Validator', () => {
           pageType: PAGE_TYPE.CATEGORY,
         });
         expect(result).toContain(RULE_TEXT.CATEGORY_HEADER_NAV_PROPS);
+      });
+    });
+
+    describe(RULE_TEXT.CATEGORY_SUBCATEGORIES, () => {
+      test('pass', () => {
+        const result = getOutputForContentPage({
+          pageType: PAGE_TYPE.CATEGORY,
+          subcategories: [
+            {
+              id: 'someid123',
+              pageType: PAGE_TYPE.ARTICLE,
+            }
+          ]
+        });
+        expect(result).not.toContain(RULE_TEXT.CATEGORY_SUBCATEGORIES);
+      });
+      test('fail', () => {
+        const result = getOutputForContentPage({
+          pageType: PAGE_TYPE.CATEGORY,
+          subcategories: [
+            {
+              id: 'someid123',
+              pageType: PAGE_TYPE.CATEGORY,
+            }
+          ]
+        });
+        expect(result).toContain(RULE_TEXT.CATEGORY_SUBCATEGORIES);
       });
     });
   });
@@ -831,6 +912,84 @@ describe('Validator', () => {
           },
         });
         expect(result).toContain(RULE_TEXT.SECTION_TITLES_PERIOD);
+      });
+    });
+
+    describe(RULE_TEXT.TEAMS_HERO, () => {
+      test('pass', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            heroDescription: { id: 'someid124' },
+            heroImage: { id: 'someid124' },
+            heroLinkDestination: { id: 'someid124' },
+            heroName: 'hero name',
+            heroTitle: 'hero title',
+          }
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_HERO);
+      });
+      test('fail', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            heroDescription: { id: 'someid124' },
+            heroImage: { id: 'someid124' },
+          }
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_HERO);
+      });
+    });
+
+    describe(RULE_TEXT.TEAMS_BIO_IMAGE, () => {
+      test('pass', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            sections: [
+              {
+                image1: { id: 'someid1234' },
+                image2: { id: 'someid1234' },
+                image3: { id: 'someid1234' },
+                image4: { id: 'someid1234' },
+                image5: { id: 'someid1234' },
+                image6: { id: 'someid1234' },
+                title1: 'title',
+                title2: 'title',
+                title3: 'title',
+                title4: 'title',
+                title5: 'title',
+                title6: 'title',
+              }
+            ]
+          }
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
+      });
+      test('pass - no sections', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {}
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
+      });
+      test('fail - missing image', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            sections: [
+              {
+                image1: { id: 'someid1234' },
+                image2: { id: 'someid1234' },
+                image4: { id: 'someid1234' },
+                image5: { id: 'someid1234' },
+                image6: { id: 'someid1234' },
+                title1: 'title',
+                title2: 'title',
+                title3: 'title',
+                title4: 'title',
+                title5: 'title',
+                title6: 'title',
+              }
+            ]
+          }
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
     });
   });

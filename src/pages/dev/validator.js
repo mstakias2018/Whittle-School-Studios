@@ -318,6 +318,43 @@ export const pageQuery = graphql`
             campusSectionTitle: sectionTitle
           }
           teamsModule {
+            heroName
+            heroTitle
+            heroImage {
+              id
+            }
+            heroDescription {
+              id
+            }
+            heroLinkDestination {
+              id
+            }
+            sections {
+              title1: person1Title
+              image1: person1Image {
+                id
+              }
+              title2: person2Title
+              image2: person2Image {
+                id
+              }
+              title3: person3Title
+              image3: person3Image {
+                id
+              }
+              title4: person4Title
+              image4: person4Image {
+                id
+              }
+              title5: person5Title
+              image5: person5Image {
+                id
+              }
+              title6: person6Title
+              image6: person6Image {
+                id
+              }
+            }
             teamsSectionTitle: sectionTitle
           }
           eventList {
@@ -472,6 +509,46 @@ export const pageQuery = graphql`
                 id
               }
             }
+            ... on ContentfulTeams {
+              heroName
+              heroTitle
+              heroImage {
+                id
+              }
+              heroDescription {
+                id
+              }
+              heroLinkDestination {
+                id
+              }
+              sections {
+                title1: person1Title
+                image1: person1Image {
+                  id
+                }
+                title2: person2Title
+                image2: person2Image {
+                  id
+                }
+                title3: person3Title
+                image3: person3Image {
+                  id
+                }
+                title4: person4Title
+                image4: person4Image {
+                  id
+                }
+                title5: person5Title
+                image5: person5Image {
+                  id
+                }
+                title6: person6Title
+                image6: person6Image {
+                  id
+                }
+              }
+              teamsSectionTitle: sectionTitle
+            }
           }
           mainImage {
            id
@@ -486,6 +563,7 @@ export const pageQuery = graphql`
           }
           subcategories {
             id: contentful_id
+            pageType
           }
           subhead
           slug

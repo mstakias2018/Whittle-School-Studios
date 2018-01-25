@@ -10,6 +10,7 @@ const RULE_TEXT = {
   ARTICLE_SUBCATEGORIES: 'Articles must not have subcategories',
   CAROUSEL_POSITION: 'Carousel cannot be the the last or next-to-last module on the page',
   CATEGORY_HEADER_NAV_PROPS: 'Categories in header must have Nav Title value',
+  CATEGORY_SUBCATEGORIES: 'Categories can only have Articles as subcategories',
   CATEGORY_WITH_SUB_NAV_PROPS: 'Categories with subcategories must have Nav Title, '
     + 'Nav Description, and Overview Nav Title values',
   CONTAIN_BODY_TEXT: 'Page must contain BodyText',
@@ -24,6 +25,8 @@ const RULE_TEXT = {
   PIC_MODULE_PROPS: 'PIC module: Every event must have a date, title, location, description, and link.',
   SECTION_TITLES_PERIOD: '[English only] Section titles should always end in a period.',
   SUBCATEGORY_NAV_PROPS: 'Subcategories must have Nav Title and Nav Description values',
+  TEAMS_BIO_IMAGE: 'Teams module: bios must either all contain an image, or none, per category',
+  TEAMS_HERO: 'Teams module: must have a hero component',
   VIDEO_ALT_TAGS: 'All videos must have alt tags',
   VIDEOS_COUNT: 'Videos module should display either 1, 3, or no videos. '
     + 'Never display 2 video (the design does not support this).',
@@ -177,9 +180,30 @@ exports.CONTENT_PAGE_RULES = {
       validator: ({ modules }) => {
         if (!modules) return true;
 
-        return !(modules.some(({ type, shape }) => type === CONTENT_MODULE.INLINE_IMAGE
-          && shape === IMAGE_SHAPE.CIRCLE));
+        return !modules.some(({ type, shape }) => type === CONTENT_MODULE.INLINE_IMAGE
+          && shape === IMAGE_SHAPE.CIRCLE);
       },
+    },
+    {
+      text: RULE_TEXT.TEAMS_BIO_IMAGE,
+      validator: ({ teams }) => {
+        if (!teams) return true;
+
+        const sections = teams.sections || [];
+
+        return !sections.some((section) => {
+          const foundItems = [];
+
+          Array(6).fill(0).forEach((_, index) => {
+            if (section[`title${index + 1}`]) {
+              const imgExists = !!section[`image${index + 1}`];
+              if (!foundItems.includes(imgExists)) foundItems.push(imgExists);
+            }
+          });
+
+          return foundItems.length > 1;
+        });
+      }
     },
   ],
   title: 'content page',
@@ -210,6 +234,13 @@ const CATEGORY_RULES = {
       text: RULE_TEXT.CATEGORY_HEADER_NAV_PROPS,
       validator: ({ header, navTitle }) => !(header && !navTitle),
     },
+    {
+      text: RULE_TEXT.CATEGORY_SUBCATEGORIES,
+      validator: ({ pageType, subcategories }) => {
+        if (pageType !== PAGE_TYPE.CATEGORY || !subcategories) return true;
+        return !subcategories.some(item => item.pageType !== PAGE_TYPE.ARTICLE);
+      },
+    },
   ],
   title: 'category',
 };
@@ -235,7 +266,7 @@ exports.HEADER_RULES = {
       text: RULE_TEXT.HEADER_LINKS_CATEGORIES,
       validator: ({ contentPages }) => {
         if (!contentPages) return true;
-        return !(contentPages.some(({ pageType }) => pageType !== PAGE_TYPE.CATEGORY));
+        return !contentPages.some(({ pageType }) => pageType !== PAGE_TYPE.CATEGORY);
       },
     },
   ],
@@ -312,8 +343,40 @@ exports.HOMEPAGE_RULES = {
         const { eventListSectionTitle } = eventList || {};
         const { teamsSectionTitle } = teamsModule || {};
 
-        return !([campusSectionTitle, teamsSectionTitle, eventListSectionTitle]
-          .some(title => title && title[title.length - 1] !== '.'));
+        return ![campusSectionTitle, teamsSectionTitle, eventListSectionTitle]
+          .some(title => title && title[title.length - 1] !== '.');
+      }
+    },
+    {
+      text: RULE_TEXT.TEAMS_HERO,
+      validator: ({ teamsModule }) => {
+        if (!teamsModule) return true;
+        const {
+          heroName, heroTitle, heroImage, heroDescription, heroLinkDestination
+        } = teamsModule;
+
+        return !(!heroName || !heroTitle || !heroImage || !heroDescription || !heroLinkDestination);
+      },
+    },
+    {
+      text: RULE_TEXT.TEAMS_BIO_IMAGE,
+      validator: ({ teamsModule }) => {
+        if (!teamsModule) return true;
+
+        const sections = teamsModule.sections || [];
+
+        return !sections.some((section) => {
+          const foundItems = [];
+
+          Array(6).fill(0).forEach((_, index) => {
+            if (section[`title${index + 1}`]) {
+              const imgExists = !!section[`image${index + 1}`];
+              if (!foundItems.includes(imgExists)) foundItems.push(imgExists);
+            }
+          });
+
+          return foundItems.length > 1;
+        });
       }
     },
   ],
