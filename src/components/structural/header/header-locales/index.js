@@ -43,12 +43,22 @@ class Locales extends Component {
     });
   };
 
-  getRegionItems = () =>
-    Object.keys(REGION).map(region => ({
-      link: `${REGION_URLS[process.env.GATSBY_ENV][region]}${getDefaultLangPath(region)}`,
-      title: this.context.translation && this.context.translation(`header.regions.${region}`),
-      value: region,
-    }));
+  getRegionItems = () => {
+    const { liveSites } = this.context;
+    const regionItems = [];
+    Object.keys(REGION).map((region) => {
+      if (liveSites.includes(region) || region === process.env.GATSBY_REGION) {
+        regionItems.push({
+          link: `${REGION_URLS[process.env.GATSBY_ENV][region]}${getDefaultLangPath(region)}`,
+          title: this.context.translation && this.context.translation(`header.regions.${region}`),
+          value: region,
+        });
+      }
+      return true;
+    });
+
+    return regionItems.length > 1 ? regionItems : false;
+  };
 
   getSelectedLabel = (menuAriaLabel, selectedValueLabel) => ([
     <span
@@ -68,15 +78,15 @@ class Locales extends Component {
     const hasLanguageSelector = REGION_LANGUAGES[process.env.GATSBY_REGION].length > 1;
     const LocaleWrapperTag = hasLanguageSelector ? 'ul' : 'div';
     const RegionSelectorTag = hasLanguageSelector ? 'li' : 'span';
-
-    const regionSelector = (
+    const regionItems = this.getRegionItems();
+    const regionSelector = regionItems && (
       <RegionSelectorTag
         className={styles.localesItem}
         key="region"
       >
         <Drop
           isSmall={this.props.isSmall}
-          items={this.getRegionItems()}
+          items={regionItems}
           selectedLabel={
             this.getSelectedLabel(
               translation && translation('header.selectors.regionAriaLabel'),
@@ -122,6 +132,7 @@ class Locales extends Component {
 
 Locales.contextTypes = {
   language: PROP_SHAPES.LANGUAGE.isRequired,
+  liveSites: PropTypes.array,
   localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST,
   translation: PropTypes.func.isRequired,
 };

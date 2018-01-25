@@ -50,9 +50,11 @@ class TemplateWrapper extends Component {
       fabLinkExternal,
       fabLinkInternal,
       footerShareIcons,
+      liveSites,
       ...socialNetworkUrls
     } = this.getLanguageDataFor(LAYOUT_MODEL.SETTINGS);
 
+    const liveSitesUppercase = (liveSites && liveSites.map(country => country.toUpperCase())) || [];
     const globalImages = Object.keys(GLOBAL_IMAGE_TYPE).reduce((acc, imageType) => ({
       ...acc,
       [imageType]: this.getLanguageDataFor(
@@ -68,6 +70,7 @@ class TemplateWrapper extends Component {
       headerData: this.getLanguageDataFor(LAYOUT_MODEL.HEADER).contentPages,
       history,
       language,
+      liveSites: liveSitesUppercase,
       pathname,
       socialIcons: {
         contentPage: transformSocialNetworks(
@@ -172,6 +175,7 @@ TemplateWrapper.childContextTypes = {
   headerData: PROP_SHAPES.HEADER_DATA.isRequired,
   history: PROP_SHAPES.HISTORY.isRequired,
   language: PROP_SHAPES.LANGUAGE.isRequired,
+  liveSites: PropTypes.array,
   pathname: PropTypes.string.isRequired,
   socialIcons: PropTypes.object.isRequired,
   translation: PropTypes.func.isRequired,
@@ -265,7 +269,7 @@ export const pageQuery = graphql`
             id
           }
           locale: node_locale
-
+          liveSites
           fabText {
             file {
               url
