@@ -31,17 +31,15 @@ const ContentPageTemplate = ({
     headline,
     hero,
     eventList,
-    schoolIntroTitle,
     seoMetaDescription,
     seoMetaKeywords,
     seoMetaTitle,
     teamsModule,
   } = homePageData;
 
-  const metaDescription = (seoMetaDescription && seoMetaDescription.content) ||
-    (schoolIntroTitle && schoolIntroTitle.content);
+  const metaDescription = (seoMetaDescription && seoMetaDescription.content) || (hero && hero.title);
   const metaKeywords = seoMetaKeywords && seoMetaKeywords.content;
-  const metaTitle = seoMetaTitle || removeMarkdown(headline) || (schoolIntroTitle && schoolIntroTitle.content);
+  const metaTitle = seoMetaTitle || removeMarkdown(headline) || (hero && hero.title);
   const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
   const mainHeroImage = heroImages && heroImages.image;
 
@@ -115,9 +113,6 @@ export const pageQuery = graphql`
       node_locale: { eq: $locale }
     ) {
       headline
-      schoolIntroTitle {
-        content: schoolIntroTitle
-      }
       seoMetaDescription {
         content: seoMetaDescription
       }
