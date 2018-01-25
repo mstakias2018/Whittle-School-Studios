@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { withCookies, Cookies } from 'react-cookie';
 
+import WithWindowListener from '../../../../hocs/withWindow';
 import { getChunks } from '../../../../utils/global';
 
 import { PROP_TYPES } from '../../../../constants/custom-property-types';
 import { SUBMENU_BREAK } from '../../../../constants/settings';
+import { BREAKPOINTS_NAME } from '../../../../constants/breakpoints';
 
 import Arrow from '../../../../assets/images/arrow.svg';
 import Checked from '../../../../assets/images/checked.svg';
@@ -16,6 +18,26 @@ import Link from '../../../global/link';
 import styles from './header-submenu.module.css';
 
 class Submenu extends Component {
+  state = {
+    breakpoint: BREAKPOINTS_NAME.large,
+  };
+
+  componentDidMount() {
+    this.setState({
+      breakpoint: this.props.breakpoint,
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.breakpoint !== this.props.breakpoint) {
+      setTimeout(() => {
+        this.setState({
+          breakpoint: this.props.breakpoint,
+        });
+      }, 0);
+    }
+  }
+
   getArticleTitle = (title, index, translation) => {
     if (index > 0) {
       return title || translation('header.subMenuTitileFallback.article');
@@ -44,7 +66,17 @@ class Submenu extends Component {
       viewedPage,
     } = this.props;
     const { translation } = this.context;
+    const { breakpoint } = this.state;
     const visitedPages = cookies.get('visitedPages') || [];
+    const categoryNameFirstLine = categoryTitle.substr(0, categoryTitle.indexOf(' '));
+    const categoryNameSecondLine = categoryTitle.substr(categoryTitle.indexOf(' ') + 1);
+    const categoryTitleWithBreaks = (
+      <span>
+        {categoryNameFirstLine}
+        <br />
+        {categoryNameSecondLine}
+      </span>
+    );
 
     return (
       <div className={styles.submenu}>
@@ -61,7 +93,7 @@ class Submenu extends Component {
             >
               <li className={styles.titleContainer}>
                 <span className={styles.title}>
-                  {categoryTitle}
+                  {breakpoint === BREAKPOINTS_NAME.small ? categoryTitle : categoryTitleWithBreaks}
                 </span>
               </li>
               {
@@ -153,4 +185,4 @@ Submenu.propTypes = {
 };
 Submenu.contextTypes = { translation: PropTypes.func.isRequired };
 
-export default withCookies(Submenu);
+export default withCookies(WithWindowListener(Submenu));
