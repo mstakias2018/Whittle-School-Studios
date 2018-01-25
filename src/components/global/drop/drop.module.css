@@ -96,7 +96,9 @@
   }
 
   &.selectButton_hasSameFontTranslated {
-    @mixin font-family font-sans-serif-regular, false;
+    :global(.wrapper_isChinese) & {
+      @mixin font-family font-sans-serif-light, false;
+    }
   }
 }
 

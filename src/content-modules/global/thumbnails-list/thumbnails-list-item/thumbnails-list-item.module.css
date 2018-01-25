@@ -62,6 +62,10 @@
 .videoLength {
   @mixin type-eyebrow;
   padding-bottom: 16px;
+
+  :global(.wrapper_isChinese) & {
+    @mixin font-family font-sans-serif-light, false;
+  }
 }
 
 .description {

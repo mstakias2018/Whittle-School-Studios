@@ -92,6 +92,7 @@
 }
 
 .blockOrderNumber {
+  @mixin font-family font-serif-light, false;
   text-align: right;
   width: 100%;
 }

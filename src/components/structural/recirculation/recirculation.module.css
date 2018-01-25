@@ -239,6 +239,9 @@
 .number {
   @mixin type-h5;
   margin-right: 12px;
+  :global(.wrapper_isChinese) & {
+    @mixin font-family font-serif-light, false;
+  }
 }
 
 .title,

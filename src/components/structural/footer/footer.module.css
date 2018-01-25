@@ -148,3 +148,7 @@
     @mixin span 6, var(--grid-columns-lg), lg;
   }
 }
+
+.copyrightYear {
+  @mixin font-family font-sans-serif-light, false;
+}

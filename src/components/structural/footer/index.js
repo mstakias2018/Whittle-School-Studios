@@ -105,7 +105,10 @@ const Footer = (props, context) => {
           ))}
 
           <div className={styles.copyright}>
-            <div>{translation && translation('footer.copyrightLine1')}</div>
+            <div>
+              {translation && translation('footer.copyrightLine1')}
+              <span className={styles.copyrightYear}> &copy; {translation && translation('footer.copyrightYear')}</span>
+            </div>
             <div>{translation && translation('footer.copyrightLine2')}</div>
           </div>
           {socialIcons && socialIcons.footer.length > 0 &&

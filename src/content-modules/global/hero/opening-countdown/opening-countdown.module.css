@@ -95,7 +95,7 @@
 
 .number {
   @mixin large-body-text;
-  @mixin font-family font-serif-light;
+  @mixin font-family font-serif-light, false;
   color: var(--color-text-dark);
   font-weight: 400;
   letter-spacing: 0.4px;
