@@ -24,12 +24,6 @@ class OpeningCountdown extends React.Component {
     },
   };
 
-  componentWillMount() {
-    this.setState({
-      countdown: this.getCountdown(),
-    });
-  }
-
   componentWillUnmount() {
     clearInterval(this.countdownInterval);
   }
