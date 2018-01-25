@@ -19,6 +19,7 @@ const MainMenu = ({
   translation,
 }) => (
   <nav
+    aria-label={translation && translation('header.primaryAriaLabel')}
     className={cx(
       styles.menu,
       { [styles.menu_isVisible]: isActive }
@@ -26,7 +27,6 @@ const MainMenu = ({
     id="mainMenu"
   >
     <div
-      aria-label={translation && translation('header.primaryAriaLabel')}
       className={styles.menuItemsContainer}
       role="menu"
     >
