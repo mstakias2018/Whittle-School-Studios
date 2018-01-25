@@ -19,14 +19,14 @@
       padding-top: 35px;
     }
 
-    @media (--bp-md-only) {
-      padding-bottom: 13px;
-      padding-top: 65px;
+    @media (--bp-md) {
+      padding-bottom: 16px;
+      padding-top: 50px;
     }
 
     @media (--bp-lg) {
-      padding-bottom: 38px;
-      padding-top: 110px;
+      padding-bottom: 56px;
+      padding-top: 96px;
     }
   }
 }
