@@ -97,7 +97,7 @@ class TemplateWrapper extends Component {
   getLanguageDataFor = (key, testFunc) => {
     const { data, location: { pathname } } = this.props;
     const language = getLanguageFromPathname(pathname) || REGION_DEFAULT_LANGUAGE[process.env.GATSBY_REGION];
-    let out;
+    let out = {};
 
     data[key].edges.some(({ node: { locale, dummycontentindex, ...props } }) => {
       if (
@@ -116,20 +116,19 @@ class TemplateWrapper extends Component {
 
   getTranslation = (translation) => {
     const translationArray = translation.split('.');
-
-    const {
-      translations: { internal: { content: stringifiedTranslations } },
-    } = this.getLanguageDataFor(LAYOUT_MODEL.TRANSLATIONS);
-
-    const translations = JSON.parse(stringifiedTranslations);
-
+    const { translations } = this.getLanguageDataFor(LAYOUT_MODEL.TRANSLATIONS);
     let item = null;
 
-    for (let i = 0; i < translationArray.length; i += 1) {
-      if (translations[translationArray[i]] && !item) {
-        item = translations[translationArray[i]];
-      } else {
-        item = item && item[translationArray[i]];
+    if (translations) {
+      const { internal: { content: stringifiedTranslations } } = translations;
+      const translationsObj = JSON.parse(stringifiedTranslations);
+
+      for (let i = 0; i < translationArray.length; i += 1) {
+        if (translationsObj[translationArray[i]] && !item) {
+          item = translationsObj[translationArray[i]];
+        } else {
+          item = item && item[translationArray[i]];
+        }
       }
     }
 

@@ -47,7 +47,7 @@ class Locales extends Component {
     const { liveSites } = this.context;
     const regionItems = [];
     Object.keys(REGION).map((region) => {
-      if (liveSites.includes(region) || region === process.env.GATSBY_REGION) {
+      if ((liveSites && liveSites.includes(region)) || region === process.env.GATSBY_REGION) {
         regionItems.push({
           link: `${REGION_URLS[process.env.GATSBY_ENV][region]}${getDefaultLangPath(region)}`,
           title: this.context.translation && this.context.translation(`header.regions.${region}`),
