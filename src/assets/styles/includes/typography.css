@@ -2,9 +2,18 @@
 @import 'variables.css';
 
 @define-mixin font-family $font, $isTranslated: true {
-  font-family: var(--$(font));
+  font-family: var(--$(font)-fallback);
 
-  :global(.wrapper_isChinese) & {
+  html:not(:global(.fontsLoaded)) :global(.wrapper_isEnglish) & {
+    font-style: var(--$(font)-fallback-font-style);
+    letter-spacing: var(--$(font)-fallback-letter-spacing);
+  }
+
+  :global(.fontsLoaded) & {
+    font-family: var(--$(font));
+  }
+
+  :global(.fontsLoaded .wrapper_isChinese) & {
     @if $(isTranslated) {
       font-family: var(--$(font)-cn);
     }
@@ -28,7 +37,7 @@
 
 /* headings */
 @define-mixin type-h1 {
-  @mixin font-family font-serif-light;
+  @mixin font-family font-serif-regular;
   color: var(--color-text-dark);
   font-size: 48px;
   font-weight: 400;
@@ -36,7 +45,7 @@
   margin-bottom: 0;
 
   em {
-    @mixin font-family font-serif-light-italic;
+    @mixin font-family font-serif-regular-italic;
   }
 }
 

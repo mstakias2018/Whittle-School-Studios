@@ -3,15 +3,50 @@
 :root {
   --font-sans-serif-light: 'gt_walsheim_prolight', 'Helvetica', sans-serif;
   --font-sans-serif-regular: 'gt_walsheim_proregular', 'Helvetica', sans-serif;
+
   --font-serif-light: 'freightbiglightregular', 'Arial', serif;
   --font-serif-light-italic: 'freightbiglightitalicregular', 'Arial', serif;
+  /* We have these extra "regular" variables to allow for
+    different fallback letter spacing in the `font-family` mixin */
+  --font-serif-regular: var(--font-serif-light);
+  --font-serif-regular-italic: var(--font-serif-light-italic);
   --font-serif-book: 'freightbigbookregular', 'Arial', serif;
   --font-serif-book-italic: 'freightbigbookitalicregular', 'Arial', serif;
+
+  --font-sans-serif-light-fallback: 'Helvetica', 'Arial', sans-serif;
+  --font-sans-serif-regular-fallback: 'Helvetica', 'Arial', sans-serif;
+
+  --font-serif-light-fallback: 'Times New Roman', Times, serif;
+  --font-serif-light-italic-fallback: 'Times New Roman', Times, serif;
+  --font-serif-regular-fallback: var(--font-serif-light-fallback);
+  --font-serif-regular-italic-fallback: var(--font-serif-light-italic-fallback);
+  --font-serif-book-fallback: 'Times New Roman', Times, serif;
+  --font-serif-book-italic-fallback: 'Times New Roman', Times, serif;
+
+  --font-sans-serif-light-fallback-font-style: normal;
+  --font-sans-serif-regular-fallback-font-style: normal;
+  --font-serif-light-fallback-font-style: normal;
+  --font-serif-light-italic-fallback-font-style: italic;
+  --font-serif-regular-fallback-font-style: var(--font-serif-light-fallback-font-style);
+  --font-serif-regular-italic-fallback-font-style: var(--font-serif-light-italic-fallback-font-style);
+  --font-serif-book-fallback-font-style: normal;
+  --font-serif-book-italic-fallback-font-style: italic;
+
+  --font-sans-serif-light-fallback-letter-spacing: initial;
+  --font-sans-serif-regular-fallback-letter-spacing: initial;
+  --font-serif-light-fallback-letter-spacing: -0.08ch;
+  --font-serif-light-italic-fallback-letter-spacing: -0.18ch;
+  --font-serif-regular-fallback-letter-spacing: -0.12ch;
+  --font-serif-regular-italic-fallback-letter-spacing: -0.18ch;
+  --font-serif-book-fallback-letter-spacing: -0.12ch;
+  --font-serif-book-italic-fallback-letter-spacing: -0.18ch;
 
   --font-sans-serif-light-cn: 'pingfang_sclight', sans-serif;
   --font-sans-serif-regular-cn: 'pingfang_scregular', sans-serif;
   --font-serif-light-cn: 'SimSun', 'STSong', 'HiraMinProN-W3', 'Noto Serif CJK SC', 'Noto Serif CJK', 'DroidSansFallback', serif;
   --font-serif-light-italic-cn: 'SimSun', 'STSong', 'HiraMinProN-W3', 'Noto Serif CJK SC', 'Noto Serif CJK', 'DroidSansFallback', serif;
+  --font-serif-regular-cn: var(--font-serif-light-cn);
+  --font-serif-regular-italic-cn: var(--font-serif-light-italic-cn);
   --font-serif-book-cn: 'SimSun', 'STSong', 'HiraMinProN-W3', 'Noto Serif CJK SC', 'Noto Serif CJK', 'DroidSansFallback', serif;
   --font-serif-book-italic-cn: 'SimSun', 'STSong', 'HiraMinProN-W3', 'Noto Serif CJK SC', 'Noto Serif CJK', 'DroidSansFallback', serif;
 }

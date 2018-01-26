@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import FontFaceObserver from 'fontfaceobserver';
 
 import detectTouchEvents from 'detect-touch-events';
 import cx from 'classnames';
@@ -89,6 +90,28 @@ class TemplateWrapper extends Component {
   }
 
   componentDidMount() {
+    const sansSerifLight = new FontFaceObserver('gt_walsheim_prolight');
+    const sansSerifRegular = new FontFaceObserver('gt_walsheim_proregular');
+    const serifLight = new FontFaceObserver('freightbiglightregular');
+    const serifLightItalic = new FontFaceObserver('freightbiglightitalicregular');
+    const serifBook = new FontFaceObserver('freightbigbookregular');
+    const serifBookItalic = new FontFaceObserver('freightbigbookitalicregular');
+    const sansSerifLightCn = new FontFaceObserver('pingfang_sclight');
+    const sansSerifRegularCn = new FontFaceObserver('pingfang_scregular');
+
+    Promise.all([
+      sansSerifLight.load(),
+      sansSerifRegular.load(),
+      serifLight.load(),
+      serifLightItalic.load(),
+      serifBook.load(),
+      serifBookItalic.load(),
+      sansSerifLightCn.load(),
+      sansSerifRegularCn.load(),
+    ]).then(() => {
+      window.document.documentElement.className += ' fontsLoaded';
+    });
+
     this.setState({
       isTouchDevice: detectTouchEvents.hasSupport,
     });
