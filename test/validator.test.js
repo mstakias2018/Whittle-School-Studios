@@ -123,26 +123,6 @@ describe('Validator', () => {
       });
     });
 
-    describe(RULE_TEXT.NO_MAIN_IMAGE_NO_SUBHEAD, () => {
-      test('pass - both', () => {
-        const result = getOutputForContentPage({
-          mainImage: {},
-          subhead: 'Hello',
-        });
-        expect(result).not.toContain(RULE_TEXT.NO_MAIN_IMAGE_NO_SUBHEAD);
-      });
-      test('pass - neither', () => {
-        const result = getOutputForContentPage({});
-        expect(result).not.toContain(RULE_TEXT.NO_MAIN_IMAGE_NO_SUBHEAD);
-      });
-      test('fail', () => {
-        const result = getOutputForContentPage({
-          subhead: 'Hello',
-        });
-        expect(result).toContain(RULE_TEXT.NO_MAIN_IMAGE_NO_SUBHEAD);
-      });
-    });
-
     describe(RULE_TEXT.MAIN_IMAGE_ALT, () => {
       test('pass - both', () => {
         const result = getOutputForContentPage({
@@ -549,6 +529,20 @@ describe('Validator', () => {
   });
 
   describe('category rules', () => {
+    describe(RULE_TEXT.SUBHEAD, () => {
+      test('pass', () => {
+        const result = getOutputForContentPage({
+          pageType: PAGE_TYPE.CATEGORY,
+          subhead: 'test',
+        });
+        expect(result).not.toContain(RULE_TEXT.SUBHEAD);
+      });
+      test('fail', () => {
+        const result = getOutputForContentPage({ pageType: PAGE_TYPE.CATEGORY });
+        expect(result).toContain(RULE_TEXT.SUBHEAD);
+      });
+    });
+
     describe(RULE_TEXT.CATEGORY_WITH_SUB_NAV_PROPS, () => {
       test('pass', () => {
         const result = getOutputForContentPage({

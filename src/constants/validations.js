@@ -19,12 +19,12 @@ const RULE_TEXT = {
   IFRAME_ONLY_MODULE: 'If an OpenApplyIFrame exists, it is the only module on the page',
   INLINE_IMAGE_SHAPE: 'Inline images can only have the circle shape when children of a Carousel',
   MAIN_IMAGE_ALT: 'Main image alt must be provided if main image exists',
-  NO_MAIN_IMAGE_NO_SUBHEAD: 'If no main image exists, no subhead will exist',
   NO_STACKED: 'No module other than BodyText may be consecutively stacked',
   ONE_OR_MORE_MODULES: 'Pages must have one or more modules',
   PIC_MODULE_PROPS: 'PIC module: Every event must have a date, title, location, description, and link.',
   SECTION_TITLES_PERIOD: '[English only] Section titles should always end in a period.',
   SUBCATEGORY_NAV_PROPS: 'Subcategories must have Nav Title and Nav Description values',
+  SUBHEAD: 'A subhead must exist.',
   TEAMS_BIO_IMAGE: 'Teams module: bios must either all contain an image, or none, per category',
   TEAMS_HERO: 'Teams module: must have a hero component',
   VIDEO_ALT_TAGS: 'All videos must have alt tags',
@@ -64,10 +64,6 @@ exports.CONTENT_PAGE_RULES = {
         if (checkOpenIframe(modules)) return true;
         return modules.some(({ type } = module) => type === CONTENT_MODULE.BODY_TEXT);
       },
-    },
-    {
-      text: RULE_TEXT.NO_MAIN_IMAGE_NO_SUBHEAD,
-      validator: ({ subhead, mainImage }) => !(subhead && !mainImage),
     },
     {
       text: RULE_TEXT.MAIN_IMAGE_ALT,
@@ -241,6 +237,10 @@ const CATEGORY_RULES = {
         if (pageType !== PAGE_TYPE.CATEGORY || !subcategories) return true;
         return !subcategories.some(item => item.pageType !== PAGE_TYPE.ARTICLE);
       },
+    },
+    {
+      text: RULE_TEXT.SUBHEAD,
+      validator: ({ subhead }) => !!subhead,
     },
   ],
   title: 'category',
