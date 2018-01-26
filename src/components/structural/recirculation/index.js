@@ -137,7 +137,7 @@ class Recirculation extends Component {
                 {`0${this.getItemNumber(item)}`}
               </span>
               <span aria-hidden="true">
-                {getArticleTitle(item.title, this.getItemNumber(item), translation)}
+                {getArticleTitle(item.title, this.getItemNumber(item) - 1, translation)}
               </span>
             </span>
           </span>

@@ -59,6 +59,7 @@
 
   @media (--bp-lg) {
     font-size: 120px;
+    line-height: 120px;
   }
 }
 

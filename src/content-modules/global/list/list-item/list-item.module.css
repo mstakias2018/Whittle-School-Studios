@@ -24,9 +24,6 @@
 
 .description {
   @mixin type-caption;
+  @mixin markdown-support;
   font-weight: 300;
-
-  strong {
-    @mixin font-family font-sans-serif-regular;
-  }
 }

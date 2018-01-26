@@ -52,29 +52,25 @@
 }
 
 .title {
-  @mixin type-quote;
-  color: var(--color-text-dark);
+  @mixin type-h5-italic;
   font-weight: 300;
 
   @media (--bp-sm-only) {
-    @mixin type-h5-italic;
     padding-bottom: 5px;
   }
 
-  @media (--bp-md-only) {
-    @mixin type-h5-italic;
+  @media (--bp-md) {
     padding-right: calc(var(--grid-gutter-md) * 2);
   }
 
-  @media (--bp-lg-lower-only) {
-    font-size: 24px;
-    line-height: 30px;
+  @media (--bp-lg) {
+    padding-right: calc(var(--grid-gutter-lg) * 2);
   }
 
-  @media (--bp-lg) {
+  @media (--bp-xl) {
+    @mixin type-quote;
+    color: var(--color-text-dark);
     font-weight: 300;
-    line-height: 36px;
-    padding-right: calc(var(--grid-gutter-lg) * 2);
   }
 }
 

@@ -16,19 +16,24 @@ const FooterShareIcons = (props, context) => {
         {translation('footer.shareText')}
       </div>
       <div className={styles.icons}>
-        {footerSocialIcons.map(({ label, url, icon }, index) => (
-          <div
-            className={styles.icon}
-            key={index}
-          >
-            <Link to={url}>
-              <img
-                alt={label}
-                src={icon}
-              />
-            </Link>
-          </div>
-        ))}
+        {footerSocialIcons.map(({ label, url, icon }, index) => {
+          if (url) {
+            return (
+              <div
+                className={styles.icon}
+                key={index}
+              >
+                <Link to={url}>
+                  <img
+                    alt={label}
+                    src={icon}
+                  />
+                </Link>
+              </div>
+            );
+          }
+          return null;
+        })}
       </div>
     </div>
   );

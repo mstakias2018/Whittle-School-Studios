@@ -39,13 +39,6 @@ class Submenu extends Component {
     }
   }
 
-  getArticleTitle = (title, index, translation) => {
-    if (index > 0) {
-      return title || translation('header.subMenuTitileFallback.article');
-    }
-    return title || translation('header.subMenuTitileFallback.overview');
-  }
-
   isLastRow = (index, size) => {
     const keys = Object.keys(this.props.navItems);
     keys.unshift('_');
