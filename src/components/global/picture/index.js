@@ -21,7 +21,7 @@ const Picture = ({
         <source
           key={media}
           media={media}
-          srcSet={srcSet || src}
+          srcSet={srcSet && srcSet.length ? srcSet : src}
         />
       ))}
       <img
