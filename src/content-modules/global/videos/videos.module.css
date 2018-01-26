@@ -4,14 +4,10 @@
 
 .wrapper {
   @mixin component-vertical-spacing;
-  padding-top: 30px;
 
   @media (--bp-sm-only) {
     border-top: 1px solid var(--color-light-border);
-  }
-
-  @media (--bp-md) {
-    padding-top: 60px;
+    padding-top: 30px;
   }
 
   @media (--bp-lg) {

@@ -19,7 +19,10 @@ const Hero = ({
   imageSources,
 }) => (
   <div className={styles.wrapper}>
-    <div className={cx(styles.container, CLASSES.COUNTDOWN_COMPONENT_WRAPPER)}>
+    <div className={cx(styles.container, CLASSES.COUNTDOWN_COMPONENT_WRAPPER, {
+      [styles.container_hasVideos]: !!data.videos,
+    })}
+    >
       <InformationEventListing
         {...eventList}
         title={data.eventListTitle}
