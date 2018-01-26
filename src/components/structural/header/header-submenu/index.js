@@ -62,15 +62,6 @@ class Submenu extends Component {
     const { translation } = this.context;
     const { breakpoint } = this.state;
     const visitedPages = cookies.get('visitedPages') || [];
-    const categoryNameFirstLine = categoryTitle.substr(0, categoryTitle.indexOf(' '));
-    const categoryNameSecondLine = categoryTitle.substr(categoryTitle.indexOf(' ') + 1);
-    const categoryTitleWithBreaks = (
-      <span>
-        {categoryNameFirstLine}
-        <br />
-        {categoryNameSecondLine}
-      </span>
-    );
 
     return (
       <div className={styles.submenu}>
@@ -87,7 +78,8 @@ class Submenu extends Component {
             >
               <li className={styles.titleContainer}>
                 <span className={styles.title}>
-                  {breakpoint === BREAKPOINTS_NAME.small ? categoryTitle : categoryTitleWithBreaks}
+                  {categoryTitle}
+                  {breakpoint !== BREAKPOINTS_NAME.small && <span className={styles.emptySpace} />}
                 </span>
               </li>
               {

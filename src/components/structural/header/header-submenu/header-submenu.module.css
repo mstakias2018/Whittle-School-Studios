@@ -44,24 +44,23 @@
 }
 
 .titleContainer {
+  margin-bottom: 0;
+
   @media (--bp-sm-only) {
     @mixin span 2, 4, sm;
     display: flex;
     flex-direction: column;
-    margin-bottom: 0;
     padding-top: 20px;
   }
 
   @media (--bp-md) {
     @mixin span 2, 8, lg;
-    margin-bottom: 41px;
   }
 
   @media (--bp-lg) {
     @mixin span 2, 12, lg;
     flex-grow: 0;
     flex-shrink: 0;
-    margin-bottom: 21px;
   }
 }
 
@@ -375,8 +374,12 @@
 .emptySpace {
   padding-left: 16px;
 
-  @media (--bp-lg) {
-    padding-left: 16px;
+  .titleContainer & {
+    padding-left: 100%;
+
+    @media (--bp-lg-lower-only) {
+      display: none;
+    }
   }
 }
 
