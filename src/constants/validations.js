@@ -170,10 +170,10 @@ exports.CONTENT_PAGE_RULES = {
       validator: ({ modules }) => {
         if (!modules) return true;
 
-        return modules.every(item => item.type === CONTENT_MODULE.VIDEOS
+        return !modules.some(item => item.type === CONTENT_MODULE.VIDEOS
           && Array(3).fill(0)
             .filter((_, index) => item[`video${index + 1}`]
-              && item[`video${index + 1}`].videoEmbedCode).length !== 2);
+              && item[`video${index + 1}`].videoEmbedCode).length === 2);
       },
     },
     {
