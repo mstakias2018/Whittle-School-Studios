@@ -53,10 +53,6 @@
       padding-bottom: 35px;
     }
   }
-
-  :global(.headline):last-child {
-    padding-bottom: 0;
-  }
 }
 
 .subhead {
@@ -85,6 +81,7 @@
 
 .parallaxTitle {
   @mixin span 4, var(--grid-columns-sm), sm;
+  @mixin component-vertical-spacing;
   position: relative;
 
   @media (--bp-md) {
@@ -93,6 +90,15 @@
 
   @media (--bp-lg) {
     @mixin span 8, var(--grid-columns-lg), lg;
+
+    .wrapper_category:not(.wrapper_hasImage) & {
+      padding-bottom: 0;
+    }
+  }
+
+  &.typeCategory_isSingle,
+  &.typeArticle_isSingle {
+    padding-bottom: 0;
   }
 }
 
@@ -140,7 +146,7 @@
     align-items: center;
   }
 
-  h1 {
+  .parallaxTitle {
     padding-bottom: 0;
     padding-top: 0;
   }

@@ -7,8 +7,9 @@ import Picture from '../../global/picture';
 
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { PAGE_TYPE } from '../../../constants/settings';
-
 import styles from './page-head.module.css';
+
+const { CLASSES } = require('./../../../constants/classes');
 
 const propTypes = {
   headline: PropTypes.string.isRequired,
@@ -60,15 +61,17 @@ class PageHead extends Component {
           [styles.wrapper_home]: type === PAGE_TYPE.HOME,
           [styles.wrapper_article]: type === PAGE_TYPE.ARTICLE,
           [styles.wrapper_category]: type === PAGE_TYPE.CATEGORY,
+          [styles.wrapper_hasImage]: imageSources,
         })}
       >
         <div className={styles.pageHead}>
           <div
-            className={styles.parallaxTitle}
+            className={cx(styles.parallaxTitle, CLASSES.HEADLINE, {
+              [styles[`type${type}_isSingle`]]: !subhead && !imageSources,
+            })}
             style={titleStyle}
           >
             <Title
-              isSingle={!subhead && !imageSources}
               text={headline}
               type={type}
             />
