@@ -7,8 +7,18 @@
 }
 
 .wrapper_isOnContentPage {
+  margin-bottom: -20px;
+
   @media (--bp-sm-only) {
     padding-top: 30px;
+  }
+
+  @media (--bp-md) {
+    margin-bottom: -25px;
+  }
+
+  @media (--bp-lg) {
+    margin-bottom: -120px;
   }
 }
 
