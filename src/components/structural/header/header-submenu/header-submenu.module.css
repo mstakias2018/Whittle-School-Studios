@@ -380,6 +380,10 @@
   }
 }
 
+.lastWord {
+  white-space: nowrap;
+}
+
 .arrow {
   bottom: 3px;
   position: absolute;

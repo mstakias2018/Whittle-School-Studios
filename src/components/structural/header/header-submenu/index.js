@@ -106,6 +106,28 @@ class Submenu extends Component {
                   title,
                 }, index) => {
                   const isChecked = visitedPages.includes(id) || (viewedPage && isActive);
+                  let descriptionText;
+
+                  if (description) {
+                    const lastWord = description.split(' ').splice(-1)[0];
+                    const lastIndex = description.lastIndexOf(' ');
+                    const text = lastIndex > 0 && `${description.substring(0, lastIndex)} `;
+
+                    descriptionText = (
+                      <span>
+                        {text}
+                        <span className={styles.lastWord}>
+                          {lastWord}
+                          <span className={styles.emptySpace} />
+                          <img
+                            alt=""
+                            className={styles.arrow}
+                            src={Arrow}
+                          />
+                        </span>
+                      </span>
+                    );
+                  }
 
                   return (
                     <li
@@ -155,13 +177,7 @@ class Submenu extends Component {
                               aria-hidden="true"
                               className={styles.itemDescription}
                             >
-                              {description}
-                              <span className={styles.emptySpace} />
-                              <img
-                                alt=""
-                                className={styles.arrow}
-                                src={Arrow}
-                              />
+                              {descriptionText}
                             </span>
                           )}
                         </Link>
