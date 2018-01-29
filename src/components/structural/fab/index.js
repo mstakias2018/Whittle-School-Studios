@@ -28,7 +28,7 @@ class Fab extends React.Component {
   state = {
     bottomFabBarrier: `.${CLASSES.FOOTER}`,
     clientHeight: 1,
-    elementHeight: 0,
+    elementHeight: 1,
     initiallyDisabled: true,
     rotationOffset: 0,
     secondLGOffset: 0,

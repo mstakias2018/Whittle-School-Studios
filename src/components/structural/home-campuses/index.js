@@ -34,7 +34,7 @@ const propTypes = {
 
 class HomeCampuses extends React.Component {
   state = {
-    clientHeight: 0,
+    clientHeight: 1,
     paralaxEndValue: 0,
     shouldTitleBreakTop: false,
   };
