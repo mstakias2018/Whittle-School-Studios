@@ -3,13 +3,10 @@
 
 .logoContainer {
   @mixin span 2, var(--grid-columns-sm), sm;
-  align-items: center;
-  align-self: stretch;
-  display: flex;
+  position: relative;
 
-  @media (--bp-md-only) {
+  @media (--bp-md) {
     @mixin span 2, var(--grid-columns-md), md;
-    height: 40px;
   }
 
   @media (--bp-lg) {
@@ -18,20 +15,22 @@
 }
 
 .logo {
+  bottom: 3px;
   display: block;
-  width: 89px;
+  height: 30px;
+  position: absolute;
 
   @media (--bp-md) {
-    width: 118px;
+    bottom: 0;
+    height: 40px;
   }
 
   @media (--bp-lg) {
-    width: 106px;
+    height: 36px;
   }
 
   img {
-    margin: 0;
-    vertical-align: middle;
-    width: 100%;
+    height: 100%;
+    width: auto;
   }
 }
