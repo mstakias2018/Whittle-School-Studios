@@ -114,6 +114,8 @@ class Validator extends Component {
 
     return items
       .reduce((pageRuleList, { node }) => {
+        if (node.dummycontentindex) return pageRuleList;
+
         const {
           isAllValid,
           ruleValidations,
@@ -141,27 +143,28 @@ class Validator extends Component {
 
     const { shouldHidePassing } = this.state;
 
-    return contentPages
-      .reduce((pageRuleList, { node }) => {
-        const ruleGroups = [CONTENT_PAGE_RULES, PAGE_TYPE_RULES[node.pageType]];
-        if (node.parentCategory) ruleGroups.push(SUBCATEGORY_RULES);
+    return contentPages.reduce((pageRuleList, { node }) => {
+      if (node.dummycontentindex) return pageRuleList;
 
-        const {
-          isAllValid,
+      const ruleGroups = [CONTENT_PAGE_RULES, PAGE_TYPE_RULES[node.pageType]];
+      if (node.parentCategory) ruleGroups.push(SUBCATEGORY_RULES);
+
+      const {
+        isAllValid,
+        ruleValidations,
+      } = this.getRuleValidations(ruleGroups, shouldHidePassing, node);
+
+      if (!isAllValid || !shouldHidePassing) {
+        pageRuleList.push({
+          isValid: isAllValid,
+          locale: node.locale,
           ruleValidations,
-        } = this.getRuleValidations(ruleGroups, shouldHidePassing, node);
+          slug: node.slug,
+        });
+      }
 
-        if (!isAllValid || !shouldHidePassing) {
-          pageRuleList.push({
-            isValid: isAllValid,
-            locale: node.locale,
-            ruleValidations,
-            slug: node.slug,
-          });
-        }
-
-        return pageRuleList;
-      }, [])
+      return pageRuleList;
+    }, [])
       .sort(doSort);
   };
 
@@ -187,26 +190,25 @@ class Validator extends Component {
             <span>{locale}</span>
           </div>
           <ul className={styles.ruleGroupList}>
-            {ruleValidations
-              .map(({ title, list }, j) => (
-                <li key={j}>
-                  <div className={styles.ruleGroupTitle}>{title}</div>
-                  <ul className={styles.ruleList}>
-                    {list.map(({ text, isValid }, k) => (
-                      <li key={k}>
-                        <strong
-                          className={cx(styles.ruleStatus, {
-                            [styles.ruleStatus_isValid]: isValid,
-                          })}
-                        >
-                          {isValid ? '✓' : '✗'}
-                        </strong>
-                        {text}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
+            {ruleValidations.map(({ title, list }, j) => (
+              <li key={j}>
+                <div className={styles.ruleGroupTitle}>{title}</div>
+                <ul className={styles.ruleList}>
+                  {list.map(({ text, isValid }, k) => (
+                    <li key={k}>
+                      <strong
+                        className={cx(styles.ruleStatus, {
+                          [styles.ruleStatus_isValid]: isValid,
+                        })}
+                      >
+                        {isValid ? '✓' : '✗'}
+                      </strong>
+                      {text}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
           </ul>
         </li>
       ))}
@@ -280,6 +282,9 @@ export const pageQuery = graphql`
     allContentfulHomePage {
       homepage: edges {
         node {
+          dummycontentindex {
+            id
+          }
           headline
           hero {
             videos {
@@ -414,6 +419,9 @@ export const pageQuery = graphql`
     allContentfulContentPage {
       contentPages: edges {
         node {
+          dummycontentindex {
+            id
+          }
           header {
             id: contentful_id
           }
