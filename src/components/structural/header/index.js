@@ -9,12 +9,12 @@ import Locales from './header-locales';
 import WithWindowListener from '../../../hocs/withWindow';
 
 import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES, PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './header.module.css';
 
 const propTypes = {
-  breakpoint: PROP_SHAPES.BREAKPOINT,
+  ...PROP_TYPES.WITH_WINDOW,
   skipComponent: PropTypes.node.isRequired,
   subNavProps: PROP_SHAPES.SUB_NAV_PROPS,
   viewedPage: PropTypes.bool,

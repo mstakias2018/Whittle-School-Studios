@@ -8,7 +8,10 @@ import {
 } from './images';
 import { CONTENT_MODULE } from './contentful';
 import { PAGE_TYPES } from './settings';
-import { BREAKPOINTS_NAME } from './breakpoints';
+import {
+  BREAKPOINTS_NAME,
+  ORIENTATION,
+} from './breakpoints';
 import { SOCIAL_NETWORK } from './social-networks';
 import {
   LANGUAGE,
@@ -193,14 +196,20 @@ const SLIDESHOW_CAROUSEL = PropTypes.shape({
   slides: PropTypes.arrayOf(PropTypes.shape(getInlineImagePropTypes(true))),
 });
 
-const threeUpBreakerPropTypes = {
-  content1: MARKDOWN.isRequired,
-  content2: MARKDOWN.isRequired,
-  content3: MARKDOWN.isRequired,
+const WITH_WINDOW = {
+  breakpoint: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
   dimensions: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,
   }),
+  orientation: PropTypes.oneOf(Object.keys(ORIENTATION)),
+};
+
+const threeUpBreakerPropTypes = {
+  ...WITH_WINDOW,
+  content1: MARKDOWN.isRequired,
+  content2: MARKDOWN.isRequired,
+  content3: MARKDOWN.isRequired,
   title1: PropTypes.string.isRequired,
   title2: PropTypes.string.isRequired,
   title3: PropTypes.string.isRequired,
@@ -384,42 +393,6 @@ const POST_MODULE = PropTypes.shape({
   ...POST,
 });
 
-const PROP_TYPES = {
-  EVENTS_LIST,
-  HERO: {
-    data: PropTypes.shape(HERO),
-    eventList: PropTypes.shape(EVENTS_LIST).isRequired,
-    image: IMAGE_SOURCES,
-  },
-  LIST,
-  LIST_ITEM,
-  MARKDOWN_IMAGE_CONTEXT: {
-    imageSources: PropTypes.arrayOf(IMAGE_SOURCES),
-    insetAssets: PropTypes.arrayOf(PropTypes.shape({
-      alt: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string,
-      videoEmbedCode: PropTypes.string,
-    })),
-  },
-  META_TAG_PROPS,
-  POST,
-  SCHOOLS_INTRO: PropTypes.shape({ SCHOOLS_INTRO }),
-  SUB_NAV: {
-    categoryTitle: PropTypes.string.isRequired,
-    navItems: NAV_ITEM_LIST.isRequired,
-  },
-  THUMBNAIL_LIST_ITEM,
-  VIDEO,
-  WITH_VIDEO: {
-    ...VIDEO,
-    assetWithVideo: PropTypes.node.isRequired,
-    hasPlayButton: PropTypes.bool.isRequired,
-    hasVideo: PropTypes.bool.isRequired,
-  },
-};
-
-exports.PROP_TYPES = PROP_TYPES;
-
 const TEAMS = {
   heroDescription: MARKDOWN,
   heroImageAlt: PropTypes.string,
@@ -472,8 +445,46 @@ const TEAMS_MODULE = PropTypes.shape({
   ...TEAMS,
 });
 
+const PROP_TYPES = {
+  EVENTS_LIST,
+  HERO: {
+    data: PropTypes.shape(HERO),
+    eventList: PropTypes.shape(EVENTS_LIST).isRequired,
+    image: IMAGE_SOURCES,
+  },
+  HERO_VIDEOS,
+  LIST,
+  LIST_ITEM,
+  MARKDOWN_IMAGE_CONTEXT: {
+    imageSources: PropTypes.arrayOf(IMAGE_SOURCES),
+    insetAssets: PropTypes.arrayOf(PropTypes.shape({
+      alt: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string,
+      videoEmbedCode: PropTypes.string,
+    })),
+  },
+  META_TAG_PROPS,
+  POST,
+  SCHOOLS_INTRO: PropTypes.shape({ SCHOOLS_INTRO }),
+  SUB_NAV: {
+    ...WITH_WINDOW,
+    categoryTitle: PropTypes.string.isRequired,
+    navItems: NAV_ITEM_LIST.isRequired,
+  },
+  THUMBNAIL_LIST_ITEM,
+  VIDEO,
+  WITH_VIDEO: {
+    ...VIDEO,
+    assetWithVideo: PropTypes.node.isRequired,
+    hasPlayButton: PropTypes.bool.isRequired,
+    hasVideo: PropTypes.bool.isRequired,
+  },
+  WITH_WINDOW,
+};
+
+exports.PROP_TYPES = PROP_TYPES;
+
 exports.PROP_SHAPES = {
-  BREAKPOINT: PropTypes.oneOf(Object.keys(BREAKPOINTS_NAME)),
   FOOTER_DATA: PropTypes.shape({
     primaryLinks: footerLinkArray,
     utilityLinks: footerLinkArray,
@@ -486,7 +497,6 @@ exports.PROP_SHAPES = {
   })),
   HERO,
   HERO_VIDEO,
-  HERO_VIDEOS,
   HISTORY: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),

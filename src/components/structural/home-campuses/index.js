@@ -24,16 +24,12 @@ const propTypes = {
   architectImageAlt: PropTypes.string,
   architectName: PropTypes.string,
   architectQuote: PROP_SHAPES.MARKDOWN,
-  breakpoint: PROP_SHAPES.BREAKPOINT,
   descriptionText: PROP_SHAPES.MARKDOWN.isRequired,
-  dimensions: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-  }),
   linkTarget: PROP_SHAPES.LINK,
   linkText: PropTypes.string,
   sectionTitle: PropTypes.string.isRequired,
   ...PROP_TYPES.WITH_VIDEO,
+  ...PROP_TYPES.WITH_WINDOW,
 };
 
 class HomeCampuses extends React.Component {

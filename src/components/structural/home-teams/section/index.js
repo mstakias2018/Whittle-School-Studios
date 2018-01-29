@@ -11,11 +11,11 @@ import Link from '../../../global/link';
 import { createContentPageLink } from '../../../../utils/nav';
 
 import { BREAKPOINTS_NAME } from '../../../../constants/breakpoints';
-import { PROP_SHAPES } from '../../../../constants/custom-property-types';
+import { PROP_SHAPES, PROP_TYPES } from '../../../../constants/custom-property-types';
 import { HOME_TEAMS_STATISTIC_TYPE } from '../../../../constants/settings';
 
 const teamSectionPropTypes = {
-  breakpoint: PROP_SHAPES.BREAKPOINT,
+  ...PROP_TYPES.WITH_WINDOW,
   firstBio: PropTypes.bool,
   numOfBiosInFirst: PropTypes.number,
   secondBio: PropTypes.bool,

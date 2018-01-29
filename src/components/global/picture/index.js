@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { adaptSourcesBySize } from '../../../utils/images';
+import WithWindowListener from '../../../hocs/withWindow';
 
 const propTypes = {
   ...PROP_SHAPES.IMAGE_PROP_TYPES,
@@ -11,12 +12,19 @@ const propTypes = {
 };
 
 const Picture = ({
-  alt, className, isAriaHidden, sourcesBySize,
+  alt,
+  className,
+  dimensions,
+  isAriaHidden,
+  sourcesBySize,
 }) => {
   const { sourceList, largestSrc } = adaptSourcesBySize(sourcesBySize);
 
   return (
-    <picture className={className}>
+    <picture
+      className={className}
+      key={dimensions && dimensions.x}
+    >
       {sourceList.map(({ media, srcSet, src }) => (
         <source
           key={media}
@@ -35,4 +43,4 @@ const Picture = ({
 
 Picture.propTypes = propTypes;
 
-export default Picture;
+export default WithWindowListener(Picture);

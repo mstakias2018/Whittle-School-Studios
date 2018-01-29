@@ -4,16 +4,14 @@ import cx from 'classnames';
 
 import Plx from 'react-plx';
 import WithWindowListener from '../../../hocs/withWindow';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './home-section-title.module.css';
 
 const propTypes = {
+  ...PROP_TYPES.WITH_WINDOW,
   color: PropTypes.string,
   containerIsWide: PropTypes.bool,
-  dimensions: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-  }),
   isBreakingTop: PropTypes.bool,
   position: PropTypes.string,
   text: PropTypes.string.isRequired,

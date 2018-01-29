@@ -24,7 +24,7 @@ exports.IMAGE_MQ = {
   [IMAGE_SIZE.MEDIUM]: '(max-width: 872px)',
   [IMAGE_SIZE.MEDIUM_MID]: '(max-width: 1100px)',
   [IMAGE_SIZE.LARGE]: '(max-width: 1280px)',
-  [IMAGE_SIZE.LARGE_MID]: '(min-width: 1280px',
+  [IMAGE_SIZE.LARGE_MID]: '(min-width: 1280px)',
 };
 
 /* IMAGE CONFIG */

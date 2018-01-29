@@ -6,13 +6,13 @@ import VideoItem from './video-item';
 import WithWindowListener from '../../../hocs/withWindow';
 import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
 
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_TYPES } from '../../../constants/custom-property-types';
 
 import styles from './videos.module.css';
 
 const propTypes = {
-  ...PROP_SHAPES.HERO_VIDEOS,
-  breakpoint: PROP_SHAPES.BREAKPOINT,
+  ...PROP_TYPES.WITH_WINDOW,
+  ...PROP_TYPES.HERO_VIDEOS,
   isOnContentPage: PropTypes.bool,
 };
 

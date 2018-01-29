@@ -5,6 +5,7 @@ import cx from 'classnames';
 import detectTouchEvents from 'detect-touch-events';
 
 import WithWindowListener from '../../hocs/withWindow';
+import { PROP_TYPES } from '../../constants/custom-property-types';
 
 import styles from './virtual-grid.module.css';
 
@@ -20,6 +21,7 @@ const maxGridSize = () => {
 let orientationChanges = 0;
 
 const propTypes = {
+  ...PROP_TYPES.WITH_WINDOW,
   orientation: PropTypes.string,
 };
 

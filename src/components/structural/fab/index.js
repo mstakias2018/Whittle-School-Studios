@@ -14,15 +14,11 @@ import { sendAnalyticsEvent } from '../../../utils/global';
 import { BREAKPOINTS_NAME } from '../../../constants/breakpoints';
 import { COMPONENT_BOTTOM_PADDING, FAB_SIZE } from '../../../constants/dimensions';
 import { CLASSES } from '../../../constants/classes';
-import { PROP_SHAPES } from '../../../constants/custom-property-types';
+import { PROP_SHAPES, PROP_TYPES } from '../../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../../constants/images';
 
 const propTypes = {
-  breakpoint: PROP_SHAPES.BREAKPOINT,
-  dimensions: PropTypes.shape({
-    x: PropTypes.number,
-    y: PropTypes.number,
-  }),
+  ...PROP_TYPES.WITH_WINDOW,
   isHomePage: PropTypes.bool,
 };
 
