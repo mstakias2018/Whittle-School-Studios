@@ -19,11 +19,14 @@
   @mixin type-descriptor;
   @mixin font-family font-sans-serif-regular;
   display: block;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .description {
   @mixin type-caption;
   @mixin markdown-support;
-  font-weight: 300;
+
+  strong {
+    @mixin font-family font-sans-serif-light;
+  }
 }
