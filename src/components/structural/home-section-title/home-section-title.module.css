@@ -61,7 +61,7 @@
 }
 
 .right {
-  left: calc(100% - 48px);
+  left: calc(100% - 58px);
 
   @media (--bp-md) {
     left: calc(100% - 70px);
