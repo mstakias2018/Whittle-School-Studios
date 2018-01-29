@@ -115,15 +115,22 @@
 
 .buttonIconWrapper_isPlayButton {
   margin-top: 3px;
+  max-width: 15px;
   width: 15px;
 
   .button_isSmall & {
     margin-top: 2px;
+    max-width: 8px;
     width: 8px;
   }
 
   .wrapper:not(.wrapper_isLoaded) & {
     opacity: 0;
+  }
+
+  img {
+    height: auto;
+    width: 100%;
   }
 }
 
