@@ -16,6 +16,7 @@
   @mixin image-column-width;
   @mixin type-paragraph;
   min-height: 400px;
+  text-align: center;
 
   @media (--bp-md-only) {
     @mixin custom-column 1, var(--grid-columns-md), margin-left;
