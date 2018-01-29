@@ -152,7 +152,7 @@ const createHomePages = (graphql, createPage) =>
           }
 
           if (hero.videos) {
-            const isOnlyOneVideo = !hero.videos.video2VideoEmbedCode && !hero.videos.video3VideoEmbedCode;
+            const isOnlyOneVideo = !hero.videos.video2VideoEmbedCode || !hero.videos.video3VideoEmbedCode;
             const firstVideoImage = isOnlyOneVideo ?
               hero.videos.video1AssetCoverPhotoLarge :
               hero.videos.video1AssetCoverPhoto;

@@ -323,7 +323,7 @@ const createCategoryAndArticlePages = (graphql, createPage) =>
                       ))
                   )));
                 case CONTENT_MODULE.VIDEOS: {
-                  const isOnlyOneVideo = !module.video2VideoEmbedCode && !module.video3VideoEmbedCode;
+                  const isOnlyOneVideo = !module.video2VideoEmbedCode || !module.video3VideoEmbedCode;
                   const firstVideoImage = isOnlyOneVideo ?
                     module.video1AssetCoverPhotoLarge :
                     module.video1AssetCoverPhoto;

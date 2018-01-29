@@ -93,7 +93,7 @@ class Videos extends Component {
         >
           {title && <h2 className={styles.title}>{title}</h2>}
           <div className={cx(styles.videosWrapper, {
-            [styles.videos_onlyOneItem]: videos.length < 2,
+            [styles.videos_onlyOneItem]: videos.length <= 2,
           })}
           >
             <div className={styles.largeVideo}>
@@ -103,7 +103,7 @@ class Videos extends Component {
               />
             </div>
             <div className={styles.smallVideosWrapper}>
-              {videos.length > 1 && videos.map((item, index) => index > 0 && (
+              {videos.length > 2 && videos.map((item, index) => index > 0 && (
                 <div
                   className={styles.smallVideo}
                   key={index}
