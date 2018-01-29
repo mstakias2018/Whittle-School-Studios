@@ -1,10 +1,20 @@
 import { IMAGE_SHAPE } from './images';
 import { LANGUAGE, LANGUAGE_CONTENTFUL_LOCALE } from './regions';
 import { CONTENT_MODULE } from './contentful';
-import { PAGE_TYPE } from './settings';
+import { PAGE_TYPE, HOME_TEAMS_STATISTIC_TYPE } from './settings';
 import { isVimeo, parseInsetContent } from '../utils/strings';
 
 const checkOpenIframe = modules => modules.some(({ type } = module) => type === CONTENT_MODULE.OPENAPPLY_IFRAME);
+const checkTeamsStatistics = (item, type) => Array(2).fill(0).some((_, index) => {
+  if (type !== item[`statistic${index + 1}Type`]) return false;
+  if (item[`statistic${index + 1}Type`] === HOME_TEAMS_STATISTIC_TYPE.RATIO) {
+    return !(item[`statistic${index + 1}Number1`] && item[`statistic${index + 1}Number2`]);
+  }
+  if (item[`statistic${index + 1}Type`] === HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE) {
+    return !(item[`statistic${index + 1}Number1`] && !item[`statistic${index + 1}Number2`]);
+  }
+  return false;
+});
 
 const RULE_TEXT = {
   ARTICLE_SUBCATEGORIES: 'Articles must not have subcategories',
@@ -27,6 +37,10 @@ const RULE_TEXT = {
   SUBHEAD: 'A subhead must exist.',
   TEAMS_BIO_IMAGE: 'Teams module: bios must either all contain an image, or none, per category',
   TEAMS_HERO: 'Teams module: must have a hero component',
+  TEAMS_STATISTICS_PERCENTAGE: 'If a user selects the percentage option from a statistics dropdown,' +
+  ' they must complete only the Number 1 field for that statistic.',
+  TEAMS_STATISTICS_RATIO: 'If a user selects the ratio option from a statistics dropdown,' +
+  ' they must complete both the Number 1 and Number 2 fields for that statistic.',
   VIDEO_ALT_TAGS: 'All videos must have alt tags',
   VIDEOS_COUNT: 'Videos module should display either 1, 3, or no videos. '
     + 'Never display 2 video (the design does not support this).',
@@ -183,24 +197,48 @@ exports.CONTENT_PAGE_RULES = {
     },
     {
       text: RULE_TEXT.TEAMS_BIO_IMAGE,
-      validator: ({ teams }) => {
-        if (!teams) return true;
+      validator: ({ modules }) => {
+        if (!modules) return true;
 
-        const sections = teams.sections || [];
+        return !modules.some((module) => {
+          if (module.type !== CONTENT_MODULE.TEAMS) return false;
+          const sections = module.sections || [];
 
-        return !sections.some((section) => {
-          const foundItems = [];
+          return sections.some((section) => {
+            const foundItems = [];
 
-          Array(6).fill(0).forEach((_, index) => {
-            if (section[`title${index + 1}`]) {
-              const imgExists = !!section[`image${index + 1}`];
-              if (!foundItems.includes(imgExists)) foundItems.push(imgExists);
-            }
+            Array(6).fill(0).forEach((_, index) => {
+              if (section[`title${index + 1}`]) {
+                const imgExists = !!section[`image${index + 1}`];
+                if (!foundItems.includes(imgExists)) foundItems.push(imgExists);
+              }
+            });
+
+            return foundItems.length > 1;
           });
-
-          return foundItems.length > 1;
         });
       }
+    },
+    {
+      text: RULE_TEXT.TEAMS_STATISTICS_RATIO,
+      validator: ({ modules }) => {
+        if (!modules) return true;
+        return !modules.some((module) => {
+          if (module.type !== CONTENT_MODULE.TEAMS) return false;
+          return checkTeamsStatistics(module, HOME_TEAMS_STATISTIC_TYPE.RATIO);
+        });
+      },
+    },
+    {
+      text: RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE,
+      validator: ({ modules }) => {
+        if (!modules) return true;
+
+        return !modules.some((module) => {
+          if (module.type !== CONTENT_MODULE.TEAMS) return false;
+          return checkTeamsStatistics(module, HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE);
+        });
+      },
     },
   ],
   title: 'content page',
@@ -389,6 +427,20 @@ exports.HOMEPAGE_RULES = {
         });
       }
     },
+    {
+      text: RULE_TEXT.TEAMS_STATISTICS_RATIO,
+      validator: ({ teamsModule }) => {
+        if (!teamsModule) return true;
+        return !checkTeamsStatistics(teamsModule, HOME_TEAMS_STATISTIC_TYPE.RATIO);
+      },
+    },
+    {
+      text: RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE,
+      validator: ({ teamsModule }) => {
+        if (!teamsModule) return true;
+        return !checkTeamsStatistics(teamsModule, HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE);
+      },
+    }
   ],
   title: 'Homepage rules',
 };

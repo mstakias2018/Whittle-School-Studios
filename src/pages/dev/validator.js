@@ -360,6 +360,12 @@ export const pageQuery = graphql`
                 id
               }
             }
+            statistic1Type
+            statistic2Type
+            statistic1Number1
+            statistic1Number2
+            statistic2Number1
+            statistic2Number2
             teamsSectionTitle: sectionTitle
           }
           eventList {
@@ -555,6 +561,12 @@ export const pageQuery = graphql`
                   id
                 }
               }
+              statistic1Type
+              statistic2Type
+              statistic1Number1
+              statistic1Number2
+              statistic2Number1
+              statistic2Number2
               teamsSectionTitle: sectionTitle
             }
           }

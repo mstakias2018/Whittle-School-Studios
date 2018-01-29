@@ -5,7 +5,7 @@ import Validator from '../src/pages/dev/validator';
 import { RULE_TEXT } from '../src/constants/validations';
 import { CONTENT_MODULE } from '../src/constants/contentful';
 import { IMAGE_SHAPE } from '../src/constants/images';
-import { PAGE_TYPE } from '../src/constants/settings';
+import { PAGE_TYPE, HOME_TEAMS_STATISTIC_TYPE } from '../src/constants/settings';
 import { LANGUAGE, LANGUAGE_CONTENTFUL_LOCALE } from '../src/constants/regions';
 
 const VIMEO_EMBED_CODE = '<iframe src="player.vimeo.com" allowfullscreen></iframe>';
@@ -458,7 +458,7 @@ describe('Validator', () => {
     describe(RULE_TEXT.TEAMS_BIO_IMAGE, () => {
       test('pass', () => {
         const result = getOutputForContentPage({
-          teams: {
+          modules: [{
             sections: [
               {
                 image1: { id: 'someid1234' },
@@ -474,20 +474,21 @@ describe('Validator', () => {
                 title5: 'title',
                 title6: 'title',
               }
-            ]
-          }
+            ],
+            type: CONTENT_MODULE.TEAMS,
+          }]
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
       test('pass - no sections', () => {
         const result = getOutputForContentPage({
-          teams: {}
+          modules: []
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
       test('fail - missing image', () => {
         const result = getOutputForContentPage({
-          teams: {
+          modules: [{
             sections: [
               {
                 image1: { id: 'someid1234' },
@@ -502,10 +503,118 @@ describe('Validator', () => {
                 title5: 'title',
                 title6: 'title',
               }
-            ]
-          }
+            ],
+            type: CONTENT_MODULE.TEAMS,
+          }]
         });
         expect(result).toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
+      });
+    });
+
+    describe(RULE_TEXT.TEAMS_STATISTICS_RATIO, () => {
+      test('pass', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic1Number1: 1234,
+            statistic1Number2: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+            statistic2Number1: 4321,
+            statistic2Number2: 4321,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
+      });
+      test('pass - just one statistics', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic1Number1: 1234,
+            statistic1Number2: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
+      });
+      test('fail', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic1Number1: 1234,
+            statistic1Number2: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+            statistic2Number2: 4321,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
+      });
+      test('fail - just one', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic2Number1: 1234,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
+      });
+    });
+
+    describe(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE, () => {
+      test('pass', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic1Number1: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            statistic2Number1: 1234,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
+      });
+      test('pass - only one', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic2Number1: 1234,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
+      });
+      test('fail - only one', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
+      });
+      test('fail - double numbers', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic1Number1: 1234,
+            statistic1Number2: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
+      });
+      test('fail', () => {
+        const result = getOutputForContentPage({
+          modules: [{
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            statistic2Number1: 1234,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            type: CONTENT_MODULE.TEAMS,
+          }]
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
     });
   });
@@ -984,6 +1093,105 @@ describe('Validator', () => {
           }
         });
         expect(result).toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
+      });
+    });
+
+    describe(RULE_TEXT.TEAMS_STATISTICS_RATIO, () => {
+      test('pass', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic1Number1: 1234,
+            statistic1Number2: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+            statistic2Number1: 4321,
+            statistic2Number2: 4321,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+          }
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
+      });
+      test('pass - just one', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic1Number1: 1234,
+            statistic1Number2: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+          }
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
+      });
+      test('fail', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic1Number1: 1234,
+            statistic1Number2: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+            statistic2Number2: 4321,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+          }
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
+      });
+      test('fail - just one', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic2Number2: 4321,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
+          }
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
+      });
+    });
+
+    describe(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE, () => {
+      test('pass', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic1Number1: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            statistic2Number1: 1234,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+          }
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
+      });
+      test('pass - only one', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic2Number1: 1234,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+          }
+        });
+        expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
+      });
+      test('fail - only one', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+          }
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
+      });
+      test('fail - double numbers', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic1Number1: 1234,
+            statistic1Number2: 1234,
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            type: CONTENT_MODULE.TEAMS,
+          }
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
+      });
+      test('fail', () => {
+        const result = getOutputForHomepage({
+          teamsModule: {
+            statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+            statistic2Number1: 12344444,
+            statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
+          }
+        });
+        expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
     });
   });
