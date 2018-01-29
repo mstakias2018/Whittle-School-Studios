@@ -211,14 +211,26 @@
 }
 
 .titleInner {
-  @mixin type-h5-italic;
+  @mixin type-section-label;
   @mixin type-h5-link var(--color-background-light-green-gray);
+  color: var(--color-text-dark);
+
+  @media (--bp-sm-only) {
+    font-size: 16px;
+  }
 }
 
 .number {
   @mixin type-h5;
+  font-size: 16px;
+  line-height: 20px;
   margin-right: 12px;
   margin-top: -2px;
+
+  @media (--bp-md) {
+    font-size: 18px;
+    line-height: 24px;
+  }
 
   :global(.wrapper_isChinese) & {
     @mixin font-family font-serif-light, false;
