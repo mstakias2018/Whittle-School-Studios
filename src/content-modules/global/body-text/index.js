@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 
 import Markdown, { ALLOWED_TYPES } from '../../../components/global/markdown';
 import styles from './body-text.module.css';
 import { PROP_SHAPES, PROP_TYPES } from '../../../constants/custom-property-types';
-import { CLASSES } from '../../../constants/classes';
 import { LANGUAGE } from '../../../constants/regions';
 import { parseInsetContent } from '../../../utils/strings';
 
@@ -59,9 +57,8 @@ class BodyText extends Component {
   }
 
   render() {
-    const { isFirstModule: hasDropCap } = this.props;
     return (
-      <div className={cx(styles.componentWrapper, { hasDropCap }, CLASSES.BODY_TEXT)}>
+      <div className={styles.componentWrapper}>
         <div
           className={styles.content}
           ref={(el) => { this.markdownWrapper = el; }}

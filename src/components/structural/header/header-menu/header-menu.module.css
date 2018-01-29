@@ -148,10 +148,10 @@
 
 .menuItemLink {
   &_active {
+    @mixin is-disabled;
     color: var(--color-text-light);
   }
 
   @mixin type-nav;
-  font-size: 14px;
-  line-height: 20px;
+  @mixin type-header-links;
 }

@@ -1,0 +1,38 @@
+@import "../../../assets/styles/includes/mixins.css";
+@import "../../../assets/styles/includes/variables.css";
+
+.arrow {
+  display: inline-block;
+  height: 9px;
+  position: relative;
+  width: 9px;
+
+  &.arrow_isLeft {
+    margin-right: 14px;
+    transform: rotate(180deg);
+  }
+
+  &:not(.arrow_isLeft) {
+    margin-left: 14px;
+  }
+}
+
+.icon {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.icon_isHover {
+  display: none;
+
+  @mixin on-hover {
+    display: block;
+  }
+}
+
+.icon:not(.icon_isHover) {
+  @mixin on-hover {
+    display: none;
+  }
+}

@@ -1,6 +1,8 @@
 @import '../../../assets/styles/includes/breakpoints.css';
 @import '../../../assets/styles/includes/grid.css';
 @import '../../../assets/styles/includes/mixins.css';
+@import '../../../assets/styles/includes/typography.css';
+@import '../../../assets/styles/includes/variables.css';
 
 .postWrapper {
   @mixin component-container;
@@ -40,22 +42,17 @@
   }
 }
 
-.postWrapper {
-  &:not(:last-of-type) {
-    .content {
-      border-bottom: solid 1px var(--color-light-border);
+:global(.module_ContentfulPost) + :global(.module_ContentfulPost) {
+  .contentInner {
+    border-top: solid 1px var(--color-light-border);
+  }
 
-      @media (--bp-sm-only) {
-        padding-bottom: 38px;
-      }
+  .contentInner,
+  .dateContainer {
+    padding-top: var(--component-spacing);
 
-      @media (--bp-md-only) {
-        padding-bottom: 56px;
-      }
-
-      @media (--bp-lg) {
-        padding-bottom: 47px;
-      }
+    @media (--bp-md) {
+      padding-top: var(--component-spacing-md);
     }
   }
 }

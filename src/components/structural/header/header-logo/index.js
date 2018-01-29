@@ -7,9 +7,10 @@ import { PROP_SHAPES } from '../../../../constants/custom-property-types';
 
 import styles from './header-logo.module.css';
 
-const Logo = (props, { globalImages, translation }) => (
+const Logo = (props, { globalImages, isHomePage, translation }) => (
   <div className={styles.logoContainer}>
     <Link
+      aria-disabled={isHomePage}
       className={styles.logo}
       to="/"
     >
@@ -23,6 +24,7 @@ const Logo = (props, { globalImages, translation }) => (
 
 Logo.contextTypes = {
   globalImages: PROP_SHAPES.GLOBAL_IMAGES.isRequired,
+  isHomePage: PropTypes.bool,
   translation: PropTypes.func.isRequired
 };
 

@@ -25,22 +25,24 @@ const Post = ({
         <Date date={date} />
       </div>
       <div className={styles.content}>
-        <h2 className={styles.title}>{title}</h2>
-        {source &&
-          <span className={styles.source}>{source}</span>
-        }
-        <Markdown
-          className={styles.text}
-          source={description.markdown}
-        />
-        {(linkInternal || linkExternal) && (
-          <Link
-            className={styles.readMore}
-            to={parseLink({ external: linkExternal, internal: linkInternal })}
-          >
-            {translation('post.continueReading')}
-          </Link>
-        )}
+        <div className={styles.contentInner}>
+          <h2 className={styles.title}>{title}</h2>
+          {source &&
+            <span className={styles.source}>{source}</span>
+          }
+          <Markdown
+            className={styles.text}
+            source={description.markdown}
+          />
+          {(linkInternal || linkExternal) && (
+            <Link
+              className={styles.readMore}
+              to={parseLink({ external: linkExternal, internal: linkInternal })}
+            >
+              {translation('post.continueReading')}
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   </div>

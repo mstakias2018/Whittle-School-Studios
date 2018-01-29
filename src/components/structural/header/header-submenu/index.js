@@ -11,9 +11,9 @@ import { SUBMENU_BREAK } from '../../../../constants/settings';
 import { BREAKPOINTS_NAME } from '../../../../constants/breakpoints';
 import { getArticleTitle } from '../../../../utils/nav';
 
-import Arrow from '../../../../assets/images/arrow.svg';
 import Checked from '../../../../assets/images/checked.svg';
 import CheckedGray from '../../../../assets/images/checked-gray.svg';
+import Arrow from '../../../global/arrow';
 import Link from '../../../global/link';
 
 import styles from './header-submenu.module.css';
@@ -104,11 +104,7 @@ class Submenu extends Component {
                         <span className={styles.lastWord}>
                           {lastWord}
                           <span className={styles.emptySpace} />
-                          <img
-                            alt=""
-                            className={styles.arrow}
-                            src={Arrow}
-                          />
+                          <Arrow />
                         </span>
                       </span>
                     );
@@ -124,6 +120,7 @@ class Submenu extends Component {
                     >
                       <span className={styles.itemLinkWrapper}>
                         <Link
+                          aria-disabled={isActive}
                           className={styles.itemLink}
                           to={`/${link}`}
                         >
@@ -139,22 +136,14 @@ class Submenu extends Component {
                             <span className={styles.itemNumber}>
                               {isChecked ?
                                 (
-                                  <span className={styles.underline}>
-                                    <img
-                                      alt=""
-                                      src={isActive ? CheckedGray : Checked}
-                                    />
-                                  </span>
-                                ) : <span className={styles.underline}>{`0${index + 1}`}</span>}
-                            </span>
-                            {/* IE Hack for white space underline */}
-                            <span className={styles.placeHolder}>
-                              <span className={styles.underline}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                  <img
+                                    alt=""
+                                    src={isActive ? CheckedGray : Checked}
+                                  />
+                                ) : `0${index + 1}`}
                             </span>
                             <span className={styles.itemTitle}>
-                              <span className={styles.underline}>
-                                {getArticleTitle(title, index, translation)}
-                              </span>
+                              {getArticleTitle(title, index, translation)}
                             </span>
                           </span>
                           {description && (

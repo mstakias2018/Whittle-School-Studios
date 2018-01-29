@@ -2,8 +2,6 @@
 @import './variables.css';
 
 @define-mixin component-container {
-  box-sizing: border-box;
-
   @media (--bp-sm-only) {
     margin: 0 var(--container-margin-sm);
   }
@@ -27,16 +25,16 @@
 }
 
 @define-mixin component-vertical-spacing {
-  padding-bottom: 30px;
+  padding-bottom: var(--component-spacing);
   padding-top: 0;
 
   @media (--bp-md) {
-    padding-bottom: 60px;
+    padding-bottom: var(--component-spacing-md);
   }
 
   :global(.headline)& {
     padding-bottom: 20px;
-    padding-top: 30px;
+    padding-top: var(--component-spacing);
 
     @media (--bp-md) {
       padding-bottom: 35px;
@@ -45,16 +43,16 @@
 
     @media (--bp-lg) {
       padding-bottom: 35px;
-      padding-top: 60px;
+      padding-top: var(--component-spacing-md);
     }
   }
 
   :global(.shareComponent)& {
-    padding-bottom: 30px;
+    padding-bottom: var(--component-spacing);
     padding-top: 20px;
 
     @media (--bp-md) {
-      padding-bottom: 60px;
+      padding-bottom: var(--component-spacing-md);
       padding-top: 40px;
     }
   }
@@ -143,4 +141,17 @@
   .wrapper:not(.wrapper_hasPlayButton) & {
     padding-left: 0;
   }
+}
+
+@define-mixin on-hover {
+  &:hover,
+  a:hover &,
+  button:hover & {
+    @mixin-content;
+  }
+}
+
+@define-mixin is-disabled {
+  cursor: pointer;
+  pointer-events: none;
 }

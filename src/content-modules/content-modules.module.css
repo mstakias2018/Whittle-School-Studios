@@ -1,0 +1,28 @@
+@import '../assets/styles/includes/grid.css';
+@import '../assets/styles/includes/mixins.css';
+@import '../assets/styles/includes/variables.css';
+
+@define-mixin divider {
+  &:before {
+    @mixin component-vertical-spacing;
+    content: '';
+    display: block;
+
+    @media (--bp-md) {
+      @mixin component-container;
+      border-top: 1px solid var(--color-light-border);
+    }
+  }
+}
+
+:global(.module):not(:global(.module_ContentfulTeams)) + :global(.module_ContentfulTeams),
+:global(.module):not(:global(.module_ContentfulThumbnailList)) + :global(.module_ContentfulThumbnailList) {
+  &:not(:first-child) {
+    @mixin divider;
+  }
+}
+
+:global(.module_ContentfulTeams) + :global(.module):not(:global(.module_ContentfulTeams)),
+:global(.module_ContentfulThumbnailList) + :global(.module):not(:global(.module_ContentfulThumbnailList)) {
+  @mixin divider;
+}

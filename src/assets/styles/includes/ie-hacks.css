@@ -1,4 +1,0 @@
-:root {
-  /* Recognize IE */
-  @custom-media --ie-only screen and (-ms-high-contrast: active), (-ms-high-contrast: none);
-}

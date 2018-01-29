@@ -162,10 +162,8 @@ Comment this block when full screen is reanabled*/
   transition: opacity var(--timing-fast) var(--easing-default);
   width: 10px;
 
-  &.arrow_isDisabled {
-    cursor: pointer;
+  &[aria-disabled="true"] {
     opacity: 0.2;
-    pointer-events: none;
   }
 
   &:hover {

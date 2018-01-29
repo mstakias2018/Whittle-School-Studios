@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import BodyText from './global/body-text';
 import Carousel from './global/carousel';
@@ -16,6 +17,8 @@ import Videos from '../content-modules/global/videos';
 
 import { PROP_SHAPES } from '../constants/custom-property-types';
 import { CONTENT_MODULE } from '../constants/contentful';
+
+import './content-modules.module.css';
 
 const MODULE_MAP = {
   [CONTENT_MODULE.BODY_TEXT]: BodyText,
@@ -41,29 +44,59 @@ const propTypes = {
   modules: PROP_SHAPES.MODULES,
 };
 
-const ContentModules = ({ moduleImageData, modules }) =>
-  modules.map(({ __typename: type, ...props }, i) => {
+const ContentModules = ({ moduleImageData, modules }) => {
+  const filteredModules = modules.reduce((acc, { __typename: type, ...props }) => {
     const Component = MODULE_MAP[type];
+
+    if (Component) {
+      acc.push({
+        Component,
+        type,
+        ...props,
+      });
+    }
+
+    return acc;
+  }, []);
+
+  const content = filteredModules.map(({ Component, type, ...props }, i) => {
+    const isFirstModule = i === 0;
+    let inside;
+
     if (type !== CONTENT_MODULE.TEAMS) {
-      return Component && (
+      inside = (
         <Component
           imageSources={moduleImageData && moduleImageData[i]}
-          isFirstModule={i === 0}
+          isFirstModule={isFirstModule}
           isOnContentPage
-          key={i}
           {...props}
         />
       );
+    } else {
+      inside = (
+        <HomeTeams
+          data={props}
+          isOnContentPage
+          pathContext={moduleImageData && moduleImageData[i]}
+        />
+      );
     }
+
     return (
-      <HomeTeams
-        data={props}
-        isOnContentPage
+      <div
+        className={cx('module', `module_${type}`)}
         key={i}
-        pathContext={moduleImageData && moduleImageData[i]}
-      />
+      >
+        {inside}
+      </div>
     );
   });
+
+  // Extra div helps with `:first-child`-type CSS
+  return (
+    <div>{content}</div>
+  );
+};
 
 ContentModules.propTypes = propTypes;
 

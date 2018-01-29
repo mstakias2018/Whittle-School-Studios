@@ -12,6 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   min-width: 320px;
+  text-underline-position: under;
 
   @media (--bp-sm-only) {
     padding: 0 var(--component-wrapper-margin-sm) var(--component-wrapper-margin-sm);

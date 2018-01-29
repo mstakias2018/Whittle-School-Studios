@@ -29,6 +29,10 @@
   border-radius: 50%;
 }
 
+[aria-disabled="true"] {
+  @mixin is-disabled;
+}
+
 /* Visibility */
 
 :global .screenReaderText {

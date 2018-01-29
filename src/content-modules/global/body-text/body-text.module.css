@@ -6,7 +6,7 @@
   @mixin component-container;
   @mixin component-vertical-spacing;
 
-  :global(.bodyTextComponent) + &.componentWrapper {
+  :global(.module_ContentfulBodyText) + :global(.module_ContentfulBodyText) & {
     margin-top: -30px;
 
     @media (--bp-md) {
@@ -23,15 +23,37 @@
   @mixin text-column-width;
 
   p {
-    @mixin type-paragraph;
+    @mixin font-family font-sans-serif-light;
+    @mixin markdown-support;
+    font-size: 18px;
+    line-height: 32px;
+
     margin-bottom: 0;
 
     &:not(:first-child) {
       padding-top: 20px;
     }
 
-    :global(.bodyTextComponent) + :global(.bodyTextComponent) & {
+    :global(.module_ContentfulBodyText) + :global(.module_ContentfulBodyText) & {
       padding-top: 20px;
+    }
+
+    :global(.wrapper):not(:global(.wrapper_isChinese)) :global(.module):first-child &:first-child:first-letter {
+      @mixin font-family font-serif-light-italic;
+      color: var(--color-text-dark);
+      float: left;
+      font-size: 86px;
+      line-height: 52px;
+      margin-right: 9px;
+      padding-right: 15px;
+      padding-top: 20px;
+
+      /* TODO - Why are these needed to override the above? */
+      @media (--bp-md) {
+        font-size: 100px !important;
+        line-height: 72px !important;
+        padding-top: 15px !important;
+      }
     }
   }
 }

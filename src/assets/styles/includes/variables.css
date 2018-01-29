@@ -113,6 +113,9 @@
 
   --play-button-width-small: 24px;
   --play-button-width-small-md: 35px;
+
+  --component-spacing: 30px;
+  --component-spacing-md: 60px;
 }
 
 :root {

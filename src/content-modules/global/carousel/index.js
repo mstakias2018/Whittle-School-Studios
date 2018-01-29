@@ -174,8 +174,7 @@ class Carousel extends Component {
         className={cx(
           CLASSES.LEFT_ARROW,
           styles.arrow,
-          styles.arrowLeft,
-          { [styles.arrow_isDisabled]: this.isPrevButtonDisabled() }
+          styles.arrowLeft
         )}
         onClick={this.onClickLeft}
         onKeyDown={this.handleKey}

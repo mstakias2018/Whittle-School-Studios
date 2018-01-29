@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import { CookiesProvider } from 'react-cookie';
 
@@ -27,7 +27,7 @@ const propTypes = {
   }).isRequired,
 };
 
-class ContentPageTemplate extends React.Component {
+class ContentPageTemplate extends Component {
   state = {
     lastElementBottom: 0,
     viewed: false,

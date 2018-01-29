@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import Arrow from '../../global/arrow';
 import Link from '../../global/link';
 
 import styles from './recirculation.module.css';
-
-import arrow from '../../../assets/images/arrow.svg';
-import arrowOrange from '../../../assets/images/arrow-orange.svg';
 
 import { PROP_SHAPES } from '../../../constants/custom-property-types';
 import { NAV_DIRECTIONS } from '../../../constants/settings';
@@ -98,16 +96,7 @@ class Recirculation extends Component {
                 aria-hidden="true"
                 className={styles.directionLabel}
               >
-                <img
-                  alt=""
-                  className={cx(styles.arrow, styles.arrow_left)}
-                  src={arrow}
-                />
-                <img
-                  alt=""
-                  className={cx(styles.arrow, styles.arrow_left, styles.arrow_hover)}
-                  src={arrowOrange}
-                />
+                <Arrow isLeft />
                 {translation && translation('recirculation.previous')}
               </span>
             )}
@@ -117,27 +106,23 @@ class Recirculation extends Component {
                 className={styles.directionLabel}
               >
                 {translation && translation('recirculation.next')}
-                <img
-                  alt=""
-                  className={cx(styles.arrow, styles.arrow_right)}
-                  src={arrow}
-                />
-                <img
-                  alt=""
-                  className={cx(styles.arrow, styles.arrow_right, styles.arrow_hover)}
-                  src={arrowOrange}
-                />
+                <Arrow />
               </span>
             )}
-            <span className={styles.title}>
+            <span className={styles.titleWrapper}>
               <span
                 aria-hidden="true"
                 className={styles.number}
               >
                 {`0${this.getItemNumber(item)}`}
               </span>
-              <span aria-hidden="true">
-                {getArticleTitle(item.title, this.getItemNumber(item) - 1, translation)}
+              <span
+                aria-hidden="true"
+                className={styles.title}
+              >
+                <span className={styles.titleInner}>
+                  {getArticleTitle(item.title, this.getItemNumber(item) - 1, translation)}
+                </span>
               </span>
             </span>
           </span>

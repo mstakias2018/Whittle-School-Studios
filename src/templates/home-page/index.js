@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 
 import PageHead from '../../components/structural/page-head';
@@ -21,90 +21,102 @@ const propTypes = {
     imageDataByType: PROP_SHAPES.IMAGE_DATA_BY_TYPE.isRequired,
   }),
 };
+class HomePageTemplate extends Component {
+  getChildContext() {
+    return {
+      isHomePage: true,
+    };
+  }
 
-const ContentPageTemplate = ({
-  data: { homePageData },
-  pathContext,
-}) => {
-  const {
-    campusModule,
-    headline,
-    hero,
-    eventList,
-    seoMetaDescription,
-    seoMetaKeywords,
-    seoMetaTitle,
-    teamsModule,
-  } = homePageData;
+  render() {
+    const {
+      data: { homePageData },
+      pathContext,
+    } = this.props;
 
-  const metaDescription = (seoMetaDescription && seoMetaDescription.content) || (hero && hero.title);
-  const metaKeywords = seoMetaKeywords && seoMetaKeywords.content;
-  const metaTitle = seoMetaTitle || removeMarkdown(headline) || (hero && hero.title);
-  const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
-  const mainHeroImage = heroImages && heroImages.image;
+    const {
+      campusModule,
+      headline,
+      hero,
+      eventList,
+      seoMetaDescription,
+      seoMetaKeywords,
+      seoMetaTitle,
+      teamsModule,
+    } = homePageData;
 
-  const metaProps = {
-    description: metaDescription,
-    imageSources: mainHeroImage,
-    keywords: metaKeywords,
-    title: metaTitle,
-    type: PAGE_TYPE.HOME,
-  };
+    const metaDescription = (seoMetaDescription && seoMetaDescription.content) || (hero && hero.title);
+    const metaKeywords = seoMetaKeywords && seoMetaKeywords.content;
+    const metaTitle = seoMetaTitle || removeMarkdown(headline) || (hero && hero.title);
+    const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
+    const mainHeroImage = heroImages && heroImages.image;
 
-  // eventList and campusModule are required, but we check for their existence
-  // to avoid breaking the site on new deploysto production
+    const metaProps = {
+      description: metaDescription,
+      imageSources: mainHeroImage,
+      keywords: metaKeywords,
+      title: metaTitle,
+      type: PAGE_TYPE.HOME,
+    };
 
-  // after these modules are filled in on US - Prod and China - Prod,
-  // these checks can be removed
-  return (
-    <PageWrapper
-      isHomePage
-      metaProps={metaProps}
-    >
-      <PageHead
-        headline={headline}
-        type={PAGE_TYPE.HOME}
-      />
-      <Hero
-        data={hero}
-        eventList={eventList}
-        image={mainHeroImage}
-        imageSources={heroImages && [
-          heroImages.video1AssetCoverPhoto,
-          heroImages.video2AssetCoverPhoto,
-          heroImages.video3AssetCoverPhoto,
-        ]}
-      />
-      {eventList && (
-        <PIC
-          cityName={eventList.cityName}
-          description={eventList.introText.markdown}
+    // eventList and campusModule are required, but we check for their existence
+    // to avoid breaking the site on new deploysto production
+
+    // after these modules are filled in on US - Prod and China - Prod,
+    // these checks can be removed
+    return (
+      <PageWrapper
+        isHomePage
+        metaProps={metaProps}
+      >
+        <PageHead
+          headline={headline}
+          type={PAGE_TYPE.HOME}
+        />
+        <Hero
+          data={hero}
           eventList={eventList}
-          sectionTitle={eventList.sectionTitle}
+          image={mainHeroImage}
+          imageSources={heroImages && [
+            heroImages.video1AssetCoverPhoto,
+            heroImages.video2AssetCoverPhoto,
+            heroImages.video3AssetCoverPhoto,
+          ]}
         />
-      )}
-      {campusModule && (
-        <HomeCampuses
-          {...campusModule}
-          architectImage={pathContext.imageDataByType &&
-            pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage}
-          imageSources={pathContext.imageDataByType &&
-            pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image}
-        />
-      )}
-      {teamsModule && (
-        <HomeTeams
-          data={teamsModule}
-          pathContext={pathContext}
-        />
-      )}
-    </PageWrapper>
-  );
+        {eventList && (
+          <PIC
+            cityName={eventList.cityName}
+            description={eventList.introText.markdown}
+            eventList={eventList}
+            sectionTitle={eventList.sectionTitle}
+          />
+        )}
+        {campusModule && (
+          <HomeCampuses
+            {...campusModule}
+            architectImage={pathContext.imageDataByType &&
+              pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].architectImage}
+            imageSources={pathContext.imageDataByType &&
+              pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_CAMPUSES].image}
+          />
+        )}
+        {teamsModule && (
+          <HomeTeams
+            data={teamsModule}
+            pathContext={pathContext}
+          />
+        )}
+      </PageWrapper>
+    );
+  }
+}
+
+HomePageTemplate.propTypes = propTypes;
+HomePageTemplate.childContextTypes = {
+  isHomePage: PropTypes.bool.isRequired,
 };
 
-ContentPageTemplate.propTypes = propTypes;
-
-export default ContentPageTemplate;
+export default HomePageTemplate;
 
 export const pageQuery = graphql`
   query homePageQuery($id: String!, $locale: String!) {

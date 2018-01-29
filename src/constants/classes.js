@@ -1,5 +1,4 @@
 exports.CLASSES = {
-  BODY_TEXT: 'bodyTextComponent',
   CONTAINER: 'container',
   COUNTDOWN_COMPONENT_WRAPPER: 'countdownComponentWrapper',
   FOOTER: 'footer',
