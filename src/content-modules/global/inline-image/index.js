@@ -22,26 +22,23 @@ const InlineImage = ({
   caption,
   hasPlayButton,
   shape = IMAGE_SHAPE.RECTANGLE,
-}) => {
-  const captionClasses = cx(styles.caption, {
-    [styles.caption_hasPlayButton]: hasPlayButton,
-  });
-
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.componentWrapper}>
-        <div className={cx(styles.image, styles[`image_is${shape}`])}>
-          {assetWithVideo}
-        </div>
-        {caption && (
-          <div className={captionClasses}>
-            {caption}
-          </div>
-        )}
+}) => (
+  <div className={cx(styles.wrapper, {
+    [styles.wrapper_hasPlayButton]: hasPlayButton,
+  })}
+  >
+    <div className={styles.componentWrapper}>
+      <div className={cx(styles.image, styles[`image_is${shape}`])}>
+        {assetWithVideo}
       </div>
+      {caption && (
+        <div className={styles.caption}>
+          {caption}
+        </div>
+      )}
     </div>
-  );
-};
+  </div>
+);
 
 InlineImage.propTypes = propTypes;
 

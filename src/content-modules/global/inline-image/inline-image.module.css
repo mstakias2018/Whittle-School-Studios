@@ -44,17 +44,23 @@
   }
 }
 
-.caption_hasPlayButton {
+.wrapper_hasPlayButton {
   @media (--bp-sm-only) {
-    left: 17px;
-    top: 25px;
+    margin-bottom: 30px;
   }
 
-  @media (--bp-md-only) {
-    left: calc(var(--play-button-width-md) + 25px);
-  }
+  .caption {
+    @media (--bp-sm-only) {
+      left: 17px;
+      top: 25px;
+    }
 
-  @media (--bp-lg-lower-only) {
-    left: 30px;
+    @media (--bp-md-only) {
+      left: calc(var(--play-button-width-md) + 25px);
+    }
+
+    @media (--bp-lg-lower-only) {
+      left: 30px;
+    }
   }
 }
