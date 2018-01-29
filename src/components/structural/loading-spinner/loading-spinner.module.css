@@ -14,6 +14,7 @@
   animation: loading 1.5s linear infinite;
 
   .loadingWrapper & {
+    max-width: 60px;
     width: 100%;
 
     &.loadingSpinner_isSmall {
