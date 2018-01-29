@@ -108,10 +108,12 @@ class Carousel extends Component {
   }
 
   changeSlide = (direction) => {
-    this.setState({
-      currentSlide: this.gallery.getCurrentIndex() + direction,
-    });
-    this.gallery.slideToIndex(this.gallery.getCurrentIndex() + direction);
+    if (!this.state.fading) {
+      this.setState({
+        currentSlide: this.gallery.getCurrentIndex() + direction,
+      });
+      this.gallery.slideToIndex(this.gallery.getCurrentIndex() + direction);
+    }
   }
 
   handleARIA = () => {
@@ -229,6 +231,7 @@ class Carousel extends Component {
               showNav={false}
               showPlayButton={false}
               showThumbnails={false}
+              slideDuration={400}
               useBrowserFullscreen={false}
             />
             {/* Full screen mode is temporarily disabled. */}
