@@ -38,18 +38,19 @@ const WithVideo = (WrappedComponent, options = {}) => {
       }
     }
 
+    // When user clicks one of our UI elements to play the video
+    onUIPlay = () => {
+      this.player.play();
+      this.toggleVideoState(true);
+    }
+
     setVideoState({ videoEmbedCode } = this.props) {
       this.setState(parseVideoEmbedCode(videoEmbedCode));
     }
 
-    componentWilReceiveProps(props) {
-      this.setVideoState(props);
-    }
-
-    toggleVideo = () =>
-      (this.state.isPlaying ? this.player.pause() : this.player.play());
-
     toggleVideoState = (isPlaying) => {
+      if (this.state.isPlaying === isPlaying) return;
+
       if (
         isPlaying && (
           (options.isSmall || this.props.isSmall) ||
@@ -61,6 +62,10 @@ const WithVideo = (WrappedComponent, options = {}) => {
         hasPlayed: this.state.hasPlayed || isPlaying,
         isPlaying,
       });
+    }
+
+    componentWilReceiveProps(props) {
+      this.setVideoState(props);
     }
 
     // Adapted from https://github.com/vimeo/player.js/issues/52#issuecomment-337246627
@@ -160,7 +165,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
                     <button
                       aria-hidden="true"
                       className={styles.buttonOverCoverPhoto}
-                      onClick={this.toggleVideo}
+                      onClick={this.onUIPlay}
                       tabIndex="-1"
                     />
                   )}
@@ -170,7 +175,7 @@ const WithVideo = (WrappedComponent, options = {}) => {
                       [styles.button_isSmall]: options.isSmall || this.props.isSmall,
                     })}
                     disabled={isLoadingVimeo}
-                    onClick={isLoadingVimeo ? undefined : this.toggleVideo}
+                    onClick={isLoadingVimeo ? undefined : this.onUIPlay}
                   >
                     <span className={styles.buttonInner}>
                       <span className={cx(styles.buttonIconWrapper, styles.buttonIconWrapper_isPlayButton)}>
