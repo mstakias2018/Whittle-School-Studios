@@ -333,5 +333,7 @@
 }
 
 .lastWord {
-  white-space: nowrap;
+  :global(.wrapper:not(.wrapper_isChinese)) & {
+    white-space: nowrap;
+  }
 }
