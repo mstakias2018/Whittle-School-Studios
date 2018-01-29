@@ -212,8 +212,11 @@
 
 .titleInner {
   @mixin type-section-label;
-  @mixin type-h5-link var(--color-background-light-green-gray);
   color: var(--color-text-dark);
+
+  @mixin on-hover {
+    text-decoration: underline;
+  }
 
   @media (--bp-sm-only) {
     font-size: 16px;

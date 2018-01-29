@@ -127,7 +127,7 @@
 
 .linkTitleText {
   @mixin video-item-title-link;
-  @mixin type-h5-link;
+  @mixin type-h5-link var(--color-background-light-gray);
   display: none;
 
   @media (--bp-lg-lower-only) {
