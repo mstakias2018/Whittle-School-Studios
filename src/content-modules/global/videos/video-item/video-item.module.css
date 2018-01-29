@@ -2,6 +2,17 @@
 @import '../../../../assets/styles/includes/mixins.css';
 @import '../../../../assets/styles/includes/typography.css';
 
+@define-mixin video-item-title-link {
+  @mixin type-h5;
+
+  @media (--bp-lg) {
+    .wrapper_isSmall & {
+      font-size: 18px;
+      line-height: 20px;
+    }
+  }
+}
+
 .wrapper {
   margin: 0;
   position: relative;
@@ -80,17 +91,16 @@
 }
 
 .title {
-  @mixin type-h5;
+  @mixin video-item-title-link;
   margin-bottom: 20px;
 
   @media (--bp-md) {
     margin-bottom: 10px;
   }
 
-  @media (--bp-lg) {
-    .wrapper_isSmall & {
-      font-size: 18px;
-      line-height: 20px;
+  .titleWrapper_hasLink & {
+    @media (--bp-lg-lower-only) {
+      display: none;
     }
   }
 }
@@ -98,4 +108,29 @@
 .link {
   @mixin type-link;
   @mixin type-link-default-size;
+
+  .titleWrapper_hasLink & {
+    @media (--bp-lg-lower-only) {
+      &:hover {
+        text-decoration: none;
+        text-decoration-color: transparent;
+      }
+    }
+  }
+}
+
+.defaultLinkText {
+  @media (--bp-lg-lower-only) {
+    display: none;
+  }
+}
+
+.linkTitleText {
+  @mixin video-item-title-link;
+  @mixin type-h5-link;
+  display: none;
+
+  @media (--bp-lg-lower-only) {
+    display: inline;
+  }
 }

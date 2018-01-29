@@ -51,6 +51,7 @@ class VideoItem extends Component {
       title,
     } = this.props;
     const { translation } = this.context;
+    const hasLink = link && (link.linkDestinationInternal || link.linkDestinationExternal);
 
     return (
       <div className={cx(styles.wrapper, {
@@ -65,16 +66,20 @@ class VideoItem extends Component {
           ref={(el) => { this.contentWrapper = el; }}
         >
           <div className={styles.content}>
-            <div className={styles.titleWrapper}>
+            <div className={cx(styles.titleWrapper, {
+              [styles.titleWrapper_hasLink]: hasLink,
+            })}
+            >
               <h3 className={styles.title}>
                 {title}
               </h3>
-              {link && (link.linkDestinationInternal || link.linkDestinationExternal) && (
+              {hasLink && (
                 <Link
                   className={styles.link}
                   to={parseLink({ external: link.linkDestinationExternal, internal: link.linkDestinationInternal })}
                 >
-                  {translation('general.learnMore')}
+                  <h3 className={styles.linkTitleText}>{title}</h3>
+                  <span className={styles.defaultLinkText}>{translation('general.learnMore')}</span>
                 </Link>
               )}
             </div>
