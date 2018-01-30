@@ -55,7 +55,6 @@
   height: var(--play-button-width);
   left: 14px;
   position: absolute;
-  transition: opacity var(--timing-fast) var(--easing-default);
   width: var(--play-button-width);
   z-index: 20;
 
@@ -82,7 +81,7 @@
   }
 
   .wrapper:not(.wrapper_hasPlayButton) & {
-    opacity: 0;
+    visibility: hidden;
   }
 }
 
