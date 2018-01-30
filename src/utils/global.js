@@ -46,13 +46,13 @@ exports.sendAnalyticsEvent = (
   eventValue // optional
 ) => window && window.ga('send', 'event', eventCategory, eventAction, eventLabel, eventValue);
 
-exports.sortEventDates = (arrayToSort, numOfItems) => {
+exports.sortEventDates = (object, numOfItems) => {
   const sortedArray = [];
 
   [...Array(5)].fill(0).forEach((_, index) => {
-    if (arrayToSort[`event${index + 1}Date`]) {
+    if (object[`event${index + 1}Date`]) {
       sortedArray.push({
-        date: arrayToSort[`event${index + 1}Date`],
+        date: object[`event${index + 1}Date`],
         number: index + 1,
       });
     }

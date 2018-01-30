@@ -71,6 +71,8 @@ const calcDimensionsForBP = (bp, colRatio, heightRatio, widthRatio = 1) => {
   };
 };
 
+exports.calcDimensionsForBP = calcDimensionsForBP;
+
 /*
   Turn this:
   {
@@ -91,7 +93,7 @@ const calcDimensionsForBP = (bp, colRatio, heightRatio, widthRatio = 1) => {
   }
 }
 */
-module.exports = imageConfig =>
+exports.calcDimensions = imageConfig =>
   Object.keys(imageConfig).reduce((newConf, imageSubtype) => {
     const subtypeConfig = imageConfig[imageSubtype];
     const bps = Object.keys(imageConfig[imageSubtype]);

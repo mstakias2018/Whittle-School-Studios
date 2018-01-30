@@ -2,18 +2,13 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
+    "jest/globals": true,
     "es6": true
   },
   "extends": "airbnb",
+  "plugins": ["jest"],
   "globals": {
-    "describe": true,
-    "env": true,
-    "expect": true,
     "graphql": true,
-    "it": true,
-    "test": true,
-    "translation": true,
-    "SERVER_RENDER": true
   },
   "rules": {
     "sort-keys": "error",

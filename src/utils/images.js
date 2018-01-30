@@ -3,7 +3,8 @@ const { IMAGE_SIZE, IMAGE_MQ } = require('../constants/images');
 exports.adaptSourcesBySize = (sourcesBySize) => {
   // We use the IMAGE_SIZE keys to ensure breakpoints
   // are in the correct order
-  const sourceList = Object.values(IMAGE_SIZE).reduce((acc, breakpoint) => {
+  const sourceList = Object.keys(IMAGE_SIZE).reduce((acc, key) => {
+    const breakpoint = IMAGE_SIZE[key];
     const sourceInfo = sourcesBySize[breakpoint];
     if (sourceInfo) {
       acc.push({
@@ -46,6 +47,7 @@ exports.getLocaleIdFromImgUrl = (url) => {
 const cleanImageSources = imageSources =>
   (imageSources && Object.keys(imageSources).length ? imageSources : undefined);
 
+// Replace empty objects we usedto prevent a weakmap error with undefined
 exports.cleanImageData = imageData =>
   imageData.map(data =>
     (Array.isArray(data) ? data.map(cleanImageSources) : cleanImageSources(data)));

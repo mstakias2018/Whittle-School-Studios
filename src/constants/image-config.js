@@ -1,6 +1,6 @@
 const { IMAGE_SUBTYPE } = require('../constants/images');
 const { BREAKPOINTS_NAME } = require('../constants/breakpoints');
-const calcDimensions = require('../utils/image-config');
+const { calcDimensions } = require('../utils/calc-image-dimensions');
 
 const RATIO = {
   RECT: 9 / 16,

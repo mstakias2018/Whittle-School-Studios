@@ -426,15 +426,15 @@ describe('getUrlData', () => {
 
 describe('getArticleTitle', () => {
   test('category with title', () => {
-    expect(getArticleTitle('category title', 0, translation)).toBe('category title');
+    expect(getArticleTitle('category title', 0, window.translation)).toBe('category title');
   });
   test('category without title', () => {
-    expect(getArticleTitle(undefined, 0, translation)).toBe('header.subMenuTitileFallback.overview');
+    expect(getArticleTitle(undefined, 0, window.translation)).toBe('header.subMenuTitileFallback.overview');
   });
   test('article with title', () => {
-    expect(getArticleTitle('article title', 3, translation)).toBe('article title');
+    expect(getArticleTitle('article title', 3, window.translation)).toBe('article title');
   });
   test('article without title', () => {
-    expect(getArticleTitle(undefined, 3, translation)).toBe('header.subMenuTitileFallback.article');
+    expect(getArticleTitle(undefined, 3, window.translation)).toBe('header.subMenuTitileFallback.article');
   });
 });
