@@ -70,25 +70,15 @@ const WithVideo = (WrappedComponent, options = {}) => {
 
     // Adapted from https://github.com/vimeo/player.js/issues/52#issuecomment-337246627
     toggleFullscreen = () => {
-      // Check for fullscreen support
-      if (
-        document.fullscreenElement ||
-        document.mozFullScreenElement ||
-        document.webkitFullscreenElement ||
-        document.msFullscreenElement
-      ) {
-        // If there's currently an element fullscreen, exit fullscreen
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        }
-        // Otherwise, enter fullscreen
-      } else if (this.iframe.requestFullscreen) {
+      const hasFullScreenElement = document.fullscreenElement
+        || document.mozFullScreenElement
+        || document.webkitFullscreenElement
+        || document.msFullscreenElement;
+
+      // This means the browser sorted it out on its own - this happens on Android
+      if (hasFullScreenElement) return;
+
+      if (this.iframe.requestFullscreen) {
         this.iframe.requestFullscreen();
       } else if (this.iframe.mozRequestFullScreen) {
         this.iframe.mozRequestFullScreen();
