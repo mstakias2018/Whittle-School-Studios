@@ -2,7 +2,7 @@
 
 ## Contentful API
 
-Contentful provides a rich [image API](https://www.contentful.com/developers/docs/references/images-api/) that will crop an image and give us an srcSet for all available resolutions up to 3x.
+Contentful provides a rich [image API](https://www.contentful.com/developers/docs/references/images-api/). Gatsby exposes and enhances this API so that we can crop an image and retrieve an srcSet for all available resolutions up to 3x.
 
 Example:
 
@@ -42,13 +42,11 @@ In this case we only received up to 2x resolution because of the size of the ass
 
 ## Downloading assets
 
-Most people reference images directly on the Contentful CDN, but we need to download our images because it's unlikely the Contentful CDN will be allowed in China.
+Most people reference images directly on the Contentful CDN, but we may need to download our images because it's unlikely the Contentful CDN will be allowed in China. More on that at https://paper.dropbox.com/doc/09-Contentful-Assets-AwgceRjLKspqcKSNvFNya.
 
 ### Building the query
 
-As we build each page, we execute a more advanced version of the above query. Our query includes the expected dimensions for our three main breakpoints (`SMALL`, `MEDIUM`, and `LARGE`), plus three interim breakpoints (`SMALL_MID`, `MEDIUM_MID`, and `LARGE_MID`). This is to account for changing image sizes within a breakpoint. For example, an image may need to be 270px at a 320px viewport, but at the upper end of the small breakpoint, it would need to be significantly larger - about 500px.
-
-Certain image types with less diverse sizes can use fewer breakpoints. These settings are defined for each image type in our `constants/image-config.js` file.
+As we build each page, we execute a more advanced version of the above query. Our query includes the expected dimensions for our three main breakpoints (`SMALL`, `MEDIUM`, and `LARGE`), plus three interim breakpoints (`SMALL_MID`, `MEDIUM_MID`, and `LARGE_MID`). This is to account for changing image sizes within a breakpoint. For example, an image may need to be 270px at a 320px viewport, but at the upper end of the small breakpoint, it would need to be significantly larger - about 500px. Settings are defined for each image type in our `constants/image-config.js` file.
 
 We define image sizes in terms of ratios and columns, then use our grid measurements to calculate dimensions.
 
@@ -79,13 +77,9 @@ We define image sizes in terms of ratios and columns, then use our grid measurem
 };
 ```
 
-### Image types and subtypes
-
-Most images have both types and subtypes. For example, the `INLINE` type has `INLINE_SQ` and `INLINE_RT` subtypes. Each `INLINE` image has a `shape` property, which tells us whether the editor has set a particular image to be a `Square` or `Rectangle`.
-
-When we make our query, we don't know the value of `shape`, so we request asset info for both `INLINE_SQ` and `INLINE_RT`. We use the value of `shape` to only download the needed assets. (We follow a similar pattern for `MAIN` images.)
-
 ### Saving locally
+
+Note: This feature is currently disabled. See Dropbox Paper for more information.
 
 We save the images to our `static/` folder, whose contents will be copied into `public/` during the build process. This functionality is disabled in development mode to save time.
 
@@ -137,3 +131,19 @@ For each ContentPage, we create an `imageDataByType` map that will look like thi
     ...
   }
 ```
+
+### Image types and subtypes
+
+Image types to not affect configuration but help us organize images in the `imageDataByType` object. For example, the `imageDataByType` object for a content page might be:
+
+```
+  {
+    [IMAGE_TYPE.MAIN]: { /* image info for the main image */ },
+    [IMAGE_TYPE.MODULES]: [
+      { /* image info for the first page module */ },
+      { /* image info for the second page module */ },
+    ]
+  }
+```
+
+Image subtypes correspond to specific size/ratio configurations in `constants/image-config.js`.

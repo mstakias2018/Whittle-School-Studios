@@ -12,15 +12,18 @@ const {
   getIdFromImgUrl,
   getLocaleIdFromImgUrl,
 } = require('../src/utils/images');
+// const { REGION } = require('../src/constants/regions');
 
 const STATIC_IMAGE_PATH = './static/images/';
 
 const formatPathForBrowser = path => path.replace('./static', '');
 
-// TODO We've temporarily disabled image downloading because of ENOSPC errors
-//      Need to find a permanent solutio and remove
-// Only download images on Netlify - otherwise it's too slow
-const shouldSkipDownloadingImages = true || !process.env.BRANCH;
+// Only download images on Netlify on the China site
+// const shouldSkipDownloadingImages = !(process.env.GATSBY_REGION === REGION.CHINA && process.env.BRANCH);
+
+// TODO We've temporarily disabled image downloading because of ENOSPC errors.
+//      See https://paper.dropbox.com/doc/09-Contentful-Assets-AwgceRjLKspqcKSNvFNya.
+const shouldSkipDownloadingImages = true;
 
 exports.resetImageDir = () => {
   if (fs.existsSync(STATIC_IMAGE_PATH)) {
