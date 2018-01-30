@@ -69,7 +69,7 @@ exports.CONTENT_PAGE_RULES = {
       validator: ({ modules }) => {
         if (!modules) return true;
         return !(checkOpenIframe(modules) && modules.length !== 1);
-      }
+      },
     },
     {
       text: RULE_TEXT.CONTAIN_BODY_TEXT,
@@ -143,7 +143,7 @@ exports.CONTENT_PAGE_RULES = {
           }
           return false;
         }));
-      }
+      },
     },
     {
       text: RULE_TEXT.VIMEO_COVER_PHOTO,
@@ -173,7 +173,7 @@ exports.CONTENT_PAGE_RULES = {
           }
           return false;
         }));
-      }
+      },
     },
     {
       text: RULE_TEXT.VIDEOS_COUNT,
@@ -217,7 +217,7 @@ exports.CONTENT_PAGE_RULES = {
             return foundItems.length > 1;
           });
         });
-      }
+      },
     },
     {
       text: RULE_TEXT.TEAMS_STATISTICS_RATIO,
@@ -321,7 +321,7 @@ exports.HOMEPAGE_RULES = {
 
         return !videos || Array(3).fill(0).filter((_, index) => videos[`video${index + 1}`] &&
           videos[`video${index + 1}`].videoEmbedCode).length !== 2;
-      }
+      },
     },
     {
       text: RULE_TEXT.PIC_MODULE_PROPS,
@@ -393,14 +393,14 @@ exports.HOMEPAGE_RULES = {
 
         return ![campusSectionTitle, teamsSectionTitle, eventListSectionTitle]
           .some(title => title && title[title.length - 1] !== '.');
-      }
+      },
     },
     {
       text: RULE_TEXT.TEAMS_HERO,
       validator: ({ teamsModule }) => {
         if (!teamsModule) return true;
         const {
-          heroName, heroTitle, heroImage, heroDescription, heroLinkDestination
+          heroName, heroTitle, heroImage, heroDescription, heroLinkDestination,
         } = teamsModule;
 
         return !(!heroName || !heroTitle || !heroImage || !heroDescription || !heroLinkDestination);
@@ -425,7 +425,7 @@ exports.HOMEPAGE_RULES = {
 
           return foundItems.length > 1;
         });
-      }
+      },
     },
     {
       text: RULE_TEXT.TEAMS_STATISTICS_RATIO,
@@ -440,7 +440,7 @@ exports.HOMEPAGE_RULES = {
         if (!teamsModule) return true;
         return !checkTeamsStatistics(teamsModule, HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE);
       },
-    }
+    },
   ],
   title: 'Homepage rules',
 };

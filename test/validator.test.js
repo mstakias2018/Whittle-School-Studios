@@ -53,7 +53,7 @@ describe('Validator', () => {
     describe(RULE_TEXT.ONE_OR_MORE_MODULES, () => {
       test('pass', () => {
         const result = getOutputForContentPage({
-          modules: [{}]
+          modules: [{}],
         });
         expect(result).not.toContain(RULE_TEXT.ONE_OR_MORE_MODULES);
       });
@@ -66,19 +66,19 @@ describe('Validator', () => {
     describe(RULE_TEXT.FIRST_MODULE_BODY_TEXT, () => {
       test('pass', () => {
         const result = getOutputForContentPage({
-          modules: [{ content: { text: '' }, type: CONTENT_MODULE.BODY_TEXT }]
+          modules: [{ content: { text: '' }, type: CONTENT_MODULE.BODY_TEXT }],
         });
         expect(result).not.toContain(RULE_TEXT.FIRST_MODULE_BODY_TEXT);
       });
       test('pass - OpenApplyIFrame', () => {
         const result = getOutputForContentPage({
-          modules: [{ type: CONTENT_MODULE.OPENAPPLY_IFRAME }]
+          modules: [{ type: CONTENT_MODULE.OPENAPPLY_IFRAME }],
         });
         expect(result).not.toContain(RULE_TEXT.FIRST_MODULE_BODY_TEXT);
       });
       test('fail', () => {
         const result = getOutputForContentPage({
-          modules: [{ type: CONTENT_MODULE.CAROUSEL }]
+          modules: [{ type: CONTENT_MODULE.CAROUSEL }],
         });
         expect(result).toContain(RULE_TEXT.FIRST_MODULE_BODY_TEXT);
       });
@@ -87,13 +87,13 @@ describe('Validator', () => {
     describe(RULE_TEXT.IFRAME_ONLY_MODULE, () => {
       test('pass', () => {
         const result = getOutputForContentPage({
-          modules: [{ type: CONTENT_MODULE.OPENAPPLY_IFRAME }]
+          modules: [{ type: CONTENT_MODULE.OPENAPPLY_IFRAME }],
         });
         expect(result).not.toContain(RULE_TEXT.IFRAME_ONLY_MODULE);
       });
       test('pass - no iframe', () => {
         const result = getOutputForContentPage({
-          modules: [{ type: CONTENT_MODULE.CAROUSEL }]
+          modules: [{ type: CONTENT_MODULE.CAROUSEL }],
         });
         expect(result).not.toContain(RULE_TEXT.IFRAME_ONLY_MODULE);
       });
@@ -102,7 +102,7 @@ describe('Validator', () => {
           modules: [
             { type: CONTENT_MODULE.OPENAPPLY_IFRAME },
             { type: CONTENT_MODULE.CAROUSEL },
-          ]
+          ],
         });
         expect(result).toContain(RULE_TEXT.IFRAME_ONLY_MODULE);
       });
@@ -111,13 +111,13 @@ describe('Validator', () => {
     describe(RULE_TEXT.CONTAIN_BODY_TEXT, () => {
       test('pass', () => {
         const result = getOutputForContentPage({
-          modules: [{ content: { text: '' }, type: CONTENT_MODULE.BODY_TEXT }]
+          modules: [{ content: { text: '' }, type: CONTENT_MODULE.BODY_TEXT }],
         });
         expect(result).not.toContain(RULE_TEXT.CONTAIN_BODY_TEXT);
       });
       test('fail', () => {
         const result = getOutputForContentPage({
-          modules: [{ type: CONTENT_MODULE.CAROUSEL }]
+          modules: [{ type: CONTENT_MODULE.CAROUSEL }],
         });
         expect(result).toContain(RULE_TEXT.CONTAIN_BODY_TEXT);
       });
@@ -127,7 +127,7 @@ describe('Validator', () => {
       test('pass - both', () => {
         const result = getOutputForContentPage({
           mainImage: {},
-          mainImageAlt: 'hello'
+          mainImageAlt: 'hello',
         });
         expect(result).not.toContain(RULE_TEXT.MAIN_IMAGE_ALT);
       });
@@ -246,7 +246,7 @@ describe('Validator', () => {
             {
               type: CONTENT_MODULE.INLINE_VIDEO,
               video: { videoEmbedCode: VIMEO_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).toContain(RULE_TEXT.VIDEO_ALT_TAGS);
@@ -259,7 +259,7 @@ describe('Validator', () => {
               type: CONTENT_MODULE.THUMBNAIL_LIST,
               video1: { videoEmbedCode: VIMEO_EMBED_CODE },
               video6: { videoEmbedCode: VIMEO_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).toContain(RULE_TEXT.VIDEO_ALT_TAGS);
@@ -274,7 +274,7 @@ describe('Validator', () => {
               video1: { videoEmbedCode: VIMEO_EMBED_CODE },
               video2: { videoEmbedCode: VIMEO_EMBED_CODE },
               video3: { videoEmbedCode: VIMEO_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).toContain(RULE_TEXT.VIDEO_ALT_TAGS);
@@ -350,7 +350,7 @@ describe('Validator', () => {
             {
               type: CONTENT_MODULE.INLINE_VIDEO,
               video: { videoEmbedCode: VIMEO_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).toContain(RULE_TEXT.VIMEO_COVER_PHOTO);
@@ -363,7 +363,7 @@ describe('Validator', () => {
               type: CONTENT_MODULE.THUMBNAIL_LIST,
               video1: { videoEmbedCode: VIMEO_EMBED_CODE },
               video6: { videoEmbedCode: VIMEO_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).toContain(RULE_TEXT.VIMEO_COVER_PHOTO);
@@ -377,7 +377,7 @@ describe('Validator', () => {
               video1cover: {},
               video2: { videoEmbedCode: VIMEO_EMBED_CODE },
               video3: { videoEmbedCode: TENCENT_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).toContain(RULE_TEXT.VIMEO_COVER_PHOTO);
@@ -425,7 +425,7 @@ describe('Validator', () => {
               video1: { videoEmbedCode: VIMEO_EMBED_CODE },
               video2: { videoEmbedCode: VIMEO_EMBED_CODE },
               video3: { videoEmbedCode: TENCENT_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).not.toContain(RULE_TEXT.VIDEOS_COUNT);
@@ -436,7 +436,7 @@ describe('Validator', () => {
             {
               type: CONTENT_MODULE.VIDEOS,
               video1: { videoEmbedCode: VIMEO_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).not.toContain(RULE_TEXT.VIDEOS_COUNT);
@@ -448,7 +448,7 @@ describe('Validator', () => {
               type: CONTENT_MODULE.VIDEOS,
               video1: { videoEmbedCode: VIMEO_EMBED_CODE },
               video2: { videoEmbedCode: VIMEO_EMBED_CODE },
-            }
+            },
           ],
         });
         expect(result).toContain(RULE_TEXT.VIDEOS_COUNT);
@@ -473,16 +473,16 @@ describe('Validator', () => {
                 title4: 'title',
                 title5: 'title',
                 title6: 'title',
-              }
+              },
             ],
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
       test('pass - no sections', () => {
         const result = getOutputForContentPage({
-          modules: []
+          modules: [],
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
@@ -502,10 +502,10 @@ describe('Validator', () => {
                 title4: 'title',
                 title5: 'title',
                 title6: 'title',
-              }
+              },
             ],
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
@@ -522,7 +522,7 @@ describe('Validator', () => {
             statistic2Number2: 4321,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
       });
@@ -533,7 +533,7 @@ describe('Validator', () => {
             statistic1Number2: 1234,
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
       });
@@ -546,7 +546,7 @@ describe('Validator', () => {
             statistic2Number2: 4321,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
       });
@@ -556,7 +556,7 @@ describe('Validator', () => {
             statistic2Number1: 1234,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
       });
@@ -571,7 +571,7 @@ describe('Validator', () => {
             statistic2Number1: 1234,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -581,7 +581,7 @@ describe('Validator', () => {
             statistic2Number1: 1234,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -590,7 +590,7 @@ describe('Validator', () => {
           modules: [{
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -601,7 +601,7 @@ describe('Validator', () => {
             statistic1Number2: 1234,
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -612,7 +612,7 @@ describe('Validator', () => {
             statistic2Number1: 1234,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
             type: CONTENT_MODULE.TEAMS,
-          }]
+          }],
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -712,8 +712,8 @@ describe('Validator', () => {
             {
               id: 'someid123',
               pageType: PAGE_TYPE.ARTICLE,
-            }
-          ]
+            },
+          ],
         });
         expect(result).not.toContain(RULE_TEXT.CATEGORY_SUBCATEGORIES);
       });
@@ -724,8 +724,8 @@ describe('Validator', () => {
             {
               id: 'someid123',
               pageType: PAGE_TYPE.CATEGORY,
-            }
-          ]
+            },
+          ],
         });
         expect(result).toContain(RULE_TEXT.CATEGORY_SUBCATEGORIES);
       });
@@ -830,7 +830,7 @@ describe('Validator', () => {
           eventList: {
             date1: 'date',
             description1: {
-              text: 'description'
+              text: 'description',
             },
             link1: {},
             location1: 'location',
@@ -966,13 +966,13 @@ describe('Validator', () => {
       test('pass - all titles', () => {
         const result = getOutputForHomepage({
           campusModule: {
-            campusSectionTitle: 'Campus.'
+            campusSectionTitle: 'Campus.',
           },
           eventList: {
-            eventListSectionTitle: 'Events.'
+            eventListSectionTitle: 'Events.',
           },
           teamsModule: {
-            teamsSectionTitle: 'Teams.'
+            teamsSectionTitle: 'Teams.',
           },
         });
         expect(result).not.toContain(RULE_TEXT.SECTION_TITLES_PERIOD);
@@ -980,14 +980,14 @@ describe('Validator', () => {
       test('pass - chinese', () => {
         const result = getOutputForHomepage({
           campusModule: {
-            campusSectionTitle: '便花老条'
+            campusSectionTitle: '便花老条',
           },
           eventList: {
-            eventListSectionTitle: '决'
+            eventListSectionTitle: '决',
           },
           locale: LANGUAGE_CONTENTFUL_LOCALE[LANGUAGE.CHINESE],
           teamsModule: {
-            teamsSectionTitle: '验压公增'
+            teamsSectionTitle: '验压公增',
           },
         });
         expect(result).not.toContain(RULE_TEXT.SECTION_TITLES_PERIOD);
@@ -995,7 +995,7 @@ describe('Validator', () => {
       test('fail - campus', () => {
         const result = getOutputForHomepage({
           campusModule: {
-            campusSectionTitle: 'Campus'
+            campusSectionTitle: 'Campus',
           },
         });
         expect(result).toContain(RULE_TEXT.SECTION_TITLES_PERIOD);
@@ -1003,7 +1003,7 @@ describe('Validator', () => {
       test('fail - events', () => {
         const result = getOutputForHomepage({
           eventList: {
-            eventListSectionTitle: 'Events'
+            eventListSectionTitle: 'Events',
           },
         });
         expect(result).toContain(RULE_TEXT.SECTION_TITLES_PERIOD);
@@ -1011,7 +1011,7 @@ describe('Validator', () => {
       test('fail - teams', () => {
         const result = getOutputForHomepage({
           teamsModule: {
-            teamsSectionTitle: 'Teams'
+            teamsSectionTitle: 'Teams',
           },
         });
         expect(result).toContain(RULE_TEXT.SECTION_TITLES_PERIOD);
@@ -1027,7 +1027,7 @@ describe('Validator', () => {
             heroLinkDestination: { id: 'someid124' },
             heroName: 'hero name',
             heroTitle: 'hero title',
-          }
+          },
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_HERO);
       });
@@ -1036,7 +1036,7 @@ describe('Validator', () => {
           teamsModule: {
             heroDescription: { id: 'someid124' },
             heroImage: { id: 'someid124' },
-          }
+          },
         });
         expect(result).toContain(RULE_TEXT.TEAMS_HERO);
       });
@@ -1060,15 +1060,15 @@ describe('Validator', () => {
                 title4: 'title',
                 title5: 'title',
                 title6: 'title',
-              }
-            ]
-          }
+              },
+            ],
+          },
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
       test('pass - no sections', () => {
         const result = getOutputForHomepage({
-          teamsModule: {}
+          teamsModule: {},
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
@@ -1088,9 +1088,9 @@ describe('Validator', () => {
                 title4: 'title',
                 title5: 'title',
                 title6: 'title',
-              }
-            ]
-          }
+              },
+            ],
+          },
         });
         expect(result).toContain(RULE_TEXT.TEAMS_BIO_IMAGE);
       });
@@ -1106,7 +1106,7 @@ describe('Validator', () => {
             statistic2Number1: 4321,
             statistic2Number2: 4321,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
-          }
+          },
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
       });
@@ -1116,7 +1116,7 @@ describe('Validator', () => {
             statistic1Number1: 1234,
             statistic1Number2: 1234,
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
-          }
+          },
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
       });
@@ -1128,7 +1128,7 @@ describe('Validator', () => {
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
             statistic2Number2: 4321,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
-          }
+          },
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
       });
@@ -1137,7 +1137,7 @@ describe('Validator', () => {
           teamsModule: {
             statistic2Number2: 4321,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.RATIO,
-          }
+          },
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_RATIO);
       });
@@ -1151,7 +1151,7 @@ describe('Validator', () => {
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
             statistic2Number1: 1234,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
-          }
+          },
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -1160,7 +1160,7 @@ describe('Validator', () => {
           teamsModule: {
             statistic2Number1: 1234,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
-          }
+          },
         });
         expect(result).not.toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -1168,7 +1168,7 @@ describe('Validator', () => {
         const result = getOutputForHomepage({
           teamsModule: {
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
-          }
+          },
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -1179,7 +1179,7 @@ describe('Validator', () => {
             statistic1Number2: 1234,
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
             type: CONTENT_MODULE.TEAMS,
-          }
+          },
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });
@@ -1189,7 +1189,7 @@ describe('Validator', () => {
             statistic1Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
             statistic2Number1: 12344444,
             statistic2Type: HOME_TEAMS_STATISTIC_TYPE.PERCENTAGE,
-          }
+          },
         });
         expect(result).toContain(RULE_TEXT.TEAMS_STATISTICS_PERCENTAGE);
       });

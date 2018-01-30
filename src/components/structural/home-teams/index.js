@@ -36,7 +36,7 @@ class HomeTeams extends Component {
     const {
       data,
       isOnContentPage,
-      pathContext
+      pathContext,
     } = this.props;
     const n = sectionNumber - 1;
     const sectionData = data.sections[n];
@@ -51,7 +51,7 @@ class HomeTeams extends Component {
         pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_TEAMS][`personImage${sectionNumber - 1}${bioNumber}`],
       bioImageAlt: sectionData[`person${bioNumber}ImageAlt`],
       bioName: sectionData[`person${bioNumber}Name`],
-      bioTitle: sectionData[`person${bioNumber}Title`]
+      bioTitle: sectionData[`person${bioNumber}Title`],
     };
   };
 
@@ -73,7 +73,7 @@ class HomeTeams extends Component {
     const {
       data,
       isOnContentPage,
-      pathContext
+      pathContext,
     } = this.props;
 
     const statistic1 = {
@@ -81,7 +81,7 @@ class HomeTeams extends Component {
       number2: data.statistic1Number2,
       textLineBottom: data.statistic1TextLineBottom,
       textLineTop: data.statistic1TextLineTop,
-      type: data.statistic1Type
+      type: data.statistic1Type,
     };
 
     const statistic2 = {
@@ -89,7 +89,7 @@ class HomeTeams extends Component {
       number2: data.statistic2Number2,
       textLineBottom: data.statistic2TextLineBottom,
       textLineTop: data.statistic2TextLineTop,
-      type: data.statistic2Type
+      type: data.statistic2Type,
     };
 
     const heroImage = isOnContentPage ?

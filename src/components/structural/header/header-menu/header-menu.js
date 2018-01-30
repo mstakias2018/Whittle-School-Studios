@@ -34,7 +34,7 @@ const MainMenu = ({
         className={cx(
             styles.menuItems,
             {
-              [styles.menuItems_aligned]: headerData && headerData.length === 5
+              [styles.menuItems_aligned]: headerData && headerData.length === 5,
             }
           )
         }

@@ -287,7 +287,7 @@ const EVENTS_LIST = {
 
 const LINK = PropTypes.shape({
   parentCategory: PropTypes.arrayOf(PropTypes.shape({
-    slug: PropTypes.string
+    slug: PropTypes.string,
   })),
   slug: PropTypes.string.isRequired,
 });
@@ -302,7 +302,7 @@ const SCHOOLS_INTRO = {
   countdownDate: PropTypes.string.isRequired,
   countdownTitle: PropTypes.string.isRequired,
   description: PropTypes.shape({
-    markdown: PropTypes.string.isRequired
+    markdown: PropTypes.string.isRequired,
   }),
   hasLine: PropTypes.bool,
   image: PropTypes.shape(validateSourcesBySize),

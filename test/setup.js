@@ -10,3 +10,4 @@ process.env.GATSBY_REGION = REGION.CHINA;
 Enzyme.configure({ adapter: new Adapter() });
 
 global.graphql = () => {};
+global.translation = string => string;

@@ -25,7 +25,7 @@ const Logo = (props, { globalImages, isHomePage, translation }) => (
 Logo.contextTypes = {
   globalImages: PROP_SHAPES.GLOBAL_IMAGES.isRequired,
   isHomePage: PropTypes.bool,
-  translation: PropTypes.func.isRequired
+  translation: PropTypes.func.isRequired,
 };
 
 export default Logo;

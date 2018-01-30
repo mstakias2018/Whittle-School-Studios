@@ -48,8 +48,8 @@ class Validator extends Component {
   getValidatedHeaders = () => {
     const {
       data: {
-        allContentfulHeader: { headers }
-      }
+        allContentfulHeader: { headers },
+      },
     } = this.props;
 
     return this.getValidated(headers, [HEADER_RULES]);
@@ -58,8 +58,8 @@ class Validator extends Component {
   getValidatedHome = () => {
     const {
       data: {
-        allContentfulHomePage: { homepage }
-      }
+        allContentfulHomePage: { homepage },
+      },
     } = this.props;
 
     return this.getValidated(homepage, [HOMEPAGE_RULES]);
@@ -137,8 +137,8 @@ class Validator extends Component {
   getValidatedPages = () => {
     const {
       data: {
-        allContentfulContentPage: { contentPages }
-      }
+        allContentfulContentPage: { contentPages },
+      },
     } = this.props;
 
     const { shouldHidePassing } = this.state;

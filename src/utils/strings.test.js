@@ -83,7 +83,7 @@ describe('parseInsetContent', () => {
         {
           alt: 'children',
           videoEmbedCode: '<iframe src="http://test2.com" allowfullscreen></iframe>',
-        }
+        },
       ],
       filteredMarkdown:
         '![daffodils--VIDEO-0](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children--VIDEO-1](VIDEO-NO-COVER-IMAGE)',
@@ -103,7 +103,7 @@ describe('parseInsetContent', () => {
           alt: 'children',
           imageUrl: '//images.contentful.com/a/b/c/children.jpg',
           videoEmbedCode: '<iframe src="http://test.com" allowfullscreen></iframe>',
-        }
+        },
       ],
       filteredMarkdown:
         '![daffodils](//images.contentful.com/a/b/c/daffodils.jpg "My caption")Lorem ipsum.![children--VIDEO-0](//images.contentful.com/a/b/c/children.jpg "My caption")',

@@ -131,7 +131,7 @@ const createHomePages = (graphql, createPage) =>
         });
 
         const {
-          id, campusModule, teamsModule, hero
+          id, campusModule, teamsModule, hero,
         } = homepage;
 
         if (hero) {
