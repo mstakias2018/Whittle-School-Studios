@@ -9,6 +9,10 @@ import largeImage from '../test-content/images/404-large.jpg';
 import mediumImage from '../test-content/images/404-medium.jpg';
 import smallImage from '../test-content/images/404-small.jpg';
 
+/* This page has not yet been integrated because The Whittle School does not
+have a 404 asset ready. When it's ready to be integrated, we can add the asset
+as a field in the GlobalSettings content model. */
+
 const PAGE_NOT_FOUND = {
   imageAlt: '404',
   imageSources: {
