@@ -112,4 +112,10 @@
 
 .fabLink {
   display: block;
+  max-height: 100%;
+  max-width: 100%;
+
+  @media (--bp-sm-only) {
+    padding: .25rem 0 0 .2rem;
+  }
 }
