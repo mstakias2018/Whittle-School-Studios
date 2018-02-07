@@ -74,7 +74,7 @@ const Footer = (props, context) => {
   let utilityLinks;
   if (footerData) {
     [firstPrimaryLink, ...otherPrimaryLinks] = footerData.primaryLinks;
-    [utilityLinks] = footerData;
+    ({ utilityLinks } = footerData);
   }
 
   return (
