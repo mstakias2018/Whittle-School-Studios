@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "GATSBY_REGION=\"US\" gatsby build",
-    "build-china": "GATSBY_REGION=\"CHINA\" gatsby build",
+    "add-robots-dot-txt": "if test \"$CONTEXT\" = \"branch-deploy\"; then echo 'User-agent: *\nDisallow: /' >> public/robots.txt; fi",
+    "build": "GATSBY_REGION=\"US\" gatsby build && yarn add-robots-dot-txt",
+    "build-china": "GATSBY_REGION=\"CHINA\" gatsby build && yarn add-robots-dot-txt",
     "build-ci": "if test \"$CONTEXT\" = \"deploy-preview\"; then yarn lint-js && yarn lint-css && yarn test; fi && yarn build",
     "build-ci-china": "if test \"$CONTEXT\" = \"deploy-preview\"; then yarn lint-js && yarn lint-css && yarn test; fi && yarn build-china",
     "develop": "GATSBY_REGION=\"US\" gatsby develop",
