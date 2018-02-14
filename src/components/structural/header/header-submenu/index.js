@@ -104,7 +104,7 @@ class Submenu extends Component {
                         <span className={styles.lastWord}>
                           {lastWord}
                           <span className={styles.emptySpace} />
-                          <Arrow />
+                          {!isActive && <Arrow />}
                         </span>
                       </span>
                     );

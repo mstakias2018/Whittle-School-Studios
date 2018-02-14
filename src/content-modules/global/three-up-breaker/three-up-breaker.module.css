@@ -121,6 +121,11 @@
 .blockText {
   @mixin type-paragraph;
 
+  @media (--bp-md) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
   a {
     @mixin type-link;
   }

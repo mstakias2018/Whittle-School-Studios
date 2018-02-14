@@ -157,6 +157,11 @@
         text-decoration: underline;
         text-decoration-color: var(--color-text-tomato);
       }
+
+      .itemDescription {
+        text-decoration: underline;
+        text-decoration-color: var(--color-link-hover-underline);
+      }
     }
   }
 

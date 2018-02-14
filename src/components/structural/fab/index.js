@@ -165,8 +165,7 @@ class Fab extends React.Component {
                name: 'firstRotation',
                properties: [
                  {
-                   endValue: smallerThanLG.includes(this.props.breakpoint) ?
-                    0 : 360,
+                   endValue: 360,
                    property: 'rotate',
                    startValue: 0,
                  },

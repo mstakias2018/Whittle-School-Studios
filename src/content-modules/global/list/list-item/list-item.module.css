@@ -19,12 +19,26 @@
   @mixin type-descriptor;
   @mixin font-family font-sans-serif-regular;
   display: block;
+  font-size: 14px;
   font-weight: bold;
+  line-height: 28px;
+
+  @media (--bp-md) {
+    font-size: 16px;
+    line-height: 38px;
+  }
 }
 
 .description {
   @mixin type-caption;
   @mixin markdown-support;
+  font-size: 14px;
+  line-height: 24px;
+
+  @media (--bp-md) {
+    font-size: 16px;
+    line-height: 26px;
+  }
 
   strong {
     @mixin font-family font-sans-serif-light;

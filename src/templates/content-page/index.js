@@ -10,7 +10,6 @@ import PageVisited from '../../components/structural/page-visited';
 
 import { PROP_SHAPES } from '../../constants/custom-property-types';
 import { IMAGE_TYPE } from '../../constants/images';
-import { CONTENT_MODULE } from '../../constants/contentful';
 import {
   transformLocalizedSlugData,
   transformSubnavProps,
@@ -44,6 +43,21 @@ class ContentPageTemplate extends Component {
   setLastElementBottom = (lastElementBottom) => {
     this.setState({ lastElementBottom });
   };
+
+  shouldDisableFab = () => {
+    const { fabLinkInternal } = this.context;
+    if (fabLinkInternal) {
+      const pageData = this.props.data.currentPageData;
+      const fabCategory = fabLinkInternal.parentCategory ?
+        fabLinkInternal.parentCategory[0].slug : fabLinkInternal.slug;
+
+      if ((pageData.parentCategory && pageData.parentCategory[0].categorySlug === fabCategory)
+          || pageData.categorySlug === fabCategory) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   viewedPage = (viewed) => {
     this.setState({ viewed });
@@ -100,8 +114,6 @@ class ContentPageTemplate extends Component {
     const metaKeywords = seoMetaKeywords && seoMetaKeywords.content;
     const metaTitle = seoMetaTitle || navTitle || removeMarkdown(headline);
 
-    const shouldDisableFab = modules && modules.some(({ __typename: type }) =>
-      type === CONTENT_MODULE.OPENAPPLY_IFRAME);
     const mainImageSources = imageDataByType[IMAGE_TYPE.MAIN];
 
     const metaProps = {
@@ -122,7 +134,7 @@ class ContentPageTemplate extends Component {
           <PageWrapper
             metaProps={metaProps}
             setLastElementBottom={this.setLastElementBottom}
-            shouldDisableFab={shouldDisableFab}
+            shouldDisableFab={this.shouldDisableFab()}
             subNavProps={subNavProps}
             viewedPage={this.state.viewed}
           >
@@ -150,6 +162,9 @@ class ContentPageTemplate extends Component {
 }
 
 ContentPageTemplate.propTypes = propTypes;
+ContentPageTemplate.contextTypes = {
+  fabLinkInternal: PropTypes.object,
+};
 
 ContentPageTemplate.childContextTypes = {
   localizedSlugList: PROP_SHAPES.LOCALIZED_SLUG_LIST.isRequired,

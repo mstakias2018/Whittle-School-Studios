@@ -66,6 +66,7 @@ class TemplateWrapper extends Component {
 
     return {
       fabLink: parseLink({ external: fabLinkExternal, internal: fabLinkInternal }),
+      fabLinkInternal,
       footerData: formatFooterLinks(this.getLanguageDataFor(LAYOUT_MODEL.FOOTER)),
       globalImages,
       headerData: this.getLanguageDataFor(LAYOUT_MODEL.HEADER).contentPages,
@@ -192,6 +193,7 @@ TemplateWrapper.propTypes = {
 
 TemplateWrapper.childContextTypes = {
   fabLink: PropTypes.string.isRequired,
+  fabLinkInternal: PropTypes.object,
   footerData: PROP_SHAPES.FOOTER_DATA.isRequired,
   globalImages: PROP_SHAPES.GLOBAL_IMAGES.isRequired,
   headerData: PROP_SHAPES.HEADER_DATA.isRequired,

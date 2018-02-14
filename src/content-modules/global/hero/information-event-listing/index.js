@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Link from '../../../../components/global/link';
 import Date from '../../../../components/global/date';
 import { sortEventDates } from '../../../../utils/global';
 
@@ -17,9 +18,12 @@ const propTypes = {
 class InformationEventListing extends Component {
   createItem = (n) => {
     const date = this.props[`event${n}Date`];
+    const link = this.props[`event${n}RegistrationLink`];
     const location = this.props[`event${n}Location`];
     const title = this.props[`event${n}TitleLine1`];
     const title2 = this.props[`event${n}TitleLine2`];
+
+    const { translation } = this.context;
 
     return (
       <li
@@ -36,7 +40,13 @@ class InformationEventListing extends Component {
           <span>{title}</span>
           <span>{title2}</span>
         </h3>
-        <span className={styles.location}>{location}</span>
+        <div className={styles.location}>{location}</div>
+        <Link
+          className={styles.register}
+          to={link}
+        >
+          {translation('events.register')}
+        </Link>
       </li>
     );
   };
@@ -54,5 +64,8 @@ class InformationEventListing extends Component {
 }
 
 InformationEventListing.propTypes = propTypes;
+InformationEventListing.contextTypes = {
+  translation: PropTypes.func.isRequired,
+};
 
 export default InformationEventListing;

@@ -69,9 +69,16 @@
 
 .description {
   @mixin type-descriptor;
+  font-size: 16px;
+  line-height: 26px;
 
   @media (--bp-sm-and-md-lower-only) {
     display: none;
+  }
+
+  @media (--bp-md) {
+    font-size: 16px;
+    line-height: 26px;
   }
 
   @media (--bp-lg) {

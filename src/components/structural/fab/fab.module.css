@@ -80,6 +80,10 @@
   &:global(.Plx--in-secondLG) { /* stylelint-disable-line */
     position: absolute;
   }
+
+  &:global(.Plx--above) { /* stylelint-disable-line */
+    pointer-events: none;
+  }
 }
 
 @keyframes fabHover {
