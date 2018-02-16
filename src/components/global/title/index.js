@@ -14,8 +14,10 @@ const propTypes = {
 };
 
 const Title = ({ text, type }) => (
-  <h1 className={styles[`type${type}`]}>
-    <span className="screenReaderText">{removeMarkdown(text)}</span>
+  <h1
+    aria-label={removeMarkdown(text)}
+    className={styles[`type${type}`]}
+  >
     <Markdown
       allowedTypes={ALLOWED_TYPES.TITLE}
       containerProps={{ 'aria-hidden': true }}
