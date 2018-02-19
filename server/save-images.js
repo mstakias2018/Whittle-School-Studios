@@ -45,17 +45,29 @@ exports.createQuery = (imageSubtype) => {
   const imageConfig = IMAGE_CONFIG[imageSubtype];
   const queries = Object.keys(imageConfig).reduce((query, imageSize) => {
     const sizeConfig = imageConfig[imageSize];
+    if (imageSubtype === 'natural') {
+      return `${query}
+        ${imageSize}: resolutions(
+            width: ${sizeConfig.width},
+            quality: 100,
+          ) {
+            src
+            srcSet
+          }
+      `;
+    }
+
     return `${query}
       ${imageSize}: resolutions(
-        width: ${sizeConfig.width},
-        height: ${sizeConfig.height},
-        cropFocus: FACES,
-        resizingBehavior: FILL,
-        quality: 100,
-      ) {
-        src
-        srcSet
-      }
+          width: ${sizeConfig.width},
+          height: ${sizeConfig.height},
+          cropFocus: FACES,
+          resizingBehavior: FILL,
+          quality: 100,
+        ) {
+          src
+          srcSet
+        }
     `;
   }, '');
 

@@ -73,6 +73,7 @@ exports.CONTENT_MODULE = {
 };
 
 exports.STRUCTURAL_COMPONENTS = {
+  HOME_BOOK_DOWLOADS: 'ContentfulDownloads',
   HOME_CAMPUSES: 'ContentfulCampuses',
   HOME_HERO: 'ContentfulHero',
   HOME_TEAMS: 'ContentfulTeams',

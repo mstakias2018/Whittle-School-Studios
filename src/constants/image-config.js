@@ -93,6 +93,11 @@ const IMAGE_CONFIG = {
     [BREAKPOINTS_NAME.medium]: { colRatio: 2 / 8, heightRatio: RATIO.SQUARE },
     [BREAKPOINTS_NAME.large]: { colRatio: 2 / 12, heightRatio: RATIO.SQUARE },
   },
+  [IMAGE_SUBTYPE.NATURAL]: {
+    [BREAKPOINTS_NAME.small]: { colRatio: 1, heightRatio: 1 },
+    [BREAKPOINTS_NAME.medium]: { colRatio: 1, heightRatio: 1 },
+    [BREAKPOINTS_NAME.large]: { colRatio: 1, heightRatio: 1 },
+  },
 };
 
 module.exports = calcDimensions(IMAGE_CONFIG);

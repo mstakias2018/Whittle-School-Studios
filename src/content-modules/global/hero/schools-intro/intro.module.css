@@ -102,3 +102,27 @@
   @mixin type-link;
   @mixin type-link-default-size;
 }
+
+.downloadBook {
+  @media (--bp-lg) {
+    padding-top: 15px;
+  }
+
+  h3 {
+    @mixin type-h4;
+    font-size: 20px;
+    letter-spacing: 0.75px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+
+    @media (--bp-lg) {
+      line-height: 20px;
+    }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}

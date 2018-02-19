@@ -21,6 +21,8 @@ const SchoolsIntro = ({
   countdownTitle,
   countdownDate,
   hasLine,
+  downloadBook,
+  downloadBookImage,
 }) => (
   <div className={styles.wrapper}>
     <div className={styles.introWrapper}>
@@ -60,7 +62,22 @@ const SchoolsIntro = ({
         date={countdownDate}
         title={countdownTitle}
       />
+      {downloadBook && (
+        <div className={cx(styles.downloadBook)}>
+          <h3>{downloadBook.title}</h3>
+          <a
+            href={downloadBook.url}
+            target="_blank"
+          >
+            <Picture
+              alt={downloadBook.title}
+              sourcesBySize={downloadBookImage}
+            />
+          </a>
+        </div>
+      )}
     </div>
+
   </div>
 );
 

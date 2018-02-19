@@ -17,6 +17,8 @@ const Hero = ({
   eventList,
   image,
   imageSources,
+  downloadBook,
+  downloadBookImage,
 }) => (
   <div className={styles.wrapper}>
     <div className={cx(styles.container, CLASSES.COUNTDOWN_COMPONENT_WRAPPER, {
@@ -29,6 +31,8 @@ const Hero = ({
       />
       <SchoolsIntro
         {...data}
+        downloadBook={downloadBook}
+        downloadBookImage={downloadBookImage}
         hasLine={!!data.videos}
         image={image}
       />

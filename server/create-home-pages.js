@@ -93,6 +93,11 @@ const createHomePages = (graphql, createPage) =>
                       }
                     }
                   }
+                  downloadBook {
+                    image {
+                      ${createQuery(IMAGE_SUBTYPE.NATURAL)}
+                    }
+                  }
                 }
               }
             }
@@ -131,7 +136,7 @@ const createHomePages = (graphql, createPage) =>
         });
 
         const {
-          id, campusModule, teamsModule, hero,
+          id, campusModule, teamsModule, hero, downloadBook,
         } = homepage;
 
         if (hero) {
@@ -244,6 +249,23 @@ const createHomePages = (graphql, createPage) =>
                   }
                 }
               }
+            }
+          }
+        }
+
+        if (downloadBook) {
+          imageDataByType[STRUCTURAL_COMPONENTS.HOME_BOOK_DOWLOADS] = {};
+          if (downloadBook.image) {
+            const downloadBookImage = saveImage(
+              downloadBook.image,
+              IMAGE_TYPE.MODULE,
+              IMAGE_SUBTYPE.NATURAL,
+              [id, STRUCTURAL_COMPONENTS.HOME_BOOK_DOWLOADS]
+            );
+            if (downloadBookImage) {
+              modulePromises.push(downloadBookImage.then((imageData) => {
+                imageDataByType[STRUCTURAL_COMPONENTS.HOME_BOOK_DOWLOADS].image = imageData;
+              }));
             }
           }
         }

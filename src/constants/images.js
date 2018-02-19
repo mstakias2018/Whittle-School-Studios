@@ -60,6 +60,7 @@ exports.IMAGE_SUBTYPE = {
   INSET_SQ: 'insetSq',
   MAIN_ARTICLE: 'mainArt',
   MAIN_CATEGORY: 'mainCat',
+  NATURAL: 'natural',
   TEAMS_BIO_SQ: 'teamsBioSq',
   TEAMS_HERO_SQ: 'teamsHeroSq',
 };

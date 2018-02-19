@@ -43,6 +43,7 @@ class HomePageTemplate extends Component {
       seoMetaKeywords,
       seoMetaTitle,
       teamsModule,
+      downloadBook,
     } = homePageData;
 
     const metaDescription = (seoMetaDescription && seoMetaDescription.content) || (hero && hero.title);
@@ -50,6 +51,9 @@ class HomePageTemplate extends Component {
     const metaTitle = seoMetaTitle || removeMarkdown(headline) || (hero && hero.title);
     const heroImages = pathContext.imageDataByType && pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_HERO];
     const mainHeroImage = heroImages && heroImages.image;
+    const downloadBookImages = pathContext.imageDataByType &&
+      pathContext.imageDataByType[STRUCTURAL_COMPONENTS.HOME_BOOK_DOWLOADS];
+    const downloadBookImage = downloadBookImages && downloadBookImages.image;
 
     const metaProps = {
       description: metaDescription,
@@ -75,6 +79,8 @@ class HomePageTemplate extends Component {
         />
         <Hero
           data={hero}
+          downloadBook={downloadBook}
+          downloadBookImage={downloadBookImage}
           eventList={eventList}
           image={mainHeroImage}
           imageSources={heroImages && [
@@ -344,6 +350,10 @@ export const pageQuery = graphql`
             markdown: person6Description
           }
         }
+      }
+      downloadBook {
+        title
+        url
       }
     }
   }
