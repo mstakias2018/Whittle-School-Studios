@@ -20,7 +20,7 @@ const MarkdownImage = ({
   insetAssets,
 }) => {
   const id = getIdFromImgUrl(src);
-  const sourcesBySize = imageSources.find(n => n.id === id);
+  const sourcesBySize = imageSources.filter(n => n).find(n => n.id === id);
   const [altTag, ...indicators] = alt.split('--');
   const videoMatch = alt.match(/--VIDEO-(\d)/);
   const videoNumber = videoMatch && videoMatch[1];
